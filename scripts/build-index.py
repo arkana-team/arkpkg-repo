@@ -131,7 +131,7 @@ def build_site(repo_root: Path, site_dir: Path) -> None:
         "<title>ArkPkg package repository</title>"
         '<body><main><h1>ArkPkg package repository</h1>'
         "<p>Static package repository for ArkanaOS. Configure it with:</p>"
-        "<pre>arkpkg repo add arkanaos https://debarkak.github.io/arkpkg-repo</pre>"
+        "<pre>arkpkg repo add arkanaos https://arkana-team.github.io/arkpkg-repo</pre>"
         '<p><a href="index.json">Package index (JSON)</a></p>'
         "<table><thead><tr><th>Name</th><th>Version</th><th>Architecture</th>"
         f"<th>Description</th></tr></thead><tbody>{package_rows}</tbody></table>"
