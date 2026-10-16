@@ -243,3 +243,4 @@ def build_packages(args: argparse.Namespace) -> None:
 
         for name in PACKAGES:
             recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+            package_root = work_dir / name
