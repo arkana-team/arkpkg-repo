@@ -47,3 +47,4 @@ if [[ ! -x "$browser" ]]; then
       tar -xJf "$bundle" -C "$temp_dir"
       mv -- "$temp_dir/firefox" "$version_root/firefox"
     fi
+    cleanup
