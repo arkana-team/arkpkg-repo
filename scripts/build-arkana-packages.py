@@ -72,3 +72,4 @@ class PackageTree:
 
 
 def read_field(recipe: Path, name: str) -> str:
+    for line in recipe.read_text(encoding="utf-8").splitlines():
