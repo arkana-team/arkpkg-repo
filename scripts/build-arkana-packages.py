@@ -71,3 +71,4 @@ class PackageTree:
             self.add(source.relative_to(self.staging), required=False)
 
 
+def read_field(recipe: Path, name: str) -> str:
