@@ -95,3 +95,4 @@ def obtain_firefox_archive(
         request = urllib.request.Request(
             FIREFOX_URL, headers={"User-Agent": "arkpkg-repo-package-builder/1"}
         )
+        with urllib.request.urlopen(request, timeout=120) as response:
