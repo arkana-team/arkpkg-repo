@@ -131,3 +131,4 @@ def add_firefox_payload(
     shutil.copyfile(desktop, desktop_destination)
     os.chmod(desktop_destination, 0o644)
 
+    icon_destination = (
