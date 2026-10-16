@@ -92,3 +92,4 @@ def obtain_firefox_archive(
 ) -> Path:
     if archive_path is None:
         archive_path = temporary_dir / f"firefox-{FIREFOX_VERSION}.tar.xz"
+        request = urllib.request.Request(
