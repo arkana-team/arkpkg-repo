@@ -158,3 +158,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
     elif name == "fastfetch":
         for relative in (
             "usr/bin/fastfetch",
+            "usr/share/fastfetch",
