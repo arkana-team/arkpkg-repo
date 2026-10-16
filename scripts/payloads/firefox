@@ -8,3 +8,4 @@ browser="${version_root}/firefox/firefox"
 lock="${version_root}/.extract-lock"
 
 if [[ ! -x "$browser" ]]; then
+  mkdir -p "$version_root"
