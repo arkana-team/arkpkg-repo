@@ -30,3 +30,4 @@ if [[ ! -x "$browser" ]]; then
     fi
     sleep 1
   done
+
