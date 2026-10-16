@@ -130,3 +130,4 @@ def add_firefox_payload(
     desktop_destination.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(desktop, desktop_destination)
     os.chmod(desktop_destination, 0o644)
+
