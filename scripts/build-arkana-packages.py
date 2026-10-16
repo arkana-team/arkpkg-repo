@@ -90,3 +90,4 @@ def sha512_file(path: Path) -> str:
 def obtain_firefox_archive(
     archive_path: Path | None, temporary_dir: Path
 ) -> Path:
+    if archive_path is None:
