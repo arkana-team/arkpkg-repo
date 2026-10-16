@@ -140,3 +140,4 @@ def add_firefox_payload(
         if member is None:
             raise ValueError(f"Firefox release is missing its icon: {FIREFOX_ICON}")
         with icon_destination.open("wb") as output:
+            shutil.copyfileobj(member, output)
