@@ -5,3 +5,4 @@ Exec=/usr/bin/firefox %u
 Icon=firefox
 Terminal=false
 Type=Application
+Categories=Network;WebBrowser;
