@@ -7,3 +7,4 @@ License: GPL-3.0
 Maintainer: arkanaOS Team
 Provides:
 arkpkg=/usr/bin/arkpkg
+arkpkg-build=/usr/bin/arkpkg-build
