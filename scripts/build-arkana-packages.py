@@ -142,3 +142,4 @@ def add_firefox_payload(
         with icon_destination.open("wb") as output:
             shutil.copyfileobj(member, output)
     os.chmod(icon_destination, 0o644)
+
