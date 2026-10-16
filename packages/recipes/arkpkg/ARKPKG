@@ -3,3 +3,4 @@ Description: ArkanaOS package manager and package builder
 Version: 1.0.0
 Arch: x86_64
 URL: https://github.com/arkana-team/arkpkg
+License: GPL-3.0
