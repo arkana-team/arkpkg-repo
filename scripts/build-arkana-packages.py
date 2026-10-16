@@ -76,3 +76,4 @@ def read_field(recipe: Path, name: str) -> str:
         key, separator, value = line.partition(":")
         if separator and key.strip() == name:
             return value.strip()
+    raise ValueError(f"{recipe} has no {name} field")
