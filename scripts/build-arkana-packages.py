@@ -114,3 +114,4 @@ def add_firefox_payload(
     package_root: Path, staging: Path, archive_path: Path
 ) -> None:
     tree = PackageTree(staging, package_root)
+    bundle = package_root / "usr/lib/arkpkg/firefox-158.0.tar.xz"
