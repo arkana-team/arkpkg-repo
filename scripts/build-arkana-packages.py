@@ -94,3 +94,4 @@ def obtain_firefox_archive(
         archive_path = temporary_dir / f"firefox-{FIREFOX_VERSION}.tar.xz"
         request = urllib.request.Request(
             FIREFOX_URL, headers={"User-Agent": "arkpkg-repo-package-builder/1"}
+        )
