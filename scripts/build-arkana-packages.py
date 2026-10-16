@@ -42,3 +42,4 @@ class PackageTree:
             if required:
                 raise FileNotFoundError(f"missing staged package input: {source}")
             return
+        if destination.exists() or destination.is_symlink():
