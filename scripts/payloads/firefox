@@ -39,3 +39,4 @@ if [[ ! -x "$browser" ]]; then
       fi
       rmdir "$lock" 2>/dev/null || true
     }
+    printf '%s\n' "$$" > "$lock/pid"
