@@ -122,3 +122,4 @@ def add_firefox_payload(
     launcher = Path(__file__).resolve().parent / "payloads/firefox"
     launcher_destination = package_root / "usr/bin/firefox"
     launcher_destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(launcher, launcher_destination)
