@@ -25,3 +25,4 @@ FIREFOX_SHA512 = (
 )
 FIREFOX_ARCHIVE_BYTES = 90_552_004
 FIREFOX_ICON = "firefox/browser/chrome/icons/default/default128.png"
+PACKAGES = ("arkcfg", "arkpkg", "fastfetch", "firefox", "git", "vim")
