@@ -27,3 +27,4 @@ if [[ ! -x "$browser" ]]; then
     if [[ "$owner" =~ ^[0-9]+$ ]] && ! kill -0 "$owner" 2>/dev/null; then
       rm -rf -- "$lock"
       continue
+    fi
