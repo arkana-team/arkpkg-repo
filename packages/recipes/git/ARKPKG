@@ -5,3 +5,4 @@ Arch: x86_64
 URL: https://git-scm.com/
 License: GPL-2.0-only
 Maintainer: arkanaOS Team
+Provides: git=/usr/bin/git
