@@ -105,3 +105,4 @@ def obtain_firefox_archive(
         raise ValueError(
             f"Firefox archive has unexpected size: {archive_path.stat().st_size}"
         )
+    if sha512_file(archive_path) != FIREFOX_SHA512:
