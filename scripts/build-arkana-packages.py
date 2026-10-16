@@ -249,3 +249,4 @@ def build_packages(args: argparse.Namespace) -> None:
             shutil.copyfile(recipe, package_root / "ARKPKG")
 
             if name == "firefox":
+                add_firefox_payload(payload_root, staging, firefox_archive)
