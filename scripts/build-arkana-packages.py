@@ -201,3 +201,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/share/vim",
             "usr/share/doc/vim-9.1.1629",
         ):
+            tree.add(relative, required=relative in {
