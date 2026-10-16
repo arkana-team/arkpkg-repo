@@ -264,3 +264,4 @@ def build_packages(args: argparse.Namespace) -> None:
                     "--output",
                     str(output),
                 ],
+                check=True,
