@@ -67,3 +67,4 @@ class PackageTree:
             raise ValueError(f"unsupported staged package input: {source}")
 
     def add_glob(self, pattern: str) -> None:
+        for source in sorted(self.staging.glob(pattern)):
