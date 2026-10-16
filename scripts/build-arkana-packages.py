@@ -231,3 +231,4 @@ def strip_elf_payload(package_root: Path) -> None:
         subprocess.run([strip_tool, "--strip-unneeded", str(path)], check=True)
 
 
+def build_packages(args: argparse.Namespace) -> None:
