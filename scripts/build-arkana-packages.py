@@ -110,3 +110,4 @@ def obtain_firefox_archive(
     return archive_path
 
 
+def add_firefox_payload(
