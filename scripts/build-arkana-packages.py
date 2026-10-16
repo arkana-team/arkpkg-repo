@@ -220,3 +220,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
 
 def strip_elf_payload(package_root: Path) -> None:
     strip_tool = shutil.which("strip")
+    if strip_tool is None:
