@@ -1,0 +1,8 @@
+Name: arkcfg
+Description: ArkanaOS configuration utility
+Version: 0.1.0
+Arch: x86_64
+URL: https://github.com/arkana-team/arkcfg
+License: GPL-3.0
+Maintainer: arkanaOS Team
+Provides: arkcfg=/usr/bin/arkcfg
