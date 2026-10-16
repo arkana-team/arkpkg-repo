@@ -65,3 +65,4 @@ class PackageTree:
                     self.hardlinks[inode] = destination
         else:
             raise ValueError(f"unsupported staged package input: {source}")
+
