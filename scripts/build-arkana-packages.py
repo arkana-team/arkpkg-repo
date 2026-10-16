@@ -251,3 +251,4 @@ def build_packages(args: argparse.Namespace) -> None:
             if name == "firefox":
                 add_firefox_payload(payload_root, staging, firefox_archive)
             else:
+                add_staged_payload(name, payload_root, staging)
