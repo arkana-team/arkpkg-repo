@@ -282,3 +282,4 @@ def parse_args() -> argparse.Namespace:
 
 
 if __name__ == "__main__":
+    build_packages(parse_args())
