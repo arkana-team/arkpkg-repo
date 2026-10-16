@@ -87,3 +87,4 @@ def sha512_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def obtain_firefox_archive(
