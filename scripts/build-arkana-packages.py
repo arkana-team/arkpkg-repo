@@ -239,3 +239,4 @@ def build_packages(args: argparse.Namespace) -> None:
 
     with tempfile.TemporaryDirectory(prefix="arkpkg-package-build-") as work:
         work_dir = Path(work)
+        firefox_archive = obtain_firefox_archive(args.firefox_archive, work_dir)
