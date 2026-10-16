@@ -192,3 +192,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
     elif name == "vim":
         for relative in (
             "usr/bin/vim",
+            "usr/bin/vimdiff",
