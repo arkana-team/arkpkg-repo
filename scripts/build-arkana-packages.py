@@ -79,3 +79,4 @@ def read_field(recipe: Path, name: str) -> str:
     raise ValueError(f"{recipe} has no {name} field")
 
 
+def sha512_file(path: Path) -> str:
