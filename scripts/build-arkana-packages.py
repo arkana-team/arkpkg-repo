@@ -177,3 +177,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/share/bash-completion/completions/git",
             "usr/share/zsh/site-functions/_git",
             "usr/share/fish/vendor_completions.d/git.fish",
+        ):
