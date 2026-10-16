@@ -15,3 +15,4 @@ if [[ ! -x "$browser" ]]; then
       lock_owned=1
       break
     fi
+    owner=
