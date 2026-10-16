@@ -234,3 +234,4 @@ def strip_elf_payload(package_root: Path) -> None:
 def build_packages(args: argparse.Namespace) -> None:
     repo_root = Path(__file__).resolve().parents[1]
     staging = args.staging.resolve()
+    output_dir = args.output_dir.resolve()
