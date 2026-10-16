@@ -242,3 +242,4 @@ def build_packages(args: argparse.Namespace) -> None:
         firefox_archive = obtain_firefox_archive(args.firefox_archive, work_dir)
 
         for name in PACKAGES:
+            recipe = repo_root / "packages/recipes" / name / "ARKPKG"
