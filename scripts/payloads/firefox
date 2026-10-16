@@ -34,3 +34,4 @@ if [[ ! -x "$browser" ]]; then
   if (( lock_owned )); then
     temp_dir=
     cleanup() {
+      if [[ -n "$temp_dir" ]]; then
