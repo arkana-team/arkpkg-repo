@@ -23,3 +23,4 @@ if [[ ! -x "$browser" ]]; then
       rmdir "$lock" 2>/dev/null || true
       sleep 1
       continue
+    fi
