@@ -132,3 +132,4 @@ def add_firefox_payload(
     os.chmod(desktop_destination, 0o644)
 
     icon_destination = (
+        package_root / "usr/share/icons/hicolor/128x128/apps/firefox.png"
