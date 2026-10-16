@@ -136,3 +136,4 @@ def add_firefox_payload(
     )
     icon_destination.parent.mkdir(parents=True, exist_ok=True)
     with tarfile.open(archive_path, mode="r:xz") as archive:
+        member = archive.extractfile(FIREFOX_ICON)
