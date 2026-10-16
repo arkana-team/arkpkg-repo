@@ -109,3 +109,4 @@ def obtain_firefox_archive(
         raise ValueError("Firefox archive SHA-512 does not match Mozilla's release checksum")
     return archive_path
 
+
