@@ -262,3 +262,4 @@ def build_packages(args: argparse.Namespace) -> None:
                     str(args.arkpkg_build.resolve()),
                     str(package_root),
                     "--output",
+                    str(output),
