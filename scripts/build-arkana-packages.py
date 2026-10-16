@@ -126,3 +126,4 @@ def add_firefox_payload(
     os.chmod(launcher_destination, 0o755)
 
     desktop = Path(__file__).resolve().parent / "payloads/firefox.desktop"
+    desktop_destination = package_root / "usr/share/applications/firefox.desktop"
