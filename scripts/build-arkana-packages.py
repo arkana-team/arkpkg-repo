@@ -196,3 +196,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/bin/vimtutor",
             "usr/bin/ex",
             "usr/bin/view",
+            "usr/bin/rvim",
