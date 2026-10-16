@@ -199,3 +199,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/bin/rvim",
             "usr/bin/rview",
             "usr/share/vim",
+            "usr/share/doc/vim-9.1.1629",
