@@ -48,3 +48,4 @@ if [[ ! -x "$browser" ]]; then
       mv -- "$temp_dir/firefox" "$version_root/firefox"
     fi
     cleanup
+    trap - EXIT HUP INT TERM
