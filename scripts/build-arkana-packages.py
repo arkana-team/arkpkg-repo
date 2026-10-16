@@ -60,3 +60,4 @@ class PackageTree:
                 target = os.path.relpath(self.hardlinks[inode], destination.parent)
                 destination.symlink_to(target)
             else:
+                shutil.copy2(source, destination)
