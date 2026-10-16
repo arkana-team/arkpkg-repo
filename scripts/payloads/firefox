@@ -32,3 +32,4 @@ if [[ ! -x "$browser" ]]; then
   done
 
   if (( lock_owned )); then
+    temp_dir=
