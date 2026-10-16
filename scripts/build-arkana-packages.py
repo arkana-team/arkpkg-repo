@@ -99,3 +99,4 @@ def obtain_firefox_archive(
             with archive_path.open("wb") as output:
                 shutil.copyfileobj(response, output)
     else:
+        archive_path = archive_path.resolve()
