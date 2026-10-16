@@ -237,3 +237,4 @@ def build_packages(args: argparse.Namespace) -> None:
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    with tempfile.TemporaryDirectory(prefix="arkpkg-package-build-") as work:
