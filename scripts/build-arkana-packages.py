@@ -276,3 +276,4 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--firefox-archive", type=Path)
     args = parser.parse_args()
+    if args.output_dir is None:
