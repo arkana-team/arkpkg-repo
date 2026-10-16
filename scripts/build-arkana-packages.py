@@ -217,3 +217,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
     else:
         raise ValueError(f"unsupported package recipe: {name}")
 
+
