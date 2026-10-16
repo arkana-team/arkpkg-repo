@@ -258,3 +258,4 @@ def build_packages(args: argparse.Namespace) -> None:
             arch = read_field(recipe, "Arch")
             output = output_dir / f"{name}-{version}-{arch}.ark"
             subprocess.run(
+                [
