@@ -226,3 +226,4 @@ def strip_elf_payload(package_root: Path) -> None:
         if path.is_symlink() or not path.is_file():
             continue
         with path.open("rb") as stream:
+            if stream.read(4) != b"\x7fELF":
