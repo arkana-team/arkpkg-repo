@@ -33,3 +33,4 @@ class PackageTree:
         self.staging = staging
         self.package_root = package_root
         self.hardlinks: dict[tuple[int, int], Path] = {}
+
