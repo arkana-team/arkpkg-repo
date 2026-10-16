@@ -197,3 +197,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/bin/ex",
             "usr/bin/view",
             "usr/bin/rvim",
+            "usr/bin/rview",
