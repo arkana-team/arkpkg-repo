@@ -29,3 +29,4 @@ PACKAGES = ("arkcfg", "arkpkg", "fastfetch", "firefox", "git", "vim")
 
 
 class PackageTree:
+    def __init__(self, staging: Path, package_root: Path) -> None:
