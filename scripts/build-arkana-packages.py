@@ -103,3 +103,4 @@ def obtain_firefox_archive(
 
     if archive_path.stat().st_size != FIREFOX_ARCHIVE_BYTES:
         raise ValueError(
+            f"Firefox archive has unexpected size: {archive_path.stat().st_size}"
