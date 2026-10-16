@@ -225,3 +225,4 @@ def strip_elf_payload(package_root: Path) -> None:
     for path in package_root.rglob("*"):
         if path.is_symlink() or not path.is_file():
             continue
+        with path.open("rb") as stream:
