@@ -36,3 +36,4 @@ class PackageTree:
 
     def add(self, relative: str | Path, *, required: bool = True) -> None:
         relative_path = Path(relative)
+        source = self.staging / relative_path
