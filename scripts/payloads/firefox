@@ -7,3 +7,4 @@ version_root="${XDG_CACHE_HOME:-${HOME:-/root}/.cache}/arkpkg/firefox/${version}
 browser="${version_root}/firefox/firefox"
 lock="${version_root}/.extract-lock"
 
+if [[ ! -x "$browser" ]]; then
