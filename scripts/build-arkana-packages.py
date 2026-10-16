@@ -15,3 +15,4 @@ from pathlib import Path
 
 
 FIREFOX_VERSION = "158.0"
+FIREFOX_URL = (
