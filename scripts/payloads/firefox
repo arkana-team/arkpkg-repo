@@ -28,3 +28,4 @@ if [[ ! -x "$browser" ]]; then
       rm -rf -- "$lock"
       continue
     fi
+    sleep 1
