@@ -271,3 +271,4 @@ def build_packages(args: argparse.Namespace) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--staging", type=Path, required=True)
