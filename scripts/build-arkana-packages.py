@@ -247,3 +247,4 @@ def build_packages(args: argparse.Namespace) -> None:
             payload_root = package_root / "package"
             payload_root.mkdir(parents=True)
             shutil.copyfile(recipe, package_root / "ARKPKG")
+
