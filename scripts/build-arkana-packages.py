@@ -81,3 +81,4 @@ def read_field(recipe: Path, name: str) -> str:
 
 def sha512_file(path: Path) -> str:
     digest = hashlib.sha512()
+    with path.open("rb") as stream:
