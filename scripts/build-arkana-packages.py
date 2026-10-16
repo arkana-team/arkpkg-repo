@@ -160,3 +160,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/bin/fastfetch",
             "usr/share/fastfetch",
             "usr/share/licenses/fastfetch",
+            "usr/share/man/man1/fastfetch.1",
