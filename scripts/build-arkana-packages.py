@@ -273,3 +273,4 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--staging", type=Path, required=True)
     parser.add_argument("--arkpkg-build", type=Path, required=True)
+    parser.add_argument("--output-dir", type=Path)
