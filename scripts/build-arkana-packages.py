@@ -40,3 +40,4 @@ class PackageTree:
         destination = self.package_root / relative_path
         if not source.exists() and not source.is_symlink():
             if required:
+                raise FileNotFoundError(f"missing staged package input: {source}")
