@@ -245,3 +245,4 @@ def build_packages(args: argparse.Namespace) -> None:
             recipe = repo_root / "packages/recipes" / name / "ARKPKG"
             package_root = work_dir / name
             payload_root = package_root / "package"
+            payload_root.mkdir(parents=True)
