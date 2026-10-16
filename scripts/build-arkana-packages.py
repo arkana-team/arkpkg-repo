@@ -16,3 +16,4 @@ from pathlib import Path
 
 FIREFOX_VERSION = "158.0"
 FIREFOX_URL = (
+    "https://archive.mozilla.org/pub/firefox/releases/158.0/linux-x86_64/en-US/"
