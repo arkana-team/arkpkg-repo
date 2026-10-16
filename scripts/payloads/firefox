@@ -52,3 +52,4 @@ if [[ ! -x "$browser" ]]; then
   fi
 fi
 
+if [[ ! -x "$browser" ]]; then
