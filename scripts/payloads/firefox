@@ -31,3 +31,4 @@ if [[ ! -x "$browser" ]]; then
     sleep 1
   done
 
+  if (( lock_owned )); then
