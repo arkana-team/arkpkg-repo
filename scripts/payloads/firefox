@@ -5,3 +5,4 @@ version=158.0
 bundle="/usr/lib/arkpkg/firefox-${version}.tar.xz"
 version_root="${XDG_CACHE_HOME:-${HOME:-/root}/.cache}/arkpkg/firefox/${version}"
 browser="${version_root}/firefox/firefox"
+lock="${version_root}/.extract-lock"
