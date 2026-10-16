@@ -40,3 +40,4 @@ if [[ ! -x "$browser" ]]; then
       rmdir "$lock" 2>/dev/null || true
     }
     printf '%s\n' "$$" > "$lock/pid"
+    trap cleanup EXIT
