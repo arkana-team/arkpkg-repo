@@ -151,3 +151,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
     if name == "arkcfg":
         tree.add("usr/bin/arkcfg")
         (package_root / "usr/bin/arkcfg").chmod(0o755)
+    elif name == "arkpkg":
