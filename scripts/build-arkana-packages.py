@@ -207,3 +207,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             })
         for relative in (
             "usr/share/man/man1/vim.1",
+            "usr/share/man/man1/vimdiff.1",
