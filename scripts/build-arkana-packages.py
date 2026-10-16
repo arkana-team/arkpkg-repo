@@ -123,3 +123,4 @@ def add_firefox_payload(
     launcher_destination = package_root / "usr/bin/firefox"
     launcher_destination.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(launcher, launcher_destination)
+    os.chmod(launcher_destination, 0o755)
