@@ -116,3 +116,4 @@ def add_firefox_payload(
     tree = PackageTree(staging, package_root)
     bundle = package_root / "usr/lib/arkpkg/firefox-158.0.tar.xz"
     bundle.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(archive_path, bundle)
