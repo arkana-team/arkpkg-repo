@@ -145,3 +145,4 @@ def add_firefox_payload(
 
     tree.add("usr/share/NsCDE/integration/firefox")
 
+
