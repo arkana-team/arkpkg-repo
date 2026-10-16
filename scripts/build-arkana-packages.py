@@ -222,3 +222,4 @@ def strip_elf_payload(package_root: Path) -> None:
     strip_tool = shutil.which("strip")
     if strip_tool is None:
         raise FileNotFoundError("strip is required to remove debug data from package binaries")
+    for path in package_root.rglob("*"):
