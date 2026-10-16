@@ -36,3 +36,4 @@ if [[ ! -x "$browser" ]]; then
     cleanup() {
       if [[ -n "$temp_dir" ]]; then
         rm -rf -- "$temp_dir"
+      fi
