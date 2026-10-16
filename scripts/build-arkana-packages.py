@@ -172,3 +172,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
         (package_root / "usr/bin/fastfetch").chmod(0o755)
     elif name == "git":
         for relative in (
+            "usr/lib/git-core",
