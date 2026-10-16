@@ -68,3 +68,4 @@ class PackageTree:
 
     def add_glob(self, pattern: str) -> None:
         for source in sorted(self.staging.glob(pattern)):
+            self.add(source.relative_to(self.staging), required=False)
