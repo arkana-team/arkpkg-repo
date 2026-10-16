@@ -125,3 +125,4 @@ def add_firefox_payload(
     shutil.copyfile(launcher, launcher_destination)
     os.chmod(launcher_destination, 0o755)
 
+    desktop = Path(__file__).resolve().parent / "payloads/firefox.desktop"
