@@ -10,3 +10,4 @@ lock="${version_root}/.extract-lock"
 if [[ ! -x "$browser" ]]; then
   mkdir -p "$version_root"
   lock_owned=0
+  while [[ ! -x "$browser" ]]; do
