@@ -253,3 +253,4 @@ def build_packages(args: argparse.Namespace) -> None:
             else:
                 add_staged_payload(name, payload_root, staging)
 
+            strip_elf_payload(payload_root)
