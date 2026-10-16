@@ -55,3 +55,4 @@ class PackageTree:
             shutil.copystat(source, destination, follow_symlinks=False)
         elif source.is_file():
             stat = source.stat()
+            inode = (stat.st_dev, stat.st_ino)
