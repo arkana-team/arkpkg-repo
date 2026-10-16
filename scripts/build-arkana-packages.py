@@ -174,3 +174,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
         for relative in (
             "usr/lib/git-core",
             "usr/share/git-core",
+            "usr/share/bash-completion/completions/git",
