@@ -191,3 +191,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             raise FileNotFoundError("Git package has no /usr/bin/git executable")
     elif name == "vim":
         for relative in (
+            "usr/bin/vim",
