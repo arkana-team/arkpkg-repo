@@ -275,3 +275,4 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--firefox-archive", type=Path)
+    args = parser.parse_args()
