@@ -211,3 +211,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/share/man/man1/vimtutor.1",
         ):
             tree.add(relative, required=False)
+        (package_root / "usr/bin/vim").chmod(0o755)
