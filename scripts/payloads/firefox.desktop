@@ -2,3 +2,4 @@
 Name=Firefox
 Comment=Browse the World Wide Web
 Exec=/usr/bin/firefox %u
+Icon=firefox
