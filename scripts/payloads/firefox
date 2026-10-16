@@ -45,3 +45,4 @@ if [[ ! -x "$browser" ]]; then
     if [[ ! -x "$browser" ]]; then
       temp_dir="$(mktemp -d "$version_root/.extract.XXXXXXXX")"
       tar -xJf "$bundle" -C "$temp_dir"
+      mv -- "$temp_dir/firefox" "$version_root/firefox"
