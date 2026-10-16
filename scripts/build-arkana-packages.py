@@ -216,3 +216,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
         vi.symlink_to("vim")
     else:
         raise ValueError(f"unsupported package recipe: {name}")
+
