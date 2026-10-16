@@ -6,3 +6,4 @@ URL: https://github.com/arkana-team/arkpkg
 License: GPL-3.0
 Maintainer: arkanaOS Team
 Provides:
+arkpkg=/usr/bin/arkpkg
