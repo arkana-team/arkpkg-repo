@@ -2,3 +2,4 @@
 set -euo pipefail
 
 version=158.0
+bundle="/usr/lib/arkpkg/firefox-${version}.tar.xz"
