@@ -119,3 +119,4 @@ def add_firefox_payload(
     shutil.copyfile(archive_path, bundle)
     os.chmod(bundle, 0o644)
 
+    launcher = Path(__file__).resolve().parent / "payloads/firefox"
