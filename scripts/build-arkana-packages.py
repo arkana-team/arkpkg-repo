@@ -213,3 +213,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             tree.add(relative, required=False)
         (package_root / "usr/bin/vim").chmod(0o755)
         vi = package_root / "usr/bin/vi"
+        vi.symlink_to("vim")
