@@ -182,3 +182,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
         for pattern in (
             "usr/bin/git*",
             "usr/share/man/man1/git*",
+            "usr/share/man/man5/git*",
