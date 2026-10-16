@@ -51,3 +51,4 @@ class PackageTree:
         elif source.is_dir():
             destination.mkdir()
             for child in sorted(source.iterdir(), key=lambda item: item.name):
+                self.add(child.relative_to(self.staging))
