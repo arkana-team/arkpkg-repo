@@ -113,3 +113,4 @@ def obtain_firefox_archive(
 def add_firefox_payload(
     package_root: Path, staging: Path, archive_path: Path
 ) -> None:
+    tree = PackageTree(staging, package_root)
