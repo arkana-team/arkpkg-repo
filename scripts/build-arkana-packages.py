@@ -91,3 +91,4 @@ def obtain_firefox_archive(
     archive_path: Path | None, temporary_dir: Path
 ) -> Path:
     if archive_path is None:
+        archive_path = temporary_dir / f"firefox-{FIREFOX_VERSION}.tar.xz"
