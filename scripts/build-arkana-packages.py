@@ -255,3 +255,4 @@ def build_packages(args: argparse.Namespace) -> None:
 
             strip_elf_payload(payload_root)
             version = read_field(recipe, "Version")
+            arch = read_field(recipe, "Arch")
