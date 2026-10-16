@@ -48,3 +48,4 @@ class PackageTree:
 
         if source.is_symlink():
             destination.symlink_to(os.readlink(source))
+        elif source.is_dir():
