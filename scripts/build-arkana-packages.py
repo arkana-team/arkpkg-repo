@@ -260,3 +260,4 @@ def build_packages(args: argparse.Namespace) -> None:
             subprocess.run(
                 [
                     str(args.arkpkg_build.resolve()),
+                    str(package_root),
