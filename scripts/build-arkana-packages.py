@@ -86,3 +86,4 @@ def sha512_file(path: Path) -> str:
             digest.update(chunk)
     return digest.hexdigest()
 
+
