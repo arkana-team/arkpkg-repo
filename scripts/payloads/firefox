@@ -43,3 +43,4 @@ if [[ ! -x "$browser" ]]; then
     trap cleanup EXIT
     trap 'exit 1' HUP INT TERM
     if [[ ! -x "$browser" ]]; then
+      temp_dir="$(mktemp -d "$version_root/.extract.XXXXXXXX")"
