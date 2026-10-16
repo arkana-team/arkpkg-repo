@@ -70,3 +70,4 @@ class PackageTree:
         for source in sorted(self.staging.glob(pattern)):
             self.add(source.relative_to(self.staging), required=False)
 
+
