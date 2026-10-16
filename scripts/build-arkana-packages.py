@@ -24,3 +24,4 @@ FIREFOX_SHA512 = (
     "d76852335e6c436bbe2a16e1bf72945fe067340ad94d9ae98f41c59"
 )
 FIREFOX_ARCHIVE_BYTES = 90_552_004
+FIREFOX_ICON = "firefox/browser/chrome/icons/default/default128.png"
