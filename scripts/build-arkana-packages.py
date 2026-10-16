@@ -66,3 +66,4 @@ class PackageTree:
         else:
             raise ValueError(f"unsupported staged package input: {source}")
 
+    def add_glob(self, pattern: str) -> None:
