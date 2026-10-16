@@ -61,3 +61,4 @@ class PackageTree:
                 destination.symlink_to(target)
             else:
                 shutil.copy2(source, destination)
+                if stat.st_nlink > 1:
