@@ -41,3 +41,4 @@ if [[ ! -x "$browser" ]]; then
     }
     printf '%s\n' "$$" > "$lock/pid"
     trap cleanup EXIT
+    trap 'exit 1' HUP INT TERM
