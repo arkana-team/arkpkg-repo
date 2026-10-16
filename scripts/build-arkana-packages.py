@@ -229,3 +229,4 @@ def strip_elf_payload(package_root: Path) -> None:
             if stream.read(4) != b"\x7fELF":
                 continue
         subprocess.run([strip_tool, "--strip-unneeded", str(path)], check=True)
+
