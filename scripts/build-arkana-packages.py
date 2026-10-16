@@ -52,3 +52,4 @@ class PackageTree:
             destination.mkdir()
             for child in sorted(source.iterdir(), key=lambda item: item.name):
                 self.add(child.relative_to(self.staging))
+            shutil.copystat(source, destination, follow_symlinks=False)
