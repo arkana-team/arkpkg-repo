@@ -22,3 +22,4 @@ if [[ ! -x "$browser" ]]; then
     if [[ -z "$owner" ]]; then
       rmdir "$lock" 2>/dev/null || true
       sleep 1
+      continue
