@@ -2,3 +2,4 @@ Name: git
 Description: Distributed version control system
 Version: 2.56.0
 Arch: x86_64
+URL: https://git-scm.com/
