@@ -57,3 +57,4 @@ class PackageTree:
             stat = source.stat()
             inode = (stat.st_dev, stat.st_ino)
             if stat.st_nlink > 1 and inode in self.hardlinks:
+                target = os.path.relpath(self.hardlinks[inode], destination.parent)
