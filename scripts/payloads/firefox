@@ -20,3 +20,4 @@ if [[ ! -x "$browser" ]]; then
       read -r owner < "$lock/pid" || true
     fi
     if [[ -z "$owner" ]]; then
+      rmdir "$lock" 2>/dev/null || true
