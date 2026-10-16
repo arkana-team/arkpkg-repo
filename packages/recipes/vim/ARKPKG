@@ -2,3 +2,4 @@ Name: vim
 Description: Vi IMproved text editor
 Version: 9.1.1629
 Arch: x86_64
+URL: https://www.vim.org/
