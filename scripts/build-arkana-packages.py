@@ -56,3 +56,4 @@ class PackageTree:
         elif source.is_file():
             stat = source.stat()
             inode = (stat.st_dev, stat.st_ino)
+            if stat.st_nlink > 1 and inode in self.hardlinks:
