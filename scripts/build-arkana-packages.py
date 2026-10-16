@@ -267,3 +267,4 @@ def build_packages(args: argparse.Namespace) -> None:
                 check=True,
             )
             print(f"Built {output} ({output.stat().st_size} bytes)")
+
