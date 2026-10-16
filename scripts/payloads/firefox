@@ -38,3 +38,4 @@ if [[ ! -x "$browser" ]]; then
         rm -rf -- "$temp_dir"
       fi
       rmdir "$lock" 2>/dev/null || true
+    }
