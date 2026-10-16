@@ -218,3 +218,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
         raise ValueError(f"unsupported package recipe: {name}")
 
 
+def strip_elf_payload(package_root: Path) -> None:
