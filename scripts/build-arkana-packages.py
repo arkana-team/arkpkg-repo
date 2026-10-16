@@ -98,3 +98,4 @@ def obtain_firefox_archive(
         with urllib.request.urlopen(request, timeout=120) as response:
             with archive_path.open("wb") as output:
                 shutil.copyfileobj(response, output)
+    else:
