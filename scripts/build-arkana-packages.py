@@ -230,3 +230,4 @@ def strip_elf_payload(package_root: Path) -> None:
                 continue
         subprocess.run([strip_tool, "--strip-unneeded", str(path)], check=True)
 
+
