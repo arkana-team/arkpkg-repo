@@ -19,3 +19,4 @@ if [[ ! -x "$browser" ]]; then
     if [[ -r "$lock/pid" ]]; then
       read -r owner < "$lock/pid" || true
     fi
+    if [[ -z "$owner" ]]; then
