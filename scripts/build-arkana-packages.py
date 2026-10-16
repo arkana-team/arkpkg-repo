@@ -50,3 +50,4 @@ class PackageTree:
             destination.symlink_to(os.readlink(source))
         elif source.is_dir():
             destination.mkdir()
+            for child in sorted(source.iterdir(), key=lambda item: item.name):
