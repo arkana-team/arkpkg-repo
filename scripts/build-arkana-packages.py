@@ -143,3 +143,4 @@ def add_firefox_payload(
             shutil.copyfileobj(member, output)
     os.chmod(icon_destination, 0o644)
 
+    tree.add("usr/share/NsCDE/integration/firefox")
