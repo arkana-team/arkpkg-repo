@@ -259,3 +259,4 @@ def build_packages(args: argparse.Namespace) -> None:
             output = output_dir / f"{name}-{version}-{arch}.ark"
             subprocess.run(
                 [
+                    str(args.arkpkg_build.resolve()),
