@@ -14,3 +14,4 @@ if [[ ! -x "$browser" ]]; then
     if mkdir "$lock" 2>/dev/null; then
       lock_owned=1
       break
+    fi
