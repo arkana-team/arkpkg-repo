@@ -156,3 +156,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
         tree.add("usr/bin/arkpkg-build")
         tree.add("etc/arkpkg/repos.d/arkanaos.json", required=False)
     elif name == "fastfetch":
+        for relative in (
