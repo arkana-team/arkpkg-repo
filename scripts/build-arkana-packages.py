@@ -254,3 +254,4 @@ def build_packages(args: argparse.Namespace) -> None:
                 add_staged_payload(name, payload_root, staging)
 
             strip_elf_payload(payload_root)
+            version = read_field(recipe, "Version")
