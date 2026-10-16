@@ -135,3 +135,4 @@ def add_firefox_payload(
         package_root / "usr/share/icons/hicolor/128x128/apps/firefox.png"
     )
     icon_destination.parent.mkdir(parents=True, exist_ok=True)
+    with tarfile.open(archive_path, mode="r:xz") as archive:
