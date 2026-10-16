@@ -139,3 +139,4 @@ def add_firefox_payload(
         member = archive.extractfile(FIREFOX_ICON)
         if member is None:
             raise ValueError(f"Firefox release is missing its icon: {FIREFOX_ICON}")
+        with icon_destination.open("wb") as output:
