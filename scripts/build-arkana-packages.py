@@ -63,3 +63,4 @@ class PackageTree:
                 shutil.copy2(source, destination)
                 if stat.st_nlink > 1:
                     self.hardlinks[inode] = destination
+        else:
