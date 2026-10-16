@@ -101,3 +101,4 @@ def obtain_firefox_archive(
     else:
         archive_path = archive_path.resolve()
 
+    if archive_path.stat().st_size != FIREFOX_ARCHIVE_BYTES:
