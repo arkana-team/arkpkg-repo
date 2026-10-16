@@ -241,3 +241,4 @@ def build_packages(args: argparse.Namespace) -> None:
         work_dir = Path(work)
         firefox_archive = obtain_firefox_archive(args.firefox_archive, work_dir)
 
+        for name in PACKAGES:
