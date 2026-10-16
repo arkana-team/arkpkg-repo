@@ -49,3 +49,4 @@ if [[ ! -x "$browser" ]]; then
     fi
     cleanup
     trap - EXIT HUP INT TERM
+  fi
