@@ -64,3 +64,4 @@ class PackageTree:
                 if stat.st_nlink > 1:
                     self.hardlinks[inode] = destination
         else:
+            raise ValueError(f"unsupported staged package input: {source}")
