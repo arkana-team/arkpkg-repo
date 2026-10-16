@@ -14,3 +14,4 @@ import urllib.request
 from pathlib import Path
 
 
+FIREFOX_VERSION = "158.0"
