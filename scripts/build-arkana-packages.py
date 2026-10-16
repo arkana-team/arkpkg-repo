@@ -35,3 +35,4 @@ class PackageTree:
         self.hardlinks: dict[tuple[int, int], Path] = {}
 
     def add(self, relative: str | Path, *, required: bool = True) -> None:
+        relative_path = Path(relative)
