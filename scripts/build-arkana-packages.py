@@ -175,3 +175,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/lib/git-core",
             "usr/share/git-core",
             "usr/share/bash-completion/completions/git",
+            "usr/share/zsh/site-functions/_git",
