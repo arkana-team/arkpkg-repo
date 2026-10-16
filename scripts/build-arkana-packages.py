@@ -187,3 +187,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/share/doc/git*",
         ):
             tree.add_glob(pattern)
+        if not (package_root / "usr/bin/git").is_file():
