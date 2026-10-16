@@ -11,3 +11,4 @@ if [[ ! -x "$browser" ]]; then
   mkdir -p "$version_root"
   lock_owned=0
   while [[ ! -x "$browser" ]]; do
+    if mkdir "$lock" 2>/dev/null; then
