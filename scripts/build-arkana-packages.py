@@ -164,3 +164,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/share/bash-completion/completions/fastfetch",
             "usr/share/zsh/site-functions/_fastfetch",
             "usr/share/fish/vendor_completions.d/fastfetch.fish",
+        ):
