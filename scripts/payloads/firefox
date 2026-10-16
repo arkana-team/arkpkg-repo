@@ -16,3 +16,4 @@ if [[ ! -x "$browser" ]]; then
       break
     fi
     owner=
+    if [[ -r "$lock/pid" ]]; then
