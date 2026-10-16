@@ -46,3 +46,4 @@ class PackageTree:
             return
         destination.parent.mkdir(parents=True, exist_ok=True)
 
+        if source.is_symlink():
