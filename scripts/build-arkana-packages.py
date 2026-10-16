@@ -118,3 +118,4 @@ def add_firefox_payload(
     bundle.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(archive_path, bundle)
     os.chmod(bundle, 0o644)
+
