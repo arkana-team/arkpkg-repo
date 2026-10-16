@@ -57,3 +57,4 @@ if [[ ! -x "$browser" ]]; then
   exit 1
 fi
 
+exec "$browser" "$@"
