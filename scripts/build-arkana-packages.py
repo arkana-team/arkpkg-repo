@@ -141,3 +141,4 @@ def add_firefox_payload(
             raise ValueError(f"Firefox release is missing its icon: {FIREFOX_ICON}")
         with icon_destination.open("wb") as output:
             shutil.copyfileobj(member, output)
+    os.chmod(icon_destination, 0o644)
