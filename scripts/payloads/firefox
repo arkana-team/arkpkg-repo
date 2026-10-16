@@ -53,3 +53,4 @@ if [[ ! -x "$browser" ]]; then
 fi
 
 if [[ ! -x "$browser" ]]; then
+  printf 'Firefox extraction did not complete; remove %s and try again.\n' "$lock" >&2
