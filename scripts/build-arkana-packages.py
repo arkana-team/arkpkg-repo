@@ -169,3 +169,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
                 "usr/bin/fastfetch",
                 "usr/share/fastfetch",
             })
+        (package_root / "usr/bin/fastfetch").chmod(0o755)
