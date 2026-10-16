@@ -28,3 +28,4 @@ FIREFOX_ICON = "firefox/browser/chrome/icons/default/default128.png"
 PACKAGES = ("arkcfg", "arkpkg", "fastfetch", "firefox", "git", "vim")
 
 
+class PackageTree:
