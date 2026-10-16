@@ -188,3 +188,4 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
         ):
             tree.add_glob(pattern)
         if not (package_root / "usr/bin/git").is_file():
+            raise FileNotFoundError("Git package has no /usr/bin/git executable")
