@@ -1,0 +1,8 @@
+Name: libcap-ng
+Description: Linux capabilities security library
+Version: 0.8.5
+Arch: x86_64
+URL: https://people.redhat.com/sgrubb/libcap-ng/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libcap-ng.so.0=/usr/lib/libcap-ng.so.0

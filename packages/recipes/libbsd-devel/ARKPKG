@@ -1,0 +1,9 @@
+Name: libbsd-devel
+Description: BSD compatibility headers and linker files
+Version: 0.12.2
+Arch: x86_64
+URL: https://libbsd.freedesktop.org/
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies: libbsd>=0.12.2
+Provides: libbsd.so=/usr/lib/libbsd.so

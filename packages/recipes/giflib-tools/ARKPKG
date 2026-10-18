@@ -1,0 +1,9 @@
+Name: giflib-tools
+Description: GIF image inspection and conversion utilities
+Version: 5.2.2
+Arch: x86_64
+URL: https://giflib.sourceforge.net/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: giflib>=5.2.2
+Provides: gif2rgb=/usr/bin/gif2rgb, gifbuild=/usr/bin/gifbuild, giffix=/usr/bin/giffix, giftext=/usr/bin/giftext

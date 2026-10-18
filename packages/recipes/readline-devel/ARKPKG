@@ -5,5 +5,7 @@ Arch: x86_64
 URL: https://tiswww.case.edu/php/chet/readline/rltop.html
 License: GPL-3.0-or-later
 Maintainer: arkanaOS Team
-Dependencies: ncurses-devel>=6.5
+Dependencies:
+  ncurses-devel>=6.5
+  readline-libs>=8.3
 Provides: readline-devel=/usr/include/readline

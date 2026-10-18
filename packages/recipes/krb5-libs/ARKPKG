@@ -1,0 +1,12 @@
+Name: krb5-libs
+Description: MIT Kerberos authentication runtime libraries
+Version: 1.22
+Arch: x86_64
+URL: https://web.mit.edu/kerberos/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  e2fsprogs>=1.47.3
+  lmdb-libs>=0.9.33
+  openssl-libs>=3.5.2
+Provides: libkrb5.so.3=/usr/lib/libkrb5.so.3, libgssapi_krb5.so.2=/usr/lib/libgssapi_krb5.so.2

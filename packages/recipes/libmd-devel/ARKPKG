@@ -1,0 +1,9 @@
+Name: libmd-devel
+Description: Message digest headers and linker files
+Version: 1.1.0
+Arch: x86_64
+URL: https://libbsd.freedesktop.org/
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies: libmd>=1.1.0
+Provides: libmd.so=/usr/lib/libmd.so

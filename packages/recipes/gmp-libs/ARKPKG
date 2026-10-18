@@ -1,0 +1,8 @@
+Name: gmp-libs
+Description: GNU multiple precision arithmetic runtime libraries
+Version: 6.3.0
+Arch: x86_64
+URL: https://gmplib.org/
+License: LGPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: libgmp.so.10=/usr/lib/libgmp.so.10, libgmpxx.so.4=/usr/lib/libgmpxx.so.4

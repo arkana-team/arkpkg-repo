@@ -6,5 +6,5 @@ URL: https://www.sudo.ws/
 License: ISC
 Maintainer: arkanaOS Team
 Dependencies:
-  pam-devel>=1.7.1
+  pam-libs>=1.7.1
 Provides: sudo=/usr/bin/sudo

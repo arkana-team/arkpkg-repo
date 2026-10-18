@@ -7,5 +7,6 @@ License: OpenLDAP
 Maintainer: arkanaOS Team
 Dependencies:
   cyrus-sasl-devel>=2.1.28
+  openldap-libs>=2.6.10
   openssl-devel>=3.5.2
 Provides: libldap.so=/usr/lib/libldap.so

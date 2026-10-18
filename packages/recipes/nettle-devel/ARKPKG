@@ -5,5 +5,7 @@ Arch: x86_64
 URL: https://www.lysator.liu.se/~nisse/nettle/
 License: LGPL-3.0-or-later
 Maintainer: arkanaOS Team
-Dependencies: gmp-devel>=6.3.0
+Dependencies:
+  gmp-devel>=6.3.0
+  nettle-libs>=3.10.2
 Provides: libnettle.so=/usr/lib/libnettle.so

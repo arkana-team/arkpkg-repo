@@ -1,0 +1,8 @@
+Name: ksh93
+Description: KornShell command interpreter
+Version: 1.0.9
+Arch: x86_64
+URL: https://github.com/ksh93/ksh
+License: EPL-1.0
+Maintainer: arkanaOS Team
+Provides: ksh=/usr/bin/ksh, ksh93=/usr/bin/ksh93

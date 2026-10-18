@@ -1,0 +1,8 @@
+Name: libgc
+Description: Boehm-Demers-Weiser conservative garbage collector runtime
+Version: 8.2.8
+Arch: x86_64
+URL: https://www.hboehm.info/gc/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libgc.so.1=/usr/lib/libgc.so.1, libcord.so.1=/usr/lib/libcord.so.1

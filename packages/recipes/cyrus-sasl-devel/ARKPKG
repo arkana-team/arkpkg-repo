@@ -5,4 +5,5 @@ Arch: x86_64
 URL: https://www.cyrusimap.org/sasl/
 License: BSD-4-Clause
 Maintainer: arkanaOS Team
+Dependencies: cyrus-sasl-libs>=2.1.28
 Provides: libsasl2.so=/usr/lib/libsasl2.so

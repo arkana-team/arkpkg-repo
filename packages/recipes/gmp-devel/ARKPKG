@@ -5,4 +5,5 @@ Arch: x86_64
 URL: https://gmplib.org/
 License: LGPL-3.0-or-later
 Maintainer: arkanaOS Team
+Dependencies: gmp-libs>=6.3.0
 Provides: libgmp.so=/usr/lib/libgmp.so

@@ -5,5 +5,7 @@ Arch: x86_64
 URL: https://p11-glue.github.io/p11-glue/p11-kit.html
 License: BSD-3-Clause
 Maintainer: arkanaOS Team
-Dependencies: libffi-devel>=3.4.7
+Dependencies:
+  libffi-devel>=3.4.7
+  p11-kit-libs>=0.25.5
 Provides: libp11-kit.so=/usr/lib/libp11-kit.so

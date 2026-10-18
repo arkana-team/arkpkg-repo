@@ -1,0 +1,8 @@
+Name: libsensors
+Description: Hardware monitoring runtime library
+Version: 3.6.0
+Arch: x86_64
+URL: https://github.com/lm-sensors/lm-sensors
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libsensors.so.5=/usr/lib/libsensors.so.5

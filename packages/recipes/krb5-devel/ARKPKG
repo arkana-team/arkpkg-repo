@@ -5,3 +5,4 @@ Arch: x86_64
 URL: https://web.mit.edu/kerberos/
 License: MIT
 Maintainer: arkanaOS Team
+Dependencies: krb5-libs>=1.22

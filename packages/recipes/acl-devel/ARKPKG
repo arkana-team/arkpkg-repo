@@ -5,4 +5,5 @@ Arch: x86_64
 URL: https://savannah.nongnu.org/projects/acl/
 License: GPL-2.0-or-later
 Maintainer: arkanaOS Team
+Dependencies: acl-libs>=2.3.2
 Provides: libacl.so=/usr/lib/libacl.so

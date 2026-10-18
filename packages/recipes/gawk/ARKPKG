@@ -6,5 +6,5 @@ URL: https://www.gnu.org/software/gawk/
 License: GPL-3.0-or-later
 Maintainer: arkanaOS Team
 Dependencies:
-  mpfr-devel>=4.2.2
+  mpfr-libs>=4.2.2
 Provides: gawk=/usr/bin/gawk

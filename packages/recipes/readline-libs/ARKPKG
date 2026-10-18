@@ -1,0 +1,9 @@
+Name: readline-libs
+Description: GNU Readline and history runtime libraries
+Version: 8.3
+Arch: x86_64
+URL: https://tiswww.case.edu/php/chet/readline/rltop.html
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: ncurses-libs>=6.5
+Provides: libreadline.so.8=/usr/lib/libreadline.so.8, libhistory.so.8=/usr/lib/libhistory.so.8

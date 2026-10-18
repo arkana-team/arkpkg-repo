@@ -1,0 +1,12 @@
+Name: openldap-tools
+Description: OpenLDAP directory query and administration utilities
+Version: 2.6.10
+Arch: x86_64
+URL: https://www.openldap.org/
+License: OpenLDAP
+Maintainer: arkanaOS Team
+Dependencies:
+  cyrus-sasl-libs>=2.1.28
+  openldap-libs>=2.6.10
+  util-linux-libs>=2.41.1
+Provides: ldapsearch=/usr/bin/ldapsearch, ldapmodify=/usr/bin/ldapmodify, ldapdelete=/usr/bin/ldapdelete

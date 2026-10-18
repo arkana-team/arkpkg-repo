@@ -1,0 +1,9 @@
+Name: popt-devel
+Description: Command-line option parsing headers and linker files
+Version: 1.19
+Arch: x86_64
+URL: https://github.com/rpm-software-management/popt
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: popt-libs>=1.19
+Provides: popt-devel=/usr/include/popt.h

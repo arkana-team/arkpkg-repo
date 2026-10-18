@@ -1,0 +1,8 @@
+Name: popt-libs
+Description: Command-line option parsing runtime library
+Version: 1.19
+Arch: x86_64
+URL: https://github.com/rpm-software-management/popt
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libpopt.so.0=/usr/lib/libpopt.so.0

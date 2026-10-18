@@ -5,4 +5,5 @@ Arch: x86_64
 URL: https://savannah.nongnu.org/projects/attr/
 License: GPL-2.0-or-later
 Maintainer: arkanaOS Team
+Dependencies: attr-libs>=2.5.2
 Provides: libattr.so=/usr/lib/libattr.so

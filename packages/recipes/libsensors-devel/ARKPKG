@@ -1,0 +1,9 @@
+Name: libsensors-devel
+Description: Hardware monitoring library headers and linker files
+Version: 3.6.0
+Arch: x86_64
+URL: https://github.com/lm-sensors/lm-sensors
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies: libsensors>=3.6.0
+Provides: libsensors.so=/usr/lib/libsensors.so

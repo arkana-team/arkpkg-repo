@@ -6,6 +6,6 @@ URL: https://www.nano-editor.org/
 License: GPL-3.0-or-later
 Maintainer: arkanaOS Team
 Dependencies:
-  libmagic-devel
-  ncurses-devel>=6.5
+  libmagic>=5.46
+  ncurses-libs>=6.5
 Provides: nano=/usr/bin/nano

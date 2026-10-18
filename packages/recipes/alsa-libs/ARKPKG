@@ -1,0 +1,8 @@
+Name: alsa-libs
+Description: ALSA sound API runtime libraries and configuration
+Version: 1.2.16.1
+Arch: x86_64
+URL: https://www.alsa-project.org/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libasound.so.2=/usr/lib/libasound.so.2, libatopology.so.2=/usr/lib/libatopology.so.2

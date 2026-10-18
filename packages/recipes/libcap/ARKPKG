@@ -1,0 +1,8 @@
+Name: libcap
+Description: Linux capabilities runtime library
+Version: 2.76
+Arch: x86_64
+URL: https://git.kernel.org/pub/scm/libs/libcap/libcap.git
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: libcap.so.2=/usr/lib/libcap.so.2

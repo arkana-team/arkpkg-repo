@@ -5,4 +5,5 @@ Arch: x86_64
 URL: https://github.com/libffi/libffi
 License: MIT
 Maintainer: arkanaOS Team
+Dependencies: libffi-libs>=3.5.2
 Provides: libffi.so=/usr/lib/libffi.so
