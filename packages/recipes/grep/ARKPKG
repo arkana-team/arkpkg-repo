@@ -1,0 +1,10 @@
+Name: grep
+Description: Pattern matching and text search utilities
+Version: 3.12
+Arch: x86_64
+URL: https://www.gnu.org/software/grep/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  pcre2-libs>=10.47
+Provides: grep=/usr/bin/grep

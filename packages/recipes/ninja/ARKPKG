@@ -1,0 +1,8 @@
+Name: ninja
+Description: Ninja small and fast build system
+Version: 1.13.1
+Arch: x86_64
+URL: https://ninja-build.org/
+License: Apache-2.0
+Maintainer: arkanaOS Team
+Provides: ninja=/usr/bin/ninja

@@ -1,0 +1,14 @@
+Name: gdk-pixbuf-devel
+Description: Image loading library development files
+Version: 2.42.12
+Arch: x86_64
+URL: https://gitlab.gnome.org/GNOME/gdk-pixbuf
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  glib-devel>=2.78.6
+  libjpeg-turbo-devel>=3.0.1
+  libpng-devel>=1.6.50
+  libtiff-devel>=4.7.1
+  libwebp-devel>=1.6.0
+Provides: libgdk_pixbuf-2.0.so=/usr/lib/libgdk_pixbuf-2.0.so

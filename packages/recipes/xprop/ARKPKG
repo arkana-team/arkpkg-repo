@@ -1,0 +1,8 @@
+Name: xprop
+Description: Display and modify X window properties
+Version: 1.2.8
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xprop-1.2.8.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xprop=/usr/bin/xprop

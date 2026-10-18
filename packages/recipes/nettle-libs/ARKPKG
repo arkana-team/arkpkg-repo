@@ -1,0 +1,9 @@
+Name: nettle-libs
+Description: Nettle cryptographic runtime libraries
+Version: 3.10.2
+Arch: x86_64
+URL: https://www.lysator.liu.se/~nisse/nettle/
+License: LGPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: gmp-libs>=6.3.0
+Provides: libnettle.so.8=/usr/lib/libnettle.so.8, libhogweed.so.6=/usr/lib/libhogweed.so.6

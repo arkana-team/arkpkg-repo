@@ -1,0 +1,9 @@
+Name: libcap-devel
+Description: Linux capabilities library development files
+Version: 2.76
+Arch: x86_64
+URL: https://git.kernel.org/pub/scm/libs/libcap/libcap.git
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies: libcap>=2.76
+Provides: libcap.so=/usr/lib/libcap.so

@@ -1,0 +1,8 @@
+Name: setxkbmap
+Description: Configure the X keyboard layout from the command line
+Version: 1.3.5
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/setxkbmap-1.3.5.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: setxkbmap=/usr/bin/setxkbmap

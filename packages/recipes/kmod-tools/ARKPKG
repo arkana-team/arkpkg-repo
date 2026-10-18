@@ -1,0 +1,10 @@
+Name: kmod-tools
+Description: Linux kernel module loading and inspection tools
+Version: 34.2
+Arch: x86_64
+URL: https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  kmod-libs>=34.2
+Provides: kmod-tools=/usr/bin/modprobe

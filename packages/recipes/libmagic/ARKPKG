@@ -1,0 +1,8 @@
+Name: libmagic
+Description: File type identification runtime library
+Version: 5.46
+Arch: x86_64
+URL: https://www.darwinsys.com/file/
+License: BSD-2-Clause
+Maintainer: arkanaOS Team
+Provides: libmagic.so.1=/usr/lib/libmagic.so.1

@@ -1,0 +1,8 @@
+Name: oclock
+Description: Round analog clock for X11 desktops
+Version: 1.0.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/oclock-1.0.6.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: oclock=/usr/bin/oclock

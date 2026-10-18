@@ -1,0 +1,12 @@
+Name: openldap-devel
+Description: OpenLDAP client and directory library development files
+Version: 2.6.10
+Arch: x86_64
+URL: https://www.openldap.org/
+License: OpenLDAP
+Maintainer: arkanaOS Team
+Dependencies:
+  cyrus-sasl-devel>=2.1.28
+  openldap-libs>=2.6.10
+  openssl-devel>=3.5.2
+Provides: libldap.so=/usr/lib/libldap.so

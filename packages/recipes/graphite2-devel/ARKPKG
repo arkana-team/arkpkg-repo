@@ -1,0 +1,8 @@
+Name: graphite2-devel
+Description: Graphite smart font rendering development files
+Version: 3.0.1
+Arch: x86_64
+URL: https://github.com/silnrsi/graphite
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libgraphite2.so=/usr/lib/libgraphite2.so

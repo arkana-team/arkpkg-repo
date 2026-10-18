@@ -1,0 +1,10 @@
+Name: openssl-rehash
+Description: OpenSSL certificate directory rehash helper
+Version: 3.5.2
+Arch: x86_64
+URL: https://www.openssl.org/
+License: Apache-2.0
+Maintainer: arkanaOS Team
+Dependencies:
+openssl-cli>=3.5.2
+perl>=5.42.0

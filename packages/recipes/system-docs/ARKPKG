@@ -1,0 +1,10 @@
+Name: system-docs
+Description: Bundled system manual pages, info files, and package documentation
+Version: 1.0.0
+Arch: x86_64
+URL: https://github.com/arkana-team/arkanaOS
+License: Mixed
+Maintainer: arkanaOS Team
+Dependencies:
+  less>=679
+Provides: system-docs=/usr/share/man

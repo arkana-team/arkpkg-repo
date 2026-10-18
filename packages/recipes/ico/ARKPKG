@@ -1,0 +1,8 @@
+Name: ico
+Description: Animate a wire-frame polyhedron in an X11 window
+Version: 1.0.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/ico-1.0.6.tar.gz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: ico=/usr/bin/ico

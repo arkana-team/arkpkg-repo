@@ -1,0 +1,8 @@
+Name: ncurses-tools
+Description: Terminal capability database utilities
+Version: 6.5
+Arch: x86_64
+URL: https://invisible-island.net/ncurses/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: tic=/usr/bin/tic

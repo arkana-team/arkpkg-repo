@@ -1,0 +1,10 @@
+Name: xinit
+Description: Start X sessions and provide startx configuration scripts
+Version: 1.4.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xinit-1.4.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  xauth>=1.1.5
+Provides: xinit=/usr/bin/xinit

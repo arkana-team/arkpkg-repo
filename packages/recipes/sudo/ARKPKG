@@ -1,0 +1,10 @@
+Name: sudo
+Description: Run commands with delegated administrator privileges
+Version: 1.9.17p2
+Arch: x86_64
+URL: https://www.sudo.ws/
+License: ISC
+Maintainer: arkanaOS Team
+Dependencies:
+  pam-libs>=1.7.1
+Provides: sudo=/usr/bin/sudo

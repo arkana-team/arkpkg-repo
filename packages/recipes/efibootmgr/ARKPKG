@@ -1,0 +1,10 @@
+Name: efibootmgr
+Description: EFI boot entry management utility
+Version: 18
+Arch: x86_64
+URL: https://github.com/rhboot/efibootmgr
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  efivar>=39
+Provides: efibootmgr=/usr/bin/efibootmgr

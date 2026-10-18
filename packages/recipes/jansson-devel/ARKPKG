@@ -1,0 +1,8 @@
+Name: jansson-devel
+Description: Jansson JSON library development files
+Version: 2.14.1
+Arch: x86_64
+URL: https://github.com/akheron/jansson
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libjansson.so=/usr/lib/libjansson.so

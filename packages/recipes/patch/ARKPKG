@@ -1,0 +1,8 @@
+Name: patch
+Description: GNU patch utility
+Version: 2.8
+Arch: x86_64
+URL: https://savannah.gnu.org/projects/patch/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: patch=/usr/bin/patch

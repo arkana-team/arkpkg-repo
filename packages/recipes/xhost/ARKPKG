@@ -1,0 +1,8 @@
+Name: xhost
+Description: Control access to an X server
+Version: 1.0.10
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xhost-1.0.10.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xhost=/usr/bin/xhost

@@ -1,0 +1,15 @@
+Name: cairo-devel
+Description: Cairo 2D graphics library development files
+Version: 1.18.2
+Arch: x86_64
+URL: https://www.cairographics.org/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  glib-devel>=2.78.6
+  pixman-devel>=0.46.4
+  freetype-devel>=2.13.3
+  fontconfig-devel>=2.17.1
+  libpng-devel>=1.6.50
+  xorg-devel>=1.0.0
+Provides: libcairo.so=/usr/lib/libcairo.so

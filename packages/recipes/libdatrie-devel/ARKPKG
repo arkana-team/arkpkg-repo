@@ -1,0 +1,8 @@
+Name: libdatrie-devel
+Description: Double-array trie library development files
+Version: 0.2.13
+Arch: x86_64
+URL: https://linux.thai.net/projects/libthai
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libdatrie.so=/usr/lib/libdatrie.so

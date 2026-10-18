@@ -1,0 +1,8 @@
+Name: xlogo
+Description: X.Org logo window for the X11 desktop
+Version: 1.0.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xlogo-1.0.7.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xlogo=/usr/bin/xlogo

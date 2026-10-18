@@ -1,0 +1,8 @@
+Name: cmake
+Description: CMake cross-platform build system
+Version: 4.2.3
+Arch: x86_64
+URL: https://cmake.org/
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: cmake=/usr/bin/cmake

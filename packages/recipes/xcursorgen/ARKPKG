@@ -1,0 +1,8 @@
+Name: xcursorgen
+Description: Build X cursor files from source images
+Version: 1.0.9
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xcursorgen-1.0.9.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xcursorgen=/usr/bin/xcursorgen

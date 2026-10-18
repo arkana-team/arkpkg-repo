@@ -1,0 +1,11 @@
+Name: glib-tools
+Description: GLib command line utilities and development helpers
+Version: 2.78.6
+Arch: x86_64
+URL: https://gitlab.gnome.org/GNOME/glib
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  glib-devel>=2.78.6
+  python-devel>=3.13.7
+Provides: glib-tools=/usr/bin/gsettings

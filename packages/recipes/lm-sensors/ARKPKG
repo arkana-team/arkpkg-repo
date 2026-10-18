@@ -1,0 +1,9 @@
+Name: lm-sensors
+Description: Hardware temperature, voltage, and fan monitoring tools
+Version: 3.6.0
+Arch: x86_64
+URL: https://github.com/lm-sensors/lm-sensors
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: libsensors>=3.6.0
+Provides: sensors=/usr/bin/sensors, sensors-detect=/usr/bin/sensors-detect

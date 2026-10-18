@@ -1,0 +1,8 @@
+Name: gtk3-tools
+Description: GTK 3 icon cache and input module utilities
+Version: 3.24.52
+Arch: x86_64
+URL: https://www.gtk.org/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: gtk-update-icon-cache=/usr/bin/gtk-update-icon-cache

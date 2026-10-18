@@ -1,0 +1,7 @@
+Name: libdisplay-info-devel
+Description: EDID and DisplayID parsing library development files
+Version: 0.2.0
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/emersion/libdisplay-info
+License: MIT
+Maintainer: arkanaOS Team

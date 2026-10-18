@@ -1,0 +1,8 @@
+Name: xmodmap
+Description: Inspect and edit X keyboard and pointer mappings
+Version: 1.0.12
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xmodmap-1.0.12.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xmodmap=/usr/bin/xmodmap

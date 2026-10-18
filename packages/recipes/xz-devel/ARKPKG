@@ -1,0 +1,8 @@
+Name: xz-devel
+Description: XZ and LZMA compression library development files
+Version: 5.8.1
+Arch: x86_64
+URL: https://tukaani.org/xz/
+License: 0BSD
+Maintainer: arkanaOS Team
+Provides: liblzma.so=/usr/lib/liblzma.so

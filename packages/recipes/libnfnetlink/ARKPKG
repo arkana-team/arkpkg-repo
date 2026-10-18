@@ -1,0 +1,8 @@
+Name: libnfnetlink
+Description: Netlink interface library for netfilter
+Version: 1.0.2
+Arch: x86_64
+URL: https://www.netfilter.org/projects/libnfnetlink/
+License: GPL-2.0-only
+Maintainer: arkanaOS Team
+Provides: libnfnetlink.so.0=/usr/lib/libnfnetlink.so.0

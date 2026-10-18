@@ -1,0 +1,9 @@
+Name: libpsl-devel
+Description: Public Suffix List library development files
+Version: 0.21.5
+Arch: x86_64
+URL: https://github.com/rockdaboot/libpsl
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: libidn2-devel>=2.3.8
+Provides: libpsl.so=/usr/lib/libpsl.so

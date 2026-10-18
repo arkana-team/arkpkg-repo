@@ -1,0 +1,8 @@
+Name: pcre2-libs
+Description: Perl-compatible regular expression runtime libraries
+Version: 10.47
+Arch: x86_64
+URL: https://www.pcre.org/
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: libpcre2-8.so.0=/usr/lib/libpcre2-8.so.0

@@ -1,0 +1,8 @@
+Name: ncurses-libs
+Description: Terminal user interface runtime libraries
+Version: 6.5
+Arch: x86_64
+URL: https://invisible-island.net/ncurses/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libncursesw.so.6=/usr/lib/libncursesw.so.6, libtinfo.so.6=/usr/lib/libtinfo.so.6

@@ -1,0 +1,8 @@
+Name: transset
+Description: Set window opacity using the X Composite extension
+Version: 1.0.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/transset-1.0.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: transset=/usr/bin/transset

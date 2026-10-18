@@ -1,0 +1,9 @@
+Name: e2fsprogs
+Description: ext2, ext3, and ext4 filesystem creation, checking, and repair tools
+Version: 1.47.3
+Arch: x86_64
+URL: https://e2fsprogs.sourceforge.net/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: util-linux-devel>=2.41.1
+Provides: e2fsprogs=/usr/bin/mke2fs

@@ -1,0 +1,8 @@
+Name: expat-devel
+Description: Expat XML parser development files
+Version: 2.7.1
+Arch: x86_64
+URL: https://libexpat.github.io/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libexpat.so=/usr/lib/libexpat.so

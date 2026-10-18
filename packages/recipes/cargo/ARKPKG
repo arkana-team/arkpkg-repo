@@ -1,0 +1,10 @@
+Name: cargo
+Description: Rust package manager and build tool
+Version: 1.99.0
+Arch: x86_64
+URL: https://www.rust-lang.org/
+License: MIT OR Apache-2.0
+Maintainer: arkanaOS Team
+Dependencies:
+  rustc>=1.99.0
+Provides: cargo=/usr/bin/cargo

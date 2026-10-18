@@ -1,0 +1,11 @@
+Name: iptables
+Description: IPv4 and IPv6 packet filtering utilities
+Version: 1.8.11
+Arch: x86_64
+URL: https://www.netfilter.org/projects/iptables/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  libnfnetlink>=1.0.2
+  libmnl>=1.0.5
+Provides: iptables=/usr/bin/iptables

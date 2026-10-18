@@ -1,0 +1,8 @@
+Name: libjpeg-turbo-devel
+Description: JPEG image library development files
+Version: 3.0.1
+Arch: x86_64
+URL: https://libjpeg-turbo.org/
+License: IJG
+Maintainer: arkanaOS Team
+Provides: libjpeg.so=/usr/lib/libjpeg.so

@@ -1,0 +1,8 @@
+Name: wlroots
+Description: Modular Wayland compositor library
+Version: 0.19.0
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/wlroots/wlroots
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libwlroots-0.19.so=/usr/lib/libwlroots-0.19.so

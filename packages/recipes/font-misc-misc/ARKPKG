@@ -1,0 +1,10 @@
+Name: font-misc-misc
+Description: Classic X11 fixed-width bitmap fonts for workstation applications
+Version: 1.1.3
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-misc-misc-1.1.3.tar.xz
+License: Public domain
+Maintainer: arkanaOS Team
+Provides: x11-core-fonts=/usr/share/fonts/misc
+Dependencies:
+  font-alias>=1.0.6

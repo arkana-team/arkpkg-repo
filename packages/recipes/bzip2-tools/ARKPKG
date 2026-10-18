@@ -1,0 +1,9 @@
+Name: bzip2-tools
+Description: bzip2 compression, decompression, and recovery commands
+Version: 1.0.8
+Arch: x86_64
+URL: https://sourceware.org/bzip2/
+License: bzip2-1.0.6
+Maintainer: arkanaOS Team
+Dependencies: bzip2-devel>=1.0.8
+Provides: bzip2=/usr/bin/bzip2

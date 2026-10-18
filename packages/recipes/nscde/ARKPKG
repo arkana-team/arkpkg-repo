@@ -1,0 +1,22 @@
+Name: nscde
+Description: NsCDE desktop environment with the Solyaris palette and arkanaOS session
+Version: 2.3
+Arch: x86_64
+URL: https://github.com/NsCDE/NsCDE
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  fvwm3>=1.1.5
+  perl>=5.42.0
+  xclock>=1.2.1
+  xdpyinfo>=1.4.0
+  xinit>=1.4.4
+  xload>=1.2.2
+  xmessage>=1.0.7
+  xprop>=1.2.8
+  xrandr>=1.5.4
+  xrdb>=1.2.3
+  xset>=1.2.6
+  xsetroot>=1.1.4
+  xterm>=401
+Provides: nscde=/usr/share/xsessions/nscde.desktop

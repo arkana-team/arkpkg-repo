@@ -1,0 +1,11 @@
+Name: p11-kit-libs
+Description: PKCS #11 module and trust store runtime libraries
+Version: 0.25.5
+Arch: x86_64
+URL: https://p11-glue.github.io/p11-glue/p11-kit.html
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies:
+  libffi-libs>=3.5.2
+  libtasn1-libs>=4.20.0
+Provides: libp11-kit.so.0=/usr/lib/libp11-kit.so.0

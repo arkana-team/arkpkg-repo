@@ -1,0 +1,7 @@
+Name: imlib2-devel
+Description: Imlib2 image loading library development files
+Version: 1.12.5
+Arch: x86_64
+URL: https://git.enlightenment.org/old/legacy-imlib2
+License: BSD-2-Clause
+Maintainer: arkanaOS Team

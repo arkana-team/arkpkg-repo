@@ -1,0 +1,11 @@
+Name: gudev-devel
+Description: GObject udev library development files
+Version: 238
+Arch: x86_64
+URL: https://gitlab.gnome.org/GNOME/libgudev
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  glib-devel>=2.78.6
+  systemd-devel>=257.8
+Provides: libgudev-1.0.so=/usr/lib/libgudev-1.0.so

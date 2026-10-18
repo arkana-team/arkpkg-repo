@@ -1,0 +1,8 @@
+Name: openssl-libs
+Description: OpenSSL cryptography runtime libraries and providers
+Version: 3.5.2
+Arch: x86_64
+URL: https://www.openssl.org/
+License: Apache-2.0
+Maintainer: arkanaOS Team
+Provides: libssl.so.3=/usr/lib/libssl.so.3, libcrypto.so.3=/usr/lib/libcrypto.so.3

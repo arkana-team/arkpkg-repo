@@ -1,0 +1,8 @@
+Name: xfd
+Description: Display and inspect X11 core fonts
+Version: 1.1.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xfd-1.1.6.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xfd=/usr/bin/xfd

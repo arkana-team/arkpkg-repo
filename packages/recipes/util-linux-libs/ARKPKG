@@ -1,0 +1,8 @@
+Name: util-linux-libs
+Description: Runtime libraries for block devices, mounts, and UUIDs
+Version: 2.41.1
+Arch: x86_64
+URL: https://github.com/util-linux/util-linux
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Provides: libuuid.so.1=/usr/lib/libuuid.so.1, libblkid.so.1=/usr/lib/libblkid.so.1

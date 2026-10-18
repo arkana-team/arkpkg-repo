@@ -1,0 +1,13 @@
+Name: xterm
+Description: Classic X11 terminal emulator
+Version: 401
+Arch: x86_64
+URL: https://invisible-island.net/xterm/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  fontconfig-devel>=2.17.1
+  luit>=2.0-20240910
+  ncurses-devel>=6.5
+  xorg-devel>=1.0.0
+Provides: xterm=/usr/bin/xterm

@@ -1,0 +1,8 @@
+Name: xbitmaps
+Description: Standard X11 bitmap assets for classic workstation applications
+Version: 1.1.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/data/xbitmaps-1.1.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: x11-bitmaps=/usr/include/X11/bitmaps

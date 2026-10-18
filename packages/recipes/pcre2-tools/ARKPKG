@@ -1,0 +1,9 @@
+Name: pcre2-tools
+Description: PCRE2 regular expression testing and search utilities
+Version: 10.47
+Arch: x86_64
+URL: https://github.com/PCRE2Project/pcre2
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies: pcre2-devel>=10.47
+Provides: pcre2-tools=/usr/bin/pcre2grep

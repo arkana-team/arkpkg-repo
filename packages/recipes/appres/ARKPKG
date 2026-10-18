@@ -1,0 +1,8 @@
+Name: appres
+Description: Inspect X application resource databases
+Version: 1.0.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/appres-1.0.7.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: appres=/usr/bin/appres

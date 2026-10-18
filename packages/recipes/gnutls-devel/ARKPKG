@@ -1,0 +1,13 @@
+Name: gnutls-devel
+Description: GnuTLS secure communications development files
+Version: 3.8.10
+Arch: x86_64
+URL: https://www.gnutls.org/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs>=3.8.10
+  libidn2-devel>=2.3.8
+  libtasn1-devel>=4.20.0
+  nettle-devel>=3.10.2
+  p11-kit-devel>=0.25.5

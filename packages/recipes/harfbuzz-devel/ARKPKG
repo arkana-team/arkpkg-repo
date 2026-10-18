@@ -1,0 +1,11 @@
+Name: harfbuzz-devel
+Description: HarfBuzz text shaping development files
+Version: 10.4.0
+Arch: x86_64
+URL: https://harfbuzz.github.io/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  freetype-devel>=2.13.3
+  graphite2-devel>=3.0.1
+Provides: libharfbuzz.so=/usr/lib/libharfbuzz.so

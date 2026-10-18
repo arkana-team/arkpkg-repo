@@ -1,0 +1,7 @@
+Name: dav1d-devel
+Description: AV1 decoder library development files
+Version: 1.5.1
+Arch: x86_64
+URL: https://code.videolan.org/videolan/dav1d
+License: BSD-2-Clause
+Maintainer: arkanaOS Team

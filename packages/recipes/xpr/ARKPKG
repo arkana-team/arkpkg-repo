@@ -1,0 +1,8 @@
+Name: xpr
+Description: Convert X window dumps for printing
+Version: 1.2.1
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xpr-1.2.1.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xpr=/usr/bin/xpr

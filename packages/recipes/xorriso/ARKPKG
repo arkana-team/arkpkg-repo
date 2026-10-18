@@ -1,0 +1,8 @@
+Name: xorriso
+Description: ISO 9660 image creation, inspection, and burning tools
+Version: 1.5.6
+Arch: x86_64
+URL: https://www.gnu.org/software/xorriso/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: xorriso=/usr/bin/xorriso

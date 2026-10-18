@@ -1,0 +1,9 @@
+Name: newt-tools
+Description: Whiptail terminal dialogs for shell and installer workflows
+Version: 0.52.25
+Arch: x86_64
+URL: https://pagure.io/newt
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: newt-devel>=0.52.25
+Provides: whiptail=/usr/bin/whiptail

@@ -1,0 +1,8 @@
+Name: krb5-devel
+Description: Kerberos network authentication development files
+Version: 1.22
+Arch: x86_64
+URL: https://web.mit.edu/kerberos/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: krb5-libs>=1.22

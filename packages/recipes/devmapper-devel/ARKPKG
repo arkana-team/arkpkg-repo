@@ -1,0 +1,9 @@
+Name: devmapper-devel
+Description: Device-mapper library development headers and metadata
+Version: 1.02.208
+Arch: x86_64
+URL: https://sourceware.org/lvm2/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies: device-mapper>=2.03.34
+Provides: libdevmapper.so=/usr/lib/libdevmapper.so

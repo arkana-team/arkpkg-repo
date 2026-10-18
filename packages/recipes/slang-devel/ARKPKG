@@ -1,0 +1,8 @@
+Name: slang-devel
+Description: S-Lang terminal and scripting library development files
+Version: 2.3.3
+Arch: x86_64
+URL: https://www.jedsoft.org/slang/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Provides: libslang.so=/usr/lib/libslang.so

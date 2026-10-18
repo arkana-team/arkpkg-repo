@@ -1,0 +1,8 @@
+Name: xlsatoms
+Description: List the interned atoms on an X server
+Version: 1.1.5
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xlsatoms-1.1.5.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xlsatoms=/usr/bin/xlsatoms

@@ -1,0 +1,8 @@
+Name: unzip
+Description: Extract files from ZIP archives
+Version: 6.0
+Arch: x86_64
+URL: https://infozip.sourceforge.net/
+License: Info-ZIP
+Maintainer: arkanaOS Team
+Provides: unzip=/usr/bin/unzip

@@ -1,0 +1,15 @@
+Name: iproute2
+Description: IP routing, traffic control, and network interface utilities
+Version: 6.16.0
+Arch: x86_64
+URL: https://git.kernel.org/pub/scm/network/iproute2/iproute2.git
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  elfutils-devel>=0.193
+  krb5-devel>=1.22
+  libbpf-devel>=1.6.2
+  libcap-devel>=2.76
+  libmnl-devel>=1.0.5
+  libtirpc-devel>=1.3.7
+Provides: iproute2=/usr/bin/ip

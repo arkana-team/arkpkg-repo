@@ -1,0 +1,8 @@
+Name: giflib
+Description: GIF image format runtime library
+Version: 5.2.2
+Arch: x86_64
+URL: https://giflib.sourceforge.net/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libgif.so.7=/usr/lib/libgif.so.7

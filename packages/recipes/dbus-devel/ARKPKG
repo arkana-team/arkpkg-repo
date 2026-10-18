@@ -1,0 +1,8 @@
+Name: dbus-devel
+Description: D-Bus message bus development files
+Version: 1.16.2
+Arch: x86_64
+URL: https://www.freedesktop.org/wiki/Software/dbus/
+License: AFL-2.1 OR GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Provides: dbus-1-devel=/usr/include/dbus-1.0

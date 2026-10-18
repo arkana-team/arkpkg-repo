@@ -1,0 +1,8 @@
+Name: xlsclients
+Description: List clients connected to an X server
+Version: 1.1.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xlsclients-1.1.6.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xlsclients=/usr/bin/xlsclients

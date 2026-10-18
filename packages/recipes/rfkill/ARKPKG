@@ -1,0 +1,10 @@
+Name: rfkill
+Description: Manage wireless radio transmitters and switches
+Version: 2.41.1
+Arch: x86_64
+URL: https://github.com/util-linux/util-linux
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  util-linux-libs>=2.41.1
+Provides: rfkill=/usr/bin/rfkill

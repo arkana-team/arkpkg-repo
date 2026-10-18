@@ -1,0 +1,8 @@
+Name: imagemagick
+Description: Image conversion and viewing toolkit
+Version: 7.1.2
+Arch: x86_64
+URL: https://imagemagick.org/
+License: ImageMagick
+Maintainer: arkanaOS Team
+Provides: magick=/usr/bin/magick

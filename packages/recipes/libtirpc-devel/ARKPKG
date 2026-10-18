@@ -1,0 +1,8 @@
+Name: libtirpc-devel
+Description: Transport-independent RPC library development files
+Version: 1.3.7
+Arch: x86_64
+URL: https://sourceforge.net/projects/libtirpc/
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: libtirpc.so=/usr/lib/libtirpc.so

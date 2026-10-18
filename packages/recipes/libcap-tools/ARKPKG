@@ -1,0 +1,11 @@
+Name: libcap-tools
+Description: Linux capabilities inspection and administration tools
+Version: 2.76
+Arch: x86_64
+URL: https://git.kernel.org/pub/scm/libs/libcap/libcap.git
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies:
+  libcap>=2.76
+  libcap-ng>=0.8.5
+Provides: capsh=/usr/bin/capsh, getcap=/usr/bin/getcap, setcap=/usr/bin/setcap

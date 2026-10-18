@@ -1,0 +1,9 @@
+Name: weston
+Description: Reference Wayland compositor with desktop shell
+Version: 14.0.2
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/wayland/weston
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: seatd>=0.9.2
+Provides: weston=/usr/bin/weston

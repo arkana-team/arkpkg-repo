@@ -1,0 +1,9 @@
+Name: giflib-devel
+Description: GIF image format headers and static library
+Version: 5.2.2
+Arch: x86_64
+URL: https://giflib.sourceforge.net/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: giflib>=5.2.2
+Provides: giflib-devel=/usr/include/gif_lib.h

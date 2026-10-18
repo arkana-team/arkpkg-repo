@@ -1,0 +1,10 @@
+Name: bison
+Description: GNU parser generator
+Version: 3.8.2
+Arch: x86_64
+URL: https://www.gnu.org/software/bison/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  m4>=1.4.21
+Provides: bison=/usr/bin/bison

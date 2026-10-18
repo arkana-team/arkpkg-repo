@@ -1,0 +1,12 @@
+Name: glib-devel
+Description: GLib, GObject, and GIO development files
+Version: 2.78.6
+Arch: x86_64
+URL: https://gitlab.gnome.org/GNOME/glib
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  libffi-devel>=3.4.7
+  pcre2-devel>=10.47
+  zlib-devel>=1.3.1
+Provides: glib-2.0-devel=/usr/include/glib-2.0

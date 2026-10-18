@@ -1,0 +1,8 @@
+Name: gdk-pixbuf-tools
+Description: Image loader query and thumbnail utilities
+Version: 2.42.12
+Arch: x86_64
+URL: https://gitlab.gnome.org/GNOME/gdk-pixbuf
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: gdk-pixbuf-query-loaders=/usr/bin/gdk-pixbuf-query-loaders

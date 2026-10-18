@@ -1,0 +1,14 @@
+Name: cyrus-sasl-plugins
+Description: Cyrus SASL authentication mechanism plugins
+Version: 2.1.28
+Arch: x86_64
+URL: https://www.cyrusimap.org/sasl/
+License: BSD-4-Clause
+Maintainer: arkanaOS Team
+Dependencies:
+  cyrus-sasl-libs>=2.1.28
+  gnutls-libs>=3.8.10
+  krb5-libs>=1.22
+  lmdb-libs>=0.9.33
+  openldap-libs>=2.6.10
+  openssl-libs>=3.5.2

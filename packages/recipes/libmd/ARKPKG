@@ -1,0 +1,8 @@
+Name: libmd
+Description: Message digest runtime library
+Version: 1.1.0
+Arch: x86_64
+URL: https://libbsd.freedesktop.org/
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: libmd.so.0=/usr/lib/libmd.so.0

@@ -1,0 +1,10 @@
+Name: audit-libs
+Description: Runtime libraries for Linux audit event processing
+Version: 4.1.1
+Arch: x86_64
+URL: https://github.com/linux-audit/audit-userspace
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  libcap-ng>=0.8.5
+Provides: libaudit.so.1=/usr/lib/libaudit.so.1, libauparse.so.0=/usr/lib/libauparse.so.0

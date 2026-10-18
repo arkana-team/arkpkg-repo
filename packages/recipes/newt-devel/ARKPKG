@@ -1,0 +1,11 @@
+Name: newt-devel
+Description: Newt text-mode UI library development files
+Version: 0.52.25
+Arch: x86_64
+URL: https://pagure.io/newt
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  slang-devel>=2.3.3
+  ncurses-devel>=6.5
+Provides: libnewt.so=/usr/lib/libnewt.so

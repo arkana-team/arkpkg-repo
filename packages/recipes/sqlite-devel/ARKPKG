@@ -1,0 +1,8 @@
+Name: sqlite-devel
+Description: SQLite database development headers and linker files
+Version: 3.53.4
+Arch: x86_64
+URL: https://www.sqlite.org/
+License: blessing
+Maintainer: arkanaOS Team
+Provides: sqlite3=/usr/include/sqlite3.h

@@ -1,0 +1,11 @@
+Name: labwc
+Description: Lightweight wlroots based Wayland compositor
+Version: 0.9.3
+Arch: x86_64
+URL: https://github.com/labwc/labwc
+License: GPL-2.0-only
+Maintainer: arkanaOS Team
+Dependencies:
+wlroots>=0.19.0
+libsfdo>=0.1.3
+Provides: labwc=/usr/bin/labwc

@@ -1,0 +1,12 @@
+Name: freetype-devel
+Description: FreeType font rasterization development files
+Version: 26.2.20
+Arch: x86_64
+URL: https://freetype.org/
+License: FTL
+Maintainer: arkanaOS Team
+Dependencies:
+  zlib-devel>=1.3.1
+  libpng-devel>=1.6.50
+  bzip2-devel>=1.0.8
+Provides: libfreetype.so=/usr/lib/libfreetype.so

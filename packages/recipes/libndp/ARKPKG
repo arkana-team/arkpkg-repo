@@ -1,0 +1,8 @@
+Name: libndp
+Description: Neighbor discovery protocol library
+Version: 1.9
+Arch: x86_64
+URL: https://github.com/jpirko/libndp
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libndp.so.0=/usr/lib/libndp.so.0

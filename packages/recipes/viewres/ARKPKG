@@ -1,0 +1,8 @@
+Name: viewres
+Description: Browse the X toolkit application resource hierarchy
+Version: 1.0.8
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/viewres-1.0.8.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: viewres=/usr/bin/viewres

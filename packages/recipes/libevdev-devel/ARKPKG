@@ -1,0 +1,8 @@
+Name: libevdev-devel
+Description: Linux evdev device interface development files
+Version: 1.13.4
+Arch: x86_64
+URL: https://www.freedesktop.org/wiki/Software/libevdev/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libevdev.so=/usr/lib/libevdev.so

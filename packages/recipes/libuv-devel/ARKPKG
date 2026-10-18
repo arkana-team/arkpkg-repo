@@ -1,0 +1,8 @@
+Name: libuv-devel
+Description: Cross-platform asynchronous I/O development files
+Version: 1.51.0
+Arch: x86_64
+URL: https://libuv.org/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libuv.so=/usr/lib/libuv.so

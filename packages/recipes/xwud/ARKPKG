@@ -1,0 +1,8 @@
+Name: xwud
+Description: Display XWD images on an X11 desktop
+Version: 1.0.8
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xwud-1.0.8.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xwud=/usr/bin/xwud

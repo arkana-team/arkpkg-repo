@@ -1,0 +1,8 @@
+Name: xvidtune
+Description: Adjust X display video modes for supported hardware
+Version: 1.0.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xvidtune-1.0.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xvidtune=/usr/bin/xvidtune

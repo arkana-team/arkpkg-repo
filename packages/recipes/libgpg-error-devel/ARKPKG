@@ -1,0 +1,8 @@
+Name: libgpg-error-devel
+Description: GnuPG error handling library development files
+Version: 1.55
+Arch: x86_64
+URL: https://www.gnupg.org/software/libgpg-error/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libgpg-error.so=/usr/lib/libgpg-error.so

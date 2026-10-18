@@ -1,0 +1,10 @@
+Name: xorg-devel
+Description: X11, XCB, and Xorg development headers and linker metadata
+Version: 1.0.0
+Arch: x86_64
+URL: https://www.x.org/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  xbitmaps>=1.1.4
+Provides: xorg-devel=/usr/include/X11

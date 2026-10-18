@@ -1,0 +1,9 @@
+Name: pango-tools
+Description: Pango font listing, segmentation, and text rendering utilities
+Version: 1.52.2
+Arch: x86_64
+URL: https://pango.gnome.org/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies: pango-devel>=1.52.2
+Provides: pango-tools=/usr/bin/pango-view

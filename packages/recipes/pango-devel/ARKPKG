@@ -1,0 +1,16 @@
+Name: pango-devel
+Description: Pango text layout development files
+Version: 1.52.2
+Arch: x86_64
+URL: https://pango.gnome.org/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  glib-devel>=2.78.6
+  cairo-devel>=1.18.2
+  freetype-devel>=2.13.3
+  fontconfig-devel>=2.17.1
+  harfbuzz-devel>=10.4.0
+  fribidi-devel>=1.0.16
+  libthai-devel>=0.1.29
+Provides: pango-devel=/usr/include/pango-1.0

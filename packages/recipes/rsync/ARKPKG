@@ -1,0 +1,8 @@
+Name: rsync
+Description: Efficient file synchronization and transfer utility
+Version: 3.4.1
+Arch: x86_64
+URL: https://rsync.samba.org/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: rsync=/usr/bin/rsync

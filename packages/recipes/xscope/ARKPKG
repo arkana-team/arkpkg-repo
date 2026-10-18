@@ -1,0 +1,8 @@
+Name: xscope
+Description: Inspect X11 protocol traffic between clients and a server
+Version: 1.4.5
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xscope-1.4.5.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xscope=/usr/bin/xscope

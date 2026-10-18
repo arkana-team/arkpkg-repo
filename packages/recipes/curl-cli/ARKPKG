@@ -1,0 +1,8 @@
+Name: curl-cli
+Description: curl command-line transfer utility
+Version: 8.15.0
+Arch: x86_64
+URL: https://curl.se/
+License: curl
+Maintainer: arkanaOS Team
+Provides: curl=/usr/bin/curl

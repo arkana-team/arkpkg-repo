@@ -1,0 +1,10 @@
+Name: bitmap
+Description: Classic X11 bitmap editor and bitmap conversion tools
+Version: 1.1.2
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/bitmap-1.1.2.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  xbitmaps>=1.1.4
+Provides: bitmap=/usr/bin/bitmap, bmtoa=/usr/bin/bmtoa, atobm=/usr/bin/atobm

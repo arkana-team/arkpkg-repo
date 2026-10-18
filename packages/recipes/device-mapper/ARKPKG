@@ -1,0 +1,8 @@
+Name: device-mapper
+Description: Device-mapper control utility and runtime library
+Version: 2.03.34
+Arch: x86_64
+URL: https://gitlab.com/lvmteam/lvm2
+License: GPL-2.0-only
+Maintainer: arkanaOS Team
+Provides: device-mapper=/usr/bin/dmsetup, libdevmapper.so.1.02=/usr/lib/libdevmapper.so.1.02

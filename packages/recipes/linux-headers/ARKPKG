@@ -1,0 +1,8 @@
+Name: linux-headers
+Description: Linux 6.18.57 UAPI headers for system and driver development
+Version: 6.18.57
+Arch: x86_64
+URL: https://kernel.org/
+License: GPL-2.0-only WITH Linux-syscall-note
+Maintainer: arkanaOS Team
+Provides: linux-headers=/usr/include/linux

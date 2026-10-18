@@ -1,0 +1,7 @@
+Name: libsfdo
+Description: Shared desktop support libraries for wlroots compositors
+Version: 0.1.3
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/vyivel/libsfdo
+License: BSD-3-Clause
+Maintainer: arkanaOS Team

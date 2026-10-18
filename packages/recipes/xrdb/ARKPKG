@@ -1,0 +1,8 @@
+Name: xrdb
+Description: Manage X server resource databases
+Version: 1.2.3
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xrdb-1.2.3.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xrdb=/usr/bin/xrdb

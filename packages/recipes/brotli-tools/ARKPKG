@@ -1,0 +1,9 @@
+Name: brotli-tools
+Description: Brotli command-line compression utility
+Version: 1.1.0
+Arch: x86_64
+URL: https://github.com/google/brotli
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: brotli-libs>=1.1.0
+Provides: brotli=/usr/bin/brotli

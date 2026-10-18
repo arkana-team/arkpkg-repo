@@ -1,4 +1,4 @@
-name: Publish ArkPkg repository
+name: Publish arkpkg repository
 
 on:
   push:

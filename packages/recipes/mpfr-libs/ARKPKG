@@ -1,0 +1,9 @@
+Name: mpfr-libs
+Description: GNU multiple precision floating-point runtime library
+Version: 4.2.2
+Arch: x86_64
+URL: https://www.mpfr.org/
+License: LGPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: gmp-libs>=6.3.0
+Provides: libmpfr.so.6=/usr/lib/libmpfr.so.6

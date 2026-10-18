@@ -1,0 +1,11 @@
+Name: curl-devel
+Description: libcurl client library development files
+Version: 8.15.0
+Arch: x86_64
+URL: https://curl.se/libcurl/
+License: curl
+Maintainer: arkanaOS Team
+Dependencies:
+  openssl-devel>=3.5.2
+  zlib-devel>=1.3.1
+Provides: libcurl.so=/usr/lib/libcurl.so

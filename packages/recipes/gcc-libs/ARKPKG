@@ -1,0 +1,8 @@
+Name: gcc-libs
+Description: GCC target libraries, startup objects, and builtin headers
+Version: 15.2.0
+Arch: x86_64
+URL: https://gcc.gnu.org/
+License: GPL-3.0-or-later WITH GCC-exception-3.1
+Maintainer: arkanaOS Team
+Provides: gcc-libs=/usr/lib/gcc

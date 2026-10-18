@@ -1,0 +1,8 @@
+Name: xgc
+Description: X11 graphics function demonstration program
+Version: 1.0.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xgc-1.0.7.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xgc=/usr/bin/xgc

@@ -1,0 +1,8 @@
+Name: xcmsdb
+Description: Query and configure X color management data
+Version: 1.0.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xcmsdb-1.0.7.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xcmsdb=/usr/bin/xcmsdb

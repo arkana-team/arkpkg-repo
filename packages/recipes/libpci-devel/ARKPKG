@@ -1,0 +1,7 @@
+Name: libpci-devel
+Description: PCI access library development files
+Version: 3.15.0
+Arch: x86_64
+URL: https://pciutils.sourceforge.io/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team

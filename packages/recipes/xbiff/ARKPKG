@@ -1,0 +1,8 @@
+Name: xbiff
+Description: Classic X11 new-mail notification window
+Version: 1.0.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xbiff-1.0.6.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xbiff=/usr/bin/xbiff

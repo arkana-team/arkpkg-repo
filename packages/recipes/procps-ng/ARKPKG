@@ -1,0 +1,10 @@
+Name: procps-ng
+Description: Process and system resource monitoring utilities
+Version: 4.0.5
+Arch: x86_64
+URL: https://gitlab.com/procps-ng/procps
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  util-linux-libs>=2.41.1
+Provides: procps-ng=/usr/bin/ps

@@ -1,0 +1,8 @@
+Name: libjpeg-turbo-tools
+Description: JPEG conversion, transform, and comment utilities
+Version: 3.0.1
+Arch: x86_64
+URL: https://libjpeg-turbo.org/
+License: IJG
+Maintainer: arkanaOS Team
+Provides: cjpeg=/usr/bin/cjpeg, djpeg=/usr/bin/djpeg

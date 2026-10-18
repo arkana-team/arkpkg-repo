@@ -1,0 +1,9 @@
+Name: libdeflate-tools
+Description: Fast gzip compression and decompression commands
+Version: 1.24
+Arch: x86_64
+URL: https://github.com/ebiggers/libdeflate
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: libdeflate-devel>=1.24
+Provides: libdeflate-tools=/usr/bin/libdeflate-gzip

@@ -1,0 +1,10 @@
+Name: xsm
+Description: Session manager for X11 clients
+Version: 1.0.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xsm-1.0.6.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xsm=/usr/bin/xsm
+Dependencies:
+  iceauth>=1.0.11

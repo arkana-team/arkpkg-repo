@@ -1,0 +1,9 @@
+Name: gnutls-tools
+Description: GnuTLS certificate and secure connection utilities
+Version: 3.8.10
+Arch: x86_64
+URL: https://www.gnutls.org/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: gnutls-libs>=3.8.10
+Provides: certtool=/usr/bin/certtool, gnutls-cli=/usr/bin/gnutls-cli, gnutls-serv=/usr/bin/gnutls-serv

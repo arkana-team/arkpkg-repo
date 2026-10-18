@@ -1,0 +1,8 @@
+Name: sessreg
+Description: Register and unregister X display sessions
+Version: 1.1.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/sessreg-1.1.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: sessreg=/usr/bin/sessreg

@@ -1,0 +1,8 @@
+Name: rustc-runtime
+Description: Rust compiler driver shared library
+Version: 1.99.0
+Arch: x86_64
+URL: https://www.rust-lang.org/
+License: MIT OR Apache-2.0
+Maintainer: arkanaOS Team
+Provides: rustc-runtime=/usr/lib/librustc_driver

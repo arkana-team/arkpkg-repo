@@ -1,0 +1,8 @@
+Name: weston-devel
+Description: Weston compositor development headers and protocols
+Version: 14.0.2
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/wayland/weston
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: weston>=14.0.2

@@ -1,0 +1,8 @@
+Name: xorg-util-macros
+Description: Autoconf macros used to build X.Org software
+Version: 1.20.2
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/util/util-macros-1.20.2.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xorg-macros=/usr/share/aclocal/xorg-macros.m4

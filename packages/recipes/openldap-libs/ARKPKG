@@ -1,0 +1,11 @@
+Name: openldap-libs
+Description: OpenLDAP client and directory runtime libraries
+Version: 2.6.10
+Arch: x86_64
+URL: https://www.openldap.org/
+License: OpenLDAP
+Maintainer: arkanaOS Team
+Dependencies:
+  cyrus-sasl-libs>=2.1.28
+  openssl-libs>=3.5.2
+Provides: libldap.so.2=/usr/lib/libldap.so.2, liblber.so.2=/usr/lib/liblber.so.2

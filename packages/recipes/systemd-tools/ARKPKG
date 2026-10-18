@@ -1,0 +1,15 @@
+Name: systemd-tools
+Description: Systemd administration, boot, journal, and container tools
+Version: 257.8
+Arch: x86_64
+URL: https://systemd.io/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  acl-libs>=2.3.2
+  cryptsetup-devel>=2.8.1
+  devmapper-devel>=1.02.208
+  libcap>=2.76
+  systemd-libs>=257.8
+  util-linux-libs>=2.41.1
+Provides: systemd-tools=/usr/bin/systemd-analyze

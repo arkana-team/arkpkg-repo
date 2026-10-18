@@ -1,0 +1,8 @@
+Name: pixman-devel
+Description: Pixman pixel manipulation library development files
+Version: 0.46.4
+Arch: x86_64
+URL: https://www.pixman.org/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libpixman-1.so=/usr/lib/libpixman-1.so

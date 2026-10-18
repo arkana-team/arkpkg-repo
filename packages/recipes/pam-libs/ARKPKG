@@ -1,0 +1,13 @@
+Name: pam-libs
+Description: Linux Pluggable Authentication Modules runtime libraries
+Version: 1.7.1
+Arch: x86_64
+URL: https://github.com/linux-pam/linux-pam
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies:
+  audit-libs>=4.1.1
+  libcap>=2.76
+  openssl-libs>=3.5.2
+  util-linux-libs>=2.41.1
+Provides: libpam.so.0=/usr/lib/libpam.so.0, libpam_misc.so.0=/usr/lib/libpam_misc.so.0, libpamc.so.0=/usr/lib/libpamc.so.0
