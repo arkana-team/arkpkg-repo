@@ -1,0 +1,8 @@
+Name: xkbprint
+Description: Print a visual representation of an X keyboard map
+Version: 1.0.8
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xkbprint-1.0.8.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xkbprint=/usr/bin/xkbprint

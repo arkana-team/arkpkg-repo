@@ -1,0 +1,9 @@
+Name: libarchive-tools
+Description: bsdtar, bsdcpio, and related archive commands
+Version: 3.8.1
+Arch: x86_64
+URL: https://www.libarchive.org/
+License: BSD-2-Clause
+Maintainer: arkanaOS Team
+Dependencies: libarchive-devel>=3.8.1
+Provides: bsdtar=/usr/bin/bsdtar

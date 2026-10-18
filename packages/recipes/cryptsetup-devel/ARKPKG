@@ -1,0 +1,11 @@
+Name: cryptsetup-devel
+Description: Disk encryption library development files
+Version: 2.8.1
+Arch: x86_64
+URL: https://gitlab.com/cryptsetup/cryptsetup
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  devmapper-devel>=1.02.208
+  util-linux-devel>=2.41.1
+Provides: libcryptsetup.so=/usr/lib/libcryptsetup.so

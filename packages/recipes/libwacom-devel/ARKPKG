@@ -1,0 +1,8 @@
+Name: libwacom-devel
+Description: Wacom tablet information library development files
+Version: 2.19.0
+Arch: x86_64
+URL: https://github.com/linuxwacom/libwacom
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libwacom.so=/usr/lib/libwacom.so

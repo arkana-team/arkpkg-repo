@@ -1,0 +1,7 @@
+Name: keyutils-devel
+Description: Linux kernel key management development files
+Version: 1.6.3
+Arch: x86_64
+URL: https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team

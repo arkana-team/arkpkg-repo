@@ -1,0 +1,9 @@
+Name: libgcrypt-devel
+Description: Libgcrypt cryptographic library development files
+Version: 1.11.2
+Arch: x86_64
+URL: https://www.gnupg.org/software/libgcrypt/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies: libgpg-error-devel>=1.55
+Provides: libgcrypt.so=/usr/lib/libgcrypt.so

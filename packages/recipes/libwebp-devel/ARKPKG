@@ -1,0 +1,8 @@
+Name: libwebp-devel
+Description: WebP image library development files
+Version: 1.6.0
+Arch: x86_64
+URL: https://developers.google.com/speed/webp
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: libwebp.so=/usr/lib/libwebp.so

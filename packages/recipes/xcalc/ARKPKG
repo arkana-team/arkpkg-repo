@@ -1,0 +1,8 @@
+Name: xcalc
+Description: Classic X11 scientific calculator
+Version: 1.1.3
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xcalc-1.1.3.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xcalc=/usr/bin/xcalc

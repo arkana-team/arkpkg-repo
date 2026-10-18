@@ -1,0 +1,7 @@
+Name: libcap-ng-devel
+Description: Linux capabilities library development files
+Version: 0.8.5
+Arch: x86_64
+URL: https://github.com/stevegrubb/libcap-ng
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team

@@ -1,0 +1,8 @@
+Name: llvm-runtime
+Description: LLVM shared runtime required by the Rust compiler
+Version: 1.99.0
+Arch: x86_64
+URL: https://www.rust-lang.org/
+License: Apache-2.0 WITH LLVM-exception
+Maintainer: arkanaOS Team
+Provides: llvm-runtime=/usr/lib/libLLVM.so.23.1-rust-1.99.0-stable

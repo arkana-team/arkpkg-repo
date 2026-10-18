@@ -1,0 +1,8 @@
+Name: xconsole
+Description: X11 window for displaying system console messages
+Version: 1.1.1
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xconsole-1.1.1.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xconsole=/usr/bin/xconsole

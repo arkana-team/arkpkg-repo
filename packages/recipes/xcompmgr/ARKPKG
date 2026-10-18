@@ -1,0 +1,8 @@
+Name: xcompmgr
+Description: Lightweight X11 compositing manager
+Version: 1.1.10
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xcompmgr-1.1.10.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xcompmgr=/usr/bin/xcompmgr

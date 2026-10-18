@@ -1,0 +1,8 @@
+Name: sqlite-tools
+Description: SQLite command-line database client
+Version: 3.53.4
+Arch: x86_64
+URL: https://sqlite.org/
+License: Unlicense
+Maintainer: arkanaOS Team
+Provides: sqlite3=/usr/bin/sqlite3

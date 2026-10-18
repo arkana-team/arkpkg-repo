@@ -1,0 +1,8 @@
+Name: xload
+Description: Classic X11 system load monitor
+Version: 1.2.2
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xload-1.2.2.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xload=/usr/bin/xload

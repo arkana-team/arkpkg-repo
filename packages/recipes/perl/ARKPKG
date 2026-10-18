@@ -1,0 +1,9 @@
+Name: perl
+Description: Perl programming language runtime and core modules
+Version: 5.42.0
+Arch: x86_64
+URL: https://www.perl.org/
+License: Artistic-1.0-Perl OR GPL-1.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: libxcrypt-devel>=4.4.38
+Provides: perl=/usr/bin/perl

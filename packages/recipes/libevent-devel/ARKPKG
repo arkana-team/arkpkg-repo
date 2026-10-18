@@ -1,0 +1,8 @@
+Name: libevent-devel
+Description: Event notification library development files
+Version: 2.1.12-stable
+Arch: x86_64
+URL: https://libevent.org/
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: libevent.so=/usr/lib/libevent.so

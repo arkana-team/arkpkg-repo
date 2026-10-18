@@ -1,0 +1,7 @@
+Name: libmagic-devel
+Description: File type identification library development files
+Version: 5.46
+Arch: x86_64
+URL: https://www.darwinsys.com/file/
+License: BSD-2-Clause
+Maintainer: arkanaOS Team

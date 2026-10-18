@@ -1,0 +1,8 @@
+Name: xfontsel
+Description: Interactive X11 font selector
+Version: 1.1.2
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xfontsel-1.1.2.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xfontsel=/usr/bin/xfontsel

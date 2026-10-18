@@ -1,0 +1,8 @@
+Name: xclock
+Description: Classic analog and digital X11 clock
+Version: 1.2.1
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xclock-1.2.1.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xclock=/usr/bin/xclock

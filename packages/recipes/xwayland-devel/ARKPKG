@@ -1,0 +1,10 @@
+Name: xwayland-devel
+Description: Xwayland protocol headers and pkg-config metadata
+Version: 24.1.9
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/xorg/xserver
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  xwayland>=24.1.9
+  xorg-devel>=1.0.0

@@ -1,0 +1,8 @@
+Name: make
+Description: GNU make build automation utility
+Version: 4.4.1
+Arch: x86_64
+URL: https://www.gnu.org/software/make/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: make=/usr/bin/make

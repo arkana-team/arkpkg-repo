@@ -1,0 +1,7 @@
+Name: brotli-devel
+Description: Brotli compression library development files
+Version: 1.1.0
+Arch: x86_64
+URL: https://github.com/google/brotli
+License: MIT
+Maintainer: arkanaOS Team

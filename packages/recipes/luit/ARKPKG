@@ -1,0 +1,10 @@
+Name: luit
+Description: Locale and character-set filter for X terminals
+Version: 2.0-20240910
+Arch: x86_64
+URL: https://invisible-island.net/luit/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  zlib-devel>=1.3.1
+Provides: luit=/usr/bin/luit

@@ -1,0 +1,8 @@
+Name: font-bh-100dpi
+Description: Lucida bitmap fonts at 100 dpi for X11 workstations
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-bh-100dpi-1.0.4.tar.xz
+License: Lucida Font License
+Maintainer: arkanaOS Team
+Provides: x11-fonts-100dpi=/usr/share/fonts/100dpi

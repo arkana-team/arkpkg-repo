@@ -1,0 +1,8 @@
+Name: libwebp-tools
+Description: WebP encoding, decoding, and inspection utilities
+Version: 1.6.0
+Arch: x86_64
+URL: https://developers.google.com/speed/webp
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: cwebp=/usr/bin/cwebp, dwebp=/usr/bin/dwebp

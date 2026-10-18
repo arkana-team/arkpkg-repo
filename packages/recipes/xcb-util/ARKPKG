@@ -1,0 +1,8 @@
+Name: xcb-util
+Description: Shared library and helper APIs for XCB applications
+Version: 0.4.1
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/xcb-util-0.4.1.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xcb-util=/usr/lib/libxcb-util.so.1

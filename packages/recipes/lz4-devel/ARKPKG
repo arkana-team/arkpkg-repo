@@ -1,0 +1,8 @@
+Name: lz4-devel
+Description: LZ4 compression library development files
+Version: 1.10.0
+Arch: x86_64
+URL: https://github.com/lz4/lz4
+License: BSD-2-Clause
+Maintainer: arkanaOS Team
+Provides: liblz4.so=/usr/lib/liblz4.so

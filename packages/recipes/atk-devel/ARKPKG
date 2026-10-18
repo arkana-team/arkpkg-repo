@@ -1,0 +1,9 @@
+Name: atk-devel
+Description: Accessibility toolkit development files
+Version: 2.54.2
+Arch: x86_64
+URL: https://gitlab.gnome.org/GNOME/atk
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies: glib-devel>=2.78.6
+Provides: libatk-1.0.so=/usr/lib/libatk-1.0.so

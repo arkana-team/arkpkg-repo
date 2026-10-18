@@ -1,0 +1,11 @@
+Name: elfutils-devel
+Description: ELF and DWARF inspection library development files
+Version: 0.193
+Arch: x86_64
+URL: https://sourceware.org/elfutils/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  zlib-devel>=1.3.1
+  zstd-devel>=1.5.7
+Provides: libelf.so=/usr/lib/libelf.so, libdw.so=/usr/lib/libdw.so

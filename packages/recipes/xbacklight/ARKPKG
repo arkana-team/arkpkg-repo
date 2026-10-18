@@ -1,0 +1,10 @@
+Name: xbacklight
+Description: Adjust display backlight brightness through X RandR
+Version: 1.2.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xbacklight-1.2.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  xcb-util>=0.4.1
+Provides: xbacklight=/usr/bin/xbacklight

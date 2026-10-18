@@ -1,0 +1,8 @@
+Name: xwininfo
+Description: Display detailed information about X11 windows
+Version: 1.1.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xwininfo-1.1.7.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xwininfo=/usr/bin/xwininfo

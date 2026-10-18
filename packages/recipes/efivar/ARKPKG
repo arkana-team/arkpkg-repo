@@ -1,0 +1,8 @@
+Name: efivar
+Description: EFI variable and boot-service library utilities
+Version: 39
+Arch: x86_64
+URL: https://github.com/rhboot/efivar
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: efivar=/usr/bin/efivar

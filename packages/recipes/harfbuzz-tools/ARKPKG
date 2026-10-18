@@ -1,0 +1,12 @@
+Name: harfbuzz-tools
+Description: HarfBuzz font shaping, inspection, and subsetting utilities
+Version: 10.4.0
+Arch: x86_64
+URL: https://harfbuzz.github.io/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  cairo-devel>=1.18.2
+  fontconfig-devel>=2.17.1
+  harfbuzz-devel>=10.4.0
+Provides: harfbuzz-tools=/usr/bin/hb-shape

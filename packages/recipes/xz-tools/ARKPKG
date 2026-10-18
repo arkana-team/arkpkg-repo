@@ -1,0 +1,9 @@
+Name: xz-tools
+Description: XZ and LZMA compression and decompression commands
+Version: 5.8.1
+Arch: x86_64
+URL: https://tukaani.org/xz/
+License: 0BSD
+Maintainer: arkanaOS Team
+Dependencies: xz-devel>=5.8.1
+Provides: xz=/usr/bin/xz

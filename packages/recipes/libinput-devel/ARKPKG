@@ -1,0 +1,11 @@
+Name: libinput-devel
+Description: Input device handling library development files
+Version: 1.29.0
+Arch: x86_64
+URL: https://www.freedesktop.org/wiki/Software/libinput/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  libevdev-devel>=1.13.4
+  libwacom-devel>=2.19.0
+Provides: libinput.so=/usr/lib/libinput.so

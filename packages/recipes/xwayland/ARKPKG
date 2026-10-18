@@ -1,0 +1,8 @@
+Name: xwayland
+Description: X server compatibility layer for Wayland compositors
+Version: 24.1.9
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/xorg/xserver
+License: MIT
+Maintainer: arkanaOS Team
+Provides: Xwayland=/usr/bin/Xwayland

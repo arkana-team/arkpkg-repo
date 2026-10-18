@@ -1,0 +1,8 @@
+Name: xsetroot
+Description: Set the X root window background and cursor
+Version: 1.1.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xsetroot-1.1.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xsetroot=/usr/bin/xsetroot

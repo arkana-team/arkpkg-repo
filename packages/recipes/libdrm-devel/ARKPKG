@@ -1,0 +1,8 @@
+Name: libdrm-devel
+Description: Direct Rendering Manager development files
+Version: 2.4.125
+Arch: x86_64
+URL: https://dri.freedesktop.org/libdrm/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libdrm.so=/usr/lib/libdrm.so

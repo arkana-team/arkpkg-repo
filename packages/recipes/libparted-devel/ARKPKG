@@ -1,0 +1,9 @@
+Name: libparted-devel
+Description: GNU Parted library development headers and metadata
+Version: 3.6
+Arch: x86_64
+URL: https://www.gnu.org/software/parted/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: util-linux-devel>=2.41.1
+Provides: libparted.so=/usr/lib/libparted.so

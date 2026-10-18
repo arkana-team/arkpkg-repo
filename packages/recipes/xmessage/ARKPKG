@@ -1,0 +1,8 @@
+Name: xmessage
+Description: Classic X11 message dialog
+Version: 1.0.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xmessage-1.0.7.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xmessage=/usr/bin/xmessage

@@ -1,0 +1,8 @@
+Name: fonttosfnt
+Description: Convert bitmap fonts into OpenType SFNT fonts
+Version: 1.2.5
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/fonttosfnt-1.2.5.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: fonttosfnt=/usr/bin/fonttosfnt

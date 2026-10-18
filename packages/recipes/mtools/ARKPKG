@@ -1,0 +1,8 @@
+Name: mtools
+Description: DOS and FAT filesystem utilities for disk images and removable media
+Version: 4.0.49
+Arch: x86_64
+URL: https://www.gnu.org/software/mtools/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: mtools=/usr/bin/mtools

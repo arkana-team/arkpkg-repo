@@ -1,0 +1,8 @@
+Name: gdb
+Description: GNU source-level debugger
+Version: 18.1
+Arch: x86_64
+URL: https://www.gnu.org/software/gdb/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: gdb=/usr/bin/gdb

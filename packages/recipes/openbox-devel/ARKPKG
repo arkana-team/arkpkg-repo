@@ -1,0 +1,8 @@
+Name: openbox-devel
+Description: Openbox development headers and static libraries
+Version: 3.6.1
+Arch: x86_64
+URL: http://openbox.org/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: openbox>=3.6.1

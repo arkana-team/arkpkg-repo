@@ -1,0 +1,11 @@
+Name: xosview
+Description: Lightweight X11 monitor for system resource usage
+Version: 2.3.5
+Arch: x86_64
+URL: https://sourceforge.net/projects/xosview/
+License: GPL-2.0-only
+Maintainer: arkanaOS Team
+Dependencies:
+  fontconfig-devel>=2.17.1
+  xorg-devel>=1.0.0
+Provides: xosview=/usr/bin/xosview

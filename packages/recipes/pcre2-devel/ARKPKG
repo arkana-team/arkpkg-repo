@@ -1,0 +1,8 @@
+Name: pcre2-devel
+Description: Perl-compatible regular expression library development files
+Version: 10.47
+Arch: x86_64
+URL: https://github.com/PCRE2Project/pcre2
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: libpcre2-8.so=/usr/lib/libpcre2-8.so

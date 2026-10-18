@@ -1,0 +1,8 @@
+Name: libnghttp2-devel
+Description: HTTP/2 library development headers and metadata
+Version: 1.66.0
+Arch: x86_64
+URL: https://nghttp2.org/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libnghttp2.so=/usr/lib/libnghttp2.so

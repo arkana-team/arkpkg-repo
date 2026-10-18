@@ -1,0 +1,8 @@
+Name: dosfstools
+Description: FAT filesystem creation, checking, and labeling tools
+Version: 4.2
+Arch: x86_64
+URL: https://github.com/dosfstools/dosfstools
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: dosfstools=/usr/bin/mkfs.fat

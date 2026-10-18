@@ -1,0 +1,228 @@
+#!/usr/bin/env python3
+"""Audit package archives and test a full install/verify/remove transaction."""
+
+from __future__ import annotations
+
+import argparse
+import re
+import subprocess
+import tarfile
+import tempfile
+from pathlib import Path, PurePosixPath
+
+import lz4.frame
+
+REQUIRED_FIELDS = {"Name", "Description", "Version", "Arch"}
+PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
+DEPENDENCY = re.compile(
+    r"([A-Za-z0-9][A-Za-z0-9._+-]*)(?:\s*(?:>=|<=|=|>|<)\s*(\S+))?\Z"
+)
+
+
+def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
+    metadata: dict[str, str] | None = None
+    dependencies: list[str] = []
+    provides: list[str] = []
+    payload_paths: set[str] = set()
+    has_package_tree = False
+
+    with (
+        lz4.frame.open(path, "rb") as compressed,
+        tarfile.open(fileobj=compressed, mode="r|") as archive,
+    ):
+        for member in archive:
+            member_path = PurePosixPath(member.name)
+            if member_path.is_absolute() or ".." in member_path.parts:
+                raise ValueError(f"{path.name}: unsafe archive path {member.name!r}")
+            normalized = "/".join(
+                part for part in member_path.parts if part not in {"", "."}
+            )
+            if normalized == "package" or normalized.startswith("package/"):
+                has_package_tree = True
+            if normalized == "ARKPKG" and member.isfile():
+                if metadata is not None:
+                    raise ValueError(f"{path.name}: multiple root ARKPKG files")
+                stream = archive.extractfile(member)
+                if stream is None:
+                    raise ValueError(f"{path.name}: unreadable ARKPKG metadata")
+                fields: dict[str, str] = {}
+                current_section = ""
+                for line in stream.read().decode("utf-8").splitlines():
+                    key, separator, value = line.partition(":")
+                    if separator:
+                        current_section = key.strip()
+                        if current_section in REQUIRED_FIELDS:
+                            fields[current_section] = value.strip()
+                        elif current_section == "Dependencies" and value.strip():
+                            dependencies.append(value.strip())
+                        elif current_section == "Provides" and value.strip():
+                            provides.append(value.strip())
+                    elif line.strip() and current_section == "Dependencies":
+                        dependencies.append(line.strip())
+                    elif line.strip() and current_section == "Provides":
+                        provides.append(line.strip())
+                metadata = fields
+            if normalized.startswith("package/") and (
+                member.isfile() or member.issym() or member.islnk()
+            ):
+                relative = normalized.removeprefix("package/")
+                if relative in payload_paths:
+                    raise ValueError(f"{path.name}: duplicate payload path {relative}")
+                payload_paths.add(relative)
+
+    if metadata is None:
+        raise ValueError(f"{path.name}: missing root ARKPKG metadata")
+    missing = REQUIRED_FIELDS.difference(metadata)
+    if missing:
+        raise ValueError(f"{path.name}: missing fields {', '.join(sorted(missing))}")
+    if not has_package_tree or not payload_paths:
+        raise ValueError(f"{path.name}: package payload is empty")
+    if not PACKAGE_ATOM.fullmatch(metadata["Name"]):
+        raise ValueError(f"{path.name}: invalid package name {metadata['Name']!r}")
+    if not PACKAGE_ATOM.fullmatch(metadata["Version"]):
+        raise ValueError(f"{path.name}: invalid version {metadata['Version']!r}")
+    if not PACKAGE_ATOM.fullmatch(metadata["Arch"]):
+        raise ValueError(f"{path.name}: invalid architecture {metadata['Arch']!r}")
+    return metadata, dependencies, provides
+
+
+def package_order(
+    packages: dict[str, tuple[Path, str, list[str], list[str]]],
+) -> tuple[list[str], int]:
+    provider_map: dict[str, str] = {name: name for name in packages}
+    for name, (_, _, _, provides) in packages.items():
+        for item in provides:
+            provided_name, separator, _ = item.partition("=")
+            if separator:
+                provider_map.setdefault(provided_name.strip(), name)
+
+    dependencies: dict[str, set[str]] = {name: set() for name in packages}
+    for name, (_, _, requirements, _) in packages.items():
+        for requirement in requirements:
+            match = DEPENDENCY.fullmatch(requirement)
+            if match is None:
+                raise ValueError(f"{name}: invalid dependency {requirement!r}")
+            target = provider_map.get(match.group(1))
+            if target is None:
+                raise ValueError(f"{name}: unresolved dependency {requirement!r}")
+            if target != name:
+                dependencies[name].add(target)
+
+    pending = {name: set(values) for name, values in dependencies.items()}
+    order: list[str] = []
+    while pending:
+        ready = sorted(name for name, values in pending.items() if not values)
+        if not ready:
+            raise ValueError(f"package dependency cycle: {pending}")
+        order.extend(ready)
+        for name in ready:
+            pending.pop(name)
+        for values in pending.values():
+            values.difference_update(ready)
+    return order, sum(map(len, dependencies.values()))
+
+
+def run_package_manager(
+    tool: Path,
+    root: Path,
+    action: str,
+    package: str,
+    archive: Path | None = None,
+) -> None:
+    command = [str(tool), "--root", str(root), action]
+    command.append(str(archive) if archive is not None else package)
+    if action in {"install", "remove"}:
+        command.append("-y")
+    result = subprocess.run(
+        command,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if result.returncode:
+        details = result.stderr[-3000:]
+        raise RuntimeError(f"arkpkg {action} failed for {package}:\n{details}")
+
+
+def test_repository(repo_root: Path, tool: Path) -> None:
+    packages: dict[str, tuple[Path, str, list[str], list[str]]] = {}
+    owners: dict[str, str] = {}
+    archives = sorted((repo_root / "packages").glob("*.ark"))
+    if not archives:
+        raise ValueError("packages/ contains no .ark archives")
+
+    for path in archives:
+        metadata, dependencies, provides = inspect_archive(path)
+        name = metadata["Name"]
+        if name in packages:
+            raise ValueError(f"duplicate package name: {name}")
+        packages[name] = (path, metadata["Version"], dependencies, provides)
+        with (
+            lz4.frame.open(path, "rb") as compressed,
+            tarfile.open(fileobj=compressed, mode="r|") as archive,
+        ):
+            for member in archive:
+                normalized = "/".join(
+                    part
+                    for part in PurePosixPath(member.name).parts
+                    if part not in {"", "."}
+                )
+                if not normalized.startswith("package/") or not (
+                    member.isfile() or member.issym() or member.islnk()
+                ):
+                    continue
+                relative = normalized.removeprefix("package/")
+                previous = owners.setdefault(relative, name)
+                if previous != name:
+                    raise ValueError(
+                        f"payload collision: {relative} belongs to {previous} and {name}"
+                    )
+
+    order, edge_count = package_order(packages)
+    total_bytes = sum(path.stat().st_size for path in archives)
+    print(
+        f"Audited {len(packages)} packages, {len(owners)} unique payload paths, "
+        f"{edge_count} dependency edges, {total_bytes} archive bytes",
+        flush=True,
+    )
+
+    with tempfile.TemporaryDirectory(prefix="arkpkg-repo-test-") as temporary:
+        root = Path(temporary) / "root"
+        root.mkdir()
+        for index, name in enumerate(order, 1):
+            run_package_manager(tool, root, "install", name, packages[name][0])
+            if index % 25 == 0 or index == len(order):
+                print(f"Installed {index}/{len(order)} packages", flush=True)
+        for index, name in enumerate(order, 1):
+            run_package_manager(tool, root, "verify", name)
+            if index % 50 == 0 or index == len(order):
+                print(f"Verified {index}/{len(order)} packages", flush=True)
+        for index, name in enumerate(reversed(order), 1):
+            run_package_manager(tool, root, "remove", name)
+            if index % 25 == 0 or index == len(order):
+                print(f"Removed {index}/{len(order)} packages", flush=True)
+        result = subprocess.run(
+            [str(tool), "--root", str(root), "list"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode or result.stdout.strip():
+            raise RuntimeError("package database is not empty after reverse removal")
+
+    print(f"PASS: all {len(order)} packages installed, verified, and removed")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--repo-root", type=Path, default=Path(__file__).resolve().parents[1]
+    )
+    parser.add_argument("--arkpkg", type=Path, required=True)
+    args = parser.parse_args()
+    test_repository(args.repo_root.resolve(), args.arkpkg.resolve())
+
+
+if __name__ == "__main__":
+    main()

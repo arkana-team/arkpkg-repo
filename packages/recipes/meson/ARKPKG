@@ -1,0 +1,8 @@
+Name: meson
+Description: Meson build system for native software projects
+Version: 1.8.3
+Arch: x86_64
+URL: https://mesonbuild.com/
+License: Apache-2.0
+Maintainer: arkanaOS Team
+Provides: meson=/usr/bin/meson

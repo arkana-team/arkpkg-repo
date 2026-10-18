@@ -1,0 +1,7 @@
+Name: xkbcommon-devel
+Description: libxkbcommon headers and pkg-config files
+Version: 1.11.0
+Arch: x86_64
+URL: https://github.com/xkbcommon/libxkbcommon
+License: MIT
+Maintainer: arkanaOS Team

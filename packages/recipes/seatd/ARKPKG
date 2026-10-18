@@ -1,0 +1,8 @@
+Name: seatd
+Description: Seat management daemon and libseat runtime
+Version: 0.9.2
+Arch: x86_64
+URL: https://git.sr.ht/~kennylevinsen/seatd
+License: MIT
+Maintainer: arkanaOS Team
+Provides: seatd=/usr/bin/seatd

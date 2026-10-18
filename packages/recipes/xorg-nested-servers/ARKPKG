@@ -1,0 +1,8 @@
+Name: xorg-nested-servers
+Description: Nested and virtual Xorg servers for testing
+Version: 21.1.18
+Arch: x86_64
+URL: https://www.x.org/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: Xnest=/usr/bin/Xnest, Xvfb=/usr/bin/Xvfb

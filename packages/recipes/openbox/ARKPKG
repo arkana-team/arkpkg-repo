@@ -1,0 +1,8 @@
+Name: openbox
+Description: Lightweight X11 window manager and session
+Version: 3.6.1
+Arch: x86_64
+URL: http://openbox.org/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Provides: openbox=/usr/bin/openbox

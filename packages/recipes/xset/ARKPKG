@@ -1,0 +1,8 @@
+Name: xset
+Description: Configure common X server settings
+Version: 1.2.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xset-1.2.6.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xset=/usr/bin/xset

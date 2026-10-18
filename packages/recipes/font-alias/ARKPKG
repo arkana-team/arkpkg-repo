@@ -1,0 +1,8 @@
+Name: font-alias
+Description: Standard X11 core font aliases for workstation applications
+Version: 1.0.6
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-alias-1.0.6.tar.xz
+License: BSD-2-Clause
+Maintainer: arkanaOS Team
+Provides: x11-font-aliases=/usr/share/fonts

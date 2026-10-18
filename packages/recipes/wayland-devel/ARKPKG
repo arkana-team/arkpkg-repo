@@ -1,0 +1,8 @@
+Name: wayland-devel
+Description: Wayland protocol scanner, headers, and build metadata
+Version: 1.24.0
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/wayland/wayland
+License: MIT
+Maintainer: arkanaOS Team
+Provides: wayland-scanner=/usr/bin/wayland-scanner

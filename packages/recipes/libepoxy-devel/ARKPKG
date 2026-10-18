@@ -1,0 +1,11 @@
+Name: libepoxy-devel
+Description: OpenGL function dispatch development files
+Version: 1.5.10
+Arch: x86_64
+URL: https://github.com/anholt/libepoxy
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  mesa-devel>=25.3.1
+  xorg-devel>=1.0.0
+Provides: libepoxy.so=/usr/lib/libepoxy.so

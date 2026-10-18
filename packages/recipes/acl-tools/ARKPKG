@@ -1,0 +1,9 @@
+Name: acl-tools
+Description: Access control list management commands
+Version: 2.3.2
+Arch: x86_64
+URL: https://savannah.nongnu.org/projects/acl/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: acl-devel>=2.3.2
+Provides: acl-tools=/usr/bin/getfacl

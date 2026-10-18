@@ -1,0 +1,8 @@
+Name: mkfontscale
+Description: Generate X11 font indexes and font directory files
+Version: 1.2.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/mkfontscale-1.2.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: mkfontscale=/usr/bin/mkfontscale, mkfontdir=/usr/bin/mkfontdir

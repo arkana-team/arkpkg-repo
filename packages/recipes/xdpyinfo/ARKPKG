@@ -1,0 +1,8 @@
+Name: xdpyinfo
+Description: Report detailed X server and display capabilities
+Version: 1.4.0
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xdpyinfo-1.4.0.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xdpyinfo=/usr/bin/xdpyinfo

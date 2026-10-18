@@ -1,0 +1,8 @@
+Name: xditview
+Description: Viewer for ditroff output on X11
+Version: 1.0.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xditview-1.0.7.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xditview=/usr/bin/xditview

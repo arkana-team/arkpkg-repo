@@ -1,0 +1,9 @@
+Name: mesa-devel
+Description: OpenGL, EGL, GLES, and GBM development files
+Version: 25.3.1
+Arch: x86_64
+URL: https://mesa3d.org/
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: xorg-devel>=1.0.0
+Provides: mesa-devel=/usr/include/GL

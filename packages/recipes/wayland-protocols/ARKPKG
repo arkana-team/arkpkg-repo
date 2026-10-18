@@ -1,0 +1,7 @@
+Name: wayland-protocols
+Description: Stable and experimental Wayland protocol definitions
+Version: 1.45
+Arch: any
+URL: https://gitlab.freedesktop.org/wayland/wayland-protocols
+License: MIT
+Maintainer: arkanaOS Team

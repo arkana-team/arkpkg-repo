@@ -1,0 +1,9 @@
+Name: libthai-devel
+Description: Thai language support library development files
+Version: 0.1.29
+Arch: x86_64
+URL: https://linux.thai.net/projects/libthai
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies: libdatrie-devel>=0.2.13
+Provides: libthai.so=/usr/lib/libthai.so

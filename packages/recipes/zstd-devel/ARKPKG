@@ -1,0 +1,8 @@
+Name: zstd-devel
+Description: Zstandard compression library development files
+Version: 1.5.7
+Arch: x86_64
+URL: https://github.com/facebook/zstd
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: libzstd.so=/usr/lib/libzstd.so

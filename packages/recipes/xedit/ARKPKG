@@ -1,0 +1,8 @@
+Name: xedit
+Description: Classic Athena text editor for X11
+Version: 1.2.5
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xedit-1.2.5.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xedit=/usr/bin/xedit

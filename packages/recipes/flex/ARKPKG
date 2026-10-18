@@ -1,0 +1,8 @@
+Name: flex
+Description: Fast lexical analyzer generator
+Version: 2.6.4
+Arch: x86_64
+URL: https://github.com/westes/flex
+License: BSD-2-Clause
+Maintainer: arkanaOS Team
+Provides: flex=/usr/bin/flex

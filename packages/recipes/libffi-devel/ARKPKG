@@ -1,0 +1,8 @@
+Name: libffi-devel
+Description: Foreign function interface library development files
+Version: 3.4.7
+Arch: x86_64
+URL: https://github.com/libffi/libffi
+License: MIT
+Maintainer: arkanaOS Team
+Provides: libffi.so=/usr/lib/libffi.so

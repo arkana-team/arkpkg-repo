@@ -1,0 +1,8 @@
+Name: xgamma
+Description: Query and adjust X display gamma correction
+Version: 1.0.8
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xgamma-1.0.8.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xgamma=/usr/bin/xgamma

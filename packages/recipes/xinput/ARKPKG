@@ -1,0 +1,8 @@
+Name: xinput
+Description: Inspect and configure X input devices
+Version: 1.6.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xinput-1.6.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xinput=/usr/bin/xinput

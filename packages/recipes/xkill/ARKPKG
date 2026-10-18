@@ -1,0 +1,8 @@
+Name: xkill
+Description: Select and terminate an X11 client window
+Version: 1.0.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xkill-1.0.7.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xkill=/usr/bin/xkill

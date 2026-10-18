@@ -1,0 +1,8 @@
+Name: feh
+Description: Lightweight X11 image viewer and image cataloguer
+Version: 3.10.3
+Arch: x86_64
+URL: https://feh.finalrewind.org/
+License: MIT
+Maintainer: arkanaOS Team
+Provides: feh=/usr/bin/feh

@@ -1,0 +1,11 @@
+Name: cairo-tools
+Description: Cairo command tracing utility
+Version: 1.18.2
+Arch: x86_64
+URL: https://www.cairographics.org/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  cairo-devel>=1.18.2
+  python-devel>=3.13.7
+Provides: cairo-tools=/usr/bin/cairo-trace

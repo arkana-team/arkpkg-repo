@@ -1,0 +1,7 @@
+Name: lzo-devel
+Description: LZO compression library development files
+Version: 2.10
+Arch: x86_64
+URL: https://www.oberhumer.com/opensource/lzo/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team

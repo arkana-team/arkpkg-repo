@@ -1,0 +1,8 @@
+Name: xrandr
+Description: Query and configure display outputs through X RandR
+Version: 1.5.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xrandr-1.5.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xrandr=/usr/bin/xrandr

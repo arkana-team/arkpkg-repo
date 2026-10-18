@@ -1,0 +1,8 @@
+Name: audit-devel
+Description: Linux audit event library development files
+Version: 4.1.1
+Arch: x86_64
+URL: https://github.com/linux-audit/audit-userspace
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Provides: libaudit.so=/usr/lib/libaudit.so

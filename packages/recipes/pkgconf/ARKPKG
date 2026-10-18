@@ -1,0 +1,8 @@
+Name: pkgconf
+Description: pkg-config compatible build metadata tool
+Version: 3.0.8
+Arch: x86_64
+URL: https://github.com/pkgconf/pkgconf
+License: ISC
+Maintainer: arkanaOS Team
+Provides: pkgconf=/usr/bin/pkgconf

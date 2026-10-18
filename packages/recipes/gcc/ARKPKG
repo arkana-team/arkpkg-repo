@@ -1,0 +1,14 @@
+Name: gcc
+Description: GNU C and C++ compiler drivers
+Version: 15.2.0
+Arch: x86_64
+URL: https://gcc.gnu.org/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  binutils>=2.45
+  gcc-c>=15.2.0
+  gcc-cxx>=15.2.0
+  gcc-libs>=15.2.0
+  gcc-tools>=15.2.0
+Provides: gcc=/usr/bin/gcc

@@ -1,0 +1,8 @@
+Name: less
+Description: Terminal pager for browsing files and manual pages
+Version: 679
+Arch: x86_64
+URL: https://greenwoodsoftware.com/less/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: less=/usr/bin/less

@@ -1,0 +1,8 @@
+Name: cyrus-sasl-devel
+Description: Cyrus SASL authentication library development files
+Version: 2.1.28
+Arch: x86_64
+URL: https://www.cyrusimap.org/sasl/
+License: BSD-4-Clause
+Maintainer: arkanaOS Team
+Provides: libsasl2.so=/usr/lib/libsasl2.so

@@ -1,0 +1,8 @@
+Name: xrefresh
+Description: Refresh the visible X screen
+Version: 1.1.1
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xrefresh-1.1.1.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xrefresh=/usr/bin/xrefresh

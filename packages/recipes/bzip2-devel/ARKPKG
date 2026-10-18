@@ -1,0 +1,8 @@
+Name: bzip2-devel
+Description: bzip2 compression library development files
+Version: 1.0.8
+Arch: x86_64
+URL: https://sourceware.org/bzip2/
+License: bzip2-1.0.6
+Maintainer: arkanaOS Team
+Provides: libbz2.so=/usr/lib/libbz2.so

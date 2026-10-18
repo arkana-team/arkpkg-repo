@@ -1,0 +1,16 @@
+Name: gtk3-devel
+Description: GTK 3 and GDK development headers and linker metadata
+Version: 3.24.52
+Arch: x86_64
+URL: https://www.gtk.org/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  atk-devel>=2.54.2
+  at-spi2-core-devel>=2.54.2
+  cairo-devel>=1.18.2
+  gdk-pixbuf-devel>=2.42.12
+  pango-devel>=1.52.2
+  libepoxy-devel>=1.5.10
+  xorg-devel>=1.0.0
+Provides: gtk+-3.0=/usr/include/gtk-3.0

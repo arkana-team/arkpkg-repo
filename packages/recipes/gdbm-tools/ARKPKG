@@ -1,0 +1,8 @@
+Name: gdbm-tools
+Description: GNU dbm database inspection and maintenance tools
+Version: 1.26.0
+Arch: x86_64
+URL: https://www.gnu.org/software/gdbm/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: gdbm_dump=/usr/bin/gdbm_dump, gdbmtool=/usr/bin/gdbmtool

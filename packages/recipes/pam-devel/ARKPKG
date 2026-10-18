@@ -1,0 +1,7 @@
+Name: pam-devel
+Description: Linux Pluggable Authentication Modules development files
+Version: 1.7.1
+Arch: x86_64
+URL: https://github.com/linux-pam/linux-pam
+License: BSD-3-Clause
+Maintainer: arkanaOS Team

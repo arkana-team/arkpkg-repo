@@ -1,0 +1,8 @@
+Name: xman
+Description: Classic X11 manual page browser
+Version: 1.2.0
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xman-1.2.0.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xman=/usr/bin/xman

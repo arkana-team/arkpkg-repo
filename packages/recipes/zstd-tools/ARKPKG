@@ -1,0 +1,9 @@
+Name: zstd-tools
+Description: Zstandard compression and decompression commands
+Version: 1.5.7
+Arch: x86_64
+URL: https://github.com/facebook/zstd
+License: BSD-3-Clause AND GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies: zstd-devel>=1.5.7
+Provides: zstd=/usr/bin/zstd

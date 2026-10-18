@@ -1,0 +1,8 @@
+Name: kmod-devel
+Description: Linux kernel module management library development files
+Version: 34.2
+Arch: x86_64
+URL: https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libkmod.so=/usr/lib/libkmod.so

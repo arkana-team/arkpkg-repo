@@ -1,0 +1,8 @@
+Name: wlroots-devel
+Description: wlroots headers and pkg-config files
+Version: 0.19.0
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/wlroots/wlroots
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: wlroots>=0.19.0

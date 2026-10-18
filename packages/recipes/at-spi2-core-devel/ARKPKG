@@ -1,0 +1,11 @@
+Name: at-spi2-core-devel
+Description: Assistive technology accessibility development files
+Version: 2.54.2
+Arch: x86_64
+URL: https://gitlab.gnome.org/GNOME/at-spi2-core
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  dbus-devel>=1.16.2
+  glib-devel>=2.78.6
+Provides: libatspi.so=/usr/lib/libatspi.so

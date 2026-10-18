@@ -1,0 +1,8 @@
+Name: xmore
+Description: Athena widget pager for viewing text in X11
+Version: 1.0.4
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xmore-1.0.4.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xmore=/usr/bin/xmore

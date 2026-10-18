@@ -1,0 +1,8 @@
+Name: openssl-cli
+Description: OpenSSL command-line cryptography and certificate tools
+Version: 3.5.2
+Arch: x86_64
+URL: https://www.openssl.org/
+License: Apache-2.0
+Maintainer: arkanaOS Team
+Provides: openssl=/usr/bin/openssl

@@ -1,0 +1,11 @@
+Name: openssl-devel
+Description: OpenSSL cryptography library development files
+Version: 3.5.2
+Arch: x86_64
+URL: https://www.openssl.org/
+License: Apache-2.0
+Maintainer: arkanaOS Team
+Dependencies: zlib-devel>=1.3.1
+Provides:
+  libssl.so=/usr/lib/libssl.so
+  libcrypto.so=/usr/lib/libcrypto.so

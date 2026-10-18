@@ -1,0 +1,8 @@
+Name: xmag
+Description: X11 screen magnifier
+Version: 1.0.8
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xmag-1.0.8.tar.xz
+License: MIT
+Maintainer: arkanaOS Team
+Provides: xmag=/usr/bin/xmag
