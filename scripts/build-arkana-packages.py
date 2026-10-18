@@ -199,6 +199,9 @@ PACKAGES = (
     "krb5-devel",
     "pam-devel",
     "python-devel",
+    "newt-tools",
+    "fuse3-tools",
+    "squashfs-tools",
     "acl-tools",
     "attr-tools",
     "libdeflate-tools",
@@ -1562,6 +1565,15 @@ STAGED_PACKAGE_FILES = {
         "usr/lib/grub",
         "usr/share/grub",
         "etc/grub.d",
+    ),
+    "newt-tools": ("usr/bin/whiptail",),
+    "fuse3-tools": (
+        "usr/bin/fusermount3",
+        "usr/bin/mount.fuse3",
+    ),
+    "squashfs-tools": (
+        "usr/bin/mksquashfs",
+        "usr/bin/unsquashfs",
     ),
 }
 
