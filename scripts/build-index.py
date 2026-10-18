@@ -134,8 +134,8 @@ def build_site(repo_root: Path, site_dir: Path) -> None:
         "<!doctype html>\n"
         '<html lang="en"><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
-        "<title>arkpkg package repository</title>"
-        "<body><main><h1>arkpkg package repository</h1>"
+        "<title>ArkPkg package repository</title>"
+        "<body><main><h1>ArkPkg package repository</h1>"
         "<p>Static package repository for arkanaOS. Configure it with:</p>"
         "<pre>arkpkg repo add arkanaos https://arkana-team.github.io/arkpkg-repo</pre>"
         '<p><a href="index.json">Package index (JSON)</a></p>'
