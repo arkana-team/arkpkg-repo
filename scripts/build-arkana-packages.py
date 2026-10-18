@@ -59,6 +59,7 @@ PACKAGES = (
     "libjpeg-turbo-tools",
     "libwebp-tools",
     "openssl-cli",
+    "openssl-rehash",
     "xorg-devel",
     "mesa-devel",
     "libepoxy-devel",
@@ -553,9 +554,10 @@ STAGED_PACKAGE_FILES = {
         "usr/share/man/man1/webpinfo.1",
         "usr/share/man/man1/webpmux.1",
     ),
-    "openssl-cli": (
-        "usr/bin/openssl",
+    "openssl-cli": ("usr/bin/openssl",),
+    "openssl-rehash": (
         "usr/bin/c_rehash",
+        "usr/share/man/man1/openssl-rehash.1ssl",
     ),
     "xorg-devel": (
         "usr/include/X11",
@@ -3083,6 +3085,14 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
                 tree.add(relative)
         for pattern in STAGED_PACKAGE_GLOBS.get(name, ()):
             tree.add_glob(pattern)
+    elif name == "openssl-cli":
+        for relative in STAGED_PACKAGE_FILES[name]:
+            tree.add(relative)
+        for pattern in STAGED_PACKAGE_GLOBS.get(name, ()):
+            for source in sorted(staging.glob(pattern)):
+                relative = source.relative_to(staging).as_posix()
+                if relative != "usr/share/man/man1/openssl-rehash.1ssl":
+                    tree.add(relative, required=False)
     elif name in STAGED_PACKAGE_FILES:
         for relative in STAGED_PACKAGE_FILES[name]:
             tree.add(relative)
