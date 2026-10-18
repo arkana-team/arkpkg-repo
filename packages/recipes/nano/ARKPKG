@@ -1,0 +1,11 @@
+Name: nano
+Description: Lightweight terminal text editor
+Version: 8.6
+Arch: x86_64
+URL: https://www.nano-editor.org/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  libmagic-devel
+  ncurses-devel>=6.5
+Provides: nano=/usr/bin/nano

@@ -1,0 +1,10 @@
+Name: pciutils
+Description: PCI device inspection and configuration tools
+Version: 3.15.0
+Arch: x86_64
+URL: https://pciutils.sourceforge.io/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  libpci>=3.15.0
+Provides: pciutils=/usr/bin/lspci

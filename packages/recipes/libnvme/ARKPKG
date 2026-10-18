@@ -1,0 +1,8 @@
+Name: libnvme
+Description: Linux NVMe runtime library
+Version: 1.15
+Arch: x86_64
+URL: https://github.com/linux-nvme/libnvme
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libnvme.so.1=/usr/lib/libnvme.so.1

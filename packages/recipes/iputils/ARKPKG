@@ -1,0 +1,10 @@
+Name: iputils
+Description: ICMP and network diagnostic utilities
+Version: 20250605
+Arch: x86_64
+URL: https://github.com/iputils/iputils
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies:
+  libcap-devel>=2.76
+Provides: iputils=/usr/bin/ping

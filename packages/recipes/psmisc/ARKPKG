@@ -1,0 +1,8 @@
+Name: psmisc
+Description: Process inspection and signaling utilities
+Version: 23.7
+Arch: x86_64
+URL: https://gitlab.com/psmisc/psmisc
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Provides: psmisc=/usr/bin/killall

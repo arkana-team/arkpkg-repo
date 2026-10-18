@@ -1,0 +1,17 @@
+Name: networkmanager
+Description: Network connection management service and tools
+Version: 1.54.0
+Arch: x86_64
+URL: https://networkmanager.dev/
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  audit-libs>=4.1.1
+  glib-devel>=2.78.6
+  gnutls-devel>=3.8.10
+  gudev-devel
+  libcap-devel>=2.76
+  libndp>=1.9
+  libpsl-devel>=0.21.5
+  systemd-libs>=257.8
+Provides: networkmanager=/usr/sbin/NetworkManager

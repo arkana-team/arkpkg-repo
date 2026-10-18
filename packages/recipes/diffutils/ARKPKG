@@ -1,0 +1,8 @@
+Name: diffutils
+Description: File comparison and patch context utilities
+Version: 3.12
+Arch: x86_64
+URL: https://www.gnu.org/software/diffutils/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: diffutils=/usr/bin/diff

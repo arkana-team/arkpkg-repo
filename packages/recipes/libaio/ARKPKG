@@ -1,0 +1,8 @@
+Name: libaio
+Description: Linux native asynchronous I/O runtime library
+Version: 0.3.113
+Arch: x86_64
+URL: https://pagure.io/libaio
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libaio.so.1=/usr/lib/libaio.so.1

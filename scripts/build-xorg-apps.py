@@ -728,7 +728,7 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         action="append",
         default=[],
-        help="temporarily install a build dependency from an Arkpkg archive",
+        help="temporarily install a build dependency from an arkpkg archive",
     )
     parser.add_argument(
         "--build-pkg-config-file",

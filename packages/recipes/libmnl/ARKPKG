@@ -1,0 +1,8 @@
+Name: libmnl
+Description: Minimalistic netlink communication library
+Version: 1.0.5
+Arch: x86_64
+URL: https://netfilter.org/projects/libmnl/
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libmnl.so.0=/usr/lib/libmnl.so.0

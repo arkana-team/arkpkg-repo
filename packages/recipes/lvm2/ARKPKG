@@ -1,0 +1,15 @@
+Name: lvm2
+Description: Logical volume management utilities
+Version: 2.03.34
+Arch: x86_64
+URL: https://gitlab.com/lvmteam/lvm2
+License: GPL-2.0-only
+Maintainer: arkanaOS Team
+Dependencies:
+  device-mapper>=2.03.34
+  libaio>=0.3.113
+  libnvme>=1.15
+  readline-devel>=8.3
+  systemd-libs>=257.8
+  util-linux-libs>=2.41.1
+Provides: lvm2=/usr/bin/lvm

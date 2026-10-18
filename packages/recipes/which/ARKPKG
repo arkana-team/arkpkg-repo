@@ -1,0 +1,8 @@
+Name: which
+Description: Locate executable commands in the shell search path
+Version: 2.21
+Arch: x86_64
+URL: https://savannah.gnu.org/projects/which/
+License: GPL-3.0-or-later
+Maintainer: arkanaOS Team
+Provides: which=/usr/bin/which
