@@ -129,18 +129,18 @@ def build_site(repo_root: Path, site_dir: Path) -> None:
         for item in entries
     )
     if not package_rows:
-        package_rows = '<tr><td colspan="4">No packages published yet.</td></tr>'
+        package_rows = '<tr><td colspan="4">no packages published yet.</td></tr>'
     (site_dir / "index.html").write_text(
         "<!doctype html>\n"
         '<html lang="en"><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
         "<title>arkpkg package repository</title>"
         "<body><main><h1>arkpkg package repository</h1>"
-        "<p>Static package repository for arkanaOS. Configure it with:</p>"
-        "<pre>arkpkg repo add arkanaos https://arkana-team.github.io/arkpkg-repo</pre>"
-        '<p><a href="index.json">Package index (JSON)</a></p>'
-        "<table><thead><tr><th>Name</th><th>Version</th><th>Architecture</th>"
-        f"<th>Description</th></tr></thead><tbody>{package_rows}</tbody></table>"
+        "<p>static package repository for arkanaOS. configure it with:</p>"
+        "<pre>arkpkg repo add arkanaOS https://arkana-team.github.io/arkpkg-repo</pre>"
+        '<p><a href="index.json">package index (json)</a></p>'
+        "<table><thead><tr><th>name</th><th>version</th><th>architecture</th>"
+        f"<th>description</th></tr></thead><tbody>{package_rows}</tbody></table>"
         "</main></body></html>\n",
         encoding="utf-8",
     )
