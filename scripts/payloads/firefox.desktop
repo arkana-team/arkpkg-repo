@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Firefox
+Comment=Browse the World Wide Web
+Exec=/usr/bin/firefox %u
+Icon=firefox
+Terminal=false
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;
