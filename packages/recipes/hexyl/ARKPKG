@@ -1,0 +1,8 @@
+Name: hexyl
+Description: Command-line hex viewer with colored output
+Version: 0.8.0-2+b13
+Arch: x86_64
+URL: https://github.com/sharkdp/hexyl
+License: See /usr/share/doc/hexyl/copyright
+Maintainer: arkanaOS Team
+Provides: hexyl=/usr/bin/hexyl
