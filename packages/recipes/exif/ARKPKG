@@ -1,0 +1,11 @@
+Name: exif
+Description: command-line utility to show EXIF information in JPEG files
+Version: 0.6.22-4
+Arch: x86_64
+URL: https://libexif.github.io/
+License: See /usr/share/doc/exif/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libexif12
+  popt-libs
+Provides: exif=/usr/bin/exif
