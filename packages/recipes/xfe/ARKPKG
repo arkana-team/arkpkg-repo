@@ -1,0 +1,10 @@
+Name: xfe
+Description: lightweight x11 file manager image viewer text editor and archive manager
+Version: 2.1.12
+Arch: x86_64
+URL: https://downloads.sourceforge.net/project/xfe/xfe/2.1.12/xfe-2.1.12.tar.xz
+License: gpl-2.0-or-later
+Maintainer: arkanaOS team
+Dependencies:
+  fox-libs>=1.6.57
+Provides: xfe=/usr/bin/xfe
