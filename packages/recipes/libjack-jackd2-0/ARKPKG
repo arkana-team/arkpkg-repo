@@ -1,0 +1,12 @@
+Name: libjack-jackd2-0
+Description: JACK Audio Connection Kit (libraries)
+Version: 1.9.22~dfsg-4
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libjack-jackd2-0
+License: See /usr/share/doc/libjack-jackd2-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdb5.3t64
+  libopus0
+  libsamplerate0
+Provides: libjack.so.0=/usr/lib/x86_64-linux-gnu/libjack.so.0.1.0, libjacknet.so.0=/usr/lib/x86_64-linux-gnu/libjacknet.so.0.1.0, libjackserver.so.0=/usr/lib/x86_64-linux-gnu/libjackserver.so.0.1.0
