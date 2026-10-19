@@ -1,0 +1,11 @@
+Name: nnn
+Description: Free, fast, friendly file manager
+Version: 5.0-1
+Arch: x86_64
+URL: https://github.com/jarun/nnn
+License: See /usr/share/doc/nnn/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+  readline-libs
+Provides: nnn=/usr/bin/nnn
