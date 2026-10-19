@@ -1,0 +1,14 @@
+Name: avrdude
+Description: software for programming Atmel AVR microcontrollers
+Version: 7.1+dfsg-3+b2
+Arch: x86_64
+URL: https://github.com/avrdudes/avrdude/
+License: See /usr/share/doc/avrdude/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libelf1t64
+  libftdi1
+  libhidapi-libusb0
+  libusb-0.1-4
+  readline-libs
+Provides: avrdude=/usr/bin/avrdude
