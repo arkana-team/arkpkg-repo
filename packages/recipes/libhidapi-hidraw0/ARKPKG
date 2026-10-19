@@ -1,0 +1,10 @@
+Name: libhidapi-hidraw0
+Description: Multi-Platform library for communication with HID devices (hidraw backend)
+Version: 0.14.0-1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libhidapi-hidraw0
+License: See /usr/share/doc/libhidapi-hidraw0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  systemd-libs
+Provides: libhidapi-hidraw.so.0=/usr/lib/x86_64-linux-gnu/libhidapi-hidraw.so.0.0.0
