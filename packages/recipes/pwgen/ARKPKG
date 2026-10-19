@@ -1,0 +1,8 @@
+Name: pwgen
+Description: Automatic Password generation
+Version: 2.08-2
+Arch: x86_64
+URL: https://github.com/tytso/pwgen
+License: See /usr/share/doc/pwgen/copyright
+Maintainer: arkanaOS Team
+Provides: pwgen=/usr/bin/pwgen
