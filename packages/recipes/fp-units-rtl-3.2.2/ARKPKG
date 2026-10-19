@@ -1,0 +1,8 @@
+Name: fp-units-rtl-3.2.2
+Description: Free Pascal - runtime libraries
+Version: 3.2.2+dfsg-46
+Arch: x86_64
+URL: https://www.freepascal.org/
+License: See /usr/share/doc/fp-units-rtl-3.2.2/copyright
+Maintainer: arkanaOS Team
+Provides: x86_64-linux-gnu-fpcmkcfg-3.2.2=/usr/bin/x86_64-linux-gnu-fpcmkcfg-3.2.2
