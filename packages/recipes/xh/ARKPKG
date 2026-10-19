@@ -1,0 +1,10 @@
+Name: xh
+Description: Friendly and fast tool for sending HTTP requests
+Version: 0.24.0-1+b1
+Arch: x86_64
+URL: https://github.com/ducaale/xh
+License: See /usr/share/doc/xh/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  openssl-libs
+Provides: xh=/usr/bin/xh, xhs=/usr/bin/xhs
