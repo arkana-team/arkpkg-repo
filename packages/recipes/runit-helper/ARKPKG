@@ -1,0 +1,7 @@
+Name: runit-helper
+Description: dh-runit implementation detail
+Version: 2.16.4
+Arch: any
+URL: https://salsa.debian.org/debian/dh-runit
+License: See /usr/share/doc/runit-helper/copyright
+Maintainer: arkanaOS Team
