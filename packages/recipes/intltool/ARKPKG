@@ -1,0 +1,13 @@
+Name: intltool
+Description: Utility scripts for internationalizing XML
+Version: 0.51.0-7
+Arch: any
+URL: https://launchpad.net/intltool
+License: See /usr/share/doc/intltool/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  automake
+  file
+  patch
+  perl
+Provides: intltool-extract=/usr/bin/intltool-extract, intltool-merge=/usr/bin/intltool-merge, intltool-prepare=/usr/bin/intltool-prepare, intltool-update=/usr/bin/intltool-update, intltoolize=/usr/bin/intltoolize
