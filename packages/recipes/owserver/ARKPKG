@@ -1,0 +1,10 @@
+Name: owserver
+Description: Backend server for 1-Wire control
+Version: 3.2p4+dfsg1-6
+Arch: x86_64
+URL: http://owfs.org/
+License: See /usr/share/doc/owserver/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libow-3.2-4t64
+Provides: owexternal=/usr/bin/owexternal, owserver=/usr/bin/owserver
