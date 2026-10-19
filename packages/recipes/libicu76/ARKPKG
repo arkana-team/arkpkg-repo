@@ -1,0 +1,8 @@
+Name: libicu76
+Description: international components for unicode
+Version: 76.1-4
+Arch: x86_64
+URL: https://icu.unicode.org/
+License: See /usr/share/doc/libicu76/copyright
+Maintainer: arkanaOS Team
+Provides: libicudata.so.76=/usr/lib/x86_64-linux-gnu/libicudata.so.76.1, libicui18n.so.76=/usr/lib/x86_64-linux-gnu/libicui18n.so.76.1, libicuio.so.76=/usr/lib/x86_64-linux-gnu/libicuio.so.76.1, libicutest.so.76=/usr/lib/x86_64-linux-gnu/libicutest.so.76.1, libicutu.so.76=/usr/lib/x86_64-linux-gnu/libicutu.so.76.1, libicuuc.so.76=/usr/lib/x86_64-linux-gnu/libicuuc.so.76.1
