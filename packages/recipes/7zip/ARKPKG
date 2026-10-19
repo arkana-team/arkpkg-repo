@@ -1,0 +1,8 @@
+Name: 7zip
+Description: 7-Zip file archiver with a high compression ratio
+Version: 25.01+dfsg-1.deb13u2
+Arch: x86_64
+URL: https://www.7-zip.org/
+License: See /usr/share/doc/7zip/copyright
+Maintainer: arkanaOS Team
+Provides: 7z=/usr/bin/7z, 7za=/usr/bin/7za, 7zr=/usr/bin/7zr, p7zip=/usr/bin/p7zip
