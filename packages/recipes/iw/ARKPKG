@@ -1,0 +1,11 @@
+Name: iw
+Description: tool for configuring Linux wireless devices
+Version: 6.9-1
+Arch: x86_64
+URL: https://wireless.wiki.kernel.org/en/users/documentation/iw
+License: See /usr/share/doc/iw/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  bmon-runtime-libs
+  libnl-libs
+Provides: iw=/usr/sbin/iw
