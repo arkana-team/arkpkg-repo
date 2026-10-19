@@ -1,0 +1,15 @@
+Name: libavutil59
+Description: FFmpeg library with functions for simplifying programming - runtime files
+Version: 7:7.1.5-0+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libavutil59
+License: See /usr/share/doc/libavutil59/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libva-drm2
+  libva-x11-2
+  libva2
+  libvdpau1
+  libvpl2
+  ocl-icd-libopencl1
+Provides: libavutil.so.59=/usr/lib/x86_64-linux-gnu/libavutil.so.59.39.100
