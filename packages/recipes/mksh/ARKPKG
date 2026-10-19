@@ -1,0 +1,8 @@
+Name: mksh
+Description: MirBSD Korn Shell
+Version: 59c-41+b2
+Arch: x86_64
+URL: http://mirbsd.de/mksh
+License: See /usr/share/doc/mksh/copyright
+Maintainer: arkanaOS Team
+Provides: lksh=/usr/bin/lksh, mksh-static=/usr/bin/mksh-static, mksh=/usr/bin/mksh, rlksh=/usr/bin/rlksh, rmksh=/usr/bin/rmksh
