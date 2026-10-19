@@ -1,0 +1,10 @@
+Name: libnftnl11
+Description: netfilter nftables userspace api library
+Version: 1.2.9-1
+Arch: x86_64
+URL: https://git.netfilter.org/libnftnl
+License: See /usr/share/doc/libnftnl11/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmnl
+Provides: libnftnl.so.11=/usr/lib/x86_64-linux-gnu/libnftnl.so.11.6.0
