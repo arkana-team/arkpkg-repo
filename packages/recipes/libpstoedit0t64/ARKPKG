@@ -1,0 +1,13 @@
+Name: libpstoedit0t64
+Description: PostScript to editable vector graphics library (runtime files)
+Version: 4.02-1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libpstoedit0t64
+License: See /usr/share/doc/libpstoedit0t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libemf1
+  libmagick++-7.q16-5
+  libplot2c2
+  libzip5
+Provides: libp2edrvlplot.so=/usr/lib/x86_64-linux-gnu/pstoedit/libp2edrvlplot.so, libp2edrvmagick++.so=/usr/lib/x86_64-linux-gnu/pstoedit/libp2edrvmagick++.so, libp2edrvpptx.so=/usr/lib/x86_64-linux-gnu/pstoedit/libp2edrvpptx.so, libp2edrvstd.so=/usr/lib/x86_64-linux-gnu/pstoedit/libp2edrvstd.so, libp2edrvwmf.so=/usr/lib/x86_64-linux-gnu/pstoedit/libp2edrvwmf.so, libpstoedit.so.0=/usr/lib/x86_64-linux-gnu/libpstoedit.so.0.0.0
