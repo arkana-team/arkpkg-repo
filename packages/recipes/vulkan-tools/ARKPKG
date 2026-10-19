@@ -1,0 +1,10 @@
+Name: vulkan-tools
+Description: Miscellaneous Vulkan utilities
+Version: 1.4.304.0+dfsg1-1
+Arch: x86_64
+URL: https://github.com/KhronosGroup/Vulkan-Tools
+License: See /usr/share/doc/vulkan-tools/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libwayland-client0
+Provides: vkcube=/usr/bin/vkcube, vkcubepp=/usr/bin/vkcubepp, vulkaninfo=/usr/bin/vulkaninfo
