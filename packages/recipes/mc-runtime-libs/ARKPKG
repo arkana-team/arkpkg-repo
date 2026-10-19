@@ -1,0 +1,10 @@
+Name: mc-runtime-libs
+Description: Runtime libraries required by midnight commander
+Version: 1.11.1-1+deb13u2
+Arch: x86_64
+URL: https://midnight-commander.org/
+License: See /usr/share/doc/libgpm2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  openssl-libs
+Provides: libgpm.so.2=/usr/lib/x86_64-linux-gnu/libgpm.so.2, libssh2.so.1=/usr/lib/x86_64-linux-gnu/libssh2.so.1.0.1
