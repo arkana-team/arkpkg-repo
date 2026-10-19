@@ -1,0 +1,7 @@
+Name: bogofilter-common
+Description: fast Bayesian spam filter (common files)
+Version: 1.2.5-1+b4
+Arch: x86_64
+URL: https://packages.debian.org/trixie/bogofilter-common
+License: See /usr/share/doc/bogofilter-common/copyright
+Maintainer: arkanaOS Team
