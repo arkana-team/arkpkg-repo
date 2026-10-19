@@ -1,0 +1,7 @@
+Name: hamradio-files
+Description: Ham radio call sign and prefix lists
+Version: 20250523
+Arch: any
+URL: https://www.country-files.com
+License: See /usr/share/doc/hamradio-files/copyright
+Maintainer: arkanaOS Team
