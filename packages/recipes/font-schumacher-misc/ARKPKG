@@ -1,0 +1,8 @@
+Name: font-schumacher-misc
+Description: dale schumacher fixed-width bitmap fonts for x11
+Version: 1.1.3
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-schumacher-misc-1.1.3.tar.xz
+License: Dale Schumacher Font License
+Maintainer: arkanaOS team
+Provides: schumacher-fonts=/usr/share/fonts/schumacher-misc
