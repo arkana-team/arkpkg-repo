@@ -1,0 +1,8 @@
+Name: screenfetch
+Description: Bash Screenshot Information Tool
+Version: 3.9.1+20210523-2
+Arch: any
+URL: https://github.com/KittyKatt/screenFetch
+License: See /usr/share/doc/screenfetch/copyright
+Maintainer: arkanaOS Team
+Provides: screenfetch=/usr/bin/screenfetch
