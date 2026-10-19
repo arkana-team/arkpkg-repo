@@ -1,0 +1,11 @@
+Name: libssh-4
+Description: tiny C SSH library (OpenSSL flavor)
+Version: 0.11.5-0+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libssh-4
+License: See /usr/share/doc/libssh-4/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  krb5-libs
+  openssl-libs
+Provides: libssh.so.4=/usr/lib/x86_64-linux-gnu/libssh.so.4.10.5
