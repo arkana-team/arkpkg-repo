@@ -1,0 +1,8 @@
+Name: pfetch
+Description: Small POSIX shell system information tool
+Version: 0.6.0
+Arch: any
+URL: https://github.com/dylanaraps/pfetch
+License: MIT
+Maintainer: arkanaOS Team
+Provides: pfetch=/usr/bin/pfetch
