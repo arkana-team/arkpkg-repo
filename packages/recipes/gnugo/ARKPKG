@@ -1,0 +1,10 @@
+Name: gnugo
+Description: play the game of Go
+Version: 3.8-13
+Arch: x86_64
+URL: http://www.gnu.org/software/gnugo/
+License: See /usr/share/doc/gnugo/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: gnugo=/usr/bin/gnugo
