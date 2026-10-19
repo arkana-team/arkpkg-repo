@@ -14,6 +14,7 @@ import lz4.frame
 
 PACKAGE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
+PACKAGE_VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 
 PAGE_STYLE = """
 body { font-family: sans-serif; line-height: 1.5; margin: 0; padding: 2rem; }
@@ -132,7 +133,7 @@ def read_metadata(archive_path: Path) -> dict[str, str]:
         raise ValueError("archive does not contain the required package/ tree")
     if not PACKAGE_NAME.fullmatch(metadata["Name"]):
         raise ValueError(f"invalid package name: {metadata['Name']!r}")
-    if not PACKAGE_ATOM.fullmatch(metadata["Version"]):
+    if not PACKAGE_VERSION.fullmatch(metadata["Version"]):
         raise ValueError(f"invalid package version: {metadata['Version']!r}")
     if not PACKAGE_ATOM.fullmatch(metadata["Arch"]):
         raise ValueError(f"invalid package architecture: {metadata['Arch']!r}")
