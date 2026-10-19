@@ -1,0 +1,8 @@
+Name: libyaml-libs
+Description: Libyaml parser and emitter runtime library
+Version: 0.2.5-2
+Arch: x86_64
+URL: https://github.com/yaml/libyaml
+License: See /usr/share/doc/libyaml-0-2/copyright
+Maintainer: arkanaOS Team
+Provides: libyaml-0.so.2=/usr/lib/x86_64-linux-gnu/libyaml-0.so.2.0.9
