@@ -1,0 +1,8 @@
+Name: libsoapysdr0.8
+Description: software defined radio interface library
+Version: 0.8.1-5+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsoapysdr0.8
+License: See /usr/share/doc/libsoapysdr0.8/copyright
+Maintainer: arkanaOS Team
+Provides: libSoapySDR.so.0.8=/usr/lib/x86_64-linux-gnu/libSoapySDR.so.0.8.1
