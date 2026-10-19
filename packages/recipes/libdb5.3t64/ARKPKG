@@ -1,0 +1,8 @@
+Name: libdb5.3t64
+Description: berkeley v5.3 database libraries [runtime]
+Version: 5.3.28+dfsg2-9
+Arch: x86_64
+URL: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
+License: See /usr/share/doc/libdb5.3t64/copyright
+Maintainer: arkanaOS Team
+Provides: libdb-5.3.so=/usr/lib/x86_64-linux-gnu/libdb-5.3.so
