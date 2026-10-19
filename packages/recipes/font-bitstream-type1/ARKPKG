@@ -1,0 +1,8 @@
+Name: font-bitstream-type1
+Description: bitstream charter and courier type 1 fonts
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-bitstream-type1-1.0.4.tar.xz
+License: bitstream font license
+Maintainer: arkanaOS team
+Provides: bitstream-type1-fonts=/usr/share/fonts/bitstream-type1
