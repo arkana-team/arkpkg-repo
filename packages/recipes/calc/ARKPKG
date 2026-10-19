@@ -1,0 +1,11 @@
+Name: calc
+Description: Arbitrary precision calculator
+Version: 2.15.1.0-1
+Arch: x86_64
+URL: http://www.isthe.com/chongo/tech/comp/calc/
+License: See /usr/share/doc/calc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  calc-common
+  readline-libs
+Provides: calc=/usr/bin/calc
