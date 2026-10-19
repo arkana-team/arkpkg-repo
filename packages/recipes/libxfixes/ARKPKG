@@ -1,0 +1,8 @@
+Name: libxfixes
+Description: runtime library for XFixes extension support
+Version: 6.0.2
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXfixes-6.0.2.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: libxfixes=/usr/lib/libXfixes.so.3
