@@ -1,0 +1,8 @@
+Name: font-ibm-type1
+Description: ibm courier type 1 fonts
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-ibm-type1-1.0.4.tar.xz
+License: ibm courier font agreement
+Maintainer: arkanaOS team
+Provides: ibm-courier-type1-fonts=/usr/share/fonts/ibm-type1
