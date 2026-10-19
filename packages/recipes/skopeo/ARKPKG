@@ -1,0 +1,11 @@
+Name: skopeo
+Description: Tooling to work with remote images registries
+Version: 1.18.0+ds1-1+b5
+Arch: x86_64
+URL: https://github.com/containers/skopeo
+License: See /usr/share/doc/skopeo/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgpgme11t64
+  libsqlite3-0
+Provides: skopeo=/usr/bin/skopeo
