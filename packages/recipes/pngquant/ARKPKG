@@ -1,0 +1,11 @@
+Name: pngquant
+Description: PNG (Portable Network Graphics) image optimising utility
+Version: 2.18.0-1+b1
+Arch: x86_64
+URL: https://pngquant.org/
+License: See /usr/share/doc/pngquant/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libimagequant0
+  libpng16-16t64
+Provides: pngquant=/usr/bin/pngquant
