@@ -1,0 +1,8 @@
+Name: libstb0t64
+Description: single-file image and audio processing libraries for C/C++
+Version: 0.0~git20241109.5c20573+ds-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libstb0t64
+License: See /usr/share/doc/libstb0t64/copyright
+Maintainer: arkanaOS Team
+Provides: libstb.so.0=/usr/lib/x86_64-linux-gnu/libstb.so.0.0
