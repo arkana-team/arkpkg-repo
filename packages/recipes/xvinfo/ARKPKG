@@ -1,0 +1,10 @@
+Name: xvinfo
+Description: inspect x-video extension adaptors exposed by an x11 server
+Version: 1.1.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xvinfo-1.1.6.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Dependencies:
+  libxv>=1.0.13
+Provides: xvinfo=/usr/bin/xvinfo
