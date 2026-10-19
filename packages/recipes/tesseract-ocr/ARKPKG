@@ -1,0 +1,17 @@
+Name: tesseract-ocr
+Description: Tesseract command line OCR tool
+Version: 5.5.0-1+b1
+Arch: x86_64
+URL: https://github.com/tesseract-ocr/
+License: See /usr/share/doc/tesseract-ocr/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo2
+  libharfbuzz0b
+  libicu76
+  libleptonica6
+  libpango-1.0-0
+  libpangocairo-1.0-0
+  libtesseract5
+  tesseract-ocr-eng
+Provides: ambiguous_words=/usr/bin/ambiguous_words, classifier_tester=/usr/bin/classifier_tester, cntraining=/usr/bin/cntraining, combine_lang_model=/usr/bin/combine_lang_model, combine_tessdata=/usr/bin/combine_tessdata, dawg2wordlist=/usr/bin/dawg2wordlist, lstmeval=/usr/bin/lstmeval, lstmtraining=/usr/bin/lstmtraining, merge_unicharsets=/usr/bin/merge_unicharsets, mftraining=/usr/bin/mftraining, set_unicharset_properties=/usr/bin/set_unicharset_properties, shapeclustering=/usr/bin/shapeclustering, tesseract=/usr/bin/tesseract, text2image=/usr/bin/text2image, unicharset_extractor=/usr/bin/unicharset_extractor, wordlist2dawg=/usr/bin/wordlist2dawg
