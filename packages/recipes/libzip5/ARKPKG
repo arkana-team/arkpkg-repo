@@ -1,0 +1,10 @@
+Name: libzip5
+Description: library for reading, creating, and modifying zip archives (runtime)
+Version: 1.11.3-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libzip5
+License: See /usr/share/doc/libzip5/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  openssl-libs
+Provides: libzip.so.5=/usr/lib/x86_64-linux-gnu/libzip.so.5.5
