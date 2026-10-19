@@ -1,0 +1,10 @@
+Name: motif-tools
+Description: motif window manager and user interface language compiler
+Version: 2.3.8
+Arch: x86_64
+URL: https://sourceforge.net/projects/motif/files/Motif%202.3.8%20Source%20Code/
+License: lgpl-2.1-or-later
+Maintainer: arkanaOS team
+Dependencies:
+  motif-libs>=2.3.8
+Provides: motif-tools=/usr/bin/mwm
