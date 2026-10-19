@@ -1,0 +1,14 @@
+Name: argyll
+Description: Color Management System, calibrator and profiler
+Version: 3.3.0+repack-1
+Arch: x86_64
+URL: https://www.argyllcms.com/
+License: See /usr/share/doc/argyll/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libjpeg62-turbo
+  libpng16-16t64
+  libtiff6
+  libxss1
+  openssl-libs
+Provides: applycal=/usr/bin/applycal, average=/usr/bin/average, cb2ti3=/usr/bin/cb2ti3, cctiff=/usr/bin/cctiff, ccxxmake=/usr/bin/ccxxmake, chartread=/usr/bin/chartread, collink=/usr/bin/collink, colprof=/usr/bin/colprof, colverify=/usr/bin/colverify, cxf2ti3=/usr/bin/cxf2ti3, dispcal=/usr/bin/dispcal, dispread=/usr/bin/dispread, dispwin=/usr/bin/dispwin, extracticc=/usr/bin/extracticc, extractttag=/usr/bin/extractttag, fakeCMY=/usr/bin/fakeCMY, fakeread=/usr/bin/fakeread, greytiff=/usr/bin/greytiff, iccdump=/usr/bin/iccdump, iccgamut=/usr/bin/iccgamut, icclu=/usr/bin/icclu, iccvcgt=/usr/bin/iccvcgt, illumread=/usr/bin/illumread, invprofcheck=/usr/bin/invprofcheck, kodak2ti3=/usr/bin/kodak2ti3, ls2ti3=/usr/bin/ls2ti3, mppcheck=/usr/bin/mppcheck, mpplu=/usr/bin/mpplu, mppprof=/usr/bin/mppprof, oeminst=/usr/bin/oeminst, printcal=/usr/bin/printcal, printtarg=/usr/bin/printtarg, profcheck=/usr/bin/profcheck, refine=/usr/bin/refine, revfix=/usr/bin/revfix, scanin=/usr/bin/scanin, spec2cie=/usr/bin/spec2cie, specplot=/usr/bin/specplot, splitti3=/usr/bin/splitti3, spotread=/usr/bin/spotread, synthcal=/usr/bin/synthcal, synthread=/usr/bin/synthread, targen=/usr/bin/targen, tiffgamut=/usr/bin/tiffgamut, timage=/usr/bin/timage, txt2ti3=/usr/bin/txt2ti3, viewgam=/usr/bin/viewgam, xicclu=/usr/bin/xicclu
