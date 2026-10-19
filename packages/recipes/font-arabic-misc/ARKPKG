@@ -1,0 +1,8 @@
+Name: font-arabic-misc
+Description: arabic bitmap fonts for x11
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-arabic-misc-1.0.4.tar.xz
+License: mit
+Maintainer: arkanaOS team
+Provides: arabic-bitmap-fonts=/usr/share/fonts/arabic-misc
