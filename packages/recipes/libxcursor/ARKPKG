@@ -1,0 +1,8 @@
+Name: libxcursor
+Description: runtime library for X cursor themes and rendering
+Version: 1.2.3
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXcursor-1.2.3.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: libxcursor=/usr/lib/libXcursor.so.1
