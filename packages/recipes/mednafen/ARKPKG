@@ -1,0 +1,16 @@
+Name: mednafen
+Description: multi-platform emulator, including NES, GB/A, Lynx, PC Engine
+Version: 1.32.1+dfsg-2+b1
+Arch: x86_64
+URL: https://mednafen.github.io
+License: See /usr/share/doc/mednafen/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  alsa-libs
+  libflac14
+  libjack-jackd2-0
+  liblzo2-2
+  libmpcdec6
+  libsdl2-2.0-0
+  libtrio2
+  libvorbisidec1
