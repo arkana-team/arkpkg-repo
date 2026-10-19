@@ -1,0 +1,8 @@
+Name: libpcap-libs
+Description: Packet capture runtime library used by network tools
+Version: 1.10.5-2
+Arch: x86_64
+URL: https://www.tcpdump.org/
+License: See /usr/share/doc/libpcap0.8t64/copyright
+Maintainer: arkanaOS Team
+Provides: libpcap.so.0.8=/usr/lib/x86_64-linux-gnu/libpcap.so.1.10.5
