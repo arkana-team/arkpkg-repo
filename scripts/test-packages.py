@@ -14,6 +14,7 @@ import lz4.frame
 
 REQUIRED_FIELDS = {"Name", "Description", "Version", "Arch"}
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
+VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 DEPENDENCY = re.compile(
     r"([A-Za-z0-9][A-Za-z0-9._+-]*)(?:\s*(?:>=|<=|=|>|<)\s*(\S+))?\Z"
 )
@@ -79,16 +80,16 @@ def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
         raise ValueError(f"{path.name}: package payload is empty")
     if not PACKAGE_ATOM.fullmatch(metadata["Name"]):
         raise ValueError(f"{path.name}: invalid package name {metadata['Name']!r}")
-    if not PACKAGE_ATOM.fullmatch(metadata["Version"]):
+    if not VERSION.fullmatch(metadata["Version"]):
         raise ValueError(f"{path.name}: invalid version {metadata['Version']!r}")
     if not PACKAGE_ATOM.fullmatch(metadata["Arch"]):
         raise ValueError(f"{path.name}: invalid architecture {metadata['Arch']!r}")
     return metadata, dependencies, provides
 
 
-def package_order(
+def package_dependencies(
     packages: dict[str, tuple[Path, str, list[str], list[str]]],
-) -> tuple[list[str], int]:
+) -> dict[str, set[str]]:
     provider_map: dict[str, str] = {name: name for name in packages}
     for name, (_, _, _, provides) in packages.items():
         for item in provides:
@@ -108,6 +109,12 @@ def package_order(
             if target != name:
                 dependencies[name].add(target)
 
+    return dependencies
+
+
+def package_order(
+    dependencies: dict[str, set[str]],
+) -> list[str]:
     pending = {name: set(values) for name, values in dependencies.items()}
     order: list[str] = []
     while pending:
@@ -119,7 +126,26 @@ def package_order(
             pending.pop(name)
         for values in pending.values():
             values.difference_update(ready)
-    return order, sum(map(len, dependencies.values()))
+    return order
+
+
+def transaction_order(
+    order: list[str], dependencies: dict[str, set[str]], requested: list[str] | None
+) -> list[str]:
+    if requested is None:
+        return order
+    missing = sorted(set(requested).difference(dependencies))
+    if missing:
+        raise ValueError(f"unknown transaction packages: {', '.join(missing)}")
+    selected: set[str] = set()
+    pending = list(requested)
+    while pending:
+        name = pending.pop()
+        if name in selected:
+            continue
+        selected.add(name)
+        pending.extend(dependencies[name])
+    return [name for name in order if name in selected]
 
 
 def run_package_manager(
@@ -145,7 +171,12 @@ def run_package_manager(
         raise RuntimeError(f"arkpkg {action} failed for {package}:\n{details}")
 
 
-def test_repository(repo_root: Path, tool: Path) -> None:
+def test_repository(
+    repo_root: Path,
+    tool: Path,
+    requested: list[str] | None = None,
+    audit_only: bool = False,
+) -> None:
     packages: dict[str, tuple[Path, str, list[str], list[str]]] = {}
     owners: dict[str, str] = {}
     archives = sorted((repo_root / "packages").glob("*.ark"))
@@ -179,29 +210,39 @@ def test_repository(repo_root: Path, tool: Path) -> None:
                         f"payload collision: {relative} belongs to {previous} and {name}"
                     )
 
-    order, edge_count = package_order(packages)
+    dependencies = package_dependencies(packages)
+    order = package_order(dependencies)
+    install_order = transaction_order(order, dependencies, requested)
+    edge_count = sum(map(len, dependencies.values()))
     total_bytes = sum(path.stat().st_size for path in archives)
     print(
         f"Audited {len(packages)} packages, {len(owners)} unique payload paths, "
         f"{edge_count} dependency edges, {total_bytes} archive bytes",
         flush=True,
     )
+    if audit_only:
+        print("PASS: archive, payload ownership, and dependency audit", flush=True)
+        return
+    print(
+        f"Testing package transaction for {len(install_order)} packages",
+        flush=True,
+    )
 
     with tempfile.TemporaryDirectory(prefix="arkpkg-repo-test-") as temporary:
         root = Path(temporary) / "root"
         root.mkdir()
-        for index, name in enumerate(order, 1):
+        for index, name in enumerate(install_order, 1):
             run_package_manager(tool, root, "install", name, packages[name][0])
-            if index % 25 == 0 or index == len(order):
-                print(f"Installed {index}/{len(order)} packages", flush=True)
-        for index, name in enumerate(order, 1):
+            if index % 25 == 0 or index == len(install_order):
+                print(f"Installed {index}/{len(install_order)} packages", flush=True)
+        for index, name in enumerate(install_order, 1):
             run_package_manager(tool, root, "verify", name)
-            if index % 50 == 0 or index == len(order):
-                print(f"Verified {index}/{len(order)} packages", flush=True)
-        for index, name in enumerate(reversed(order), 1):
+            if index % 50 == 0 or index == len(install_order):
+                print(f"Verified {index}/{len(install_order)} packages", flush=True)
+        for index, name in enumerate(reversed(install_order), 1):
             run_package_manager(tool, root, "remove", name)
-            if index % 25 == 0 or index == len(order):
-                print(f"Removed {index}/{len(order)} packages", flush=True)
+            if index % 25 == 0 or index == len(install_order):
+                print(f"Removed {index}/{len(install_order)} packages", flush=True)
         result = subprocess.run(
             [str(tool), "--root", str(root), "list"],
             capture_output=True,
@@ -211,7 +252,9 @@ def test_repository(repo_root: Path, tool: Path) -> None:
         if result.returncode or result.stdout.strip():
             raise RuntimeError("package database is not empty after reverse removal")
 
-    print(f"PASS: all {len(order)} packages installed, verified, and removed")
+    print(
+        f"PASS: all {len(install_order)} selected packages installed, verified, and removed"
+    )
 
 
 def main() -> None:
@@ -220,8 +263,25 @@ def main() -> None:
         "--repo-root", type=Path, default=Path(__file__).resolve().parents[1]
     )
     parser.add_argument("--arkpkg", type=Path, required=True)
+    transaction = parser.add_mutually_exclusive_group()
+    transaction.add_argument(
+        "--transaction-packages",
+        nargs="+",
+        metavar="NAME",
+        help="install, verify, and remove these packages and their dependencies",
+    )
+    transaction.add_argument(
+        "--audit-only",
+        action="store_true",
+        help="audit every archive without running package transactions",
+    )
     args = parser.parse_args()
-    test_repository(args.repo_root.resolve(), args.arkpkg.resolve())
+    test_repository(
+        args.repo_root.resolve(),
+        args.arkpkg.resolve(),
+        requested=args.transaction_packages,
+        audit_only=args.audit_only,
+    )
 
 
 if __name__ == "__main__":
