@@ -1,0 +1,8 @@
+Name: bash-completion
+Description: programmable completion for the bash shell
+Version: 2.16.0-7
+Arch: any
+URL: https://github.com/scop/bash-completion
+License: See /usr/share/doc/bash-completion/copyright
+Maintainer: arkanaOS Team
+Provides: dh_bash-completion=/usr/bin/dh_bash-completion
