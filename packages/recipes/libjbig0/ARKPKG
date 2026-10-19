@@ -1,0 +1,8 @@
+Name: libjbig0
+Description: JBIGkit libraries
+Version: 2.1-6.1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libjbig0
+License: See /usr/share/doc/libjbig0/copyright
+Maintainer: arkanaOS Team
+Provides: libjbig.so.0=/usr/lib/x86_64-linux-gnu/libjbig.so.0
