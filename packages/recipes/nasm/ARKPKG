@@ -1,0 +1,8 @@
+Name: nasm
+Description: General-purpose x86 assembler
+Version: 2.16.03-1
+Arch: x86_64
+URL: http://www.nasm.us/
+License: See /usr/share/doc/nasm/copyright
+Maintainer: arkanaOS Team
+Provides: nasm=/usr/bin/nasm, ndisasm=/usr/bin/ndisasm
