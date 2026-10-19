@@ -1,0 +1,10 @@
+Name: libsuitesparseconfig7
+Description: configuration routines for all SuiteSparse modules
+Version: 1:7.10.1+dfsg-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsuitesparseconfig7
+License: See /usr/share/doc/libsuitesparseconfig7/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgomp1
+Provides: libsuitesparseconfig.so.7=/usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so.7.10.1
