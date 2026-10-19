@@ -1,0 +1,8 @@
+Name: kakoune
+Description: Vim-inspired, selection-oriented code editor
+Version: 2024.05.18-2
+Arch: x86_64
+URL: http://kakoune.org/
+License: See /usr/share/doc/kakoune/copyright
+Maintainer: arkanaOS Team
+Provides: kak=/usr/bin/kak
