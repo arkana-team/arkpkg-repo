@@ -1,0 +1,12 @@
+Name: unixodbc
+Description: Basic ODBC tools
+Version: 2.3.12-2+deb13u1
+Arch: x86_64
+URL: https://www.unixodbc.org
+License: See /usr/share/doc/unixodbc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libodbc2
+  libodbcinst2
+  readline-libs
+Provides: isql=/usr/bin/isql, iusql=/usr/bin/iusql
