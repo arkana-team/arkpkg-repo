@@ -1,0 +1,10 @@
+Name: libharfbuzz0b
+Description: OpenType text shaping engine (shared library)
+Version: 10.2.0-1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libharfbuzz0b
+License: See /usr/share/doc/libharfbuzz0b/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgraphite2-3
+Provides: libharfbuzz.so.0=/usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.61020.0
