@@ -1,0 +1,8 @@
+Name: tree
+Description: displays an indented directory tree, in color
+Version: 2.2.1-1
+Arch: x86_64
+URL: http://oldmanprogrammer.net/source.php?dir=projects/tree
+License: See /usr/share/doc/tree/copyright
+Maintainer: arkanaOS Team
+Provides: tree=/usr/bin/tree
