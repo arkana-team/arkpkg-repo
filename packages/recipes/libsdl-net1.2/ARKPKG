@@ -1,0 +1,10 @@
+Name: libsdl-net1.2
+Description: Network library for Simple DirectMedia Layer 1.2, libraries
+Version: 1.2.8-6+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsdl-net1.2
+License: See /usr/share/doc/libsdl-net1.2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsdl1.2debian
+Provides: libSDL_net-1.2.so.0=/usr/lib/x86_64-linux-gnu/libSDL_net-1.2.so.0.8.0
