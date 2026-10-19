@@ -1,0 +1,11 @@
+Name: monopd
+Description: Monopoly game network server
+Version: 0.10.4-1
+Arch: x86_64
+URL: http://gtkatlantic.gradator.net/
+License: See /usr/share/doc/monopd/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmuparser2v5
+  systemd-libs
+Provides: monopd=/usr/sbin/monopd
