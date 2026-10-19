@@ -1,0 +1,8 @@
+Name: libxrender
+Description: runtime library for X Render extension support
+Version: 0.9.13
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXrender-0.9.13.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: libxrender=/usr/lib/libXrender.so.1
