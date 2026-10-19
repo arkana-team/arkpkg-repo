@@ -1,0 +1,8 @@
+Name: font-sun-misc
+Description: classic sun workstation bitmap fonts for x11
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-sun-misc-1.0.4.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: sun-workstation-fonts=/usr/share/fonts/sun-misc
