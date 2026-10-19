@@ -1,0 +1,8 @@
+Name: gperf
+Description: Perfect hash function generator
+Version: 3.2.1-1
+Arch: x86_64
+URL: http://www.gnu.org/software/gperf/
+License: See /usr/share/doc/gperf/copyright
+Maintainer: arkanaOS Team
+Provides: gperf=/usr/bin/gperf
