@@ -1,0 +1,11 @@
+Name: owhttpd
+Description: HTTP daemon providing access to 1-Wire networks
+Version: 3.2p4+dfsg1-6
+Arch: x86_64
+URL: http://owfs.org/
+License: See /usr/share/doc/owhttpd/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libow-3.2-4t64
+  owfs-common
+Provides: owhttpd=/usr/bin/owhttpd
