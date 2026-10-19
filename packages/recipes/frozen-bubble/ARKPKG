@@ -1,0 +1,12 @@
+Name: frozen-bubble
+Description: cool game where you pop out the bubbles!
+Version: 2.212-13+b1
+Arch: x86_64
+URL: http://www.frozen-bubble.org/
+License: See /usr/share/doc/frozen-bubble/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  frozen-bubble-data
+  libsdl-mixer1.2
+  libsdl1.2debian
+  perl
