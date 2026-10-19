@@ -1,0 +1,8 @@
+Name: libva2
+Description: Video Acceleration (VA) API for Linux -- runtime
+Version: 2.22.0-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libva2
+License: See /usr/share/doc/libva2/copyright
+Maintainer: arkanaOS Team
+Provides: libva.so.2=/usr/lib/x86_64-linux-gnu/libva.so.2.2200.0
