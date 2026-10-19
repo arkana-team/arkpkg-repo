@@ -1,0 +1,8 @@
+Name: libid3tag0
+Description: ID3 tag reading library from the MAD project
+Version: 0.16.3-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libid3tag0
+License: See /usr/share/doc/libid3tag0/copyright
+Maintainer: arkanaOS Team
+Provides: libid3tag.so.0=/usr/lib/x86_64-linux-gnu/libid3tag.so.0.16.3
