@@ -1,0 +1,10 @@
+Name: build-essential
+Description: Informational list of build-essential packages
+Version: 12.12
+Arch: x86_64
+URL: https://packages.debian.org/trixie/build-essential
+License: See /usr/share/doc/build-essential/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gcc
+  make
