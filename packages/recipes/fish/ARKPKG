@@ -1,0 +1,10 @@
+Name: fish
+Description: friendly interactive shell
+Version: 4.0.2-1
+Arch: x86_64
+URL: http://fishshell.com/
+License: See /usr/share/doc/fish/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  pcre2-libs
+Provides: fish=/usr/bin/fish, fish_indent=/usr/bin/fish_indent, fish_key_reader=/usr/bin/fish_key_reader
