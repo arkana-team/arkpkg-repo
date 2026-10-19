@@ -1,0 +1,9 @@
+Name: zsh-syntax-highlighting
+Description: Fish shell like syntax highlighting for zsh
+Version: 0.8.0-2
+Arch: any
+URL: https://github.com/zsh-users/zsh-syntax-highlighting/
+License: See /usr/share/doc/zsh-syntax-highlighting/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  zsh
