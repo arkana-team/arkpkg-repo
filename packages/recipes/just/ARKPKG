@@ -1,0 +1,8 @@
+Name: just
+Description: Save and run project-specific commands
+Version: 1.40.0-1+b1
+Arch: x86_64
+URL: https://github.com/casey/just
+License: See /usr/share/doc/just/copyright
+Maintainer: arkanaOS Team
+Provides: just=/usr/bin/just
