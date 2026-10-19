@@ -1,0 +1,19 @@
+Name: libgs10
+Description: interpreter for the PostScript language and for PDF - Library
+Version: 10.05.1~dfsg-1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgs10
+License: See /usr/share/doc/libgs10/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcups2t64
+  libidn12
+  libijs-0.35
+  libjbig2dec0
+  libjpeg62-turbo
+  liblcms2-2
+  libopenjp2-7
+  libpaper2
+  libpng16-16t64
+  libtiff6
+Provides: libgs.so.10=/usr/lib/x86_64-linux-gnu/libgs.so.10.05
