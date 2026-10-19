@@ -1,0 +1,15 @@
+Name: aria2
+Description: High speed download utility
+Version: 1.37.0+debian-3
+Arch: x86_64
+URL: https://aria2.github.io/
+License: See /usr/share/doc/aria2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  c-ares-libs
+  gmp-libs
+  gnutls-libs
+  mc-runtime-libs
+  nettle-libs
+  xml-runtime-libs
+Provides: aria2c=/usr/bin/aria2c, libaria2.so.0=/usr/lib/x86_64-linux-gnu/libaria2.so.0.0.0
