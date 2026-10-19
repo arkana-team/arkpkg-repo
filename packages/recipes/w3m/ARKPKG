@@ -1,0 +1,13 @@
+Name: w3m
+Description: WWW browsable pager with excellent tables/frames support
+Version: 0.5.3+git20230121-2.1
+Arch: x86_64
+URL: https://tracker.debian.org/pkg/w3m
+License: See /usr/share/doc/w3m/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgc
+  mc-runtime-libs
+  ncurses-libs
+  openssl-libs
+Provides: w3m=/usr/bin/w3m, w3mman=/usr/bin/w3mman
