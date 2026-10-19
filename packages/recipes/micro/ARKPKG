@@ -1,0 +1,8 @@
+Name: micro
+Description: modern and intuitive terminal-based text editor
+Version: 2.0.14-1+b6
+Arch: x86_64
+URL: https://micro-editor.github.io
+License: See /usr/share/doc/micro/copyright
+Maintainer: arkanaOS Team
+Provides: micro=/usr/bin/micro
