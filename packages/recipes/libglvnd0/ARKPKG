@@ -1,0 +1,8 @@
+Name: libglvnd0
+Description: Vendor neutral GL dispatch library
+Version: 1.7.0-1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libglvnd0
+License: See /usr/share/doc/libglvnd0/copyright
+Maintainer: arkanaOS Team
+Provides: libGLdispatch.so.0=/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0
