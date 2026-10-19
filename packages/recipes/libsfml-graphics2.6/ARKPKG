@@ -1,0 +1,12 @@
+Name: libsfml-graphics2.6
+Description: Simple and Fast Multimedia Library - Graphics part
+Version: 2.6.2+dfsg-2+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsfml-graphics2.6
+License: See /usr/share/doc/libsfml-graphics2.6/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsfml-system2.6
+  libsfml-window2.6
+  libstb0t64
+Provides: libsfml-graphics.so.2.6=/usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.2
