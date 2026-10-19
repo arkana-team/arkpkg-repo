@@ -1,0 +1,16 @@
+Name: libgd3
+Description: GD Graphics Library
+Version: 2.3.3-14~deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgd3
+License: See /usr/share/doc/libgd3/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libavif16
+  libheif1
+  libimagequant0
+  libjpeg62-turbo
+  libpng16-16t64
+  libtiff6
+  libwebp7
+Provides: libgd.so.3=/usr/lib/x86_64-linux-gnu/libgd.so.3.0.11
