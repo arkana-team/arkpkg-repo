@@ -1,0 +1,8 @@
+Name: libwmflite-0.2-7
+Description: Windows metafile conversion lite library
+Version: 0.2.13-1.1+b3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libwmflite-0.2-7
+License: See /usr/share/doc/libwmflite-0.2-7/copyright
+Maintainer: arkanaOS Team
+Provides: libwmflite-0.2.so.7=/usr/lib/x86_64-linux-gnu/libwmflite-0.2.so.7.0.6
