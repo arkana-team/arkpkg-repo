@@ -1,0 +1,7 @@
+Name: gcc-13-base
+Description: GCC, the GNU Compiler Collection (base package)
+Version: 13.3.0-16
+Arch: x86_64
+URL: https://packages.debian.org/trixie/gcc-13-base
+License: See /usr/share/doc/gcc-13-base/copyright
+Maintainer: arkanaOS Team
