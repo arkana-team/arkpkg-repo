@@ -1,0 +1,8 @@
+Name: xcursor-themes
+Description: classic whiteglass redglass and handheld x11 cursor themes
+Version: 1.0.7
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/data/xcursor-themes-1.0.7.tar.xz
+License: xfree86 license
+Maintainer: arkanaOS team
+Provides: xcursor-themes=/usr/share/icons
