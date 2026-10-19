@@ -1,0 +1,20 @@
+Name: libcurl3t64-gnutls
+Description: easy-to-use client-side URL transfer library (GnuTLS flavour)
+Version: 8.14.1-2+deb13u5
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libcurl3t64-gnutls
+License: See /usr/share/doc/libcurl3t64-gnutls/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  brotli-libs
+  gnutls-libs
+  krb5-libs
+  libidn2-libs
+  libnghttp3-9
+  libngtcp2-16
+  libngtcp2-crypto-gnutls8
+  librtmp1
+  mc-runtime-libs
+  nettle-libs
+  openldap-libs
+Provides: libcurl-gnutls.so.4=/usr/lib/x86_64-linux-gnu/libcurl-gnutls.so.4.8.0
