@@ -1,0 +1,10 @@
+Name: libxapian30
+Description: search engine library
+Version: 1.4.29-3+deb13u1
+Arch: x86_64
+URL: https://xapian.org/
+License: See /usr/share/doc/libxapian30/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  util-linux-libs
+Provides: libxapian.so.30=/usr/lib/x86_64-linux-gnu/libxapian.so.30.14.1
