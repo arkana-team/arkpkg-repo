@@ -1,0 +1,8 @@
+Name: liblzo2-2
+Description: data compression library
+Version: 2.10-3+b1
+Arch: x86_64
+URL: https://www.oberhumer.com/opensource/lzo/
+License: See /usr/share/doc/liblzo2-2/copyright
+Maintainer: arkanaOS Team
+Provides: liblzo2.so.2=/usr/lib/x86_64-linux-gnu/liblzo2.so.2.0.0
