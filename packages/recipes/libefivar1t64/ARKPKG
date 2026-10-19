@@ -1,0 +1,8 @@
+Name: libefivar1t64
+Description: library to manage uefi variables
+Version: 38-3.1+b1
+Arch: x86_64
+URL: https://github.com/rhinstaller/efivar
+License: See /usr/share/doc/libefivar1t64/copyright
+Maintainer: arkanaOS Team
+Provides: libefivar.so.1=/usr/lib/x86_64-linux-gnu/libefivar.so.1.38
