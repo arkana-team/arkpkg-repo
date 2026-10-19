@@ -1,0 +1,8 @@
+Name: v2ray
+Description: Command line tool for golang-v2ray-core
+Version: 4.34.0+ds-4+b12
+Arch: x86_64
+URL: https://github.com/v2fly/v2ray-core
+License: See /usr/share/doc/v2ray/copyright
+Maintainer: arkanaOS Team
+Provides: v2ctl=/usr/bin/v2ctl, v2ray=/usr/bin/v2ray
