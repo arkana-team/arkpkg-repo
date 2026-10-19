@@ -1,0 +1,10 @@
+Name: libflac14
+Description: Free Lossless Audio Codec - runtime C library
+Version: 1.5.0+ds-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libflac14
+License: See /usr/share/doc/libflac14/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libogg0
+Provides: libFLAC.so.14=/usr/lib/x86_64-linux-gnu/libFLAC.so.14.0.0
