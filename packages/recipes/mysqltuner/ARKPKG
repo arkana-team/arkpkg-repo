@@ -1,0 +1,10 @@
+Name: mysqltuner
+Description: high-performance MySQL tuning script
+Version: 2.6.0-1
+Arch: any
+URL: https://github.com/major/MySQLTuner-perl
+License: See /usr/share/doc/mysqltuner/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: mysqltuner=/usr/bin/mysqltuner
