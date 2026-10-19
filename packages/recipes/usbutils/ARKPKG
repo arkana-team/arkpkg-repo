@@ -1,0 +1,11 @@
+Name: usbutils
+Description: Linux USB utilities
+Version: 018-2
+Arch: x86_64
+URL: https://github.com/gregkh/usbutils
+License: See /usr/share/doc/usbutils/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+  systemd-libs
+Provides: lsusb=/usr/bin/lsusb, usb-devices=/usr/bin/usb-devices, usbhid-dump=/usr/bin/usbhid-dump, usbreset=/usr/bin/usbreset
