@@ -1,0 +1,10 @@
+Name: sqlite3-tools
+Description: Command line interface for SQLite 3 (tools)
+Version: 3.46.1-7+deb13u2
+Arch: x86_64
+URL: https://www.sqlite.org/
+License: See /usr/share/doc/sqlite3-tools/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtcl8.6
+Provides: showdb=/usr/bin/showdb, showjournal=/usr/bin/showjournal, showstat4=/usr/bin/showstat4, showwal=/usr/bin/showwal, sqldiff=/usr/bin/sqldiff, sqlite3_analyzer=/usr/bin/sqlite3_analyzer
