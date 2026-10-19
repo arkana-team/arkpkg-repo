@@ -1,0 +1,13 @@
+Name: links
+Description: Web browser running in text mode
+Version: 2.29-2+b3
+Arch: x86_64
+URL: http://links.twibright.com/
+License: See /usr/share/doc/links/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  brotli-libs
+  liblz-libs
+  mc-runtime-libs
+  openssl-libs
+Provides: links=/usr/bin/links
