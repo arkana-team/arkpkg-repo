@@ -1,0 +1,7 @@
+Name: media-player-info
+Description: Media player identification files
+Version: 26-1
+Arch: any
+URL: https://gitlab.freedesktop.org/media-player-info/media-player-info
+License: See /usr/share/doc/media-player-info/copyright
+Maintainer: arkanaOS Team
