@@ -1,0 +1,8 @@
+Name: terminal-runtime-libs
+Description: Terminal input and capability runtime libraries
+Version: 0.22-2+b1
+Arch: x86_64
+URL: https://github.com/rockorager/libtermkey
+License: See /usr/share/doc/libtermkey1/copyright
+Maintainer: arkanaOS Team
+Provides: libtermkey.so.1=/usr/lib/x86_64-linux-gnu/libtermkey.so.1.14.2, libunibilium.so.4=/usr/lib/x86_64-linux-gnu/libunibilium.so.4.0.1
