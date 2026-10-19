@@ -1,0 +1,10 @@
+Name: joe
+Description: user friendly full screen text editor
+Version: 4.6-2
+Arch: x86_64
+URL: http://joe-editor.sourceforge.net/
+License: See /usr/share/doc/joe/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: jmacs=/usr/bin/jmacs, joe=/usr/bin/joe, jpico=/usr/bin/jpico, jstar=/usr/bin/jstar, rjoe=/usr/bin/rjoe
