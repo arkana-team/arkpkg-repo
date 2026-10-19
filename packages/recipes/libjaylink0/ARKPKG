@@ -1,0 +1,10 @@
+Name: libjaylink0
+Description: library for interacting with J-Link programmers
+Version: 0.4.0-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libjaylink0
+License: See /usr/share/doc/libjaylink0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+Provides: libjaylink.so.0=/usr/lib/x86_64-linux-gnu/libjaylink.so.0.2.1
