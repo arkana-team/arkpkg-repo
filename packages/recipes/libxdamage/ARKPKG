@@ -1,0 +1,8 @@
+Name: libxdamage
+Description: runtime library for X Damage extension support
+Version: 1.1.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXdamage-1.1.7.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: libxdamage=/usr/lib/libXdamage.so.1
