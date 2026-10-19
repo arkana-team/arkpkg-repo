@@ -1,0 +1,10 @@
+Name: lp-solve
+Description: Solve (mixed integer) linear programming problems
+Version: 5.5.2.11-2
+Arch: x86_64
+URL: http://lpsolve.sourceforge.net
+License: See /usr/share/doc/lp-solve/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcolamd3
+Provides: liblpsolve55.so=/usr/lib/lp_solve/liblpsolve55.so, lp_solve=/usr/bin/lp_solve
