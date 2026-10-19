@@ -1,0 +1,18 @@
+Name: dsda-doom
+Description: Doom source port with a focus on demo recording and speedrunning
+Version: 0.29.0+dfsg-1
+Arch: x86_64
+URL: https://github.com/kraflab/dsda-doom
+License: See /usr/share/doc/dsda-doom/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdumb1t64
+  libfluidsynth3
+  libglu1-mesa
+  libmad0
+  libportmidi0
+  libsdl2-2.0-0
+  libsdl2-image-2.0-0
+  libsdl2-mixer-2.0-0
+  libvorbisfile3
+  libzip5
