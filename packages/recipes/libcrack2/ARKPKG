@@ -1,0 +1,8 @@
+Name: libcrack2
+Description: pro-active password checker library
+Version: 2.9.6-5.2+b1
+Arch: x86_64
+URL: https://github.com/cracklib/cracklib
+License: See /usr/share/doc/libcrack2/copyright
+Maintainer: arkanaOS Team
+Provides: libcrack.so.2=/usr/lib/x86_64-linux-gnu/libcrack.so.2.9.0
