@@ -1,0 +1,10 @@
+Name: kpartx
+Description: create device mappings for partitions
+Version: 0.11.1-2
+Arch: x86_64
+URL: http://christophe.varoqui.free.fr/
+License: See /usr/share/doc/kpartx/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdevmapper1.02.1
+Provides: kpartx=/usr/sbin/kpartx
