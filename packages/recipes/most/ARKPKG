@@ -1,0 +1,8 @@
+Name: most
+Description: Pager program similar to more and less
+Version: 5.2.0-1.1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/most
+License: See /usr/share/doc/most/copyright
+Maintainer: arkanaOS Team
+Provides: most=/usr/bin/most
