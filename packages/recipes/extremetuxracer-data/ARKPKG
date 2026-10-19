@@ -1,0 +1,7 @@
+Name: extremetuxracer-data
+Description: data files for the game Extreme Tux Racer
+Version: 0.8.4-1
+Arch: any
+URL: https://packages.debian.org/trixie/extremetuxracer-data
+License: See /usr/share/doc/extremetuxracer-data/copyright
+Maintainer: arkanaOS Team
