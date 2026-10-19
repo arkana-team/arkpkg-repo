@@ -1,0 +1,8 @@
+Name: libhwy1t64
+Description: Efficient and performance-portable SIMD wrapper (runtime files)
+Version: 1.2.0-2+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libhwy1t64
+License: See /usr/share/doc/libhwy1t64/copyright
+Maintainer: arkanaOS Team
+Provides: libhwy.so.1=/usr/lib/x86_64-linux-gnu/libhwy.so.1.2.0, libhwy_contrib.so.1=/usr/lib/x86_64-linux-gnu/libhwy_contrib.so.1.2.0, libhwy_test.so.1=/usr/lib/x86_64-linux-gnu/libhwy_test.so.1.2.0
