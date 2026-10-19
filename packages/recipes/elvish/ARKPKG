@@ -1,0 +1,8 @@
+Name: elvish
+Description: Powerful scripting language & versatile interactive shell
+Version: 0.21.0-2+b7
+Arch: x86_64
+URL: https://elv.sh
+License: See /usr/share/doc/elvish/copyright
+Maintainer: arkanaOS Team
+Provides: elvish=/usr/bin/elvish
