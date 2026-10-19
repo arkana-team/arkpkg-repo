@@ -231,6 +231,21 @@ def staging_conflicts(payload: Path, paths: list[str], staging: Path) -> list[st
     return conflicts
 
 
+def license_path_resolves_to(
+    payload: Path, license_path: str, source_path: str
+) -> bool:
+    try:
+        target = (payload / license_path).resolve(strict=False).relative_to(
+            payload.resolve()
+        )
+        source = (payload / source_path).resolve(strict=False).relative_to(
+            payload.resolve()
+        )
+    except ValueError:
+        return False
+    return target == source
+
+
 def stage_has_library(staging: Path, soname: str) -> bool:
     for directory in (
         "lib",
@@ -395,6 +410,7 @@ def build(args: argparse.Namespace) -> None:
 
             license_path = package["license_path"]
             license_target = payload / license_path
+            license_provided_by_dependency = False
             if not license_target.is_file() and "license_source_package" in package:
                 license_source_name = package["license_source_package"]
                 if license_source_name not in sources:
@@ -410,9 +426,17 @@ def build(args: argparse.Namespace) -> None:
                         f"{name}: missing license source {package['license_source_path']} "
                         f"from {license_source_name}"
                     )
-                license_target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(license_source_path, license_target)
-            if not (payload / license_path).is_file():
+                if (
+                    license_source_name in package.get("dependencies", [])
+                    and license_path_resolves_to(
+                        payload, license_path, package["license_source_path"]
+                    )
+                ):
+                    license_provided_by_dependency = True
+                else:
+                    license_target.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(license_source_path, license_target)
+            if not license_target.is_file() and not license_provided_by_dependency:
                 raise FileNotFoundError(f"{name}: missing preserved license {license_path}")
 
             dependencies, missing = runtime_dependencies(payload, providers, staging, name)
