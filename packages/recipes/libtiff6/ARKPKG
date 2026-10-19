@@ -1,0 +1,14 @@
+Name: libtiff6
+Description: Tag Image File Format (TIFF) library
+Version: 4.7.0-3+deb13u3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libtiff6
+License: See /usr/share/doc/libtiff6/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdeflate0
+  libjbig0
+  libjpeg62-turbo
+  liblerc4
+  libwebp7
+Provides: libtiff.so.6=/usr/lib/x86_64-linux-gnu/libtiff.so.6.1.0
