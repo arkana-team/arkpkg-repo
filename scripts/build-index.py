@@ -9,12 +9,16 @@ import re
 import shutil
 import tarfile
 from pathlib import Path, PurePosixPath
+from urllib.parse import quote, urlsplit
 
 import lz4.frame
 
 PACKAGE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 PACKAGE_VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
+DEFAULT_DOWNLOAD_BASE_URL = (
+    "https://raw.githubusercontent.com/arkana-team/arkpkg-repo/main"
+)
 
 PAGE_STYLE = """
 body { font-family: sans-serif; line-height: 1.5; margin: 0; padding: 2rem; }
@@ -148,15 +152,42 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def build_site(repo_root: Path, site_dir: Path) -> None:
+def validate_download_base_url(value: str) -> str:
+    try:
+        parsed = urlsplit(value)
+        port = parsed.port
+    except ValueError as error:
+        raise ValueError(f"invalid download base URL: {error}") from error
+    if (
+        parsed.scheme != "https"
+        or not parsed.hostname
+        or parsed.username is not None
+        or parsed.password is not None
+        or parsed.query
+        or parsed.fragment
+        or port == 0
+    ):
+        raise ValueError(
+            "download base URL must be HTTPS without credentials, query, or fragment"
+        )
+    return value.rstrip("/")
+
+
+def build_site(
+    repo_root: Path,
+    site_dir: Path,
+    download_base_url: str = DEFAULT_DOWNLOAD_BASE_URL,
+) -> None:
+    download_base_url = validate_download_base_url(download_base_url)
     package_root = repo_root / "packages"
     if package_root.is_symlink():
         raise ValueError("packages/ must not be a symbolic link")
     site_packages = site_dir / "packages"
     site_dir.mkdir(parents=True, exist_ok=True)
-    if site_packages.exists():
+    if site_packages.is_symlink():
+        site_packages.unlink()
+    elif site_packages.exists():
         shutil.rmtree(site_packages)
-    site_packages.mkdir(parents=True)
 
     entries = []
     seen = set()
@@ -173,10 +204,6 @@ def build_site(repo_root: Path, site_dir: Path) -> None:
             )
         seen.add(package_key)
         relative_path = archive_path.relative_to(repo_root)
-        destination = site_dir / relative_path
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(archive_path, destination)
-
         digest = sha256_file(archive_path)
         entries.append(
             {
@@ -185,6 +212,10 @@ def build_site(repo_root: Path, site_dir: Path) -> None:
                 "arch": metadata["Arch"],
                 "description": metadata["Description"],
                 "file": relative_path.as_posix(),
+                "download_url": (
+                    f"{download_base_url}/"
+                    f"{quote(relative_path.as_posix(), safe='/._+-')}"
+                ),
                 "sha256": digest,
             }
         )
@@ -246,8 +277,15 @@ def main() -> None:
     parser.add_argument(
         "--repo-root", type=Path, default=Path(__file__).resolve().parents[1]
     )
+    parser.add_argument(
+        "--download-base-url",
+        default=DEFAULT_DOWNLOAD_BASE_URL,
+        help="HTTPS root that serves immutable package archive paths",
+    )
     args = parser.parse_args()
-    build_site(args.repo_root.resolve(), args.site_dir.resolve())
+    build_site(
+        args.repo_root.resolve(), args.site_dir.resolve(), args.download_base_url
+    )
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ensure the package index accepts Debian epoch and tilde versions."""
+"""Ensure the package index supports Debian versions and direct archive URLs."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ SPEC.loader.exec_module(build_index)
 
 
 class PackageIndexTildeVersionTests(unittest.TestCase):
-    def test_site_indexes_epoch_and_tilde_version_archive(self) -> None:
+    def test_site_indexes_versions_without_copying_package_archives(self) -> None:
         with tempfile.TemporaryDirectory(prefix="arkpkg-index-version-") as temporary:
             root = Path(temporary)
             archive_path = root / "packages/hello-1:1.2.3~rc1-x86_64.ark"
@@ -58,9 +58,23 @@ class PackageIndexTildeVersionTests(unittest.TestCase):
                 hashlib.sha256(archive_path.read_bytes()).hexdigest(),
             )
             self.assertEqual(
-                (site / "packages" / archive_path.name).read_bytes(),
-                archive_path.read_bytes(),
+                index["packages"][0]["download_url"],
+                "https://raw.githubusercontent.com/arkana-team/arkpkg-repo/main/"
+                "packages/hello-1%3A1.2.3~rc1-x86_64.ark",
             )
+            self.assertFalse((site / "packages").exists())
+
+    def test_download_base_url_requires_safe_https(self) -> None:
+        for value in (
+            "http://example.com/packages",
+            "https://user:password@example.com/packages",
+            "https://example.com/packages?token=secret",
+            "https://example.com/packages#fragment",
+            "https://example.com:0/packages",
+            "https://example.com:wrong/packages",
+        ):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                build_index.validate_download_base_url(value)
 
 
 if __name__ == "__main__":
