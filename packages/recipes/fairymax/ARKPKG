@@ -1,0 +1,7 @@
+Name: fairymax
+Description: xboard compatible chess and chess-variant engine
+Version: 5.0b-2
+Arch: x86_64
+URL: https://home.hccnet.nl/h.g.muller/CVfairy.html
+License: See /usr/share/doc/fairymax/copyright
+Maintainer: arkanaOS Team
