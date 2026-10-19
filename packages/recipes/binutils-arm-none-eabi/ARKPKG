@@ -1,0 +1,8 @@
+Name: binutils-arm-none-eabi
+Description: GNU assembler, linker and binary utilities for ARM Cortex-R/M processors
+Version: 2.44-3+23+b1
+Arch: x86_64
+URL: https://sourceware.org/binutils/
+License: See /usr/share/doc/binutils-arm-none-eabi/copyright
+Maintainer: arkanaOS Team
+Provides: arm-none-eabi-addr2line=/usr/bin/arm-none-eabi-addr2line, arm-none-eabi-ar=/usr/bin/arm-none-eabi-ar, arm-none-eabi-as=/usr/bin/arm-none-eabi-as, arm-none-eabi-c++filt=/usr/bin/arm-none-eabi-c++filt, arm-none-eabi-elfedit=/usr/bin/arm-none-eabi-elfedit, arm-none-eabi-gprof=/usr/bin/arm-none-eabi-gprof, arm-none-eabi-ld.bfd=/usr/bin/arm-none-eabi-ld.bfd, arm-none-eabi-ld=/usr/bin/arm-none-eabi-ld, arm-none-eabi-nm=/usr/bin/arm-none-eabi-nm, arm-none-eabi-objcopy=/usr/bin/arm-none-eabi-objcopy, arm-none-eabi-objdump=/usr/bin/arm-none-eabi-objdump, arm-none-eabi-ranlib=/usr/bin/arm-none-eabi-ranlib, arm-none-eabi-readelf=/usr/bin/arm-none-eabi-readelf, arm-none-eabi-size=/usr/bin/arm-none-eabi-size, arm-none-eabi-strings=/usr/bin/arm-none-eabi-strings, arm-none-eabi-strip=/usr/bin/arm-none-eabi-strip, libdep.so=/usr/lib/arm-none-eabi/bfd-plugins/libdep.so
