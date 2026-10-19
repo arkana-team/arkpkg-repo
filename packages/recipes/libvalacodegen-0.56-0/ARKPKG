@@ -1,0 +1,10 @@
+Name: libvalacodegen-0.56-0
+Description: internal package for C# like language for the GObject system
+Version: 0.56.18-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libvalacodegen-0.56-0
+License: See /usr/share/doc/libvalacodegen-0.56-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libvala-0.56-0
+Provides: libvalaccodegen.so=/usr/lib/x86_64-linux-gnu/vala-0.56/libvalaccodegen.so
