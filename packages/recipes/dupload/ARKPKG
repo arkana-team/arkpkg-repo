@@ -1,0 +1,10 @@
+Name: dupload
+Description: Debian package upload tool
+Version: 2.13.2
+Arch: any
+URL: https://packages.debian.org/trixie/dupload
+License: See /usr/share/doc/dupload/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: dupload=/usr/bin/dupload
