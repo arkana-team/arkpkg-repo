@@ -1,0 +1,8 @@
+Name: procs
+Description: modern replacement for ps
+Version: 0.14.10-2
+Arch: x86_64
+URL: https://github.com/dalance/procs
+License: See /usr/share/doc/procs/copyright
+Maintainer: arkanaOS Team
+Provides: procs=/usr/bin/procs

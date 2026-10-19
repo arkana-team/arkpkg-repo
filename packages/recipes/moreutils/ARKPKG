@@ -1,0 +1,8 @@
+Name: moreutils
+Description: additional Unix utilities
+Version: 0.69-1
+Arch: x86_64
+URL: https://joeyh.name/code/moreutils/
+License: See /usr/share/doc/moreutils/copyright
+Maintainer: arkanaOS Team
+Provides: chronic=/usr/bin/chronic, combine=/usr/bin/combine, errno=/usr/bin/errno, ifdata=/usr/bin/ifdata, ifne=/usr/bin/ifne, isutf8=/usr/bin/isutf8, lckdo=/usr/bin/lckdo, mispipe=/usr/bin/mispipe, parallel=/usr/bin/parallel, pee=/usr/bin/pee, sponge=/usr/bin/sponge, ts=/usr/bin/ts, vidir=/usr/bin/vidir, vipe=/usr/bin/vipe, zrun=/usr/bin/zrun

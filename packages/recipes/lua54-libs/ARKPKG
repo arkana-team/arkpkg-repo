@@ -1,0 +1,8 @@
+Name: lua54-libs
+Description: Lua 5.4 runtime library
+Version: 5.4.7-1+b2
+Arch: x86_64
+URL: https://www.lua.org/
+License: See /usr/share/doc/liblua5.4-0/copyright
+Maintainer: arkanaOS Team
+Provides: liblua5.4-c++.so.0=/usr/lib/x86_64-linux-gnu/liblua5.4-c++.so.0.0.0, liblua5.4.so.0=/usr/lib/x86_64-linux-gnu/liblua5.4.so.0.0.0

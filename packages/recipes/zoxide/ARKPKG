@@ -1,0 +1,8 @@
+Name: zoxide
+Description: Smarter cd command for your terminal
+Version: 0.9.7-1+b1
+Arch: x86_64
+URL: https://github.com/ajeetdsouza/zoxide
+License: See /usr/share/doc/zoxide/copyright
+Maintainer: arkanaOS Team
+Provides: zoxide=/usr/bin/zoxide

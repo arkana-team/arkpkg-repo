@@ -1,0 +1,9 @@
+Name: zsh-autosuggestions
+Description: Fish-like fast/unobtrusive autosuggestions for zsh
+Version: 0.7.1-1
+Arch: any
+URL: https://github.com/zsh-users/zsh-autosuggestions
+License: See /usr/share/doc/zsh-autosuggestions/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  zsh

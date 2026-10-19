@@ -1,0 +1,10 @@
+Name: mc
+Description: Midnight Commander - a powerful file manager
+Version: 4.8.33-1+deb13u1
+Arch: x86_64
+URL: https://www.midnight-commander.org
+License: See /usr/share/doc/mc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  mc-runtime-libs
+Provides: mc=/usr/bin/mc, mcdiff=/usr/bin/mcdiff, mcedit=/usr/bin/mcedit, mcview=/usr/bin/mcview

@@ -1,0 +1,10 @@
+Name: xmlstarlet
+Description: command line XML toolkit
+Version: 1.6.1-4
+Arch: x86_64
+URL: http://xmlstar.sourceforge.net/
+License: See /usr/share/doc/xmlstarlet/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  xml-runtime-libs
+Provides: xmlstarlet=/usr/bin/xmlstarlet

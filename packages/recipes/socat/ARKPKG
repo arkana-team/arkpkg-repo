@@ -1,0 +1,11 @@
+Name: socat
+Description: multipurpose relay for bidirectional data transfer
+Version: 1.8.0.3-1+deb13u1
+Arch: x86_64
+URL: https://www.dest-unreach.org/socat/
+License: See /usr/share/doc/socat/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libwrap-libs
+  openssl-libs
+Provides: filan=/usr/bin/filan, procan=/usr/bin/procan, socat-broker.sh=/usr/bin/socat-broker.sh, socat-chain.sh=/usr/bin/socat-chain.sh, socat-mux.sh=/usr/bin/socat-mux.sh, socat1=/usr/bin/socat1, socat=/usr/bin/socat

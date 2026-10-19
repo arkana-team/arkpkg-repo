@@ -1,0 +1,12 @@
+Name: iftop
+Description: displays bandwidth usage information on an network interface
+Version: 1.0.pre4-9+b1
+Arch: x86_64
+URL: http://www.ex-parrot.com/~pdw/iftop/
+License: See /usr/share/doc/iftop/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpcap-libs
+  ncurses-compat-libs
+  ncurses-libs
+Provides: iftop=/usr/sbin/iftop

@@ -1,0 +1,8 @@
+Name: lazygit
+Description: Simple terminal UI for git commands
+Version: 0.50.0+ds1-1+b2
+Arch: x86_64
+URL: https://github.com/jesseduffield/lazygit
+License: See /usr/share/doc/lazygit/copyright
+Maintainer: arkanaOS Team
+Provides: lazygit=/usr/bin/lazygit

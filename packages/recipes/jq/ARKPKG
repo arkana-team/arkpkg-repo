@@ -1,0 +1,10 @@
+Name: jq
+Description: lightweight and flexible command-line JSON processor
+Version: 1.7.1-6+deb13u3
+Arch: x86_64
+URL: https://jqlang.github.io/jq
+License: See /usr/share/doc/jq/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  oniguruma-libs
+Provides: jq=/usr/bin/jq, libjq.so.1=/usr/lib/x86_64-linux-gnu/libjq.so.1.0.4

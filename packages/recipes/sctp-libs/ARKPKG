@@ -1,0 +1,8 @@
+Name: sctp-libs
+Description: Stream Control Transmission Protocol runtime library
+Version: 1.0.21+dfsg-1
+Arch: x86_64
+URL: https://github.com/sctp/lksctp-tools
+License: See /usr/share/doc/libsctp1/copyright
+Maintainer: arkanaOS Team
+Provides: libsctp.so.1=/usr/lib/x86_64-linux-gnu/libsctp.so.1.0.21

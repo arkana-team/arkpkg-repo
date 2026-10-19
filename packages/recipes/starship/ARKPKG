@@ -1,0 +1,8 @@
+Name: starship
+Description: fast and customizable shell prompt
+Version: 1.22.1-5
+Arch: x86_64
+URL: https://starship.rs
+License: See /usr/share/doc/starship/copyright
+Maintainer: arkanaOS Team
+Provides: starship=/usr/bin/starship

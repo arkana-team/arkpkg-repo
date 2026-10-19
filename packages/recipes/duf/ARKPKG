@@ -1,0 +1,8 @@
+Name: duf
+Description: Disk Usage/Free Utility
+Version: 0.8.1-2+b9
+Arch: x86_64
+URL: https://github.com/muesli/duf
+License: See /usr/share/doc/duf/copyright
+Maintainer: arkanaOS Team
+Provides: duf=/usr/bin/duf

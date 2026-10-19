@@ -1,0 +1,10 @@
+Name: neovim-runtime-libs
+Description: Runtime libraries required by the neovim package
+Version: 0.10.4-8
+Arch: x86_64
+URL: https://neovim.io/
+License: Multiple; see bundled copyright notices
+Maintainer: arkanaOS Team
+Dependencies:
+  terminal-runtime-libs
+Provides: liblua5.1-lpeg.so.2=/usr/lib/x86_64-linux-gnu/liblua5.1-lpeg.so.2.0.0, liblua5.1-luv.so.1=/usr/lib/x86_64-linux-gnu/liblua5.1-luv.so.1.0.0, liblua5.2-lpeg.so.2=/usr/lib/x86_64-linux-gnu/liblua5.2-lpeg.so.2.0.0, liblua5.2-luv.so.1=/usr/lib/x86_64-linux-gnu/liblua5.2-luv.so.1.0.0, liblua5.3-lpeg.so.2=/usr/lib/x86_64-linux-gnu/liblua5.3-lpeg.so.2.0.0, liblua5.3-luv.so.1=/usr/lib/x86_64-linux-gnu/liblua5.3-luv.so.1.0.0, liblua5.4-lpeg.so.2=/usr/lib/x86_64-linux-gnu/liblua5.4-lpeg.so.2.0.0, liblua5.4-luv.so.1=/usr/lib/x86_64-linux-gnu/liblua5.4-luv.so.1.0.0, libluajit-5.1.so.2=/usr/lib/x86_64-linux-gnu/libluajit-5.1.so.2.1.1737090214, libmsgpack-c.so.2=/usr/lib/x86_64-linux-gnu/libmsgpack-c.so.2.0.0, libtree-sitter.so.0.22=/usr/lib/x86_64-linux-gnu/libtree-sitter.so.0.22, libvterm.so.0=/usr/lib/x86_64-linux-gnu/libvterm.so.0.0.0

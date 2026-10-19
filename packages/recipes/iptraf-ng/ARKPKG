@@ -1,0 +1,10 @@
+Name: iptraf-ng
+Description: Next Generation Interactive Colorful IP LAN Monitor
+Version: 1.2.1-2
+Arch: x86_64
+URL: https://github.com/iptraf-ng/iptraf-ng
+License: See /usr/share/doc/iptraf-ng/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: iptraf-ng=/usr/sbin/iptraf-ng, iptraf=/usr/sbin/iptraf

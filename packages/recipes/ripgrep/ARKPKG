@@ -1,0 +1,10 @@
+Name: ripgrep
+Description: Recursively searches directories for a regex pattern
+Version: 14.1.1-1+b4
+Arch: x86_64
+URL: https://github.com/BurntSushi/ripgrep
+License: See /usr/share/doc/ripgrep/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  pcre2-libs
+Provides: rg=/usr/bin/rg

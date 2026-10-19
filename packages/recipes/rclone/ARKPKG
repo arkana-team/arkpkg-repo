@@ -1,0 +1,8 @@
+Name: rclone
+Description: rsync for commercial cloud storage
+Version: 1.60.1+dfsg-4
+Arch: x86_64
+URL: https://github.com/rclone/rclone
+License: See /usr/share/doc/rclone/copyright
+Maintainer: arkanaOS Team
+Provides: rclone=/usr/bin/rclone

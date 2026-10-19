@@ -1,0 +1,11 @@
+Name: arp-scan
+Description: arp scanning and fingerprinting tool
+Version: 1.10.0-2+b1
+Arch: x86_64
+URL: https://github.com/royhills/arp-scan
+License: See /usr/share/doc/arp-scan/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcap
+  libpcap-libs
+Provides: arp-fingerprint=/usr/sbin/arp-fingerprint, arp-scan=/usr/sbin/arp-scan, get-iab=/usr/sbin/get-iab, get-oui=/usr/sbin/get-oui

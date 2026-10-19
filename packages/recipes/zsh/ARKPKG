@@ -1,0 +1,12 @@
+Name: zsh
+Description: shell with lots of features
+Version: 5.9-8+b24
+Arch: x86_64
+URL: https://www.zsh.org/
+License: See /usr/share/doc/zsh/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcap
+  ncurses-libs
+  pcre2-libs
+Provides: rzsh=/usr/bin/rzsh, zsh5=/usr/bin/zsh5, zsh=/usr/bin/zsh

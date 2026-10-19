@@ -1,0 +1,8 @@
+Name: hyperfine
+Description: Command-line benchmarking tool
+Version: 1.19.0-1+b3
+Arch: x86_64
+URL: https://github.com/sharkdp/hyperfine
+License: See /usr/share/doc/hyperfine/copyright
+Maintainer: arkanaOS Team
+Provides: hyperfine=/usr/bin/hyperfine

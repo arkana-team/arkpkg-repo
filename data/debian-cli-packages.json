@@ -1,0 +1,2667 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "zsh",
+        "zsh-common"
+      ],
+      "debian_version": "5.9-8+b24",
+      "dependencies": [],
+      "description": "shell with lots of features",
+      "license": "See /usr/share/doc/zsh/copyright",
+      "license_path": "usr/share/doc/zsh/copyright",
+      "name": "zsh",
+      "url": "https://www.zsh.org/",
+      "version": "5.9-8+b24"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fish",
+        "fish-common"
+      ],
+      "debian_version": "4.0.2-1",
+      "dependencies": [],
+      "description": "friendly interactive shell",
+      "license": "See /usr/share/doc/fish/copyright",
+      "license_path": "usr/share/doc/fish/copyright",
+      "name": "fish",
+      "url": "http://fishshell.com/",
+      "version": "4.0.2-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mksh"
+      ],
+      "debian_version": "59c-41+b2",
+      "dependencies": [],
+      "description": "MirBSD Korn Shell",
+      "license": "See /usr/share/doc/mksh/copyright",
+      "license_path": "usr/share/doc/mksh/copyright",
+      "name": "mksh",
+      "url": "http://mirbsd.de/mksh",
+      "version": "59c-41+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "elvish"
+      ],
+      "debian_version": "0.21.0-2+b7",
+      "dependencies": [],
+      "description": "Powerful scripting language & versatile interactive shell",
+      "license": "See /usr/share/doc/elvish/copyright",
+      "license_path": "usr/share/doc/elvish/copyright",
+      "name": "elvish",
+      "url": "https://elv.sh",
+      "version": "0.21.0-2+b7"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libcrypt1"
+      ],
+      "debian_version": "1:4.4.38-1",
+      "dependencies": [],
+      "description": "Legacy crypt library for software requiring libcrypt.so.1",
+      "license": "See /usr/share/doc/libcrypt1/copyright",
+      "license_path": "usr/share/doc/libcrypt1/copyright",
+      "name": "libcrypt1",
+      "url": "https://github.com/besser82/libxcrypt",
+      "version": "4.4.38-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "tcsh"
+      ],
+      "debian_version": "6.24.13-2",
+      "dependencies": [
+        "libcrypt1"
+      ],
+      "description": "TENEX C Shell, an enhanced version of Berkeley csh",
+      "license": "See /usr/share/doc/tcsh/copyright",
+      "license_path": "usr/share/doc/tcsh/copyright",
+      "name": "tcsh",
+      "url": "https://www.tcsh.org/",
+      "version": "6.24.13-2"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "bash-completion"
+      ],
+      "debian_version": "1:2.16.0-7",
+      "dependencies": [],
+      "description": "programmable completion for the bash shell",
+      "license": "See /usr/share/doc/bash-completion/copyright",
+      "license_path": "usr/share/doc/bash-completion/copyright",
+      "name": "bash-completion",
+      "url": "https://github.com/scop/bash-completion",
+      "version": "2.16.0-7"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "zsh-autosuggestions"
+      ],
+      "debian_version": "0.7.1-1",
+      "dependencies": [
+        "zsh"
+      ],
+      "description": "Fish-like fast/unobtrusive autosuggestions for zsh",
+      "license": "See /usr/share/doc/zsh-autosuggestions/copyright",
+      "license_path": "usr/share/doc/zsh-autosuggestions/copyright",
+      "name": "zsh-autosuggestions",
+      "url": "https://github.com/zsh-users/zsh-autosuggestions",
+      "version": "0.7.1-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "zsh-syntax-highlighting"
+      ],
+      "debian_version": "0.8.0-2",
+      "dependencies": [
+        "zsh"
+      ],
+      "description": "Fish shell like syntax highlighting for zsh",
+      "license": "See /usr/share/doc/zsh-syntax-highlighting/copyright",
+      "license_path": "usr/share/doc/zsh-syntax-highlighting/copyright",
+      "name": "zsh-syntax-highlighting",
+      "url": "https://github.com/zsh-users/zsh-syntax-highlighting/",
+      "version": "0.8.0-2"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "neowofetch"
+      ],
+      "debian_version": "1.99.0-1.1",
+      "dependencies": [],
+      "description": "Shows Linux System Information with Distribution Logo",
+      "license": "See /usr/share/doc/neowofetch/copyright",
+      "license_path": "usr/share/doc/neowofetch/copyright",
+      "name": "neowofetch",
+      "url": "https://github.com/hykilpikonna/hyfetch",
+      "version": "1.99.0-1.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "cpufetch"
+      ],
+      "debian_version": "1.06-2",
+      "dependencies": [],
+      "description": "Simple yet fancy CPU architecture fetching tool",
+      "license": "See /usr/share/doc/cpufetch/copyright",
+      "license_path": "usr/share/doc/cpufetch/copyright",
+      "name": "cpufetch",
+      "url": "https://github.com/Dr-Noob/cpufetch",
+      "version": "1.06-2"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "screenfetch"
+      ],
+      "debian_version": "3.9.1+20210523-2",
+      "dependencies": [],
+      "description": "Bash Screenshot Information Tool",
+      "license": "See /usr/share/doc/screenfetch/copyright",
+      "license_path": "usr/share/doc/screenfetch/copyright",
+      "name": "screenfetch",
+      "url": "https://github.com/KittyKatt/screenFetch",
+      "version": "3.9.1+20210523-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "htop"
+      ],
+      "debian_version": "3.4.1-5",
+      "dependencies": [],
+      "description": "interactive processes viewer",
+      "license": "See /usr/share/doc/htop/copyright",
+      "license_path": "usr/share/doc/htop/copyright",
+      "name": "htop",
+      "url": "https://htop.dev/",
+      "version": "3.4.1-5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "btop"
+      ],
+      "debian_version": "1.3.2-0.1",
+      "dependencies": [],
+      "description": "Modern and colorful command line resource monitor that shows usage and stats",
+      "license": "See /usr/share/doc/btop/copyright",
+      "license_path": "usr/share/doc/btop/copyright",
+      "name": "btop",
+      "url": "https://github.com/aristocratos/btop",
+      "version": "1.3.2-0.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libncurses6"
+      ],
+      "debian_version": "6.5+20250216-2",
+      "dependencies": [],
+      "description": "Narrow-character ncurses compatibility library for CLI tools",
+      "license": "See /usr/share/doc/ncurses-base/copyright",
+      "license_path": "usr/share/doc/ncurses-base/copyright",
+      "license_source_package": "ncurses-base",
+      "license_source_path": "usr/share/doc/ncurses-base/copyright",
+      "name": "ncurses-compat-libs",
+      "url": "https://invisible-island.net/ncurses/",
+      "version": "6.5+20250216-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "nmon"
+      ],
+      "debian_version": "16q+debian-1",
+      "dependencies": [
+        "ncurses-compat-libs"
+      ],
+      "description": "performance monitoring tool for Linux",
+      "license": "See /usr/share/doc/nmon/copyright",
+      "license_path": "usr/share/doc/nmon/copyright",
+      "name": "nmon",
+      "url": "http://nmon.sourceforge.net",
+      "version": "16q+debian-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libnl-3-200",
+        "libnl-genl-3-200",
+        "libnl-route-3-200"
+      ],
+      "debian_version": "3.7.0-2",
+      "dependencies": [],
+      "description": "Netlink runtime libraries for wireless and network tools",
+      "license": "See /usr/share/doc/libnl-3-200/copyright",
+      "license_path": "usr/share/doc/libnl-3-200/copyright",
+      "name": "libnl-libs",
+      "url": "https://www.infradead.org/~tgr/libnl/",
+      "version": "3.7.0-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libconfuse2",
+        "libconfuse-common"
+      ],
+      "debian_version": "3.7.0-2",
+      "dependencies": [],
+      "description": "Runtime libraries required by bmon and related network monitors",
+      "license": "Multiple; see bundled copyright notices",
+      "license_path": "usr/share/doc/libconfuse2/copyright",
+      "name": "bmon-runtime-libs",
+      "url": "https://github.com/tgraf/libnl",
+      "version": "3.7.0-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "bmon"
+      ],
+      "debian_version": "1:4.0-10",
+      "dependencies": [
+        "bmon-runtime-libs",
+        "libnl-libs"
+      ],
+      "description": "portable bandwidth monitor and rate estimator",
+      "license": "See /usr/share/doc/bmon/copyright",
+      "license_path": "usr/share/doc/bmon/copyright",
+      "name": "bmon",
+      "url": "http://www.infradead.org/~tgr/bmon/",
+      "version": "4.0-10"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libpcap0.8t64"
+      ],
+      "debian_version": "1.10.5-2",
+      "dependencies": [],
+      "description": "Packet capture runtime library used by network tools",
+      "license": "See /usr/share/doc/libpcap0.8t64/copyright",
+      "license_path": "usr/share/doc/libpcap0.8t64/copyright",
+      "name": "libpcap-libs",
+      "url": "https://www.tcpdump.org/",
+      "version": "1.10.5-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "iftop"
+      ],
+      "debian_version": "1.0~pre4-9+b1",
+      "dependencies": [
+        "libpcap-libs"
+      ],
+      "description": "displays bandwidth usage information on an network interface",
+      "license": "See /usr/share/doc/iftop/copyright",
+      "license_path": "usr/share/doc/iftop/copyright",
+      "name": "iftop",
+      "url": "http://www.ex-parrot.com/~pdw/iftop/",
+      "version": "1.0.pre4-9+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "nethogs"
+      ],
+      "debian_version": "0.8.8-1",
+      "dependencies": [],
+      "description": "Net top tool grouping bandwidth per process",
+      "license": "See /usr/share/doc/nethogs/copyright",
+      "license_path": "usr/share/doc/nethogs/copyright",
+      "name": "nethogs",
+      "url": "https://github.com/raboof/nethogs",
+      "version": "0.8.8-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "iotop-c"
+      ],
+      "debian_version": "1.30-1",
+      "dependencies": [],
+      "description": "simple top-like I/O monitor (implemented in C)",
+      "license": "See /usr/share/doc/iotop-c/copyright",
+      "license_path": "usr/share/doc/iotop-c/copyright",
+      "name": "iotop-c",
+      "url": "https://github.com/Tomas-M/iotop",
+      "version": "1.30-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "sysstat"
+      ],
+      "debian_version": "12.7.5-2",
+      "dependencies": [],
+      "description": "system performance tools for Linux",
+      "license": "See /usr/share/doc/sysstat/copyright",
+      "license_path": "usr/share/doc/sysstat/copyright",
+      "name": "sysstat",
+      "url": "https://sysstat.github.io/",
+      "version": "12.7.5-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ncdu"
+      ],
+      "debian_version": "1.22-1",
+      "dependencies": [],
+      "description": "ncurses disk usage viewer",
+      "license": "See /usr/share/doc/ncdu/copyright",
+      "license_path": "usr/share/doc/ncdu/copyright",
+      "name": "ncdu",
+      "url": "https://dev.yorhel.nl/ncdu/",
+      "version": "1.22-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "duf"
+      ],
+      "debian_version": "0.8.1-2+b9",
+      "dependencies": [],
+      "description": "Disk Usage/Free Utility",
+      "license": "See /usr/share/doc/duf/copyright",
+      "license_path": "usr/share/doc/duf/copyright",
+      "name": "duf",
+      "url": "https://github.com/muesli/duf",
+      "version": "0.8.1-2+b9"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "gdu"
+      ],
+      "debian_version": "5.25.0-1+b8",
+      "dependencies": [],
+      "description": "Pretty fast disk usage analyzer",
+      "license": "See /usr/share/doc/gdu/copyright",
+      "license_path": "usr/share/doc/gdu/copyright",
+      "name": "gdu",
+      "url": "https://github.com/dundee/gdu",
+      "version": "5.25.0-1+b8"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "tree"
+      ],
+      "debian_version": "2.2.1-1",
+      "dependencies": [],
+      "description": "displays an indented directory tree, in color",
+      "license": "See /usr/share/doc/tree/copyright",
+      "license_path": "usr/share/doc/tree/copyright",
+      "name": "tree",
+      "url": "http://oldmanprogrammer.net/source.php?dir=projects/tree",
+      "version": "2.2.1-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "nnn"
+      ],
+      "debian_version": "5.0-1",
+      "dependencies": [],
+      "description": "Free, fast, friendly file manager",
+      "license": "See /usr/share/doc/nnn/copyright",
+      "license_path": "usr/share/doc/nnn/copyright",
+      "name": "nnn",
+      "url": "https://github.com/jarun/nnn",
+      "version": "5.0-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "vifm"
+      ],
+      "debian_version": "0.14-3",
+      "dependencies": [],
+      "description": "Flexible vi-like file manager using ncurses",
+      "license": "See /usr/share/doc/vifm/copyright",
+      "license_path": "usr/share/doc/vifm/copyright",
+      "name": "vifm",
+      "url": "https://vifm.info/",
+      "version": "0.14-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgpm2",
+        "libssh2-1t64"
+      ],
+      "debian_version": "1.11.1-1+deb13u2",
+      "dependencies": [],
+      "description": "Runtime libraries required by midnight commander",
+      "license": "See /usr/share/doc/libgpm2/copyright",
+      "license_path": "usr/share/doc/libgpm2/copyright",
+      "name": "mc-runtime-libs",
+      "url": "https://midnight-commander.org/",
+      "version": "1.11.1-1+deb13u2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mc",
+        "mc-data"
+      ],
+      "debian_version": "3:4.8.33-1+deb13u1",
+      "dependencies": [
+        "mc-runtime-libs"
+      ],
+      "description": "Midnight Commander - a powerful file manager",
+      "license": "See /usr/share/doc/mc/copyright",
+      "license_path": "usr/share/doc/mc/copyright",
+      "name": "mc",
+      "url": "https://www.midnight-commander.org",
+      "version": "4.8.33-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "lf"
+      ],
+      "debian_version": "34+ds-2+b1",
+      "dependencies": [],
+      "description": "terminal file manager written in Go",
+      "license": "See /usr/share/doc/lf/copyright",
+      "license_path": "usr/share/doc/lf/copyright",
+      "name": "lf",
+      "url": "https://github.com/gokcehan/lf",
+      "version": "34+ds-2+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgit2-1.9",
+        "libhttp-parser2.9",
+        "libmbedcrypto16",
+        "libmbedtls21",
+        "libmbedx509-7"
+      ],
+      "debian_version": "1.9.0+ds-2+deb13u1",
+      "dependencies": [],
+      "description": "Git and TLS runtime libraries required by broot",
+      "license": "See /usr/share/doc/libgit2-1.9/copyright",
+      "license_path": "usr/share/doc/libgit2-1.9/copyright",
+      "name": "broot-runtime-libs",
+      "url": "https://github.com/libgit2/libgit2",
+      "version": "1.9.0+ds-2+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "broot"
+      ],
+      "debian_version": "1.46.3-2",
+      "dependencies": [
+        "broot-runtime-libs"
+      ],
+      "description": "tree view, file manager, configurable launcher",
+      "license": "See /usr/share/doc/broot/copyright",
+      "license_path": "usr/share/doc/broot/copyright",
+      "name": "broot",
+      "url": "https://dystroy.org/broot",
+      "version": "1.46.3-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fd-find"
+      ],
+      "debian_version": "10.2.0-1+b5",
+      "dependencies": [],
+      "description": "Simple, fast and user-friendly alternative to find",
+      "license": "See /usr/share/doc/fd-find/copyright",
+      "license_path": "usr/share/doc/fd-find/copyright",
+      "name": "fd",
+      "symlinks": [
+        [
+          "usr/bin/fd",
+          "fdfind"
+        ]
+      ],
+      "url": "https://github.com/sharkdp/fd",
+      "version": "10.2.0-1+b5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ripgrep"
+      ],
+      "debian_version": "14.1.1-1+b4",
+      "dependencies": [],
+      "description": "Recursively searches directories for a regex pattern",
+      "license": "See /usr/share/doc/ripgrep/copyright",
+      "license_path": "usr/share/doc/ripgrep/copyright",
+      "name": "ripgrep",
+      "url": "https://github.com/BurntSushi/ripgrep",
+      "version": "14.1.1-1+b4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fzf"
+      ],
+      "debian_version": "0.60.3-1+b2",
+      "dependencies": [],
+      "description": "general-purpose command-line fuzzy finder",
+      "license": "See /usr/share/doc/fzf/copyright",
+      "license_path": "usr/share/doc/fzf/copyright",
+      "name": "fzf",
+      "url": "https://github.com/junegunn/fzf",
+      "version": "0.60.3-1+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "eza"
+      ],
+      "debian_version": "0.21.0-1+b1",
+      "dependencies": [],
+      "description": "Modern replacement for ls",
+      "license": "See /usr/share/doc/eza/copyright",
+      "license_path": "usr/share/doc/eza/copyright",
+      "name": "eza",
+      "url": "https://github.com/eza-community/eza",
+      "version": "0.21.0-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "bat"
+      ],
+      "debian_version": "0.25.0-2+b2",
+      "dependencies": [],
+      "description": "cat(1) clone with syntax highlighting and git integration",
+      "license": "See /usr/share/doc/bat/copyright",
+      "license_path": "usr/share/doc/bat/copyright",
+      "name": "bat",
+      "url": "https://github.com/sharkdp/bat",
+      "version": "0.25.0-2+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "zoxide"
+      ],
+      "debian_version": "0.9.7-1+b1",
+      "dependencies": [],
+      "description": "Smarter cd command for your terminal",
+      "license": "See /usr/share/doc/zoxide/copyright",
+      "license_path": "usr/share/doc/zoxide/copyright",
+      "name": "zoxide",
+      "url": "https://github.com/ajeetdsouza/zoxide",
+      "version": "0.9.7-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "starship"
+      ],
+      "debian_version": "1.22.1-5",
+      "dependencies": [],
+      "description": "fast and customizable shell prompt",
+      "license": "See /usr/share/doc/starship/copyright",
+      "license_path": "usr/share/doc/starship/copyright",
+      "name": "starship",
+      "url": "https://starship.rs",
+      "version": "1.22.1-5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "procs"
+      ],
+      "debian_version": "0.14.10-2",
+      "dependencies": [],
+      "description": "modern replacement for ps",
+      "license": "See /usr/share/doc/procs/copyright",
+      "license_path": "usr/share/doc/procs/copyright",
+      "name": "procs",
+      "url": "https://github.com/dalance/procs",
+      "version": "0.14.10-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "hexyl"
+      ],
+      "debian_version": "0.8.0-2+b13",
+      "dependencies": [],
+      "description": "Command-line hex viewer with colored output",
+      "license": "See /usr/share/doc/hexyl/copyright",
+      "license_path": "usr/share/doc/hexyl/copyright",
+      "name": "hexyl",
+      "url": "https://github.com/sharkdp/hexyl",
+      "version": "0.8.0-2+b13"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "tealdeer"
+      ],
+      "debian_version": "1.7.2-1+deb13u1",
+      "dependencies": [],
+      "description": "simplified, example based and community-driven man pages",
+      "license": "See /usr/share/doc/tealdeer/copyright",
+      "license_path": "usr/share/doc/tealdeer/copyright",
+      "name": "tealdeer",
+      "url": "https://github.com/tealdeer-rs/tealdeer/",
+      "version": "1.7.2-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libtermkey1",
+        "libunibilium4"
+      ],
+      "debian_version": "0.22-2+b1",
+      "dependencies": [],
+      "description": "Terminal input and capability runtime libraries",
+      "license": "See /usr/share/doc/libtermkey1/copyright",
+      "license_path": "usr/share/doc/libtermkey1/copyright",
+      "name": "terminal-runtime-libs",
+      "url": "https://github.com/rockorager/libtermkey",
+      "version": "0.22-2+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libluajit-5.1-2",
+        "libluajit-5.1-common",
+        "libmsgpack-c2",
+        "libtree-sitter0.22",
+        "libvterm0",
+        "lua-lpeg",
+        "lua-luv"
+      ],
+      "debian_version": "0.10.4-8",
+      "dependencies": [
+        "terminal-runtime-libs"
+      ],
+      "description": "Runtime libraries required by the neovim package",
+      "license": "Multiple; see bundled copyright notices",
+      "license_path": "usr/share/doc/libluajit-5.1-2/copyright",
+      "name": "neovim-runtime-libs",
+      "url": "https://neovim.io/",
+      "version": "0.10.4-8"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "neovim",
+        "neovim-runtime"
+      ],
+      "debian_version": "0.10.4-8",
+      "dependencies": [
+        "neovim-runtime-libs"
+      ],
+      "description": "heavily refactored vim fork",
+      "license": "See /usr/share/doc/neovim/copyright",
+      "license_path": "usr/share/doc/neovim/copyright",
+      "name": "neovim",
+      "url": "https://neovim.io/",
+      "version": "0.10.4-8"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "micro"
+      ],
+      "debian_version": "2.0.14-1+b6",
+      "dependencies": [],
+      "description": "modern and intuitive terminal-based text editor",
+      "license": "See /usr/share/doc/micro/copyright",
+      "license_path": "usr/share/doc/micro/copyright",
+      "name": "micro",
+      "url": "https://micro-editor.github.io",
+      "version": "2.0.14-1+b6"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "joe"
+      ],
+      "debian_version": "4.6-2",
+      "dependencies": [],
+      "description": "user friendly full screen text editor",
+      "license": "See /usr/share/doc/joe/copyright",
+      "license_path": "usr/share/doc/joe/copyright",
+      "name": "joe",
+      "url": "http://joe-editor.sourceforge.net/",
+      "version": "4.6-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "most"
+      ],
+      "debian_version": "5.2.0-1.1",
+      "dependencies": [],
+      "description": "Pager program similar to more and less",
+      "license": "See /usr/share/doc/most/copyright",
+      "license_path": "usr/share/doc/most/copyright",
+      "name": "most",
+      "url": "https://packages.debian.org/trixie/most",
+      "version": "5.2.0-1.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "liblua5.4-0"
+      ],
+      "debian_version": "5.4.7-1+b2",
+      "dependencies": [],
+      "description": "Lua 5.4 runtime library",
+      "license": "See /usr/share/doc/liblua5.4-0/copyright",
+      "license_path": "usr/share/doc/liblua5.4-0/copyright",
+      "name": "lua54-libs",
+      "url": "https://www.lua.org/",
+      "version": "5.4.7-1+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libselinux1",
+        "libtre5"
+      ],
+      "debian_version": "5.4.7-1+b2",
+      "dependencies": [
+        "terminal-runtime-libs",
+        "lua54-libs"
+      ],
+      "description": "Runtime libraries required by the vis editor",
+      "license": "See /usr/share/doc/libselinux1/copyright",
+      "license_path": "usr/share/doc/libselinux1/copyright",
+      "name": "vis-runtime-libs",
+      "url": "https://github.com/martanne/vis",
+      "version": "5.4.7-1+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "vis"
+      ],
+      "debian_version": "0.9-1",
+      "dependencies": [
+        "vis-runtime-libs"
+      ],
+      "description": "Modern, legacy free, simple yet efficient vim-like editor",
+      "license": "See /usr/share/doc/vis/copyright",
+      "license_path": "usr/share/doc/vis/copyright",
+      "name": "vis",
+      "url": "https://github.com/martanne/vis",
+      "version": "0.9-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "kakoune"
+      ],
+      "debian_version": "2024.05.18-2",
+      "dependencies": [],
+      "description": "Vim-inspired, selection-oriented code editor",
+      "license": "See /usr/share/doc/kakoune/copyright",
+      "license_path": "usr/share/doc/kakoune/copyright",
+      "name": "kakoune",
+      "url": "http://kakoune.org/",
+      "version": "2024.05.18-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ne"
+      ],
+      "debian_version": "3.3.3-1",
+      "dependencies": [],
+      "description": "easy-to-use and powerful text editor",
+      "license": "See /usr/share/doc/ne/copyright",
+      "license_path": "usr/share/doc/ne/copyright",
+      "name": "ne",
+      "url": "https://ne.di.unimi.it/",
+      "version": "3.3.3-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mg"
+      ],
+      "debian_version": "20240709-1",
+      "dependencies": [],
+      "description": "microscopic GNU Emacs-style editor",
+      "license": "See /usr/share/doc/mg/copyright",
+      "license_path": "usr/share/doc/mg/copyright",
+      "name": "mg",
+      "url": "https://homepage.boetes.org/software/mg/",
+      "version": "20240709-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libonig5"
+      ],
+      "debian_version": "6.9.9-1+b1",
+      "dependencies": [],
+      "description": "Oniguruma regular expression runtime library",
+      "license": "See /usr/share/doc/libonig5/copyright",
+      "license_path": "usr/share/doc/libonig5/copyright",
+      "name": "oniguruma-libs",
+      "url": "https://github.com/kkos/oniguruma",
+      "version": "6.9.9-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "jq",
+        "libjq1"
+      ],
+      "debian_version": "1.7.1-6+deb13u3",
+      "dependencies": [
+        "oniguruma-libs"
+      ],
+      "description": "lightweight and flexible command-line JSON processor",
+      "license": "See /usr/share/doc/jq/copyright",
+      "license_path": "usr/share/doc/jq/copyright",
+      "name": "jq",
+      "url": "https://jqlang.github.io/jq",
+      "version": "1.7.1-6+deb13u3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "jo"
+      ],
+      "debian_version": "1.9-2",
+      "dependencies": [],
+      "description": "command-line processor to output JSON from a shell",
+      "license": "See /usr/share/doc/jo/copyright",
+      "license_path": "usr/share/doc/jo/copyright",
+      "name": "jo",
+      "url": "https://github.com/jpmens/jo",
+      "version": "1.9-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "dasel"
+      ],
+      "debian_version": "2.8.1-1",
+      "dependencies": [],
+      "description": "Query, update and convert data structures from the command line (program)",
+      "license": "See /usr/share/doc/dasel/copyright",
+      "license_path": "usr/share/doc/dasel/copyright",
+      "name": "dasel",
+      "url": "https://github.com/tomwright/dasel",
+      "version": "2.8.1-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "miller"
+      ],
+      "debian_version": "6.13.0-1",
+      "dependencies": [],
+      "description": "name-indexed data processing tool",
+      "license": "See /usr/share/doc/miller/copyright",
+      "license_path": "usr/share/doc/miller/copyright",
+      "name": "miller",
+      "url": "https://github.com/johnkerl/miller",
+      "version": "6.13.0-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libxml2",
+        "libxslt1.1"
+      ],
+      "debian_version": "2.12.7+dfsg+really2.9.14-2.1+deb13u3",
+      "dependencies": [],
+      "description": "XML and XSLT runtime libraries for command-line tools",
+      "license": "Multiple; see bundled copyright notices",
+      "license_path": "usr/share/doc/libxml2/copyright",
+      "name": "xml-runtime-libs",
+      "url": "https://gitlab.gnome.org/GNOME/libxml2",
+      "version": "2.12.7+dfsg+really2.9.14-2.1+deb13u3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xmlstarlet"
+      ],
+      "debian_version": "1.6.1-4",
+      "dependencies": [
+        "xml-runtime-libs"
+      ],
+      "description": "command line XML toolkit",
+      "license": "See /usr/share/doc/xmlstarlet/copyright",
+      "license_path": "usr/share/doc/xmlstarlet/copyright",
+      "name": "xmlstarlet",
+      "url": "http://xmlstar.sourceforge.net/",
+      "version": "1.6.1-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libcares2"
+      ],
+      "debian_version": "1.34.5-1+deb13u1",
+      "dependencies": [],
+      "description": "Asynchronous DNS resolver runtime library",
+      "license": "See /usr/share/doc/libcares2/copyright",
+      "license_path": "usr/share/doc/libcares2/copyright",
+      "name": "c-ares-libs",
+      "url": "https://c-ares.org/",
+      "version": "1.34.5-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "aria2",
+        "libaria2-0"
+      ],
+      "debian_version": "1.37.0+debian-3",
+      "dependencies": [
+        "c-ares-libs"
+      ],
+      "description": "High speed download utility",
+      "license": "See /usr/share/doc/aria2/copyright",
+      "license_path": "usr/share/doc/aria2/copyright",
+      "name": "aria2",
+      "url": "https://aria2.github.io/",
+      "version": "1.37.0+debian-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libblas3",
+        "liblinear4"
+      ],
+      "debian_version": "2.3.0+dfsg-5+b2",
+      "dependencies": [],
+      "description": "Linear classifier and BLAS runtime libraries for nmap",
+      "license": "See /usr/share/doc/liblinear4/copyright",
+      "license_path": "usr/share/doc/liblinear4/copyright",
+      "name": "nmap-runtime-libs",
+      "url": "https://nmap.org/",
+      "version": "2.3.0+dfsg-5+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "nmap",
+        "nmap-common"
+      ],
+      "debian_version": "7.95+dfsg-3",
+      "dependencies": [
+        "nmap-runtime-libs",
+        "lua54-libs"
+      ],
+      "description": "The Network Mapper",
+      "license": "See /usr/share/doc/nmap/copyright",
+      "license_path": "usr/share/doc/nmap/copyright",
+      "name": "nmap",
+      "url": "https://nmap.org/",
+      "version": "7.95+dfsg-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "tcpdump"
+      ],
+      "debian_version": "4.99.5-2",
+      "dependencies": [
+        "libpcap-libs"
+      ],
+      "description": "command-line network traffic analyzer",
+      "license": "See /usr/share/doc/tcpdump/copyright",
+      "license_path": "usr/share/doc/tcpdump/copyright",
+      "name": "tcpdump",
+      "url": "https://www.tcpdump.org/",
+      "version": "4.99.5-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libwrap0"
+      ],
+      "debian_version": "7.6.q-36",
+      "dependencies": [],
+      "description": "TCP wrappers compatibility runtime library",
+      "license": "See /usr/share/doc/libwrap0/copyright",
+      "license_path": "usr/share/doc/libwrap0/copyright",
+      "name": "libwrap-libs",
+      "url": "https://ftp.porcupine.org/pub/security/index.html",
+      "version": "7.6.q-36"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "socat"
+      ],
+      "debian_version": "1.8.0.3-1+deb13u1",
+      "dependencies": [
+        "libwrap-libs"
+      ],
+      "description": "multipurpose relay for bidirectional data transfer",
+      "license": "See /usr/share/doc/socat/copyright",
+      "license_path": "usr/share/doc/socat/copyright",
+      "name": "socat",
+      "url": "https://www.dest-unreach.org/socat/",
+      "version": "1.8.0.3-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mtr-tiny"
+      ],
+      "debian_version": "0.95-1.1+b1",
+      "dependencies": [],
+      "description": "Full screen ncurses traceroute tool",
+      "license": "See /usr/share/doc/mtr-tiny/copyright",
+      "license_path": "usr/share/doc/mtr-tiny/copyright",
+      "name": "mtr",
+      "url": "https://www.bitwizard.nl/mtr/",
+      "version": "0.95-1.1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ethtool"
+      ],
+      "debian_version": "1:6.14.2-1",
+      "dependencies": [],
+      "description": "display or change Ethernet device settings",
+      "license": "See /usr/share/doc/ethtool/copyright",
+      "license_path": "usr/share/doc/ethtool/copyright",
+      "name": "ethtool",
+      "url": "https://www.kernel.org/pub/software/network/ethtool/",
+      "version": "6.14.2-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "iw"
+      ],
+      "debian_version": "6.9-1",
+      "dependencies": [
+        "libnl-libs"
+      ],
+      "description": "tool for configuring Linux wireless devices",
+      "license": "See /usr/share/doc/iw/copyright",
+      "license_path": "usr/share/doc/iw/copyright",
+      "name": "iw",
+      "url": "https://wireless.wiki.kernel.org/en/users/documentation/iw",
+      "version": "6.9-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "lsof",
+        "liblsof0"
+      ],
+      "debian_version": "4.99.4+dfsg-2",
+      "dependencies": [],
+      "description": "utility to list open files",
+      "license": "See /usr/share/doc/lsof/copyright",
+      "license_path": "usr/share/doc/lsof/copyright",
+      "name": "lsof",
+      "url": "https://github.com/lsof-org/lsof",
+      "version": "4.99.4+dfsg-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "strace"
+      ],
+      "debian_version": "6.13+ds-1",
+      "dependencies": [],
+      "description": "System call tracer",
+      "license": "See /usr/share/doc/strace/copyright",
+      "license_path": "usr/share/doc/strace/copyright",
+      "name": "strace",
+      "url": "https://strace.io",
+      "version": "6.13+ds-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ltrace"
+      ],
+      "debian_version": "0.7.91~git20230705.8eabf68-4+b1",
+      "dependencies": [],
+      "description": "Tracks runtime library calls in dynamically linked programs",
+      "license": "See /usr/share/doc/ltrace/copyright",
+      "license_path": "usr/share/doc/ltrace/copyright",
+      "name": "ltrace",
+      "url": "https://ltrace.org/",
+      "version": "0.7.91.git20230705.8eabf68-4+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "netcat-openbsd"
+      ],
+      "debian_version": "1.229-1",
+      "dependencies": [],
+      "description": "TCP/IP swiss army knife",
+      "license": "See /usr/share/doc/netcat-openbsd/copyright",
+      "license_path": "usr/share/doc/netcat-openbsd/copyright",
+      "name": "netcat-openbsd",
+      "url": "https://packages.debian.org/trixie/netcat-openbsd",
+      "version": "1.229-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "traceroute"
+      ],
+      "debian_version": "1:2.1.6-1",
+      "dependencies": [],
+      "description": "Traces the route taken by packets over an IPv4/IPv6 network",
+      "license": "See /usr/share/doc/traceroute/copyright",
+      "license_path": "usr/share/doc/traceroute/copyright",
+      "name": "traceroute",
+      "url": "https://traceroute.sourceforge.net/",
+      "version": "2.1.6-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "whois"
+      ],
+      "debian_version": "5.6.3",
+      "dependencies": [],
+      "description": "intelligent WHOIS client",
+      "license": "See /usr/share/doc/whois/copyright",
+      "license_path": "usr/share/doc/whois/copyright",
+      "name": "whois",
+      "url": "https://packages.debian.org/trixie/whois",
+      "version": "5.6.3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libsctp1"
+      ],
+      "debian_version": "1.0.21+dfsg-1",
+      "dependencies": [],
+      "description": "Stream Control Transmission Protocol runtime library",
+      "license": "See /usr/share/doc/libsctp1/copyright",
+      "license_path": "usr/share/doc/libsctp1/copyright",
+      "name": "sctp-libs",
+      "url": "https://github.com/sctp/lksctp-tools",
+      "version": "1.0.21+dfsg-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "iperf3",
+        "libiperf0"
+      ],
+      "debian_version": "3.18-2+deb13u2",
+      "dependencies": [
+        "sctp-libs"
+      ],
+      "description": "Internet Protocol bandwidth measuring tool",
+      "license": "See /usr/share/doc/iperf3/copyright",
+      "license_path": "usr/share/doc/iperf3/copyright",
+      "name": "iperf3",
+      "url": "http://software.es.net/iperf/",
+      "version": "3.18-2+deb13u2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libedit2",
+        "libfstrm0",
+        "libjemalloc2",
+        "liblmdb0",
+        "libmaxminddb0",
+        "libprotobuf-c1",
+        "liburcu8t64"
+      ],
+      "debian_version": "9.20.11",
+      "dependencies": [],
+      "description": "Runtime libraries required by DNS utilities",
+      "license": "See /usr/share/doc/libedit2/copyright",
+      "license_path": "usr/share/doc/libedit2/copyright",
+      "name": "dns-runtime-libs",
+      "url": "https://www.isc.org/bind/",
+      "version": "9.20.11"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "bind9-dnsutils",
+        "bind9-libs",
+        "bind9-host"
+      ],
+      "debian_version": "1:9.20.26-1~deb13u1",
+      "dependencies": [
+        "dns-runtime-libs"
+      ],
+      "description": "Clients provided with BIND 9",
+      "license": "See /usr/share/doc/bind9-dnsutils/copyright",
+      "license_path": "usr/share/doc/bind9-dnsutils/copyright",
+      "name": "dnsutils",
+      "url": "https://www.isc.org/downloads/bind/",
+      "version": "9.20.26-1.deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xh"
+      ],
+      "debian_version": "0.24.0-1+b1",
+      "dependencies": [],
+      "description": "Friendly and fast tool for sending HTTP requests",
+      "license": "See /usr/share/doc/xh/copyright",
+      "license_path": "usr/share/doc/xh/copyright",
+      "name": "xh",
+      "url": "https://github.com/ducaale/xh",
+      "version": "0.24.0-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "liblz1"
+      ],
+      "debian_version": "1.15-3",
+      "dependencies": [],
+      "description": "Lzip compression runtime library",
+      "license": "See /usr/share/doc/liblz1/copyright",
+      "license_path": "usr/share/doc/liblz1/copyright",
+      "name": "liblz-libs",
+      "url": "https://www.nongnu.org/lzip/",
+      "version": "1.15-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "links"
+      ],
+      "debian_version": "2.29-2+b3",
+      "dependencies": [
+        "liblz-libs"
+      ],
+      "description": "Web browser running in text mode",
+      "license": "See /usr/share/doc/links/copyright",
+      "license_path": "usr/share/doc/links/copyright",
+      "name": "links",
+      "url": "http://links.twibright.com/",
+      "version": "2.29-2+b3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "lynx",
+        "lynx-common"
+      ],
+      "debian_version": "2.9.2-1",
+      "dependencies": [],
+      "description": "classic non-graphical (text-mode) web browser",
+      "license": "See /usr/share/doc/lynx/copyright",
+      "license_path": "usr/share/doc/lynx/copyright",
+      "name": "lynx",
+      "url": "https://lynx.invisible-island.net/",
+      "version": "2.9.2-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "w3m"
+      ],
+      "debian_version": "0.5.3+git20230121-2.1",
+      "dependencies": [],
+      "description": "WWW browsable pager with excellent tables/frames support",
+      "license": "See /usr/share/doc/w3m/copyright",
+      "license_path": "usr/share/doc/w3m/copyright",
+      "name": "w3m",
+      "url": "https://tracker.debian.org/pkg/w3m",
+      "version": "0.5.3+git20230121-2.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "rclone"
+      ],
+      "debian_version": "1.60.1+dfsg-4",
+      "dependencies": [],
+      "description": "rsync for commercial cloud storage",
+      "license": "See /usr/share/doc/rclone/copyright",
+      "license_path": "usr/share/doc/rclone/copyright",
+      "name": "rclone",
+      "url": "https://github.com/rclone/rclone",
+      "version": "1.60.1+dfsg-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libprotobuf32t64",
+        "libutempter0"
+      ],
+      "debian_version": "3.21.12-11+deb13u1",
+      "dependencies": [],
+      "description": "Runtime libraries required by the mosh remote terminal client",
+      "license": "See /usr/share/doc/libprotobuf32t64/copyright",
+      "license_path": "usr/share/doc/libprotobuf32t64/copyright",
+      "name": "mosh-runtime-libs",
+      "url": "https://mosh.org/",
+      "version": "3.21.12-11+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mosh"
+      ],
+      "debian_version": "1.4.0-1+b2",
+      "dependencies": [
+        "mosh-runtime-libs"
+      ],
+      "description": "Mobile shell that supports roaming and intelligent local echo",
+      "license": "See /usr/share/doc/mosh/copyright",
+      "license_path": "usr/share/doc/mosh/copyright",
+      "name": "mosh",
+      "url": "https://mosh.org",
+      "version": "1.4.0-1+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "iptraf-ng"
+      ],
+      "debian_version": "1:1.2.1-2",
+      "dependencies": [],
+      "description": "Next Generation Interactive Colorful IP LAN Monitor",
+      "license": "See /usr/share/doc/iptraf-ng/copyright",
+      "license_path": "usr/share/doc/iptraf-ng/copyright",
+      "name": "iptraf-ng",
+      "url": "https://github.com/iptraf-ng/iptraf-ng",
+      "version": "1.2.1-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "nload"
+      ],
+      "debian_version": "0.7.4-2+b1",
+      "dependencies": [],
+      "description": "realtime console network usage monitor",
+      "license": "See /usr/share/doc/nload/copyright",
+      "license_path": "usr/share/doc/nload/copyright",
+      "name": "nload",
+      "url": "http://www.roland-riegel.de/nload/",
+      "version": "0.7.4-2+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "vnstat"
+      ],
+      "debian_version": "2.13-1",
+      "dependencies": [],
+      "description": "console-based network traffic monitor",
+      "license": "See /usr/share/doc/vnstat/copyright",
+      "license_path": "usr/share/doc/vnstat/copyright",
+      "name": "vnstat",
+      "url": "https://humdi.net/vnstat/",
+      "version": "2.13-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "arp-scan"
+      ],
+      "debian_version": "1.10.0-2+b1",
+      "dependencies": [],
+      "description": "arp scanning and fingerprinting tool",
+      "license": "See /usr/share/doc/arp-scan/copyright",
+      "license_path": "usr/share/doc/arp-scan/copyright",
+      "name": "arp-scan",
+      "url": "https://github.com/royhills/arp-scan",
+      "version": "1.10.0-2+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fping"
+      ],
+      "debian_version": "5.1-1",
+      "dependencies": [],
+      "description": "sends ICMP ECHO_REQUEST packets to network hosts",
+      "license": "See /usr/share/doc/fping/copyright",
+      "license_path": "usr/share/doc/fping/copyright",
+      "name": "fping",
+      "url": "https://www.fping.org/",
+      "version": "5.1-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "netdiscover"
+      ],
+      "debian_version": "0.11-3",
+      "dependencies": [],
+      "description": "active/passive network address scanner using ARP requests",
+      "license": "See /usr/share/doc/netdiscover/copyright",
+      "license_path": "usr/share/doc/netdiscover/copyright",
+      "name": "netdiscover",
+      "url": "https://github.com/netdiscover-scanner/netdiscover",
+      "version": "0.11-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "gh"
+      ],
+      "debian_version": "2.46.0-3",
+      "dependencies": [],
+      "description": "GitHub CLI, GitHub\u2019s official command line tool",
+      "license": "See /usr/share/doc/gh/copyright",
+      "license_path": "usr/share/doc/gh/copyright",
+      "name": "gh",
+      "url": "https://cli.github.com/",
+      "version": "2.46.0-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "tig"
+      ],
+      "debian_version": "2.5.8-1+b1",
+      "dependencies": [],
+      "description": "ncurses-based text-mode interface for Git",
+      "license": "See /usr/share/doc/tig/copyright",
+      "license_path": "usr/share/doc/tig/copyright",
+      "name": "tig",
+      "url": "https://jonas.github.io/tig/",
+      "version": "2.5.8-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "lazygit"
+      ],
+      "debian_version": "0.50.0+ds1-1+b2",
+      "dependencies": [],
+      "description": "Simple terminal UI for git commands",
+      "license": "See /usr/share/doc/lazygit/copyright",
+      "license_path": "usr/share/doc/lazygit/copyright",
+      "name": "lazygit",
+      "url": "https://github.com/jesseduffield/lazygit",
+      "version": "0.50.0+ds1-1+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "shellcheck"
+      ],
+      "debian_version": "0.10.0-1",
+      "dependencies": [],
+      "description": "lint tool for shell scripts",
+      "license": "See /usr/share/doc/shellcheck/copyright",
+      "license_path": "usr/share/doc/shellcheck/copyright",
+      "name": "shellcheck",
+      "url": "https://www.shellcheck.net/",
+      "version": "0.10.0-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "shfmt"
+      ],
+      "debian_version": "3.8.0-1+b8",
+      "dependencies": [],
+      "description": "format shell programs",
+      "license": "See /usr/share/doc/shfmt/copyright",
+      "license_path": "usr/share/doc/shfmt/copyright",
+      "name": "shfmt",
+      "url": "https://github.com/mvdan/sh",
+      "version": "3.8.0-1+b8"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libyaml-0-2"
+      ],
+      "debian_version": "0.2.5-2",
+      "dependencies": [],
+      "description": "Libyaml parser and emitter runtime library",
+      "license": "See /usr/share/doc/libyaml-0-2/copyright",
+      "license_path": "usr/share/doc/libyaml-0-2/copyright",
+      "name": "libyaml-libs",
+      "url": "https://github.com/yaml/libyaml",
+      "version": "0.2.5-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "universal-ctags"
+      ],
+      "debian_version": "5.9.20210829.0-2",
+      "dependencies": [
+        "libyaml-libs"
+      ],
+      "description": "build tag file indexes of source code definitions",
+      "license": "See /usr/share/doc/universal-ctags/copyright",
+      "license_path": "usr/share/doc/universal-ctags/copyright",
+      "name": "universal-ctags",
+      "url": "https://ctags.io/",
+      "version": "5.9.20210829.0-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "inotify-tools",
+        "libinotifytools0"
+      ],
+      "debian_version": "4.23.9.0-2+b1",
+      "dependencies": [],
+      "description": "command-line programs providing a simple interface to inotify",
+      "license": "See /usr/share/doc/inotify-tools/copyright",
+      "license_path": "usr/share/doc/inotify-tools/copyright",
+      "name": "inotify-tools",
+      "url": "https://github.com/rvoicilas/inotify-tools/wiki/",
+      "version": "4.23.9.0-2+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "entr"
+      ],
+      "debian_version": "5.7-1",
+      "dependencies": [],
+      "description": "Run arbitrary commands when files change",
+      "license": "See /usr/share/doc/entr/copyright",
+      "license_path": "usr/share/doc/entr/copyright",
+      "name": "entr",
+      "url": "https://eradman.com/entrproject/",
+      "version": "5.7-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "moreutils"
+      ],
+      "debian_version": "0.69-1",
+      "dependencies": [],
+      "description": "additional Unix utilities",
+      "license": "See /usr/share/doc/moreutils/copyright",
+      "license_path": "usr/share/doc/moreutils/copyright",
+      "name": "moreutils",
+      "url": "https://joeyh.name/code/moreutils/",
+      "version": "0.69-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "taskwarrior"
+      ],
+      "debian_version": "2.6.2+dfsg-1+b1",
+      "dependencies": [],
+      "description": "feature-rich console based todo list manager",
+      "license": "See /usr/share/doc/taskwarrior/copyright",
+      "license_path": "usr/share/doc/taskwarrior/copyright",
+      "name": "taskwarrior",
+      "url": "https://taskwarrior.org",
+      "version": "2.6.2+dfsg-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "just"
+      ],
+      "debian_version": "1.40.0-1+b1",
+      "dependencies": [],
+      "description": "Save and run project-specific commands",
+      "license": "See /usr/share/doc/just/copyright",
+      "license_path": "usr/share/doc/just/copyright",
+      "name": "just",
+      "url": "https://github.com/casey/just",
+      "version": "1.40.0-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "hyperfine"
+      ],
+      "debian_version": "1.19.0-1+b3",
+      "dependencies": [],
+      "description": "Command-line benchmarking tool",
+      "license": "See /usr/share/doc/hyperfine/copyright",
+      "license_path": "usr/share/doc/hyperfine/copyright",
+      "name": "hyperfine",
+      "url": "https://github.com/sharkdp/hyperfine",
+      "version": "1.19.0-1+b3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "7zip"
+      ],
+      "debian_version": "25.01+dfsg-1~deb13u2",
+      "dependencies": [],
+      "description": "7-Zip file archiver with a high compression ratio",
+      "license": "See /usr/share/doc/7zip/copyright",
+      "license_path": "usr/share/doc/7zip/copyright",
+      "name": "7zip",
+      "url": "https://www.7-zip.org/",
+      "version": "25.01+dfsg-1.deb13u2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "pigz"
+      ],
+      "debian_version": "2.8-1",
+      "dependencies": [],
+      "description": "Parallel Implementation of GZip",
+      "license": "See /usr/share/doc/pigz/copyright",
+      "license_path": "usr/share/doc/pigz/copyright",
+      "name": "pigz",
+      "url": "http://zlib.net/pigz/",
+      "version": "2.8-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libusb-1.0-0"
+      ],
+      "debian_version": "2:1.0.28-1",
+      "dependencies": [],
+      "description": "USB device access runtime library",
+      "license": "See /usr/share/doc/libusb-1.0-0/copyright",
+      "license_path": "usr/share/doc/libusb-1.0-0/copyright",
+      "name": "libusb-libs",
+      "url": "https://libusb.info/",
+      "version": "1.0.28-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "usbutils"
+      ],
+      "debian_version": "1:018-2",
+      "dependencies": [
+        "libusb-libs"
+      ],
+      "description": "Linux USB utilities",
+      "license": "See /usr/share/doc/usbutils/copyright",
+      "license_path": "usr/share/doc/usbutils/copyright",
+      "name": "usbutils",
+      "url": "https://github.com/gregkh/usbutils",
+      "version": "018-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "tmux"
+      ],
+      "debian_version": "3.5a-3",
+      "dependencies": [],
+      "description": "terminal multiplexer",
+      "license": "See /usr/share/doc/tmux/copyright",
+      "license_path": "usr/share/doc/tmux/copyright",
+      "name": "tmux",
+      "url": "https://github.com/tmux/tmux/wiki",
+      "version": "3.5a-3"
+    }
+  ],
+  "sources": {
+    "7zip": {
+      "architecture": "amd64",
+      "filename": "pool/main/7/7zip/7zip_25.01+dfsg-1~deb13u2_amd64.deb",
+      "sha256": "b2cb210bee3be6a10230b38b8645d71846d19364b157f44fd08e1a54cae1652f",
+      "version": "25.01+dfsg-1~deb13u2"
+    },
+    "aria2": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/aria2/aria2_1.37.0+debian-3_amd64.deb",
+      "sha256": "e8898ce04a1555165d27f34c9b6212d7087caf5efe62d875fe04bc81042e7da1",
+      "version": "1.37.0+debian-3"
+    },
+    "arp-scan": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/arp-scan/arp-scan_1.10.0-2+b1_amd64.deb",
+      "sha256": "8da50c8642063537bfd001a097d00691feba7a327273278e12b41763dc8e7b5a",
+      "version": "1.10.0-2+b1"
+    },
+    "bash-completion": {
+      "architecture": "all",
+      "filename": "pool/main/b/bash-completion/bash-completion_2.16.0-7_all.deb",
+      "sha256": "e94b49cbfeccbf620effb20f4e9968bbbe6a5acbe0a5d7140ba394249060464a",
+      "version": "1:2.16.0-7"
+    },
+    "bat": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-bat/bat_0.25.0-2+b2_amd64.deb",
+      "sha256": "c9b07d62cc707253576f2ac3da2b2f625fe4b0be4812b7aa5dd7564f045fca70",
+      "version": "0.25.0-2+b2"
+    },
+    "bind9-dnsutils": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/bind9/bind9-dnsutils_9.20.26-1~deb13u1_amd64.deb",
+      "sha256": "392dfff92c865ff149eb40dc395a48d9d297da1633b1000ac2c4efee4c725db8",
+      "version": "1:9.20.26-1~deb13u1"
+    },
+    "bind9-host": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/bind9/bind9-host_9.20.26-1~deb13u1_amd64.deb",
+      "sha256": "776f45ba445ea865d914ebd7ea8d1d9c43cc57f4471a18a7b1703522dde31f40",
+      "version": "1:9.20.26-1~deb13u1"
+    },
+    "bind9-libs": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/bind9/bind9-libs_9.20.26-1~deb13u1_amd64.deb",
+      "sha256": "989f407ea08bc6e42fd891c607f2403bc8279c58fbf5b489244328d985ef8190",
+      "version": "1:9.20.26-1~deb13u1"
+    },
+    "bmon": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/bmon/bmon_4.0-10_amd64.deb",
+      "sha256": "0414441879085adfe7741abd33b1deaf19c38435e0f59f970f08047a13998c72",
+      "version": "1:4.0-10"
+    },
+    "broot": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-broot/broot_1.46.3-2_amd64.deb",
+      "sha256": "de555478e915b8e2f73bff48dc0735d0283491588aba17fb01da41bb25b0597c",
+      "version": "1.46.3-2"
+    },
+    "btop": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/btop/btop_1.3.2-0.1_amd64.deb",
+      "sha256": "8a36a753580e57877cc6abd674e394ff395030dec7075871974e97cb9f18b626",
+      "version": "1.3.2-0.1"
+    },
+    "cpufetch": {
+      "architecture": "amd64",
+      "filename": "pool/main/c/cpufetch/cpufetch_1.06-2_amd64.deb",
+      "sha256": "453a904c85561ddb00eaef4b0096db106df518c2a8062a6539960bc5e34f349b",
+      "version": "1.06-2"
+    },
+    "dasel": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/dasel/dasel_2.8.1-1_amd64.deb",
+      "sha256": "33436fef196b7d8bcc0df6f28b78c2bd149b36b8595feeec189e52c8c1752b98",
+      "version": "2.8.1-1"
+    },
+    "duf": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/duf/duf_0.8.1-2+b9_amd64.deb",
+      "sha256": "18ab4e33dd6b8a3397ecd68b963b380a3c7292f7e3973059c93974eff86a04cb",
+      "version": "0.8.1-2+b9"
+    },
+    "elvish": {
+      "architecture": "amd64",
+      "filename": "pool/main/e/elvish/elvish_0.21.0-2+b7_amd64.deb",
+      "sha256": "223e4af58ece2d7356906911b53c57fc9687fe35ea453ade0e4602583c527458",
+      "version": "0.21.0-2+b7"
+    },
+    "entr": {
+      "architecture": "amd64",
+      "filename": "pool/main/e/entr/entr_5.7-1_amd64.deb",
+      "sha256": "363c2fb9a1a39ebc5d33c67f8f136bde056a63f398a1ad9ec88921f354127ad1",
+      "version": "5.7-1"
+    },
+    "ethtool": {
+      "architecture": "amd64",
+      "filename": "pool/main/e/ethtool/ethtool_6.14.2-1_amd64.deb",
+      "sha256": "5c592ac6e65c3863c5ba9c9b8380f913a35f39803aa89ccc59c11c5c953a46ef",
+      "version": "1:6.14.2-1"
+    },
+    "eza": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-eza/eza_0.21.0-1+b1_amd64.deb",
+      "sha256": "dc438ba185af32588fe4105d4f57795f200e8247e0238ebd3402abea4e7aa06d",
+      "version": "0.21.0-1+b1"
+    },
+    "fd-find": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-fd-find/fd-find_10.2.0-1+b5_amd64.deb",
+      "sha256": "1554c6892db7be10d4c6bdbf19f7ad4172826a1b6d01e5cc537b81d6b02db4d1",
+      "version": "10.2.0-1+b5"
+    },
+    "fish": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fish/fish_4.0.2-1_amd64.deb",
+      "sha256": "56136a4d9bee8e8cc4fc7ae43d54c82b7eb49e4f24bb1853aad92659490b3a20",
+      "version": "4.0.2-1"
+    },
+    "fish-common": {
+      "architecture": "all",
+      "filename": "pool/main/f/fish/fish-common_4.0.2-1_all.deb",
+      "sha256": "eaeaf43cd391711060db323af1fd98bd5b61589b6c15ab27fbd14d06067e5924",
+      "version": "4.0.2-1"
+    },
+    "fping": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fping/fping_5.1-1_amd64.deb",
+      "sha256": "2d28c4fd22aa078d13382b6b0dcb0b21701349043c9c7204ea82fc4b50589556",
+      "version": "5.1-1"
+    },
+    "fzf": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fzf/fzf_0.60.3-1+b2_amd64.deb",
+      "sha256": "51624b9176ab3f5cebbca7329efd74240bfa8a079b9d24953dee8d4cd352b3f5",
+      "version": "0.60.3-1+b2"
+    },
+    "gdu": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gdu/gdu_5.25.0-1+b8_amd64.deb",
+      "sha256": "dfcc795c1fa70a46f1943ba51f2aa17119b8525b7e57d80912b9bc0af3d3c762",
+      "version": "5.25.0-1+b8"
+    },
+    "gh": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gh/gh_2.46.0-3_amd64.deb",
+      "sha256": "4af2d243a11c94ade52aa2e66bb28d8a048fc05f95e2f7cb0e0ecad2343ea872",
+      "version": "2.46.0-3"
+    },
+    "hexyl": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-hexyl/hexyl_0.8.0-2+b13_amd64.deb",
+      "sha256": "ac8c7a59025422b7fe901688adcd9639184ae24b0fac37bc330ad83c90076c3b",
+      "version": "0.8.0-2+b13"
+    },
+    "htop": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/htop/htop_3.4.1-5_amd64.deb",
+      "sha256": "42725cc15e215e9286bf169fe734fbf47826dae209f319f6d0370cb950112fbf",
+      "version": "3.4.1-5"
+    },
+    "hyperfine": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-hyperfine/hyperfine_1.19.0-1+b3_amd64.deb",
+      "sha256": "7e3ddb719c3aaea3a2dc635acd5080afaacecf4258ff585d16d8c53c315fef11",
+      "version": "1.19.0-1+b3"
+    },
+    "iftop": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/iftop/iftop_1.0~pre4-9+b1_amd64.deb",
+      "sha256": "b441393aca7ec3d7cfa13c966301f5b2427bf8ee1dfb31164e5b0d3c3277b3d2",
+      "version": "1.0~pre4-9+b1"
+    },
+    "inotify-tools": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/inotify-tools/inotify-tools_4.23.9.0-2+b1_amd64.deb",
+      "sha256": "37c70606e1ac7a7d6d1ba3b13ae7e91a8c776e7cf8f2a960fc7da97950dfbf7b",
+      "version": "4.23.9.0-2+b1"
+    },
+    "iotop-c": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/iotop-c/iotop-c_1.30-1_amd64.deb",
+      "sha256": "2b6e5c28d92fc381505b09dce8f5b4dac9e5ab1b1e88f0c18ac348395f82b73b",
+      "version": "1.30-1"
+    },
+    "iperf3": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/iperf3/iperf3_3.18-2+deb13u2_amd64.deb",
+      "sha256": "0e7a5240d63aa18c2eaea35b86be2d1e81b5c4a63d778cd009c0773ad2719c4f",
+      "version": "3.18-2+deb13u2"
+    },
+    "iptraf-ng": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/iptraf-ng/iptraf-ng_1.2.1-2_amd64.deb",
+      "sha256": "a0f743498a3bf96984c15ec040c8d2b34dc4f5f9b9cffaa3cc9a4e40dd52b02d",
+      "version": "1:1.2.1-2"
+    },
+    "iw": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/iw/iw_6.9-1_amd64.deb",
+      "sha256": "61c0848fe4c98718f1f1ad7526ae4858d91f85e3139f0e723bed4bc2aa729422",
+      "version": "6.9-1"
+    },
+    "jo": {
+      "architecture": "amd64",
+      "filename": "pool/main/j/jo/jo_1.9-2_amd64.deb",
+      "sha256": "0105c64b8650fecb018b6c479bac9965e6c52b54b527c892156167a72506321f",
+      "version": "1.9-2"
+    },
+    "joe": {
+      "architecture": "amd64",
+      "filename": "pool/main/j/joe/joe_4.6-2_amd64.deb",
+      "sha256": "683c1db708d032115eb862eddcc3429935a2d08b80a544eb3f2149a578971d39",
+      "version": "4.6-2"
+    },
+    "jq": {
+      "architecture": "amd64",
+      "filename": "pool/main/j/jq/jq_1.7.1-6+deb13u3_amd64.deb",
+      "sha256": "4415dc18d4ea29d8e12d410dd8c71c567d44d8ec5e24afaed3aa7a149b063643",
+      "version": "1.7.1-6+deb13u3"
+    },
+    "just": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-just/just_1.40.0-1+b1_amd64.deb",
+      "sha256": "0810dc8a5e0f63086644b78d2a6e15ae6f01eb0397a31f9571ed0486f7915dd0",
+      "version": "1.40.0-1+b1"
+    },
+    "kakoune": {
+      "architecture": "amd64",
+      "filename": "pool/main/k/kakoune/kakoune_2024.05.18-2_amd64.deb",
+      "sha256": "4680a2b3c1480ce94a41bc4f8b153035e1b45d83381058a6812150890579af8a",
+      "version": "2024.05.18-2"
+    },
+    "lazygit": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lazygit/lazygit_0.50.0+ds1-1+b2_amd64.deb",
+      "sha256": "5387b173c0e17ff7ed61a56710485df740322320e3f0ee9955f5823264ceed33",
+      "version": "0.50.0+ds1-1+b2"
+    },
+    "lf": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lf/lf_34+ds-2+b1_amd64.deb",
+      "sha256": "f82bb0f45be681611027a6f842b49a1b950738ea8c44bc5c7c38a2547ec64df0",
+      "version": "34+ds-2+b1"
+    },
+    "libaria2-0": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/aria2/libaria2-0_1.37.0+debian-3_amd64.deb",
+      "sha256": "fd1b3e6483befa637b2303cb8be992386d6d4238916cd20bf06d6c7589ac6680",
+      "version": "1.37.0+debian-3"
+    },
+    "libblas3": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lapack/libblas3_3.12.1-6_amd64.deb",
+      "sha256": "4af245ecafc30bfa1de9d20af02fec96654ead2f06b1dac40cb03fc9eb0bfbe6",
+      "version": "3.12.1-6"
+    },
+    "libcares2": {
+      "architecture": "amd64",
+      "filename": "pool/main/c/c-ares/libcares2_1.34.5-1+deb13u1_amd64.deb",
+      "sha256": "5034a2c34ea4730797df1a5f6a0ec142d7d09ce6923c06e167f08ad2e69a4218",
+      "version": "1.34.5-1+deb13u1"
+    },
+    "libconfuse-common": {
+      "architecture": "all",
+      "filename": "pool/main/libc/libconfuse/libconfuse-common_3.3-4_all.deb",
+      "sha256": "f8b4315829321c0026df73c10f86f5954f54fb2cc05236b4f8f729f9c3de0a2c",
+      "version": "3.3-4"
+    },
+    "libconfuse2": {
+      "architecture": "amd64",
+      "filename": "pool/main/libc/libconfuse/libconfuse2_3.3-4_amd64.deb",
+      "sha256": "d166a0376434d194a775ed477b200d28420c7a614b677a7a6055eccade0068b2",
+      "version": "3.3-4"
+    },
+    "libcrypt1": {
+      "architecture": "amd64",
+      "filename": "pool/main/libx/libxcrypt/libcrypt1_4.4.38-1_amd64.deb",
+      "sha256": "0ebc144d662e3197982d1bf3a7b8b35ca845e54c68811de0328b1f0d7c67585c",
+      "version": "1:4.4.38-1"
+    },
+    "libedit2": {
+      "architecture": "amd64",
+      "filename": "pool/main/libe/libedit/libedit2_3.1-20250104-1_amd64.deb",
+      "sha256": "b002ea172b9c1e34a67bc497c523c67bb74c3f0a4e98113cb083990a1f1d3bfe",
+      "version": "3.1-20250104-1"
+    },
+    "libfstrm0": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fstrm/libfstrm0_0.6.1-1+b3_amd64.deb",
+      "sha256": "e3e4ceaaa408ce08214f3f9747a0cf6ede419cb789ca3966d8e7dcc9d1daf98e",
+      "version": "0.6.1-1+b3"
+    },
+    "libgit2-1.9": {
+      "architecture": "amd64",
+      "filename": "pool/main/libg/libgit2/libgit2-1.9_1.9.0+ds-2+deb13u1_amd64.deb",
+      "sha256": "2fb4b6503fb8f143a8035077b9de99118326ac2b26565779e71c4648e01e75ee",
+      "version": "1.9.0+ds-2+deb13u1"
+    },
+    "libgpm2": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gpm/libgpm2_1.20.7-11+b2_amd64.deb",
+      "sha256": "c8779444e5bb8df39c8bce3ef7dd3d662686a9ab770dcc96bb0f4aeb2077a67c",
+      "version": "1.20.7-11+b2"
+    },
+    "libhttp-parser2.9": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/http-parser/libhttp-parser2.9_2.9.4-6+b2_amd64.deb",
+      "sha256": "eb226fd47bec216a02ca6282ab348a3515d1832c58edf1d71b2b5e7948ef3d03",
+      "version": "2.9.4-6+b2"
+    },
+    "libinotifytools0": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/inotify-tools/libinotifytools0_4.23.9.0-2+b1_amd64.deb",
+      "sha256": "c02dac0d7fb3cc14b1094897e6458a4a1ffa7cc5a4d263e26a200e71c3dbf2e0",
+      "version": "4.23.9.0-2+b1"
+    },
+    "libiperf0": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/iperf3/libiperf0_3.18-2+deb13u2_amd64.deb",
+      "sha256": "0c0e857844e346508bde0c6c28d0bb90c4aabca6ba4b37b7aec897957cdb2aad",
+      "version": "3.18-2+deb13u2"
+    },
+    "libjemalloc2": {
+      "architecture": "amd64",
+      "filename": "pool/main/j/jemalloc/libjemalloc2_5.3.0-3_amd64.deb",
+      "sha256": "e7d64919e620e8ea46960104efe1e9c977d751e5b610a5d89b0b51aeae9530d7",
+      "version": "5.3.0-3"
+    },
+    "libjq1": {
+      "architecture": "amd64",
+      "filename": "pool/main/j/jq/libjq1_1.7.1-6+deb13u3_amd64.deb",
+      "sha256": "62444043e4b8f21a5154e5b7084d85db00da509e163c52a950bb8aeb75e4012e",
+      "version": "1.7.1-6+deb13u3"
+    },
+    "liblinear4": {
+      "architecture": "amd64",
+      "filename": "pool/main/libl/liblinear/liblinear4_2.3.0+dfsg-5+b2_amd64.deb",
+      "sha256": "10a58649cab30f1671ea605372db284d1e0d67929c45568f2a6a8d52b805b643",
+      "version": "2.3.0+dfsg-5+b2"
+    },
+    "liblmdb0": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lmdb/liblmdb0_0.9.31-1+b2_amd64.deb",
+      "sha256": "97636442b412a6dff51d23ba74f0cdc12ac1edece661a16c43cba294a98cf543",
+      "version": "0.9.31-1+b2"
+    },
+    "liblsof0": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lsof/liblsof0_4.99.4+dfsg-2_amd64.deb",
+      "sha256": "9d21722d696fb8c7fd92f389ab84f0919455c77ea736c6f43d8e98b6751cca5a",
+      "version": "4.99.4+dfsg-2"
+    },
+    "liblua5.4-0": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lua5.4/liblua5.4-0_5.4.7-1+b2_amd64.deb",
+      "sha256": "3456e23667f21a5bea4f2182ec878621bf4c47fbc9819fdaad8835d6d1ee6247",
+      "version": "5.4.7-1+b2"
+    },
+    "libluajit-5.1-2": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/luajit/libluajit-5.1-2_2.1.0+openresty20250117-2_amd64.deb",
+      "sha256": "bff40b395d3036deb69e55d25ccf780e01b4e874c7738bea3e1a824be01c3f09",
+      "version": "2.1.0+openresty20250117-2"
+    },
+    "libluajit-5.1-common": {
+      "architecture": "all",
+      "filename": "pool/main/l/luajit/libluajit-5.1-common_2.1.0+openresty20250117-2_all.deb",
+      "sha256": "4e3434e50f7a5b54454217e18bd7ce0c03296d21bcb4f2e0ad8d44dbcc7b3f4f",
+      "version": "2.1.0+openresty20250117-2"
+    },
+    "liblz1": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lzlib/liblz1_1.15-3_amd64.deb",
+      "sha256": "3f011ce991fdc36ca00c03ea0a21efc1a2e7339299b8a73976c5585d7f19e197",
+      "version": "1.15-3"
+    },
+    "libmaxminddb0": {
+      "architecture": "amd64",
+      "filename": "pool/main/libm/libmaxminddb/libmaxminddb0_1.12.2-1_amd64.deb",
+      "sha256": "025e1acec95ff56c44c0cb21c4c5fc42eeae323c263900729931ea5a1b95bc21",
+      "version": "1.12.2-1"
+    },
+    "libmbedcrypto16": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mbedtls/libmbedcrypto16_3.6.6-0.1~deb13u1_amd64.deb",
+      "sha256": "b38baf2ecaca7b28b3005d34b8108ee9b17681426b20662813995e939aea6dfa",
+      "version": "3.6.6-0.1~deb13u1"
+    },
+    "libmbedtls21": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mbedtls/libmbedtls21_3.6.6-0.1~deb13u1_amd64.deb",
+      "sha256": "9e280505afa5f5aa7034e494e7466c82d8e9af2eb3bf2edf46bab0bd7b62e1ac",
+      "version": "3.6.6-0.1~deb13u1"
+    },
+    "libmbedx509-7": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mbedtls/libmbedx509-7_3.6.6-0.1~deb13u1_amd64.deb",
+      "sha256": "e0b6630efcf9eae2e05172496576bc3235be134a6bbf8da4cf3570fba65f65b8",
+      "version": "3.6.6-0.1~deb13u1"
+    },
+    "libmsgpack-c2": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/msgpack-c/libmsgpack-c2_6.0.1-3+b1_amd64.deb",
+      "sha256": "edb6db0b33e08af0713a3ce7322ffab6f9dba094b15200f875a81b3dd7225f55",
+      "version": "6.0.1-3+b1"
+    },
+    "libncurses6": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/ncurses/libncurses6_6.5+20250216-2_amd64.deb",
+      "sha256": "e00cbcc8c0826993f881f492c05f33ba8d79b5375dc5a2ab59c82e0c7b9179a9",
+      "version": "6.5+20250216-2"
+    },
+    "libnl-3-200": {
+      "architecture": "amd64",
+      "filename": "pool/main/libn/libnl3/libnl-3-200_3.7.0-2_amd64.deb",
+      "sha256": "ce5c153953016be42def7b105f37d55eae07a9608d1dfe6bcb03cc017fc384cb",
+      "version": "3.7.0-2"
+    },
+    "libnl-genl-3-200": {
+      "architecture": "amd64",
+      "filename": "pool/main/libn/libnl3/libnl-genl-3-200_3.7.0-2_amd64.deb",
+      "sha256": "8f2f81ef4c6f8636f0b0cb2ff40b3c54a497d121f49c485620ae43c94782cd94",
+      "version": "3.7.0-2"
+    },
+    "libnl-route-3-200": {
+      "architecture": "amd64",
+      "filename": "pool/main/libn/libnl3/libnl-route-3-200_3.7.0-2_amd64.deb",
+      "sha256": "1c8c95542688996cff8e954583642b10a3bd78b69954f565fda62144c2bc3897",
+      "version": "3.7.0-2"
+    },
+    "libonig5": {
+      "architecture": "amd64",
+      "filename": "pool/main/libo/libonig/libonig5_6.9.9-1+b1_amd64.deb",
+      "sha256": "3abee130696244050500bcc7870e3b4cb82ddd87149ece3fd55010c3d4e1d18c",
+      "version": "6.9.9-1+b1"
+    },
+    "libpcap0.8t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/libp/libpcap/libpcap0.8t64_1.10.5-2_amd64.deb",
+      "sha256": "6a756d536a5b0cd3ef92f19ff9f22ed80c66baadbc0fe55d599f4aa0c27d3f86",
+      "version": "1.10.5-2"
+    },
+    "libprotobuf-c1": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/protobuf-c/libprotobuf-c1_1.5.1-1_amd64.deb",
+      "sha256": "9fa7e6932f620c7155aab365ed277f04cae3e04ac80ee048fb09d1e838738d14",
+      "version": "1.5.1-1"
+    },
+    "libprotobuf32t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/protobuf/libprotobuf32t64_3.21.12-11+deb13u1_amd64.deb",
+      "sha256": "38c43ec79a043d2b2659fed321725049a7e457096a66691cf6eb0d3a1a8f0e85",
+      "version": "3.21.12-11+deb13u1"
+    },
+    "libsctp1": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lksctp-tools/libsctp1_1.0.21+dfsg-1_amd64.deb",
+      "sha256": "0a21ab1b6bcb8277ae62b20f41dc29bbbf87e8cd5899c93d29ebfa1f17a0e811",
+      "version": "1.0.21+dfsg-1"
+    },
+    "libselinux1": {
+      "architecture": "amd64",
+      "filename": "pool/main/libs/libselinux/libselinux1_3.8.1-1_amd64.deb",
+      "sha256": "68bb8d32bd8d6d7d2f5952a169db03d1484b46ae1e52abccdec42a19dccea5d5",
+      "version": "3.8.1-1"
+    },
+    "libssh2-1t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/libs/libssh2/libssh2-1t64_1.11.1-1+deb13u2_amd64.deb",
+      "sha256": "dbb1024c192d4d292b7cfa902b96076cfe81b56a5eed4fb28da36e8bf543e49a",
+      "version": "1.11.1-1+deb13u2"
+    },
+    "libtermkey1": {
+      "architecture": "amd64",
+      "filename": "pool/main/libt/libtermkey/libtermkey1_0.22-2+b1_amd64.deb",
+      "sha256": "c5f24f2535ad46f43bc93e247329cd89c6ebe5a197607115c7fb69faa9a24f5f",
+      "version": "0.22-2+b1"
+    },
+    "libtre5": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tre/libtre5_0.9.0-1_amd64.deb",
+      "sha256": "9d54ceb542d202c762e26bebe73d7b60ee5808b10a0e89164232a5782f392fc5",
+      "version": "0.9.0-1"
+    },
+    "libtree-sitter0.22": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tree-sitter/libtree-sitter0.22_0.22.6-6+b1_amd64.deb",
+      "sha256": "0a217705251b32808385c39c9bce52dc941b002101849fb87bc679f70bcd12e0",
+      "version": "0.22.6-6+b1"
+    },
+    "libunibilium4": {
+      "architecture": "amd64",
+      "filename": "pool/main/u/unibilium/libunibilium4_2.1.1-2+b1_amd64.deb",
+      "sha256": "9b591494bf02e2a7d7e1fcf0dfddb1a8dea2ff54fb850146036963def31bb95d",
+      "version": "2.1.1-2+b1"
+    },
+    "liburcu8t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/libu/liburcu/liburcu8t64_0.15.2-2_amd64.deb",
+      "sha256": "bf6d8fe515004a491947c72af8ce2c015c5f9b4e8d024b81952ee8f372d507e9",
+      "version": "0.15.2-2"
+    },
+    "libusb-1.0-0": {
+      "architecture": "amd64",
+      "filename": "pool/main/libu/libusb-1.0/libusb-1.0-0_1.0.28-1_amd64.deb",
+      "sha256": "bb6467a002915c4ac464aa1b22204907951a30e43bcb86596ebd3539e84458e9",
+      "version": "2:1.0.28-1"
+    },
+    "libutempter0": {
+      "architecture": "amd64",
+      "filename": "pool/main/libu/libutempter/libutempter0_1.2.1-4_amd64.deb",
+      "sha256": "e0b2cac30eca88d6297c8fae18dcc5890ab61bf6e9a6321a975da31daf48e79e",
+      "version": "1.2.1-4"
+    },
+    "libuv1t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/libu/libuv1/libuv1t64_1.50.0-2_amd64.deb",
+      "sha256": "5fec8035002e0c745b64d1c5b3e1dc42790d1a77574315b976cf3e4aab9ddc0a",
+      "version": "1.50.0-2"
+    },
+    "libvterm0": {
+      "architecture": "amd64",
+      "filename": "pool/main/libv/libvterm/libvterm0_0.3.3-3+b1_amd64.deb",
+      "sha256": "91886654a1d1e157e3a43c085048ffe23a255fe25211b2e7d781b38f69a1f911",
+      "version": "0.3.3-3+b1"
+    },
+    "libwrap0": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tcp-wrappers/libwrap0_7.6.q-36_amd64.deb",
+      "sha256": "cde12afa15d6b1556c5e0564d22edf3b99e6b8fa94c59ccd8b8eebbb62dc19ec",
+      "version": "7.6.q-36"
+    },
+    "libxml2": {
+      "architecture": "amd64",
+      "filename": "pool/main/libx/libxml2/libxml2_2.12.7+dfsg+really2.9.14-2.1+deb13u3_amd64.deb",
+      "sha256": "e0c6b63ce4602a036a526f60fe5e6c1586710688058d98fc1001b9b3147b7efd",
+      "version": "2.12.7+dfsg+really2.9.14-2.1+deb13u3"
+    },
+    "libxslt1.1": {
+      "architecture": "amd64",
+      "filename": "pool/main/libx/libxslt/libxslt1.1_1.1.35-1.2+deb13u3_amd64.deb",
+      "sha256": "c8e5a745ca3afaa079b01e0c00d80a241101d1ab840407fcd4bb423de3326160",
+      "version": "1.1.35-1.2+deb13u3"
+    },
+    "libyaml-0-2": {
+      "architecture": "amd64",
+      "filename": "pool/main/liby/libyaml/libyaml-0-2_0.2.5-2_amd64.deb",
+      "sha256": "8a5475402801de445a17887bb72d03613565a6a84b216b4b606d1462c613eeb2",
+      "version": "0.2.5-2"
+    },
+    "links": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/links2/links_2.29-2+b3_amd64.deb",
+      "sha256": "d7ac7597f2bda6d49c9e3cbdb6fe03fa264e4ed699add87c024362d670de87fe",
+      "version": "2.29-2+b3"
+    },
+    "lsof": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lsof/lsof_4.99.4+dfsg-2_amd64.deb",
+      "sha256": "76ca9b82da6d5dabd66609937675768a593c20c5e544171a2d9544060a1780b7",
+      "version": "4.99.4+dfsg-2"
+    },
+    "ltrace": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/ltrace/ltrace_0.7.91~git20230705.8eabf68-4+b1_amd64.deb",
+      "sha256": "3f93ce8118b171a72e42b2b5dd62aae5f6cf1f8a368685d305ec3c8a0717a1d9",
+      "version": "0.7.91~git20230705.8eabf68-4+b1"
+    },
+    "lua-lpeg": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lua-lpeg/lua-lpeg_1.1.0-2_amd64.deb",
+      "sha256": "6ce883c2ead19e09be95a7cf94f6ac131200d0e64566d8f4f2d55a54540de354",
+      "version": "1.1.0-2"
+    },
+    "lua-luv": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lua-luv/lua-luv_1.48.0-2-3_amd64.deb",
+      "sha256": "259450ee9f1c3b5dbd1b1cae7c4a485f76adf176f7a16fb6ddbd48eedc0d9b05",
+      "version": "1.48.0-2-3"
+    },
+    "lynx": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lynx/lynx_2.9.2-1_amd64.deb",
+      "sha256": "af1a6c36021093634e229ecaf34428143287fef9f9fb0d111b54d88059000cba",
+      "version": "2.9.2-1"
+    },
+    "lynx-common": {
+      "architecture": "all",
+      "filename": "pool/main/l/lynx/lynx-common_2.9.2-1_all.deb",
+      "sha256": "db24e06c084d6d3671c9601a303ad3cec515b8ce30bdc30e27538f98773dc065",
+      "version": "2.9.2-1"
+    },
+    "mc": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mc/mc_4.8.33-1+deb13u1_amd64.deb",
+      "sha256": "06c8d8d251d04f0b23c1aa7052c2ea8386f851067d38ca9f8d5d92c2e4f5278e",
+      "version": "3:4.8.33-1+deb13u1"
+    },
+    "mc-data": {
+      "architecture": "all",
+      "filename": "pool/main/m/mc/mc-data_4.8.33-1+deb13u1_all.deb",
+      "sha256": "b5ee7e2f5108c29a720675b1e0c9809741c85094e638e29b0c27bd56bdcc50bc",
+      "version": "3:4.8.33-1+deb13u1"
+    },
+    "mg": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mg/mg_20240709-1_amd64.deb",
+      "sha256": "d788a9a603dc96bb0bc12101acc9a44f36dc5e806f217bbcaa02c20b824f8d77",
+      "version": "20240709-1"
+    },
+    "micro": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/micro/micro_2.0.14-1+b6_amd64.deb",
+      "sha256": "b1a1c49ae7774aff5b23ace1cd6cb08f9feb1ba4377dbc7137e96dcd89cef067",
+      "version": "2.0.14-1+b6"
+    },
+    "miller": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/miller/miller_6.13.0-1_amd64.deb",
+      "sha256": "03085cf06624541761288e0b7aed6e6cfb9fbb5e173c902f8ed4ef3213d7f662",
+      "version": "6.13.0-1"
+    },
+    "mksh": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mksh/mksh_59c-41+b2_amd64.deb",
+      "sha256": "e0613580ce0bb50bce40089eede49283e7a4a42ce753b99a665b40cb05dbe7c4",
+      "version": "59c-41+b2"
+    },
+    "moreutils": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/moreutils/moreutils_0.69-1_amd64.deb",
+      "sha256": "a621f7f967a307176b4882534c4aebaaff503a37eddfff7dd0ef188a8b0945ed",
+      "version": "0.69-1"
+    },
+    "mosh": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mosh/mosh_1.4.0-1+b2_amd64.deb",
+      "sha256": "65626810cf1f9bee557cde09f4df9dca77a0e6c4e1846c83ee9c8c9b7e517795",
+      "version": "1.4.0-1+b2"
+    },
+    "most": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/most/most_5.2.0-1.1_amd64.deb",
+      "sha256": "956db4a8fd3097e0bc3481add1759028cce69eab648dd2cef359bbb78170b14f",
+      "version": "5.2.0-1.1"
+    },
+    "mtr-tiny": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mtr/mtr-tiny_0.95-1.1+b1_amd64.deb",
+      "sha256": "4c1c39da74bbd1fa77ef7d5cb15dcf7ed28b5553ee620bc92c62b27c89269b1e",
+      "version": "0.95-1.1+b1"
+    },
+    "ncdu": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/ncdu/ncdu_1.22-1_amd64.deb",
+      "sha256": "7cc760487cff9992532db1ec7cb6a028799bff08b230c4055f5babd81f95a87c",
+      "version": "1.22-1"
+    },
+    "ncurses-base": {
+      "architecture": "all",
+      "filename": "pool/main/n/ncurses/ncurses-base_6.5+20250216-2_all.deb",
+      "sha256": "190e775260a38973c415a36ae99f33ad1b37ea6ca99929d7c5d53843fc23e914",
+      "version": "6.5+20250216-2"
+    },
+    "ne": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/ne/ne_3.3.3-1_amd64.deb",
+      "sha256": "ea44e382131647fce993eaeaff6590d61843ea6bf6f01fe15a597c2b209ec206",
+      "version": "3.3.3-1"
+    },
+    "neovim": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/neovim/neovim_0.10.4-8_amd64.deb",
+      "sha256": "ca4c5fc1d1677b5201b0b3e031eac22394f77c67a9bf0df5165b56f55ab9e4da",
+      "version": "0.10.4-8"
+    },
+    "neovim-runtime": {
+      "architecture": "all",
+      "filename": "pool/main/n/neovim/neovim-runtime_0.10.4-8_all.deb",
+      "sha256": "1946b16af2c39c57f3f286f642a96040e505812b066cfedab5c598311c90fe4f",
+      "version": "0.10.4-8"
+    },
+    "neowofetch": {
+      "architecture": "all",
+      "filename": "pool/main/h/hyfetch/neowofetch_1.99.0-1.1_all.deb",
+      "sha256": "169bf97e37b3cccbe288ddafb93c4caad6d68797d9a55c380cf49013df30c1c0",
+      "version": "1.99.0-1.1"
+    },
+    "netcat-openbsd": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/netcat-openbsd/netcat-openbsd_1.229-1_amd64.deb",
+      "sha256": "d24b18012d4567e9b8fce551293a2373c2bfea5373d012d7f7e81bf5bf17b13e",
+      "version": "1.229-1"
+    },
+    "netdiscover": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/netdiscover/netdiscover_0.11-3_amd64.deb",
+      "sha256": "69c781108f4c63895af7a0cd1518b2e7e4fdd3efd95854d3c0f5f8da8568f566",
+      "version": "0.11-3"
+    },
+    "nethogs": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nethogs/nethogs_0.8.8-1_amd64.deb",
+      "sha256": "af546ab15c714e565b764dda791059d63b3b02707a501a6adec7504a34172f30",
+      "version": "0.8.8-1"
+    },
+    "nload": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nload/nload_0.7.4-2+b1_amd64.deb",
+      "sha256": "e74cca80f557ce2bb234ece6cdb1de88012abf81bec3e970c0cfd92ac2d2ddf8",
+      "version": "0.7.4-2+b1"
+    },
+    "nmap": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nmap/nmap_7.95+dfsg-3_amd64.deb",
+      "sha256": "517b1c7558b7c1e7bc095fc7ed73432a26bff46e527a8fde9fea9289c9c1ee98",
+      "version": "7.95+dfsg-3"
+    },
+    "nmap-common": {
+      "architecture": "all",
+      "filename": "pool/main/n/nmap/nmap-common_7.95+dfsg-3_all.deb",
+      "sha256": "a24ae027e9f819fa11bf04224d09da0a3a5686ba8af347432a19657e89af42b4",
+      "version": "7.95+dfsg-3"
+    },
+    "nmon": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nmon/nmon_16q+debian-1_amd64.deb",
+      "sha256": "cbd0c43f2262066e11b0969be131e661e1eddfdcabb628e5f0be9891848ae5a1",
+      "version": "16q+debian-1"
+    },
+    "nnn": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nnn/nnn_5.0-1_amd64.deb",
+      "sha256": "a031fb577bcac9458d3ff117849a283c7854a5977a329b3c9c44ef1e5dc03ec1",
+      "version": "5.0-1"
+    },
+    "pigz": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/pigz/pigz_2.8-1_amd64.deb",
+      "sha256": "876b4612815c310d91cced1e6193a14e397d03ebb5ae85fec72fc6e0246ccdd9",
+      "version": "2.8-1"
+    },
+    "procs": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-procs/procs_0.14.10-2_amd64.deb",
+      "sha256": "79ac26f4d090e49dd9b2588512effe2d623b66d6af9eb5d4312a90f2294ea3a8",
+      "version": "0.14.10-2"
+    },
+    "rclone": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rclone/rclone_1.60.1+dfsg-4_amd64.deb",
+      "sha256": "08259a5634c170aed546d0bb8ffbd52c63ef9f8d475a19e592ed37e702501caf",
+      "version": "1.60.1+dfsg-4"
+    },
+    "ripgrep": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-ripgrep/ripgrep_14.1.1-1+b4_amd64.deb",
+      "sha256": "7e0c32510c264c31335fe3b9ae37ab76dcd22f7d1627a0a08518a5bf28b17ac2",
+      "version": "14.1.1-1+b4"
+    },
+    "screenfetch": {
+      "architecture": "all",
+      "filename": "pool/main/s/screenfetch/screenfetch_3.9.1+20210523-2_all.deb",
+      "sha256": "8b58a7211c66b10e0e01d4062c93ce97c9afecd5c0ce7e661415f30a6a4096a5",
+      "version": "3.9.1+20210523-2"
+    },
+    "shellcheck": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/shellcheck/shellcheck_0.10.0-1_amd64.deb",
+      "sha256": "8b207f7d4421a46cec9e377c74d450e1717092b58ae3e7151cd5f85f639065cd",
+      "version": "0.10.0-1"
+    },
+    "shfmt": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/golang-mvdan-sh/shfmt_3.8.0-1+b8_amd64.deb",
+      "sha256": "7f5ba49c0bb38584cb8d2b6571306189ddbfd56e3371e5b877001f3e5b02501f",
+      "version": "3.8.0-1+b8"
+    },
+    "socat": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/socat/socat_1.8.0.3-1+deb13u1_amd64.deb",
+      "sha256": "c87c1e6eccc6d5828138dda794d28a7f283fe4e4010074fffbe4dc8354eef08d",
+      "version": "1.8.0.3-1+deb13u1"
+    },
+    "starship": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/starship/starship_1.22.1-5_amd64.deb",
+      "sha256": "be0d0a9a02d2f1e9ede0f70aa2113dde85013c7e87ae839a10399dcb546bd142",
+      "version": "1.22.1-5"
+    },
+    "strace": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/strace/strace_6.13+ds-1_amd64.deb",
+      "sha256": "cae290b67cf835350a2cde58ca332256fba475784b3e02a9a8677d73eaf47511",
+      "version": "6.13+ds-1"
+    },
+    "sysstat": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sysstat/sysstat_12.7.5-2_amd64.deb",
+      "sha256": "c98cffd845aa5e53ef853c9f4e5f1b82774b830f9caa14f00de06ff04b7e7752",
+      "version": "12.7.5-2"
+    },
+    "taskwarrior": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/task/taskwarrior_2.6.2+dfsg-1+b1_amd64.deb",
+      "sha256": "c2d3251917927972ebd9bb09462041575e7ff056a12314ccc18906587c9e6516",
+      "version": "2.6.2+dfsg-1+b1"
+    },
+    "tcpdump": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tcpdump/tcpdump_4.99.5-2_amd64.deb",
+      "sha256": "c35a180eb0ee118976c4648473de0beb36788dc2ec6986ab880722f5a9868ba6",
+      "version": "4.99.5-2"
+    },
+    "tcsh": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tcsh/tcsh_6.24.13-2_amd64.deb",
+      "sha256": "30234574fb7fa86cd25c28ae990f34b1109deccdbc78ccf477543dd48e79cb91",
+      "version": "6.24.13-2"
+    },
+    "tealdeer": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-tealdeer/tealdeer_1.7.2-1+deb13u1_amd64.deb",
+      "sha256": "13671362ac69922f55009099d8364b73d6fc4e4d4f51b0b27a615804aaff4024",
+      "version": "1.7.2-1+deb13u1"
+    },
+    "tig": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tig/tig_2.5.8-1+b1_amd64.deb",
+      "sha256": "3dbb0701f1ba6ecf97f5ed6ff21c7128b61bd4246be7bed8885c66ccfd5f6e1f",
+      "version": "2.5.8-1+b1"
+    },
+    "tmux": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tmux/tmux_3.5a-3_amd64.deb",
+      "sha256": "e6b6aa51780044e2c4a0e618c33f832b70ec80caa30303e6c254a0c851b5af78",
+      "version": "3.5a-3"
+    },
+    "traceroute": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/traceroute/traceroute_2.1.6-1_amd64.deb",
+      "sha256": "e2b8cd20ba38593251b1ad40133a11014ac25ae20c87592bbab41746a867c29c",
+      "version": "1:2.1.6-1"
+    },
+    "tree": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tree/tree_2.2.1-1_amd64.deb",
+      "sha256": "123f5e15790fee551c52f56bb930e3eadd77f74af0819c8bec243e26521e98f5",
+      "version": "2.2.1-1"
+    },
+    "universal-ctags": {
+      "architecture": "amd64",
+      "filename": "pool/main/u/universal-ctags/universal-ctags_5.9.20210829.0-2_amd64.deb",
+      "sha256": "5787e2bbac08183a03c373c87f5597659c2f198b04dcdf15a12842af027795ec",
+      "version": "5.9.20210829.0-2"
+    },
+    "usbutils": {
+      "architecture": "amd64",
+      "filename": "pool/main/u/usbutils/usbutils_018-2_amd64.deb",
+      "sha256": "091e509e62bebf6a08787faa5db1303d7aeaad443f19a4f9c31be2947fb50446",
+      "version": "1:018-2"
+    },
+    "vifm": {
+      "architecture": "amd64",
+      "filename": "pool/main/v/vifm/vifm_0.14-3_amd64.deb",
+      "sha256": "5ae3b028da6879f41d6db943f8310d7e39751405ff6020c2bde3cee4502d86c6",
+      "version": "0.14-3"
+    },
+    "vis": {
+      "architecture": "amd64",
+      "filename": "pool/main/v/vis/vis_0.9-1_amd64.deb",
+      "sha256": "dc1f760784c5661b7978d8c0465f87cb8af0beb337f74c55e97d2dfda4adcbdd",
+      "version": "0.9-1"
+    },
+    "vnstat": {
+      "architecture": "amd64",
+      "filename": "pool/main/v/vnstat/vnstat_2.13-1_amd64.deb",
+      "sha256": "3b0f1812102508ce5e503a3f5d2ea9548b5d543e26ef2e3cc6474cc4ea6d2e52",
+      "version": "2.13-1"
+    },
+    "w3m": {
+      "architecture": "amd64",
+      "filename": "pool/main/w/w3m/w3m_0.5.3+git20230121-2.1_amd64.deb",
+      "sha256": "0a345e751871bf9148356c5c685a4a7eae4a1d0b886c524257b0942b9a22f836",
+      "version": "0.5.3+git20230121-2.1"
+    },
+    "whois": {
+      "architecture": "amd64",
+      "filename": "pool/main/w/whois/whois_5.6.3_amd64.deb",
+      "sha256": "6c6637ad159a175f7481c399ee57def5d9fe9e0ab7e098391c0e5d0e55b056ed",
+      "version": "5.6.3"
+    },
+    "xh": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-xh/xh_0.24.0-1+b1_amd64.deb",
+      "sha256": "f128b5737982573300dc1c3101e57386acaa188e4dddcf527e42ba5d6bbd50d2",
+      "version": "0.24.0-1+b1"
+    },
+    "xmlstarlet": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xmlstarlet/xmlstarlet_1.6.1-4_amd64.deb",
+      "sha256": "65bad113cad15f0a2250e7c0322841aeff9d0451c7896aa6a4a8dcd9e125fd21",
+      "version": "1.6.1-4"
+    },
+    "zoxide": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-zoxide/zoxide_0.9.7-1+b1_amd64.deb",
+      "sha256": "598f2bd9f44afd39d804afbb1aa254fbb5ef638c1ac2de015e8e1e8d6486cbd8",
+      "version": "0.9.7-1+b1"
+    },
+    "zsh": {
+      "architecture": "amd64",
+      "filename": "pool/main/z/zsh/zsh_5.9-8+b24_amd64.deb",
+      "sha256": "69791a2e667258a54449cfa01ad0d8d198a4c6e27f02f21c864d0545efe18966",
+      "version": "5.9-8+b24"
+    },
+    "zsh-autosuggestions": {
+      "architecture": "all",
+      "filename": "pool/main/z/zsh-autosuggestions/zsh-autosuggestions_0.7.1-1_all.deb",
+      "sha256": "ca98c1cc1f6920b4378517f1f97175070640658e3c4e77b4a7604e598586384d",
+      "version": "0.7.1-1"
+    },
+    "zsh-common": {
+      "architecture": "all",
+      "filename": "pool/main/z/zsh/zsh-common_5.9-8_all.deb",
+      "sha256": "400c958c7fdb66a945cad32c0edc81cedcfface0059b5e2beb46097a457099bd",
+      "version": "5.9-8"
+    },
+    "zsh-syntax-highlighting": {
+      "architecture": "all",
+      "filename": "pool/main/z/zsh-syntax-highlighting/zsh-syntax-highlighting_0.8.0-2_all.deb",
+      "sha256": "cd81bd5aff6cf90d7ea52ce20f404ee3ff3399edcb5f5230d50e93a913541125",
+      "version": "0.8.0-2"
+    }
+  },
+  "suite": "trixie"
+}

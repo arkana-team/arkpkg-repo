@@ -1,0 +1,8 @@
+Name: jo
+Description: command-line processor to output JSON from a shell
+Version: 1.9-2
+Arch: x86_64
+URL: https://github.com/jpmens/jo
+License: See /usr/share/doc/jo/copyright
+Maintainer: arkanaOS Team
+Provides: jo=/usr/bin/jo

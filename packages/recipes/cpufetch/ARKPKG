@@ -1,0 +1,8 @@
+Name: cpufetch
+Description: Simple yet fancy CPU architecture fetching tool
+Version: 1.06-2
+Arch: x86_64
+URL: https://github.com/Dr-Noob/cpufetch
+License: See /usr/share/doc/cpufetch/copyright
+Maintainer: arkanaOS Team
+Provides: cpufetch=/usr/bin/cpufetch

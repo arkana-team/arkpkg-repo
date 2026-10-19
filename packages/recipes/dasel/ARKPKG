@@ -1,0 +1,8 @@
+Name: dasel
+Description: Query, update and convert data structures from the command line (program)
+Version: 2.8.1-1
+Arch: x86_64
+URL: https://github.com/tomwright/dasel
+License: See /usr/share/doc/dasel/copyright
+Maintainer: arkanaOS Team
+Provides: dasel=/usr/bin/dasel

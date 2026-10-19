@@ -1,0 +1,10 @@
+Name: sysstat
+Description: system performance tools for Linux
+Version: 12.7.5-2
+Arch: x86_64
+URL: https://sysstat.github.io/
+License: See /usr/share/doc/sysstat/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsensors
+Provides: cifsiostat=/usr/bin/cifsiostat, iostat=/usr/bin/iostat, mpstat=/usr/bin/mpstat, pidstat=/usr/bin/pidstat, sadf=/usr/bin/sadf, sar.sysstat=/usr/bin/sar.sysstat, tapestat=/usr/bin/tapestat

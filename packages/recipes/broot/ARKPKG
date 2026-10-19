@@ -1,0 +1,10 @@
+Name: broot
+Description: tree view, file manager, configurable launcher
+Version: 1.46.3-2
+Arch: x86_64
+URL: https://dystroy.org/broot
+License: See /usr/share/doc/broot/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  broot-runtime-libs
+Provides: broot=/usr/bin/broot

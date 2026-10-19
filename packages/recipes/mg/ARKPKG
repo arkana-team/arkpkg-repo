@@ -1,0 +1,11 @@
+Name: mg
+Description: microscopic GNU Emacs-style editor
+Version: 20240709-1
+Arch: x86_64
+URL: https://homepage.boetes.org/software/mg/
+License: See /usr/share/doc/mg/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libbsd
+  ncurses-libs
+Provides: mg=/usr/bin/mg

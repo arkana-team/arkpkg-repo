@@ -1,0 +1,11 @@
+Name: tcsh
+Description: TENEX C Shell, an enhanced version of Berkeley csh
+Version: 6.24.13-2
+Arch: x86_64
+URL: https://www.tcsh.org/
+License: See /usr/share/doc/tcsh/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcrypt1
+  ncurses-libs
+Provides: tcsh=/usr/bin/tcsh

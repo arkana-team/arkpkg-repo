@@ -1,0 +1,11 @@
+Name: nload
+Description: realtime console network usage monitor
+Version: 0.7.4-2+b1
+Arch: x86_64
+URL: http://www.roland-riegel.de/nload/
+License: See /usr/share/doc/nload/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-compat-libs
+  ncurses-libs
+Provides: nload=/usr/bin/nload

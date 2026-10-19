@@ -1,0 +1,10 @@
+Name: ethtool
+Description: display or change Ethernet device settings
+Version: 6.14.2-1
+Arch: x86_64
+URL: https://www.kernel.org/pub/software/network/ethtool/
+License: See /usr/share/doc/ethtool/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmnl
+Provides: ethtool=/usr/sbin/ethtool

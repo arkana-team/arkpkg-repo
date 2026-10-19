@@ -1,0 +1,10 @@
+Name: bat
+Description: cat(1) clone with syntax highlighting and git integration
+Version: 0.25.0-2+b2
+Arch: x86_64
+URL: https://github.com/sharkdp/bat
+License: See /usr/share/doc/bat/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  broot-runtime-libs
+Provides: batcat=/usr/bin/batcat

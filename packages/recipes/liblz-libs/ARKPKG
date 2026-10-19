@@ -1,0 +1,8 @@
+Name: liblz-libs
+Description: Lzip compression runtime library
+Version: 1.15-3
+Arch: x86_64
+URL: https://www.nongnu.org/lzip/
+License: See /usr/share/doc/liblz1/copyright
+Maintainer: arkanaOS Team
+Provides: liblz.so.1=/usr/lib/x86_64-linux-gnu/liblz.so.1.15

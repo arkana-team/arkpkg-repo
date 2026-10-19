@@ -1,0 +1,11 @@
+Name: vifm
+Description: Flexible vi-like file manager using ncurses
+Version: 0.14-3
+Arch: x86_64
+URL: https://vifm.info/
+License: See /usr/share/doc/vifm/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmagic
+  ncurses-libs
+Provides: vifm-convert-dircolors=/usr/bin/vifm-convert-dircolors, vifm-pause=/usr/bin/vifm-pause, vifm-screen-split=/usr/bin/vifm-screen-split, vifm=/usr/bin/vifm

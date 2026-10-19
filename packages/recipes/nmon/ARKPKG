@@ -1,0 +1,11 @@
+Name: nmon
+Description: performance monitoring tool for Linux
+Version: 16q+debian-1
+Arch: x86_64
+URL: http://nmon.sourceforge.net
+License: See /usr/share/doc/nmon/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-compat-libs
+  ncurses-libs
+Provides: nmon=/usr/bin/nmon

@@ -1,0 +1,11 @@
+Name: neovim
+Description: heavily refactored vim fork
+Version: 0.10.4-8
+Arch: x86_64
+URL: https://neovim.io/
+License: See /usr/share/doc/neovim/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  neovim-runtime-libs
+  terminal-runtime-libs
+Provides: nvim=/usr/bin/nvim

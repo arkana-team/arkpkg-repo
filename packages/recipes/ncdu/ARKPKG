@@ -1,0 +1,10 @@
+Name: ncdu
+Description: ncurses disk usage viewer
+Version: 1.22-1
+Arch: x86_64
+URL: https://dev.yorhel.nl/ncdu/
+License: See /usr/share/doc/ncdu/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: ncdu=/usr/bin/ncdu

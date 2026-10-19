@@ -1,0 +1,8 @@
+Name: miller
+Description: name-indexed data processing tool
+Version: 6.13.0-1
+Arch: x86_64
+URL: https://github.com/johnkerl/miller
+License: See /usr/share/doc/miller/copyright
+Maintainer: arkanaOS Team
+Provides: mlr=/usr/bin/mlr

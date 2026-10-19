@@ -1,0 +1,8 @@
+Name: entr
+Description: Run arbitrary commands when files change
+Version: 5.7-1
+Arch: x86_64
+URL: https://eradman.com/entrproject/
+License: See /usr/share/doc/entr/copyright
+Maintainer: arkanaOS Team
+Provides: entr=/usr/bin/entr

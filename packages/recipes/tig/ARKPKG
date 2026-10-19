@@ -1,0 +1,12 @@
+Name: tig
+Description: ncurses-based text-mode interface for Git
+Version: 2.5.8-1+b1
+Arch: x86_64
+URL: https://jonas.github.io/tig/
+License: See /usr/share/doc/tig/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+  pcre2-libs
+  readline-libs
+Provides: tig=/usr/bin/tig

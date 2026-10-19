@@ -1,0 +1,8 @@
+Name: lf
+Description: terminal file manager written in Go
+Version: 34+ds-2+b1
+Arch: x86_64
+URL: https://github.com/gokcehan/lf
+License: See /usr/share/doc/lf/copyright
+Maintainer: arkanaOS Team
+Provides: lf=/usr/bin/lf

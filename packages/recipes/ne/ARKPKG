@@ -1,0 +1,10 @@
+Name: ne
+Description: easy-to-use and powerful text editor
+Version: 3.3.3-1
+Arch: x86_64
+URL: https://ne.di.unimi.it/
+License: See /usr/share/doc/ne/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: ne=/usr/bin/ne

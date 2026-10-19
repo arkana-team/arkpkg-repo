@@ -1,0 +1,8 @@
+Name: xml-runtime-libs
+Description: XML and XSLT runtime libraries for command-line tools
+Version: 2.12.7+dfsg+really2.9.14-2.1+deb13u3
+Arch: x86_64
+URL: https://gitlab.gnome.org/GNOME/libxml2
+License: Multiple; see bundled copyright notices
+Maintainer: arkanaOS Team
+Provides: libexslt.so.0=/usr/lib/x86_64-linux-gnu/libexslt.so.0.8.20, libxml2.so.2=/usr/lib/x86_64-linux-gnu/libxml2.so.2.9.14, libxslt.so.1=/usr/lib/x86_64-linux-gnu/libxslt.so.1.1.35

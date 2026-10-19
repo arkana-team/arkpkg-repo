@@ -1,0 +1,8 @@
+Name: fping
+Description: sends ICMP ECHO_REQUEST packets to network hosts
+Version: 5.1-1
+Arch: x86_64
+URL: https://www.fping.org/
+License: See /usr/share/doc/fping/copyright
+Maintainer: arkanaOS Team
+Provides: fping6=/usr/bin/fping6, fping=/usr/bin/fping

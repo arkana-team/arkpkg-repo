@@ -1,0 +1,15 @@
+Name: nmap
+Description: The Network Mapper
+Version: 7.95+dfsg-3
+Arch: x86_64
+URL: https://nmap.org/
+License: See /usr/share/doc/nmap/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpcap-libs
+  lua54-libs
+  mc-runtime-libs
+  nmap-runtime-libs
+  openssl-libs
+  pcre2-libs
+Provides: nmap=/usr/bin/nmap, nping=/usr/bin/nping

@@ -1,0 +1,10 @@
+Name: ncurses-compat-libs
+Description: Narrow-character ncurses compatibility library for CLI tools
+Version: 6.5+20250216-2
+Arch: x86_64
+URL: https://invisible-island.net/ncurses/
+License: See /usr/share/doc/ncurses-base/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: libform.so.6=/usr/lib/x86_64-linux-gnu/libform.so.6.5, libmenu.so.6=/usr/lib/x86_64-linux-gnu/libmenu.so.6.5, libncurses.so.6=/usr/lib/x86_64-linux-gnu/libncurses.so.6.5, libpanel.so.6=/usr/lib/x86_64-linux-gnu/libpanel.so.6.5

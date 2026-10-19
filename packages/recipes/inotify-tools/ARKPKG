@@ -1,0 +1,8 @@
+Name: inotify-tools
+Description: command-line programs providing a simple interface to inotify
+Version: 4.23.9.0-2+b1
+Arch: x86_64
+URL: https://github.com/rvoicilas/inotify-tools/wiki/
+License: See /usr/share/doc/inotify-tools/copyright
+Maintainer: arkanaOS Team
+Provides: fsnotifywait=/usr/bin/fsnotifywait, fsnotifywatch=/usr/bin/fsnotifywatch, inotifywait=/usr/bin/inotifywait, inotifywatch=/usr/bin/inotifywatch, libinotifytools.so.0=/usr/lib/x86_64-linux-gnu/libinotifytools.so.0.4.1

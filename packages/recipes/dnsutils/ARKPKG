@@ -1,0 +1,15 @@
+Name: dnsutils
+Description: Clients provided with BIND 9
+Version: 9.20.26-1.deb13u1
+Arch: x86_64
+URL: https://www.isc.org/downloads/bind/
+License: See /usr/share/doc/bind9-dnsutils/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  dns-runtime-libs
+  krb5-libs
+  libidn2-libs
+  neovim-runtime-libs
+  openssl-libs
+  xml-runtime-libs
+Provides: delv=/usr/bin/delv, dig=/usr/bin/dig, dnstap-read=/usr/bin/dnstap-read, host=/usr/bin/host, libdns-9.20.26-1~deb13u1-Debian.so=/usr/lib/x86_64-linux-gnu/libdns-9.20.26-1~deb13u1-Debian.so, libisc-9.20.26-1~deb13u1-Debian.so=/usr/lib/x86_64-linux-gnu/libisc-9.20.26-1~deb13u1-Debian.so, libisccc-9.20.26-1~deb13u1-Debian.so=/usr/lib/x86_64-linux-gnu/libisccc-9.20.26-1~deb13u1-Debian.so, libisccfg-9.20.26-1~deb13u1-Debian.so=/usr/lib/x86_64-linux-gnu/libisccfg-9.20.26-1~deb13u1-Debian.so, libns-9.20.26-1~deb13u1-Debian.so=/usr/lib/x86_64-linux-gnu/libns-9.20.26-1~deb13u1-Debian.so, mdig=/usr/bin/mdig, nslookup=/usr/bin/nslookup, nsupdate=/usr/bin/nsupdate

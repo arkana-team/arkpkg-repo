@@ -1,0 +1,8 @@
+Name: libcrypt1
+Description: Legacy crypt library for software requiring libcrypt.so.1
+Version: 4.4.38-1
+Arch: x86_64
+URL: https://github.com/besser82/libxcrypt
+License: See /usr/share/doc/libcrypt1/copyright
+Maintainer: arkanaOS Team
+Provides: libcrypt.so.1=/usr/lib/x86_64-linux-gnu/libcrypt.so.1.1.0

@@ -1,0 +1,12 @@
+Name: bmon
+Description: portable bandwidth monitor and rate estimator
+Version: 4.0-10
+Arch: x86_64
+URL: http://www.infradead.org/~tgr/bmon/
+License: See /usr/share/doc/bmon/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  bmon-runtime-libs
+  libnl-libs
+  ncurses-libs
+Provides: bmon=/usr/bin/bmon

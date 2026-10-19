@@ -1,0 +1,10 @@
+Name: libusb-libs
+Description: USB device access runtime library
+Version: 1.0.28-1
+Arch: x86_64
+URL: https://libusb.info/
+License: See /usr/share/doc/libusb-1.0-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  systemd-libs
+Provides: libusb-1.0.so.0=/usr/lib/x86_64-linux-gnu/libusb-1.0.so.0.5.0

@@ -1,0 +1,8 @@
+Name: pigz
+Description: Parallel Implementation of GZip
+Version: 2.8-1
+Arch: x86_64
+URL: http://zlib.net/pigz/
+License: See /usr/share/doc/pigz/copyright
+Maintainer: arkanaOS Team
+Provides: pigz=/usr/bin/pigz, unpigz=/usr/bin/unpigz

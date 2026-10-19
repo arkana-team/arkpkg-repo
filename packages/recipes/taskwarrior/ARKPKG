@@ -1,0 +1,11 @@
+Name: taskwarrior
+Description: feature-rich console based todo list manager
+Version: 2.6.2+dfsg-1+b1
+Arch: x86_64
+URL: https://taskwarrior.org
+License: See /usr/share/doc/taskwarrior/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  util-linux-libs
+Provides: task=/usr/bin/task
