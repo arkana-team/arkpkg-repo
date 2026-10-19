@@ -1,0 +1,8 @@
+Name: libtecla1t64
+Description: interactive command line editing facilities
+Version: 1.6.3-3.1
+Arch: x86_64
+URL: https://www.astro.caltech.edu/~mcs/tecla/
+License: See /usr/share/doc/libtecla1t64/copyright
+Maintainer: arkanaOS Team
+Provides: libtecla.so.1=/usr/lib/x86_64-linux-gnu/libtecla.so.1.6.3
