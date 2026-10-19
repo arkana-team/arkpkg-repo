@@ -1,0 +1,11 @@
+Name: shellcheck
+Description: lint tool for shell scripts
+Version: 0.10.0-1
+Arch: x86_64
+URL: https://www.shellcheck.net/
+License: See /usr/share/doc/shellcheck/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gmp-libs
+  libffi-libs
+Provides: shellcheck=/usr/bin/shellcheck
