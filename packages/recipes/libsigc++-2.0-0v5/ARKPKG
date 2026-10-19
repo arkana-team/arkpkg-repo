@@ -1,0 +1,8 @@
+Name: libsigc++-2.0-0v5
+Description: type-safe signal framework for c++ - runtime
+Version: 2.12.1-3
+Arch: x86_64
+URL: https://libsigcplusplus.github.io/libsigcplusplus/
+License: See /usr/share/doc/libsigc++-2.0-0v5/copyright
+Maintainer: arkanaOS Team
+Provides: libsigc-2.0.so.0=/usr/lib/x86_64-linux-gnu/libsigc-2.0.so.0.0.0
