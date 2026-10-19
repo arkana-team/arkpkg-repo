@@ -1,0 +1,8 @@
+Name: libmdb3t64
+Description: core library for accessing jet / ms access (mdb) files
+Version: 1.0.1-0.1
+Arch: x86_64
+URL: https://github.com/mdbtools/mdbtools
+License: See /usr/share/doc/libmdb3t64/copyright
+Maintainer: arkanaOS Team
+Provides: libmdb.so.3=/usr/lib/x86_64-linux-gnu/libmdb.so.3.1.1
