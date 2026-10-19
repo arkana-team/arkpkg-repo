@@ -1,0 +1,18 @@
+Name: libfluidsynth3
+Description: Real-time MIDI software synthesizer (runtime library)
+Version: 2.4.4+dfsg-1+deb13u3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libfluidsynth3
+License: See /usr/share/doc/libfluidsynth3/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  alsa-libs
+  libgomp1
+  libinstpatch-1.0-2
+  libjack-jackd2-0
+  libpipewire-0.3-0t64
+  libpulse0
+  libsdl2-2.0-0
+  libsndfile1
+  readline-libs
+Provides: libfluidsynth.so.3=/usr/lib/x86_64-linux-gnu/libfluidsynth.so.3.3.4
