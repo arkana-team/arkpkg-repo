@@ -1,0 +1,11 @@
+Name: libmagickwand-7.q16-10
+Description: image manipulation library -- quantum depth Q16
+Version: 8:7.1.1.43+dfsg1-1+deb13u12
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libmagickwand-7.q16-10
+License: See /usr/share/doc/libmagickwand-7.q16-10/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgomp1
+  libmagickcore-7.q16-10
+Provides: libMagickWand-7.Q16.so.10=/usr/lib/x86_64-linux-gnu/libMagickWand-7.Q16.so.10.0.2
