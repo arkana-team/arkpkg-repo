@@ -1,0 +1,8 @@
+Name: libpipewire-0.3-0t64
+Description: libraries for the PipeWire multimedia server
+Version: 1.4.2-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libpipewire-0.3-0t64
+License: See /usr/share/doc/libpipewire-0.3-0t64/copyright
+Maintainer: arkanaOS Team
+Provides: libpipewire-0.3.so.0=/usr/lib/x86_64-linux-gnu/libpipewire-0.3.so.0.1402.0
