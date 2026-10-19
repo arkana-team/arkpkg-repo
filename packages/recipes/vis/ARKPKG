@@ -1,0 +1,13 @@
+Name: vis
+Description: Modern, legacy free, simple yet efficient vim-like editor
+Version: 0.9-1
+Arch: x86_64
+URL: https://github.com/martanne/vis
+License: See /usr/share/doc/vis/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  acl-libs
+  ncurses-libs
+  terminal-runtime-libs
+  vis-runtime-libs
+Provides: vis-clipboard=/usr/bin/vis-clipboard, vis-complete=/usr/bin/vis-complete, vis-digraph=/usr/bin/vis-digraph, vis-menu=/usr/bin/vis-menu, vis-open=/usr/bin/vis-open, vis=/usr/bin/vis
