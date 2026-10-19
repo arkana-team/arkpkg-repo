@@ -1,0 +1,10 @@
+Name: fltk-tools
+Description: fluid interface designer and fltk options editor
+Version: 1.4.5
+Arch: x86_64
+URL: https://www.fltk.org/
+License: LGPL-2.1-only with FLTK exception
+Maintainer: arkanaOS team
+Dependencies:
+  fltk-libs>=1.4.5
+Provides: fltk-tools=/usr/bin/fluid
