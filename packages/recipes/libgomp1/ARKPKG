@@ -1,0 +1,10 @@
+Name: libgomp1
+Description: GCC OpenMP (GOMP) support library
+Version: 14.2.0-19
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgomp1
+License: See /usr/share/doc/libgomp1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gcc-14-base
+Provides: libgomp.so.1=/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0
