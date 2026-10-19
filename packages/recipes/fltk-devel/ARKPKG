@@ -1,0 +1,10 @@
+Name: fltk-devel
+Description: headers and development files for the fast light toolkit
+Version: 1.4.5
+Arch: x86_64
+URL: https://www.fltk.org/
+License: LGPL-2.1-only with FLTK exception
+Maintainer: arkanaOS team
+Dependencies:
+  fltk-libs>=1.4.5
+Provides: fltk-devel=/usr/include/FL/Fl.H
