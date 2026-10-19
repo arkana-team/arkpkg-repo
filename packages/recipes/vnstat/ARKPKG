@@ -1,0 +1,8 @@
+Name: vnstat
+Description: console-based network traffic monitor
+Version: 2.13-1
+Arch: x86_64
+URL: https://humdi.net/vnstat/
+License: See /usr/share/doc/vnstat/copyright
+Maintainer: arkanaOS Team
+Provides: vnstat=/usr/bin/vnstat, vnstatd=/usr/sbin/vnstatd
