@@ -1,0 +1,8 @@
+Name: libvala-0.56-0
+Description: C# like language for the GObject system - library
+Version: 0.56.18-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libvala-0.56-0
+License: See /usr/share/doc/libvala-0.56-0/copyright
+Maintainer: arkanaOS Team
+Provides: libvala-0.56.so.0=/usr/lib/x86_64-linux-gnu/libvala-0.56.so.0.0.0
