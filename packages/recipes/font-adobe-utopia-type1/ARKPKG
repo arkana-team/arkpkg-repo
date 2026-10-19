@@ -1,0 +1,8 @@
+Name: font-adobe-utopia-type1
+Description: scalable adobe utopia type 1 fonts
+Version: 1.0.5
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-adobe-utopia-type1-1.0.5.tar.xz
+License: adobe utopia font license
+Maintainer: arkanaOS team
+Provides: adobe-utopia-type1-fonts=/usr/share/fonts/adobe-utopia-type1
