@@ -1,0 +1,8 @@
+Name: libfdt1
+Description: Flat Device Trees manipulation library
+Version: 1.7.2-2+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libfdt1
+License: See /usr/share/doc/libfdt1/copyright
+Maintainer: arkanaOS Team
+Provides: libfdt.so.1=/usr/lib/x86_64-linux-gnu/libfdt.so.1.7.2
