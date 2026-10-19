@@ -1,0 +1,8 @@
+Name: lua-cjson
+Description: JSON parser/encoder for Lua
+Version: 2.1.0+dfsg-2.2+b2
+Arch: x86_64
+URL: http://www.kyne.com.au/~mark/software/lua-cjson.php
+License: See /usr/share/doc/lua-cjson/copyright
+Maintainer: arkanaOS Team
+Provides: liblua5.1-cjson.so.0=/usr/lib/x86_64-linux-gnu/liblua5.1-cjson.so.0.0.0, liblua5.2-cjson.so.0=/usr/lib/x86_64-linux-gnu/liblua5.2-cjson.so.0.0.0, liblua5.3-cjson.so.0=/usr/lib/x86_64-linux-gnu/liblua5.3-cjson.so.0.0.0, liblua5.4-cjson.so.0=/usr/lib/x86_64-linux-gnu/liblua5.4-cjson.so.0.0.0
