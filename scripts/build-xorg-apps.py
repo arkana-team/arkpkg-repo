@@ -403,12 +403,42 @@ APPS = {
         "Viewres",
         "X11 resource hierarchy viewer",
     ),
+    "smproxy": (
+        "1.0.8",
+        "fee584eae2ec1ce2d178d72d3b484920271ba68a27935769cefbafbc3a2ff6c8",
+        "",
+        "session management proxy for legacy X11 applications",
+    ),
+    "x11perf": (
+        "1.6.1",
+        "a1874618df0e30ae1a9b2470fb50e77a40c4a6f6ddf87a5c154f7a3b913ac0b3",
+        "",
+        "benchmark X11 server performance",
+    ),
+    "xdriinfo": (
+        "1.0.8",
+        "00463056435b82261c227ad0de1873fd4536101607fbc57540e28e4a0a9b71f7",
+        "",
+        "query direct rendering driver information",
+    ),
+    "xrestop": (
+        "0.6",
+        "2e2ec111c4b2798b5dc2dc2b3ec7af4f6b261946e903b8e14db046831d203b29",
+        "",
+        "monitor X11 client resource usage",
+    ),
+    "xvinfo": (
+        "1.1.6",
+        "a436945e6a4ab70590358eec2b85d26970f7de480d27e8a25af8fe8421e88ae2",
+        "",
+        "inspect X-Video extension adaptors",
+    ),
 }
 APP_BINARIES = {
     "xkbutils": ("xkbbell", "xkbvleds", "xkbwatch"),
     "bitmap": ("bitmap", "bmtoa", "atobm"),
 }
-ARCHIVE_SUFFIXES = {"ico": ".tar.gz"}
+ARCHIVE_SUFFIXES = {"ico": ".tar.gz", "x11perf": ".tar.gz"}
 
 
 def privileged(command: list[str], *, log: Path | None = None) -> None:
@@ -504,7 +534,7 @@ def build(args: argparse.Namespace) -> None:
     output_staging.mkdir(parents=True, exist_ok=True)
     package_names = args.packages or list(APPS)
 
-    for binary in ("gcc", "make", "pkg-config", "tar", "strip"):
+    for binary in ("gcc", "make", "tar", "strip"):
         if not (sysroot / "usr/bin" / binary).exists():
             raise FileNotFoundError(f"target build root lacks /usr/bin/{binary}")
 
@@ -549,6 +579,12 @@ def build(args: argparse.Namespace) -> None:
             ]
         )
         installed_xorg_devel_here = True
+
+    if not privileged_file_test(sysroot / "usr/bin/pkg-config", "-x"):
+        raise FileNotFoundError(
+            "target build root lacks /usr/bin/pkg-config; pass the pkgconf archive "
+            "with --build-dependency-archive"
+        )
 
     work_rel = f"/tmp/arkpkg-xorg-apps-{uuid.uuid4().hex}"
     work_host = sysroot / work_rel.lstrip("/")

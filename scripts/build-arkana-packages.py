@@ -61,6 +61,20 @@ PACKAGES = (
     "openssl-cli",
     "openssl-rehash",
     "xorg-devel",
+    "libxmu",
+    "libxmu-devel",
+    "libxres",
+    "libxres-devel",
+    "libxv",
+    "libxv-devel",
+    "libxcursor",
+    "libxinerama",
+    "libxfixes",
+    "libxrandr",
+    "libxrender",
+    "libxcomposite",
+    "libxdamage",
+    "libxft",
     "mesa-devel",
     "libepoxy-devel",
     "cairo-devel",
@@ -242,6 +256,48 @@ PACKAGES = (
     "font-alias",
     "font-bh-75dpi",
     "font-bh-100dpi",
+    "font-sun-misc",
+    "font-schumacher-misc",
+    "font-dec-misc",
+    "font-sony-misc",
+    "font-micro-misc",
+    "font-misc-cyrillic",
+    "font-daewoo-misc",
+    "font-arabic-misc",
+    "font-bitstream-75dpi",
+    "font-bitstream-100dpi",
+    "font-cursor-misc",
+    "font-isas-misc",
+    "font-jis-misc",
+    "font-mutt-misc",
+    "font-screen-cyrillic",
+    "font-misc-ethiopic",
+    "font-misc-meltho",
+    "font-bh-ttf",
+    "font-bh-type1",
+    "font-bitstream-type1",
+    "font-ibm-type1",
+    "font-cronyx-cyrillic",
+    "font-adobe-75dpi",
+    "font-adobe-100dpi",
+    "font-adobe-utopia-75dpi",
+    "font-adobe-utopia-100dpi",
+    "font-adobe-utopia-type1",
+    "font-winitzki-cyrillic",
+    "xorg-font-encodings",
+    "xcursor-themes",
+    "fox-libs",
+    "fox-devel",
+    "fox-tools",
+    "xfe",
+    "fltk-libs",
+    "fltk-devel",
+    "fltk-tools",
+    "dillo",
+    "motif-libs",
+    "motif-devel",
+    "motif-tools",
+    "nedit",
     "xbitmaps",
     "xgc",
     "xkill",
@@ -252,6 +308,11 @@ PACKAGES = (
     "xwud",
     "xwininfo",
     "xosview",
+    "smproxy",
+    "x11perf",
+    "xdriinfo",
+    "xrestop",
+    "xvinfo",
     "iceauth",
     "xfd",
     "xauth",
@@ -1085,6 +1146,36 @@ STAGED_PACKAGE_FILES = {
         "usr/bin/pkgconf",
         "usr/bin/pkg-config",
     ),
+    "libxmu": (),
+    "libxmu-devel": (),
+    "libxres": (),
+    "libxres-devel": (),
+    "libxv": (),
+    "libxv-devel": (),
+    "libxcursor": (),
+    "libxinerama": (),
+    "libxfixes": (),
+    "libxrandr": (),
+    "libxrender": (),
+    "libxcomposite": (),
+    "libxdamage": (),
+    "libxft": (),
+    "fox-libs": (),
+    "fox-devel": (),
+    "fox-tools": (),
+    "xfe": (),
+    "fltk-libs": (),
+    "fltk-devel": (),
+    "fltk-tools": (),
+    "dillo": (),
+    "motif-libs": (),
+    "motif-devel": ("usr/include/Xm", "usr/include/Mrm", "usr/include/uil"),
+    "motif-tools": ("usr/bin/mwm", "usr/bin/uil"),
+    "nedit": (
+        "usr/bin/nedit",
+        "usr/bin/nedit-client",
+        "usr/share/licenses/nedit/COPYRIGHT",
+    ),
     "autoconf": (
         "usr/bin/autoconf",
         "usr/bin/autoheader",
@@ -1424,6 +1515,11 @@ STAGED_PACKAGE_FILES = {
     "xwd": ("usr/bin/xwd",),
     "xwud": ("usr/bin/xwud",),
     "xwininfo": ("usr/bin/xwininfo",),
+    "smproxy": ("usr/bin/smproxy",),
+    "x11perf": ("usr/bin/x11perf",),
+    "xdriinfo": ("usr/bin/xdriinfo",),
+    "xrestop": ("usr/bin/xrestop",),
+    "xvinfo": ("usr/bin/xvinfo",),
     "xosview": ("usr/bin/xosview2", "usr/bin/xosview"),
     "librsvg-devel": (
         "usr/bin/rsvg-convert",
@@ -1519,6 +1615,128 @@ STAGED_PACKAGE_FILES = {
     "font-bh-100dpi": (
         "usr/share/fonts/100dpi",
         "usr/share/licenses/font-bh-100dpi",
+    ),
+    "font-sun-misc": (
+        "usr/share/fonts/sun-misc",
+        "usr/share/licenses/font-sun-misc/COPYING",
+    ),
+    "font-schumacher-misc": (
+        "usr/share/fonts/schumacher-misc",
+        "usr/share/licenses/font-schumacher-misc/COPYING",
+    ),
+    "font-dec-misc": (
+        "usr/share/fonts/dec-misc",
+        "usr/share/licenses/font-dec-misc/COPYING",
+    ),
+    "font-sony-misc": (
+        "usr/share/fonts/sony-misc",
+        "usr/share/licenses/font-sony-misc/COPYING",
+    ),
+    "font-micro-misc": (
+        "usr/share/fonts/micro-misc",
+        "usr/share/licenses/font-micro-misc/COPYING",
+    ),
+    "font-misc-cyrillic": (
+        "usr/share/fonts/misc-cyrillic",
+        "usr/share/licenses/font-misc-cyrillic/COPYING",
+    ),
+    "font-daewoo-misc": (
+        "usr/share/fonts/daewoo-misc",
+        "usr/share/licenses/font-daewoo-misc/COPYING",
+    ),
+    "font-arabic-misc": (
+        "usr/share/fonts/arabic-misc",
+        "usr/share/licenses/font-arabic-misc/COPYING",
+    ),
+    "font-bitstream-75dpi": (
+        "usr/share/fonts/bitstream-75dpi",
+        "usr/share/licenses/font-bitstream-75dpi/COPYING",
+    ),
+    "font-bitstream-100dpi": (
+        "usr/share/fonts/bitstream-100dpi",
+        "usr/share/licenses/font-bitstream-100dpi/COPYING",
+    ),
+    "font-cursor-misc": (
+        "usr/share/fonts/cursor-misc",
+        "usr/share/licenses/font-cursor-misc/COPYING",
+    ),
+    "font-isas-misc": (
+        "usr/share/fonts/isas-misc",
+        "usr/share/licenses/font-isas-misc/COPYING",
+    ),
+    "font-jis-misc": (
+        "usr/share/fonts/jis-misc",
+        "usr/share/licenses/font-jis-misc/COPYING",
+    ),
+    "font-mutt-misc": (
+        "usr/share/fonts/mutt-misc",
+        "usr/share/licenses/font-mutt-misc/COPYING",
+    ),
+    "font-screen-cyrillic": (
+        "usr/share/fonts/screen-cyrillic",
+        "usr/share/licenses/font-screen-cyrillic/COPYING",
+    ),
+    "font-misc-ethiopic": (
+        "usr/share/fonts/misc-ethiopic",
+        "usr/share/licenses/font-misc-ethiopic/COPYING",
+    ),
+    "font-misc-meltho": (
+        "usr/share/fonts/misc-meltho",
+        "usr/share/licenses/font-misc-meltho/COPYING",
+    ),
+    "font-bh-ttf": (
+        "usr/share/fonts/bh-ttf",
+        "usr/share/licenses/font-bh-ttf/COPYING",
+        "usr/share/licenses/font-bh-ttf/COPYRIGHT.BH",
+    ),
+    "font-bh-type1": (
+        "usr/share/fonts/bh-type1",
+        "usr/share/licenses/font-bh-type1/COPYING",
+        "usr/share/licenses/font-bh-type1/COPYRIGHT.BH",
+    ),
+    "font-bitstream-type1": (
+        "usr/share/fonts/bitstream-type1",
+        "usr/share/licenses/font-bitstream-type1/COPYING",
+        "usr/share/licenses/font-bitstream-type1/Copyright",
+    ),
+    "font-ibm-type1": (
+        "usr/share/fonts/ibm-type1",
+        "usr/share/licenses/font-ibm-type1/COPYING",
+        "usr/share/licenses/font-ibm-type1/COPYRIGHT.IBM",
+    ),
+    "font-cronyx-cyrillic": (
+        "usr/share/fonts/cronyx-cyrillic",
+        "usr/share/licenses/font-cronyx-cyrillic/COPYING",
+        "usr/share/licenses/font-cronyx-cyrillic/COPYRIGHT",
+    ),
+    "font-adobe-75dpi": (
+        "usr/share/fonts/adobe-75dpi",
+        "usr/share/licenses/font-adobe-75dpi/COPYING",
+    ),
+    "font-adobe-100dpi": (
+        "usr/share/fonts/adobe-100dpi",
+        "usr/share/licenses/font-adobe-100dpi/COPYING",
+    ),
+    "font-adobe-utopia-75dpi": (
+        "usr/share/fonts/adobe-utopia-75dpi",
+        "usr/share/licenses/font-adobe-utopia-75dpi/COPYING",
+    ),
+    "font-adobe-utopia-100dpi": (
+        "usr/share/fonts/adobe-utopia-100dpi",
+        "usr/share/licenses/font-adobe-utopia-100dpi/COPYING",
+    ),
+    "font-adobe-utopia-type1": (
+        "usr/share/fonts/adobe-utopia-type1",
+        "usr/share/licenses/font-adobe-utopia-type1/COPYING",
+    ),
+    "font-winitzki-cyrillic": (
+        "usr/share/fonts/winitzki-cyrillic",
+        "usr/share/licenses/font-winitzki-cyrillic/COPYING",
+    ),
+    "xorg-font-encodings": (),
+    "xcursor-themes": (
+        "usr/share/icons",
+        "usr/share/licenses/xcursor-themes/COPYING",
     ),
     "xbitmaps": (
         "usr/include/X11/bitmaps",
@@ -2011,6 +2229,11 @@ STAGED_PACKAGE_FILES = {
 }
 
 STAGED_PACKAGE_GLOBS = {
+    "pkgconf": (
+        "usr/include/pkgconf",
+        "usr/lib/libpkgconf.so*",
+        "usr/lib/pkgconfig/libpkgconf.pc",
+    ),
     "openbox": (
         "usr/bin/openbox-*",
         "usr/lib/libobrender.so*",
@@ -2103,6 +2326,187 @@ STAGED_PACKAGE_GLOBS = {
         "usr/lib/libxcvt.so",
         "usr/lib/libxshmfence.so",
         "usr/lib/libpciaccess.so",
+    ),
+    "libxmu": (
+        "usr/lib/libXmu.so.6*",
+        "usr/lib/libXmuu.so.1*",
+        "usr/share/man/man3/Xmu*.3*",
+        "usr/share/man/man3/Xmuu*.3*",
+        "usr/share/licenses/libxmu/COPYING",
+    ),
+    "libxmu-devel": (
+        "usr/lib/pkgconfig/xmu.pc",
+        "usr/lib/pkgconfig/xmuu.pc",
+        "usr/share/licenses/libxmu-devel/COPYING",
+    ),
+    "libxres": (
+        "usr/lib/libXRes.so.1*",
+        "usr/share/man/man3/XRes*.3*",
+        "usr/share/licenses/libxres/COPYING",
+    ),
+    "libxres-devel": (
+        "usr/lib/libXRes.so",
+        "usr/lib/pkgconfig/xres.pc",
+        "usr/include/X11/extensions/XRes.h",
+        "usr/share/licenses/libxres-devel/COPYING",
+    ),
+    "libxv": (
+        "usr/lib/libXv.so.1*",
+        "usr/share/man/man3/Xv*.3*",
+        "usr/share/licenses/libxv/COPYING",
+    ),
+    "libxv-devel": (
+        "usr/lib/libXv.so",
+        "usr/lib/pkgconfig/xv.pc",
+        "usr/include/X11/extensions/Xvlib.h",
+        "usr/share/licenses/libxv-devel/COPYING",
+    ),
+    "libxcursor": (
+        "usr/lib/libXcursor.so.1*",
+        "usr/share/licenses/libxcursor/COPYING",
+    ),
+    "libxinerama": (
+        "usr/lib/libXinerama.so.1*",
+        "usr/share/licenses/libxinerama/COPYING",
+    ),
+    "libxfixes": (
+        "usr/lib/libXfixes.so.3*",
+        "usr/share/licenses/libxfixes/COPYING",
+    ),
+    "libxrandr": (
+        "usr/lib/libXrandr.so.2*",
+        "usr/share/licenses/libxrandr/COPYING",
+    ),
+    "libxrender": (
+        "usr/lib/libXrender.so.1*",
+        "usr/share/licenses/libxrender/COPYING",
+    ),
+    "libxcomposite": (
+        "usr/lib/libXcomposite.so.1*",
+        "usr/share/licenses/libxcomposite/COPYING",
+    ),
+    "libxdamage": (
+        "usr/lib/libXdamage.so.1*",
+        "usr/share/licenses/libxdamage/COPYING",
+    ),
+    "libxft": (
+        "usr/lib/libXft.so.2*",
+        "usr/share/licenses/libxft/COPYING",
+    ),
+    "fox-libs": (
+        "usr/lib/libFOX-1.6.so.0*",
+        "usr/lib/libCHART-1.6.so.0*",
+        "usr/share/licenses/fox-libs/LICENSE",
+        "usr/share/licenses/fox-libs/LICENSE_ADDENDUM",
+    ),
+    "fox-devel": (
+        "usr/include/fox-1.6/**",
+        "usr/lib/libFOX-1.6.so",
+        "usr/lib/libCHART-1.6.so",
+        "usr/lib/pkgconfig/fox.pc",
+        "usr/bin/fox-config",
+        "usr/bin/reswrap",
+        "usr/share/man/man1/reswrap.1*",
+        "usr/share/licenses/fox-devel/LICENSE",
+        "usr/share/licenses/fox-devel/LICENSE_ADDENDUM",
+    ),
+    "fox-tools": (
+        "usr/bin/adie",
+        "usr/bin/calculator",
+        "usr/bin/PathFinder",
+        "usr/bin/shutterbug",
+        "usr/share/man/man1/adie.1*",
+        "usr/share/man/man1/calculator.1*",
+        "usr/share/man/man1/PathFinder.1*",
+        "usr/share/man/man1/shutterbug.1*",
+        "usr/share/licenses/fox-tools/LICENSE",
+    ),
+    "xfe": (
+        "usr/bin/xfe",
+        "usr/bin/xfa",
+        "usr/bin/xfi",
+        "usr/bin/xfw",
+        "usr/share/applications/xfe.desktop",
+        "usr/share/applications/xfa.desktop",
+        "usr/share/applications/xfi.desktop",
+        "usr/share/applications/xfw.desktop",
+        "usr/share/xfe/**",
+        "usr/share/locale/*/LC_MESSAGES/xfe.mo",
+        "usr/share/man/man1/xfe.1*",
+        "usr/share/man/man1/xfa.1*",
+        "usr/share/man/man1/xfi.1*",
+        "usr/share/man/man1/xfw.1*",
+        "usr/share/polkit-1/actions/org.xfe.root.policy",
+        "etc/xferc",
+        "usr/share/licenses/xfe/COPYING",
+    ),
+    "fltk-libs": (
+        "usr/lib/libfltk.so.1.4*",
+        "usr/lib/libfltk_forms.so.1.4*",
+        "usr/lib/libfltk_images.so.1.4*",
+        "usr/share/licenses/fltk-libs/COPYING",
+    ),
+    "fltk-devel": (
+        "usr/include/FL/**",
+        "usr/lib/libfltk.so",
+        "usr/lib/libfltk_forms.so",
+        "usr/lib/libfltk_images.so",
+        "usr/lib/pkgconfig/fltk*.pc",
+        "usr/lib/cmake/fltk/**",
+        "usr/bin/fltk-config",
+        "usr/share/licenses/fltk-devel/COPYING",
+    ),
+    "fltk-tools": (
+        "usr/bin/fluid",
+        "usr/bin/fltk-options",
+        "usr/share/applications/fluid.desktop",
+        "usr/share/man/man1/fluid.1*",
+        "usr/share/man/man1/fltk-options.1*",
+        "usr/share/licenses/fltk-tools/COPYING",
+    ),
+    "dillo": (
+        "usr/bin/dillo",
+        "usr/bin/dpid",
+        "usr/bin/dillo-install-hyphenation",
+        "usr/share/applications/dillo.desktop",
+        "usr/share/icons/hicolor/**",
+        "usr/share/pixmaps/dillo.*",
+        "etc/dillo/**",
+        "usr/share/dillo/**",
+        "usr/share/man/man1/dillo.1*",
+        "usr/lib/dillo/**",
+        "usr/share/licenses/dillo/COPYING",
+    ),
+    "motif-libs": (
+        "usr/lib/libXm.so.[0-9]*",
+        "usr/lib/libMrm.so.[0-9]*",
+        "usr/lib/libUil.so.[0-9]*",
+        "usr/share/licenses/motif-libs/COPYING",
+    ),
+    "motif-devel": (
+        "usr/lib/libXm.so",
+        "usr/lib/libXm.a",
+        "usr/lib/libMrm.so",
+        "usr/lib/libMrm.a",
+        "usr/lib/libUil.so",
+        "usr/lib/libUil.a",
+        "usr/lib/pkgconfig/motif*.pc",
+        "usr/share/licenses/motif-devel/COPYING",
+    ),
+    "motif-tools": (
+        "usr/lib/X11/mwm/**",
+        "usr/share/man/man1/mwm.1*",
+        "usr/share/man/man1/uil.1*",
+        "usr/share/licenses/motif-tools/COPYING",
+    ),
+    "nedit": (
+        "usr/share/doc/nedit/**",
+        "usr/share/man/man1/nedit.1*",
+        "usr/share/man/man1/nedit-client.1*",
+    ),
+    "xorg-font-encodings": (
+        "usr/share/fonts/encodings/**",
+        "usr/share/licenses/xorg-font-encodings/COPYING",
     ),
     "mesa-devel": (
         "usr/lib/pkgconfig/egl.pc",
@@ -2429,6 +2833,15 @@ STAGED_PACKAGE_GLOBS = {
     "xwd": ("usr/share/man/man1/xwd*.1",),
     "xwud": ("usr/share/man/man1/xwud*.1",),
     "xwininfo": ("usr/share/man/man1/xwininfo*.1",),
+    "smproxy": ("usr/share/man/man1/smproxy*.1",),
+    "x11perf": (
+        "usr/bin/x11perfcomp",
+        "usr/lib/X11/x11perfcomp",
+        "usr/share/man/man1/x11perf*.1",
+    ),
+    "xdriinfo": ("usr/share/man/man1/xdriinfo*.1",),
+    "xrestop": ("usr/share/man/man1/xrestop*.1",),
+    "xvinfo": ("usr/share/man/man1/xvinfo*.1",),
     "xosview": (
         "usr/share/man/man1/xosview2*.1",
         "usr/share/X11/app-defaults/XOsview2",
@@ -2816,9 +3229,12 @@ class PackageTree:
         self.staging = staging
         self.package_root = package_root
         self.hardlinks: dict[tuple[int, int], Path] = {}
+        self.excluded_paths: set[str] = set()
 
     def add(self, relative: str | Path, *, required: bool = True) -> None:
         relative_path = Path(relative)
+        if relative_path.as_posix() in self.excluded_paths:
+            return
         source = self.staging / relative_path
         destination = self.package_root / relative_path
         if not source.exists() and not source.is_symlink():
@@ -3075,6 +3491,13 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
                 if relative not in claimed:
                     tree.add(relative, required=False)
     elif name == "xorg-devel":
+        tree.excluded_paths.update(
+            {
+                "usr/include/X11/extensions/XRes.h",
+                "usr/lib/libXRes.so",
+                "usr/lib/libXv.so",
+            }
+        )
         for relative in STAGED_PACKAGE_FILES[name]:
             if relative == "usr/include/X11":
                 source_root = staging / relative
