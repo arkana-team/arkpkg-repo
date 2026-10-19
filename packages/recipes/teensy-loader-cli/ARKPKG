@@ -1,0 +1,10 @@
+Name: teensy-loader-cli
+Description: load and run programs onto your Teensy micro controller
+Version: 2.2-1.1
+Arch: x86_64
+URL: https://www.pjrc.com/teensy/loader_cli.html
+License: See /usr/share/doc/teensy-loader-cli/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-0.1-4
+Provides: teensy_loader_cli=/usr/bin/teensy_loader_cli
