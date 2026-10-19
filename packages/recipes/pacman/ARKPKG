@@ -1,0 +1,7 @@
+Name: pacman
+Description: Chase Monsters in a Labyrinth
+Version: 10-21
+Arch: x86_64
+URL: https://packages.debian.org/trixie/pacman
+License: See /usr/share/doc/pacman/copyright
+Maintainer: arkanaOS Team
