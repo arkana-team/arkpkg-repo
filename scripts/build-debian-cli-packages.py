@@ -115,6 +115,42 @@ def repository_owners(
     return owned, providers
 
 
+def repository_has_package(repo_root: Path, package: dict[str, object]) -> bool:
+    name = str(package["name"])
+    version = str(package["version"])
+    arch = str(package["arch"])
+    recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+    archive = repo_root / "packages" / f"{name}-{version}-{arch}.ark"
+    if not recipe.is_file() or not archive.is_file():
+        return False
+    fields, _, _ = read_recipe(recipe)
+    return (
+        fields.get("Name") == name
+        and fields.get("Version") == version
+        and fields.get("Arch") == arch
+    )
+
+
+def requested_package_closure(
+    repo_root: Path,
+    packages: list[dict[str, object]],
+    requested: set[str],
+) -> set[str]:
+    package_by_name = {str(item["name"]): item for item in packages}
+    pending = list(requested)
+    while pending:
+        current = package_by_name[pending.pop()]
+        for dependency in current.get("dependencies", []):
+            if (
+                dependency in package_by_name
+                and dependency not in requested
+                and not repository_has_package(repo_root, package_by_name[dependency])
+            ):
+                requested.add(dependency)
+                pending.append(dependency)
+    return requested
+
+
 def obtain_deb(source: dict[str, str], cache: Path) -> Path:
     filename = PurePosixPath(source["filename"])
     if filename.is_absolute() or ".." in filename.parts:
@@ -367,14 +403,7 @@ def build(args: argparse.Namespace) -> None:
         raise ValueError(f"unknown package names: {', '.join(sorted(unknown))}")
 
     if requested:
-        package_by_name = {item["name"]: item for item in packages}
-        pending = list(requested)
-        while pending:
-            current = package_by_name[pending.pop()]
-            for dependency in current.get("dependencies", []):
-                if dependency in package_by_name and dependency not in requested:
-                    requested.add(dependency)
-                    pending.append(dependency)
+        requested = requested_package_closure(repo_root, packages, requested)
 
     cache = args.source_cache.resolve()
     cache.mkdir(parents=True, exist_ok=True)
