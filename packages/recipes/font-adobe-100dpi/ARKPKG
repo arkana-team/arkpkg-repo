@@ -1,0 +1,8 @@
+Name: font-adobe-100dpi
+Description: adobe bitmap fonts at 100 dpi
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-adobe-100dpi-1.0.4.tar.xz
+License: adobe font license
+Maintainer: arkanaOS team
+Provides: adobe-100dpi-fonts=/usr/share/fonts/adobe-100dpi
