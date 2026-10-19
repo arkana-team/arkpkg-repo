@@ -1,0 +1,8 @@
+Name: libnorm1t64
+Description: NACK-Oriented Reliable Multicast (NORM) library
+Version: 1.5.9+dfsg-3.1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libnorm1t64
+License: See /usr/share/doc/libnorm1t64/copyright
+Maintainer: arkanaOS Team
+Provides: libnorm.so.1=/usr/lib/x86_64-linux-gnu/libnorm.so.1
