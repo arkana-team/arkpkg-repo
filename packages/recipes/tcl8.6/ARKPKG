@@ -1,0 +1,10 @@
+Name: tcl8.6
+Description: Tcl (the Tool Command Language) v8.6 - shell
+Version: 8.6.16+dfsg-1
+Arch: x86_64
+URL: http://www.tcl.tk/
+License: See /usr/share/doc/tcl8.6/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtcl8.6
+Provides: tclsh8.6=/usr/bin/tclsh8.6
