@@ -1,0 +1,10 @@
+Name: libglu1-mesa
+Description: Mesa OpenGL utility library (GLU)
+Version: 9.0.2-1.1+b3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libglu1-mesa
+License: See /usr/share/doc/libglu1-mesa/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libopengl0
+Provides: libGLU.so.1=/usr/lib/x86_64-linux-gnu/libGLU.so.1.3.1
