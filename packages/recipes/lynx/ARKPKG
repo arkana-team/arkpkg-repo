@@ -1,0 +1,14 @@
+Name: lynx
+Description: classic non-graphical (text-mode) web browser
+Version: 2.9.2-1
+Arch: x86_64
+URL: https://lynx.invisible-island.net/
+License: See /usr/share/doc/lynx/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  brotli-libs
+  gnutls-libs
+  libbsd
+  libidn2-libs
+  ncurses-libs
+Provides: lynx=/usr/bin/lynx
