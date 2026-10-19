@@ -1,0 +1,8 @@
+Name: libnghttp3-9
+Description: HTTP/3 library with QUIC and QPACK (library)
+Version: 1.8.0-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libnghttp3-9
+License: See /usr/share/doc/libnghttp3-9/copyright
+Maintainer: arkanaOS Team
+Provides: libnghttp3.so.9=/usr/lib/x86_64-linux-gnu/libnghttp3.so.9.2.6
