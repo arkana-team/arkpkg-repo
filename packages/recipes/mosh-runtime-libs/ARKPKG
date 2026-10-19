@@ -1,0 +1,8 @@
+Name: mosh-runtime-libs
+Description: Runtime libraries required by the mosh remote terminal client
+Version: 3.21.12-11+deb13u1
+Arch: x86_64
+URL: https://mosh.org/
+License: See /usr/share/doc/libprotobuf32t64/copyright
+Maintainer: arkanaOS Team
+Provides: libprotobuf.so.32=/usr/lib/x86_64-linux-gnu/libprotobuf.so.32.0.12, libutempter.so.0=/usr/lib/x86_64-linux-gnu/libutempter.so.1.2.1
