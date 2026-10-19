@@ -1,0 +1,10 @@
+Name: lua5.4
+Description: Simple, extensible, embeddable programming language
+Version: 5.4.7-1+b2
+Arch: x86_64
+URL: http://www.lua.org
+License: See /usr/share/doc/lua5.4/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  readline-libs
+Provides: lua5.4=/usr/bin/lua5.4, luac5.4=/usr/bin/luac5.4
