@@ -28,7 +28,7 @@ class BuildIndexTests(unittest.TestCase):
     def test_site_publishes_index_and_external_archive_url(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            archive_path = root / "packages" / "hello-1.2.3-x86_64.ark"
+            archive_path = root / "packages" / "hello-1:1.2.3-x86_64.ark"
             archive_path.parent.mkdir()
             with (
                 archive_path.open("wb") as output,
@@ -38,7 +38,7 @@ class BuildIndexTests(unittest.TestCase):
                 metadata = (
                     b"Name: hello\n"
                     b"Description: sample package\n"
-                    b"Version: 1.2.3\n"
+                    b"Version: 1:1.2.3\n"
                     b"Arch: x86_64\n"
                 )
                 metadata_info = tarfile.TarInfo("ARKPKG")
@@ -58,8 +58,9 @@ class BuildIndexTests(unittest.TestCase):
             self.assertEqual(
                 entry["download_url"],
                 "https://raw.githubusercontent.com/arkana-team/arkpkg-repo/main/"
-                "packages/hello-1.2.3-x86_64.ark",
+                "packages/hello-1%3A1.2.3-x86_64.ark",
             )
+            self.assertEqual(entry["version"], "1:1.2.3")
             self.assertEqual(
                 entry["sha256"], hashlib.sha256(archive_path.read_bytes()).hexdigest()
             )
