@@ -1,0 +1,10 @@
+Name: discover
+Description: hardware identification system
+Version: 2.1.2-10.1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/discover
+License: See /usr/share/doc/discover/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdiscover2
+Provides: discover-config=/usr/bin/discover-config, discover-modprobe=/usr/sbin/discover-modprobe, discover-pkginstall=/usr/sbin/discover-pkginstall, discover=/usr/sbin/discover
