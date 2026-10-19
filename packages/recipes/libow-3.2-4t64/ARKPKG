@@ -1,0 +1,13 @@
+Name: libow-3.2-4t64
+Description: 1-Wire File System full library
+Version: 3.2p4+dfsg1-6
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libow-3.2-4t64
+License: See /usr/share/doc/libow-3.2-4t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libavahi-client3
+  libavahi-common3
+  libftdi1-2
+  libusb-libs
+Provides: libow-3.2.so.4=/usr/lib/x86_64-linux-gnu/libow-3.2.so.4.0.0
