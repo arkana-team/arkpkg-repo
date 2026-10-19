@@ -1,0 +1,8 @@
+Name: neowofetch
+Description: Shows Linux System Information with Distribution Logo
+Version: 1.99.0-1.1
+Arch: any
+URL: https://github.com/hykilpikonna/hyfetch
+License: See /usr/share/doc/neowofetch/copyright
+Maintainer: arkanaOS Team
+Provides: neowofetch=/usr/bin/neowofetch
