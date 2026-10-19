@@ -1,0 +1,8 @@
+Name: scons
+Description: replacement for make
+Version: 4.8.1+dfsg-1
+Arch: any
+URL: https://www.scons.org/
+License: See /usr/share/doc/scons/copyright
+Maintainer: arkanaOS Team
+Provides: scons-configure-cache=/usr/bin/scons-configure-cache, scons=/usr/bin/scons, sconsign=/usr/bin/sconsign
