@@ -1,0 +1,8 @@
+Name: libchafa0t64
+Description: library for image-to-text converter chafa
+Version: 1.14.5-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libchafa0t64
+License: See /usr/share/doc/libchafa0t64/copyright
+Maintainer: arkanaOS Team
+Provides: libchafa.so.0=/usr/lib/x86_64-linux-gnu/libchafa.so.0.9.5
