@@ -1,0 +1,7 @@
+Name: native-architecture
+Description: Declarative native architecture constraint
+Version: 0.2.6
+Arch: any
+URL: https://packages.debian.org/trixie/native-architecture
+License: See /usr/share/doc/native-architecture/copyright
+Maintainer: arkanaOS Team
