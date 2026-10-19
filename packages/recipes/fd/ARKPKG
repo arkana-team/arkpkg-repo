@@ -1,0 +1,8 @@
+Name: fd
+Description: Simple, fast and user-friendly alternative to find
+Version: 10.2.0-1+b5
+Arch: x86_64
+URL: https://github.com/sharkdp/fd
+License: See /usr/share/doc/fd-find/copyright
+Maintainer: arkanaOS Team
+Provides: fd=/usr/bin/fd, fdfind=/usr/bin/fdfind
