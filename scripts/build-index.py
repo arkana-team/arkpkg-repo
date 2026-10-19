@@ -15,7 +15,7 @@ import lz4.frame
 
 PACKAGE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
-PACKAGE_VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
+PACKAGE_VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
 DEFAULT_DOWNLOAD_BASE_URL = (
     "https://raw.githubusercontent.com/arkana-team/arkpkg-repo/main"
 )
