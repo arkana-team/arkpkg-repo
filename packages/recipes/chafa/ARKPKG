@@ -1,0 +1,17 @@
+Name: chafa
+Description: Image-to-text converter supporting a wide range of symbols, etc.
+Version: 1.14.5-1
+Arch: x86_64
+URL: https://hpjansson.org/chafa/
+License: See /usr/share/doc/chafa/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libavif16
+  libcairo2
+  libchafa0t64
+  libjpeg62-turbo
+  librsvg2-2
+  libtiff6
+  libwebp7
+  libwebpdemux2
+Provides: chafa=/usr/bin/chafa
