@@ -1,0 +1,10 @@
+Name: needrestart
+Description: check which daemons need to be restarted after library upgrades
+Version: 3.11-1
+Arch: any
+URL: https://github.com/liske/needrestart
+License: See /usr/share/doc/needrestart/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: needrestart=/usr/sbin/needrestart
