@@ -1,0 +1,10 @@
+Name: lsof
+Description: utility to list open files
+Version: 4.99.4+dfsg-2
+Arch: x86_64
+URL: https://github.com/lsof-org/lsof
+License: See /usr/share/doc/lsof/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  vis-runtime-libs
+Provides: liblsof.so.0=/usr/lib/x86_64-linux-gnu/liblsof.so.0.0.0, lsof=/usr/bin/lsof
