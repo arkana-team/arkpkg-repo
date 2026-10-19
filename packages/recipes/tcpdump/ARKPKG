@@ -1,0 +1,11 @@
+Name: tcpdump
+Description: command-line network traffic analyzer
+Version: 4.99.5-2
+Arch: x86_64
+URL: https://www.tcpdump.org/
+License: See /usr/share/doc/tcpdump/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpcap-libs
+  openssl-libs
+Provides: tcpdump=/usr/bin/tcpdump
