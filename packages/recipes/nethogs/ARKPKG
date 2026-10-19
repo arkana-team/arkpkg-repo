@@ -1,0 +1,12 @@
+Name: nethogs
+Description: Net top tool grouping bandwidth per process
+Version: 0.8.8-1
+Arch: x86_64
+URL: https://github.com/raboof/nethogs
+License: See /usr/share/doc/nethogs/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpcap-libs
+  ncurses-compat-libs
+  ncurses-libs
+Provides: nethogs=/usr/sbin/nethogs
