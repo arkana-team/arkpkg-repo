@@ -1,0 +1,8 @@
+Name: font-cursor-misc
+Description: classic x11 cursor bitmap glyphs
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-cursor-misc-1.0.4.tar.xz
+License: unencumbered glyphs
+Maintainer: arkanaOS team
+Provides: x11-cursor-fonts=/usr/share/fonts/cursor-misc
