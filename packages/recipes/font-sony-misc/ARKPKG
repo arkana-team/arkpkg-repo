@@ -1,0 +1,8 @@
+Name: font-sony-misc
+Description: sony workstation bitmap fonts for x11
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-sony-misc-1.0.4.tar.xz
+License: Sony Font License
+Maintainer: arkanaOS team
+Provides: sony-workstation-fonts=/usr/share/fonts/sony-misc
