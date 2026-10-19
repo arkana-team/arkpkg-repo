@@ -1,0 +1,11 @@
+Name: mtr
+Description: Full screen ncurses traceroute tool
+Version: 0.95-1.1+b1
+Arch: x86_64
+URL: https://www.bitwizard.nl/mtr/
+License: See /usr/share/doc/mtr-tiny/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-compat-libs
+  ncurses-libs
+Provides: mtr-packet=/usr/bin/mtr-packet, mtr=/usr/bin/mtr
