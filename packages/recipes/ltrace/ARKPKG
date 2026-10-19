@@ -1,0 +1,10 @@
+Name: ltrace
+Description: Tracks runtime library calls in dynamically linked programs
+Version: 0.7.91.git20230705.8eabf68-4+b1
+Arch: x86_64
+URL: https://ltrace.org/
+License: See /usr/share/doc/ltrace/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  vis-runtime-libs
+Provides: ltrace=/usr/bin/ltrace
