@@ -1,0 +1,21 @@
+Name: libimlib2t64
+Description: image loading, rendering, saving library
+Version: 1.12.4-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libimlib2t64
+License: See /usr/share/doc/libimlib2t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  giflib
+  libcairo2
+  libheif1
+  libid3tag0
+  libjpeg62-turbo
+  libjxl0.11
+  libopenjp2-7
+  libpng16-16t64
+  librsvg2-2
+  libspectre1
+  libtiff6
+  libwebpdemux2
+Provides: ani.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/ani.so, argb.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/argb.so, bmp.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/bmp.so, bumpmap.so=/usr/lib/x86_64-linux-gnu/imlib2/filters/bumpmap.so, bz2.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/bz2.so, colormod.so=/usr/lib/x86_64-linux-gnu/imlib2/filters/colormod.so, ff.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/ff.so, gif.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/gif.so, heif.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/heif.so, ico.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/ico.so, id3.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/id3.so, j2k.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/j2k.so, jpeg.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/jpeg.so, jxl.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/jxl.so, lbm.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/lbm.so, libImlib2.so.1=/usr/lib/x86_64-linux-gnu/libImlib2.so.1.12.4, lzma.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/lzma.so, png.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/png.so, pnm.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/pnm.so, ps.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/ps.so, qoi.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/qoi.so, svg.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/svg.so, testfilter.so=/usr/lib/x86_64-linux-gnu/imlib2/filters/testfilter.so, tga.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/tga.so, tiff.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/tiff.so, webp.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/webp.so, xbm.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/xbm.so, xpm.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/xpm.so, zlib.so=/usr/lib/x86_64-linux-gnu/imlib2/loaders/zlib.so
