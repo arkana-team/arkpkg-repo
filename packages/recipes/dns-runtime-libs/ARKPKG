@@ -1,0 +1,11 @@
+Name: dns-runtime-libs
+Description: Runtime libraries required by DNS utilities
+Version: 9.20.11
+Arch: x86_64
+URL: https://www.isc.org/bind/
+License: See /usr/share/doc/libedit2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libbsd
+  ncurses-libs
+Provides: libedit.so.2=/usr/lib/x86_64-linux-gnu/libedit.so.2.0.75, libfstrm.so.0=/usr/lib/x86_64-linux-gnu/libfstrm.so.0.1.0, libjemalloc.so.2=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2, liblmdb.so.0=/usr/lib/x86_64-linux-gnu/liblmdb.so.0.0.0, libmaxminddb.so.0=/usr/lib/x86_64-linux-gnu/libmaxminddb.so.0.0.7, libprotobuf-c.so.1=/usr/lib/x86_64-linux-gnu/libprotobuf-c.so.1.0.0, liburcu-bp.so.8=/usr/lib/x86_64-linux-gnu/liburcu-bp.so.8.1.0, liburcu-cds.so.8=/usr/lib/x86_64-linux-gnu/liburcu-cds.so.8.1.0, liburcu-common.so.8=/usr/lib/x86_64-linux-gnu/liburcu-common.so.8.1.0, liburcu-mb.so.8=/usr/lib/x86_64-linux-gnu/liburcu-mb.so.8.1.0, liburcu-memb.so.8=/usr/lib/x86_64-linux-gnu/liburcu-memb.so.8.1.0, liburcu-qsbr.so.8=/usr/lib/x86_64-linux-gnu/liburcu-qsbr.so.8.1.0, liburcu.so.8=/usr/lib/x86_64-linux-gnu/liburcu.so.8.1.0
