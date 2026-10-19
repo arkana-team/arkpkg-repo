@@ -1,0 +1,10 @@
+Name: libwebpmux3
+Description: Lossy compression of digital photographic images (libwebpmux library)
+Version: 1.5.0-0.1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libwebpmux3
+License: See /usr/share/doc/libwebpmux3/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libwebp7
+Provides: libwebpmux.so.3=/usr/lib/x86_64-linux-gnu/libwebpmux.so.3.1.1
