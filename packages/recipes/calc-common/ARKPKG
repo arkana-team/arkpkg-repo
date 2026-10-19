@@ -1,0 +1,7 @@
+Name: calc-common
+Description: Arbitrary precision calculator (common files)
+Version: 2.15.1.0-1
+Arch: any
+URL: https://packages.debian.org/trixie/calc-common
+License: See /usr/share/doc/calc-common/copyright
+Maintainer: arkanaOS Team
