@@ -1,0 +1,12 @@
+Name: mosh
+Description: Mobile shell that supports roaming and intelligent local echo
+Version: 1.4.0-1+b2
+Arch: x86_64
+URL: https://mosh.org
+License: See /usr/share/doc/mosh/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  mosh-runtime-libs
+  ncurses-libs
+  openssl-libs
+Provides: mosh-client=/usr/bin/mosh-client, mosh-server=/usr/bin/mosh-server, mosh=/usr/bin/mosh
