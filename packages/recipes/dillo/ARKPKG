@@ -1,0 +1,15 @@
+Name: dillo
+Description: small and lightweight graphical web browser
+Version: 3.2.0
+Arch: x86_64
+URL: https://dillo-browser.org/
+License: GPL-3.0-only
+Maintainer: arkanaOS team
+Dependencies:
+  fltk-libs>=1.4.5
+  openssl-libs>=3.5.2
+  libpng-devel>=1.6.50
+  libjpeg-turbo-devel>=3.0.1
+  libwebp-devel>=1.6.0
+  zlib-devel>=1.3.1
+Provides: dillo=/usr/bin/dillo
