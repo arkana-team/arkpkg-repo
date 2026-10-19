@@ -1,0 +1,11 @@
+Name: icoutils
+Description: Create and extract MS Windows icons and cursors
+Version: 0.32.3-6
+Arch: x86_64
+URL: https://www.nongnu.org/icoutils/
+License: See /usr/share/doc/icoutils/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpng16-16t64
+  perl
+Provides: extresso=/usr/bin/extresso, genresscript=/usr/bin/genresscript, icotool=/usr/bin/icotool, wrestool=/usr/bin/wrestool
