@@ -1,0 +1,8 @@
+Name: font-isas-misc
+Description: chinese bitmap fonts from the institute of software, academia sinica
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-isas-misc-1.0.4.tar.xz
+License: institute of software, academia sinica license
+Maintainer: arkanaOS team
+Provides: chinese-bitmap-fonts=/usr/share/fonts/isas-misc
