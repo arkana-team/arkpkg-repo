@@ -1,0 +1,8 @@
+Name: libdeflate0
+Description: fast, whole-buffer DEFLATE-based compression and decompression
+Version: 1.23-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libdeflate0
+License: See /usr/share/doc/libdeflate0/copyright
+Maintainer: arkanaOS Team
+Provides: libdeflate.so.0=/usr/lib/x86_64-linux-gnu/libdeflate.so.0
