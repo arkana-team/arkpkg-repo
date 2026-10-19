@@ -1,0 +1,11 @@
+Name: qalc
+Description: Powerful and easy to use command line calculator
+Version: 5.5.2-1+b1
+Arch: x86_64
+URL: https://qalculate.github.io/
+License: See /usr/share/doc/qalc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libqalculate23
+  readline-libs
+Provides: qalc=/usr/bin/qalc
