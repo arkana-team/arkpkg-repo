@@ -1,0 +1,21 @@
+Name: libgraphicsmagick-q16-3t64
+Description: format-independent image processing - C shared library
+Version: 1.4+really1.3.45+hg17696-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgraphicsmagick-q16-3t64
+License: See /usr/share/doc/libgraphicsmagick-q16-3t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgomp1
+  libheif1
+  libjbig0
+  libjpeg62-turbo
+  libjxl0.11
+  liblcms2-2
+  libpng16-16t64
+  libtiff6
+  libwebp7
+  libwebpmux3
+  libwmflite-0.2-7
+  xml-runtime-libs
+Provides: libGraphicsMagick-Q16.so.3=/usr/lib/libGraphicsMagick-Q16.so.3.25.2, libGraphicsMagickWand-Q16.so.2=/usr/lib/libGraphicsMagickWand-Q16.so.2.10.1
