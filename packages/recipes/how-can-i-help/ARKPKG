@@ -1,0 +1,8 @@
+Name: how-can-i-help
+Description: show opportunities for contributing to Debian
+Version: 20
+Arch: any
+URL: https://wiki.debian.org/how-can-i-help
+License: See /usr/share/doc/how-can-i-help/copyright
+Maintainer: arkanaOS Team
+Provides: how-can-i-help=/usr/bin/how-can-i-help
