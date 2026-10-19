@@ -1,0 +1,14 @@
+Name: libzmq5
+Description: lightweight messaging kernel (shared library)
+Version: 4.3.5-1+b3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libzmq5
+License: See /usr/share/doc/libzmq5/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  krb5-libs
+  libbsd
+  libnorm1t64
+  libpgm-5.3-0t64
+  libsodium23
+Provides: libzmq.so.5=/usr/lib/x86_64-linux-gnu/libzmq.so.5.2.5
