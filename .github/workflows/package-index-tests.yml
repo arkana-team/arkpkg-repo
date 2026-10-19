@@ -1,0 +1,34 @@
+name: Package index tests
+
+on:
+  pull_request:
+    paths:
+      - "packages/**"
+      - "scripts/build-index.py"
+      - "scripts/test-package-index-tilde.py"
+      - ".github/workflows/package-index-tests.yml"
+  push:
+    paths:
+      - "packages/**"
+      - "scripts/build-index.py"
+      - "scripts/test-package-index-tilde.py"
+      - ".github/workflows/package-index-tests.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  package-index:
+    name: Validate package index metadata
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install index builder dependency
+        run: python3 -m pip install lz4
+      - name: Test epoch and tilde versions
+        run: python3 scripts/test-package-index-tilde.py -v

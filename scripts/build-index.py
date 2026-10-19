@@ -14,7 +14,7 @@ import lz4.frame
 
 PACKAGE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
-PACKAGE_VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
+PACKAGE_VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
 
 PAGE_STYLE = """
 body { font-family: sans-serif; line-height: 1.5; margin: 0; padding: 2rem; }
