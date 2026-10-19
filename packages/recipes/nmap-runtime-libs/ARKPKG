@@ -1,0 +1,8 @@
+Name: nmap-runtime-libs
+Description: Linear classifier and BLAS runtime libraries for nmap
+Version: 2.3.0+dfsg-5+b2
+Arch: x86_64
+URL: https://nmap.org/
+License: See /usr/share/doc/liblinear4/copyright
+Maintainer: arkanaOS Team
+Provides: libblas.so.3=/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.1, liblinear.so.4=/usr/lib/x86_64-linux-gnu/liblinear.so.4.2.
