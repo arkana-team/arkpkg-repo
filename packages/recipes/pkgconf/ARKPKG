@@ -1,8 +1,8 @@
 Name: pkgconf
-Description: pkg-config compatible build metadata tool
+Description: pkg-config compatible build metadata tool and library
 Version: 3.0.8
 Arch: x86_64
-URL: https://github.com/pkgconf/pkgconf
+URL: https://distfiles.ariadne.space/pkgconf/pkgconf-3.0.8.tar.xz
 License: ISC
-Maintainer: arkanaOS Team
+Maintainer: arkanaOS team
 Provides: pkgconf=/usr/bin/pkgconf
