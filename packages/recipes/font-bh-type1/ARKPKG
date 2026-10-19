@@ -1,0 +1,8 @@
+Name: font-bh-type1
+Description: luxi type 1 font families from bigelow & holmes
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-bh-type1-1.0.4.tar.xz
+License: luxi font license
+Maintainer: arkanaOS team
+Provides: luxi-type1-fonts=/usr/share/fonts/bh-type1
