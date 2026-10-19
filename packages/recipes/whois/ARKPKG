@@ -1,0 +1,11 @@
+Name: whois
+Description: intelligent WHOIS client
+Version: 5.6.3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/whois
+License: See /usr/share/doc/whois/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcrypt1
+  libidn2-libs
+Provides: mkpasswd=/usr/bin/mkpasswd, whois=/usr/bin/whois
