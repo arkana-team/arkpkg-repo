@@ -1,0 +1,38 @@
+name: Package archive audit
+
+on:
+  pull_request:
+    paths:
+      - "packages/**"
+      - "packages/recipes/**"
+      - "scripts/test-packages.py"
+      - "scripts/test-package-audit-versions.py"
+      - ".github/workflows/package-audit.yml"
+  push:
+    paths:
+      - "packages/**"
+      - "packages/recipes/**"
+      - "scripts/test-packages.py"
+      - "scripts/test-package-audit-versions.py"
+      - ".github/workflows/package-audit.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  archive-audit:
+    name: Audit archive metadata and dependency closure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install archive reader
+        run: python3 -m pip install lz4
+      - name: Test package version selection
+        run: python3 scripts/test-package-audit-versions.py -v
+      - name: Audit all package archives
+        run: python3 scripts/test-packages.py --arkpkg /usr/bin/true --audit-only

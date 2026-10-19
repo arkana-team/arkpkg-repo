@@ -14,10 +14,63 @@ import lz4.frame
 
 REQUIRED_FIELDS = {"Name", "Description", "Version", "Arch"}
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
-VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
+VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
 DEPENDENCY = re.compile(
     r"([A-Za-z0-9][A-Za-z0-9._+-]*)(?:\s*(?:>=|<=|=|>|<)\s*(\S+))?\Z"
 )
+
+
+def version_segments(version: str) -> tuple[int, list[tuple[str, int | str]]]:
+    epoch = 0
+    if ":" in version:
+        raw_epoch, version = version.split(":", 1)
+        epoch = int(raw_epoch)
+
+    segments: list[tuple[str, int | str]] = []
+    for index, part in enumerate(version.split("~")):
+        if index:
+            segments.append(("tilde", ""))
+        for token in re.split(r"[._-]", part):
+            if not token:
+                continue
+            if token.isdigit():
+                segments.append(("number", int(token)))
+            else:
+                segments.append(("string", token))
+    return epoch, segments
+
+
+def compare_versions(left: str, right: str) -> int:
+    left_epoch, left_segments = version_segments(left)
+    right_epoch, right_segments = version_segments(right)
+    if left_epoch != right_epoch:
+        return (left_epoch > right_epoch) - (left_epoch < right_epoch)
+
+    for index in range(max(len(left_segments), len(right_segments))):
+        left_segment = left_segments[index] if index < len(left_segments) else None
+        right_segment = right_segments[index] if index < len(right_segments) else None
+        if left_segment == right_segment:
+            continue
+        if left_segment is None:
+            if right_segment[0] == "tilde":
+                return 1
+            if right_segment[0] == "number" and right_segment[1] == 0:
+                continue
+            return 1 if right_segment[0] == "string" else -1
+        if right_segment is None:
+            if left_segment[0] == "tilde":
+                return -1
+            if left_segment[0] == "number" and left_segment[1] == 0:
+                continue
+            return -1 if left_segment[0] == "string" else 1
+        if left_segment[0] == "tilde" or right_segment[0] == "tilde":
+            return -1 if left_segment[0] == "tilde" else 1
+        if left_segment[0] == right_segment[0]:
+            return (left_segment[1] > right_segment[1]) - (
+                left_segment[1] < right_segment[1]
+            )
+        return 1 if left_segment[0] == "number" else -1
+    return 0
 
 
 def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
@@ -178,6 +231,7 @@ def test_repository(
     audit_only: bool = False,
 ) -> None:
     packages: dict[str, tuple[Path, str, list[str], list[str]]] = {}
+    package_arches: dict[str, str] = {}
     owners: dict[str, str] = {}
     archives = sorted((repo_root / "packages").glob("*.ark"))
     if not archives:
@@ -187,8 +241,25 @@ def test_repository(
         metadata, dependencies, provides = inspect_archive(path)
         name = metadata["Name"]
         if name in packages:
-            raise ValueError(f"duplicate package name: {name}")
-        packages[name] = (path, metadata["Version"], dependencies, provides)
+            if package_arches[name] != metadata["Arch"]:
+                raise ValueError(f"multiple architectures for package name: {name}")
+            existing_version = packages[name][1]
+            version_order = compare_versions(metadata["Version"], existing_version)
+            if version_order == 0:
+                raise ValueError(
+                    f"duplicate package version and architecture: "
+                    f"{name}-{metadata['Version']}-{metadata['Arch']}"
+                )
+            if version_order > 0:
+                packages[name] = (
+                    path,
+                    metadata["Version"],
+                    dependencies,
+                    provides,
+                )
+        else:
+            packages[name] = (path, metadata["Version"], dependencies, provides)
+            package_arches[name] = metadata["Arch"]
         with (
             lz4.frame.open(path, "rb") as compressed,
             tarfile.open(fileobj=compressed, mode="r|") as archive,
@@ -216,7 +287,8 @@ def test_repository(
     edge_count = sum(map(len, dependencies.values()))
     total_bytes = sum(path.stat().st_size for path in archives)
     print(
-        f"Audited {len(packages)} packages, {len(owners)} unique payload paths, "
+        f"Audited {len(archives)} archives for {len(packages)} packages, "
+        f"{len(owners)} unique payload paths, "
         f"{edge_count} dependency edges, {total_bytes} archive bytes",
         flush=True,
     )
