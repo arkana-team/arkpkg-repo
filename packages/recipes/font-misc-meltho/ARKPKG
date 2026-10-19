@@ -1,0 +1,8 @@
+Name: font-misc-meltho
+Description: syriac opentype fonts from beth mardutho
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-misc-meltho-1.0.4.tar.xz
+License: beth mardutho font license
+Maintainer: arkanaOS team
+Provides: syriac-outline-fonts=/usr/share/fonts/misc-meltho
