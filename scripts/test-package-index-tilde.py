@@ -15,7 +15,6 @@ from pathlib import Path
 
 import lz4.frame
 
-
 SCRIPT = Path(__file__).resolve().with_name("build-index.py")
 SPEC = importlib.util.spec_from_file_location("build_index", SCRIPT)
 if SPEC is None or SPEC.loader is None:
