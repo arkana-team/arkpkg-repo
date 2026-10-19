@@ -1,0 +1,8 @@
+Name: font-bh-ttf
+Description: luxi outline font families from bigelow & holmes
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-bh-ttf-1.0.4.tar.xz
+License: luxi font license
+Maintainer: arkanaOS team
+Provides: luxi-outline-fonts=/usr/share/fonts/bh-ttf
