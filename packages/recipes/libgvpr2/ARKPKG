@@ -1,0 +1,11 @@
+Name: libgvpr2
+Description: rich set of graph drawing tools - gvpr library
+Version: 2.42.4-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgvpr2
+License: See /usr/share/doc/libgvpr2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcdt5
+  libcgraph6
+Provides: libgvpr.so.2=/usr/lib/x86_64-linux-gnu/libgvpr.so.2.0.0
