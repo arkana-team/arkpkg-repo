@@ -1,0 +1,8 @@
+Name: libogg0
+Description: Ogg bitstream library
+Version: 1.3.5-3+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libogg0
+License: See /usr/share/doc/libogg0/copyright
+Maintainer: arkanaOS Team
+Provides: libogg.so.0=/usr/lib/x86_64-linux-gnu/libogg.so.0.8.5
