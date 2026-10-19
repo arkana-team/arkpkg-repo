@@ -1,0 +1,10 @@
+Name: fox-tools
+Description: editor calculator file browser and image viewer from the fox toolkit
+Version: 1.6.57
+Arch: x86_64
+URL: https://deb.debian.org/debian/pool/main/f/fox1.6/fox1.6_1.6.57.orig.tar.gz
+License: gpl-2.0-or-later
+Maintainer: arkanaOS team
+Dependencies:
+  fox-libs>=1.6.57
+Provides: fox-tools=/usr/bin/adie
