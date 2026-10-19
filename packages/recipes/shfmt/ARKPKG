@@ -1,0 +1,8 @@
+Name: shfmt
+Description: format shell programs
+Version: 3.8.0-1+b8
+Arch: x86_64
+URL: https://github.com/mvdan/sh
+License: See /usr/share/doc/shfmt/copyright
+Maintainer: arkanaOS Team
+Provides: shfmt=/usr/bin/shfmt
