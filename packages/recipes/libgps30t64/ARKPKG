@@ -1,0 +1,8 @@
+Name: libgps30t64
+Description: Global Positioning System - library
+Version: 3.25-5+deb13u2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgps30t64
+License: See /usr/share/doc/libgps30t64/copyright
+Maintainer: arkanaOS Team
+Provides: libgps.so.30=/usr/lib/x86_64-linux-gnu/libgps.so.30.0.0
