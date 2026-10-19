@@ -1,0 +1,8 @@
+Name: binutils-gold-x86-64-linux-gnu
+Description: gold ELF linker for the x86-64-linux-gnu target (deprecated)
+Version: 2.44-2
+Arch: x86_64
+URL: https://www.gnu.org/software/binutils/
+License: See /usr/share/doc/binutils-gold-x86-64-linux-gnu/copyright
+Maintainer: arkanaOS Team
+Provides: x86_64-linux-gnu-dwp=/usr/bin/x86_64-linux-gnu-dwp, x86_64-linux-gnu-gold=/usr/bin/x86_64-linux-gnu-gold, x86_64-linux-gnu-ld.gold=/usr/bin/x86_64-linux-gnu-ld.gold
