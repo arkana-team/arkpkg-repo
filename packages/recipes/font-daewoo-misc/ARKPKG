@@ -1,0 +1,8 @@
+Name: font-daewoo-misc
+Description: daewoo hangul bitmap fonts for x11
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-daewoo-misc-1.0.4.tar.xz
+License: Daewoo Font License
+Maintainer: arkanaOS team
+Provides: daewoo-bitmap-fonts=/usr/share/fonts/daewoo-misc
