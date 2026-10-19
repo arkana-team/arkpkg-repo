@@ -1,0 +1,12 @@
+Name: broot-runtime-libs
+Description: Git and TLS runtime libraries required by broot
+Version: 1.9.0+ds-2+deb13u1
+Arch: x86_64
+URL: https://github.com/libgit2/libgit2
+License: See /usr/share/doc/libgit2-1.9/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  krb5-libs
+  mc-runtime-libs
+  pcre2-libs
+Provides: libgit2.so.1.9=/usr/lib/x86_64-linux-gnu/libgit2.so.1.9.0, libhttp_parser.so.2.9=/usr/lib/x86_64-linux-gnu/libhttp_parser.so.2.9.4, libmbedcrypto.so.16=/usr/lib/x86_64-linux-gnu/libmbedcrypto.so.3.6.6, libmbedtls.so.21=/usr/lib/x86_64-linux-gnu/libmbedtls.so.3.6.6, libmbedx509.so.7=/usr/lib/x86_64-linux-gnu/libmbedx509.so.3.6.6
