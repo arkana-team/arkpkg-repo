@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Check that the Pages index stays small and points to verified package files."""
 
 import hashlib
@@ -31,21 +30,23 @@ class BuildIndexTests(unittest.TestCase):
             root = Path(temporary)
             archive_path = root / "packages" / "hello-1.2.3-x86_64.ark"
             archive_path.parent.mkdir()
-            with archive_path.open("wb") as output:
-                with lz4.frame.open(output, "wb") as compressed:
-                    with tarfile.open(fileobj=compressed, mode="w|") as archive:
-                        metadata = (
-                            "Name: hello\n"
-                            "Description: sample package\n"
-                            "Version: 1.2.3\n"
-                            "Arch: x86_64\n"
-                        ).encode()
-                        metadata_info = tarfile.TarInfo("ARKPKG")
-                        metadata_info.size = len(metadata)
-                        archive.addfile(metadata_info, io.BytesIO(metadata))
-                        package_info = tarfile.TarInfo("package/")
-                        package_info.type = tarfile.DIRTYPE
-                        archive.addfile(package_info)
+            with (
+                archive_path.open("wb") as output,
+                lz4.frame.open(output, "wb") as compressed,
+                tarfile.open(fileobj=compressed, mode="w|") as archive,
+            ):
+                metadata = (
+                    b"Name: hello\n"
+                    b"Description: sample package\n"
+                    b"Version: 1.2.3\n"
+                    b"Arch: x86_64\n"
+                )
+                metadata_info = tarfile.TarInfo("ARKPKG")
+                metadata_info.size = len(metadata)
+                archive.addfile(metadata_info, io.BytesIO(metadata))
+                package_info = tarfile.TarInfo("package/")
+                package_info.type = tarfile.DIRTYPE
+                archive.addfile(package_info)
 
             site = root / "site"
             build_site(root, site)
@@ -71,6 +72,8 @@ class BuildIndexTests(unittest.TestCase):
             "https://user:password@example.com/packages",
             "https://example.com/packages?token=secret",
             "https://example.com/packages#fragment",
+            "https://example.com:0/packages",
+            "https://example.com:wrong/packages",
         ):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 validate_download_base_url(value)

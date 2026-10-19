@@ -8,8 +8,8 @@ import json
 import re
 import shutil
 import tarfile
-from urllib.parse import quote, urlsplit
 from pathlib import Path, PurePosixPath
+from urllib.parse import quote, urlsplit
 
 import lz4.frame
 
@@ -154,7 +154,7 @@ def sha256_file(path: Path) -> str:
 def validate_download_base_url(value: str) -> str:
     try:
         parsed = urlsplit(value)
-        parsed.port
+        port = parsed.port
     except ValueError as error:
         raise ValueError(f"invalid download base URL: {error}") from error
     if (
@@ -164,6 +164,7 @@ def validate_download_base_url(value: str) -> str:
         or parsed.password is not None
         or parsed.query
         or parsed.fragment
+        or port == 0
     ):
         raise ValueError("download base URL must be HTTPS without credentials, query, or fragment")
     return value.rstrip("/")
