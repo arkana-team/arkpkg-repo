@@ -1,0 +1,8 @@
+Name: libjpeg62-turbo
+Description: libjpeg-turbo JPEG runtime library
+Version: 1:2.1.5-4
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libjpeg62-turbo
+License: See /usr/share/doc/libjpeg62-turbo/copyright
+Maintainer: arkanaOS Team
+Provides: libjpeg.so.62=/usr/lib/x86_64-linux-gnu/libjpeg.so.62.3.0
