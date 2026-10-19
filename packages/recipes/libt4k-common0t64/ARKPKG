@@ -1,0 +1,17 @@
+Name: libt4k-common0t64
+Description: common library for tux4kids
+Version: 0.1.1-12
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libt4k-common0t64
+License: See /usr/share/doc/libt4k-common0t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo2
+  libpng16-16t64
+  librsvg2-2
+  libsdl-image1.2
+  libsdl-mixer1.2
+  libsdl-pango1
+  libsdl1.2debian
+  xml-runtime-libs
+Provides: libt4k_common.so.0=/usr/lib/x86_64-linux-gnu/libt4k_common.so.0.0.0
