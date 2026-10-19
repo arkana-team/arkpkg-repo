@@ -1,0 +1,311 @@
+#!/usr/bin/env python3
+"""Build checksum-pinned upstream system-information tools as arkpkg packages."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import re
+import shutil
+import subprocess
+import sys
+import tarfile
+import tempfile
+import time
+import urllib.request
+from pathlib import Path, PurePosixPath
+
+import lz4.frame
+
+PACKAGES = {
+    "neofetch": {
+        "version": "7.1.0",
+        "arch": "any",
+        "url": "https://github.com/dylanaraps/neofetch",
+        "archive": "https://codeload.github.com/dylanaraps/neofetch/tar.gz/refs/tags/7.1.0",
+        "archive_sha256": "58a95e6b714e41efc804eca389a223309169b2def35e57fa934482a6b47c27e7",
+        "root": "neofetch-7.1.0",
+        "license_source": "LICENSE.md",
+        "license_path": "usr/share/doc/neofetch/copyright",
+        "files": {
+            "neofetch": "usr/bin/neofetch",
+            "neofetch.1": "usr/share/man/man1/neofetch.1",
+        },
+        "description": "System information and distribution logo tool",
+        "license": "MIT",
+    },
+    "pfetch": {
+        "version": "0.6.0",
+        "arch": "any",
+        "url": "https://github.com/dylanaraps/pfetch",
+        "archive": "https://codeload.github.com/dylanaraps/pfetch/tar.gz/refs/tags/0.6.0",
+        "archive_sha256": "d1f611e61c1f8ae55bd14f8f6054d06fcb9a2d973095367c1626842db66b3182",
+        "root": "pfetch-0.6.0",
+        "license_source": "LICENSE.md",
+        "license_path": "usr/share/doc/pfetch/copyright",
+        "files": {"pfetch": "usr/bin/pfetch"},
+        "description": "Small POSIX shell system information tool",
+        "license": "MIT",
+    },
+    "nitch": {
+        "version": "0.1.6",
+        "arch": "x86_64",
+        "url": "https://github.com/ssleert/nitch",
+        "archive": "https://codeload.github.com/ssleert/nitch/tar.gz/refs/tags/0.1.6",
+        "archive_sha256": "118654cf34b9b5d0f0babccad623360438b6c1e9d619770f590d192de2183350",
+        "root": "nitch-0.1.6",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/nitch/copyright",
+        "binary": "https://github.com/ssleert/nitch/releases/download/0.1.6/nitchNoNerd",
+        "binary_sha256": "0f88f0dd30341476e62f2265bf81a67182a6a29e89003e0a19a15c666ba4f295",
+        "description": "Fast system information tool written in Nim",
+        "license": "MIT",
+    },
+}
+INTERPRETER = re.compile(r"Requesting program interpreter: (.+?)\]")
+NEEDED = re.compile(r"Shared library: \[(.+?)\]")
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        while chunk := source.read(1024 * 1024):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def download(url: str, expected: str, cache: Path) -> Path:
+    target = cache / url.rsplit("/", 1)[-1]
+    if target.is_file() and sha256(target) == expected:
+        return target
+    target.unlink(missing_ok=True)
+    temporary = target.with_suffix(target.suffix + ".download")
+    request = urllib.request.Request(
+        url, headers={"User-Agent": "arkpkg-repo-upstream-package-builder/1"}
+    )
+    try:
+        for attempt in range(4):
+            try:
+                with urllib.request.urlopen(
+                    request, timeout=120
+                ) as response, temporary.open("wb") as output:
+                    shutil.copyfileobj(response, output)
+                break
+            except (urllib.error.URLError, TimeoutError, ConnectionError):
+                temporary.unlink(missing_ok=True)
+                if attempt == 3:
+                    raise
+                time.sleep(2**attempt)
+        actual = sha256(temporary)
+        if actual != expected:
+            raise ValueError(
+                f"SHA-256 mismatch for {target.name}: expected {expected}, got {actual}"
+            )
+        temporary.replace(target)
+    finally:
+        temporary.unlink(missing_ok=True)
+    return target
+
+
+def read_tar_file(archive_path: Path, member_name: str) -> bytes:
+    with tarfile.open(archive_path, "r:gz") as archive:
+        try:
+            member = archive.getmember(member_name)
+        except KeyError as error:
+            raise ValueError(f"{archive_path.name}: missing {member_name}") from error
+        if not member.isfile():
+            raise ValueError(f"{archive_path.name}: {member_name} is not a regular file")
+        source = archive.extractfile(member)
+        if source is None:
+            raise ValueError(f"{archive_path.name}: could not read {member_name}")
+        return source.read()
+
+
+def stage_has_library(staging: Path, soname: str) -> bool:
+    directories = (
+        "lib",
+        "lib64",
+        "lib/x86_64-linux-gnu",
+        "usr/lib",
+        "usr/lib64",
+        "usr/lib/x86_64-linux-gnu",
+    )
+    return any(
+        (staging / directory / soname).exists()
+        or (staging / directory / soname).is_symlink()
+        for directory in directories
+    )
+
+
+def validate_elf(binary: Path, staging: Path) -> None:
+    dynamic = subprocess.run(
+        ["readelf", "-d", str(binary)], capture_output=True, text=True, check=True
+    ).stdout
+    for line in dynamic.splitlines():
+        match = NEEDED.search(line)
+        if match and not stage_has_library(staging, match.group(1)):
+            raise ValueError(
+                f"{binary.name}: {match.group(1)} is absent from the ArkanaOS staging root"
+            )
+    program_headers = subprocess.run(
+        ["readelf", "-l", str(binary)], capture_output=True, text=True, check=True
+    ).stdout
+    match = INTERPRETER.search(program_headers)
+    if match:
+        interpreter = PurePosixPath(match.group(1))
+        staged_interpreter = staging.joinpath(*interpreter.parts[1:])
+        if not staged_interpreter.exists() and not staged_interpreter.is_symlink():
+            raise ValueError(
+                f"{binary.name}: ELF interpreter {interpreter} is absent from staging"
+            )
+
+
+def archive_owners(repo_root: Path, ignored_archives: set[str]) -> set[str]:
+    owned = set()
+    for archive_path in (repo_root / "packages").glob("*.ark"):
+        if archive_path.name in ignored_archives:
+            continue
+        with (
+            lz4.frame.open(archive_path, "rb") as compressed,
+            tarfile.open(fileobj=compressed, mode="r|") as archive,
+        ):
+            for member in archive:
+                if not (member.isfile() or member.issym() or member.islnk()):
+                    continue
+                path = PurePosixPath(member.name)
+                if path.parts[:1] == ("package",) and len(path.parts) > 1:
+                    owned.add("/".join(path.parts[1:]))
+    return owned
+
+
+def recipe_text(name: str, package: dict[str, object]) -> str:
+    executable = "nitch" if name == "nitch" else name
+    return "\n".join(
+        (
+            f"Name: {name}",
+            f"Description: {package['description']}",
+            f"Version: {package['version']}",
+            f"Arch: {package['arch']}",
+            f"URL: {package['url']}",
+            f"License: {package['license']}",
+            "Maintainer: arkanaOS Team",
+            f"Provides: {executable}=/usr/bin/{executable}",
+            "",
+        )
+    )
+
+
+def build(args: argparse.Namespace) -> None:
+    repo_root = args.repo_root.resolve()
+    cache = args.source_cache.resolve()
+    cache.mkdir(parents=True, exist_ok=True)
+    staging = args.staging.resolve()
+    selected = args.packages or sorted(PACKAGES)
+    unknown = set(selected).difference(PACKAGES)
+    if unknown:
+        raise ValueError(f"unknown packages: {', '.join(sorted(unknown))}")
+    ignored_archives = {
+        f"{name}-{PACKAGES[name]['version']}-{PACKAGES[name]['arch']}.ark"
+        for name in selected
+    }
+    owned = archive_owners(repo_root, ignored_archives)
+
+    for index, name in enumerate(selected, 1):
+        package = PACKAGES[name]
+        source_archive = download(
+            str(package["archive"]), str(package["archive_sha256"]), cache
+        )
+        with tempfile.TemporaryDirectory(prefix=f"arkpkg-{name}-") as temporary:
+            package_dir = Path(temporary) / name
+            payload = package_dir / "package"
+            payload.mkdir(parents=True)
+
+            if name == "nitch":
+                binary = download(
+                    str(package["binary"]), str(package["binary_sha256"]), cache
+                )
+                target = payload / "usr/bin/nitch"
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(binary, target)
+                target.chmod(0o755)
+                validate_elf(target, staging)
+            else:
+                for source_name, target_name in package["files"].items():
+                    data = read_tar_file(
+                        source_archive, f"{package['root']}/{source_name}"
+                    )
+                    target = payload / str(target_name)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(data)
+                    if str(target_name).startswith("usr/bin/"):
+                        target.chmod(0o755)
+
+            license_target = payload / str(package["license_path"])
+            license_target.parent.mkdir(parents=True, exist_ok=True)
+            license_target.write_bytes(
+                read_tar_file(
+                    source_archive,
+                    f"{package['root']}/{package['license_source']}",
+                )
+            )
+
+            paths = {
+                path.relative_to(payload).as_posix()
+                for path in payload.rglob("*")
+                if not path.is_dir() or path.is_symlink()
+            }
+            collisions = sorted(paths.intersection(owned))
+            if collisions:
+                raise ValueError(
+                    f"{name}: paths already owned by arkpkg-repo: "
+                    + ", ".join(collisions[:20])
+                )
+
+            recipe = recipe_text(name, package)
+            recipe_path = repo_root / "packages/recipes" / name / "ARKPKG"
+            recipe_path.parent.mkdir(parents=True, exist_ok=True)
+            if recipe_path.exists() and recipe_path.read_text(encoding="utf-8") != recipe:
+                raise ValueError(f"existing recipe differs from pinned metadata: {recipe_path}")
+            recipe_path.write_text(recipe, encoding="utf-8")
+            shutil.copy2(recipe_path, package_dir / "ARKPKG")
+
+            archive_path = repo_root / "packages" / (
+                f"{name}-{package['version']}-{package['arch']}.ark"
+            )
+            subprocess.run(
+                [
+                    str(args.arkpkg_build.resolve()),
+                    str(package_dir),
+                    "--output",
+                    str(archive_path),
+                ],
+                check=True,
+            )
+            owned.update(paths)
+            print(
+                f"Built {index}/{len(selected)} {archive_path.name} "
+                f"({archive_path.stat().st_size} bytes; {len(paths)} payload paths)",
+                flush=True,
+            )
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--repo-root", type=Path, default=Path(__file__).resolve().parents[1]
+    )
+    parser.add_argument("--arkpkg-build", type=Path, required=True)
+    parser.add_argument("--staging", type=Path, required=True)
+    parser.add_argument(
+        "--source-cache", type=Path, default=Path("/tmp/arkpkg-upstream-cli-cache")
+    )
+    parser.add_argument("--packages", nargs="+", choices=sorted(PACKAGES))
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    try:
+        build(parse_args())
+    except (OSError, ValueError, subprocess.CalledProcessError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        raise SystemExit(1) from error

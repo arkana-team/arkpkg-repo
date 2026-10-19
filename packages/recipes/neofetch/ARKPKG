@@ -1,0 +1,8 @@
+Name: neofetch
+Description: System information and distribution logo tool
+Version: 7.1.0
+Arch: any
+URL: https://github.com/dylanaraps/neofetch
+License: MIT
+Maintainer: arkanaOS Team
+Provides: neofetch=/usr/bin/neofetch

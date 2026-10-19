@@ -1,0 +1,8 @@
+Name: nitch
+Description: Fast system information tool written in Nim
+Version: 0.1.6
+Arch: x86_64
+URL: https://github.com/ssleert/nitch
+License: MIT
+Maintainer: arkanaOS Team
+Provides: nitch=/usr/bin/nitch
