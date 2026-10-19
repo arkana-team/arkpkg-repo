@@ -1,0 +1,12 @@
+Name: vis-runtime-libs
+Description: Runtime libraries required by the vis editor
+Version: 5.4.7-1+b2
+Arch: x86_64
+URL: https://github.com/martanne/vis
+License: See /usr/share/doc/libselinux1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  lua54-libs
+  pcre2-libs
+  terminal-runtime-libs
+Provides: libselinux.so.1=/usr/lib/x86_64-linux-gnu/libselinux.so.1, libtre.so.5=/usr/lib/x86_64-linux-gnu/libtre.so.5.0.0
