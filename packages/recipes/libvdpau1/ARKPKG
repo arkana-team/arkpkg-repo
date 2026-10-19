@@ -1,0 +1,8 @@
+Name: libvdpau1
+Description: Video Decode and Presentation API for Unix (libraries)
+Version: 1.5-3+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libvdpau1
+License: See /usr/share/doc/libvdpau1/copyright
+Maintainer: arkanaOS Team
+Provides: libvdpau.so.1=/usr/lib/x86_64-linux-gnu/libvdpau.so.1.0.0, libvdpau_trace.so.1=/usr/lib/x86_64-linux-gnu/vdpau/libvdpau_trace.so.1.0.0
