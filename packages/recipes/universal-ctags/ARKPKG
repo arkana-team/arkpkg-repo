@@ -1,0 +1,11 @@
+Name: universal-ctags
+Description: build tag file indexes of source code definitions
+Version: 5.9.20210829.0-2
+Arch: x86_64
+URL: https://ctags.io/
+License: See /usr/share/doc/universal-ctags/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libyaml-libs
+  xml-runtime-libs
+Provides: ctags-universal=/usr/bin/ctags-universal, optscript=/usr/bin/optscript, readtags=/usr/bin/readtags
