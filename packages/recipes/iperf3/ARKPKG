@@ -1,0 +1,11 @@
+Name: iperf3
+Description: Internet Protocol bandwidth measuring tool
+Version: 3.18-2+deb13u2
+Arch: x86_64
+URL: http://software.es.net/iperf/
+License: See /usr/share/doc/iperf3/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  openssl-libs
+  sctp-libs
+Provides: iperf3=/usr/bin/iperf3, libiperf.so.0=/usr/lib/x86_64-linux-gnu/libiperf.so.0.0.0
