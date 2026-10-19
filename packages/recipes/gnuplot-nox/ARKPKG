@@ -1,0 +1,18 @@
+Name: gnuplot-nox
+Description: Command-line driven interactive plotting program. No-X package
+Version: 6.0.2+dfsg1-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/gnuplot-nox
+License: See /usr/share/doc/gnuplot-nox/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  dns-runtime-libs
+  gnuplot-data
+  libcairo2
+  libgd3
+  libpango-1.0-0
+  libpangocairo-1.0-0
+  libwebp7
+  libwebpmux3
+  lua54-libs
+Provides: gnuplot-nox=/usr/bin/gnuplot-nox
