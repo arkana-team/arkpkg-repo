@@ -1,0 +1,10 @@
+Name: update-inetd
+Description: inetd configuration file updater
+Version: 4.53
+Arch: any
+URL: https://packages.debian.org/trixie/update-inetd
+License: See /usr/share/doc/update-inetd/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: update-inetd=/usr/sbin/update-inetd
