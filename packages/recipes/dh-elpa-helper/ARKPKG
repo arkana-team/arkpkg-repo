@@ -1,0 +1,7 @@
+Name: dh-elpa-helper
+Description: helper package for emacs lisp extensions
+Version: 2.1.9
+Arch: any
+URL: https://packages.debian.org/trixie/dh-elpa-helper
+License: See /usr/share/doc/dh-elpa-helper/copyright
+Maintainer: arkanaOS Team
