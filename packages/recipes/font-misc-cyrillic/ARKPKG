@@ -1,0 +1,8 @@
+Name: font-misc-cyrillic
+Description: cyrillic fixed-width bitmap fonts for x11
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-misc-cyrillic-1.0.4.tar.xz
+License: X.Org font licenses
+Maintainer: arkanaOS team
+Provides: cyrillic-bitmap-fonts=/usr/share/fonts/misc-cyrillic

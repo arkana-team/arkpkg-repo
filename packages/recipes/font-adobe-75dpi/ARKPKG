@@ -1,0 +1,8 @@
+Name: font-adobe-75dpi
+Description: adobe bitmap fonts at 75 dpi
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-adobe-75dpi-1.0.4.tar.xz
+License: adobe font license
+Maintainer: arkanaOS team
+Provides: adobe-75dpi-fonts=/usr/share/fonts/adobe-75dpi

@@ -1,0 +1,11 @@
+Name: libxv-devel
+Description: header, linker, and pkg-config files for the x-video x11 library
+Version: 1.0.13
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXv-1.0.13.tar.xz
+License: X.Org License
+Maintainer: arkanaOS team
+Dependencies:
+  libxv>=1.0.13
+  xorg-devel>=1.0.0
+Provides: libxv-devel=/usr/lib/pkgconfig/xv.pc

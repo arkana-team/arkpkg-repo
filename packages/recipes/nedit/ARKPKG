@@ -1,0 +1,10 @@
+Name: nedit
+Description: motif text editor with syntax highlighting and a remote client
+Version: 5.7
+Arch: x86_64
+URL: https://sourceforge.net/projects/nedit/files/nedit-source/
+License: gpl-2.0-or-later
+Maintainer: arkanaOS team
+Dependencies:
+  motif-libs>=2.3.8
+Provides: nedit=/usr/bin/nedit

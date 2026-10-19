@@ -1,0 +1,8 @@
+Name: libxrandr
+Description: runtime library for X display mode and monitor control
+Version: 1.5.5
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXrandr-1.5.5.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: libxrandr=/usr/lib/libXrandr.so.2

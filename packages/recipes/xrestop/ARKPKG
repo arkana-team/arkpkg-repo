@@ -1,0 +1,11 @@
+Name: xrestop
+Description: monitor x11 client resource usage in a terminal
+Version: 0.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xrestop-0.6.tar.xz
+License: GPL-2.0-only
+Maintainer: arkanaOS team
+Dependencies:
+  libxres>=1.2.3
+  ncurses-libs>=6.5
+Provides: xrestop=/usr/bin/xrestop

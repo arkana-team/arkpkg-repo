@@ -1,0 +1,8 @@
+Name: font-misc-ethiopic
+Description: ethiopic opentype and truetype fonts
+Version: 1.0.5
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-misc-ethiopic-1.0.5.tar.xz
+License: mit
+Maintainer: arkanaOS team
+Provides: ethiopic-outline-fonts=/usr/share/fonts/misc-ethiopic

@@ -1,0 +1,8 @@
+Name: font-jis-misc
+Description: japanese bitmap fonts based on jis x 9051-1984
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-jis-misc-1.0.4.tar.xz
+License: jis x 9051-1984 font license
+Maintainer: arkanaOS team
+Provides: japanese-bitmap-fonts=/usr/share/fonts/jis-misc

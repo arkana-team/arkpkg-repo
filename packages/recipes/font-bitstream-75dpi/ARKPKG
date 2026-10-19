@@ -1,0 +1,8 @@
+Name: font-bitstream-75dpi
+Description: bitstream bitmap fonts at 75 dpi for x11 workstations
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-bitstream-75dpi-1.0.4.tar.xz
+License: bitstream charter font license
+Maintainer: arkanaOS team
+Provides: x11-fonts-bitstream-75dpi=/usr/share/fonts/bitstream-75dpi

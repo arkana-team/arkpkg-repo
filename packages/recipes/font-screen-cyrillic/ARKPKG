@@ -1,0 +1,8 @@
+Name: font-screen-cyrillic
+Description: compact cyrillic bitmap fonts for x11 terminals
+Version: 1.0.5
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-screen-cyrillic-1.0.5.tar.xz
+License: cronyx font license
+Maintainer: arkanaOS team
+Provides: cyrillic-screen-fonts=/usr/share/fonts/screen-cyrillic

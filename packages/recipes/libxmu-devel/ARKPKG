@@ -1,0 +1,11 @@
+Name: libxmu-devel
+Description: pkg-config metadata for the xmu and xmuu x11 libraries
+Version: 1.3.1
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXmu-1.3.1.tar.xz
+License: X.Org License
+Maintainer: arkanaOS team
+Dependencies:
+  libxmu>=1.3.1
+  xorg-devel>=1.0.0
+Provides: libxmu-devel=/usr/lib/pkgconfig/xmu.pc

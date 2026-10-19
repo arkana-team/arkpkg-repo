@@ -1,0 +1,8 @@
+Name: font-dec-misc
+Description: digital equipment workstation bitmap fonts for x11
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-dec-misc-1.0.4.tar.xz
+License: Digital Equipment Font License
+Maintainer: arkanaOS team
+Provides: dec-workstation-fonts=/usr/share/fonts/dec-misc

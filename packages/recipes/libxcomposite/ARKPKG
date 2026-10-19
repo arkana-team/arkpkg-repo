@@ -1,0 +1,8 @@
+Name: libxcomposite
+Description: runtime library for X Composite extension support
+Version: 0.4.7
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXcomposite-0.4.7.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: libxcomposite=/usr/lib/libXcomposite.so.1

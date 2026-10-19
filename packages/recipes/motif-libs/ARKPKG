@@ -1,0 +1,8 @@
+Name: motif-libs
+Description: runtime libraries for the motif widget toolkit
+Version: 2.3.8
+Arch: x86_64
+URL: https://sourceforge.net/projects/motif/files/Motif%202.3.8%20Source%20Code/
+License: lgpl-2.1-or-later
+Maintainer: arkanaOS team
+Provides: motif-libs=/usr/lib/libXm.so.4

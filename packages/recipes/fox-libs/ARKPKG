@@ -1,0 +1,8 @@
+Name: fox-libs
+Description: runtime libraries for the fox c++ toolkit
+Version: 1.6.57
+Arch: x86_64
+URL: https://deb.debian.org/debian/pool/main/f/fox1.6/fox1.6_1.6.57.orig.tar.gz
+License: lgpl-2.1-or-later
+Maintainer: arkanaOS team
+Provides: fox=/usr/lib/libFOX-1.6.so.0

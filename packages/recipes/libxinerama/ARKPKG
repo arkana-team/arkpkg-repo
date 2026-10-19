@@ -1,0 +1,8 @@
+Name: libxinerama
+Description: runtime library for Xinerama multi-screen support
+Version: 1.1.6
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXinerama-1.1.6.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: libxinerama=/usr/lib/libXinerama.so.1

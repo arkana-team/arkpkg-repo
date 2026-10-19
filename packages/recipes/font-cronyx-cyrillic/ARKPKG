@@ -1,0 +1,8 @@
+Name: font-cronyx-cyrillic
+Description: cyrillic bitmap fonts from cronyx
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-cronyx-cyrillic-1.0.4.tar.xz
+License: cronyx font license
+Maintainer: arkanaOS team
+Provides: cyrillic-bitmap-fonts=/usr/share/fonts/cronyx-cyrillic

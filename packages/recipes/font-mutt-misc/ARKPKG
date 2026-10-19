@@ -1,0 +1,8 @@
+Name: font-mutt-misc
+Description: compact bitmap fonts for legacy x11 applications
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-mutt-misc-1.0.4.tar.xz
+License: mit
+Maintainer: arkanaOS team
+Provides: mutt-bitmap-fonts=/usr/share/fonts/mutt-misc

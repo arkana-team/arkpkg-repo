@@ -1,0 +1,8 @@
+Name: xdriinfo
+Description: query direct rendering driver information from x11
+Version: 1.0.8
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/xdriinfo-1.0.8.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: xdriinfo=/usr/bin/xdriinfo

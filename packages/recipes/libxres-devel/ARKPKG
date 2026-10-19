@@ -1,0 +1,11 @@
+Name: libxres-devel
+Description: headers and pkg-config metadata for the xres library
+Version: 1.2.3
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXres-1.2.3.tar.xz
+License: X.Org License
+Maintainer: arkanaOS team
+Dependencies:
+  libxres>=1.2.3
+  xorg-devel>=1.0.0
+Provides: libxres-devel=/usr/include/X11/extensions/XRes.h

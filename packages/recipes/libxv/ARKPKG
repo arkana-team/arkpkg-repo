@@ -1,0 +1,8 @@
+Name: libxv
+Description: runtime library for the x-video x11 extension
+Version: 1.0.13
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXv-1.0.13.tar.xz
+License: X.Org License
+Maintainer: arkanaOS team
+Provides: libxv=/usr/lib/libXv.so.1

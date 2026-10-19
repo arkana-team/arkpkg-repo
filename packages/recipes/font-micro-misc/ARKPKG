@@ -1,0 +1,8 @@
+Name: font-micro-misc
+Description: public domain micro bitmap font for x11
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-micro-misc-1.0.4.tar.xz
+License: Public domain
+Maintainer: arkanaOS team
+Provides: micro-bitmap-font=/usr/share/fonts/micro-misc

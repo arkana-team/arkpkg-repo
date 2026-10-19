@@ -1,0 +1,8 @@
+Name: libxft
+Description: runtime library for Xft font rendering
+Version: 2.3.9
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/lib/libXft-2.3.9.tar.xz
+License: MIT
+Maintainer: arkanaOS team
+Provides: libxft=/usr/lib/libXft.so.2

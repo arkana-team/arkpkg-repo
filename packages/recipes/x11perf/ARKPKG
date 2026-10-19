@@ -1,0 +1,8 @@
+Name: x11perf
+Description: benchmark x11 server rendering and protocol performance
+Version: 1.6.1
+Arch: x86_64
+URL: https://xorg.freedesktop.org/archive/individual/app/x11perf-1.6.1.tar.gz
+License: MIT
+Maintainer: arkanaOS team
+Provides: x11perf=/usr/bin/x11perf
