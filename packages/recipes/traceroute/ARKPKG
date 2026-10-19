@@ -1,0 +1,8 @@
+Name: traceroute
+Description: Traces the route taken by packets over an IPv4/IPv6 network
+Version: 2.1.6-1
+Arch: x86_64
+URL: https://traceroute.sourceforge.net/
+License: See /usr/share/doc/traceroute/copyright
+Maintainer: arkanaOS Team
+Provides: lft.db=/usr/bin/lft.db, tcptraceroute.db=/usr/sbin/tcptraceroute.db, traceproto.db=/usr/bin/traceproto.db, traceroute-nanog=/usr/bin/traceroute-nanog, traceroute.db=/usr/bin/traceroute.db, traceroute6.db=/usr/bin/traceroute6.db
