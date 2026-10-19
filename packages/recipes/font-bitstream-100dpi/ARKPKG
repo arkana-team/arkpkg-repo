@@ -1,0 +1,8 @@
+Name: font-bitstream-100dpi
+Description: bitstream bitmap fonts at 100 dpi for x11 workstations
+Version: 1.0.4
+Arch: any
+URL: https://xorg.freedesktop.org/archive/individual/font/font-bitstream-100dpi-1.0.4.tar.xz
+License: bitstream charter font license
+Maintainer: arkanaOS team
+Provides: x11-fonts-bitstream-100dpi=/usr/share/fonts/bitstream-100dpi
