@@ -1,0 +1,10 @@
+Name: netcat-openbsd
+Description: TCP/IP swiss army knife
+Version: 1.229-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/netcat-openbsd
+License: See /usr/share/doc/netcat-openbsd/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libbsd
+Provides: nc.openbsd=/usr/bin/nc.openbsd
