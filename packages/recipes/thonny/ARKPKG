@@ -1,0 +1,8 @@
+Name: thonny
+Description: Python IDE for beginners
+Version: 4.1.7-1
+Arch: any
+URL: https://thonny.org
+License: See /usr/share/doc/thonny/copyright
+Maintainer: arkanaOS Team
+Provides: thonny=/usr/bin/thonny
