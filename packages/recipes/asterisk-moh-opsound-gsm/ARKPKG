@@ -1,0 +1,7 @@
+Name: asterisk-moh-opsound-gsm
+Description: asterisk extra sound files - English/gsm
+Version: 2.03-1.1
+Arch: any
+URL: http://www.asterisk.org/
+License: See /usr/share/doc/asterisk-moh-opsound-gsm/copyright
+Maintainer: arkanaOS Team
