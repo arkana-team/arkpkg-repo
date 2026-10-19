@@ -1,0 +1,7 @@
+Name: gnuplot-data
+Description: Command-line driven interactive plotting program. Data-files
+Version: 6.0.2+dfsg1-1
+Arch: any
+URL: https://packages.debian.org/trixie/gnuplot-data
+License: See /usr/share/doc/gnuplot-data/copyright
+Maintainer: arkanaOS Team
