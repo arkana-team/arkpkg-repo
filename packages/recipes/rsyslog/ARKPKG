@@ -1,0 +1,14 @@
+Name: rsyslog
+Description: reliable system and kernel logging daemon
+Version: 8.2504.0-1+deb13u2
+Arch: x86_64
+URL: https://www.rsyslog.com/
+License: See /usr/share/doc/rsyslog/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libestr0
+  libfastjson4
+  liblognorm5
+  systemd-libs
+  util-linux-libs
+Provides: fmhash.so=/usr/lib/x86_64-linux-gnu/rsyslog/fmhash.so, imfile.so=/usr/lib/x86_64-linux-gnu/rsyslog/imfile.so, imjournal.so=/usr/lib/x86_64-linux-gnu/rsyslog/imjournal.so, imklog.so=/usr/lib/x86_64-linux-gnu/rsyslog/imklog.so, imkmsg.so=/usr/lib/x86_64-linux-gnu/rsyslog/imkmsg.so, immark.so=/usr/lib/x86_64-linux-gnu/rsyslog/immark.so, impstats.so=/usr/lib/x86_64-linux-gnu/rsyslog/impstats.so, imptcp.so=/usr/lib/x86_64-linux-gnu/rsyslog/imptcp.so, imtcp.so=/usr/lib/x86_64-linux-gnu/rsyslog/imtcp.so, imudp.so=/usr/lib/x86_64-linux-gnu/rsyslog/imudp.so, imuxsock.so=/usr/lib/x86_64-linux-gnu/rsyslog/imuxsock.so, lmnet.so=/usr/lib/x86_64-linux-gnu/rsyslog/lmnet.so, lmnetstrms.so=/usr/lib/x86_64-linux-gnu/rsyslog/lmnetstrms.so, lmnsd_ptcp.so=/usr/lib/x86_64-linux-gnu/rsyslog/lmnsd_ptcp.so, lmregexp.so=/usr/lib/x86_64-linux-gnu/rsyslog/lmregexp.so, lmtcpclt.so=/usr/lib/x86_64-linux-gnu/rsyslog/lmtcpclt.so, lmtcpsrv.so=/usr/lib/x86_64-linux-gnu/rsyslog/lmtcpsrv.so, lmzlibw.so=/usr/lib/x86_64-linux-gnu/rsyslog/lmzlibw.so, lmzstdw.so=/usr/lib/x86_64-linux-gnu/rsyslog/lmzstdw.so, mmanon.so=/usr/lib/x86_64-linux-gnu/rsyslog/mmanon.so, mmexternal.so=/usr/lib/x86_64-linux-gnu/rsyslog/mmexternal.so, mmfields.so=/usr/lib/x86_64-linux-gnu/rsyslog/mmfields.so, mmjsonparse.so=/usr/lib/x86_64-linux-gnu/rsyslog/mmjsonparse.so, mmnormalize.so=/usr/lib/x86_64-linux-gnu/rsyslog/mmnormalize.so, mmpstrucdata.so=/usr/lib/x86_64-linux-gnu/rsyslog/mmpstrucdata.so, mmrm1stspace.so=/usr/lib/x86_64-linux-gnu/rsyslog/mmrm1stspace.so, mmsequence.so=/usr/lib/x86_64-linux-gnu/rsyslog/mmsequence.so, mmutf8fix.so=/usr/lib/x86_64-linux-gnu/rsyslog/mmutf8fix.so, omjournal.so=/usr/lib/x86_64-linux-gnu/rsyslog/omjournal.so, ommail.so=/usr/lib/x86_64-linux-gnu/rsyslog/ommail.so, omprog.so=/usr/lib/x86_64-linux-gnu/rsyslog/omprog.so, omuxsock.so=/usr/lib/x86_64-linux-gnu/rsyslog/omuxsock.so, pmaixforwardedfrom.so=/usr/lib/x86_64-linux-gnu/rsyslog/pmaixforwardedfrom.so, pmciscoios.so=/usr/lib/x86_64-linux-gnu/rsyslog/pmciscoios.so, pmcisconames.so=/usr/lib/x86_64-linux-gnu/rsyslog/pmcisconames.so, pmlastmsg.so=/usr/lib/x86_64-linux-gnu/rsyslog/pmlastmsg.so, pmnormalize.so=/usr/lib/x86_64-linux-gnu/rsyslog/pmnormalize.so, pmsnare.so=/usr/lib/x86_64-linux-gnu/rsyslog/pmsnare.so, rsyslogd=/usr/sbin/rsyslogd
