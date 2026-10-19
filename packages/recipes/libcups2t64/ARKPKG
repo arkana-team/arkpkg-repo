@@ -1,0 +1,13 @@
+Name: libcups2t64
+Description: Common UNIX Printing System(tm) - Core library
+Version: 2.4.10-3+deb13u2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libcups2t64
+License: See /usr/share/doc/libcups2t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  krb5-libs
+  libavahi-client3
+  libavahi-common3
+Provides: libcups.so.2=/usr/lib/x86_64-linux-gnu/libcups.so.2
