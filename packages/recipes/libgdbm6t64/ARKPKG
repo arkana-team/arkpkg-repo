@@ -1,0 +1,8 @@
+Name: libgdbm6t64
+Description: GNU dbm database routines (runtime version)
+Version: 1.24-2
+Arch: x86_64
+URL: https://gnu.org/software/gdbm
+License: See /usr/share/doc/libgdbm6t64/copyright
+Maintainer: arkanaOS Team
+Provides: libgdbm.so.6=/usr/lib/x86_64-linux-gnu/libgdbm.so.6.0.0
