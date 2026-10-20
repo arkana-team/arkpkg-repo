@@ -1,0 +1,10 @@
+Name: ncftp
+Description: User-friendly and well-featured FTP client
+Version: 2:3.2.7-1
+Arch: x86_64
+URL: https://www.ncftp.com/ncftp/
+License: See /usr/share/doc/ncftp/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: ncftp3=/usr/bin/ncftp3, ncftpbatch=/usr/bin/ncftpbatch, ncftpbookmarks=/usr/bin/ncftpbookmarks, ncftpget=/usr/bin/ncftpget, ncftpls=/usr/bin/ncftpls, ncftpput=/usr/bin/ncftpput, ncftpspooler=/usr/bin/ncftpspooler

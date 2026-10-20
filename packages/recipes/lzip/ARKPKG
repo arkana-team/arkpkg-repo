@@ -1,0 +1,8 @@
+Name: lzip
+Description: lossless data compressor based on the LZMA algorithm
+Version: 1.25-3
+Arch: x86_64
+URL: http://www.nongnu.org/lzip/lzip.html
+License: See /usr/share/doc/lzip/copyright
+Maintainer: arkanaOS Team
+Provides: lzip.lzip=/usr/bin/lzip.lzip

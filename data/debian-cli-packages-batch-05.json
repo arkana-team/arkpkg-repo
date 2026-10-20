@@ -1,0 +1,210 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "calcurse"
+      ],
+      "debian_version": "4.8.1-1.3",
+      "dependencies": [],
+      "description": "text-based calendar and todo manager",
+      "license": "See /usr/share/doc/calcurse/copyright",
+      "license_path": "usr/share/doc/calcurse/copyright",
+      "name": "calcurse",
+      "url": "https://calcurse.org",
+      "version": "4.8.1-1.3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "expect"
+      ],
+      "debian_version": "5.45.4-4",
+      "dependencies": [
+        "tcl8.6",
+        "tcl-expect"
+      ],
+      "description": "Automates interactive applications",
+      "license": "See /usr/share/doc/expect/copyright",
+      "license_path": "usr/share/doc/expect/copyright",
+      "name": "expect",
+      "url": "https://core.tcl.tk/expect/",
+      "version": "5.45.4-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fdupes"
+      ],
+      "debian_version": "1:2.3.2-1",
+      "dependencies": [],
+      "description": "identifies duplicate files within given directories",
+      "license": "See /usr/share/doc/fdupes/copyright",
+      "license_path": "usr/share/doc/fdupes/copyright",
+      "name": "fdupes",
+      "url": "https://github.com/adrianlopezroche/fdupes",
+      "version": "1:2.3.2-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "git-delta"
+      ],
+      "debian_version": "0.18.2-4+b1",
+      "dependencies": [],
+      "description": "syntax-highlighting pager for git, diff, and grep output",
+      "license": "See /usr/share/doc/git-delta/copyright",
+      "license_path": "usr/share/doc/git-delta/copyright",
+      "name": "git-delta",
+      "url": "https://dandavison.github.io/delta/",
+      "version": "0.18.2-4+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "git-lfs"
+      ],
+      "debian_version": "3.6.1-1+deb13u1",
+      "dependencies": [
+        "git"
+      ],
+      "description": "Git Large File Support",
+      "license": "See /usr/share/doc/git-lfs/copyright",
+      "license_path": "usr/share/doc/git-lfs/copyright",
+      "name": "git-lfs",
+      "url": "https://git-lfs.github.com/",
+      "version": "3.6.1-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "lzip"
+      ],
+      "debian_version": "1.25-3",
+      "dependencies": [],
+      "description": "lossless data compressor based on the LZMA algorithm",
+      "license": "See /usr/share/doc/lzip/copyright",
+      "license_path": "usr/share/doc/lzip/copyright",
+      "name": "lzip",
+      "url": "http://www.nongnu.org/lzip/lzip.html",
+      "version": "1.25-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ncftp"
+      ],
+      "debian_version": "2:3.2.7-1",
+      "dependencies": [],
+      "description": "User-friendly and well-featured FTP client",
+      "license": "See /usr/share/doc/ncftp/copyright",
+      "license_path": "usr/share/doc/ncftp/copyright",
+      "name": "ncftp",
+      "url": "https://www.ncftp.com/ncftp/",
+      "version": "2:3.2.7-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "pinfo"
+      ],
+      "debian_version": "0.6.13-2",
+      "dependencies": [],
+      "description": "user-friendly console-based viewer for Info document files",
+      "license": "See /usr/share/doc/pinfo/copyright",
+      "license_path": "usr/share/doc/pinfo/copyright",
+      "name": "pinfo",
+      "url": "https://github.com/baszoetekouw/pinfo",
+      "version": "0.6.13-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "rlwrap"
+      ],
+      "debian_version": "0.46.1-1+b1",
+      "dependencies": [],
+      "description": "readline feature command line wrapper",
+      "license": "See /usr/share/doc/rlwrap/copyright",
+      "license_path": "usr/share/doc/rlwrap/copyright",
+      "name": "rlwrap",
+      "url": "https://github.com/hanslub42/rlwrap",
+      "version": "0.46.1-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "screen"
+      ],
+      "debian_version": "4.9.1-3",
+      "dependencies": [],
+      "description": "terminal multiplexer with VT100/ANSI terminal emulation",
+      "license": "See /usr/share/doc/screen/copyright",
+      "license_path": "usr/share/doc/screen/copyright",
+      "name": "screen",
+      "url": "https://savannah.gnu.org/projects/screen",
+      "version": "4.9.1-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "zsync"
+      ],
+      "debian_version": "0.6.2-8",
+      "dependencies": [],
+      "description": "client-side implementation of the rsync algorithm",
+      "license": "See /usr/share/doc/zsync/copyright",
+      "license_path": "usr/share/doc/zsync/copyright",
+      "name": "zsync",
+      "url": "http://zsync.moria.org.uk/",
+      "version": "0.6.2-8"
+    }
+  ],
+  "sources": {
+    "calcurse": {
+      "filename": "pool/main/c/calcurse/calcurse_4.8.1-1.3_amd64.deb",
+      "sha256": "3e29ac883f9db795fceb1a99d12dd177d0c44e3972a1f1a32b41fe8cf12923c7"
+    },
+    "expect": {
+      "filename": "pool/main/e/expect/expect_5.45.4-4_amd64.deb",
+      "sha256": "44c89a2f2b35d7e43ab7aaa60789cb8fe60957ded4c630670366ea853627a65c"
+    },
+    "fdupes": {
+      "filename": "pool/main/f/fdupes/fdupes_2.3.2-1_amd64.deb",
+      "sha256": "917736ba9904a14588615bad0735b074073170049edf61bdba90bbeb871a0245"
+    },
+    "git-delta": {
+      "filename": "pool/main/g/git-delta/git-delta_0.18.2-4+b1_amd64.deb",
+      "sha256": "58f37e3bf025c6112bfce7ba458d4890f46783649fccfb45cae7c8409b34b2c3"
+    },
+    "git-lfs": {
+      "filename": "pool/main/g/git-lfs/git-lfs_3.6.1-1+deb13u1_amd64.deb",
+      "sha256": "fcb3e7a6c042e70fc541d05b163c88fffd3364d509c961e83dec881e7cda5bca"
+    },
+    "lzip": {
+      "filename": "pool/main/l/lzip/lzip_1.25-3_amd64.deb",
+      "sha256": "9af1c6f620a6e4577be4f13d84a8b257299015641bbad896689ac4aeee128e6c"
+    },
+    "ncftp": {
+      "filename": "pool/main/n/ncftp/ncftp_3.2.7-1_amd64.deb",
+      "sha256": "20044c6bab2059992a42588b7cf20a7606bbe32d57547609e0ea440db83f964c"
+    },
+    "pinfo": {
+      "filename": "pool/main/p/pinfo/pinfo_0.6.13-2_amd64.deb",
+      "sha256": "201548d73fb1d40ecedbd05b6ef5168dadfdc7f4fc9c0d034efacd205eaba6c2"
+    },
+    "rlwrap": {
+      "filename": "pool/main/r/rlwrap/rlwrap_0.46.1-1+b1_amd64.deb",
+      "sha256": "6a1d69875a72d00b4815b07a80a1210d28bcae9323d6f1f85a823768557e0f3e"
+    },
+    "screen": {
+      "filename": "pool/main/s/screen/screen_4.9.1-3_amd64.deb",
+      "sha256": "c573c3d28581690a716d98c805b93f83bac05b69c54c620b649bfabd032ead12"
+    },
+    "zsync": {
+      "filename": "pool/main/z/zsync/zsync_0.6.2-8_amd64.deb",
+      "sha256": "edeeb58c46533f7c2835aede4584e15151122e769e2de27d8c2d8deb1d7113d9"
+    }
+  }
+}

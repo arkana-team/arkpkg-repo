@@ -1,0 +1,12 @@
+Name: expect
+Description: Automates interactive applications
+Version: 5.45.4-4
+Arch: x86_64
+URL: https://core.tcl.tk/expect/
+License: See /usr/share/doc/expect/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtcl8.6
+  tcl-expect
+  tcl8.6
+Provides: autoexpect=/usr/bin/autoexpect, autopasswd=/usr/bin/autopasswd, cryptdir=/usr/bin/cryptdir, decryptdir=/usr/bin/decryptdir, dislocate=/usr/bin/dislocate, expect=/usr/bin/expect, expect_autoexpect=/usr/bin/expect_autoexpect, expect_autopasswd=/usr/bin/expect_autopasswd, expect_cryptdir=/usr/bin/expect_cryptdir, expect_decryptdir=/usr/bin/expect_decryptdir, expect_dislocate=/usr/bin/expect_dislocate, expect_kibitz=/usr/bin/expect_kibitz, expect_lpunlock=/usr/bin/expect_lpunlock, expect_mkpasswd=/usr/bin/expect_mkpasswd, expect_multixterm=/usr/bin/expect_multixterm, expect_passmass=/usr/bin/expect_passmass, expect_rftp=/usr/bin/expect_rftp, expect_rlogin-cwd=/usr/bin/expect_rlogin-cwd, expect_timed-read=/usr/bin/expect_timed-read, expect_timed-run=/usr/bin/expect_timed-run, expect_tknewsbiff=/usr/bin/expect_tknewsbiff, expect_tkpasswd=/usr/bin/expect_tkpasswd, expect_unbuffer=/usr/bin/expect_unbuffer, expect_weather=/usr/bin/expect_weather, expect_xkibitz=/usr/bin/expect_xkibitz, expect_xpstat=/usr/bin/expect_xpstat, kibitz=/usr/bin/kibitz, lpunlock=/usr/bin/lpunlock, multixterm=/usr/bin/multixterm, passmass=/usr/bin/passmass, rlogin-cwd=/usr/bin/rlogin-cwd, timed-read=/usr/bin/timed-read, timed-run=/usr/bin/timed-run, tknewsbiff=/usr/bin/tknewsbiff, tkpasswd=/usr/bin/tkpasswd, unbuffer=/usr/bin/unbuffer, xkibitz=/usr/bin/xkibitz, xpstat=/usr/bin/xpstat
