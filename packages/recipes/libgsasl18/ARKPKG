@@ -1,0 +1,12 @@
+Name: libgsasl18
+Description: GNU SASL runtime library
+Version: 2.2.2-1.1+deb13u2
+Arch: x86_64
+URL: https://www.gnu.org/software/gsasl/
+License: See /usr/share/doc/libgsasl18/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgssglue1
+  libidn12
+  libntlm0
+Provides: libgsasl.so.18=/usr/lib/x86_64-linux-gnu/libgsasl.so.18.0.0

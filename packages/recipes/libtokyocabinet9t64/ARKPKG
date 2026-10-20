@@ -1,0 +1,8 @@
+Name: libtokyocabinet9t64
+Description: Tokyo Cabinet embedded database runtime library
+Version: 1.4.48-15.1+b1
+Arch: x86_64
+URL: https://fallabs.com/tokyocabinet/
+License: See /usr/share/doc/libtokyocabinet9t64/copyright
+Maintainer: arkanaOS Team
+Provides: libtokyocabinet.so.9=/usr/lib/x86_64-linux-gnu/libtokyocabinet.so.9.11.0

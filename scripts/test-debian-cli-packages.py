@@ -2,6 +2,7 @@
 """Test license paths shared through package dependency symlinks."""
 
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -88,6 +89,61 @@ class RepositoryProviderTests(unittest.TestCase):
 
             self.assertEqual(providers["xcb-util"], "xcb-util")
             self.assertEqual(providers["libxcb-util.so.1"], "xcb-util")
+
+
+class WorkstationPackageManifestTests(unittest.TestCase):
+    def test_workstation_packages_have_pinned_sources_and_maintainer_metadata(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "abook",
+            "irssi",
+            "libgsasl18",
+            "libgssglue1",
+            "libntlm0",
+            "libstfl0",
+            "libtokyocabinet9t64",
+            "minicom",
+            "mutt",
+            "newsboat",
+            "picocom",
+            "weechat",
+        }
+        packages = {package["name"]: package for package in manifest["packages"]}
+        self.assertTrue(expected.issubset(packages))
+
+        for name in expected:
+            package = packages[name]
+            self.assertTrue(package["debian_packages"], name)
+            self.assertTrue(package["license_path"], name)
+            for debian_name in package["debian_packages"]:
+                source = manifest["sources"][debian_name]
+                self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$", debian_name)
+                self.assertTrue(source["filename"].startswith("pool/"), debian_name)
+
+            package_metadata = metadata[name]
+            self.assertIn("author", package_metadata)
+            self.assertIn("git_author_url", package_metadata)
+            self.assertIn(package_metadata["git_repo_type"], {
+                "upstream",
+                "packaging",
+                "arkpkg-recipe",
+            })
+            self.assertTrue(package_metadata["git_repo"].startswith("https://"))
+            packager_names = {
+                packager["name"] for packager in package_metadata["packagers"]
+            }
+            self.assertEqual(packager_names, {"arkana-team", "debarkak"})
+
+        self.assertEqual(
+            packages["weechat"]["debian_packages"],
+            ["weechat-core", "weechat-curses", "weechat-plugins"],
+        )
 
 if __name__ == "__main__":
     unittest.main()

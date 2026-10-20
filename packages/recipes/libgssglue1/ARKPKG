@@ -1,0 +1,8 @@
+Name: libgssglue1
+Description: GSSAPI mechanism-switching runtime library
+Version: 0.9-1.1
+Arch: x86_64
+URL: https://gitlab.com/gsasl/libgssglue
+License: See /usr/share/doc/libgssglue1/copyright
+Maintainer: arkanaOS Team
+Provides: libgssglue.so.1=/usr/lib/x86_64-linux-gnu/libgssglue.so.1.0.0

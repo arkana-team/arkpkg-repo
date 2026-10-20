@@ -1,0 +1,13 @@
+Name: irssi
+Description: Terminal-based IRC client
+Version: 1.4.5-1+b5
+Arch: x86_64
+URL: https://irssi.org/
+License: See /usr/share/doc/irssi/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libperl5.40
+  ncurses-libs
+  openssl-libs
+  perl
+Provides: irssi=/usr/bin/irssi

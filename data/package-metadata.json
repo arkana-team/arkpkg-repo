@@ -33,6 +33,22 @@
         }
       ]
     },
+    "abook": {
+      "author": "Jaakko Heinonen",
+      "git_repo": "https://salsa.debian.org/rhonda/abook",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "accountsservice": {
       "author": null,
       "git_repo": "https://salsa.debian.org/freedesktop-team/accountsservice",
@@ -6129,6 +6145,22 @@
         }
       ]
     },
+    "irssi": {
+      "author": "Timo Sirainen",
+      "git_repo": "https://github.com/irssi/irssi",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "irtt": {
       "author": null,
       "git_repo": "https://github.com/peteheist/irtt",
@@ -9777,6 +9809,22 @@
         }
       ]
     },
+    "libgsasl18": {
+      "author": "Simon Josefsson",
+      "git_repo": "https://salsa.debian.org/xmpp-team/gsasl",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "libgsl28": {
       "author": null,
       "git_repo": "https://salsa.debian.org/edd/gsl",
@@ -9829,6 +9877,22 @@
       "author": null,
       "git_repo": "https://salsa.debian.org/gnome-team/gssdp",
       "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libgssglue1": {
+      "author": null,
+      "git_repo": "https://gitlab.com/gsasl/libgssglue",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -12193,6 +12257,22 @@
         }
       ]
     },
+    "libntlm0": {
+      "author": "Simon Josefsson",
+      "git_repo": "https://salsa.debian.org/pkg-security-team/libntlm",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "libnuma1": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/numactl",
@@ -14465,6 +14545,22 @@
         }
       ]
     },
+    "libstfl0": {
+      "author": "Clifford Wolf",
+      "git_repo": "https://salsa.debian.org/debian/stfl",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "libstlink1": {
       "author": null,
       "git_repo": "https://github.com/bluca/stlink",
@@ -14948,6 +15044,22 @@
     "libtk8.6": {
       "author": null,
       "git_repo": "https://salsa.debian.org/tcltk-team/tk8.6",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libtokyocabinet9t64": {
+      "author": "Hatsuki Hirabayashi",
+      "git_repo": "https://salsa.debian.org/debian/tokyocabinet",
       "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
@@ -17570,7 +17682,7 @@
       ]
     },
     "minicom": {
-      "author": null,
+      "author": "Miquel van Smoorenburg",
       "git_repo": "https://salsa.debian.org/minicom-team/minicom",
       "git_repo_type": "upstream",
       "git_author_url": null,
@@ -18068,6 +18180,22 @@
     "mupdf-tools": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/mupdf",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "mutt": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/mutt-team/mutt",
       "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
@@ -18581,6 +18709,22 @@
       "author": null,
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/networkmanager",
       "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "newsboat": {
+      "author": "Alexander Batischev",
+      "git_repo": "https://github.com/newsboat/newsboat",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -19794,10 +19938,10 @@
       ]
     },
     "picocom": {
-      "author": null,
+      "author": "Nick Patavalis",
       "git_repo": "https://github.com/npat-efault/picocom",
       "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_author_url": "https://github.com/npat-efault",
       "packagers": [
         {
           "name": "arkana-team",
@@ -23348,6 +23492,22 @@
     "webhook": {
       "author": null,
       "git_repo": "https://github.com/adnanh/webhook",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "weechat": {
+      "author": "Sébastien Helleu",
+      "git_repo": "https://github.com/weechat/weechat",
       "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [

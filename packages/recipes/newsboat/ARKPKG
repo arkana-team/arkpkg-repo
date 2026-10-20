@@ -1,0 +1,14 @@
+Name: newsboat
+Description: Text-mode RSS/Atom reader with podcast support
+Version: 2.36-1.1
+Arch: x86_64
+URL: https://www.newsboat.org/
+License: See /usr/share/doc/newsboat/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcurl3t64-gnutls
+  libsqlite3-0
+  libstfl0
+  ncurses-libs
+  xml-runtime-libs
+Provides: newsboat=/usr/bin/newsboat, podboat=/usr/bin/podboat

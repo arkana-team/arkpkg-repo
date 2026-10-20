@@ -1,0 +1,8 @@
+Name: libstfl0
+Description: Structured terminal forms library
+Version: 0.22-5+b2
+Arch: x86_64
+URL: http://www.clifford.at/stfl/
+License: See /usr/share/doc/libstfl0/copyright
+Maintainer: arkanaOS Team
+Provides: libstfl.so.0=/usr/lib/libstfl.so.0.22
