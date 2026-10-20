@@ -1,0 +1,10 @@
+Name: calcurse
+Description: text-based calendar and todo manager
+Version: 4.8.1-1.3
+Arch: x86_64
+URL: https://calcurse.org
+License: See /usr/share/doc/calcurse/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: calcurse-caldav=/usr/bin/calcurse-caldav, calcurse-upgrade=/usr/bin/calcurse-upgrade, calcurse-vdir=/usr/bin/calcurse-vdir, calcurse=/usr/bin/calcurse
