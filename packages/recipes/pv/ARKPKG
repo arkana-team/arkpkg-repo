@@ -1,0 +1,8 @@
+Name: pv
+Description: Shell pipeline element to meter data passing through
+Version: 1.9.31-1
+Arch: x86_64
+URL: https://www.ivarch.com/programs/pv.shtml
+License: See /usr/share/doc/pv/copyright
+Maintainer: arkanaOS Team
+Provides: pv=/usr/bin/pv
