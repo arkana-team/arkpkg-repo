@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "packages/**"
+      - "data/package-metadata.json"
       - "scripts/build-index.py"
       - "scripts/test-build-index.py"
       - "scripts/test-package-index-tilde.py"

@@ -22,12 +22,14 @@ DEFAULT_DOWNLOAD_BASE_URL = (
 
 PAGE_STYLE = """
 body { font-family: sans-serif; line-height: 1.5; margin: 0; padding: 2rem; }
-main { margin: 0 auto; max-width: 72rem; }
+main { margin: 0 auto; max-width: 90rem; }
 label { display: block; margin-bottom: .35rem; }
 input { box-sizing: border-box; max-width: 28rem; padding: .5rem; width: 100%; }
 .table-wrap { overflow-x: auto; }
 table { border-collapse: collapse; margin-top: 1rem; width: 100%; }
 th, td { border: 1px solid #8888; padding: .5rem .65rem; text-align: left; }
+td a { overflow-wrap: anywhere; }
+.repo-type { display: block; font-size: .8em; }
 th { white-space: nowrap; }
 th button { background: none; border: 0; cursor: pointer; font: inherit; font-weight: 600; padding: 0; }
 th button:focus-visible, input:focus-visible { outline: 2px solid; outline-offset: 2px; }
@@ -50,7 +52,7 @@ PAGE_SCRIPT = """
     const query = search.value.trim().toLocaleLowerCase();
     let visible = 0;
     for (const row of rows) {
-      row.hidden = !row.textContent.toLocaleLowerCase().includes(query);
+      row.hidden = !row.dataset.search.toLocaleLowerCase().includes(query);
       if (!row.hidden) visible += 1;
     }
     noResults.hidden = rows.length === 0 || visible > 0;
@@ -173,6 +175,66 @@ def validate_download_base_url(value: str) -> str:
     return value.rstrip("/")
 
 
+def validate_https_url(value: object, field: str) -> str:
+    if not isinstance(value, str) or not value:
+        raise ValueError(f"{field} must be a non-empty HTTPS URL")
+    try:
+        parsed = urlsplit(value)
+        port = parsed.port
+    except ValueError as error:
+        raise ValueError(f"invalid {field}: {error}") from error
+    if (
+        parsed.scheme != "https"
+        or not parsed.hostname
+        or parsed.username is not None
+        or parsed.password is not None
+        or port == 0
+    ):
+        raise ValueError(f"{field} must be HTTPS without credentials")
+    return value
+
+
+def validate_package_metadata(
+    metadata: object, package_names: set[str]
+) -> dict[str, dict[str, str]]:
+    if not isinstance(metadata, dict) or metadata.get("schema_version") != 1:
+        raise ValueError("package metadata must use schema version 1")
+    packages = metadata.get("packages")
+    if not isinstance(packages, dict):
+        raise TypeError("package metadata must contain a packages object")
+    missing = package_names.difference(packages)
+    unknown = set(packages).difference(package_names)
+    if missing or unknown:
+        details = []
+        if missing:
+            details.append(f"missing: {', '.join(sorted(missing)[:8])}")
+        if unknown:
+            details.append(f"unknown: {', '.join(sorted(unknown)[:8])}")
+        raise ValueError("package metadata coverage mismatch (" + "; ".join(details) + ")")
+
+    validated = {}
+    expected_fields = {"author", "git_repo", "git_repo_type", "git_author_url"}
+    valid_repo_types = {"upstream", "packaging", "arkpkg-recipe"}
+    for name, item in packages.items():
+        if not isinstance(item, dict) or set(item) != expected_fields:
+            raise ValueError(f"invalid source metadata fields for package {name!r}")
+        author = item["author"]
+        repo_type = item["git_repo_type"]
+        if not isinstance(author, str) or not author.strip():
+            raise ValueError(f"package author must be non-empty for {name!r}")
+        if not isinstance(repo_type, str) or repo_type not in valid_repo_types:
+            raise ValueError(f"invalid git repository type for package {name!r}")
+        validated[name] = {
+            "author": author.strip(),
+            "git_repo": validate_https_url(item["git_repo"], f"git_repo for {name}"),
+            "git_repo_type": repo_type,
+            "git_author_url": validate_https_url(
+                item["git_author_url"], f"git_author_url for {name}"
+            ),
+        }
+    return validated
+
+
 def build_site(
     repo_root: Path,
     site_dir: Path,
@@ -190,6 +252,7 @@ def build_site(
         shutil.rmtree(site_packages)
 
     entries = []
+    package_names = set()
     seen = set()
     for archive_path in (
         sorted(package_root.rglob("*.ark")) if package_root.exists() else []
@@ -203,6 +266,7 @@ def build_site(
                 f"duplicate package version and architecture: {package_key}"
             )
         seen.add(package_key)
+        package_names.add(metadata["Name"])
         relative_path = archive_path.relative_to(repo_root)
         digest = sha256_file(archive_path)
         entries.append(
@@ -220,31 +284,84 @@ def build_site(
             }
         )
 
+    metadata_path = repo_root / "data" / "package-metadata.json"
+    if metadata_path.is_symlink() or not metadata_path.is_file():
+        raise ValueError("data/package-metadata.json must be a regular file")
+    package_metadata = validate_package_metadata(
+        json.loads(metadata_path.read_text(encoding="utf-8")), package_names
+    )
+    for item in entries:
+        item.update(package_metadata[item["name"]])
+
     entries.sort(key=lambda item: (item["name"].lower(), item["version"], item["arch"]))
     (site_dir / "index.json").write_text(
         json.dumps({"schema_version": 1, "packages": entries}, indent=2) + "\n",
         encoding="utf-8",
     )
+    def link(url: str, label: str) -> str:
+        return (
+            f'<a href="{html.escape(url, quote=True)}" '
+            f'rel="noopener noreferrer">{html.escape(label)}</a>'
+        )
+
+    def link_label(url: str) -> str:
+        parsed = urlsplit(url)
+        label = f"{parsed.hostname}{parsed.path}".rstrip("/")
+        if parsed.query:
+            label += f"?{parsed.query}"
+        return label
+
+    def repository_link(item: dict[str, str]) -> str:
+        return (
+            link(item["git_repo"], link_label(item["git_repo"]))
+            + f'<small class="repo-type">{html.escape(item["git_repo_type"])}</small>'
+        )
+
     package_rows = "\n".join(
-        "<tr data-package-row><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
+        '<tr data-package-row data-search="{}">'
+        "<td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td>"
+        "<td>{}</td><td>{}</td></tr>".format(
+            html.escape(
+                " ".join(
+                    str(item[key])
+                    for key in (
+                        "name", "version", "arch", "author", "git_repo",
+                        "git_author_url", "description", "git_repo_type",
+                    )
+                ),
+                quote=True,
+            ),
             html.escape(item["name"]),
             html.escape(item["version"]),
             html.escape(item["arch"]),
+            html.escape(item["author"]),
+            repository_link(item),
+            link(item["git_author_url"], link_label(item["git_author_url"])),
             html.escape(item["description"]),
         )
         for item in entries
     )
     if not package_rows:
-        package_rows = '<tr><td colspan="4">no packages published yet.</td></tr>'
+        package_rows = '<tr><td colspan="7">no packages published yet.</td></tr>'
     package_count = len(entries)
+    columns = (
+        ("name", "name"),
+        ("version", "version"),
+        ("architecture", "architecture"),
+        ("author", "author"),
+        ("git_repo", "git repository"),
+        ("git_author_url", "git author"),
+        ("description", "description"),
+    )
     table_headers = "".join(
-        '<th data-sort-key="{0}" aria-sort="{1}"><button type="button" '
-        'data-sort-key="{0}">{0} <span aria-hidden="true">{2}</span></button></th>'.format(
+        '<th data-sort-key="{0}" aria-sort="{2}"><button type="button" '
+        'data-sort-key="{0}">{1} <span aria-hidden="true">{3}</span></button></th>'.format(
             key,
+            label,
             "ascending" if key == "name" else "none",
             "↑" if key == "name" else "↕",
         )
-        for key in ("name", "version", "architecture", "description")
+        for key, label in columns
     )
     (site_dir / "index.html").write_text(
         "<!doctype html>\n"
@@ -257,12 +374,12 @@ def build_site(
         "<pre>arkpkg repo add arkanaOS https://arkana-team.github.io/arkpkg-repo</pre>"
         '<label for="package-search">search packages</label>'
         '<input id="package-search" type="search" autocomplete="off" '
-        'placeholder="search by name, version, architecture, or description">'
+        'placeholder="search by name, author, repository, version, or description">'
         f'<p id="package-count" aria-live="polite">{package_count} packages available</p>'
         '<p><a href="index.json">package index (json)</a></p>'
         f'<div class="table-wrap"><table id="package-table"><thead><tr>{table_headers}'
         "</tr></thead><tbody>"
-        f'{package_rows}<tr data-no-results hidden><td colspan="4">no packages match your search.</td></tr>'
+        f'{package_rows}<tr data-no-results hidden><td colspan="7">no packages match your search.</td></tr>'
         "</tbody></table></div>"
         f"<script>{PAGE_SCRIPT}</script>"
         "</main></body></html>\n",

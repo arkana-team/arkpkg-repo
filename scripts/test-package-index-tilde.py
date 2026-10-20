@@ -48,11 +48,35 @@ class PackageIndexTildeVersionTests(unittest.TestCase):
                 package_tree.type = tarfile.DIRTYPE
                 archive.addfile(package_tree)
 
+            metadata_dir = root / "data"
+            metadata_dir.mkdir()
+            (metadata_dir / "package-metadata.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "packages": {
+                            "hello": {
+                                "author": "arkanaOS team",
+                                "git_repo": "https://github.com/example/hello",
+                                "git_repo_type": "upstream",
+                                "git_author_url": "https://github.com/example",
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
             site = root / "site"
             build_index.build_site(root, site)
 
             index = json.loads((site / "index.json").read_text(encoding="utf-8"))
             self.assertEqual(index["packages"][0]["version"], "1:1.2.3~rc1")
+            self.assertEqual(index["packages"][0]["author"], "arkanaOS team")
+            self.assertEqual(
+                index["packages"][0]["git_author_url"],
+                "https://github.com/example",
+            )
             self.assertEqual(
                 index["packages"][0]["sha256"],
                 hashlib.sha256(archive_path.read_bytes()).hexdigest(),

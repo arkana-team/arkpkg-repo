@@ -8,6 +8,8 @@ own contribution unless you have repository permission to do so.
 
 - `packages/*.ark` contains the archives clients download.
 - `packages/recipes/<name>/ARKPKG` contains each package's metadata.
+- `data/package-metadata.json` records each package maintainer and Git links
+  shown in the public index.
 - `scripts/build-*.py` builds packages from pinned upstream sources or staged
   sysroot files.
 - `scripts/build-index.py` creates the static Pages site and `index.json`.
@@ -35,6 +37,16 @@ python3 scripts/build-arkana-packages.py \
   --arkpkg-build /path/to/arkpkg-build \
   --packages dillo
 ```
+
+Add or update the package's entry in `data/package-metadata.json` whenever its
+archive is added or removed. Keep `author` aligned with the recipe's
+`Maintainer`, use `git_repo` for the upstream Git repository when known, and use
+`git_author_url` for the package maintainer's public Git profile. Set
+`git_repo_type` to `upstream`, `packaging`, or `arkpkg-recipe` to make the link's
+provenance clear. A packaging-repository link points to the source packaging
+repository; an `arkpkg-recipe` link points to this repository's recipe when no
+source Git repository is published. These fields describe package maintenance
+and provenance, and do not claim the maintainer wrote the upstream software.
 
 Pin upstream versions and verify source checksums in build helpers. Preserve
 upstream license files. Keep package payload ownership disjoint: files must not
