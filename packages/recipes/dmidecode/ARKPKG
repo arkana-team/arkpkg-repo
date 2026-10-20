@@ -1,0 +1,8 @@
+Name: dmidecode
+Description: DMI table decoder for hardware inventory
+Version: 3.6-2
+Arch: x86_64
+URL: https://git.jff.email/cgit/dmidecode.git
+License: See /usr/share/doc/dmidecode/copyright
+Maintainer: arkanaOS Team
+Provides: biosdecode=/usr/sbin/biosdecode, dmidecode=/usr/sbin/dmidecode, ownership=/usr/sbin/ownership, vpddecode=/usr/sbin/vpddecode
