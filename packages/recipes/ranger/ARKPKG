@@ -1,0 +1,10 @@
+Name: ranger
+Description: Console File Manager with VI Key Bindings
+Version: 1.9.4-2
+Arch: any
+URL: https://ranger.github.io
+License: See /usr/share/doc/ranger/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  sensible-utils
+Provides: ranger=/usr/bin/ranger, rifle=/usr/bin/rifle
