@@ -1,0 +1,11 @@
+Name: libgmime-3.0-0t64
+Description: MIME message parser and creator library
+Version: 3.2.15+dfsg-1
+Arch: x86_64
+URL: https://salsa.debian.org/debian/gmime
+License: See /usr/share/doc/libgmime-3.0-0t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgpgme11t64
+  libidn2-libs
+Provides: libgmime-3.0.so.0=/usr/lib/x86_64-linux-gnu/libgmime-3.0.so.0.214.1
