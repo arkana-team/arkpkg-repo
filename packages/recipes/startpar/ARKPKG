@@ -1,0 +1,8 @@
+Name: startpar
+Description: run processes in parallel and multiplex their output
+Version: 0.66-1
+Arch: x86_64
+URL: https://github.com/slicer69/startpar
+License: See /usr/share/doc/startpar/copyright
+Maintainer: arkanaOS Team
+Provides: startpar=/usr/bin/startpar

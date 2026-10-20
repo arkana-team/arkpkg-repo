@@ -1,0 +1,8 @@
+Name: libestr0
+Description: helper functions for handling strings (lib)
+Version: 0.1.11-2
+Arch: x86_64
+URL: https://libestr.adiscon.com/
+License: See /usr/share/doc/libestr0/copyright
+Maintainer: arkanaOS Team
+Provides: libestr.so.0=/usr/lib/x86_64-linux-gnu/libestr.so.0.0.0

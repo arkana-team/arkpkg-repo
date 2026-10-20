@@ -1,0 +1,14 @@
+Name: valkey-tools
+Description: Persistent key-value database with network interface (client)
+Version: 8.1.1+dfsg1-3+deb13u2
+Arch: x86_64
+URL: https://valkey.io
+License: See /usr/share/doc/valkey-tools/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  dns-runtime-libs
+  libatomic1
+  liblzf1
+  openssl-libs
+  systemd-libs
+Provides: valkey-benchmark=/usr/bin/valkey-benchmark, valkey-check-aof=/usr/bin/valkey-check-aof, valkey-check-rdb=/usr/bin/valkey-check-rdb, valkey-cli=/usr/bin/valkey-cli

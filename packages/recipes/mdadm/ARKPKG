@@ -1,0 +1,10 @@
+Name: mdadm
+Description: tool for managing Linux MD devices (software RAID)
+Version: 4.4-11
+Arch: x86_64
+URL: https://github.com/md-raid-utilities/mdadm
+License: See /usr/share/doc/mdadm/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  systemd-libs
+Provides: mdadm=/usr/sbin/mdadm, mdmon=/usr/sbin/mdmon

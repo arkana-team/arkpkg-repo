@@ -1,0 +1,8 @@
+Name: libpipeline1
+Description: unix process pipeline manipulation library
+Version: 1.5.8-1
+Arch: x86_64
+URL: https://libpipeline.gitlab.io/libpipeline/
+License: See /usr/share/doc/libpipeline1/copyright
+Maintainer: arkanaOS Team
+Provides: libpipeline.so.1=/usr/lib/x86_64-linux-gnu/libpipeline.so.1.5.8

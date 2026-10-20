@@ -1,0 +1,8 @@
+Name: desktop-file-utils
+Description: Utilities for .desktop files
+Version: 0.28-1
+Arch: x86_64
+URL: https://www.freedesktop.org/wiki/Software/desktop-file-utils
+License: See /usr/share/doc/desktop-file-utils/copyright
+Maintainer: arkanaOS Team
+Provides: desktop-file-edit=/usr/bin/desktop-file-edit, desktop-file-install=/usr/bin/desktop-file-install, desktop-file-validate=/usr/bin/desktop-file-validate, update-desktop-database=/usr/bin/update-desktop-database

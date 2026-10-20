@@ -1,0 +1,8 @@
+Name: picocom
+Description: minimal dumb-terminal emulation program
+Version: 3.1-4
+Arch: x86_64
+URL: https://github.com/npat-efault/picocom
+License: See /usr/share/doc/picocom/copyright
+Maintainer: arkanaOS Team
+Provides: picocom=/usr/bin/picocom

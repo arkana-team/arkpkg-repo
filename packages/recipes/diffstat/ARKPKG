@@ -1,0 +1,8 @@
+Name: diffstat
+Description: produces graph of changes introduced by a diff file
+Version: 1.67-1
+Arch: x86_64
+URL: https://invisible-island.net/diffstat/
+License: See /usr/share/doc/diffstat/copyright
+Maintainer: arkanaOS Team
+Provides: diffstat=/usr/bin/diffstat

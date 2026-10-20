@@ -1,0 +1,10 @@
+Name: binfmt-support
+Description: Support for extra binary formats
+Version: 2.2.2-7
+Arch: x86_64
+URL: https://nongnu.org/binfmt-support/
+License: See /usr/share/doc/binfmt-support/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpipeline1
+Provides: update-binfmts=/usr/sbin/update-binfmts

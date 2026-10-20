@@ -1,0 +1,10 @@
+Name: ufw
+Description: program for managing a Netfilter firewall
+Version: 0.36.2-9
+Arch: any
+URL: https://launchpad.net/ufw
+License: See /usr/share/doc/ufw/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  iptables
+Provides: ufw=/usr/sbin/ufw

@@ -1,0 +1,11 @@
+Name: cracklib-runtime
+Description: runtime support for password checker library cracklib2
+Version: 2.9.6-5.2+b1
+Arch: x86_64
+URL: https://github.com/cracklib/cracklib
+License: See /usr/share/doc/cracklib-runtime/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  file
+  libcrack2
+Provides: cracklib-check=/usr/sbin/cracklib-check, cracklib-format=/usr/sbin/cracklib-format, cracklib-packer=/usr/sbin/cracklib-packer, cracklib-unpacker=/usr/sbin/cracklib-unpacker, create-cracklib-dict=/usr/sbin/create-cracklib-dict, update-cracklib=/usr/sbin/update-cracklib

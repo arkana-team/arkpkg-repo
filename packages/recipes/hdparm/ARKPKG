@@ -1,0 +1,8 @@
+Name: hdparm
+Description: tune hard disk parameters for high performance
+Version: 9.65+ds-1.1
+Arch: x86_64
+URL: http://sourceforge.net/projects/hdparm/
+License: See /usr/share/doc/hdparm/copyright
+Maintainer: arkanaOS Team
+Provides: hdparm=/usr/sbin/hdparm

@@ -1,0 +1,8 @@
+Name: catatonit
+Description: init process for containers
+Version: 0.2.1-2+b14
+Arch: x86_64
+URL: https://github.com/openSUSE/catatonit
+License: See /usr/share/doc/catatonit/copyright
+Maintainer: arkanaOS Team
+Provides: catatonit=/usr/bin/catatonit

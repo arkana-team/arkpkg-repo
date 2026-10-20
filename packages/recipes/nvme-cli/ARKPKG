@@ -1,0 +1,10 @@
+Name: nvme-cli
+Description: NVMe management tool
+Version: 2.13-2
+Arch: x86_64
+URL: https://github.com/linux-nvme/nvme-cli
+License: See /usr/share/doc/nvme-cli/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libnvme
+Provides: nvme=/usr/sbin/nvme

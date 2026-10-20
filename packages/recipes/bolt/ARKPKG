@@ -1,0 +1,11 @@
+Name: bolt
+Description: system daemon to manage thunderbolt 3 devices
+Version: 0.9.8-1
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/bolt/bolt
+License: See /usr/share/doc/bolt/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpolkit-gobject-1-0
+  systemd-libs
+Provides: boltctl=/usr/bin/boltctl

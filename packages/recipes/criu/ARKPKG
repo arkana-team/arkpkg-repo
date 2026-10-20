@@ -1,0 +1,16 @@
+Name: criu
+Description: checkpoint and restore in userspace
+Version: 4.1.1-1
+Arch: x86_64
+URL: https://www.criu.org/
+License: See /usr/share/doc/criu/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  dns-runtime-libs
+  gnutls-libs
+  libbsd
+  libnet1
+  libnftables1
+  libnl-libs
+  util-linux-libs
+Provides: compel=/usr/bin/compel, criu=/usr/sbin/criu

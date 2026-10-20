@@ -1,0 +1,14 @@
+Name: pgbouncer
+Description: lightweight connection pooler for PostgreSQL
+Version: 1.24.1-1+deb13u2
+Arch: x86_64
+URL: https://www.pgbouncer.org/
+License: See /usr/share/doc/pgbouncer/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  c-ares-libs
+  libevent-2.1-7t64
+  openssl-libs
+  pam-libs
+  systemd-libs
+Provides: pgbouncer=/usr/sbin/pgbouncer

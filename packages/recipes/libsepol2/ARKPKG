@@ -1,0 +1,8 @@
+Name: libsepol2
+Description: selinux library for manipulating binary security policies
+Version: 3.8.1-1
+Arch: x86_64
+URL: https://selinuxproject.org
+License: See /usr/share/doc/libsepol2/copyright
+Maintainer: arkanaOS Team
+Provides: libsepol.so.2=/usr/lib/x86_64-linux-gnu/libsepol.so.2

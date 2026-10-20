@@ -1,0 +1,8 @@
+Name: netfilter-persistent
+Description: boot-time loader for netfilter configuration
+Version: 1.0.23
+Arch: any
+URL: https://packages.debian.org/trixie/netfilter-persistent
+License: See /usr/share/doc/netfilter-persistent/copyright
+Maintainer: arkanaOS Team
+Provides: netfilter-persistent=/usr/sbin/netfilter-persistent

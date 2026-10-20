@@ -1,0 +1,12 @@
+Name: gdisk
+Description: GPT fdisk text-mode partitioning tool
+Version: 1.0.10-2
+Arch: x86_64
+URL: http://sourceforge.net/projects/gptfdisk/
+License: See /usr/share/doc/gdisk/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+  popt-libs
+  util-linux-libs
+Provides: cgdisk=/usr/sbin/cgdisk, fixparts=/usr/sbin/fixparts, gdisk=/usr/sbin/gdisk, sgdisk=/usr/sbin/sgdisk

@@ -1,0 +1,11 @@
+Name: nut-client
+Description: network UPS tools - clients
+Version: 2.8.1-5
+Arch: x86_64
+URL: https://networkupstools.org/
+License: See /usr/share/doc/nut-client/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libupsclient6t64
+  systemd-libs
+Provides: upsc=/usr/bin/upsc, upscmd=/usr/bin/upscmd, upslog=/usr/bin/upslog, upsmon=/usr/sbin/upsmon, upsrw=/usr/bin/upsrw, upssched-cmd=/usr/bin/upssched-cmd, upssched=/usr/sbin/upssched

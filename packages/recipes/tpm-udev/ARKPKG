@@ -1,0 +1,7 @@
+Name: tpm-udev
+Description: udev rules for TPM modules
+Version: 0.6+nmu1
+Arch: any
+URL: https://packages.debian.org/trixie/tpm-udev
+License: See /usr/share/doc/tpm-udev/copyright
+Maintainer: arkanaOS Team

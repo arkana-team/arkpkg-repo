@@ -1,0 +1,10 @@
+Name: libbladerf2
+Description: nuand bladerf software-defined radio device
+Version: 0.2024.05-1
+Arch: x86_64
+URL: https://www.Nuand.com/bladeRF
+License: See /usr/share/doc/libbladerf2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+Provides: libbladeRF.so.2=/usr/lib/x86_64-linux-gnu/libbladeRF.so.2
