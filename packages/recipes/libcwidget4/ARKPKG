@@ -1,0 +1,11 @@
+Name: libcwidget4
+Description: high-level terminal interface library for c++ (runtime files)
+Version: 0.5.18-6+b2
+Arch: x86_64
+URL: https://salsa.debian.org/cwidget-team/
+License: See /usr/share/doc/libcwidget4/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsigc++-2.0-0v5
+  ncurses-libs
+Provides: libcwidget.so.4=/usr/lib/x86_64-linux-gnu/libcwidget.so.4.0.0

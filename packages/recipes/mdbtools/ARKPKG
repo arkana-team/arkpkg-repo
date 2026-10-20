@@ -1,0 +1,12 @@
+Name: mdbtools
+Description: JET / MS Access database (MDB) tools
+Version: 1.0.1-0.1
+Arch: x86_64
+URL: https://github.com/mdbtools/mdbtools
+License: See /usr/share/licenses/mdbtools/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmdb3t64
+  libmdbsql3t64
+  readline-libs
+Provides: mdb-array=/usr/bin/mdb-array, mdb-count=/usr/bin/mdb-count, mdb-export=/usr/bin/mdb-export, mdb-header=/usr/bin/mdb-header, mdb-hexdump=/usr/bin/mdb-hexdump, mdb-import=/usr/bin/mdb-import, mdb-json=/usr/bin/mdb-json, mdb-parsecsv=/usr/bin/mdb-parsecsv, mdb-prop=/usr/bin/mdb-prop, mdb-queries=/usr/bin/mdb-queries, mdb-schema=/usr/bin/mdb-schema, mdb-sql=/usr/bin/mdb-sql, mdb-tables=/usr/bin/mdb-tables, mdb-ver=/usr/bin/mdb-ver

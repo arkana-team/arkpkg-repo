@@ -1,0 +1,8 @@
+Name: debsecan
+Description: Debian Security Analyzer
+Version: 0.4.20.1
+Arch: any
+URL: https://security-team.debian.org/security_tracker.html
+License: See /usr/share/doc/debsecan/copyright
+Maintainer: arkanaOS Team
+Provides: debsecan-create-cron=/usr/sbin/debsecan-create-cron, debsecan=/usr/bin/debsecan

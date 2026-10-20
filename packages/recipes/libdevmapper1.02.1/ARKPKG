@@ -1,0 +1,11 @@
+Name: libdevmapper1.02.1
+Description: linux kernel device mapper userspace library
+Version: 2:1.02.205-2
+Arch: x86_64
+URL: https://sourceware.org/lvm2/
+License: See /usr/share/doc/libdevmapper1.02.1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  systemd-libs
+  vis-runtime-libs
+Provides: libdevmapper.so.1.02.1=/usr/lib/x86_64-linux-gnu/libdevmapper.so.1.02.1

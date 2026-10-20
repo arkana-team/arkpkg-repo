@@ -1,0 +1,8 @@
+Name: lrzsz
+Description: Tools for zmodem/xmodem/ymodem file transfer
+Version: 0.12.21rc-0.2
+Arch: x86_64
+URL: https://ohse.de/uwe/software/lrzsz.html
+License: See /usr/share/doc/lrzsz/copyright
+Maintainer: arkanaOS Team
+Provides: rb=/usr/bin/rb, rx=/usr/bin/rx, rz=/usr/bin/rz, sb=/usr/bin/sb, sx=/usr/bin/sx, sz=/usr/bin/sz

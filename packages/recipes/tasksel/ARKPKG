@@ -1,0 +1,8 @@
+Name: tasksel
+Description: tool for selecting tasks for installation on Debian systems
+Version: 3.81
+Arch: any
+URL: https://packages.debian.org/trixie/tasksel
+License: See /usr/share/doc/tasksel/copyright
+Maintainer: arkanaOS Team
+Provides: tasksel=/usr/bin/tasksel

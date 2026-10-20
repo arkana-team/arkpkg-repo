@@ -1,0 +1,8 @@
+Name: docker-cli
+Description: Linux container runtime -- client
+Version: 26.1.5+dfsg1-9+deb13u1
+Arch: x86_64
+URL: https://mobyproject.org
+License: See /usr/share/doc/docker-cli/copyright
+Maintainer: arkanaOS Team
+Provides: docker=/usr/bin/docker

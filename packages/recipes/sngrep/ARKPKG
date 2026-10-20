@@ -1,0 +1,13 @@
+Name: sngrep
+Description: Ncurses SIP Messages flow viewer
+Version: 1.8.2-1
+Arch: x86_64
+URL: https://github.com/irontec/sngrep
+License: See /usr/share/doc/sngrep/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  libpcap-libs
+  ncurses-libs
+  pcre2-libs
+Provides: sngrep=/usr/bin/sngrep

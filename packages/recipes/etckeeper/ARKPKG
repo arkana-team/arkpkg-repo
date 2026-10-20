@@ -1,0 +1,10 @@
+Name: etckeeper
+Description: store /etc in git, mercurial, brz or darcs
+Version: 1.18.22-2
+Arch: any
+URL: https://etckeeper.branchable.com/
+License: See /usr/share/doc/etckeeper/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  git
+Provides: etckeeper=/usr/bin/etckeeper

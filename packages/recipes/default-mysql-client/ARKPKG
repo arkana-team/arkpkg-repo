@@ -1,0 +1,7 @@
+Name: default-mysql-client
+Description: MySQL database client binaries (metapackage)
+Version: 1.1.1
+Arch: any
+URL: https://packages.debian.org/trixie/default-mysql-client
+License: See /usr/share/doc/default-mysql-client/copyright
+Maintainer: arkanaOS Team

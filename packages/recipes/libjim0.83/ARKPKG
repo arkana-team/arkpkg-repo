@@ -1,0 +1,10 @@
+Name: libjim0.83
+Description: small-footprint implementation of tcl - shared library
+Version: 0.83-2
+Arch: x86_64
+URL: http://jim.tcl.tk/
+License: See /usr/share/doc/libjim0.83/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  openssl-libs
+Provides: libjim.so.0.83=/usr/lib/x86_64-linux-gnu/libjim.so.0.83

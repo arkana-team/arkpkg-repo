@@ -1,0 +1,8 @@
+Name: runc
+Description: Open Container Project - runtime
+Version: 1.1.15+ds1-2+b4
+Arch: x86_64
+URL: https://github.com/opencontainers/runc
+License: See /usr/share/doc/runc/copyright
+Maintainer: arkanaOS Team
+Provides: runc=/usr/bin/runc, runc=/usr/sbin/runc

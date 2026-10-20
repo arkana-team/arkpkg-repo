@@ -1,0 +1,8 @@
+Name: docker-compose
+Description: Define and run multi-container applications with Docker (program)
+Version: 2.26.1-4
+Arch: x86_64
+URL: https://github.com/docker/compose
+License: See /usr/share/doc/docker-compose/copyright
+Maintainer: arkanaOS Team
+Provides: docker-compose=/usr/bin/docker-compose

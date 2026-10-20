@@ -1,0 +1,14 @@
+Name: xfsprogs
+Description: Utilities for managing the XFS filesystem
+Version: 6.13.0-2+deb13u1
+Arch: x86_64
+URL: https://xfs.wiki.kernel.org/
+License: See /usr/share/doc/xfsprogs/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  dns-runtime-libs
+  libdevmapper1.02.1
+  libicu76
+  libinih1
+  util-linux-libs
+Provides: fsck.xfs=/usr/sbin/fsck.xfs, libhandle.so.1=/usr/lib/x86_64-linux-gnu/libhandle.so.1.0.3, mkfs.xfs=/usr/sbin/mkfs.xfs, xfs_admin=/usr/sbin/xfs_admin, xfs_bmap=/usr/sbin/xfs_bmap, xfs_copy=/usr/sbin/xfs_copy, xfs_db=/usr/sbin/xfs_db, xfs_estimate=/usr/sbin/xfs_estimate, xfs_freeze=/usr/sbin/xfs_freeze, xfs_fsr=/usr/sbin/xfs_fsr, xfs_growfs=/usr/sbin/xfs_growfs, xfs_info=/usr/sbin/xfs_info, xfs_io=/usr/sbin/xfs_io, xfs_logprint=/usr/sbin/xfs_logprint, xfs_mdrestore=/usr/sbin/xfs_mdrestore, xfs_metadump=/usr/sbin/xfs_metadump, xfs_mkfile=/usr/sbin/xfs_mkfile, xfs_ncheck=/usr/sbin/xfs_ncheck, xfs_property=/usr/sbin/xfs_property, xfs_protofile=/usr/sbin/xfs_protofile, xfs_quota=/usr/sbin/xfs_quota, xfs_repair=/usr/sbin/xfs_repair, xfs_rtcp=/usr/sbin/xfs_rtcp, xfs_scrub=/usr/sbin/xfs_scrub, xfs_scrub_all=/usr/sbin/xfs_scrub_all, xfs_spaceman=/usr/sbin/xfs_spaceman

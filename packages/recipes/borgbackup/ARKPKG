@@ -1,0 +1,12 @@
+Name: borgbackup
+Description: deduplicating and compressing backup program
+Version: 1.4.0-5
+Arch: x86_64
+URL: https://borgbackup.github.io/borgbackup/
+License: See /usr/share/doc/borgbackup/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  acl-libs
+  libxxhash0
+  openssl-libs
+Provides: borg=/usr/bin/borg, borgbackup=/usr/bin/borgbackup, borgfs=/usr/bin/borgfs

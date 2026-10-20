@@ -1,0 +1,7 @@
+Name: usb.ids
+Description: USB ID Repository
+Version: 2025.07.26-1
+Arch: any
+URL: http://www.linux-usb.org/usb-ids.html
+License: See /usr/share/doc/usb.ids/copyright
+Maintainer: arkanaOS Team

@@ -1,0 +1,11 @@
+Name: odbc-mariadb
+Description: ODBC driver for MariaDB
+Version: 3.1.15-5
+Arch: x86_64
+URL: https://mariadb.com/kb/en/library/mariadb-connector-odbc/
+License: See /usr/share/doc/odbc-mariadb/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmariadb3
+  libodbcinst2
+Provides: libmaodbc.so=/usr/lib/x86_64-linux-gnu/odbc/libmaodbc.so

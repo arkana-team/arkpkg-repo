@@ -1,0 +1,11 @@
+Name: power-profiles-daemon
+Description: Makes power profiles handling available over D-Bus.
+Version: 0.30-1.1
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/upower/power-profiles-daemon
+License: See /usr/share/doc/power-profiles-daemon/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgudev-1.0-0
+  libpolkit-gobject-1-0
+Provides: powerprofilesctl=/usr/bin/powerprofilesctl

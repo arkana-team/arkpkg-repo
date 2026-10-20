@@ -1,0 +1,10 @@
+Name: libpolkit-agent-1-0
+Description: polkit authentication agent API
+Version: 126-2
+Arch: x86_64
+URL: https://github.com/polkit-org/polkit/
+License: See /usr/share/doc/libpolkit-agent-1-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpolkit-gobject-1-0
+Provides: libpolkit-agent-1.so.0=/usr/lib/x86_64-linux-gnu/libpolkit-agent-1.so.0.0.0

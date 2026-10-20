@@ -1,0 +1,8 @@
+Name: apparmor
+Description: user-space parser utility for AppArmor
+Version: 4.1.0-1
+Arch: x86_64
+URL: https://apparmor.net/
+License: See /usr/share/doc/apparmor/copyright
+Maintainer: arkanaOS Team
+Provides: aa-enabled=/usr/bin/aa-enabled, aa-exec=/usr/bin/aa-exec, aa-features-abi=/usr/bin/aa-features-abi, aa-load=/usr/sbin/aa-load, aa-remove-unknown=/usr/sbin/aa-remove-unknown, aa-status=/usr/sbin/aa-status, aa-teardown=/usr/sbin/aa-teardown, apparmor_parser=/usr/sbin/apparmor_parser, apparmor_status=/usr/sbin/apparmor_status

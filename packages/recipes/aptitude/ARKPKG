@@ -1,0 +1,16 @@
+Name: aptitude
+Description: terminal-based package manager
+Version: 0.8.13-7
+Arch: x86_64
+URL: https://wiki.debian.org/Aptitude
+License: See /usr/share/doc/aptitude/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libapt-pkg7.0
+  libboost-iostreams1.83.0
+  libcwidget4
+  libsigc++-2.0-0v5
+  libsqlite3-0
+  libxapian30
+  ncurses-libs
+Provides: aptitude-curses=/usr/bin/aptitude-curses

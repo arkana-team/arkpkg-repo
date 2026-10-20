@@ -1,0 +1,7 @@
+Name: asterisk-moh-opsound-wav
+Description: asterisk extra sound files - English/wav
+Version: 2.03-1.1
+Arch: any
+URL: http://www.asterisk.org/
+License: See /usr/share/doc/asterisk-moh-opsound-wav/copyright
+Maintainer: arkanaOS Team

@@ -1,0 +1,10 @@
+Name: libdw1t64
+Description: library that provides access to the dwarf debug information
+Version: 0.192-4
+Arch: x86_64
+URL: https://sourceware.org/elfutils/
+License: See /usr/share/doc/libdw1t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libelf1t64
+Provides: libdw.so.1=/usr/lib/x86_64-linux-gnu/libdw-0.192.so

@@ -1,0 +1,10 @@
+Name: libatasmart4
+Description: ATA S.M.A.R.T. reading and parsing library
+Version: 0.19-5+b2
+Arch: x86_64
+URL: http://0pointer.de/blog/projects/being-smart.html
+License: See /usr/share/doc/libatasmart4/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  systemd-libs
+Provides: libatasmart.so.4=/usr/lib/x86_64-linux-gnu/libatasmart.so.4.0.5

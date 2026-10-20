@@ -1,0 +1,8 @@
+Name: iotop
+Description: simple top-like I/O monitor
+Version: 0.6-42-ga14256a-0.3+b1
+Arch: x86_64
+URL: http://guichaz.free.fr/iotop/
+License: See /usr/share/doc/iotop/copyright
+Maintainer: arkanaOS Team
+Provides: iotop-py=/usr/sbin/iotop-py

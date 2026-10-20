@@ -1,0 +1,10 @@
+Name: apt-show-versions
+Description: lists available package versions with distribution
+Version: 0.22.15+nmu1
+Arch: any
+URL: https://packages.debian.org/trixie/apt-show-versions
+License: See /usr/share/doc/apt-show-versions/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: apt-show-versions=/usr/bin/apt-show-versions

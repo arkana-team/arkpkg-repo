@@ -1,0 +1,20 @@
+Name: udisks2
+Description: D-Bus service to access and manipulate storage devices
+Version: 2.10.1-12.1+deb13u2
+Arch: x86_64
+URL: https://www.freedesktop.org/wiki/Software/udisks
+License: See /usr/share/doc/udisks2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  acl-libs
+  libatasmart4
+  libblockdev-utils3
+  libblockdev3
+  libgudev-1.0-0
+  libpolkit-agent-1-0
+  libpolkit-gobject-1-0
+  libudisks2-0
+  parted
+  systemd-libs
+  util-linux-libs
+Provides: udisksctl=/usr/bin/udisksctl, umount.udisks2=/usr/sbin/umount.udisks2

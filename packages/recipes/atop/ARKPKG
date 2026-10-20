@@ -1,0 +1,10 @@
+Name: atop
+Description: Monitor for system resources and process activity
+Version: 2.11.1-3
+Arch: x86_64
+URL: https://atoptool.nl/
+License: See /usr/share/doc/atop/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: atop=/usr/bin/atop, atopacctd=/usr/sbin/atopacctd, atopcat=/usr/bin/atopcat, atopconvert=/usr/bin/atopconvert, atophide=/usr/bin/atophide, atopsar=/usr/bin/atopsar

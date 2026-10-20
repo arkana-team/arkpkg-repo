@@ -1,0 +1,11 @@
+Name: xbrlapi
+Description: Access software for a blind person using a braille display - xbrlapi
+Version: 6.7-3.1+deb13u3
+Arch: x86_64
+URL: https://brltty.com
+License: See /usr/share/doc/xbrlapi/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libbrlapi0.8
+  libicu76
+Provides: xbrlapi=/usr/bin/xbrlapi

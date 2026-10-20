@@ -1,0 +1,8 @@
+Name: menu
+Description: generates programs menu for all menu-aware applications
+Version: 2.1.51
+Arch: x86_64
+URL: https://packages.debian.org/trixie/menu
+License: See /usr/share/doc/menu/copyright
+Maintainer: arkanaOS Team
+Provides: install-menu=/usr/bin/install-menu, su-to-root=/usr/bin/su-to-root
