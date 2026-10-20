@@ -24337,6 +24337,22 @@
         }
       ]
     },
+    "xlockmore": {
+      "author": "David A. Bagley and Eric Lassauge",
+      "git_repo": "https://cgit.freebsd.org/ports/tree/x11/xlockmore",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "xlogo": {
       "author": null,
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xlogo",

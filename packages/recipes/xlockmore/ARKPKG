@@ -1,0 +1,12 @@
+Name: xlockmore
+Description: classic X11 screen locker with animated screen saver modes
+Version: 5.89
+Arch: x86_64
+URL: https://sillycycle.com/xlockmore.html
+License: BSD-2-Clause
+Maintainer: arkanaOS team
+Dependencies:
+  libxmu>=1.3.1
+  pam-libs>=1.7.1
+  xorg-devel>=1.0.0
+Provides: xlock=/usr/bin/xlock, xmlock=/usr/bin/xmlock
