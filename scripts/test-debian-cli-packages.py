@@ -91,6 +91,45 @@ class RepositoryProviderTests(unittest.TestCase):
             self.assertEqual(providers["libxcb-util.so.1"], "xcb-util")
 
 
+class PackageExclusionTests(unittest.TestCase):
+    def test_exclusions_remove_only_named_payload_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            payload = Path(temporary) / "package"
+            documentation = payload / "usr/share/doc/restic/html"
+            documentation.mkdir(parents=True)
+            excluded = documentation / "080_examples.html"
+            retained = documentation / "030_preparing_a_new_repo.html"
+            excluded.write_text("example credentials\n", encoding="utf-8")
+            retained.write_text("normal help\n", encoding="utf-8")
+
+            BUILDER.exclude_package_paths(
+                payload,
+                ["usr/share/doc/restic/html/080_examples.html"],
+                "restic",
+            )
+
+            self.assertFalse(excluded.exists())
+            self.assertTrue(retained.is_file())
+
+    def test_exclusions_reject_paths_outside_payload(self) -> None:
+        with (
+            tempfile.TemporaryDirectory() as temporary,
+            self.assertRaisesRegex(ValueError, "unsafe excluded path"),
+        ):
+            BUILDER.exclude_package_paths(Path(temporary), ["../outside"], "restic")
+
+    def test_exclusions_fail_if_pinned_file_is_missing(self) -> None:
+        with (
+            tempfile.TemporaryDirectory() as temporary,
+            self.assertRaisesRegex(FileNotFoundError, "expected excluded file"),
+        ):
+            BUILDER.exclude_package_paths(
+                Path(temporary),
+                ["usr/share/doc/restic/html/080_examples.html"],
+                "restic",
+            )
+
+
 class WorkstationPackageManifestTests(unittest.TestCase):
     def test_workstation_packages_have_pinned_sources_and_maintainer_metadata(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]
@@ -100,7 +139,34 @@ class WorkstationPackageManifestTests(unittest.TestCase):
         metadata = json.loads(
             (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
         )["packages"]
-        expected = {
+        new_batch = {
+            "aerc",
+            "age",
+            "dmidecode",
+            "dust",
+            "elinks",
+            "libev4t64",
+            "libfsplib0t64",
+            "libgmime-3.0-0t64",
+            "libnotmuch5t64",
+            "libsexp2",
+            "libxdo3",
+            "neomutt",
+            "numlockx",
+            "restic",
+            "sd",
+            "stterm",
+            "sxiv",
+            "wmctrl",
+            "xautomation",
+            "xbanish",
+            "xclip",
+            "xkbset",
+            "xsel",
+            "xvkbd",
+            "xdotool",
+        }
+        expected = new_batch | {
             "abook",
             "irssi",
             "libgsasl18",
@@ -117,6 +183,18 @@ class WorkstationPackageManifestTests(unittest.TestCase):
         packages = {package["name"]: package for package in manifest["packages"]}
         self.assertTrue(expected.issubset(packages))
 
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-06.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch_packages = {package["name"]: package for package in batch["packages"]}
+        self.assertEqual(set(batch_packages), new_batch)
+        for name, package in batch_packages.items():
+            self.assertEqual(packages[name], package)
+        for name, source in batch["sources"].items():
+            self.assertEqual(manifest["sources"][name], source)
+
         for name in expected:
             package = packages[name]
             self.assertTrue(package["debian_packages"], name)
@@ -129,11 +207,10 @@ class WorkstationPackageManifestTests(unittest.TestCase):
             package_metadata = metadata[name]
             self.assertIn("author", package_metadata)
             self.assertIn("git_author_url", package_metadata)
-            self.assertIn(package_metadata["git_repo_type"], {
-                "upstream",
-                "packaging",
-                "arkpkg-recipe",
-            })
+            self.assertIn(
+                package_metadata["git_repo_type"],
+                {"upstream", "packaging", "arkpkg-recipe"},
+            )
             self.assertTrue(package_metadata["git_repo"].startswith("https://"))
             packager_names = {
                 packager["name"] for packager in package_metadata["packagers"]
@@ -144,6 +221,14 @@ class WorkstationPackageManifestTests(unittest.TestCase):
             packages["weechat"]["debian_packages"],
             ["weechat-core", "weechat-curses", "weechat-plugins"],
         )
+        self.assertEqual(
+            packages["restic"]["exclude_paths"],
+            [
+                "usr/share/doc/restic/html/080_examples.html",
+                "usr/share/doc/restic/html/_sources/080_examples.rst.txt",
+            ],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

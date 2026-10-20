@@ -1,0 +1,8 @@
+Name: xkbset
+Description: XKB accessibility controls for X11
+Version: 0.8-1
+Arch: x86_64
+URL: https://salsa.debian.org/debian/xkbset
+License: See /usr/share/doc/xkbset/copyright
+Maintainer: arkanaOS Team
+Provides: xkbset-gui=/usr/bin/xkbset-gui, xkbset=/usr/bin/xkbset

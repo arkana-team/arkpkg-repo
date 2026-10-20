@@ -1,0 +1,13 @@
+Name: libnotmuch5t64
+Description: Thread-based mail index and search runtime library
+Version: 0.39-1
+Arch: x86_64
+URL: https://git.notmuchmail.org/git/notmuch
+License: See /usr/share/doc/libnotmuch5t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgmime-3.0-0t64
+  libsexp2
+  libtalloc2
+  libxapian30
+Provides: libnotmuch.so.5=/usr/lib/x86_64-linux-gnu/libnotmuch.so.5.6.0

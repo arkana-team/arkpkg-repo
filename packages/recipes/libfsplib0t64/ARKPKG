@@ -1,0 +1,8 @@
+Name: libfsplib0t64
+Description: FSP protocol stack runtime library
+Version: 0.14-5.1
+Arch: x86_64
+URL: https://salsa.debian.org/debian/fsplib
+License: See /usr/share/doc/libfsplib0t64/copyright
+Maintainer: arkanaOS Team
+Provides: libfsplib.so.0=/usr/lib/libfsplib.so.0.0.0

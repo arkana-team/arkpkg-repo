@@ -1,0 +1,528 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libev4t64"
+      ],
+      "debian_version": "1:4.33-2.1+b1",
+      "dependencies": [],
+      "description": "High-performance event loop library",
+      "license": "See /usr/share/doc/libev4t64/copyright",
+      "license_path": "usr/share/doc/libev4t64/copyright",
+      "name": "libev4t64",
+      "url": "https://salsa.debian.org/debian/libev",
+      "version": "1:4.33-2.1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libfsplib0t64"
+      ],
+      "debian_version": "0.14-5.1",
+      "dependencies": [],
+      "description": "FSP protocol stack runtime library",
+      "license": "See /usr/share/doc/libfsplib0t64/copyright",
+      "license_path": "usr/share/doc/libfsplib0t64/copyright",
+      "name": "libfsplib0t64",
+      "url": "https://salsa.debian.org/debian/fsplib",
+      "version": "0.14-5.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libxdo3"
+      ],
+      "debian_version": "1:3.20160805.1-5.1",
+      "dependencies": [],
+      "description": "X11 keyboard and mouse simulation library",
+      "license": "See /usr/share/doc/libxdo3/copyright",
+      "license_path": "usr/share/doc/libxdo3/copyright",
+      "name": "libxdo3",
+      "url": "https://github.com/jordansissel/xdotool",
+      "version": "1:3.20160805.1-5.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgmime-3.0-0t64"
+      ],
+      "debian_version": "3.2.15+dfsg-1",
+      "dependencies": [],
+      "description": "MIME message parser and creator library",
+      "license": "See /usr/share/doc/libgmime-3.0-0t64/copyright",
+      "license_path": "usr/share/doc/libgmime-3.0-0t64/copyright",
+      "name": "libgmime-3.0-0t64",
+      "url": "https://salsa.debian.org/debian/gmime",
+      "version": "3.2.15+dfsg-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libsexp2"
+      ],
+      "debian_version": "1.4.1-2+b2",
+      "dependencies": [],
+      "description": "Small fast s-expression library",
+      "license": "See /usr/share/doc/libsexp2/copyright",
+      "license_path": "usr/share/doc/libsexp2/copyright",
+      "name": "libsexp2",
+      "url": "https://salsa.debian.org/bremner/sfsexp",
+      "version": "1.4.1-2+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libnotmuch5t64"
+      ],
+      "debian_version": "0.39-1",
+      "dependencies": [],
+      "description": "Thread-based mail index and search runtime library",
+      "license": "See /usr/share/doc/libnotmuch5t64/copyright",
+      "license_path": "usr/share/doc/libnotmuch5t64/copyright",
+      "name": "libnotmuch5t64",
+      "url": "https://git.notmuchmail.org/git/notmuch",
+      "version": "0.39-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "aerc"
+      ],
+      "debian_version": "0.20.0-2+b1",
+      "dependencies": [
+        "libnotmuch5t64"
+      ],
+      "description": "Terminal email client",
+      "license": "See /usr/share/doc/aerc/copyright",
+      "license_path": "usr/share/doc/aerc/copyright",
+      "name": "aerc",
+      "url": "https://salsa.debian.org/go-team/packages/aerc",
+      "version": "0.20.0-2+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "age"
+      ],
+      "debian_version": "1.2.1-1+b5",
+      "dependencies": [],
+      "description": "Simple modern file encryption tool",
+      "license": "See /usr/share/doc/age/copyright",
+      "license_path": "usr/share/doc/age/copyright",
+      "name": "age",
+      "url": "https://github.com/FiloSottile/age",
+      "version": "1.2.1-1+b5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "dmidecode"
+      ],
+      "debian_version": "3.6-2",
+      "dependencies": [],
+      "description": "DMI table decoder for hardware inventory",
+      "license": "See /usr/share/doc/dmidecode/copyright",
+      "license_path": "usr/share/doc/dmidecode/copyright",
+      "name": "dmidecode",
+      "url": "https://git.jff.email/cgit/dmidecode.git",
+      "version": "3.6-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "du-dust"
+      ],
+      "debian_version": "1.2.0-2",
+      "dependencies": [],
+      "description": "Intuitive disk usage analyzer",
+      "license": "See /usr/share/doc/du-dust/copyright",
+      "license_path": "usr/share/doc/du-dust/copyright",
+      "name": "dust",
+      "url": "https://github.com/bootandy/dust",
+      "version": "1.2.0-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "elinks",
+        "elinks-data"
+      ],
+      "debian_version": "0.18.0-1+b1",
+      "dependencies": [
+        "libev4t64",
+        "libfsplib0t64"
+      ],
+      "description": "Feature-rich text-mode web browser",
+      "license": "See /usr/share/doc/elinks/copyright",
+      "license_path": "usr/share/doc/elinks/copyright",
+      "name": "elinks",
+      "url": "https://github.com/rkd77/elinks",
+      "version": "0.18.0-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "neomutt"
+      ],
+      "debian_version": "20250510+dfsg-2",
+      "dependencies": [
+        "libnotmuch5t64"
+      ],
+      "description": "Feature-rich text-based email client",
+      "license": "See /usr/share/doc/neomutt/copyright",
+      "license_path": "usr/share/doc/neomutt/copyright",
+      "name": "neomutt",
+      "url": "https://salsa.debian.org/mutt-team/neomutt",
+      "version": "20250510+dfsg-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "numlockx"
+      ],
+      "debian_version": "1.2-10",
+      "dependencies": [],
+      "description": "Command-line Num Lock state utility for X11",
+      "license": "See /usr/share/doc/numlockx/copyright",
+      "license_path": "usr/share/doc/numlockx/copyright",
+      "name": "numlockx",
+      "url": "https://salsa.debian.org/debian/numlockx",
+      "version": "1.2-10"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "restic"
+      ],
+      "debian_version": "0.18.0-1+b4",
+      "dependencies": [],
+      "description": "Encrypted deduplicating backup program",
+      "license": "See /usr/share/doc/restic/copyright",
+      "license_path": "usr/share/doc/restic/copyright",
+      "name": "restic",
+      "url": "https://github.com/restic/restic",
+      "version": "0.18.0-1+b4",
+      "exclude_paths": [
+        "usr/share/doc/restic/html/080_examples.html",
+        "usr/share/doc/restic/html/_sources/080_examples.rst.txt"
+      ]
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "sd"
+      ],
+      "debian_version": "1.0.0-3+b6",
+      "dependencies": [],
+      "description": "Intuitive find and replace tool",
+      "license": "See /usr/share/doc/sd/copyright",
+      "license_path": "usr/share/doc/sd/copyright",
+      "name": "sd",
+      "url": "https://github.com/chmln/sd",
+      "version": "1.0.0-3+b6"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "stterm"
+      ],
+      "debian_version": "0.9.2-1",
+      "dependencies": [],
+      "description": "Simple, fast X11 terminal emulator",
+      "license": "See /usr/share/doc/stterm/copyright",
+      "license_path": "usr/share/doc/stterm/copyright",
+      "name": "stterm",
+      "url": "https://git.suckless.org/st",
+      "version": "0.9.2-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "sxiv"
+      ],
+      "debian_version": "26-1+b1",
+      "dependencies": [],
+      "description": "Minimal X11 image viewer",
+      "license": "See /usr/share/doc/sxiv/copyright",
+      "license_path": "usr/share/doc/sxiv/copyright",
+      "name": "sxiv",
+      "url": "https://github.com/muennich/sxiv",
+      "version": "26-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmctrl"
+      ],
+      "debian_version": "1.07+git20240228.1105759-1",
+      "dependencies": [],
+      "description": "Command-line window manager control utility",
+      "license": "See /usr/share/doc/wmctrl/copyright",
+      "license_path": "usr/share/doc/wmctrl/copyright",
+      "name": "wmctrl",
+      "url": "https://github.com/Conservatory/wmctrl",
+      "version": "1.07+git20240228.1105759-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xautomation"
+      ],
+      "debian_version": "1.09-4+b1",
+      "dependencies": [],
+      "description": "X11 automation and scripting utilities",
+      "license": "See /usr/share/doc/xautomation/copyright",
+      "license_path": "usr/share/doc/xautomation/copyright",
+      "name": "xautomation",
+      "url": "https://salsa.debian.org/debian/xautomation",
+      "version": "1.09-4+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xbanish"
+      ],
+      "debian_version": "1.8-1",
+      "dependencies": [],
+      "description": "Hide the X11 pointer while typing",
+      "license": "See /usr/share/doc/xbanish/copyright",
+      "license_path": "usr/share/doc/xbanish/copyright",
+      "name": "xbanish",
+      "url": "https://github.com/jcs/xbanish",
+      "version": "1.8-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xclip"
+      ],
+      "debian_version": "0.13-4",
+      "dependencies": [],
+      "description": "Command-line X11 selection interface",
+      "license": "See /usr/share/doc/xclip/copyright",
+      "license_path": "usr/share/doc/xclip/copyright",
+      "name": "xclip",
+      "url": "https://github.com/astrand/xclip",
+      "version": "0.13-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xdotool"
+      ],
+      "debian_version": "1:3.20160805.1-5.1",
+      "dependencies": [
+        "libxdo3"
+      ],
+      "description": "X11 keyboard and mouse automation utility",
+      "license": "See /usr/share/doc/xdotool/copyright",
+      "license_path": "usr/share/doc/xdotool/copyright",
+      "name": "xdotool",
+      "url": "https://github.com/jordansissel/xdotool",
+      "version": "1:3.20160805.1-5.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xkbset"
+      ],
+      "debian_version": "0.8-1",
+      "dependencies": [],
+      "description": "XKB accessibility controls for X11",
+      "license": "See /usr/share/doc/xkbset/copyright",
+      "license_path": "usr/share/doc/xkbset/copyright",
+      "name": "xkbset",
+      "url": "https://salsa.debian.org/debian/xkbset",
+      "version": "0.8-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xsel"
+      ],
+      "debian_version": "1.2.1-1",
+      "dependencies": [],
+      "description": "Command-line X11 clipboard and selection utility",
+      "license": "See /usr/share/doc/xsel/copyright",
+      "license_path": "usr/share/doc/xsel/copyright",
+      "name": "xsel",
+      "url": "https://salsa.debian.org/debian/xsel",
+      "version": "1.2.1-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xvkbd"
+      ],
+      "debian_version": "4.1-3",
+      "dependencies": [],
+      "description": "Virtual keyboard for the X Window System",
+      "license": "See /usr/share/doc/xvkbd/copyright",
+      "license_path": "usr/share/doc/xvkbd/copyright",
+      "name": "xvkbd",
+      "url": "https://salsa.debian.org/debian/xvkbd",
+      "version": "4.1-3"
+    }
+  ],
+  "sources": {
+    "age": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/age/age_1.2.1-1+b5_amd64.deb",
+      "sha256": "a87ab5ba69a99bc6d8c95935ae467fa877daef50d11d9dabe0520ae01411f85c",
+      "version": "1.2.1-1+b5"
+    },
+    "restic": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/restic/restic_0.18.0-1+b4_amd64.deb",
+      "sha256": "4888fb20b272a28b84ac39171b7d7f0d9a58c2aeae51ec28e54684648d66e12c",
+      "version": "0.18.0-1+b4"
+    },
+    "du-dust": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-du-dust/du-dust_1.2.0-2_amd64.deb",
+      "sha256": "0ad6a6ed34bdd4ed46cdf9b4c00d0ca88d0a7d9d1617c5706ee916e4810c4389",
+      "version": "1.2.0-2"
+    },
+    "sd": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-sd/sd_1.0.0-3+b6_amd64.deb",
+      "sha256": "653b22b05d91a1b9e1504d6a9dd7ab19cd79c986e617be3246d06e450fa70992",
+      "version": "1.0.0-3+b6"
+    },
+    "elinks": {
+      "architecture": "amd64",
+      "filename": "pool/main/e/elinks/elinks_0.18.0-1+b1_amd64.deb",
+      "sha256": "b1a7b94c3d1b596dfda83eda050c4976a80490fdd2319b677765fc08a65d1b6b",
+      "version": "0.18.0-1+b1"
+    },
+    "elinks-data": {
+      "architecture": "all",
+      "filename": "pool/main/e/elinks/elinks-data_0.18.0-1_all.deb",
+      "sha256": "179733c43202006b2aa5ad65c1a5188ed8b1bd3fdbfceb181d29e54ef5b55990",
+      "version": "0.18.0-1"
+    },
+    "xdotool": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xdotool/xdotool_3.20160805.1-5.1_amd64.deb",
+      "sha256": "98ac8681533b01020c7288fb2e9de403d586747dab48cfd58e04cb00d0c44fb1",
+      "version": "1:3.20160805.1-5.1"
+    },
+    "wmctrl": {
+      "architecture": "amd64",
+      "filename": "pool/main/w/wmctrl/wmctrl_1.07+git20240228.1105759-1_amd64.deb",
+      "sha256": "bdc6e8f390bed3b373062e251455bb1edc3d147252744e61d19991a852c21ccf",
+      "version": "1.07+git20240228.1105759-1"
+    },
+    "xclip": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xclip/xclip_0.13-4_amd64.deb",
+      "sha256": "14203d9a0138996c647d603fcadd79e6765a0a124f606e386215325ac13ece76",
+      "version": "0.13-4"
+    },
+    "xsel": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xsel/xsel_1.2.1-1_amd64.deb",
+      "sha256": "110d78faa29d4ec395894d5441795f706e1ef0b1ef8728a6c39b2600d207f783",
+      "version": "1.2.1-1"
+    },
+    "sxiv": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sxiv/sxiv_26-1+b1_amd64.deb",
+      "sha256": "e40d79e12ea3d6851777ad303709594786bc92066d9518075a3dcdeeca7c8988",
+      "version": "26-1+b1"
+    },
+    "dmidecode": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/dmidecode/dmidecode_3.6-2_amd64.deb",
+      "sha256": "6ad5a5483752ea05e425e77adc9ccf58ce9da22cca28d8932ea316d641f199d3",
+      "version": "3.6-2"
+    },
+    "xvkbd": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xvkbd/xvkbd_4.1-3_amd64.deb",
+      "sha256": "517457e314634e9d831be208a53e5a017b27a7655acb345340f9761051b96dfc",
+      "version": "4.1-3"
+    },
+    "numlockx": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/numlockx/numlockx_1.2-10_amd64.deb",
+      "sha256": "7396bbc85433e68fc974fad758c0d0f4142515576790f6d8afe7b330c60a1e98",
+      "version": "1.2-10"
+    },
+    "xkbset": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xkbset/xkbset_0.8-1_amd64.deb",
+      "sha256": "b8ea96930fec184bc71cd43b819049623a03287e4a2d6df40fb2ef3f3d485368",
+      "version": "0.8-1"
+    },
+    "xbanish": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xbanish/xbanish_1.8-1_amd64.deb",
+      "sha256": "773c650fd7134204f2977f17f6d2343443b0d249a41d353eb6aed292d060c45b",
+      "version": "1.8-1"
+    },
+    "xautomation": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xautomation/xautomation_1.09-4+b1_amd64.deb",
+      "sha256": "684a8f943bd80ef6154e3d5d22b0fc3a189f8695ffd0dcba5f2a04d1adc2bce0",
+      "version": "1.09-4+b1"
+    },
+    "stterm": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/stterm/stterm_0.9.2-1_amd64.deb",
+      "sha256": "ae3308ec110a5bb1a4a805c32e5f24c61eca51f56c8dd8ec772856897df866a6",
+      "version": "0.9.2-1"
+    },
+    "aerc": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/aerc/aerc_0.20.0-2+b1_amd64.deb",
+      "sha256": "8eac6badc275b9b2f0dfdcbf23c318481efeacc01f5844625516c62584090b96",
+      "version": "0.20.0-2+b1"
+    },
+    "neomutt": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/neomutt/neomutt_20250510+dfsg-2_amd64.deb",
+      "sha256": "506527b1d4f9d4175bf703e34ee3e62315e5589794a96438ac2aa327fa0134db",
+      "version": "20250510+dfsg-2"
+    },
+    "libev4t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/libe/libev/libev4t64_4.33-2.1+b1_amd64.deb",
+      "sha256": "29cd370774e5fa88b974f6cf165fffa3f742d697159d50cf223606826211d980",
+      "version": "1:4.33-2.1+b1"
+    },
+    "libfsplib0t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fsplib/libfsplib0t64_0.14-5.1_amd64.deb",
+      "sha256": "2864a0ea0aeed66687f600d7ec4e2bb5f12d0f495718fc899d82875a559a9575",
+      "version": "0.14-5.1"
+    },
+    "libxdo3": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xdotool/libxdo3_3.20160805.1-5.1_amd64.deb",
+      "sha256": "d634e25d2b50af140ee9f44bab507fcfb665f3556fd483faefdb56e85598cc12",
+      "version": "1:3.20160805.1-5.1"
+    },
+    "libgmime-3.0-0t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gmime/libgmime-3.0-0t64_3.2.15+dfsg-1_amd64.deb",
+      "sha256": "4f4202254edcfe3cc0fb348fefaa6304345a687701ac0b6531381c23556e6584",
+      "version": "3.2.15+dfsg-1"
+    },
+    "libsexp2": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sfsexp/libsexp2_1.4.1-2+b2_amd64.deb",
+      "sha256": "11f3aa89aa072063b67429cabe7ab373cac4b3fc6e9eefaf8510af68b27b8ade",
+      "version": "1.4.1-2+b2"
+    },
+    "libnotmuch5t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/notmuch/libnotmuch5t64_0.39-1_amd64.deb",
+      "sha256": "7b62d6edc2ce7e83cc31831ce664e882b7c76faa36e708de968b76afc7ad9020",
+      "version": "0.39-1"
+    }
+  },
+  "suite": "trixie"
+}

@@ -1,0 +1,8 @@
+Name: restic
+Description: Encrypted deduplicating backup program
+Version: 0.18.0-1+b4
+Arch: x86_64
+URL: https://github.com/restic/restic
+License: See /usr/share/doc/restic/copyright
+Maintainer: arkanaOS Team
+Provides: restic=/usr/bin/restic

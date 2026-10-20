@@ -1,0 +1,13 @@
+Name: sxiv
+Description: Minimal X11 image viewer
+Version: 26-1+b1
+Arch: x86_64
+URL: https://github.com/muennich/sxiv
+License: See /usr/share/doc/sxiv/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  giflib
+  libexif12
+  libimlib2t64
+  libxft
+Provides: sxiv=/usr/bin/sxiv

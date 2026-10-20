@@ -1,0 +1,21 @@
+Name: neomutt
+Description: Feature-rich text-based email client
+Version: 20250510+dfsg-2
+Arch: x86_64
+URL: https://salsa.debian.org/mutt-team/neomutt
+License: See /usr/share/doc/neomutt/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  dns-runtime-libs
+  gnutls-libs
+  krb5-libs
+  libgpgme11t64
+  libgsasl18
+  libidn2-libs
+  libnotmuch5t64
+  libsqlite3-0
+  libtokyocabinet9t64
+  lua54-libs
+  ncurses-libs
+  pcre2-libs
+Provides: neomutt=/usr/bin/neomutt

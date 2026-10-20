@@ -1,0 +1,10 @@
+Name: xclip
+Description: Command-line X11 selection interface
+Version: 0.13-4
+Arch: x86_64
+URL: https://github.com/astrand/xclip
+License: See /usr/share/doc/xclip/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxmu
+Provides: xclip-copyfile=/usr/bin/xclip-copyfile, xclip-cutfile=/usr/bin/xclip-cutfile, xclip-pastefile=/usr/bin/xclip-pastefile, xclip=/usr/bin/xclip

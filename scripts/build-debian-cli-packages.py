@@ -256,6 +256,28 @@ def merge_payload(source: Path, destination: Path) -> None:
             raise ValueError(f"unsupported Debian payload entry: {relative}")
 
 
+def exclude_package_paths(payload: Path, exclusions: list[str], package_name: str) -> None:
+    seen: set[str] = set()
+    for relative in exclusions:
+        path = PurePosixPath(relative)
+        if (
+            not relative
+            or path.is_absolute()
+            or ".." in path.parts
+            or path.as_posix() != relative
+        ):
+            raise ValueError(f"{package_name}: unsafe excluded path {relative!r}")
+        if relative in seen:
+            raise ValueError(f"{package_name}: duplicate excluded path {relative!r}")
+        target = payload.joinpath(*path.parts)
+        if not target.is_file() and not target.is_symlink():
+            raise FileNotFoundError(
+                f"{package_name}: expected excluded file is missing: {relative}"
+            )
+        target.unlink()
+        seen.add(relative)
+
+
 def payload_paths(payload: Path) -> list[str]:
     paths = []
     for path in payload.rglob("*"):
@@ -443,6 +465,8 @@ def build(args: argparse.Namespace) -> None:
                 deb = obtain_deb(sources[deb_name], cache)
                 extracted = extract_data_archive(deb, work)
                 merge_payload(extracted, payload)
+
+            exclude_package_paths(payload, package.get("exclude_paths", []), name)
 
             for link, target in package.get("symlinks", []):
                 link_path = payload / link

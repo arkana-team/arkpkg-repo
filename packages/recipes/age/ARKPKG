@@ -1,0 +1,8 @@
+Name: age
+Description: Simple modern file encryption tool
+Version: 1.2.1-1+b5
+Arch: x86_64
+URL: https://github.com/FiloSottile/age
+License: See /usr/share/doc/age/copyright
+Maintainer: arkanaOS Team
+Provides: age-keygen=/usr/bin/age-keygen, age=/usr/bin/age

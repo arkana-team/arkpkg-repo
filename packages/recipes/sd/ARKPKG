@@ -1,0 +1,8 @@
+Name: sd
+Description: Intuitive find and replace tool
+Version: 1.0.0-3+b6
+Arch: x86_64
+URL: https://github.com/chmln/sd
+License: See /usr/share/doc/sd/copyright
+Maintainer: arkanaOS Team
+Provides: sd=/usr/bin/sd

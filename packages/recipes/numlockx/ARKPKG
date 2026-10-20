@@ -1,0 +1,8 @@
+Name: numlockx
+Description: Command-line Num Lock state utility for X11
+Version: 1.2-10
+Arch: x86_64
+URL: https://salsa.debian.org/debian/numlockx
+License: See /usr/share/doc/numlockx/copyright
+Maintainer: arkanaOS Team
+Provides: numlockx=/usr/bin/numlockx

@@ -1,0 +1,8 @@
+Name: libev4t64
+Description: High-performance event loop library
+Version: 1:4.33-2.1+b1
+Arch: x86_64
+URL: https://salsa.debian.org/debian/libev
+License: See /usr/share/doc/libev4t64/copyright
+Maintainer: arkanaOS Team
+Provides: libev.so.4=/usr/lib/x86_64-linux-gnu/libev.so.4.0.0
