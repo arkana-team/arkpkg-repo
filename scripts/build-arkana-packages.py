@@ -308,6 +308,7 @@ PACKAGES = (
     "xwud",
     "xwininfo",
     "xosview",
+    "xlockmore",
     "smproxy",
     "x11perf",
     "xdriinfo",
@@ -1516,6 +1517,7 @@ STAGED_PACKAGE_FILES = {
     "xwd": ("usr/bin/xwd",),
     "xwud": ("usr/bin/xwud",),
     "xwininfo": ("usr/bin/xwininfo",),
+    "xlockmore": ("usr/bin/xlock", "usr/bin/xmlock", "etc/pam.d/xlock"),
     "smproxy": ("usr/bin/smproxy",),
     "x11perf": ("usr/bin/x11perf",),
     "xdriinfo": ("usr/bin/xdriinfo",),
@@ -2862,6 +2864,17 @@ STAGED_PACKAGE_GLOBS = {
         "usr/share/licenses/xosview/COPYING.GPL",
         "usr/share/applications/xosview.desktop",
     ),
+    "xlockmore": (
+        "usr/share/man/man1/xlock*.1",
+        "usr/lib/X11/app-defaults/XLock*",
+        "usr/lib/X11/app-defaults/XmLock*",
+        "usr/share/X11/app-defaults/XLock*",
+        "usr/share/X11/app-defaults/XmLock*",
+        "usr/share/man/man1/xmlock*.1",
+        "usr/share/doc/xlockmore/*",
+        "usr/share/licenses/xlockmore/*",
+        "usr/share/applications/xlockmore.desktop",
+    ),
     "iceauth": ("usr/share/man/man1/iceauth*.1",),
     "xfd": (
         "usr/share/man/man1/xfd*.1",
@@ -3655,6 +3668,10 @@ def build_packages(args: argparse.Namespace) -> None:
                     patch_glib_tools_python313(payload_root)
                 if name == "bzip2-devel":
                     (payload_root / "usr/lib/libbz2.so").symlink_to("libbz2.so.1.0")
+                if name == "xlockmore":
+                    for directory in payload_root.rglob("*"):
+                        if directory.is_dir() and not directory.is_symlink():
+                            directory.chmod(0o755)
 
             strip_elf_payload(payload_root)
             version = read_field(recipe, "Version")
