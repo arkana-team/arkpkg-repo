@@ -1,0 +1,10 @@
+Name: xautomation
+Description: X11 automation and scripting utilities
+Version: 1.09-4+b1
+Arch: x86_64
+URL: https://salsa.debian.org/debian/xautomation
+License: See /usr/share/doc/xautomation/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpng16-16t64
+Provides: pat2ppm=/usr/bin/pat2ppm, patextract=/usr/bin/patextract, png2pat=/usr/bin/png2pat, rgb2pat=/usr/bin/rgb2pat, visgrep=/usr/bin/visgrep, xmousepos=/usr/bin/xmousepos, xte=/usr/bin/xte
