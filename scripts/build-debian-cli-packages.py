@@ -31,6 +31,7 @@ MAX_ARCHIVE_BYTES = 90_000_000
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 NEEDED = re.compile(r"Shared library: \[(.+?)\]")
 SONAME = re.compile(r"Library soname: \[(.+?)\]")
+LIBRARY_FILE = re.compile(r"lib[^/]+\.so(?:\.[A-Za-z0-9._+-]+)?\Z")
 
 
 def sha256(path: Path) -> str:
@@ -71,6 +72,21 @@ def read_recipe(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
     return fields, dependencies, provides
 
 
+def provider_keys(entries: list[str]) -> list[str]:
+    keys: list[str] = []
+    for entry in entries:
+        provided, separator, target = entry.partition("=")
+        provided = provided.strip()
+        if provided:
+            keys.append(provided)
+        target = target.strip()
+        if separator and target.startswith("/"):
+            filename = PurePosixPath(target).name
+            if LIBRARY_FILE.fullmatch(filename):
+                keys.append(filename)
+    return keys
+
+
 def repository_owners(
     repo_root: Path, ignored_packages: set[str]
 ) -> tuple[set[str], dict[str, str]]:
@@ -81,10 +97,8 @@ def repository_owners(
         fields, _, provides = read_recipe(recipe)
         name = fields.get("Name", recipe.parent.name)
         providers.setdefault(name, name)
-        for entry in provides:
-            provided = entry.partition("=")[0].strip()
-            if provided:
-                providers.setdefault(provided, name)
+        for key in provider_keys(provides):
+            providers.setdefault(key, name)
 
     for archive_path in sorted((repo_root / "packages").glob("*.ark")):
         archive_name = None
@@ -562,10 +576,8 @@ def build(args: argparse.Namespace) -> None:
             owned.update(paths)
             _, _, package_provides = read_recipe(recipe_path)
             providers.setdefault(name, name)
-            for item in package_provides:
-                key = item.partition("=")[0].strip()
-                if key:
-                    providers.setdefault(key, name)
+            for key in provider_keys(package_provides):
+                providers.setdefault(key, name)
             print(
                 f"Built {index}/{len(selected)} {archive.name} "
                 f"({archive.stat().st_size} bytes; {len(paths)} payload paths)",
