@@ -1,0 +1,12 @@
+Name: xloadimage
+Description: Graphics file viewer under X11
+Version: 4.1-26
+Arch: x86_64
+URL: https://packages.debian.org/trixie/xloadimage
+License: BSD-like
+Maintainer: arkanaOS Team
+Dependencies:
+  libjpeg62-turbo
+  libpng16-16t64
+  libtiff6
+Provides: uufilter=/usr/bin/uufilter, xloadimage=/usr/bin/xloadimage, xsetbg=/usr/bin/xsetbg, xview=/usr/bin/xview

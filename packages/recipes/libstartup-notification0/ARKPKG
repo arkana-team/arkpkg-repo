@@ -1,0 +1,10 @@
+Name: libstartup-notification0
+Description: library for program launch feedback (shared library)
+Version: 0.12-8
+Arch: x86_64
+URL: https://www.freedesktop.org/wiki/Software/startup-notification/
+License: MIT AND LGPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  xcb-util
+Provides: libstartup-notification-1.so.0=/usr/lib/x86_64-linux-gnu/libstartup-notification-1.so.0.0.0

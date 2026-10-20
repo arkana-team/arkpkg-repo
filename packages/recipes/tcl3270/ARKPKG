@@ -1,0 +1,11 @@
+Name: tcl3270
+Description: Program for Tcl-scripted telnet sessions to IBM mainframes
+Version: 4.3ga10-5
+Arch: x86_64
+URL: https://github.com/pmattes/x3270
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies:
+  libtcl8.6
+  s3270
+Provides: tcl3270=/usr/bin/tcl3270
