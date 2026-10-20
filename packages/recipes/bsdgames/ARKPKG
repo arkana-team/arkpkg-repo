@@ -1,0 +1,10 @@
+Name: bsdgames
+Description: collection of classic textual unix games
+Version: 2.17-35
+Arch: x86_64
+URL: https://packages.debian.org/trixie/bsdgames
+License: See /usr/share/doc/bsdgames/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-compat-libs
+  ncurses-libs

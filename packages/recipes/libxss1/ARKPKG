@@ -1,0 +1,8 @@
+Name: libxss1
+Description: X11 Screen Saver extension library
+Version: 1:1.2.3-1+b3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libxss1
+License: See /usr/share/doc/libxss1/copyright
+Maintainer: arkanaOS Team
+Provides: libXss.so.1=/usr/lib/x86_64-linux-gnu/libXss.so.1.0.0

@@ -20,6 +20,59 @@ DEPENDENCY = re.compile(
 )
 
 
+def version_segments(version: str) -> tuple[int, list[tuple[str, int | str]]]:
+    epoch = 0
+    if ":" in version:
+        raw_epoch, version = version.split(":", 1)
+        epoch = int(raw_epoch)
+
+    segments: list[tuple[str, int | str]] = []
+    for index, part in enumerate(version.split("~")):
+        if index:
+            segments.append(("tilde", ""))
+        for token in re.split(r"[._-]", part):
+            if not token:
+                continue
+            if token.isdigit():
+                segments.append(("number", int(token)))
+            else:
+                segments.append(("string", token))
+    return epoch, segments
+
+
+def compare_versions(left: str, right: str) -> int:
+    left_epoch, left_segments = version_segments(left)
+    right_epoch, right_segments = version_segments(right)
+    if left_epoch != right_epoch:
+        return (left_epoch > right_epoch) - (left_epoch < right_epoch)
+
+    for index in range(max(len(left_segments), len(right_segments))):
+        left_segment = left_segments[index] if index < len(left_segments) else None
+        right_segment = right_segments[index] if index < len(right_segments) else None
+        if left_segment == right_segment:
+            continue
+        if left_segment is None:
+            if right_segment[0] == "tilde":
+                return 1
+            if right_segment[0] == "number" and right_segment[1] == 0:
+                continue
+            return 1 if right_segment[0] == "string" else -1
+        if right_segment is None:
+            if left_segment[0] == "tilde":
+                return -1
+            if left_segment[0] == "number" and left_segment[1] == 0:
+                continue
+            return -1 if left_segment[0] == "string" else 1
+        if left_segment[0] == "tilde" or right_segment[0] == "tilde":
+            return -1 if left_segment[0] == "tilde" else 1
+        if left_segment[0] == right_segment[0]:
+            return (left_segment[1] > right_segment[1]) - (
+                left_segment[1] < right_segment[1]
+            )
+        return 1 if left_segment[0] == "number" else -1
+    return 0
+
+
 def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
     metadata: dict[str, str] | None = None
     dependencies: list[str] = []
@@ -87,9 +140,9 @@ def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
     return metadata, dependencies, provides
 
 
-def package_order(
+def package_dependencies(
     packages: dict[str, tuple[Path, str, list[str], list[str]]],
-) -> tuple[list[str], int]:
+) -> dict[str, set[str]]:
     provider_map: dict[str, str] = {name: name for name in packages}
     for name, (_, _, _, provides) in packages.items():
         for item in provides:
@@ -109,6 +162,12 @@ def package_order(
             if target != name:
                 dependencies[name].add(target)
 
+    return dependencies
+
+
+def package_order(
+    dependencies: dict[str, set[str]],
+) -> list[str]:
     pending = {name: set(values) for name, values in dependencies.items()}
     order: list[str] = []
     while pending:
@@ -120,7 +179,26 @@ def package_order(
             pending.pop(name)
         for values in pending.values():
             values.difference_update(ready)
-    return order, sum(map(len, dependencies.values()))
+    return order
+
+
+def transaction_order(
+    order: list[str], dependencies: dict[str, set[str]], requested: list[str] | None
+) -> list[str]:
+    if requested is None:
+        return order
+    missing = sorted(set(requested).difference(dependencies))
+    if missing:
+        raise ValueError(f"unknown transaction packages: {', '.join(missing)}")
+    selected: set[str] = set()
+    pending = list(requested)
+    while pending:
+        name = pending.pop()
+        if name in selected:
+            continue
+        selected.add(name)
+        pending.extend(dependencies[name])
+    return [name for name in order if name in selected]
 
 
 def run_package_manager(
@@ -146,8 +224,14 @@ def run_package_manager(
         raise RuntimeError(f"arkpkg {action} failed for {package}:\n{details}")
 
 
-def test_repository(repo_root: Path, tool: Path) -> None:
+def test_repository(
+    repo_root: Path,
+    tool: Path,
+    requested: list[str] | None = None,
+    audit_only: bool = False,
+) -> None:
     packages: dict[str, tuple[Path, str, list[str], list[str]]] = {}
+    package_arches: dict[str, str] = {}
     owners: dict[str, str] = {}
     archives = sorted((repo_root / "packages").glob("*.ark"))
     if not archives:
@@ -157,8 +241,25 @@ def test_repository(repo_root: Path, tool: Path) -> None:
         metadata, dependencies, provides = inspect_archive(path)
         name = metadata["Name"]
         if name in packages:
-            raise ValueError(f"duplicate package name: {name}")
-        packages[name] = (path, metadata["Version"], dependencies, provides)
+            if package_arches[name] != metadata["Arch"]:
+                raise ValueError(f"multiple architectures for package name: {name}")
+            existing_version = packages[name][1]
+            version_order = compare_versions(metadata["Version"], existing_version)
+            if version_order == 0:
+                raise ValueError(
+                    f"duplicate package version and architecture: "
+                    f"{name}-{metadata['Version']}-{metadata['Arch']}"
+                )
+            if version_order > 0:
+                packages[name] = (
+                    path,
+                    metadata["Version"],
+                    dependencies,
+                    provides,
+                )
+        else:
+            packages[name] = (path, metadata["Version"], dependencies, provides)
+            package_arches[name] = metadata["Arch"]
         with (
             lz4.frame.open(path, "rb") as compressed,
             tarfile.open(fileobj=compressed, mode="r|") as archive,
@@ -180,29 +281,40 @@ def test_repository(repo_root: Path, tool: Path) -> None:
                         f"payload collision: {relative} belongs to {previous} and {name}"
                     )
 
-    order, edge_count = package_order(packages)
+    dependencies = package_dependencies(packages)
+    order = package_order(dependencies)
+    install_order = transaction_order(order, dependencies, requested)
+    edge_count = sum(map(len, dependencies.values()))
     total_bytes = sum(path.stat().st_size for path in archives)
     print(
-        f"Audited {len(packages)} packages, {len(owners)} unique payload paths, "
+        f"Audited {len(archives)} archives for {len(packages)} packages, "
+        f"{len(owners)} unique payload paths, "
         f"{edge_count} dependency edges, {total_bytes} archive bytes",
+        flush=True,
+    )
+    if audit_only:
+        print("PASS: archive, payload ownership, and dependency audit", flush=True)
+        return
+    print(
+        f"Testing package transaction for {len(install_order)} packages",
         flush=True,
     )
 
     with tempfile.TemporaryDirectory(prefix="arkpkg-repo-test-") as temporary:
         root = Path(temporary) / "root"
         root.mkdir()
-        for index, name in enumerate(order, 1):
+        for index, name in enumerate(install_order, 1):
             run_package_manager(tool, root, "install", name, packages[name][0])
-            if index % 25 == 0 or index == len(order):
-                print(f"Installed {index}/{len(order)} packages", flush=True)
-        for index, name in enumerate(order, 1):
+            if index % 25 == 0 or index == len(install_order):
+                print(f"Installed {index}/{len(install_order)} packages", flush=True)
+        for index, name in enumerate(install_order, 1):
             run_package_manager(tool, root, "verify", name)
-            if index % 50 == 0 or index == len(order):
-                print(f"Verified {index}/{len(order)} packages", flush=True)
-        for index, name in enumerate(reversed(order), 1):
+            if index % 50 == 0 or index == len(install_order):
+                print(f"Verified {index}/{len(install_order)} packages", flush=True)
+        for index, name in enumerate(reversed(install_order), 1):
             run_package_manager(tool, root, "remove", name)
-            if index % 25 == 0 or index == len(order):
-                print(f"Removed {index}/{len(order)} packages", flush=True)
+            if index % 25 == 0 or index == len(install_order):
+                print(f"Removed {index}/{len(install_order)} packages", flush=True)
         result = subprocess.run(
             [str(tool), "--root", str(root), "list"],
             capture_output=True,
@@ -212,7 +324,9 @@ def test_repository(repo_root: Path, tool: Path) -> None:
         if result.returncode or result.stdout.strip():
             raise RuntimeError("package database is not empty after reverse removal")
 
-    print(f"PASS: all {len(order)} packages installed, verified, and removed")
+    print(
+        f"PASS: all {len(install_order)} selected packages installed, verified, and removed"
+    )
 
 
 def main() -> None:
@@ -221,8 +335,25 @@ def main() -> None:
         "--repo-root", type=Path, default=Path(__file__).resolve().parents[1]
     )
     parser.add_argument("--arkpkg", type=Path, required=True)
+    transaction = parser.add_mutually_exclusive_group()
+    transaction.add_argument(
+        "--transaction-packages",
+        nargs="+",
+        metavar="NAME",
+        help="install, verify, and remove these packages and their dependencies",
+    )
+    transaction.add_argument(
+        "--audit-only",
+        action="store_true",
+        help="audit every archive without running package transactions",
+    )
     args = parser.parse_args()
-    test_repository(args.repo_root.resolve(), args.arkpkg.resolve())
+    test_repository(
+        args.repo_root.resolve(),
+        args.arkpkg.resolve(),
+        requested=args.transaction_packages,
+        audit_only=args.audit_only,
+    )
 
 
 if __name__ == "__main__":

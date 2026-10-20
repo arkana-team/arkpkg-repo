@@ -1,0 +1,11 @@
+Name: bladerf
+Description: Nuand bladeRF software-defined radio device (tools)
+Version: 0.2024.05-1
+Arch: x86_64
+URL: https://www.Nuand.com/bladeRF
+License: See /usr/share/doc/bladerf/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libbladerf2
+  libtecla1t64
+Provides: bladeRF-cli=/usr/bin/bladeRF-cli, bladeRF-fsk=/usr/bin/bladeRF-fsk, bladeRF-install-firmware-v0.15.3=/usr/bin/bladeRF-install-firmware-v0.15.3, bladeRF-install-firmware=/usr/bin/bladeRF-install-firmware

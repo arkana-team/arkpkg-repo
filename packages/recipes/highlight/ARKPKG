@@ -1,0 +1,10 @@
+Name: highlight
+Description: Universal source code to formatted text converter
+Version: 4.10-1+b2
+Arch: x86_64
+URL: http://www.andre-simon.de
+License: See /usr/share/doc/highlight/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  lua54-libs
+Provides: highlight=/usr/bin/highlight

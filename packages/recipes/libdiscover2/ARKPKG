@@ -1,0 +1,10 @@
+Name: libdiscover2
+Description: hardware identification library
+Version: 2.1.2-10.1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libdiscover2
+License: See /usr/share/doc/libdiscover2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+Provides: libdiscover.so.2=/usr/lib/x86_64-linux-gnu/libdiscover.so.2.0.1

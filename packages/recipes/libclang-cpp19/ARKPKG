@@ -1,0 +1,10 @@
+Name: libclang-cpp19
+Description: C++ interface to the Clang library
+Version: 1:19.1.7-3+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libclang-cpp19
+License: See /usr/share/doc/libclang-cpp19/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libllvm19
+Provides: libclang-cpp.so.19.1=/usr/lib/x86_64-linux-gnu/libclang-cpp.so.19.1

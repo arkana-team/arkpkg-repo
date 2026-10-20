@@ -1,0 +1,15 @@
+Name: openttd
+Description: reimplementation of Transport Tycoon Deluxe with enhancements
+Version: 14.1-1+b1
+Arch: x86_64
+URL: https://www.openttd.org/
+License: See /usr/share/doc/openttd/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libfluidsynth3
+  libharfbuzz0b
+  libicu76
+  liblzo2-2
+  libpng16-16t64
+  libsdl2-2.0-0
+  openttd-data

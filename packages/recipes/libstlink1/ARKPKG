@@ -1,0 +1,10 @@
+Name: libstlink1
+Description: OpenSource ST-Link tools replacement.
+Version: 1.8.0-1.1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libstlink1
+License: See /usr/share/doc/libstlink1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+Provides: libstlink.so.1=/usr/lib/x86_64-linux-gnu/libstlink.so.1.8.0

@@ -1,0 +1,8 @@
+Name: libxmp4
+Description: module file rendering library
+Version: 4.6.2-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libxmp4
+License: See /usr/share/doc/libxmp4/copyright
+Maintainer: arkanaOS Team
+Provides: libxmp.so.4=/usr/lib/x86_64-linux-gnu/libxmp.so.4.6.2

@@ -1,0 +1,7 @@
+Name: frozen-bubble-data
+Description: Data files for Frozen-Bubble game
+Version: 2.212-13
+Arch: any
+URL: https://packages.debian.org/trixie/frozen-bubble-data
+License: See /usr/share/doc/frozen-bubble-data/copyright
+Maintainer: arkanaOS Team

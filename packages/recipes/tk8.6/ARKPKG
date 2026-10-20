@@ -1,0 +1,11 @@
+Name: tk8.6
+Description: Tk toolkit for Tcl and X11 v8.6 - windowing shell
+Version: 8.6.16-1
+Arch: x86_64
+URL: http://www.tcl.tk/
+License: See /usr/share/doc/tk8.6/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtcl8.6
+  libtk8.6
+Provides: wish8.6=/usr/bin/wish8.6

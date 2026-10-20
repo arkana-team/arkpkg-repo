@@ -1,0 +1,8 @@
+Name: pbuilder
+Description: personal package builder for Debian packages
+Version: 0.231.1
+Arch: any
+URL: https://pbuilder-team.pages.debian.net/pbuilder
+License: See /usr/share/doc/pbuilder/copyright
+Maintainer: arkanaOS Team
+Provides: debuild-pbuilder=/usr/bin/debuild-pbuilder, pbuilder=/usr/sbin/pbuilder, pdebuild=/usr/bin/pdebuild

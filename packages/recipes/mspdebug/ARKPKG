@@ -1,0 +1,11 @@
+Name: mspdebug
+Description: debugging tool for MSP430 microcontrollers
+Version: 0.25-1
+Arch: x86_64
+URL: https://mspdebug.sourceforge.net/
+License: See /usr/share/doc/mspdebug/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-0.1-4
+  readline-libs
+Provides: mspdebug=/usr/bin/mspdebug

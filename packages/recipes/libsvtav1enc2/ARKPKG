@@ -1,0 +1,8 @@
+Name: libsvtav1enc2
+Description: Scalable Video Technology for AV1 (libsvtav1enc shared library)
+Version: 2.3.0+dfsg-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsvtav1enc2
+License: See /usr/share/doc/libsvtav1enc2/copyright
+Maintainer: arkanaOS Team
+Provides: libSvtAv1Enc.so.2=/usr/lib/x86_64-linux-gnu/libSvtAv1Enc.so.2.3.0

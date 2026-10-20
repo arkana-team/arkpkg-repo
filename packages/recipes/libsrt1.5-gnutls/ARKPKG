@@ -1,0 +1,11 @@
+Name: libsrt1.5-gnutls
+Description: Secure Reliable Transport UDP streaming library (GnuTLS flavour)
+Version: 1.5.4-1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsrt1.5-gnutls
+License: See /usr/share/doc/libsrt1.5-gnutls/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  nettle-libs
+Provides: libsrt-gnutls.so.1.5=/usr/lib/x86_64-linux-gnu/libsrt-gnutls.so.1.5.4

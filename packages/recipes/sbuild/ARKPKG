@@ -1,0 +1,10 @@
+Name: sbuild
+Description: Tool for building Debian binary packages from Debian sources
+Version: 0.89.3+deb13u4
+Arch: any
+URL: https://packages.debian.org/trixie/sbuild
+License: See /usr/share/doc/sbuild/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: sbuild-abort=/usr/bin/sbuild-abort, sbuild-adduser=/usr/sbin/sbuild-adduser, sbuild-apt=/usr/bin/sbuild-apt, sbuild-checkpackages=/usr/bin/sbuild-checkpackages, sbuild-clean=/usr/bin/sbuild-clean, sbuild-createchroot=/usr/bin/sbuild-createchroot, sbuild-destroychroot=/usr/sbin/sbuild-destroychroot, sbuild-distupgrade=/usr/bin/sbuild-distupgrade, sbuild-hold=/usr/bin/sbuild-hold, sbuild-shell=/usr/bin/sbuild-shell, sbuild-unhold=/usr/bin/sbuild-unhold, sbuild-update=/usr/bin/sbuild-update, sbuild-upgrade=/usr/bin/sbuild-upgrade, sbuild=/usr/bin/sbuild

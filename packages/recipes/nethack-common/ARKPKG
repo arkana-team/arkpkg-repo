@@ -1,0 +1,7 @@
+Name: nethack-common
+Description: dungeon crawl game - common files
+Version: 3.6.7-1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/nethack-common
+License: See /usr/share/doc/nethack-common/copyright
+Maintainer: arkanaOS Team

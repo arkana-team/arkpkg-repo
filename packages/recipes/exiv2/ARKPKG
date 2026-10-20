@@ -1,0 +1,10 @@
+Name: exiv2
+Description: EXIF/IPTC/XMP metadata manipulation tool
+Version: 0.28.5+dfsg-1
+Arch: x86_64
+URL: https://www.exiv2.org/
+License: See /usr/share/doc/exiv2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libexiv2-28
+Provides: exiv2=/usr/bin/exiv2

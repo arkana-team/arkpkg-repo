@@ -1,0 +1,15 @@
+Name: libsdl2-image-2.0-0
+Description: Image loading library for Simple DirectMedia Layer 2, libraries
+Version: 2.8.8+dfsg-1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsdl2-image-2.0-0
+License: See /usr/share/doc/libsdl2-image-2.0-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libjpeg62-turbo
+  libpng16-16t64
+  libsdl2-2.0-0
+  libtiff6
+  libwebp7
+  libwebpdemux2
+Provides: libSDL2_image-2.0.so.0=/usr/lib/x86_64-linux-gnu/libSDL2_image-2.0.so.0.800.8

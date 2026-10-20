@@ -1,0 +1,7 @@
+Name: low-memory-monitor
+Description: Monitors low-memory conditions
+Version: 2.1-2+b1
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/hadess/low-memory-monitor
+License: See /usr/share/doc/low-memory-monitor/copyright
+Maintainer: arkanaOS Team

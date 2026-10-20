@@ -1,0 +1,8 @@
+Name: libasyncns0
+Description: Asynchronous name service query library
+Version: 0.8-6+b5
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libasyncns0
+License: See /usr/share/doc/libasyncns0/copyright
+Maintainer: arkanaOS Team
+Provides: libasyncns.so.0=/usr/lib/x86_64-linux-gnu/libasyncns.so.0.3.1

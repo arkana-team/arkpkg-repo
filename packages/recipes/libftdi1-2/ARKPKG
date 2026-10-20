@@ -1,0 +1,10 @@
+Name: libftdi1-2
+Description: C Library to control and program the FTDI USB controllers
+Version: 1.5-10
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libftdi1-2
+License: See /usr/share/doc/libftdi1-2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+Provides: libftdi1.so.2=/usr/lib/x86_64-linux-gnu/libftdi1.so.2.5.0

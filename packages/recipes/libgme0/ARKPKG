@@ -1,0 +1,8 @@
+Name: libgme0
+Description: Playback library for video game music files - shared library
+Version: 0.6.3-7+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgme0
+License: See /usr/share/doc/libgme0/copyright
+Maintainer: arkanaOS Team
+Provides: libgme.so.0=/usr/lib/x86_64-linux-gnu/libgme.so.0.6.3

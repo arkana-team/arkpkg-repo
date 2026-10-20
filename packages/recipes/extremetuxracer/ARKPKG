@@ -1,0 +1,15 @@
+Name: extremetuxracer
+Description: 3D racing game featuring Tux, the Linux penguin
+Version: 0.8.4-1
+Arch: x86_64
+URL: https://sourceforge.net/projects/extremetuxracer/
+License: See /usr/share/doc/extremetuxracer/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  extremetuxracer-data
+  libglu1-mesa
+  libopengl0
+  libsfml-audio2.6
+  libsfml-graphics2.6
+  libsfml-system2.6
+  libsfml-window2.6

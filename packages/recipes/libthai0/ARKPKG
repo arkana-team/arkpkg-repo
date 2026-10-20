@@ -1,0 +1,10 @@
+Name: libthai0
+Description: Thai language support library
+Version: 0.1.29-2+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libthai0
+License: See /usr/share/doc/libthai0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdatrie1
+Provides: libthai.so.0=/usr/lib/x86_64-linux-gnu/libthai.so.0.3.1

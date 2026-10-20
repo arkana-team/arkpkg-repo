@@ -1,0 +1,10 @@
+Name: libyuv0
+Description: Library for YUV scaling (shared library)
+Version: 0.0.1904.20250204-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libyuv0
+License: See /usr/share/doc/libyuv0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libjpeg62-turbo
+Provides: libyuv.so.0=/usr/lib/x86_64-linux-gnu/libyuv.so.0.0.1904

@@ -1,0 +1,7 @@
+Name: gcc-mingw-w64-base
+Description: GNU Compiler Collection for MinGW-w64 (base package)
+Version: 14.2.0-19+27+b1
+Arch: x86_64
+URL: https://www.gnu.org/software/gcc/
+License: See /usr/share/doc/gcc-mingw-w64-base/copyright
+Maintainer: arkanaOS Team

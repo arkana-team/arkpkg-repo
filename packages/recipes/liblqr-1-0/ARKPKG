@@ -1,0 +1,8 @@
+Name: liblqr-1-0
+Description: converts plain array images into multi-size representation
+Version: 0.4.2-2.1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/liblqr-1-0
+License: See /usr/share/doc/liblqr-1-0/copyright
+Maintainer: arkanaOS Team
+Provides: liblqr-1.so.0=/usr/lib/x86_64-linux-gnu/liblqr-1.so.0.3.2

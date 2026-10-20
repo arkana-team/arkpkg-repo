@@ -1,0 +1,10 @@
+Name: libinstpatch-1.0-2
+Description: MIDI instrument editing library
+Version: 1.1.6-1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libinstpatch-1.0-2
+License: See /usr/share/doc/libinstpatch-1.0-2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsndfile1
+Provides: libinstpatch-1.0.so.2=/usr/lib/x86_64-linux-gnu/libinstpatch-1.0.so.2.2.0

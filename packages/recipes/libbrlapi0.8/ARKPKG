@@ -1,0 +1,10 @@
+Name: libbrlapi0.8
+Description: braille display access via brltty - shared library
+Version: 6.7-3.1+deb13u3
+Arch: x86_64
+URL: https://brltty.com
+License: See /usr/share/doc/libbrlapi0.8/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  systemd-libs
+Provides: libbrlapi.so.0.8=/usr/lib/x86_64-linux-gnu/libbrlapi.so.0.8.6

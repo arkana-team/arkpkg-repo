@@ -1,0 +1,7 @@
+Name: apel
+Description: portable library for emacsen
+Version: 10.8+0.20220720-1
+Arch: any
+URL: https://github.com/wanderlust/apel
+License: See /usr/share/doc/apel/copyright
+Maintainer: arkanaOS Team

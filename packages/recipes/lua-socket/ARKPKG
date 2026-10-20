@@ -1,0 +1,8 @@
+Name: lua-socket
+Description: TCP/UDP socket library for the Lua language
+Version: 3.1.0-1+b2
+Arch: x86_64
+URL: https://lunarmodules.github.io/luasocket/
+License: See /usr/share/doc/lua-socket/copyright
+Maintainer: arkanaOS Team
+Provides: liblua5.1-mime.so.2=/usr/lib/x86_64-linux-gnu/liblua5.1-mime.so.2.0.0, liblua5.1-socket-serial.so.0=/usr/lib/x86_64-linux-gnu/liblua5.1-socket-serial.so.0.0.0, liblua5.1-socket-unix.so.2=/usr/lib/x86_64-linux-gnu/liblua5.1-socket-unix.so.2.0.0, liblua5.1-socket.so.2=/usr/lib/x86_64-linux-gnu/liblua5.1-socket.so.2.0.0, liblua5.2-mime.so.2=/usr/lib/x86_64-linux-gnu/liblua5.2-mime.so.2.0.0, liblua5.2-socket-serial.so.0=/usr/lib/x86_64-linux-gnu/liblua5.2-socket-serial.so.0.0.0, liblua5.2-socket-unix.so.2=/usr/lib/x86_64-linux-gnu/liblua5.2-socket-unix.so.2.0.0, liblua5.2-socket.so.2=/usr/lib/x86_64-linux-gnu/liblua5.2-socket.so.2.0.0, liblua5.3-mime.so.2=/usr/lib/x86_64-linux-gnu/liblua5.3-mime.so.2.0.0, liblua5.3-socket-serial.so.0=/usr/lib/x86_64-linux-gnu/liblua5.3-socket-serial.so.0.0.0, liblua5.3-socket-unix.so.2=/usr/lib/x86_64-linux-gnu/liblua5.3-socket-unix.so.2.0.0, liblua5.3-socket.so.2=/usr/lib/x86_64-linux-gnu/liblua5.3-socket.so.2.0.0, liblua5.4-mime.so.2=/usr/lib/x86_64-linux-gnu/liblua5.4-mime.so.2.0.0, liblua5.4-socket-serial.so.0=/usr/lib/x86_64-linux-gnu/liblua5.4-socket-serial.so.0.0.0, liblua5.4-socket-unix.so.2=/usr/lib/x86_64-linux-gnu/liblua5.4-socket-unix.so.2.0.0, liblua5.4-socket.so.2=/usr/lib/x86_64-linux-gnu/liblua5.4-socket.so.2.0.0

@@ -1,0 +1,11 @@
+Name: device-tree-compiler
+Description: Device Tree Compiler for Flat Device Trees
+Version: 1.7.2-2+b1
+Arch: x86_64
+URL: https://git.kernel.org/cgit/utils/dtc/dtc.git
+License: See /usr/share/doc/device-tree-compiler/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libfdt1
+  libyaml-libs
+Provides: convert-dtsv0=/usr/bin/convert-dtsv0, dtc=/usr/bin/dtc, dtdiff=/usr/bin/dtdiff, fdtdump=/usr/bin/fdtdump, fdtget=/usr/bin/fdtget, fdtoverlay=/usr/bin/fdtoverlay, fdtput=/usr/bin/fdtput

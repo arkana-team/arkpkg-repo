@@ -1,0 +1,12 @@
+Name: ltris
+Description: very polished Tetris clone with CPU opponents
+Version: 2.0.3-1
+Arch: x86_64
+URL: https://lgames.sourceforge.io/LTris/
+License: See /usr/share/doc/ltris/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsdl2-2.0-0
+  libsdl2-image-2.0-0
+  libsdl2-mixer-2.0-0
+  libsdl2-ttf-2.0-0

@@ -1,0 +1,10 @@
+Name: libopengl0
+Description: Vendor neutral GL dispatch library -- OpenGL support
+Version: 1.7.0-1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libopengl0
+License: See /usr/share/doc/libopengl0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libglvnd0
+Provides: libOpenGL.so.0=/usr/lib/x86_64-linux-gnu/libOpenGL.so.0.0.0

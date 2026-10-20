@@ -1,0 +1,7 @@
+Name: icc-profiles-free
+Description: ICC color profiles for use with color profile aware software
+Version: 2.0.1+dfsg-1.1
+Arch: any
+URL: https://packages.debian.org/trixie/icc-profiles-free
+License: See /usr/share/doc/icc-profiles-free/copyright
+Maintainer: arkanaOS Team

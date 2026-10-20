@@ -1,0 +1,8 @@
+Name: libexif12
+Description: library to parse EXIF files
+Version: 0.6.25-1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libexif12
+License: See /usr/share/doc/libexif12/copyright
+Maintainer: arkanaOS Team
+Provides: libexif.so.12=/usr/lib/x86_64-linux-gnu/libexif.so.12.3.4

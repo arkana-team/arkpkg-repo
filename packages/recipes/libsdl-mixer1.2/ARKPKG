@@ -1,0 +1,15 @@
+Name: libsdl-mixer1.2
+Description: Mixer library for Simple DirectMedia Layer 1.2, libraries
+Version: 1.2.12-19+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsdl-mixer1.2
+License: See /usr/share/doc/libsdl-mixer1.2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libflac14
+  libfluidsynth3
+  libmad0
+  libmikmod3
+  libsdl1.2debian
+  libvorbisfile3
+Provides: libSDL_mixer-1.2.so.0=/usr/lib/x86_64-linux-gnu/libSDL_mixer-1.2.so.0.12.0

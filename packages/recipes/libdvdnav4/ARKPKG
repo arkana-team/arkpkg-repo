@@ -1,0 +1,10 @@
+Name: libdvdnav4
+Description: DVD navigation library
+Version: 6.1.1-3+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libdvdnav4
+License: See /usr/share/doc/libdvdnav4/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdvdread8t64
+Provides: libdvdnav.so.4=/usr/lib/x86_64-linux-gnu/libdvdnav.so.4.3.0

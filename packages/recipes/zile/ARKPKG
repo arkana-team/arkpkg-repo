@@ -1,0 +1,11 @@
+Name: zile
+Description: very small Emacs-subset editor
+Version: 2.6.2-2+b2
+Arch: x86_64
+URL: https://www.gnu.org/software/zile/
+License: See /usr/share/doc/zile/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgee-0.8-2
+  ncurses-libs
+Provides: zile=/usr/bin/zile

@@ -1,0 +1,8 @@
+Name: libdvdread8t64
+Description: library for reading DVDs
+Version: 6.1.3-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libdvdread8t64
+License: See /usr/share/doc/libdvdread8t64/copyright
+Maintainer: arkanaOS Team
+Provides: libdvdread.so.8=/usr/lib/x86_64-linux-gnu/libdvdread.so.8.0.0

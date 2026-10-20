@@ -1,0 +1,7 @@
+Name: gcc-14-aarch64-linux-gnu-base
+Description: GCC, the GNU Compiler Collection (base package)
+Version: 14.2.0-19cross1
+Arch: x86_64
+URL: http://gcc.gnu.org/
+License: See /usr/share/doc/gcc-14-aarch64-linux-gnu-base/copyright
+Maintainer: arkanaOS Team

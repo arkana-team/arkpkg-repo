@@ -1,0 +1,14 @@
+Name: libqalculate23
+Description: Powerful and easy to use desktop calculator - library
+Version: 5.5.2-1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libqalculate23
+License: See /usr/share/doc/libqalculate23/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gmp-libs
+  libcurl3t64-gnutls
+  libicu76
+  mpfr-libs
+  xml-runtime-libs
+Provides: libqalculate.so.23=/usr/lib/x86_64-linux-gnu/libqalculate.so.23.3.4

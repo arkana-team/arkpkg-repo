@@ -1,0 +1,10 @@
+Name: libcairo2
+Description: Cairo 2D vector graphics library
+Version: 1.18.4-1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libcairo2
+License: See /usr/share/doc/libcairo2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpng16-16t64
+Provides: libcairo.so.2=/usr/lib/x86_64-linux-gnu/libcairo.so.2.11804.4

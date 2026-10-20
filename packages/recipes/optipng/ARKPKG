@@ -1,0 +1,10 @@
+Name: optipng
+Description: advanced PNG (Portable Network Graphics) optimizer
+Version: 0.7.8+ds-1+b1
+Arch: x86_64
+URL: https://optipng.sourceforge.net/
+License: See /usr/share/doc/optipng/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpng16-16t64
+Provides: optipng=/usr/bin/optipng

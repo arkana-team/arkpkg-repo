@@ -1,0 +1,8 @@
+Name: libqhull-r8.0
+Description: calculate convex hulls and related structures (reentrant shared library)
+Version: 2020.2-6+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libqhull-r8.0
+License: See /usr/share/doc/libqhull-r8.0/copyright
+Maintainer: arkanaOS Team
+Provides: libqhull_r.so.8.0=/usr/lib/x86_64-linux-gnu/libqhull_r.so.8.0.2

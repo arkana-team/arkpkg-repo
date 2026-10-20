@@ -1,0 +1,11 @@
+Name: libngtcp2-crypto-gnutls8
+Description: implementation of QUIC protocol (library)
+Version: 1.11.0-1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libngtcp2-crypto-gnutls8
+License: See /usr/share/doc/libngtcp2-crypto-gnutls8/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  libngtcp2-16
+Provides: libngtcp2_crypto_gnutls.so.8=/usr/lib/x86_64-linux-gnu/libngtcp2_crypto_gnutls.so.8.2.0

@@ -1,0 +1,12 @@
+Name: selinux-utils
+Description: SELinux utility programs
+Version: 3.8.1-1
+Arch: x86_64
+URL: https://github.com/SELinuxProject
+License: See /usr/share/doc/selinux-utils/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsepol2
+  pcre2-libs
+  vis-runtime-libs
+Provides: avcstat=/usr/sbin/avcstat, compute_av=/usr/sbin/compute_av, compute_create=/usr/sbin/compute_create, compute_member=/usr/sbin/compute_member, compute_relabel=/usr/sbin/compute_relabel, getconlist=/usr/sbin/getconlist, getdefaultcon=/usr/sbin/getdefaultcon, getenforce=/usr/sbin/getenforce, getfilecon=/usr/sbin/getfilecon, getpidcon=/usr/sbin/getpidcon, getpidprevcon=/usr/sbin/getpidprevcon, getpolicyload=/usr/sbin/getpolicyload, getsebool=/usr/sbin/getsebool, getseuser=/usr/sbin/getseuser, matchpathcon=/usr/sbin/matchpathcon, policyvers=/usr/sbin/policyvers, sefcontext_compile=/usr/sbin/sefcontext_compile, selabel_compare=/usr/sbin/selabel_compare, selabel_digest=/usr/sbin/selabel_digest, selabel_get_digests_all_partial_matches=/usr/sbin/selabel_get_digests_all_partial_matches, selabel_lookup=/usr/sbin/selabel_lookup, selabel_lookup_best_match=/usr/sbin/selabel_lookup_best_match, selabel_partial_match=/usr/sbin/selabel_partial_match, selinux_check_access=/usr/sbin/selinux_check_access, selinux_check_securetty_context=/usr/sbin/selinux_check_securetty_context, selinuxenabled=/usr/sbin/selinuxenabled, selinuxexeccon=/usr/sbin/selinuxexeccon, setenforce=/usr/sbin/setenforce, setfilecon=/usr/sbin/setfilecon, togglesebool=/usr/sbin/togglesebool, validatetrans=/usr/sbin/validatetrans

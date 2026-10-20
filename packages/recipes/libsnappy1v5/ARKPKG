@@ -1,0 +1,8 @@
+Name: libsnappy1v5
+Description: fast compression/decompression library
+Version: 1.2.2-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsnappy1v5
+License: See /usr/share/doc/libsnappy1v5/copyright
+Maintainer: arkanaOS Team
+Provides: libsnappy.so.1=/usr/lib/x86_64-linux-gnu/libsnappy.so.1.2.2

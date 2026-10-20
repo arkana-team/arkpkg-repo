@@ -1,0 +1,8 @@
+Name: libnuma1
+Description: Libraries for controlling NUMA policy
+Version: 2.0.19-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libnuma1
+License: See /usr/share/doc/libnuma1/copyright
+Maintainer: arkanaOS Team
+Provides: libnuma.so.1=/usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0

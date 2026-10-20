@@ -1,0 +1,12 @@
+Name: quota
+Description: disk quota management tools
+Version: 4.09-1+b1
+Arch: x86_64
+URL: http://sourceforge.net/projects/linuxquota
+License: See /usr/share/doc/quota/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libnl-libs
+  libwrap-libs
+  openldap-libs
+Provides: convertquota=/usr/sbin/convertquota, edquota=/usr/sbin/edquota, quota=/usr/bin/quota, quota_nld=/usr/sbin/quota_nld, quotacheck=/usr/sbin/quotacheck, quotaoff=/usr/sbin/quotaoff, quotaon=/usr/sbin/quotaon, quotastats=/usr/sbin/quotastats, quotasync=/usr/bin/quotasync, repquota=/usr/sbin/repquota, rpc.rquotad=/usr/sbin/rpc.rquotad, setquota=/usr/sbin/setquota, warnquota=/usr/sbin/warnquota, xqmstats=/usr/sbin/xqmstats

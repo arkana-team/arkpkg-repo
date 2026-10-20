@@ -1,0 +1,8 @@
+Name: stress
+Description: tool to impose load on and stress test a computer system
+Version: 1.0.7-1
+Arch: x86_64
+URL: https://github.com/resurrecting-open-source-projects/stress
+License: See /usr/share/doc/stress/copyright
+Maintainer: arkanaOS Team
+Provides: stress=/usr/bin/stress

@@ -1,0 +1,8 @@
+Name: lua-filesystem
+Description: luafilesystem library for the Lua language
+Version: 1.8.0-3+b2
+Arch: x86_64
+URL: https://github.com/keplerproject/luafilesystem
+License: See /usr/share/doc/lua-filesystem/copyright
+Maintainer: arkanaOS Team
+Provides: liblua5.1-filesystem.so.0=/usr/lib/x86_64-linux-gnu/liblua5.1-filesystem.so.0.0.0, liblua5.2-filesystem.so.0=/usr/lib/x86_64-linux-gnu/liblua5.2-filesystem.so.0.0.0, liblua5.3-filesystem.so.0=/usr/lib/x86_64-linux-gnu/liblua5.3-filesystem.so.0.0.0, liblua5.4-filesystem.so.0=/usr/lib/x86_64-linux-gnu/liblua5.4-filesystem.so.0.0.0

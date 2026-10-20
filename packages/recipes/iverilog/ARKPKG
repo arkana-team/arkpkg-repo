@@ -1,0 +1,10 @@
+Name: iverilog
+Description: Icarus verilog compiler
+Version: 12.0-2+b1
+Arch: x86_64
+URL: http://iverilog.icarus.com
+License: See /usr/share/doc/iverilog/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  readline-libs
+Provides: iverilog-vpi=/usr/bin/iverilog-vpi, iverilog=/usr/bin/iverilog, vvp=/usr/bin/vvp

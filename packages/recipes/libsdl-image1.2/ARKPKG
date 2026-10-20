@@ -1,0 +1,14 @@
+Name: libsdl-image1.2
+Description: Image loading library for Simple DirectMedia Layer 1.2, libraries
+Version: 1.2.12-14
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsdl-image1.2
+License: See /usr/share/doc/libsdl-image1.2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libjpeg62-turbo
+  libpng16-16t64
+  libsdl1.2debian
+  libtiff6
+  libwebp7
+Provides: libSDL_image-1.2.so.0=/usr/lib/x86_64-linux-gnu/libSDL_image-1.2.so.0.8.4

@@ -1,0 +1,10 @@
+Name: libva-drm2
+Description: Video Acceleration (VA) API for Linux -- DRM runtime
+Version: 2.22.0-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libva-drm2
+License: See /usr/share/doc/libva-drm2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libva2
+Provides: libva-drm.so.2=/usr/lib/x86_64-linux-gnu/libva-drm.so.2.2200.0

@@ -1,0 +1,9 @@
+Name: containernetworking-plugins
+Description: standard networking plugins - binaries
+Version: 1.1.1+ds1-3+b17
+Arch: x86_64
+URL: https://github.com/containernetworking/plugins
+License: See /usr/share/doc/containernetworking-plugins/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  iptables

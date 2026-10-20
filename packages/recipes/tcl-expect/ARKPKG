@@ -1,0 +1,8 @@
+Name: tcl-expect
+Description: Automates interactive applications (Tcl package)
+Version: 5.45.4-4
+Arch: x86_64
+URL: https://core.tcl.tk/expect/
+License: See /usr/share/doc/tcl-expect/copyright
+Maintainer: arkanaOS Team
+Provides: libexpect.so.5.45=/usr/lib/x86_64-linux-gnu/libexpect.so.5.45.4

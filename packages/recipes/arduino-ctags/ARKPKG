@@ -1,0 +1,8 @@
+Name: arduino-ctags
+Description: Arduino fork of exuberant ctags
+Version: 5.8-arduino11-3
+Arch: x86_64
+URL: https://github.com/arduino/ctags
+License: See /usr/share/doc/arduino-ctags/copyright
+Maintainer: arkanaOS Team
+Provides: arduino-ctags=/usr/bin/arduino-ctags

@@ -1,0 +1,10 @@
+Name: libdjvulibre21
+Description: Runtime support for the DjVu image format
+Version: 3.5.28-2.2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libdjvulibre21
+License: See /usr/share/doc/libdjvulibre21/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libjpeg62-turbo
+Provides: libdjvulibre.so.21=/usr/lib/x86_64-linux-gnu/libdjvulibre.so.21.7.0

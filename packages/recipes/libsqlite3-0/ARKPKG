@@ -1,0 +1,8 @@
+Name: libsqlite3-0
+Description: sqlite 3 shared library
+Version: 3.46.1-7+deb13u2
+Arch: x86_64
+URL: https://www.sqlite.org/
+License: See /usr/share/doc/libsqlite3-0/copyright
+Maintainer: arkanaOS Team
+Provides: libsqlite3.so.0=/usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6

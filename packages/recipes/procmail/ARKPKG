@@ -1,0 +1,8 @@
+Name: procmail
+Description: Versatile e-mail processor
+Version: 3.24+really3.22-4
+Arch: x86_64
+URL: https://github.com/BuGlessRB/procmail
+License: See /usr/share/doc/procmail/copyright
+Maintainer: arkanaOS Team
+Provides: formail=/usr/bin/formail, lockfile=/usr/bin/lockfile, mailstat=/usr/bin/mailstat, procmail=/usr/bin/procmail

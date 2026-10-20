@@ -1,0 +1,10 @@
+Name: librtlsdr0
+Description: Software defined radio receiver for Realtek RTL2832U (library)
+Version: 2.0.2-2+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/librtlsdr0
+License: See /usr/share/doc/librtlsdr0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+Provides: librtlsdr.so.0=/usr/lib/x86_64-linux-gnu/librtlsdr.so.2.0.1

@@ -1,0 +1,10 @@
+Name: libimagequant0
+Description: palette quantization library
+Version: 2.18.0-1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libimagequant0
+License: See /usr/share/doc/libimagequant0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgomp1
+Provides: libimagequant.so.0=/usr/lib/x86_64-linux-gnu/libimagequant.so.0

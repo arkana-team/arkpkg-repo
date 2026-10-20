@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -26,6 +27,7 @@ import lz4.frame
 
 BASE_URL = "https://deb.debian.org/debian"
 MANIFEST = Path("data/debian-cli-packages.json")
+MAX_ARCHIVE_BYTES = 90_000_000
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 NEEDED = re.compile(r"Shared library: \[(.+?)\]")
 SONAME = re.compile(r"Library soname: \[(.+?)\]")
@@ -70,7 +72,7 @@ def read_recipe(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
 
 
 def repository_owners(
-    repo_root: Path, ignored_archives: set[str]
+    repo_root: Path, ignored_packages: set[str]
 ) -> tuple[set[str], dict[str, str]]:
     owned: set[str] = set()
     providers: dict[str, str] = {}
@@ -85,19 +87,68 @@ def repository_owners(
                 providers.setdefault(provided, name)
 
     for archive_path in sorted((repo_root / "packages").glob("*.ark")):
-        if archive_path.name in ignored_archives:
-            continue
+        archive_name = None
+        archive_owned: set[str] = set()
         with (
             lz4.frame.open(archive_path, "rb") as compressed,
             tarfile.open(fileobj=compressed, mode="r|") as archive,
         ):
             for member in archive:
+                member_path = PurePosixPath(member.name)
+                normalized = "/".join(
+                    part for part in member_path.parts if part not in {"", "."}
+                )
+                if normalized == "ARKPKG" and member.isfile():
+                    metadata = archive.extractfile(member)
+                    if metadata is not None:
+                        for line in metadata.read().decode("utf-8").splitlines():
+                            key, separator, value = line.partition(":")
+                            if separator and key.strip() == "Name":
+                                archive_name = value.strip()
+                                break
                 if not (member.isfile() or member.issym() or member.islnk()):
                     continue
-                path = PurePosixPath(member.name)
-                if path.parts[:1] == ("package",) and len(path.parts) > 1:
-                    owned.add("/".join(path.parts[1:]))
+                if member_path.parts[:1] == ("package",) and len(member_path.parts) > 1:
+                    archive_owned.add("/".join(member_path.parts[1:]))
+        if archive_name not in ignored_packages:
+            owned.update(archive_owned)
     return owned, providers
+
+
+def repository_has_package(repo_root: Path, package: dict[str, object]) -> bool:
+    name = str(package["name"])
+    version = str(package["version"])
+    arch = str(package["arch"])
+    recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+    archive = repo_root / "packages" / f"{name}-{version}-{arch}.ark"
+    if not recipe.is_file() or not archive.is_file():
+        return False
+    fields, _, _ = read_recipe(recipe)
+    return (
+        fields.get("Name") == name
+        and fields.get("Version") == version
+        and fields.get("Arch") == arch
+    )
+
+
+def requested_package_closure(
+    repo_root: Path,
+    packages: list[dict[str, object]],
+    requested: set[str],
+) -> set[str]:
+    package_by_name = {str(item["name"]): item for item in packages}
+    pending = list(requested)
+    while pending:
+        current = package_by_name[pending.pop()]
+        for dependency in current.get("dependencies", []):
+            if (
+                dependency in package_by_name
+                and dependency not in requested
+                and not repository_has_package(repo_root, package_by_name[dependency])
+            ):
+                requested.add(dependency)
+                pending.append(dependency)
+    return requested
 
 
 def obtain_deb(source: dict[str, str], cache: Path) -> Path:
@@ -148,9 +199,11 @@ def extract_data_archive(deb: Path, work: Path) -> Path:
     if len(data_members) != 1:
         raise ValueError(f"{deb.name}: expected one data.tar member, got {data_members}")
     data_archive = work / f"{deb.stem}-{data_members[0]}"
+    payload = work / f"{deb.stem}-payload"
+    if payload.is_dir():
+        return payload
     with data_archive.open("wb") as output:
         subprocess.run(["ar", "p", str(deb), data_members[0]], stdout=output, check=True)
-    payload = work / f"{deb.stem}-payload"
     payload.mkdir()
     subprocess.run(
         ["tar", "--no-same-owner", "-xf", str(data_archive), "-C", str(payload)],
@@ -200,6 +253,33 @@ def payload_paths(payload: Path) -> list[str]:
             raise ValueError(f"unsafe package payload path: {relative!r}")
         paths.append(relative)
     return paths
+
+
+def staging_conflicts(payload: Path, paths: list[str], staging: Path) -> list[str]:
+    conflicts = []
+    for relative in paths:
+        package_path = payload / relative
+        installed_path = staging / relative
+        if (installed_path.exists() or installed_path.is_symlink()) and not same_entry(
+            package_path, installed_path
+        ):
+            conflicts.append(relative)
+    return conflicts
+
+
+def license_path_resolves_to(
+    payload: Path, license_path: str, source_path: str
+) -> bool:
+    try:
+        target = (payload / license_path).resolve(strict=False).relative_to(
+            payload.resolve()
+        )
+        source = (payload / source_path).resolve(strict=False).relative_to(
+            payload.resolve()
+        )
+    except ValueError:
+        return False
+    return target == source
 
 
 def stage_has_library(staging: Path, soname: str) -> bool:
@@ -310,7 +390,10 @@ def command_provides(payload: Path) -> list[str]:
 
 def build(args: argparse.Namespace) -> None:
     repo_root = args.repo_root.resolve()
-    manifest_path = repo_root / MANIFEST
+    manifest_path = args.manifest
+    if not manifest_path.is_absolute():
+        manifest_path = repo_root / manifest_path
+    manifest_path = manifest_path.resolve()
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     sources = manifest["sources"]
     packages = manifest["packages"]
@@ -320,14 +403,7 @@ def build(args: argparse.Namespace) -> None:
         raise ValueError(f"unknown package names: {', '.join(sorted(unknown))}")
 
     if requested:
-        package_by_name = {item["name"]: item for item in packages}
-        pending = list(requested)
-        while pending:
-            current = package_by_name[pending.pop()]
-            for dependency in current.get("dependencies", []):
-                if dependency in package_by_name and dependency not in requested:
-                    requested.add(dependency)
-                    pending.append(dependency)
+        requested = requested_package_closure(repo_root, packages, requested)
 
     cache = args.source_cache.resolve()
     cache.mkdir(parents=True, exist_ok=True)
@@ -335,10 +411,8 @@ def build(args: argparse.Namespace) -> None:
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     selected = [item for item in packages if not requested or item["name"] in requested]
-    ignored_archives = {
-        f"{item['name']}-{item['version']}-{item['arch']}.ark" for item in selected
-    }
-    owned, providers = repository_owners(repo_root, ignored_archives)
+    ignored_packages = {item["name"] for item in selected}
+    owned, providers = repository_owners(repo_root, ignored_packages)
 
     with tempfile.TemporaryDirectory(prefix="arkpkg-debian-cli-") as temporary:
         work = Path(temporary)
@@ -365,6 +439,7 @@ def build(args: argparse.Namespace) -> None:
 
             license_path = package["license_path"]
             license_target = payload / license_path
+            license_provided_by_dependency = False
             if not license_target.is_file() and "license_source_package" in package:
                 license_source_name = package["license_source_package"]
                 if license_source_name not in sources:
@@ -380,9 +455,17 @@ def build(args: argparse.Namespace) -> None:
                         f"{name}: missing license source {package['license_source_path']} "
                         f"from {license_source_name}"
                     )
-                license_target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(license_source_path, license_target)
-            if not (payload / license_path).is_file():
+                if (
+                    license_source_name in package.get("dependencies", [])
+                    and license_path_resolves_to(
+                        payload, license_path, package["license_source_path"]
+                    )
+                ):
+                    license_provided_by_dependency = True
+                else:
+                    license_target.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(license_source_path, license_target)
+            if not license_target.is_file() and not license_provided_by_dependency:
                 raise FileNotFoundError(f"{name}: missing preserved license {license_path}")
 
             dependencies, missing = runtime_dependencies(payload, providers, staging, name)
@@ -400,6 +483,13 @@ def build(args: argparse.Namespace) -> None:
                     f"{name}: payload paths already owned by arkpkg-repo: "
                     + ", ".join(collisions[:20])
                 )
+            if staging is not None:
+                base_collisions = staging_conflicts(payload, paths, staging)
+                if base_collisions:
+                    raise ValueError(
+                        f"{name}: payload would replace files from the arkanaOS base: "
+                        + ", ".join(base_collisions[:20])
+                    )
             if not paths:
                 raise ValueError(f"{name}: empty package payload")
 
@@ -419,9 +509,14 @@ def build(args: argparse.Namespace) -> None:
                     capture_output=True,
                     check=False,
                 ).returncode == 0
-                if current_recipe != expected_recipe and tracked:
+                if (
+                    current_recipe != expected_recipe
+                    and tracked
+                    and not args.allow_recipe_updates
+                ):
                     raise ValueError(
-                        f"{recipe_path}: refusing to replace a tracked recipe"
+                        f"{recipe_path}: refusing to replace a tracked recipe; "
+                        "pass --allow-recipe-updates to make the change explicit"
                     )
                 if current_recipe != expected_recipe and not args.write_recipes:
                     raise ValueError(
@@ -443,15 +538,27 @@ def build(args: argparse.Namespace) -> None:
             version = package["version"]
             arch = package["arch"]
             archive = output_dir / f"{name}-{version}-{arch}.ark"
-            subprocess.run(
-                [
-                    str(args.arkpkg_build.resolve()),
-                    str(package_dir),
-                    "--output",
-                    str(archive),
-                ],
-                check=True,
-            )
+            temporary_archive = archive.with_name(f".{archive.name}.tmp")
+            try:
+                subprocess.run(
+                    [
+                        str(args.arkpkg_build.resolve()),
+                        str(package_dir),
+                        "--output",
+                        str(temporary_archive),
+                    ],
+                    check=True,
+                )
+                archive_size = temporary_archive.stat().st_size
+                if archive_size > MAX_ARCHIVE_BYTES:
+                    raise ValueError(
+                        f"{archive.name}: archive is {archive_size} bytes; "
+                        f"GitHub-hosted package files must stay below "
+                        f"{MAX_ARCHIVE_BYTES} bytes"
+                    )
+                os.replace(temporary_archive, archive)
+            finally:
+                temporary_archive.unlink(missing_ok=True)
             owned.update(paths)
             _, _, package_provides = read_recipe(recipe_path)
             providers.setdefault(name, name)
@@ -469,12 +576,23 @@ def build(args: argparse.Namespace) -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[1])
+    parser.add_argument(
+        "--manifest",
+        type=Path,
+        default=MANIFEST,
+        help="package source manifest (relative paths are resolved from --repo-root)",
+    )
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument("--staging", type=Path)
     parser.add_argument("--source-cache", type=Path, default=Path("/tmp/arkpkg-debian-cli-cache"))
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--packages", nargs="+")
     parser.add_argument("--write-recipes", action="store_true")
+    parser.add_argument(
+        "--allow-recipe-updates",
+        action="store_true",
+        help="permit --write-recipes to update tracked package recipes",
+    )
     args = parser.parse_args()
     if args.output_dir is None:
         args.output_dir = args.repo_root / "packages"

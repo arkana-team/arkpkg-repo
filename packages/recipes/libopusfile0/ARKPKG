@@ -1,0 +1,12 @@
+Name: libopusfile0
+Description: High-level API for basic manipulation of Ogg Opus audio streams
+Version: 0.12-4+b3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libopusfile0
+License: See /usr/share/doc/libopusfile0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libogg0
+  libopus0
+  openssl-libs
+Provides: libopusfile.so.0=/usr/lib/x86_64-linux-gnu/libopusfile.so.0.4.5, libopusurl.so.0=/usr/lib/x86_64-linux-gnu/libopusurl.so.0.4.5

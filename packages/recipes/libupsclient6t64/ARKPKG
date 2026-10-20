@@ -1,0 +1,11 @@
+Name: libupsclient6t64
+Description: network ups tools - client library
+Version: 2.8.1-5
+Arch: x86_64
+URL: https://networkupstools.org/
+License: See /usr/share/doc/libupsclient6t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libnspr4
+  libnss3
+Provides: libupsclient.so.6=/usr/lib/x86_64-linux-gnu/libupsclient.so.6.0.1

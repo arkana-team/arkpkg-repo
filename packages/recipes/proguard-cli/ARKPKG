@@ -1,0 +1,8 @@
+Name: proguard-cli
+Description: Java class file shrinker, optimizer, and obfuscator (CLI)
+Version: 6.2.2-3
+Arch: any
+URL: http://proguard.sourceforge.net
+License: See /usr/share/doc/proguard-cli/copyright
+Maintainer: arkanaOS Team
+Provides: proguard=/usr/bin/proguard

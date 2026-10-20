@@ -1,0 +1,8 @@
+Name: libdatrie1
+Description: Double-array trie library
+Version: 0.2.13-3+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libdatrie1
+License: See /usr/share/doc/libdatrie1/copyright
+Maintainer: arkanaOS Team
+Provides: libdatrie.so.1=/usr/lib/x86_64-linux-gnu/libdatrie.so.1.4.0

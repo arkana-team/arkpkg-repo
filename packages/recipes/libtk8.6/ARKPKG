@@ -1,0 +1,10 @@
+Name: libtk8.6
+Description: Tk toolkit for Tcl and X11 v8.6 - run-time files
+Version: 8.6.16-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libtk8.6
+License: See /usr/share/doc/libtk8.6/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxss1
+Provides: libtk8.6.so=/usr/lib/x86_64-linux-gnu/libtk8.6.so

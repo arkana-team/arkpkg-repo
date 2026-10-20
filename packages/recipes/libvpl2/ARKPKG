@@ -1,0 +1,8 @@
+Name: libvpl2
+Description: Intel Video Processing Library -- shared library
+Version: 1:2.14.0-1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libvpl2
+License: See /usr/share/doc/libvpl2/copyright
+Maintainer: arkanaOS Team
+Provides: libvpl.so.2=/usr/lib/x86_64-linux-gnu/libvpl.so.2.14

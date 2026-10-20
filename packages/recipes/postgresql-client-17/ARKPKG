@@ -1,0 +1,11 @@
+Name: postgresql-client-17
+Description: front-end programs for PostgreSQL 17
+Version: 17.11-0+deb13u1
+Arch: x86_64
+URL: http://www.postgresql.org/
+License: See /usr/share/doc/postgresql-client-17/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpq5
+  openssl-libs
+  readline-libs

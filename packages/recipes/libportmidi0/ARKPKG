@@ -1,0 +1,10 @@
+Name: libportmidi0
+Description: library for real-time MIDI input/output
+Version: 1:217-6.1+b4
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libportmidi0
+License: See /usr/share/doc/libportmidi0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  alsa-libs
+Provides: libportmidi.so.0=/usr/lib/x86_64-linux-gnu/libportmidi.so.0.0.0, libporttime.so.0=/usr/lib/x86_64-linux-gnu/libporttime.so.0.0.0

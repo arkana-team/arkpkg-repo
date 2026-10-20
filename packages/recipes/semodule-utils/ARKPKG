@@ -1,0 +1,10 @@
+Name: semodule-utils
+Description: SELinux core policy utilities (modules utilities)
+Version: 3.8.1-1
+Arch: x86_64
+URL: https://github.com/SELinuxProject
+License: See /usr/share/doc/semodule-utils/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsepol2
+Provides: semodule_expand=/usr/bin/semodule_expand, semodule_link=/usr/bin/semodule_link, semodule_package=/usr/bin/semodule_package, semodule_unpackage=/usr/bin/semodule_unpackage

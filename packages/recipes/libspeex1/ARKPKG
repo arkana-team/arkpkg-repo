@@ -1,0 +1,8 @@
+Name: libspeex1
+Description: Speex codec library (runtime library)
+Version: 1.2.1-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libspeex1
+License: See /usr/share/doc/libspeex1/copyright
+Maintainer: arkanaOS Team
+Provides: libspeex.so.1=/usr/lib/x86_64-linux-gnu/libspeex.so.1.5.2

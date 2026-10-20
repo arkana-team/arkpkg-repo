@@ -1,0 +1,13 @@
+Name: flashrom
+Description: Identify, read, write, erase, and verify BIOS/ROM/flash chips
+Version: 1.4.0-3
+Arch: x86_64
+URL: http://www.flashrom.org
+License: See /usr/share/doc/flashrom/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libftdi1-2
+  libjaylink0
+  libpci
+  libusb-libs
+Provides: flashrom=/usr/sbin/flashrom

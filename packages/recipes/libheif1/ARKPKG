@@ -1,0 +1,10 @@
+Name: libheif1
+Description: HEIF and AVIF file format decoder and encoder - shared library
+Version: 1.19.8-1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libheif1
+License: See /usr/share/doc/libheif1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsharpyuv0
+Provides: libheif.so.1=/usr/lib/x86_64-linux-gnu/libheif.so.1.19.8

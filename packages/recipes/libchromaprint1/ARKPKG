@@ -1,0 +1,8 @@
+Name: libchromaprint1
+Description: audio fingerprint library
+Version: 1.5.1-7
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libchromaprint1
+License: See /usr/share/doc/libchromaprint1/copyright
+Maintainer: arkanaOS Team
+Provides: libchromaprint.so.1=/usr/lib/x86_64-linux-gnu/libchromaprint.so.1.5.1

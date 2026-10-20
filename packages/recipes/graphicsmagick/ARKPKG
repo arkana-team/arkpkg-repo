@@ -1,0 +1,10 @@
+Name: graphicsmagick
+Description: collection of image processing tools
+Version: 1.4+really1.3.45+hg17696-1
+Arch: x86_64
+URL: http://www.graphicsmagick.org/
+License: See /usr/share/doc/graphicsmagick/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgraphicsmagick-q16-3t64
+Provides: gm=/usr/bin/gm

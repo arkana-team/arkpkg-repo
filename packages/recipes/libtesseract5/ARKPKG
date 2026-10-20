@@ -1,0 +1,11 @@
+Name: libtesseract5
+Description: Tesseract OCR library
+Version: 5.5.0-1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libtesseract5
+License: See /usr/share/doc/libtesseract5/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgomp1
+  libleptonica6
+Provides: libtesseract.so.5=/usr/lib/x86_64-linux-gnu/libtesseract.so.5.0.5

@@ -1,0 +1,9 @@
+Name: accountsservice
+Description: query and manipulate user account information
+Version: 23.13.9-7
+Arch: x86_64
+URL: https://www.freedesktop.org/wiki/Software/AccountsService/
+License: See /usr/share/doc/accountsservice/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpolkit-gobject-1-0

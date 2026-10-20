@@ -1,0 +1,7 @@
+Name: openttd-data
+Description: common data files for the OpenTTD game
+Version: 14.1-1
+Arch: any
+URL: https://packages.debian.org/trixie/openttd-data
+License: See /usr/share/doc/openttd-data/copyright
+Maintainer: arkanaOS Team

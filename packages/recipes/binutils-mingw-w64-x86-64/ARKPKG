@@ -1,0 +1,8 @@
+Name: binutils-mingw-w64-x86-64
+Description: Cross-binutils for Win64 (x64) using MinGW-w64
+Version: 2.44-3+12+b1
+Arch: x86_64
+URL: https://www.gnu.org/software/binutils/
+License: See /usr/share/doc/binutils-mingw-w64-x86-64/copyright
+Maintainer: arkanaOS Team
+Provides: libdep.so=/usr/x86_64-w64-mingw32/lib/bfd-plugins/libdep.so, x86_64-w64-mingw32-addr2line=/usr/bin/x86_64-w64-mingw32-addr2line, x86_64-w64-mingw32-ar=/usr/bin/x86_64-w64-mingw32-ar, x86_64-w64-mingw32-as=/usr/bin/x86_64-w64-mingw32-as, x86_64-w64-mingw32-c++filt=/usr/bin/x86_64-w64-mingw32-c++filt, x86_64-w64-mingw32-dlltool=/usr/bin/x86_64-w64-mingw32-dlltool, x86_64-w64-mingw32-dllwrap=/usr/bin/x86_64-w64-mingw32-dllwrap, x86_64-w64-mingw32-elfedit=/usr/bin/x86_64-w64-mingw32-elfedit, x86_64-w64-mingw32-gprof=/usr/bin/x86_64-w64-mingw32-gprof, x86_64-w64-mingw32-ld.bfd=/usr/bin/x86_64-w64-mingw32-ld.bfd, x86_64-w64-mingw32-ld=/usr/bin/x86_64-w64-mingw32-ld, x86_64-w64-mingw32-nm=/usr/bin/x86_64-w64-mingw32-nm, x86_64-w64-mingw32-objcopy=/usr/bin/x86_64-w64-mingw32-objcopy, x86_64-w64-mingw32-objdump=/usr/bin/x86_64-w64-mingw32-objdump, x86_64-w64-mingw32-ranlib=/usr/bin/x86_64-w64-mingw32-ranlib, x86_64-w64-mingw32-readelf=/usr/bin/x86_64-w64-mingw32-readelf, x86_64-w64-mingw32-size=/usr/bin/x86_64-w64-mingw32-size, x86_64-w64-mingw32-strings=/usr/bin/x86_64-w64-mingw32-strings, x86_64-w64-mingw32-strip=/usr/bin/x86_64-w64-mingw32-strip, x86_64-w64-mingw32-windmc=/usr/bin/x86_64-w64-mingw32-windmc, x86_64-w64-mingw32-windres=/usr/bin/x86_64-w64-mingw32-windres

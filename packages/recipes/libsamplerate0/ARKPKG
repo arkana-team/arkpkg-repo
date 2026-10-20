@@ -1,0 +1,8 @@
+Name: libsamplerate0
+Description: Audio sample rate conversion library
+Version: 0.2.2-4+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsamplerate0
+License: See /usr/share/doc/libsamplerate0/copyright
+Maintainer: arkanaOS Team
+Provides: libsamplerate.so.0=/usr/lib/x86_64-linux-gnu/libsamplerate.so.0.2.2

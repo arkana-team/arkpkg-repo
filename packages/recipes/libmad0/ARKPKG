@@ -1,0 +1,8 @@
+Name: libmad0
+Description: MPEG audio decoder library
+Version: 0.15.1b-11+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libmad0
+License: See /usr/share/doc/libmad0/copyright
+Maintainer: arkanaOS Team
+Provides: libmad.so.0=/usr/lib/x86_64-linux-gnu/libmad.so.0.2.1

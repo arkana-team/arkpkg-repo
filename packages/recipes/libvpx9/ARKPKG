@@ -1,0 +1,8 @@
+Name: libvpx9
+Description: VP8 and VP9 video codec (shared library)
+Version: 1.15.0-2.1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libvpx9
+License: See /usr/share/doc/libvpx9/copyright
+Maintainer: arkanaOS Team
+Provides: libvpx.so.9=/usr/lib/x86_64-linux-gnu/libvpx.so.9.1.0

@@ -1,0 +1,8 @@
+Name: libfastjson4
+Description: fast json library for c
+Version: 1.2304.0-2
+Arch: x86_64
+URL: https://github.com/rsyslog/libfastjson
+License: See /usr/share/doc/libfastjson4/copyright
+Maintainer: arkanaOS Team
+Provides: libfastjson.so.4=/usr/lib/x86_64-linux-gnu/libfastjson.so.4.3.0

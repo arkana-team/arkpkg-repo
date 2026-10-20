@@ -1,0 +1,8 @@
+Name: libdav1d7
+Description: fast and small AV1 video stream decoder (shared library)
+Version: 1.5.1-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libdav1d7
+License: See /usr/share/doc/libdav1d7/copyright
+Maintainer: arkanaOS Team
+Provides: libdav1d.so.7=/usr/lib/x86_64-linux-gnu/libdav1d.so.7.0.0

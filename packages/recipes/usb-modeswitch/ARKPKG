@@ -1,0 +1,11 @@
+Name: usb-modeswitch
+Description: mode switching tool for controlling "flip flop" USB devices
+Version: 2.6.1-4+b2
+Arch: x86_64
+URL: https://www.draisberghof.de/usb_modeswitch/
+License: See /usr/share/doc/usb-modeswitch/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libjim0.83
+  libusb-libs
+Provides: usb_modeswitch=/usr/sbin/usb_modeswitch, usb_modeswitch_dispatcher=/usr/sbin/usb_modeswitch_dispatcher

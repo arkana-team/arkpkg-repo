@@ -1,0 +1,8 @@
+Name: liboath0t64
+Description: OATH Toolkit Liboath library
+Version: 2.6.12-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/liboath0t64
+License: See /usr/share/doc/liboath0t64/copyright
+Maintainer: arkanaOS Team
+Provides: liboath.so.0=/usr/lib/x86_64-linux-gnu/liboath.so.0.1.3

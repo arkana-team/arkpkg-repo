@@ -1,0 +1,10 @@
+Name: libspectre1
+Description: Library for rendering PostScript documents
+Version: 0.2.12-1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libspectre1
+License: See /usr/share/doc/libspectre1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgs10
+Provides: libspectre.so.1=/usr/lib/x86_64-linux-gnu/libspectre.so.1.1.12

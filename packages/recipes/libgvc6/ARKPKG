@@ -1,0 +1,20 @@
+Name: libgvc6
+Description: rich set of graph drawing tools - gvc library
+Version: 2.42.4-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgvc6
+License: See /usr/share/doc/libgvc6/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo2
+  libcdt5
+  libcgraph6
+  libgd3
+  libgts-0.7-5t64
+  libltdl
+  libpango-1.0-0
+  libpangocairo-1.0-0
+  libpangoft2-1.0-0
+  libpathplan4
+  libwebp7
+Provides: libgvc.so.6=/usr/lib/x86_64-linux-gnu/libgvc.so.6.0.0, libgvc6-config-update=/usr/sbin/libgvc6-config-update, libgvplugin_core.so.6=/usr/lib/x86_64-linux-gnu/graphviz/libgvplugin_core.so.6.0.0, libgvplugin_dot_layout.so.6=/usr/lib/x86_64-linux-gnu/graphviz/libgvplugin_dot_layout.so.6.0.0, libgvplugin_gd.so.6=/usr/lib/x86_64-linux-gnu/graphviz/libgvplugin_gd.so.6.0.0, libgvplugin_neato_layout.so.6=/usr/lib/x86_64-linux-gnu/graphviz/libgvplugin_neato_layout.so.6.0.0, libgvplugin_pango.so.6=/usr/lib/x86_64-linux-gnu/graphviz/libgvplugin_pango.so.6.0.0, libgvplugin_visio.so.6=/usr/lib/x86_64-linux-gnu/graphviz/libgvplugin_visio.so.6.0.0, libgvplugin_webp.so.6=/usr/lib/x86_64-linux-gnu/graphviz/libgvplugin_webp.so.6.0.0, libgvplugin_xlib.so.6=/usr/lib/x86_64-linux-gnu/graphviz/libgvplugin_xlib.so.6.0.0

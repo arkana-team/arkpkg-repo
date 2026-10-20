@@ -1,0 +1,12 @@
+Name: libsdl-pango1
+Description: text rendering with Pango in SDL applications (shared library)
+Version: 0.1.2-8+b3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsdl-pango1
+License: See /usr/share/doc/libsdl-pango1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpango-1.0-0
+  libpangoft2-1.0-0
+  libsdl1.2debian
+Provides: libSDL_Pango.so.1=/usr/lib/x86_64-linux-gnu/libSDL_Pango.so.1.1.0

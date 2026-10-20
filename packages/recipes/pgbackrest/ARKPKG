@@ -1,0 +1,13 @@
+Name: pgbackrest
+Description: Reliable PostgreSQL Backup & Restore
+Version: 2.55.1-1
+Arch: x86_64
+URL: https://www.pgbackrest.org/
+License: See /usr/share/doc/pgbackrest/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpq5
+  mc-runtime-libs
+  openssl-libs
+  xml-runtime-libs
+Provides: pgbackrest=/usr/bin/pgbackrest

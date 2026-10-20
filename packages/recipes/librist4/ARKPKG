@@ -1,0 +1,11 @@
+Name: librist4
+Description: Reliable Internet Stream Transport -- shared library
+Version: 0.2.11+dfsg-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/librist4
+License: See /usr/share/doc/librist4/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  broot-runtime-libs
+  libcjson1
+Provides: librist.so.4=/usr/lib/x86_64-linux-gnu/librist.so.4.4.0

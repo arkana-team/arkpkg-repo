@@ -1,0 +1,7 @@
+Name: erlang-jiffy
+Description: JSON NIFs (Native Implemented Functions) for Erlang
+Version: 1.1.2-1+b1
+Arch: x86_64
+URL: https://github.com/davisp/jiffy
+License: See /usr/share/doc/erlang-jiffy/copyright
+Maintainer: arkanaOS Team

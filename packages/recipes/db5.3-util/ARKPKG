@@ -1,0 +1,10 @@
+Name: db5.3-util
+Description: Berkeley v5.3 Database Utilities
+Version: 5.3.28+dfsg2-9
+Arch: x86_64
+URL: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
+License: See /usr/share/licenses/db5.3-util/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdb5.3t64
+Provides: db5.3_archive=/usr/bin/db5.3_archive, db5.3_checkpoint=/usr/bin/db5.3_checkpoint, db5.3_deadlock=/usr/bin/db5.3_deadlock, db5.3_dump=/usr/bin/db5.3_dump, db5.3_hotbackup=/usr/bin/db5.3_hotbackup, db5.3_load=/usr/bin/db5.3_load, db5.3_log_verify=/usr/bin/db5.3_log_verify, db5.3_printlog=/usr/bin/db5.3_printlog, db5.3_recover=/usr/bin/db5.3_recover, db5.3_replicate=/usr/bin/db5.3_replicate, db5.3_stat=/usr/bin/db5.3_stat, db5.3_tuner=/usr/bin/db5.3_tuner, db5.3_upgrade=/usr/bin/db5.3_upgrade, db5.3_verify=/usr/bin/db5.3_verify

@@ -1,0 +1,8 @@
+Name: mold
+Description: Drop-in linker
+Version: 2.37.1+dfsg-1
+Arch: x86_64
+URL: https://github.com/rui314/mold
+License: See /usr/share/doc/mold/copyright
+Maintainer: arkanaOS Team
+Provides: ld.mold=/usr/bin/ld.mold, mold-wrapper.so=/usr/lib/x86_64-linux-gnu/mold/mold-wrapper.so, mold=/usr/bin/mold

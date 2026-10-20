@@ -1,0 +1,10 @@
+Name: libcairo-gobject2
+Description: Cairo 2D vector graphics library (GObject library)
+Version: 1.18.4-1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libcairo-gobject2
+License: See /usr/share/doc/libcairo-gobject2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo2
+Provides: libcairo-gobject.so.2=/usr/lib/x86_64-linux-gnu/libcairo-gobject.so.2.11804.4

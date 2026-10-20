@@ -1,0 +1,10 @@
+Name: tio
+Description: simple TTY terminal I/O application
+Version: 3.9-1
+Arch: x86_64
+URL: https://tio.github.io/
+License: See /usr/share/doc/tio/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  lua54-libs
+Provides: tio=/usr/bin/tio

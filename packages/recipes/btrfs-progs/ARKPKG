@@ -1,0 +1,13 @@
+Name: btrfs-progs
+Description: Checksumming Copy on Write Filesystem utilities
+Version: 6.14-1
+Arch: x86_64
+URL: http://btrfs.wiki.kernel.org/
+License: See /usr/share/doc/btrfs-progs/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  liblzo2-2
+  libreiserfscore0t64
+  systemd-libs
+  util-linux-libs
+Provides: btrfs-convert=/usr/bin/btrfs-convert, btrfs-find-root=/usr/bin/btrfs-find-root, btrfs-image=/usr/bin/btrfs-image, btrfs-map-logical=/usr/bin/btrfs-map-logical, btrfs-select-super=/usr/bin/btrfs-select-super, btrfs=/usr/bin/btrfs, btrfsck=/usr/bin/btrfsck, btrfstune=/usr/bin/btrfstune, fsck.btrfs=/usr/sbin/fsck.btrfs, mkfs.btrfs=/usr/sbin/mkfs.btrfs

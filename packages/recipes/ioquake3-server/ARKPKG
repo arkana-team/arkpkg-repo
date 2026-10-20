@@ -1,0 +1,7 @@
+Name: ioquake3-server
+Description: Engine for 3D first person shooter games - server and common files
+Version: 1.36+u20250316.526edd3+dfsg-1
+Arch: x86_64
+URL: https://ioquake3.org/
+License: See /usr/share/doc/ioquake3-server/copyright
+Maintainer: arkanaOS Team

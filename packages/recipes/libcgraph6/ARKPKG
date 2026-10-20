@@ -1,0 +1,10 @@
+Name: libcgraph6
+Description: rich set of graph drawing tools - cgraph library
+Version: 2.42.4-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libcgraph6
+License: See /usr/share/doc/libcgraph6/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcdt5
+Provides: libcgraph.so.6=/usr/lib/x86_64-linux-gnu/libcgraph.so.6.0.0

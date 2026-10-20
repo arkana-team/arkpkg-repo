@@ -1,0 +1,8 @@
+Name: liblab-gamut1
+Description: rich set of graph drawing tools - liblab_gamut library
+Version: 2.42.4-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/liblab-gamut1
+License: See /usr/share/doc/liblab-gamut1/copyright
+Maintainer: arkanaOS Team
+Provides: liblab_gamut.so.1=/usr/lib/x86_64-linux-gnu/liblab_gamut.so.1.0.0

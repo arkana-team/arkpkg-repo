@@ -1,0 +1,10 @@
+Name: heimdall-flash
+Description: tool for flashing firmware on Samsung Galaxy S devices
+Version: 2.1.0-1
+Arch: x86_64
+URL: https://git.sr.ht/~grimler/Heimdall/
+License: See /usr/share/doc/heimdall-flash/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+Provides: heimdall=/usr/bin/heimdall

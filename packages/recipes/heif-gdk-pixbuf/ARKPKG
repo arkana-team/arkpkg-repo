@@ -1,0 +1,10 @@
+Name: heif-gdk-pixbuf
+Description: HEIF and AVIF file format decoder and encoder - gdk-pixbuf loader
+Version: 1.19.8-1+deb13u1
+Arch: x86_64
+URL: http://www.libheif.org
+License: See /usr/share/doc/heif-gdk-pixbuf/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgdk-pixbuf-2.0-0
+  libheif1

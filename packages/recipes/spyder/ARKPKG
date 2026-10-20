@@ -1,0 +1,8 @@
+Name: spyder
+Description: Richly-featured Python IDE
+Version: 6.0.5+ds-6
+Arch: any
+URL: https://github.com/spyder-ide/spyder
+License: See /usr/share/doc/spyder/copyright
+Maintainer: arkanaOS Team
+Provides: spyder=/usr/bin/spyder

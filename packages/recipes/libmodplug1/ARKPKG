@@ -1,0 +1,8 @@
+Name: libmodplug1
+Description: shared libraries for mod music based on ModPlug
+Version: 1:0.8.9.0-3+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libmodplug1
+License: See /usr/share/doc/libmodplug1/copyright
+Maintainer: arkanaOS Team
+Provides: libmodplug.so.1=/usr/lib/x86_64-linux-gnu/libmodplug.so.1.0.0

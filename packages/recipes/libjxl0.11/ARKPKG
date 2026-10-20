@@ -1,0 +1,12 @@
+Name: libjxl0.11
+Description: JPEG XL Image Coding System - "JXL" (shared libraries)
+Version: 0.11.2-0.1~deb13u2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libjxl0.11
+License: See /usr/share/doc/libjxl0.11/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  brotli-libs
+  libhwy1t64
+  liblcms2-2
+Provides: libjxl.so.0.11=/usr/lib/x86_64-linux-gnu/libjxl.so.0.11.2, libjxl_cms.so.0.11=/usr/lib/x86_64-linux-gnu/libjxl_cms.so.0.11.2, libjxl_threads.so.0.11=/usr/lib/x86_64-linux-gnu/libjxl_threads.so.0.11.2

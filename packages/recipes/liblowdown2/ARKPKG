@@ -1,0 +1,11 @@
+Name: liblowdown2
+Description: Simple markdown translator (shared library)
+Version: 2.0.2-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/liblowdown2
+License: See /usr/share/doc/liblowdown2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libbsd
+  libmd
+Provides: liblowdown.so.2=/usr/lib/x86_64-linux-gnu/liblowdown.so.2

@@ -1,0 +1,8 @@
+Name: libsdl1.2debian
+Description: SDL 1.2 binary compatibility library wrapping SDL 2.0
+Version: 1.2.68-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsdl1.2debian
+License: See /usr/share/doc/libsdl1.2debian/copyright
+Maintainer: arkanaOS Team
+Provides: libSDL-1.2.so.0=/usr/lib/x86_64-linux-gnu/libSDL-1.2.so.1.2.68

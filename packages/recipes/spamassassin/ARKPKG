@@ -1,0 +1,11 @@
+Name: spamassassin
+Description: Perl-based spam filter using text analysis
+Version: 4.0.1-5
+Arch: any
+URL: https://www.spamassassin.org/
+License: See /usr/share/doc/spamassassin/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  curl
+  perl
+Provides: sa-awl=/usr/bin/sa-awl, sa-check_spamd=/usr/bin/sa-check_spamd, sa-learn=/usr/bin/sa-learn, sa-update=/usr/bin/sa-update, spamassassin-maint=/usr/sbin/spamassassin-maint, spamassassin=/usr/bin/spamassassin

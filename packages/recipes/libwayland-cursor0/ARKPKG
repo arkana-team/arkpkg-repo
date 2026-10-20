@@ -1,0 +1,10 @@
+Name: libwayland-cursor0
+Description: wayland compositor infrastructure - cursor library
+Version: 1.23.1-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libwayland-cursor0
+License: See /usr/share/doc/libwayland-cursor0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libwayland-client0
+Provides: libwayland-cursor.so.0=/usr/lib/x86_64-linux-gnu/libwayland-cursor.so.0.23.1

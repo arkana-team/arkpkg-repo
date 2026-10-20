@@ -1,0 +1,11 @@
+Name: libexiv2-28
+Description: EXIF/IPTC/XMP metadata manipulation library
+Version: 0.28.5+dfsg-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libexiv2-28
+License: See /usr/share/doc/libexiv2-28/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  brotli-libs
+  libinireader0
+Provides: libexiv2.so.28=/usr/lib/x86_64-linux-gnu/libexiv2.so.0.28.5

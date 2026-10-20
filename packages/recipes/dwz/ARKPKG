@@ -1,0 +1,10 @@
+Name: dwz
+Description: DWARF compression tool
+Version: 0.15-1+b1
+Arch: x86_64
+URL: https://www.sourceware.org/dwz/
+License: See /usr/share/doc/dwz/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libelf1t64
+Provides: dwz=/usr/bin/dwz

@@ -1,0 +1,8 @@
+Name: libsfml-system2.6
+Description: Simple and Fast Multimedia Library - System part
+Version: 2.6.2+dfsg-2+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsfml-system2.6
+License: See /usr/share/doc/libsfml-system2.6/copyright
+Maintainer: arkanaOS Team
+Provides: libsfml-system.so.2.6=/usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.2

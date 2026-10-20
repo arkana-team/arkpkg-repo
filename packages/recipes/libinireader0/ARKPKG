@@ -1,0 +1,10 @@
+Name: libinireader0
+Description: simple .INI file parser for C++
+Version: 59-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libinireader0
+License: See /usr/share/doc/libinireader0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libinih1
+Provides: libINIReader.so.0=/usr/lib/x86_64-linux-gnu/libINIReader.so.58

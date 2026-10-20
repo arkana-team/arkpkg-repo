@@ -1,0 +1,12 @@
+Name: libgdk-pixbuf-2.0-0
+Description: GDK Pixbuf library
+Version: 2.42.12+dfsg-4+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgdk-pixbuf-2.0-0
+License: See /usr/share/doc/libgdk-pixbuf-2.0-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libjpeg62-turbo
+  libpng16-16t64
+  libtiff6
+Provides: libgdk_pixbuf-2.0.so.0=/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0.4200.12

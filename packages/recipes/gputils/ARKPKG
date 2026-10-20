@@ -1,0 +1,8 @@
+Name: gputils
+Description: GNU PIC utilities
+Version: 1.5.2-1
+Arch: x86_64
+URL: https://gputils.sourceforge.net
+License: See /usr/share/doc/gputils/copyright
+Maintainer: arkanaOS Team
+Provides: gpasm=/usr/bin/gpasm, gpdasm=/usr/bin/gpdasm, gplib=/usr/bin/gplib, gplink=/usr/bin/gplink, gpstrip=/usr/bin/gpstrip, gpvc=/usr/bin/gpvc, gpvo=/usr/bin/gpvo

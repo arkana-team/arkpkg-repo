@@ -1,0 +1,13 @@
+Name: bzflag-server
+Description: 3D first person tank battle game -- server
+Version: 2.4.30-1
+Arch: x86_64
+URL: https://www.bzflag.org/
+License: See /usr/share/doc/bzflag-server/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  c-ares-libs
+  libcurl3t64-gnutls
+  ncurses-compat-libs
+  ncurses-libs
+Provides: CustomZoneSample.so=/usr/lib/bzflag-server/CustomZoneSample.so, HoldTheFlag.so=/usr/lib/bzflag-server/HoldTheFlag.so, Phoenix.so=/usr/lib/bzflag-server/Phoenix.so, RogueGenocide.so=/usr/lib/bzflag-server/RogueGenocide.so, SAMPLE_PLUGIN.so=/usr/lib/bzflag-server/SAMPLE_PLUGIN.so, TimeLimit.so=/usr/lib/bzflag-server/TimeLimit.so, airspawn.so=/usr/lib/bzflag-server/airspawn.so, autoFlagReset.so=/usr/lib/bzflag-server/autoFlagReset.so, bzfscron.so=/usr/lib/bzflag-server/bzfscron.so, chathistory.so=/usr/lib/bzflag-server/chathistory.so, customPollTypeSample.so=/usr/lib/bzflag-server/customPollTypeSample.so, customflagsample.so=/usr/lib/bzflag-server/customflagsample.so, fairCTF.so=/usr/lib/bzflag-server/fairCTF.so, fastmap.so=/usr/lib/bzflag-server/fastmap.so, flagStay.so=/usr/lib/bzflag-server/flagStay.so, keepaway.so=/usr/lib/bzflag-server/keepaway.so, killall.so=/usr/lib/bzflag-server/killall.so, koth.so=/usr/lib/bzflag-server/koth.so, logDetail.so=/usr/lib/bzflag-server/logDetail.so, nagware.so=/usr/lib/bzflag-server/nagware.so, playHistoryTracker.so=/usr/lib/bzflag-server/playHistoryTracker.so, rabbitTimer.so=/usr/lib/bzflag-server/rabbitTimer.so, rabidRabbit.so=/usr/lib/bzflag-server/rabidRabbit.so, recordmatch.so=/usr/lib/bzflag-server/recordmatch.so, regFlag.so=/usr/lib/bzflag-server/regFlag.so, serverControl.so=/usr/lib/bzflag-server/serverControl.so, serverSidePlayerSample.so=/usr/lib/bzflag-server/serverSidePlayerSample.so, shockwaveDeath.so=/usr/lib/bzflag-server/shockwaveDeath.so, superUser.so=/usr/lib/bzflag-server/superUser.so, teamflagreset.so=/usr/lib/bzflag-server/teamflagreset.so, thiefControl.so=/usr/lib/bzflag-server/thiefControl.so, timedctf.so=/usr/lib/bzflag-server/timedctf.so, wwzones.so=/usr/lib/bzflag-server/wwzones.so
