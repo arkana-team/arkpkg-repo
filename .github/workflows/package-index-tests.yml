@@ -4,13 +4,17 @@ on:
   pull_request:
     paths:
       - "packages/**"
+      - "data/package-metadata.json"
       - "scripts/build-index.py"
+      - "scripts/test-build-index.py"
       - "scripts/test-package-index-tilde.py"
       - ".github/workflows/package-index-tests.yml"
   push:
     paths:
       - "packages/**"
+      - "data/package-metadata.json"
       - "scripts/build-index.py"
+      - "scripts/test-build-index.py"
       - "scripts/test-package-index-tilde.py"
       - ".github/workflows/package-index-tests.yml"
 
@@ -32,3 +36,5 @@ jobs:
         run: python3 -m pip install lz4
       - name: Test epoch and tilde versions
         run: python3 scripts/test-package-index-tilde.py -v
+      - name: Test package metadata and Pages generation
+        run: python3 scripts/test-build-index.py -v

@@ -22,6 +22,7 @@ sys.modules[spec.name] = build_index
 spec.loader.exec_module(build_index)
 build_site = build_index.build_site
 validate_download_base_url = build_index.validate_download_base_url
+validate_package_metadata = build_index.validate_package_metadata
 
 
 class BuildIndexTests(unittest.TestCase):
@@ -48,6 +49,25 @@ class BuildIndexTests(unittest.TestCase):
                 package_info.type = tarfile.DIRTYPE
                 archive.addfile(package_info)
 
+            metadata_dir = root / "data"
+            metadata_dir.mkdir()
+            (metadata_dir / "package-metadata.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "packages": {
+                            "hello": {
+                                "author": "arkanaOS team",
+                                "git_repo": "https://github.com/example/hello",
+                                "git_repo_type": "upstream",
+                                "git_author_url": "https://github.com/example",
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
             site = root / "site"
             build_site(root, site)
 
@@ -55,6 +75,10 @@ class BuildIndexTests(unittest.TestCase):
             self.assertEqual(index["schema_version"], 1)
             self.assertEqual(len(index["packages"]), 1)
             entry = index["packages"][0]
+            self.assertEqual(entry["author"], "arkanaOS team")
+            self.assertEqual(entry["git_repo"], "https://github.com/example/hello")
+            self.assertEqual(entry["git_repo_type"], "upstream")
+            self.assertEqual(entry["git_author_url"], "https://github.com/example")
             self.assertEqual(
                 entry["download_url"],
                 "https://raw.githubusercontent.com/arkana-team/arkpkg-repo/main/"
@@ -66,6 +90,47 @@ class BuildIndexTests(unittest.TestCase):
             )
             self.assertFalse((site / "packages").exists())
             self.assertTrue((site / "index.html").is_file())
+            page = (site / "index.html").read_text(encoding="utf-8")
+            self.assertIn('data-sort-key="author"', page)
+            self.assertIn('data-sort-key="git_repo"', page)
+            self.assertIn('data-sort-key="git_author_url"', page)
+            self.assertIn('href="https://github.com/example/hello"', page)
+            self.assertIn('href="https://github.com/example"', page)
+            self.assertIn('<small class="repo-type">upstream</small>', page)
+
+    def test_package_metadata_requires_complete_https_links(self) -> None:
+        package = {
+            "author": "arkanaOS team",
+            "git_repo": "https://github.com/example/hello",
+            "git_repo_type": "upstream",
+            "git_author_url": "https://github.com/example",
+        }
+        valid = {"schema_version": 1, "packages": {"hello": package}}
+        self.assertEqual(
+            validate_package_metadata(valid, {"hello"})["hello"], package
+        )
+        with self.assertRaisesRegex(ValueError, "coverage mismatch"):
+            validate_package_metadata(valid, {"hello", "world"})
+        with self.assertRaisesRegex(ValueError, "git_repo for hello must be HTTPS"):
+            validate_package_metadata(
+                {
+                    "schema_version": 1,
+                    "packages": {
+                        "hello": {**package, "git_repo": "http://example.com/repo"}
+                    },
+                },
+                {"hello"},
+            )
+        query_url = {
+            "schema_version": 1,
+            "packages": {
+                "hello": {**package, "git_repo": "https://git.example/?p=hello.git"}
+            },
+        }
+        self.assertEqual(
+            validate_package_metadata(query_url, {"hello"})["hello"]["git_repo"],
+            "https://git.example/?p=hello.git",
+        )
 
     def test_download_base_url_requires_safe_https(self) -> None:
         for value in (
