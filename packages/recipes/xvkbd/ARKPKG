@@ -1,0 +1,10 @@
+Name: xvkbd
+Description: Virtual keyboard for the X Window System
+Version: 4.1-3
+Arch: x86_64
+URL: https://salsa.debian.org/debian/xvkbd
+License: See /usr/share/doc/xvkbd/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxmu
+Provides: xvkbd=/usr/bin/xvkbd
