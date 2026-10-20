@@ -1,0 +1,10 @@
+Name: wmctrl
+Description: Command-line window manager control utility
+Version: 1.07+git20240228.1105759-1
+Arch: x86_64
+URL: https://github.com/Conservatory/wmctrl
+License: See /usr/share/doc/wmctrl/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxmu
+Provides: wmctrl=/usr/bin/wmctrl
