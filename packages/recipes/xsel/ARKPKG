@@ -1,0 +1,8 @@
+Name: xsel
+Description: Command-line X11 clipboard and selection utility
+Version: 1.2.1-1
+Arch: x86_64
+URL: https://salsa.debian.org/debian/xsel
+License: See /usr/share/doc/xsel/copyright
+Maintainer: arkanaOS Team
+Provides: xsel=/usr/bin/xsel
