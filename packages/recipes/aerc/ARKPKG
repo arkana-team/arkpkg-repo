@@ -1,0 +1,10 @@
+Name: aerc
+Description: Terminal email client
+Version: 0.20.0-2+b1
+Arch: x86_64
+URL: https://salsa.debian.org/go-team/packages/aerc
+License: See /usr/share/doc/aerc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libnotmuch5t64
+Provides: aerc=/usr/bin/aerc, carddav-query=/usr/bin/carddav-query
