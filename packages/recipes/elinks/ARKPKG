@@ -1,0 +1,21 @@
+Name: elinks
+Description: Feature-rich text-mode web browser
+Version: 0.18.0-1+b1
+Arch: x86_64
+URL: https://github.com/rkd77/elinks
+License: See /usr/share/doc/elinks/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  brotli-libs
+  gnutls-libs
+  krb5-libs
+  libcurl3t64-gnutls
+  libev4t64
+  libfsplib0t64
+  libidn2-libs
+  liblua5.3-0
+  libperl5.40
+  mc-runtime-libs
+  ncurses-libs
+  vis-runtime-libs
+Provides: elinks=/usr/bin/elinks
