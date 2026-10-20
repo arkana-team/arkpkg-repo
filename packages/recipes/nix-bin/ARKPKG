@@ -1,0 +1,20 @@
+Name: nix-bin
+Description: Purely functional package manager (binaries)
+Version: 2.26.3+dfsg-1
+Arch: x86_64
+URL: https://nixos.org/nix
+License: See /usr/share/doc/nix-bin/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  broot-runtime-libs
+  brotli-libs
+  libboost-context1.83.0
+  libcpuid17
+  libcurl3t64-gnutls
+  libgc
+  liblowdown2
+  libsodium23
+  libsqlite3-0
+  openssl-libs
+  readline-libs
+Provides: nix-build=/usr/bin/nix-build, nix-channel=/usr/bin/nix-channel, nix-collect-garbage=/usr/bin/nix-collect-garbage, nix-copy-closure=/usr/bin/nix-copy-closure, nix-daemon=/usr/bin/nix-daemon, nix-env=/usr/bin/nix-env, nix-hash=/usr/bin/nix-hash, nix-instantiate=/usr/bin/nix-instantiate, nix-prefetch-url=/usr/bin/nix-prefetch-url, nix-shell=/usr/bin/nix-shell, nix-store=/usr/bin/nix-store, nix=/usr/bin/nix

@@ -1,0 +1,8 @@
+Name: autopkgtest
+Description: automatic as-installed testing for Debian packages
+Version: 5.49
+Arch: any
+URL: https://packages.debian.org/trixie/autopkgtest
+License: See /usr/share/doc/autopkgtest/copyright
+Maintainer: arkanaOS Team
+Provides: autopkgtest-build-docker=/usr/bin/autopkgtest-build-docker, autopkgtest-build-incus=/usr/bin/autopkgtest-build-incus, autopkgtest-build-lxc=/usr/bin/autopkgtest-build-lxc, autopkgtest-build-lxd=/usr/bin/autopkgtest-build-lxd, autopkgtest-build-podman=/usr/bin/autopkgtest-build-podman, autopkgtest-build-qemu=/usr/bin/autopkgtest-build-qemu, autopkgtest-buildvm-ubuntu-cloud=/usr/bin/autopkgtest-buildvm-ubuntu-cloud, autopkgtest-virt-chroot=/usr/bin/autopkgtest-virt-chroot, autopkgtest-virt-docker=/usr/bin/autopkgtest-virt-docker, autopkgtest-virt-incus=/usr/bin/autopkgtest-virt-incus, autopkgtest-virt-lxc=/usr/bin/autopkgtest-virt-lxc, autopkgtest-virt-lxd=/usr/bin/autopkgtest-virt-lxd, autopkgtest-virt-null=/usr/bin/autopkgtest-virt-null, autopkgtest-virt-podman=/usr/bin/autopkgtest-virt-podman, autopkgtest-virt-qemu=/usr/bin/autopkgtest-virt-qemu, autopkgtest-virt-schroot=/usr/bin/autopkgtest-virt-schroot, autopkgtest-virt-ssh=/usr/bin/autopkgtest-virt-ssh, autopkgtest-virt-unshare=/usr/bin/autopkgtest-virt-unshare, autopkgtest=/usr/bin/autopkgtest

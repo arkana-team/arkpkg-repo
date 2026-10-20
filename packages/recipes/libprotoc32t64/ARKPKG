@@ -1,0 +1,10 @@
+Name: libprotoc32t64
+Description: protocol buffers compiler library
+Version: 3.21.12-11+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libprotoc32t64
+License: See /usr/share/doc/libprotoc32t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  mosh-runtime-libs
+Provides: libprotoc.so.32=/usr/lib/x86_64-linux-gnu/libprotoc.so.32.0.12

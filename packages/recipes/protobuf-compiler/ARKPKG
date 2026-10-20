@@ -1,0 +1,10 @@
+Name: protobuf-compiler
+Description: compiler for protocol buffer definition files
+Version: 3.21.12-11+deb13u1
+Arch: x86_64
+URL: https://github.com/google/protobuf/
+License: See /usr/share/doc/protobuf-compiler/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libprotoc32t64
+Provides: protoc=/usr/bin/protoc

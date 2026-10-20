@@ -1,0 +1,8 @@
+Name: yamllint
+Description: Linter for YAML files
+Version: 1.37.1-1
+Arch: any
+URL: https://github.com/adrienverge/yamllint
+License: See /usr/share/doc/yamllint/copyright
+Maintainer: arkanaOS Team
+Provides: yamllint=/usr/bin/yamllint

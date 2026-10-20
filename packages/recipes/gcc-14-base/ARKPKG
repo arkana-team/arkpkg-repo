@@ -1,0 +1,7 @@
+Name: gcc-14-base
+Description: GCC, the GNU Compiler Collection (base package)
+Version: 14.2.0-19
+Arch: x86_64
+URL: https://packages.debian.org/trixie/gcc-14-base
+License: See /usr/share/doc/gcc-14-base/copyright
+Maintainer: arkanaOS Team

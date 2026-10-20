@@ -1,0 +1,11 @@
+Name: castxml
+Description: C-family abstract syntax tree XML output tool
+Version: 0.6.11-1
+Arch: x86_64
+URL: https://github.com/CastXML/CastXML
+License: See /usr/share/doc/castxml/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libclang-cpp19
+  libllvm19
+Provides: castxml=/usr/bin/castxml

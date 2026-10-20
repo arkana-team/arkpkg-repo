@@ -1,0 +1,8 @@
+Name: libpng16-16t64
+Description: PNG library - runtime (version 1.6)
+Version: 1.6.48-1+deb13u5
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libpng16-16t64
+License: See /usr/share/doc/libpng16-16t64/copyright
+Maintainer: arkanaOS Team
+Provides: libpng16.so.16=/usr/lib/x86_64-linux-gnu/libpng16.so.16.48.0

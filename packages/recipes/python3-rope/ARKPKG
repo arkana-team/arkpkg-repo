@@ -1,0 +1,7 @@
+Name: python3-rope
+Description: Python 3 refactoring library
+Version: 1.13.0-4
+Arch: any
+URL: https://github.com/python-rope/rope
+License: See /usr/share/doc/python3-rope/copyright
+Maintainer: arkanaOS Team

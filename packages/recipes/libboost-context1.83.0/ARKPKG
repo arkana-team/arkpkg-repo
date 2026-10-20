@@ -1,0 +1,8 @@
+Name: libboost-context1.83.0
+Description: provides a sort of cooperative multitasking on a single thread
+Version: 1.83.0-4.2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libboost-context1.83.0
+License: See /usr/share/doc/libboost-context1.83.0/copyright
+Maintainer: arkanaOS Team
+Provides: libboost_context.so.1.83.0=/usr/lib/x86_64-linux-gnu/libboost_context.so.1.83.0

@@ -1,0 +1,10 @@
+Name: dfu-util
+Description: Device firmware update (DFU) USB programmer
+Version: 0.11-3
+Arch: x86_64
+URL: https://dfu-util.sourceforge.net
+License: See /usr/share/doc/dfu-util/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+Provides: dfu-prefix=/usr/bin/dfu-prefix, dfu-suffix=/usr/bin/dfu-suffix, dfu-util=/usr/bin/dfu-util, dfuse-pack=/usr/bin/dfuse-pack

@@ -1,0 +1,12 @@
+Name: librtmp1
+Description: toolkit for RTMP streams (shared library)
+Version: 2.4+20151223.gitfa8646d.1-2+b5
+Arch: x86_64
+URL: https://packages.debian.org/trixie/librtmp1
+License: See /usr/share/doc/librtmp1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gmp-libs
+  gnutls-libs
+  nettle-libs
+Provides: librtmp.so.1=/usr/lib/x86_64-linux-gnu/librtmp.so.1

@@ -1,0 +1,10 @@
+Name: oathtool
+Description: OATH Toolkit oathtool command line tool
+Version: 2.6.12-1
+Arch: x86_64
+URL: https://www.nongnu.org/oath-toolkit/
+License: See /usr/share/doc/oathtool/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  liboath0t64
+Provides: oathtool=/usr/bin/oathtool

@@ -1,0 +1,15 @@
+Name: doxygen
+Description: Generate documentation from source code
+Version: 1.9.8+ds-2.1
+Arch: x86_64
+URL: https://www.doxygen.nl/
+License: See /usr/share/doc/doxygen/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libclang-cpp19
+  libclang1-19
+  libfmt10
+  libllvm19
+  libsqlite3-0
+  libxapian30
+Provides: dh_doxygen=/usr/bin/dh_doxygen, doxygen=/usr/bin/doxygen, doxyindexer=/usr/bin/doxyindexer, doxysearch.cgi=/usr/bin/doxysearch.cgi

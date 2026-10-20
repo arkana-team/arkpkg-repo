@@ -1,0 +1,7 @@
+Name: gcc-14-cross-base
+Description: GCC, the GNU Compiler Collection (library base package)
+Version: 14.2.0-19cross1
+Arch: any
+URL: http://gcc.gnu.org/
+License: See /usr/share/doc/gcc-14-cross-base/copyright
+Maintainer: arkanaOS Team

@@ -1,0 +1,11 @@
+Name: nvi
+Description: 4.4BSD re-implementation of vi
+Version: 1.81.6-23
+Arch: x86_64
+URL: https://repo.or.cz/nvi.git
+License: See /usr/share/doc/nvi/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdb5.3t64
+  ncurses-libs
+Provides: nex=/usr/bin/nex, nvi=/usr/bin/nvi, nview=/usr/bin/nview

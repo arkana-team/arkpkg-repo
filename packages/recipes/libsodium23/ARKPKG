@@ -1,0 +1,8 @@
+Name: libsodium23
+Description: Network communication, cryptography and signaturing library
+Version: 1.0.18-1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsodium23
+License: See /usr/share/doc/libsodium23/copyright
+Maintainer: arkanaOS Team
+Provides: libsodium.so.23=/usr/lib/x86_64-linux-gnu/libsodium.so.23.3.0

@@ -1,0 +1,8 @@
+Name: libavahi-common3
+Description: Avahi common library
+Version: 0.8-16
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libavahi-common3
+License: See /usr/share/doc/libavahi-common3/copyright
+Maintainer: arkanaOS Team
+Provides: libavahi-common.so.3=/usr/lib/x86_64-linux-gnu/libavahi-common.so.3.5.4

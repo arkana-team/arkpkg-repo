@@ -1,0 +1,8 @@
+Name: libapparmor1
+Description: changehat AppArmor library
+Version: 4.1.0-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libapparmor1
+License: See /usr/share/doc/libapparmor1/copyright
+Maintainer: arkanaOS Team
+Provides: libapparmor.so.1=/usr/lib/x86_64-linux-gnu/libapparmor.so.1.24.2

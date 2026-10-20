@@ -1,0 +1,10 @@
+Name: cppcheck
+Description: tool for static C/C++ code analysis (CLI)
+Version: 2.17.1-2
+Arch: x86_64
+URL: https://sourceforge.net/p/cppcheck/wiki/Home/
+License: See /usr/share/doc/cppcheck/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinyxml2-11
+Provides: cppcheck-htmlreport=/usr/bin/cppcheck-htmlreport, cppcheck=/usr/bin/cppcheck

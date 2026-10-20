@@ -1,0 +1,10 @@
+Name: etc1tool
+Description: ETC1 conversion tool
+Version: 34.0.5-12
+Arch: x86_64
+URL: https://developer.android.com/studio/releases/platform-tools
+License: See /usr/share/doc/etc1tool/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpng16-16t64
+Provides: etc1tool=/usr/bin/etc1tool

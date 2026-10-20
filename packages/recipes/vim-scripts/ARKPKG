@@ -1,0 +1,10 @@
+Name: vim-scripts
+Description: plugins for vim, adding bells and whistles
+Version: 20210124.4
+Arch: any
+URL: http://www.vim.org/scripts/
+License: See /usr/share/doc/vim-scripts/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  vim
+Provides: dtd2vim=/usr/bin/dtd2vim, vimplate=/usr/bin/vimplate

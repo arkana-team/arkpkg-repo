@@ -1,0 +1,8 @@
+Name: binutils-mingw-w64-i686
+Description: Cross-binutils for Win32 (x86) using MinGW-w64
+Version: 2.44-3+12+b1
+Arch: x86_64
+URL: https://www.gnu.org/software/binutils/
+License: See /usr/share/doc/binutils-mingw-w64-i686/copyright
+Maintainer: arkanaOS Team
+Provides: i686-w64-mingw32-addr2line=/usr/bin/i686-w64-mingw32-addr2line, i686-w64-mingw32-ar=/usr/bin/i686-w64-mingw32-ar, i686-w64-mingw32-as=/usr/bin/i686-w64-mingw32-as, i686-w64-mingw32-c++filt=/usr/bin/i686-w64-mingw32-c++filt, i686-w64-mingw32-dlltool=/usr/bin/i686-w64-mingw32-dlltool, i686-w64-mingw32-dllwrap=/usr/bin/i686-w64-mingw32-dllwrap, i686-w64-mingw32-elfedit=/usr/bin/i686-w64-mingw32-elfedit, i686-w64-mingw32-gprof=/usr/bin/i686-w64-mingw32-gprof, i686-w64-mingw32-ld.bfd=/usr/bin/i686-w64-mingw32-ld.bfd, i686-w64-mingw32-ld=/usr/bin/i686-w64-mingw32-ld, i686-w64-mingw32-nm=/usr/bin/i686-w64-mingw32-nm, i686-w64-mingw32-objcopy=/usr/bin/i686-w64-mingw32-objcopy, i686-w64-mingw32-objdump=/usr/bin/i686-w64-mingw32-objdump, i686-w64-mingw32-ranlib=/usr/bin/i686-w64-mingw32-ranlib, i686-w64-mingw32-readelf=/usr/bin/i686-w64-mingw32-readelf, i686-w64-mingw32-size=/usr/bin/i686-w64-mingw32-size, i686-w64-mingw32-strings=/usr/bin/i686-w64-mingw32-strings, i686-w64-mingw32-strip=/usr/bin/i686-w64-mingw32-strip, i686-w64-mingw32-windmc=/usr/bin/i686-w64-mingw32-windmc, i686-w64-mingw32-windres=/usr/bin/i686-w64-mingw32-windres, libdep.so=/usr/i686-w64-mingw32/lib/bfd-plugins/libdep.so

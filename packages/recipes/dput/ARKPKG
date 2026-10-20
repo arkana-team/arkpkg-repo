@@ -1,0 +1,8 @@
+Name: dput
+Description: Debian package upload tool
+Version: 1.2.4
+Arch: any
+URL: https://packages.debian.org/source/sid/dput
+License: See /usr/share/doc/dput/copyright
+Maintainer: arkanaOS Team
+Provides: dcut=/usr/bin/dcut, dput=/usr/bin/dput

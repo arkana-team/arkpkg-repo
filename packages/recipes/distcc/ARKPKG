@@ -1,0 +1,13 @@
+Name: distcc
+Description: simple distributed compiler client and server
+Version: 3.4+really3.4-12
+Arch: x86_64
+URL: https://distcc.github.io/
+License: See /usr/share/doc/distcc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  krb5-libs
+  libavahi-client3
+  libavahi-common3
+  popt-libs
+Provides: distcc=/usr/bin/distcc, distccd=/usr/bin/distccd, distccmon-text=/usr/bin/distccmon-text, lsdistcc=/usr/bin/lsdistcc, update-distcc-symlinks=/usr/sbin/update-distcc-symlinks

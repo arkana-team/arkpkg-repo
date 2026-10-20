@@ -1,0 +1,10 @@
+Name: perltidy
+Description: Perl script indenter and reformatter
+Version: 20250105-1
+Arch: any
+URL: https://perltidy.sourceforge.net/
+License: See /usr/share/doc/perltidy/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: perltidy=/usr/bin/perltidy

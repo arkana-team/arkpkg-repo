@@ -1,0 +1,8 @@
+Name: acpica-tools
+Description: ACPICA tools for the development and debug of ACPI tables
+Version: 20250404-1
+Arch: x86_64
+URL: https://www.acpica.org
+License: See /usr/share/doc/acpica-tools/copyright
+Maintainer: arkanaOS Team
+Provides: acpibin=/usr/bin/acpibin, acpidump=/usr/bin/acpidump, acpiexec=/usr/bin/acpiexec, acpihelp=/usr/bin/acpihelp, acpisrc=/usr/bin/acpisrc, acpixtract=/usr/bin/acpixtract, iasl=/usr/bin/iasl

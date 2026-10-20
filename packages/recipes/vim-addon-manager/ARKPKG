@@ -1,0 +1,8 @@
+Name: vim-addon-manager
+Description: manager of addons for the Vim editor
+Version: 0.5.11
+Arch: any
+URL: https://packages.debian.org/trixie/vim-addon-manager
+License: See /usr/share/doc/vim-addon-manager/copyright
+Maintainer: arkanaOS Team
+Provides: vam=/usr/bin/vam, vim-addon-manager=/usr/bin/vim-addon-manager, vim-addons=/usr/bin/vim-addons

@@ -1,0 +1,8 @@
+Name: tree-sitter-cli
+Description: command-line for Tree-sitter parsers
+Version: 0.22.6-6+b1
+Arch: x86_64
+URL: https://tree-sitter.github.io/tree-sitter/
+License: See /usr/share/doc/tree-sitter-cli/copyright
+Maintainer: arkanaOS Team
+Provides: tree-sitter=/usr/bin/tree-sitter

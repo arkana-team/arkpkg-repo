@@ -1,0 +1,8 @@
+Name: esptool
+Description: create and flash firmware files to ESP8266 and ESP32 chips
+Version: 4.7.0+dfsg-0.1
+Arch: any
+URL: https://github.com/espressif/esptool
+License: See /usr/share/doc/esptool/copyright
+Maintainer: arkanaOS Team
+Provides: espefuse=/usr/bin/espefuse, espsecure=/usr/bin/espsecure, esptool=/usr/bin/esptool

@@ -1,0 +1,21 @@
+Name: stress-ng
+Description: tool to load and stress a computer
+Version: 0.19.02-1
+Arch: x86_64
+URL: https://github.com/ColinIanKing/stress-ng
+License: See /usr/share/doc/stress-ng/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  acl-libs
+  gmp-libs
+  kmod-libs
+  libapparmor1
+  libbsd
+  libcrypt1
+  libipsec-mb2
+  libjpeg62-turbo
+  libjudydebian1
+  libxxhash0
+  mpfr-libs
+  sctp-libs
+Provides: stress-ng=/usr/bin/stress-ng

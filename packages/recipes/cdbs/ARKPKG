@@ -1,0 +1,7 @@
+Name: cdbs
+Description: common build system for Debian packages
+Version: 0.4.173
+Arch: any
+URL: https://packages.debian.org/trixie/cdbs
+License: See /usr/share/doc/cdbs/copyright
+Maintainer: arkanaOS Team
