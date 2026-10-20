@@ -1,0 +1,10 @@
+Name: stterm
+Description: Simple, fast X11 terminal emulator
+Version: 0.9.2-1
+Arch: x86_64
+URL: https://git.suckless.org/st
+License: See /usr/share/doc/stterm/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxft
+Provides: st=/usr/bin/st, stterm=/usr/bin/stterm
