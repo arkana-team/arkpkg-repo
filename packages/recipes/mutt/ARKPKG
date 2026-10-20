@@ -1,0 +1,16 @@
+Name: mutt
+Description: Text-based email client supporting MIME, GPG, IMAP, and threading
+Version: 2.2.13-1+deb13u1
+Arch: x86_64
+URL: https://www.mutt.org/
+License: See /usr/share/doc/mutt/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  krb5-libs
+  libgpgme11t64
+  libgsasl18
+  libidn2-libs
+  libtokyocabinet9t64
+  ncurses-libs
+Provides: mutt=/usr/bin/mutt, mutt_dotlock=/usr/bin/mutt_dotlock, smime_keys=/usr/bin/smime_keys

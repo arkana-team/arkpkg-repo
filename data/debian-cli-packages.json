@@ -1907,6 +1907,187 @@
       "name": "pr3287",
       "url": "https://github.com/pmattes/x3270",
       "version": "4.3ga10-5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgssglue1"
+      ],
+      "debian_version": "0.9-1.1",
+      "dependencies": [],
+      "description": "GSSAPI mechanism-switching runtime library",
+      "license": "See /usr/share/doc/libgssglue1/copyright",
+      "license_path": "usr/share/doc/libgssglue1/copyright",
+      "name": "libgssglue1",
+      "url": "https://gitlab.com/gsasl/libgssglue",
+      "version": "0.9-1.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libntlm0"
+      ],
+      "debian_version": "1.8-4",
+      "dependencies": [],
+      "description": "NTLM authentication runtime library",
+      "license": "See /usr/share/doc/libntlm0/copyright",
+      "license_path": "usr/share/doc/libntlm0/copyright",
+      "name": "libntlm0",
+      "url": "https://www.nongnu.org/libntlm/",
+      "version": "1.8-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgsasl18"
+      ],
+      "debian_version": "2.2.2-1.1+deb13u2",
+      "dependencies": [
+        "libgssglue1",
+        "libidn12",
+        "libntlm0"
+      ],
+      "description": "GNU SASL runtime library",
+      "license": "See /usr/share/doc/libgsasl18/copyright",
+      "license_path": "usr/share/doc/libgsasl18/copyright",
+      "name": "libgsasl18",
+      "url": "https://www.gnu.org/software/gsasl/",
+      "version": "2.2.2-1.1+deb13u2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libstfl0"
+      ],
+      "debian_version": "0.22-5+b2",
+      "dependencies": [],
+      "description": "Structured terminal forms library",
+      "license": "See /usr/share/doc/libstfl0/copyright",
+      "license_path": "usr/share/doc/libstfl0/copyright",
+      "name": "libstfl0",
+      "url": "http://www.clifford.at/stfl/",
+      "version": "0.22-5+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libtokyocabinet9t64"
+      ],
+      "debian_version": "1.4.48-15.1+b1",
+      "dependencies": [],
+      "description": "Tokyo Cabinet embedded database runtime library",
+      "license": "See /usr/share/doc/libtokyocabinet9t64/copyright",
+      "license_path": "usr/share/doc/libtokyocabinet9t64/copyright",
+      "name": "libtokyocabinet9t64",
+      "url": "https://fallabs.com/tokyocabinet/",
+      "version": "1.4.48-15.1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "abook"
+      ],
+      "debian_version": "0.6.1-3+b1",
+      "dependencies": [],
+      "description": "Text-based ncurses address book",
+      "license": "See /usr/share/doc/abook/copyright",
+      "license_path": "usr/share/doc/abook/copyright",
+      "name": "abook",
+      "url": "http://abook.sourceforge.net/",
+      "version": "0.6.1-3+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "irssi"
+      ],
+      "debian_version": "1.4.5-1+b5",
+      "dependencies": [
+        "perl"
+      ],
+      "description": "Terminal-based IRC client",
+      "license": "See /usr/share/doc/irssi/copyright",
+      "license_path": "usr/share/doc/irssi/copyright",
+      "name": "irssi",
+      "url": "https://irssi.org/",
+      "version": "1.4.5-1+b5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "minicom"
+      ],
+      "debian_version": "2.10-1",
+      "dependencies": [],
+      "description": "Friendly menu driven serial communication program",
+      "license": "See /usr/share/doc/minicom/copyright",
+      "license_path": "usr/share/doc/minicom/copyright",
+      "name": "minicom",
+      "url": "https://salsa.debian.org/minicom-team/minicom",
+      "version": "2.10-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mutt"
+      ],
+      "debian_version": "2.2.13-1+deb13u1",
+      "dependencies": [
+        "libgsasl18",
+        "libtokyocabinet9t64"
+      ],
+      "description": "Text-based email client supporting MIME, GPG, IMAP, and threading",
+      "license": "See /usr/share/doc/mutt/copyright",
+      "license_path": "usr/share/doc/mutt/copyright",
+      "name": "mutt",
+      "url": "https://www.mutt.org/",
+      "version": "2.2.13-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "newsboat"
+      ],
+      "debian_version": "2.36-1.1",
+      "dependencies": [
+        "libstfl0"
+      ],
+      "description": "Text-mode RSS/Atom reader with podcast support",
+      "license": "See /usr/share/doc/newsboat/copyright",
+      "license_path": "usr/share/doc/newsboat/copyright",
+      "name": "newsboat",
+      "url": "https://www.newsboat.org/",
+      "version": "2.36-1.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "picocom"
+      ],
+      "debian_version": "3.1-4",
+      "dependencies": [],
+      "description": "minimal dumb-terminal emulation program",
+      "license": "See /usr/share/doc/picocom/copyright",
+      "license_path": "usr/share/doc/picocom/copyright",
+      "name": "picocom",
+      "url": "https://github.com/npat-efault/picocom",
+      "version": "3.1-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "weechat-core",
+        "weechat-curses",
+        "weechat-plugins"
+      ],
+      "debian_version": "4.6.3-1",
+      "dependencies": [],
+      "description": "Fast, light, and extensible terminal chat client",
+      "license": "See /usr/share/doc/weechat-core/copyright",
+      "license_path": "usr/share/doc/weechat-core/copyright",
+      "name": "weechat",
+      "url": "https://weechat.org/",
+      "version": "4.6.3-1"
     }
   ],
   "sources": {
@@ -2917,6 +3098,90 @@
       "filename": "pool/main/z/zsh-syntax-highlighting/zsh-syntax-highlighting_0.8.0-2_all.deb",
       "sha256": "cd81bd5aff6cf90d7ea52ce20f404ee3ff3399edcb5f5230d50e93a913541125",
       "version": "0.8.0-2"
+    },
+    "abook": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/abook/abook_0.6.1-3+b1_amd64.deb",
+      "sha256": "65ff42ce3a6915e738bec1994f9231eb6e0cb0d3ae291f4476b7a3e6e22ad51c",
+      "version": "0.6.1-3+b1"
+    },
+    "irssi": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/irssi/irssi_1.4.5-1+b5_amd64.deb",
+      "sha256": "2094cb8eedbde4a8c7e8433b3707cc437896ae05207766f11f5a3ee22f66993e",
+      "version": "1.4.5-1+b5"
+    },
+    "libgsasl18": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gsasl/libgsasl18_2.2.2-1.1+deb13u2_amd64.deb",
+      "sha256": "5d214b1347226d02203071f60f59d826aafd52fa5b247f3d4c2b7e501b3ff167",
+      "version": "2.2.2-1.1+deb13u2"
+    },
+    "libgssglue1": {
+      "architecture": "amd64",
+      "filename": "pool/main/libg/libgssglue/libgssglue1_0.9-1.1_amd64.deb",
+      "sha256": "771c4e3a8f4630bcd6cf7407f1848d73079b657db33fd0b680feea824cabbdfe",
+      "version": "0.9-1.1"
+    },
+    "libntlm0": {
+      "architecture": "amd64",
+      "filename": "pool/main/libn/libntlm/libntlm0_1.8-4_amd64.deb",
+      "sha256": "8d4ab3cc0dcf31bda846c7507bc26e74839c549cf4b32e1f6e7a60676248d95a",
+      "version": "1.8-4"
+    },
+    "libstfl0": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/stfl/libstfl0_0.22-5+b2_amd64.deb",
+      "sha256": "ce06b9ba0a05998e1007778e24ce8783e9798bcee73cc64308366a703f503aa5",
+      "version": "0.22-5+b2"
+    },
+    "libtokyocabinet9t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tokyocabinet/libtokyocabinet9t64_1.4.48-15.1+b1_amd64.deb",
+      "sha256": "6f97ab04c8647f5711ac36f883a42f4f821e51a410def072ef22ca7926522e61",
+      "version": "1.4.48-15.1+b1"
+    },
+    "minicom": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/minicom/minicom_2.10-1_amd64.deb",
+      "sha256": "34a1df11e73774b084bb2267485dc9fd2241f0981ddec87b8ebeee821587cbc0",
+      "version": "2.10-1"
+    },
+    "mutt": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mutt/mutt_2.2.13-1+deb13u1_amd64.deb",
+      "sha256": "3dd76ae8817beef21f61cc8c0dfe534602a648c70f19478a67992629ea61786a",
+      "version": "2.2.13-1+deb13u1"
+    },
+    "newsboat": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/newsboat/newsboat_2.36-1.1_amd64.deb",
+      "sha256": "c2ade7034368f9e25c88d7305dd4c3da0780508049becf9219aa1be9b98cb542",
+      "version": "2.36-1.1"
+    },
+    "picocom": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/picocom/picocom_3.1-4_amd64.deb",
+      "sha256": "b063db38b5b2370873736e98bf146b037089c81af38b352ebffe79a71129ffa7",
+      "version": "3.1-4"
+    },
+    "weechat-core": {
+      "architecture": "amd64",
+      "filename": "pool/main/w/weechat/weechat-core_4.6.3-1_amd64.deb",
+      "sha256": "14af1112c7875eac57a3cc4e7abedfd358ca8138e8365de7c0cc5591c05a27e3",
+      "version": "4.6.3-1"
+    },
+    "weechat-curses": {
+      "architecture": "amd64",
+      "filename": "pool/main/w/weechat/weechat-curses_4.6.3-1_amd64.deb",
+      "sha256": "733ad5bbb1766b0edac326b6568dfd771d721b7ff78b455659b2af241114a2ba",
+      "version": "4.6.3-1"
+    },
+    "weechat-plugins": {
+      "architecture": "amd64",
+      "filename": "pool/main/w/weechat/weechat-plugins_4.6.3-1_amd64.deb",
+      "sha256": "2cd331e8d7f05840c70fa1b8365f7e84bb87faeccf32e80a81c7a3d08554baa3",
+      "version": "4.6.3-1"
     }
   },
   "suite": "trixie"

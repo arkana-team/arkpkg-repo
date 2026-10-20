@@ -1,0 +1,8 @@
+Name: libntlm0
+Description: NTLM authentication runtime library
+Version: 1.8-4
+Arch: x86_64
+URL: https://www.nongnu.org/libntlm/
+License: See /usr/share/doc/libntlm0/copyright
+Maintainer: arkanaOS Team
+Provides: libntlm.so.0=/usr/lib/x86_64-linux-gnu/libntlm.so.0.0.23

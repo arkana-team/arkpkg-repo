@@ -1,0 +1,14 @@
+Name: weechat
+Description: Fast, light, and extensible terminal chat client
+Version: 4.6.3-1
+Arch: x86_64
+URL: https://weechat.org/
+License: See /usr/share/doc/weechat-core/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  libaspell15
+  libcjson1
+  libcurl3t64-gnutls
+  ncurses-libs
+Provides: weechat-curses=/usr/bin/weechat-curses, weechat=/usr/bin/weechat

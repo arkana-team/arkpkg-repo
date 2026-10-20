@@ -1,0 +1,11 @@
+Name: abook
+Description: Text-based ncurses address book
+Version: 0.6.1-3+b1
+Arch: x86_64
+URL: http://abook.sourceforge.net/
+License: See /usr/share/doc/abook/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+  readline-libs
+Provides: abook=/usr/bin/abook
