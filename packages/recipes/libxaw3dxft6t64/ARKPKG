@@ -1,0 +1,8 @@
+Name: libxaw3dxft6t64
+Description: An extended version of Xaw3d with support for UTF8
+Version: 2.9.1.4-5
+Arch: x86_64
+URL: https://sourceforge.net/projects/sf-xpaint/
+License: See /usr/share/doc/libxaw3dxft6t64/copyright
+Maintainer: arkanaOS Team
+Provides: libXaw3dxft.so.6=/usr/lib/libXaw3dxft.so.6.1
