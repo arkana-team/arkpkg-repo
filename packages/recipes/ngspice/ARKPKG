@@ -1,0 +1,12 @@
+Name: ngspice
+Description: Spice circuit simulator
+Version: 44.2+ds-1
+Arch: x86_64
+URL: https://ngspice.sourceforge.io
+License: See /usr/share/doc/ngspice/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgomp1
+  ncurses-libs
+  readline-libs
+Provides: ivlng.so=/usr/lib/x86_64-linux-gnu/ngspice/ivlng.so, ivlngvpi.so=/usr/lib/x86_64-linux-gnu/ngspice/ivlng.vpi, ngspice=/usr/bin/ngspice

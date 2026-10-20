@@ -1,0 +1,7 @@
+Name: mobile-broadband-provider-info
+Description: database of mobile broadband service providers
+Version: 20250613-2
+Arch: any
+URL: https://wiki.gnome.org/Projects/NetworkManager/MobileBroadband/ServiceProviders
+License: See /usr/share/doc/mobile-broadband-provider-info/copyright
+Maintainer: arkanaOS Team

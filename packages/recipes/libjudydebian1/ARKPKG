@@ -1,0 +1,8 @@
+Name: libjudydebian1
+Description: C library for creating and accessing dynamic arrays
+Version: 1.0.5-5.1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libjudydebian1
+License: See /usr/share/doc/libjudydebian1/copyright
+Maintainer: arkanaOS Team
+Provides: libJudy.so.1=/usr/lib/x86_64-linux-gnu/libJudy.so.1.0.3

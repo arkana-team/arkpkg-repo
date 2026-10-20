@@ -1,0 +1,7 @@
+Name: linux-libc-dev-arm64-cross
+Description: Linux Kernel Headers for development (for cross-compiling)
+Version: 6.12.38-1cross1
+Arch: any
+URL: https://packages.debian.org/trixie/linux-libc-dev-arm64-cross
+License: See /usr/share/doc/linux-libc-dev-arm64-cross/copyright
+Maintainer: arkanaOS Team

@@ -1,0 +1,11 @@
+Name: nslcd
+Description: daemon for NSS and PAM lookups using LDAP
+Version: 0.9.13-1
+Arch: x86_64
+URL: https://arthurdejong.org/nss-pam-ldapd/
+License: See /usr/share/doc/nslcd/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  krb5-libs
+  openldap-libs
+Provides: nslcd=/usr/sbin/nslcd

@@ -1,0 +1,8 @@
+Name: ed
+Description: classic UNIX line editor
+Version: 1.21.1-1
+Arch: x86_64
+URL: https://www.gnu.org/software/ed/
+License: See /usr/share/doc/ed/copyright
+Maintainer: arkanaOS Team
+Provides: ed=/usr/bin/ed, red=/usr/bin/red

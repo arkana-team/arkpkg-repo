@@ -1,0 +1,11 @@
+Name: valac-bin
+Description: internal package for C# like language for the GObject system
+Version: 0.56.18-2
+Arch: x86_64
+URL: https://wiki.gnome.org/Projects/Vala/
+License: See /usr/share/doc/valac-bin/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libvala-0.56-0
+  libvalacodegen-0.56-0
+Provides: vala-0.56=/usr/bin/vala-0.56, vala=/usr/bin/vala, valac-0.56=/usr/bin/valac-0.56, valac=/usr/bin/valac

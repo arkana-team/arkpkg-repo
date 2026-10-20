@@ -1,0 +1,12 @@
+Name: libapt-pkg7.0
+Description: package management runtime library
+Version: 3.0.3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libapt-pkg7.0
+License: See /usr/share/doc/libapt-pkg7.0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxxhash0
+  openssl-libs
+  systemd-libs
+Provides: libapt-pkg.so.7.0=/usr/lib/x86_64-linux-gnu/libapt-pkg.so.7.0.0

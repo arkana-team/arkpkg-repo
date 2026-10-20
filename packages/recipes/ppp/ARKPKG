@@ -1,0 +1,14 @@
+Name: ppp
+Description: Point-to-Point Protocol (PPP) - daemon
+Version: 2.5.2-1+1
+Arch: x86_64
+URL: https://ppp.samba.org/
+License: See /usr/share/doc/ppp/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcrypt1
+  libpcap-libs
+  openssl-libs
+  pam-libs
+  systemd-libs
+Provides: chat=/usr/sbin/chat, minconn.so=/usr/lib/pppd/2.5.2/minconn.so, openl2tp.so=/usr/lib/pppd/2.5.2/openl2tp.so, passwordfd.so=/usr/lib/pppd/2.5.2/passwordfd.so, plog=/usr/bin/plog, poff=/usr/bin/poff, pon=/usr/bin/pon, pppd.so.2.5.2=/usr/sbin/pppd, pppd=/usr/sbin/pppd, pppdump=/usr/sbin/pppdump, pppoatm.so=/usr/lib/pppd/2.5.2/pppoatm.so, pppoe-discovery=/usr/sbin/pppoe-discovery, pppoe.so=/usr/lib/pppd/2.5.2/pppoe.so, pppol2tp.so=/usr/lib/pppd/2.5.2/pppol2tp.so, pppstats=/usr/sbin/pppstats, radattr.so=/usr/lib/pppd/2.5.2/radattr.so, radius.so=/usr/lib/pppd/2.5.2/radius.so, radrealms.so=/usr/lib/pppd/2.5.2/radrealms.so, winbind.so=/usr/lib/pppd/2.5.2/winbind.so

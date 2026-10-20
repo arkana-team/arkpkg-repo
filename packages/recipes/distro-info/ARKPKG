@@ -1,0 +1,8 @@
+Name: distro-info
+Description: provides information about the distributions' releases
+Version: 1.13
+Arch: x86_64
+URL: https://packages.debian.org/trixie/distro-info
+License: See /usr/share/doc/distro-info/copyright
+Maintainer: arkanaOS Team
+Provides: debian-distro-info=/usr/bin/debian-distro-info, distro-info=/usr/bin/distro-info, ubuntu-distro-info=/usr/bin/ubuntu-distro-info

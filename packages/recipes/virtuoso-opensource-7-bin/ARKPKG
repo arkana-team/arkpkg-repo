@@ -1,0 +1,13 @@
+Name: virtuoso-opensource-7-bin
+Description: high-performance database - binaries
+Version: 7.2.12+dfsg-2
+Arch: x86_64
+URL: http://vos.openlinksw.com/owiki/wiki/VOS/
+License: See /usr/share/doc/virtuoso-opensource-7-bin/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libminizip1t64
+  openssl-libs
+  pcre2-libs
+  readline-libs
+Provides: isql-vt=/usr/bin/isql-vt, isqlw-vt=/usr/bin/isqlw-vt, virt_mail=/usr/bin/virt_mail, virtuoso-t=/usr/bin/virtuoso-t

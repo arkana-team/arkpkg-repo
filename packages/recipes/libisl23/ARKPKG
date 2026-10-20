@@ -1,0 +1,10 @@
+Name: libisl23
+Description: manipulating sets and relations of integer points bounded by linear constraints
+Version: 0.27-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libisl23
+License: See /usr/share/doc/libisl23/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gmp-libs
+Provides: libisl.so.23=/usr/lib/x86_64-linux-gnu/libisl.so.23.4.0

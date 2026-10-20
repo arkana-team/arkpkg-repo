@@ -1,0 +1,8 @@
+Name: check
+Description: unit test framework for C
+Version: 0.15.2-3
+Arch: x86_64
+URL: https://libcheck.github.io/check/
+License: See /usr/share/doc/check/copyright
+Maintainer: arkanaOS Team
+Provides: checkmk=/usr/bin/checkmk

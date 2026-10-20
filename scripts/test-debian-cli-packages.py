@@ -71,6 +71,5 @@ class LicensePathTests(unittest.TestCase):
 
             self.assertEqual(closure, {"app"})
 
-
 if __name__ == "__main__":
     unittest.main()

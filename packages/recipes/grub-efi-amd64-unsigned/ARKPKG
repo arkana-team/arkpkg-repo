@@ -1,0 +1,7 @@
+Name: grub-efi-amd64-unsigned
+Description: GRand Unified Bootloader, version 2 (EFI-AMD64 images)
+Version: 2.12-9+deb13u2
+Arch: x86_64
+URL: https://www.gnu.org/software/grub/
+License: See /usr/share/licenses/grub-efi-amd64-unsigned/copyright
+Maintainer: arkanaOS Team

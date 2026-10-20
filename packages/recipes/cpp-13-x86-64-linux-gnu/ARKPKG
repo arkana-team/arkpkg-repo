@@ -1,0 +1,14 @@
+Name: cpp-13-x86-64-linux-gnu
+Description: GNU C preprocessor for x86_64-linux-gnu
+Version: 13.3.0-16
+Arch: x86_64
+URL: http://gcc.gnu.org/
+License: See /usr/share/doc/cpp-13-x86-64-linux-gnu/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gcc-13-base
+  gmp-libs
+  libisl23
+  libmpc3
+  mpfr-libs
+Provides: x86_64-linux-gnu-cpp-13=/usr/bin/x86_64-linux-gnu-cpp-13

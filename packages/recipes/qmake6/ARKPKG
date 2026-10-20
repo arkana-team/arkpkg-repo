@@ -1,0 +1,8 @@
+Name: qmake6
+Description: Qt 6 qmake Makefile generator tool
+Version: 6.8.2+dfsg-9+deb13u2
+Arch: x86_64
+URL: https://www.qt.io/developers/
+License: See /usr/share/doc/qmake6/copyright
+Maintainer: arkanaOS Team
+Provides: qmake6=/usr/bin/qmake6, x86_64-linux-gnu-qmake6=/usr/bin/x86_64-linux-gnu-qmake6

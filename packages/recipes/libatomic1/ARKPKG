@@ -1,0 +1,8 @@
+Name: libatomic1
+Description: support library providing __atomic built-in functions
+Version: 14.2.0-19
+Arch: x86_64
+URL: http://gcc.gnu.org/
+License: See /usr/share/licenses/libatomic1/copyright
+Maintainer: arkanaOS Team
+Provides: libatomic.so.1=/usr/lib/x86_64-linux-gnu/libatomic.so.1.2.0

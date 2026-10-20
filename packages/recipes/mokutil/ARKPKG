@@ -1,0 +1,12 @@
+Name: mokutil
+Description: tools for manipulating machine owner keys
+Version: 0.7.2-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/mokutil
+License: See /usr/share/doc/mokutil/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcrypt1
+  libefivar1t64
+  openssl-libs
+Provides: mokutil=/usr/bin/mokutil

@@ -1,0 +1,11 @@
+Name: liblognorm5
+Description: log normalizing library
+Version: 2.0.6-5
+Arch: x86_64
+URL: https://www.liblognorm.com/
+License: See /usr/share/doc/liblognorm5/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libestr0
+  libfastjson4
+Provides: liblognorm.so.5=/usr/lib/x86_64-linux-gnu/liblognorm.so.5.1.0

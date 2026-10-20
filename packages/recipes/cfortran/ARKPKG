@@ -1,0 +1,7 @@
+Name: cfortran
+Description: Header file permitting Fortran routines to be called in C/C++
+Version: 20210827-1.1
+Arch: any
+URL: https://github.com/bastien-roucaries/cfortran
+License: See /usr/share/doc/cfortran/copyright
+Maintainer: arkanaOS Team

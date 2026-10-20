@@ -1,0 +1,8 @@
+Name: libsource-highlight4t64
+Description: source highlighting library
+Version: 3.1.9-4.3+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsource-highlight4t64
+License: See /usr/share/doc/libsource-highlight4t64/copyright
+Maintainer: arkanaOS Team
+Provides: libsource-highlight.so.4=/usr/lib/x86_64-linux-gnu/libsource-highlight.so.4.0.1

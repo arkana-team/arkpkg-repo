@@ -1,0 +1,10 @@
+Name: minicom
+Description: Friendly menu driven serial communication program
+Version: 2.10-1
+Arch: x86_64
+URL: https://salsa.debian.org/minicom-team/minicom
+License: See /usr/share/doc/minicom/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+Provides: ascii-xfr=/usr/bin/ascii-xfr, minicom=/usr/bin/minicom, runscript=/usr/bin/runscript, xminicom=/usr/bin/xminicom

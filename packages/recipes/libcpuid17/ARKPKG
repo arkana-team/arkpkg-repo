@@ -1,0 +1,8 @@
+Name: libcpuid17
+Description: C library for x86/x86_64 CPU detection and feature extraction (shared lib)
+Version: 0.7.1+repack1-0.2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libcpuid17
+License: See /usr/share/doc/libcpuid17/copyright
+Maintainer: arkanaOS Team
+Provides: libcpuid.so.17=/usr/lib/x86_64-linux-gnu/libcpuid.so.17.0.1

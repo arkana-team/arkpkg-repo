@@ -1,0 +1,10 @@
+Name: conmon
+Description: OCI container runtime monitor
+Version: 2.1.12-4
+Arch: x86_64
+URL: https://github.com/containers/conmon
+License: See /usr/share/doc/conmon/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  systemd-libs
+Provides: conmon=/usr/bin/conmon

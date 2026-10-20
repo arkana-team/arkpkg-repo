@@ -1,0 +1,11 @@
+Name: avarice
+Description: use GDB with Atmel AVR debuggers
+Version: 2.14+svn427-2
+Arch: x86_64
+URL: http://avarice.sourceforge.net/
+License: See /usr/share/doc/avarice/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libhidapi-libusb0
+  libusb-0.1-4
+Provides: avarice=/usr/bin/avarice, ice-gdb=/usr/bin/ice-gdb, ice-insight=/usr/bin/ice-insight, kill-avarice=/usr/bin/kill-avarice, start-avarice=/usr/bin/start-avarice

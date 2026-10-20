@@ -1,0 +1,8 @@
+Name: re2c
+Description: lexer generator for C, C++, Go, Java, Python, Rust, and others
+Version: 4.1-1
+Arch: x86_64
+URL: https://re2c.org
+License: See /usr/share/doc/re2c/copyright
+Maintainer: arkanaOS Team
+Provides: re2c=/usr/bin/re2c, re2d=/usr/bin/re2d, re2go=/usr/bin/re2go, re2hs=/usr/bin/re2hs, re2js=/usr/bin/re2js, re2ocaml=/usr/bin/re2ocaml, re2py=/usr/bin/re2py, re2rust=/usr/bin/re2rust, re2v=/usr/bin/re2v, re2zig=/usr/bin/re2zig

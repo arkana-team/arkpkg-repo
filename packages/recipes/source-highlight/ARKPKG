@@ -1,0 +1,10 @@
+Name: source-highlight
+Description: convert source code to syntax highlighted document
+Version: 3.1.9-4.3+b1
+Arch: x86_64
+URL: http://www.gnu.org/software/src-highlite/
+License: See /usr/share/doc/source-highlight/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsource-highlight4t64
+Provides: check-regexp=/usr/bin/check-regexp, source-highlight-settings=/usr/bin/source-highlight-settings, source-highlight=/usr/bin/source-highlight

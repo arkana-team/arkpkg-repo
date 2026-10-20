@@ -1,0 +1,10 @@
+Name: thin-provisioning-tools
+Description: Tools for handling thinly provisioned device-mapper meta-data
+Version: 1.1.0-4+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/thin-provisioning-tools
+License: See /usr/share/doc/thin-provisioning-tools/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  systemd-libs
+Provides: cache_check=/usr/sbin/cache_check, cache_dump=/usr/sbin/cache_dump, cache_metadata_size=/usr/sbin/cache_metadata_size, cache_repair=/usr/sbin/cache_repair, cache_restore=/usr/sbin/cache_restore, cache_writeback=/usr/sbin/cache_writeback, era_check=/usr/sbin/era_check, era_dump=/usr/sbin/era_dump, era_invalidate=/usr/sbin/era_invalidate, era_restore=/usr/sbin/era_restore, pdata_tools=/usr/sbin/pdata_tools, thin_check=/usr/sbin/thin_check, thin_delta=/usr/sbin/thin_delta, thin_dump=/usr/sbin/thin_dump, thin_ls=/usr/sbin/thin_ls, thin_metadata_pack=/usr/sbin/thin_metadata_pack, thin_metadata_size=/usr/sbin/thin_metadata_size, thin_metadata_unpack=/usr/sbin/thin_metadata_unpack, thin_migrate=/usr/sbin/thin_migrate, thin_repair=/usr/sbin/thin_repair, thin_restore=/usr/sbin/thin_restore, thin_rmap=/usr/sbin/thin_rmap, thin_trim=/usr/sbin/thin_trim

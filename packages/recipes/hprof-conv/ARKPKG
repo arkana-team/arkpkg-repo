@@ -1,0 +1,7 @@
+Name: hprof-conv
+Description: HPROF Converter
+Version: 34.0.5-12
+Arch: x86_64
+URL: https://developer.android.com/studio/releases/platform-tools
+License: See /usr/share/doc/hprof-conv/copyright
+Maintainer: arkanaOS Team

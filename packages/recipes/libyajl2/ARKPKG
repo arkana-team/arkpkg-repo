@@ -1,0 +1,8 @@
+Name: libyajl2
+Description: yet another json library
+Version: 2.1.0-5+b2
+Arch: x86_64
+URL: https://lloyd.github.io/yajl/
+License: See /usr/share/doc/libyajl2/copyright
+Maintainer: arkanaOS Team
+Provides: libyajl.so.2=/usr/lib/x86_64-linux-gnu/libyajl.so.2.1.0

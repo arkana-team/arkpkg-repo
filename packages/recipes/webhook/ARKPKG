@@ -1,0 +1,8 @@
+Name: webhook
+Description: Small server for creating HTTP endpoints (hooks)
+Version: 2.8.0-4+b19
+Arch: x86_64
+URL: https://github.com/adnanh/webhook
+License: See /usr/share/doc/webhook/copyright
+Maintainer: arkanaOS Team
+Provides: webhook=/usr/bin/webhook

@@ -1,0 +1,7 @@
+Name: wx3.2-headers
+Description: wxWidgets Cross-platform C++ GUI toolkit (header files)
+Version: 3.2.8+dfsg-2
+Arch: any
+URL: https://www.wxwidgets.org/
+License: See /usr/share/doc/wx3.2-headers/copyright
+Maintainer: arkanaOS Team

@@ -1,0 +1,8 @@
+Name: prometheus-blackbox-exporter
+Description: blackbox prober for Prometheus
+Version: 0.26.0-1
+Arch: x86_64
+URL: https://github.com/prometheus/blackbox_exporter
+License: See /usr/share/doc/prometheus-blackbox-exporter/copyright
+Maintainer: arkanaOS Team
+Provides: prometheus-blackbox-exporter=/usr/bin/prometheus-blackbox-exporter

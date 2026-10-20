@@ -1,0 +1,8 @@
+Name: binutils-avr
+Description: Binary utilities supporting Atmel's AVR targets
+Version: 2.43.50.20250108-1
+Arch: x86_64
+URL: https://www.gnu.org/s/binutils/
+License: See /usr/share/doc/binutils-avr/copyright
+Maintainer: arkanaOS Team
+Provides: avr-addr2line=/usr/bin/avr-addr2line, avr-ar=/usr/bin/avr-ar, avr-as=/usr/bin/avr-as, avr-c++filt=/usr/bin/avr-c++filt, avr-elfedit=/usr/bin/avr-elfedit, avr-gprof=/usr/bin/avr-gprof, avr-ld.bfd=/usr/bin/avr-ld.bfd, avr-ld=/usr/bin/avr-ld, avr-nm=/usr/bin/avr-nm, avr-objcopy=/usr/bin/avr-objcopy, avr-objdump=/usr/bin/avr-objdump, avr-ranlib=/usr/bin/avr-ranlib, avr-readelf=/usr/bin/avr-readelf, avr-size=/usr/bin/avr-size, avr-strings=/usr/bin/avr-strings, avr-strip=/usr/bin/avr-strip

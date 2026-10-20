@@ -1,0 +1,8 @@
+Name: hx
+Description: modal CLI text editor Helix
+Version: 25.01.1-4
+Arch: x86_64
+URL: https://helix-editor.com/
+License: See /usr/share/doc/hx/copyright
+Maintainer: arkanaOS Team
+Provides: hx=/usr/bin/hx

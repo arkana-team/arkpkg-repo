@@ -1,0 +1,8 @@
+Name: ledit
+Description: line editor for interactive programs
+Version: 2.04-8+b12
+Arch: x86_64
+URL: http://cristal.inria.fr/~ddr/ledit/
+License: See /usr/share/doc/ledit/copyright
+Maintainer: arkanaOS Team
+Provides: ledit=/usr/bin/ledit

@@ -1,0 +1,10 @@
+Name: gdebi-core
+Description: simple tool to install deb files
+Version: 0.9.5.8
+Arch: any
+URL: https://packages.debian.org/trixie/gdebi-core
+License: See /usr/share/doc/gdebi-core/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  file
+Provides: gdebi=/usr/bin/gdebi

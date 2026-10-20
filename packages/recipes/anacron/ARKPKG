@@ -1,0 +1,8 @@
+Name: anacron
+Description: cron-like program that doesn't go by time
+Version: 2.3-43
+Arch: x86_64
+URL: http://sourceforge.net/projects/anacron/
+License: See /usr/share/doc/anacron/copyright
+Maintainer: arkanaOS Team
+Provides: anacron=/usr/sbin/anacron

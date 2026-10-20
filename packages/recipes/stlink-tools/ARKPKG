@@ -1,0 +1,10 @@
+Name: stlink-tools
+Description: OpenSource ST-Link tools replacement.
+Version: 1.8.0-1.1
+Arch: x86_64
+URL: https://github.com/stlink-org/stlink
+License: See /usr/share/doc/stlink-tools/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libstlink1
+Provides: st-flash=/usr/bin/st-flash, st-info=/usr/bin/st-info, st-trace=/usr/bin/st-trace, st-util=/usr/bin/st-util

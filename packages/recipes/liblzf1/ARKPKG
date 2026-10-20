@@ -1,0 +1,8 @@
+Name: liblzf1
+Description: very small data compression library
+Version: 3.6-4+b3
+Arch: x86_64
+URL: http://software.schmorp.de/pkg/liblzf.html
+License: See /usr/share/doc/liblzf1/copyright
+Maintainer: arkanaOS Team
+Provides: liblzf.so.1=/usr/lib/x86_64-linux-gnu/liblzf.so.1.5

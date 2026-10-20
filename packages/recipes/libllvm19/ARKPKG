@@ -1,0 +1,13 @@
+Name: libllvm19
+Description: Modular compiler and toolchain technologies, runtime library
+Version: 1:19.1.7-3+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libllvm19
+License: See /usr/share/doc/libllvm19/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  dns-runtime-libs
+  libffi-libs
+  libz3-4
+  xml-runtime-libs
+Provides: libLLVM.so.19.1=/usr/lib/x86_64-linux-gnu/libLLVM.so.19.1

@@ -1,0 +1,10 @@
+Name: cloc
+Description: statistics utility to count lines of code
+Version: 2.04-1
+Arch: any
+URL: https://github.com/AlDanial/cloc
+License: See /usr/share/doc/cloc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: cloc=/usr/bin/cloc

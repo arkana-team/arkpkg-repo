@@ -1,0 +1,15 @@
+Name: cockpit-ws
+Description: Cockpit Web Service
+Version: 337-1+deb13u2
+Arch: x86_64
+URL: https://cockpit-project.org/
+License: See /usr/share/doc/cockpit-ws/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  krb5-libs
+  libcrypt1
+  libjson-glib-1.0-0
+  openssl
+  pam-libs
+  systemd-libs

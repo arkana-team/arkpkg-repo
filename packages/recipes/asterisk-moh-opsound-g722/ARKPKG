@@ -1,0 +1,7 @@
+Name: asterisk-moh-opsound-g722
+Description: asterisk extra sound files - English/g722
+Version: 2.03-1.1
+Arch: any
+URL: http://www.asterisk.org/
+License: See /usr/share/doc/asterisk-moh-opsound-g722/copyright
+Maintainer: arkanaOS Team

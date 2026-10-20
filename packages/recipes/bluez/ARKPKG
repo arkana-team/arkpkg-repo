@@ -1,0 +1,13 @@
+Name: bluez
+Description: Bluetooth tools and daemons
+Version: 5.82-1.1
+Arch: x86_64
+URL: http://www.bluez.org
+License: See /usr/share/doc/bluez/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  alsa-libs
+  libdw1t64
+  readline-libs
+  systemd-libs
+Provides: bluemoon=/usr/bin/bluemoon, bluetoothctl=/usr/bin/bluetoothctl, bluetoothd=/usr/sbin/bluetoothd, btattach=/usr/bin/btattach, btmgmt=/usr/bin/btmgmt, btmon=/usr/bin/btmon, ciptool=/usr/bin/ciptool, gatttool=/usr/bin/gatttool, hciattach=/usr/bin/hciattach, hciconfig=/usr/bin/hciconfig, hcitool=/usr/bin/hcitool, hex2hcd=/usr/bin/hex2hcd, l2ping=/usr/bin/l2ping, l2test=/usr/bin/l2test, mpris-proxy=/usr/bin/mpris-proxy, obexctl=/usr/bin/obexctl, rctest=/usr/bin/rctest, rfcomm=/usr/bin/rfcomm, sdptool=/usr/bin/sdptool

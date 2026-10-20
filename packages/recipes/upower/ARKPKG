@@ -1,0 +1,14 @@
+Name: upower
+Description: abstraction for power management
+Version: 1.90.9-1
+Arch: x86_64
+URL: https://upower.freedesktop.org/
+License: See /usr/share/doc/upower/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgudev-1.0-0
+  libimobiledevice-1.0-6
+  libplist-2.0-4
+  libpolkit-gobject-1-0
+  libupower-glib3
+Provides: upower=/usr/bin/upower

@@ -1,0 +1,8 @@
+Name: containers-storage
+Description: CLI tools for handling how containers are stored on disk
+Version: 1.57.2+ds1-1+b2
+Arch: x86_64
+URL: https://github.com/containers/storage
+License: See /usr/share/doc/containers-storage/copyright
+Maintainer: arkanaOS Team
+Provides: containers-storage=/usr/bin/containers-storage

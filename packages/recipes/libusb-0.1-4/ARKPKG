@@ -1,0 +1,8 @@
+Name: libusb-0.1-4
+Description: userspace USB programming library
+Version: 2:0.1.12-35+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libusb-0.1-4
+License: See /usr/share/doc/libusb-0.1-4/copyright
+Maintainer: arkanaOS Team
+Provides: libusb-0.1.so.4=/usr/lib/x86_64-linux-gnu/libusb-0.1.so.4.4.4

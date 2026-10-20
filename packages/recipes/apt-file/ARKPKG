@@ -1,0 +1,10 @@
+Name: apt-file
+Description: search for files within Debian packages (command-line interface)
+Version: 3.3
+Arch: any
+URL: https://packages.debian.org/trixie/apt-file
+License: See /usr/share/doc/apt-file/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: apt-file=/usr/bin/apt-file

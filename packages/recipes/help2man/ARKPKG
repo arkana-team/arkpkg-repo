@@ -1,0 +1,10 @@
+Name: help2man
+Description: Automatic manpage generator
+Version: 1.49.3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/help2man
+License: See /usr/share/doc/help2man/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: help2man=/usr/bin/help2man

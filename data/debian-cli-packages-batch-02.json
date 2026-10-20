@@ -1,0 +1,2802 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "any",
+      "debian_packages": [
+        "sbuild"
+      ],
+      "debian_version": "0.89.3+deb13u4",
+      "dependencies": [
+        "perl"
+      ],
+      "description": "Tool for building Debian binary packages from Debian sources",
+      "license": "See /usr/share/doc/sbuild/copyright",
+      "license_path": "usr/share/doc/sbuild/copyright",
+      "name": "sbuild",
+      "url": "https://packages.debian.org/trixie/sbuild",
+      "version": "0.89.3+deb13u4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "re2c"
+      ],
+      "debian_version": "4.1-1",
+      "dependencies": [],
+      "description": "lexer generator for C, C++, Go, Java, Python, Rust, and others",
+      "license": "See /usr/share/doc/re2c/copyright",
+      "license_path": "usr/share/doc/re2c/copyright",
+      "name": "re2c",
+      "url": "https://re2c.org",
+      "version": "4.1-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "heimdall-flash"
+      ],
+      "debian_version": "2.1.0-1",
+      "dependencies": [],
+      "description": "tool for flashing firmware on Samsung Galaxy S devices",
+      "license": "See /usr/share/doc/heimdall-flash/copyright",
+      "license_path": "usr/share/doc/heimdall-flash/copyright",
+      "name": "heimdall-flash",
+      "url": "https://git.sr.ht/~grimler/Heimdall/",
+      "version": "2.1.0-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "qmake6"
+      ],
+      "debian_version": "6.8.2+dfsg-9+deb13u2",
+      "dependencies": [],
+      "description": "Qt 6 qmake Makefile generator tool",
+      "license": "See /usr/share/doc/qmake6/copyright",
+      "license_path": "usr/share/doc/qmake6/copyright",
+      "name": "qmake6",
+      "url": "https://www.qt.io/developers/",
+      "version": "6.8.2+dfsg-9+deb13u2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "binutils-avr"
+      ],
+      "debian_version": "2.43.50.20250108-1",
+      "dependencies": [],
+      "description": "Binary utilities supporting Atmel's AVR targets",
+      "license": "See /usr/share/doc/binutils-avr/copyright",
+      "license_path": "usr/share/doc/binutils-avr/copyright",
+      "name": "binutils-avr",
+      "url": "https://www.gnu.org/s/binutils/",
+      "version": "2.43.50.20250108-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "dh-elpa-helper"
+      ],
+      "debian_version": "2.1.9",
+      "dependencies": [],
+      "description": "helper package for emacs lisp extensions",
+      "license": "See /usr/share/doc/dh-elpa-helper/copyright",
+      "license_path": "usr/share/doc/dh-elpa-helper/copyright",
+      "name": "dh-elpa-helper",
+      "url": "https://packages.debian.org/trixie/dh-elpa-helper",
+      "version": "2.1.9"
+    },
+    {
+      "name": "libz3-4",
+      "version": "4.13.3-1",
+      "debian_version": "4.13.3-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libz3-4"
+      ],
+      "description": "theorem prover from Microsoft Research - runtime libraries",
+      "license": "See /usr/share/doc/libz3-4/copyright",
+      "license_path": "usr/share/doc/libz3-4/copyright",
+      "url": "https://packages.debian.org/trixie/libz3-4",
+      "dependencies": []
+    },
+    {
+      "name": "libllvm19",
+      "version": "1:19.1.7-3+b1",
+      "debian_version": "1:19.1.7-3+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libllvm19"
+      ],
+      "description": "Modular compiler and toolchain technologies, runtime library",
+      "license": "See /usr/share/doc/libllvm19/copyright",
+      "license_path": "usr/share/doc/libllvm19/copyright",
+      "url": "https://packages.debian.org/trixie/libllvm19",
+      "dependencies": [
+        "libz3-4"
+      ]
+    },
+    {
+      "name": "libclang-cpp19",
+      "version": "1:19.1.7-3+b1",
+      "debian_version": "1:19.1.7-3+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libclang-cpp19"
+      ],
+      "description": "C++ interface to the Clang library",
+      "license": "See /usr/share/doc/libclang-cpp19/copyright",
+      "license_path": "usr/share/doc/libclang-cpp19/copyright",
+      "url": "https://packages.debian.org/trixie/libclang-cpp19",
+      "dependencies": [
+        "libllvm19"
+      ]
+    },
+    {
+      "name": "libclang1-19",
+      "version": "1:19.1.7-3+b1",
+      "debian_version": "1:19.1.7-3+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libclang1-19"
+      ],
+      "description": "C interface to the Clang library",
+      "license": "See /usr/share/doc/libclang1-19/copyright",
+      "license_path": "usr/share/doc/libclang1-19/copyright",
+      "url": "https://packages.debian.org/trixie/libclang1-19",
+      "dependencies": [
+        "libllvm19"
+      ]
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "doxygen"
+      ],
+      "debian_version": "1.9.8+ds-2.1",
+      "dependencies": [
+        "libclang-cpp19",
+        "libclang1-19",
+        "libllvm19"
+      ],
+      "description": "Generate documentation from source code",
+      "license": "See /usr/share/doc/doxygen/copyright",
+      "license_path": "usr/share/doc/doxygen/copyright",
+      "name": "doxygen",
+      "url": "https://www.doxygen.nl/",
+      "version": "1.9.8+ds-2.1"
+    },
+    {
+      "name": "gcc-13-base",
+      "version": "13.3.0-16",
+      "debian_version": "13.3.0-16",
+      "arch": "x86_64",
+      "debian_packages": [
+        "gcc-13-base"
+      ],
+      "description": "GCC, the GNU Compiler Collection (base package)",
+      "license": "See /usr/share/doc/gcc-13-base/copyright",
+      "license_path": "usr/share/doc/gcc-13-base/copyright",
+      "url": "https://packages.debian.org/trixie/gcc-13-base",
+      "dependencies": []
+    },
+    {
+      "name": "libisl23",
+      "version": "0.27-1",
+      "debian_version": "0.27-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libisl23"
+      ],
+      "description": "manipulating sets and relations of integer points bounded by linear constraints",
+      "license": "See /usr/share/doc/libisl23/copyright",
+      "license_path": "usr/share/doc/libisl23/copyright",
+      "url": "https://packages.debian.org/trixie/libisl23",
+      "dependencies": []
+    },
+    {
+      "name": "libmpc3",
+      "version": "1.3.1-1+b3",
+      "debian_version": "1.3.1-1+b3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libmpc3"
+      ],
+      "description": "multiple precision complex floating-point library",
+      "license": "See /usr/share/doc/libmpc3/copyright",
+      "license_path": "usr/share/doc/libmpc3/copyright",
+      "url": "https://packages.debian.org/trixie/libmpc3",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "cpp-13-x86-64-linux-gnu"
+      ],
+      "debian_version": "13.3.0-16",
+      "dependencies": [
+        "gcc-13-base",
+        "libisl23",
+        "libmpc3"
+      ],
+      "description": "GNU C preprocessor for x86_64-linux-gnu",
+      "license": "See /usr/share/doc/cpp-13-x86-64-linux-gnu/copyright",
+      "license_path": "usr/share/doc/cpp-13-x86-64-linux-gnu/copyright",
+      "name": "cpp-13-x86-64-linux-gnu",
+      "url": "http://gcc.gnu.org/",
+      "version": "13.3.0-16",
+      "license_source_package": "gcc-13-base",
+      "license_source_path": "usr/share/doc/gcc-13-base/copyright"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "python3-rope"
+      ],
+      "debian_version": "1.13.0-4",
+      "dependencies": [],
+      "description": "Python 3 refactoring library",
+      "license": "See /usr/share/doc/python3-rope/copyright",
+      "license_path": "usr/share/doc/python3-rope/copyright",
+      "name": "python3-rope",
+      "url": "https://github.com/python-rope/rope",
+      "version": "1.13.0-4"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "antlr"
+      ],
+      "debian_version": "2.7.7+dfsg-14",
+      "dependencies": [],
+      "description": "language tool for constructing recognizers, compilers etc",
+      "license": "See /usr/share/doc/antlr/copyright",
+      "license_path": "usr/share/doc/antlr/copyright",
+      "name": "antlr",
+      "url": "https://www.antlr2.org",
+      "version": "2.7.7+dfsg-14"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "nasm"
+      ],
+      "debian_version": "2.16.03-1",
+      "dependencies": [],
+      "description": "General-purpose x86 assembler",
+      "license": "See /usr/share/doc/nasm/copyright",
+      "license_path": "usr/share/doc/nasm/copyright",
+      "name": "nasm",
+      "url": "http://www.nasm.us/",
+      "version": "2.16.03-1"
+    },
+    {
+      "name": "libpng16-16t64",
+      "version": "1.6.48-1+deb13u5",
+      "debian_version": "1.6.48-1+deb13u5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libpng16-16t64"
+      ],
+      "description": "PNG library - runtime (version 1.6)",
+      "license": "See /usr/share/doc/libpng16-16t64/copyright",
+      "license_path": "usr/share/doc/libpng16-16t64/copyright",
+      "url": "https://packages.debian.org/trixie/libpng16-16t64",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "etc1tool"
+      ],
+      "debian_version": "34.0.5-12",
+      "dependencies": [
+        "libpng16-16t64"
+      ],
+      "description": "ETC1 conversion tool",
+      "license": "See /usr/share/doc/etc1tool/copyright",
+      "license_path": "usr/share/doc/etc1tool/copyright",
+      "name": "etc1tool",
+      "url": "https://developer.android.com/studio/releases/platform-tools",
+      "version": "34.0.5-12"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "dput"
+      ],
+      "debian_version": "1.2.4",
+      "dependencies": [],
+      "description": "Debian package upload tool",
+      "license": "See /usr/share/doc/dput/copyright",
+      "license_path": "usr/share/doc/dput/copyright",
+      "name": "dput",
+      "url": "https://packages.debian.org/source/sid/dput",
+      "version": "1.2.4"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "thonny"
+      ],
+      "debian_version": "4.1.7-1",
+      "dependencies": [],
+      "description": "Python IDE for beginners",
+      "license": "See /usr/share/doc/thonny/copyright",
+      "license_path": "usr/share/doc/thonny/copyright",
+      "name": "thonny",
+      "url": "https://thonny.org",
+      "version": "4.1.7-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "binutils-arm-none-eabi"
+      ],
+      "debian_version": "2.44-3+23+b1",
+      "dependencies": [],
+      "description": "GNU assembler, linker and binary utilities for ARM Cortex-R/M processors",
+      "license": "See /usr/share/doc/binutils-arm-none-eabi/copyright",
+      "license_path": "usr/share/doc/binutils-arm-none-eabi/copyright",
+      "name": "binutils-arm-none-eabi",
+      "url": "https://sourceware.org/binutils/",
+      "version": "2.44-3+23+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "hprof-conv"
+      ],
+      "debian_version": "34.0.5-12",
+      "dependencies": [],
+      "description": "HPROF Converter",
+      "license": "See /usr/share/doc/hprof-conv/copyright",
+      "license_path": "usr/share/doc/hprof-conv/copyright",
+      "name": "hprof-conv",
+      "url": "https://developer.android.com/studio/releases/platform-tools",
+      "version": "34.0.5-12"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "proguard-cli"
+      ],
+      "debian_version": "6.2.2-3",
+      "dependencies": [],
+      "description": "Java class file shrinker, optimizer, and obfuscator (CLI)",
+      "license": "See /usr/share/doc/proguard-cli/copyright",
+      "license_path": "usr/share/doc/proguard-cli/copyright",
+      "name": "proguard-cli",
+      "url": "http://proguard.sourceforge.net",
+      "version": "6.2.2-3"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "spyder"
+      ],
+      "debian_version": "6.0.5+ds-6",
+      "dependencies": [],
+      "description": "Richly-featured Python IDE",
+      "license": "See /usr/share/doc/spyder/copyright",
+      "license_path": "usr/share/doc/spyder/copyright",
+      "name": "spyder",
+      "url": "https://github.com/spyder-ide/spyder",
+      "version": "6.0.5+ds-6"
+    },
+    {
+      "name": "libboost-context1.83.0",
+      "version": "1.83.0-4.2",
+      "debian_version": "1.83.0-4.2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libboost-context1.83.0"
+      ],
+      "description": "provides a sort of cooperative multitasking on a single thread",
+      "license": "See /usr/share/doc/libboost-context1.83.0/copyright",
+      "license_path": "usr/share/doc/libboost-context1.83.0/copyright",
+      "url": "https://packages.debian.org/trixie/libboost-context1.83.0",
+      "dependencies": []
+    },
+    {
+      "name": "libcpuid17",
+      "version": "0.7.1+repack1-0.2",
+      "debian_version": "0.7.1+repack1-0.2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libcpuid17"
+      ],
+      "description": "C library for x86/x86_64 CPU detection and feature extraction (shared lib)",
+      "license": "See /usr/share/doc/libcpuid17/copyright",
+      "license_path": "usr/share/doc/libcpuid17/copyright",
+      "url": "https://packages.debian.org/trixie/libcpuid17",
+      "dependencies": []
+    },
+    {
+      "name": "libnghttp3-9",
+      "version": "1.8.0-1",
+      "debian_version": "1.8.0-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libnghttp3-9"
+      ],
+      "description": "HTTP/3 library with QUIC and QPACK (library)",
+      "license": "See /usr/share/doc/libnghttp3-9/copyright",
+      "license_path": "usr/share/doc/libnghttp3-9/copyright",
+      "url": "https://packages.debian.org/trixie/libnghttp3-9",
+      "dependencies": []
+    },
+    {
+      "name": "libngtcp2-16",
+      "version": "1.11.0-1+deb13u1",
+      "debian_version": "1.11.0-1+deb13u1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libngtcp2-16"
+      ],
+      "description": "implementation of QUIC protocol (library)",
+      "license": "See /usr/share/doc/libngtcp2-16/copyright",
+      "license_path": "usr/share/doc/libngtcp2-16/copyright",
+      "url": "https://packages.debian.org/trixie/libngtcp2-16",
+      "dependencies": []
+    },
+    {
+      "name": "libngtcp2-crypto-gnutls8",
+      "version": "1.11.0-1+deb13u1",
+      "debian_version": "1.11.0-1+deb13u1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libngtcp2-crypto-gnutls8"
+      ],
+      "description": "implementation of QUIC protocol (library)",
+      "license": "See /usr/share/doc/libngtcp2-crypto-gnutls8/copyright",
+      "license_path": "usr/share/doc/libngtcp2-crypto-gnutls8/copyright",
+      "url": "https://packages.debian.org/trixie/libngtcp2-crypto-gnutls8",
+      "dependencies": []
+    },
+    {
+      "name": "librtmp1",
+      "version": "2.4+20151223.gitfa8646d.1-2+b5",
+      "debian_version": "2.4+20151223.gitfa8646d.1-2+b5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "librtmp1"
+      ],
+      "description": "toolkit for RTMP streams (shared library)",
+      "license": "See /usr/share/doc/librtmp1/copyright",
+      "license_path": "usr/share/doc/librtmp1/copyright",
+      "url": "https://packages.debian.org/trixie/librtmp1",
+      "dependencies": []
+    },
+    {
+      "name": "libcurl3t64-gnutls",
+      "version": "8.14.1-2+deb13u5",
+      "debian_version": "8.14.1-2+deb13u5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libcurl3t64-gnutls"
+      ],
+      "description": "easy-to-use client-side URL transfer library (GnuTLS flavour)",
+      "license": "See /usr/share/doc/libcurl3t64-gnutls/copyright",
+      "license_path": "usr/share/doc/libcurl3t64-gnutls/copyright",
+      "url": "https://packages.debian.org/trixie/libcurl3t64-gnutls",
+      "dependencies": [
+        "libnghttp3-9",
+        "libngtcp2-16",
+        "libngtcp2-crypto-gnutls8",
+        "librtmp1"
+      ]
+    },
+    {
+      "name": "liblowdown2",
+      "version": "2.0.2-2",
+      "debian_version": "2.0.2-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "liblowdown2"
+      ],
+      "description": "Simple markdown translator (shared library)",
+      "license": "See /usr/share/doc/liblowdown2/copyright",
+      "license_path": "usr/share/doc/liblowdown2/copyright",
+      "url": "https://packages.debian.org/trixie/liblowdown2",
+      "dependencies": []
+    },
+    {
+      "name": "libsodium23",
+      "version": "1.0.18-1+deb13u1",
+      "debian_version": "1.0.18-1+deb13u1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libsodium23"
+      ],
+      "description": "Network communication, cryptography and signaturing library",
+      "license": "See /usr/share/doc/libsodium23/copyright",
+      "license_path": "usr/share/doc/libsodium23/copyright",
+      "url": "https://packages.debian.org/trixie/libsodium23",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "nix-bin"
+      ],
+      "debian_version": "2.26.3+dfsg-1",
+      "dependencies": [
+        "libboost-context1.83.0",
+        "libcpuid17",
+        "libcurl3t64-gnutls",
+        "liblowdown2",
+        "libsodium23"
+      ],
+      "description": "Purely functional package manager (binaries)",
+      "license": "See /usr/share/doc/nix-bin/copyright",
+      "license_path": "usr/share/doc/nix-bin/copyright",
+      "name": "nix-bin",
+      "url": "https://nixos.org/nix",
+      "version": "2.26.3+dfsg-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "yamllint"
+      ],
+      "debian_version": "1.37.1-1",
+      "dependencies": [],
+      "description": "Linter for YAML files",
+      "license": "See /usr/share/doc/yamllint/copyright",
+      "license_path": "usr/share/doc/yamllint/copyright",
+      "name": "yamllint",
+      "url": "https://github.com/adrienverge/yamllint",
+      "version": "1.37.1-1"
+    },
+    {
+      "name": "liboath0t64",
+      "version": "2.6.12-1",
+      "debian_version": "2.6.12-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "liboath0t64"
+      ],
+      "description": "OATH Toolkit Liboath library",
+      "license": "See /usr/share/doc/liboath0t64/copyright",
+      "license_path": "usr/share/doc/liboath0t64/copyright",
+      "url": "https://packages.debian.org/trixie/liboath0t64",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "oathtool"
+      ],
+      "debian_version": "2.6.12-1",
+      "dependencies": [
+        "liboath0t64"
+      ],
+      "description": "OATH Toolkit oathtool command line tool",
+      "license": "See /usr/share/doc/oathtool/copyright",
+      "license_path": "usr/share/doc/oathtool/copyright",
+      "name": "oathtool",
+      "url": "https://www.nongnu.org/oath-toolkit/",
+      "version": "2.6.12-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "gcc-mingw-w64-base"
+      ],
+      "debian_version": "14.2.0-19+27+b1",
+      "dependencies": [],
+      "description": "GNU Compiler Collection for MinGW-w64 (base package)",
+      "license": "See /usr/share/doc/gcc-mingw-w64-base/copyright",
+      "license_path": "usr/share/doc/gcc-mingw-w64-base/copyright",
+      "name": "gcc-mingw-w64-base",
+      "url": "https://www.gnu.org/software/gcc/",
+      "version": "14.2.0-19+27+b1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "translate-toolkit"
+      ],
+      "debian_version": "3.15.1-1",
+      "dependencies": [],
+      "description": "Toolkit assisting in the localization of software",
+      "license": "See /usr/share/doc/translate-toolkit/copyright",
+      "license_path": "usr/share/doc/translate-toolkit/copyright",
+      "name": "translate-toolkit",
+      "url": "https://toolkit.translatehouse.org/",
+      "version": "3.15.1-1"
+    },
+    {
+      "name": "libprotoc32t64",
+      "version": "3.21.12-11+deb13u1",
+      "debian_version": "3.21.12-11+deb13u1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libprotoc32t64"
+      ],
+      "description": "protocol buffers compiler library",
+      "license": "See /usr/share/doc/libprotoc32t64/copyright",
+      "license_path": "usr/share/doc/libprotoc32t64/copyright",
+      "url": "https://packages.debian.org/trixie/libprotoc32t64",
+      "dependencies": [
+        "mosh-runtime-libs"
+      ]
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "protobuf-compiler"
+      ],
+      "debian_version": "3.21.12-11+deb13u1",
+      "dependencies": [
+        "libprotoc32t64"
+      ],
+      "description": "compiler for protocol buffer definition files",
+      "license": "See /usr/share/doc/protobuf-compiler/copyright",
+      "license_path": "usr/share/doc/protobuf-compiler/copyright",
+      "name": "protobuf-compiler",
+      "url": "https://github.com/google/protobuf/",
+      "version": "3.21.12-11+deb13u1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "shtool"
+      ],
+      "debian_version": "2.0.8-10",
+      "dependencies": [
+        "perl"
+      ],
+      "description": "portable shell tool from the GNU project",
+      "license": "See /usr/share/doc/shtool/copyright",
+      "license_path": "usr/share/doc/shtool/copyright",
+      "name": "shtool",
+      "url": "https://www.gnu.org/software/shtool",
+      "version": "2.0.8-10"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "intltool"
+      ],
+      "debian_version": "0.51.0-7",
+      "dependencies": [
+        "automake",
+        "file",
+        "patch",
+        "perl"
+      ],
+      "description": "Utility scripts for internationalizing XML",
+      "license": "See /usr/share/doc/intltool/copyright",
+      "license_path": "usr/share/doc/intltool/copyright",
+      "name": "intltool",
+      "url": "https://launchpad.net/intltool",
+      "version": "0.51.0-7"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "binutils-mingw-w64-x86-64"
+      ],
+      "debian_version": "2.44-3+12+b1",
+      "dependencies": [],
+      "description": "Cross-binutils for Win64 (x64) using MinGW-w64",
+      "license": "See /usr/share/doc/binutils-mingw-w64-x86-64/copyright",
+      "license_path": "usr/share/doc/binutils-mingw-w64-x86-64/copyright",
+      "name": "binutils-mingw-w64-x86-64",
+      "url": "https://www.gnu.org/software/binutils/",
+      "version": "2.44-3+12+b1"
+    },
+    {
+      "name": "libfdt1",
+      "version": "1.7.2-2+b1",
+      "debian_version": "1.7.2-2+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libfdt1"
+      ],
+      "description": "Flat Device Trees manipulation library",
+      "license": "See /usr/share/doc/libfdt1/copyright",
+      "license_path": "usr/share/doc/libfdt1/copyright",
+      "url": "https://packages.debian.org/trixie/libfdt1",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "device-tree-compiler"
+      ],
+      "debian_version": "1.7.2-2+b1",
+      "dependencies": [
+        "libfdt1"
+      ],
+      "description": "Device Tree Compiler for Flat Device Trees",
+      "license": "See /usr/share/doc/device-tree-compiler/copyright",
+      "license_path": "usr/share/doc/device-tree-compiler/copyright",
+      "name": "device-tree-compiler",
+      "url": "https://git.kernel.org/cgit/utils/dtc/dtc.git",
+      "version": "1.7.2-2+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "containers-storage"
+      ],
+      "debian_version": "1.57.2+ds1-1+b2",
+      "dependencies": [],
+      "description": "CLI tools for handling how containers are stored on disk",
+      "license": "See /usr/share/doc/containers-storage/copyright",
+      "license_path": "usr/share/doc/containers-storage/copyright",
+      "name": "containers-storage",
+      "url": "https://github.com/containers/storage",
+      "version": "1.57.2+ds1-1+b2"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "python3-binwalk"
+      ],
+      "debian_version": "2.4.3+dfsg1-2+deb13u1",
+      "dependencies": [],
+      "description": "Python3 library for analyzing binary blobs and executable code",
+      "license": "See /usr/share/doc/python3-binwalk/copyright",
+      "license_path": "usr/share/doc/python3-binwalk/copyright",
+      "name": "python3-binwalk",
+      "url": "https://github.com/ReFirmLabs/binwalk",
+      "version": "2.4.3+dfsg1-2+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "gperf"
+      ],
+      "debian_version": "3.2.1-1",
+      "dependencies": [],
+      "description": "Perfect hash function generator",
+      "license": "See /usr/share/doc/gperf/copyright",
+      "license_path": "usr/share/doc/gperf/copyright",
+      "name": "gperf",
+      "url": "http://www.gnu.org/software/gperf/",
+      "version": "3.2.1-1"
+    },
+    {
+      "name": "libusb-0.1-4",
+      "version": "2:0.1.12-35+b1",
+      "debian_version": "2:0.1.12-35+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libusb-0.1-4"
+      ],
+      "description": "userspace USB programming library",
+      "license": "See /usr/share/doc/libusb-0.1-4/copyright",
+      "license_path": "usr/share/doc/libusb-0.1-4/copyright",
+      "url": "https://packages.debian.org/trixie/libusb-0.1-4",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "teensy-loader-cli"
+      ],
+      "debian_version": "2.2-1.1",
+      "dependencies": [
+        "libusb-0.1-4"
+      ],
+      "description": "load and run programs onto your Teensy micro controller",
+      "license": "See /usr/share/doc/teensy-loader-cli/copyright",
+      "license_path": "usr/share/doc/teensy-loader-cli/copyright",
+      "name": "teensy-loader-cli",
+      "url": "https://www.pjrc.com/teensy/loader_cli.html",
+      "version": "2.2-1.1"
+    },
+    {
+      "name": "libipsec-mb2",
+      "version": "2.0-1+b1",
+      "debian_version": "2.0-1+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libipsec-mb2"
+      ],
+      "description": "Intel(R) Multi-Buffer Crypto for IPSec library",
+      "license": "See /usr/share/doc/libipsec-mb2/copyright",
+      "license_path": "usr/share/doc/libipsec-mb2/copyright",
+      "url": "https://packages.debian.org/trixie/libipsec-mb2",
+      "dependencies": []
+    },
+    {
+      "name": "libjudydebian1",
+      "version": "1.0.5-5.1",
+      "debian_version": "1.0.5-5.1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libjudydebian1"
+      ],
+      "description": "C library for creating and accessing dynamic arrays",
+      "license": "See /usr/share/doc/libjudydebian1/copyright",
+      "license_path": "usr/share/doc/libjudydebian1/copyright",
+      "url": "https://packages.debian.org/trixie/libjudydebian1",
+      "dependencies": []
+    },
+    {
+      "name": "libapparmor1",
+      "version": "4.1.0-1",
+      "debian_version": "4.1.0-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libapparmor1"
+      ],
+      "description": "changehat AppArmor library",
+      "license": "See /usr/share/doc/libapparmor1/copyright",
+      "license_path": "usr/share/doc/libapparmor1/copyright",
+      "url": "https://packages.debian.org/trixie/libapparmor1",
+      "dependencies": []
+    },
+    {
+      "name": "libjpeg62-turbo",
+      "version": "1:2.1.5-4",
+      "debian_version": "1:2.1.5-4",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libjpeg62-turbo"
+      ],
+      "description": "libjpeg-turbo JPEG runtime library",
+      "license": "See /usr/share/doc/libjpeg62-turbo/copyright",
+      "license_path": "usr/share/doc/libjpeg62-turbo/copyright",
+      "url": "https://packages.debian.org/trixie/libjpeg62-turbo",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "stress-ng"
+      ],
+      "debian_version": "0.19.02-1",
+      "dependencies": [
+        "libipsec-mb2",
+        "libjudydebian1",
+        "libapparmor1",
+        "libjpeg62-turbo"
+      ],
+      "description": "tool to load and stress a computer",
+      "license": "See /usr/share/doc/stress-ng/copyright",
+      "license_path": "usr/share/doc/stress-ng/copyright",
+      "name": "stress-ng",
+      "url": "https://github.com/ColinIanKing/stress-ng",
+      "version": "0.19.02-1"
+    },
+    {
+      "name": "libassuan9",
+      "version": "3.0.2-2",
+      "debian_version": "3.0.2-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libassuan9"
+      ],
+      "description": "IPC library for the GnuPG components",
+      "license": "See /usr/share/doc/libassuan9/copyright",
+      "license_path": "usr/share/doc/libassuan9/copyright",
+      "url": "https://packages.debian.org/trixie/libassuan9",
+      "dependencies": []
+    },
+    {
+      "name": "libgpgme11t64",
+      "version": "1.24.2-3",
+      "debian_version": "1.24.2-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgpgme11t64"
+      ],
+      "description": "GPGME - GnuPG Made Easy (library)",
+      "license": "See /usr/share/doc/libgpgme11t64/copyright",
+      "license_path": "usr/share/doc/libgpgme11t64/copyright",
+      "url": "https://packages.debian.org/trixie/libgpgme11t64",
+      "dependencies": [
+        "libassuan9"
+      ]
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "skopeo"
+      ],
+      "debian_version": "1.18.0+ds1-1+b5",
+      "dependencies": [
+        "libgpgme11t64"
+      ],
+      "description": "Tooling to work with remote images registries",
+      "license": "See /usr/share/doc/skopeo/copyright",
+      "license_path": "usr/share/doc/skopeo/copyright",
+      "name": "skopeo",
+      "url": "https://github.com/containers/skopeo",
+      "version": "1.18.0+ds1-1+b5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "binutils-mingw-w64-i686"
+      ],
+      "debian_version": "2.44-3+12+b1",
+      "dependencies": [],
+      "description": "Cross-binutils for Win32 (x86) using MinGW-w64",
+      "license": "See /usr/share/doc/binutils-mingw-w64-i686/copyright",
+      "license_path": "usr/share/doc/binutils-mingw-w64-i686/copyright",
+      "name": "binutils-mingw-w64-i686",
+      "url": "https://www.gnu.org/software/binutils/",
+      "version": "2.44-3+12+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "stress"
+      ],
+      "debian_version": "1.0.7-1",
+      "dependencies": [],
+      "description": "tool to impose load on and stress test a computer system",
+      "license": "See /usr/share/doc/stress/copyright",
+      "license_path": "usr/share/doc/stress/copyright",
+      "name": "stress",
+      "url": "https://github.com/resurrecting-open-source-projects/stress",
+      "version": "1.0.7-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "acpica-tools"
+      ],
+      "debian_version": "20250404-1",
+      "dependencies": [],
+      "description": "ACPICA tools for the development and debug of ACPI tables",
+      "license": "See /usr/share/doc/acpica-tools/copyright",
+      "license_path": "usr/share/doc/acpica-tools/copyright",
+      "name": "acpica-tools",
+      "url": "https://www.acpica.org",
+      "version": "20250404-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fp-units-rtl-3.2.2"
+      ],
+      "debian_version": "3.2.2+dfsg-46",
+      "dependencies": [],
+      "description": "Free Pascal - runtime libraries",
+      "license": "See /usr/share/doc/fp-units-rtl-3.2.2/copyright",
+      "license_path": "usr/share/doc/fp-units-rtl-3.2.2/copyright",
+      "name": "fp-units-rtl-3.2.2",
+      "url": "https://www.freepascal.org/",
+      "version": "3.2.2+dfsg-46"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "pbuilder"
+      ],
+      "debian_version": "0.231.1",
+      "dependencies": [],
+      "description": "personal package builder for Debian packages",
+      "license": "See /usr/share/doc/pbuilder/copyright",
+      "license_path": "usr/share/doc/pbuilder/copyright",
+      "name": "pbuilder",
+      "url": "https://pbuilder-team.pages.debian.net/pbuilder",
+      "version": "0.231.1"
+    },
+    {
+      "name": "libtinyxml2-11",
+      "version": "11.0.0+dfsg-1+b1",
+      "debian_version": "11.0.0+dfsg-1+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libtinyxml2-11"
+      ],
+      "description": "C++ XML parsing library",
+      "license": "See /usr/share/doc/libtinyxml2-11/copyright",
+      "license_path": "usr/share/doc/libtinyxml2-11/copyright",
+      "url": "https://packages.debian.org/trixie/libtinyxml2-11",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "cppcheck"
+      ],
+      "debian_version": "2.17.1-2",
+      "dependencies": [
+        "libtinyxml2-11"
+      ],
+      "description": "tool for static C/C++ code analysis (CLI)",
+      "license": "See /usr/share/doc/cppcheck/copyright",
+      "license_path": "usr/share/doc/cppcheck/copyright",
+      "name": "cppcheck",
+      "url": "https://sourceforge.net/p/cppcheck/wiki/Home/",
+      "version": "2.17.1-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "binutils-gold-x86-64-linux-gnu"
+      ],
+      "debian_version": "2.44-2",
+      "dependencies": [],
+      "description": "gold ELF linker for the x86-64-linux-gnu target (deprecated)",
+      "license": "See /usr/share/doc/binutils-gold-x86-64-linux-gnu/copyright",
+      "license_path": "usr/share/doc/binutils-gold-x86-64-linux-gnu/copyright",
+      "name": "binutils-gold-x86-64-linux-gnu",
+      "url": "https://www.gnu.org/software/binutils/",
+      "version": "2.44-2"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "gcc-14-cross-base"
+      ],
+      "debian_version": "14.2.0-19cross1",
+      "dependencies": [],
+      "description": "GCC, the GNU Compiler Collection (library base package)",
+      "license": "See /usr/share/doc/gcc-14-cross-base/copyright",
+      "license_path": "usr/share/doc/gcc-14-cross-base/copyright",
+      "name": "gcc-14-cross-base",
+      "url": "http://gcc.gnu.org/",
+      "version": "14.2.0-19cross1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "castxml"
+      ],
+      "debian_version": "0.6.11-1",
+      "dependencies": [],
+      "description": "C-family abstract syntax tree XML output tool",
+      "license": "See /usr/share/doc/castxml/copyright",
+      "license_path": "usr/share/doc/castxml/copyright",
+      "name": "castxml",
+      "url": "https://github.com/CastXML/CastXML",
+      "version": "0.6.11-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "linux-libc-dev-arm64-cross"
+      ],
+      "debian_version": "6.12.38-1cross1",
+      "dependencies": [],
+      "description": "Linux Kernel Headers for development (for cross-compiling)",
+      "license": "See /usr/share/doc/linux-libc-dev-arm64-cross/copyright",
+      "license_path": "usr/share/doc/linux-libc-dev-arm64-cross/copyright",
+      "name": "linux-libc-dev-arm64-cross",
+      "url": "https://packages.debian.org/trixie/linux-libc-dev-arm64-cross",
+      "version": "6.12.38-1cross1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "autopkgtest"
+      ],
+      "debian_version": "5.49",
+      "dependencies": [],
+      "description": "automatic as-installed testing for Debian packages",
+      "license": "See /usr/share/doc/autopkgtest/copyright",
+      "license_path": "usr/share/doc/autopkgtest/copyright",
+      "name": "autopkgtest",
+      "url": "https://packages.debian.org/trixie/autopkgtest",
+      "version": "5.49"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "scons"
+      ],
+      "debian_version": "4.8.1+dfsg-1",
+      "dependencies": [],
+      "description": "replacement for make",
+      "license": "See /usr/share/doc/scons/copyright",
+      "license_path": "usr/share/doc/scons/copyright",
+      "name": "scons",
+      "url": "https://www.scons.org/",
+      "version": "4.8.1+dfsg-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "yasm"
+      ],
+      "debian_version": "1.3.0-7",
+      "dependencies": [],
+      "description": "modular assembler with multiple syntaxes support",
+      "license": "See /usr/share/doc/yasm/copyright",
+      "license_path": "usr/share/doc/yasm/copyright",
+      "name": "yasm",
+      "url": "https://github.com/yasm/yasm/",
+      "version": "1.3.0-7"
+    },
+    {
+      "name": "libavahi-common3",
+      "version": "0.8-16",
+      "debian_version": "0.8-16",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libavahi-common3"
+      ],
+      "description": "Avahi common library",
+      "license": "See /usr/share/doc/libavahi-common3/copyright",
+      "license_path": "usr/share/doc/libavahi-common3/copyright",
+      "url": "https://packages.debian.org/trixie/libavahi-common3",
+      "dependencies": []
+    },
+    {
+      "name": "libavahi-client3",
+      "version": "0.8-16",
+      "debian_version": "0.8-16",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libavahi-client3"
+      ],
+      "description": "Avahi client library",
+      "license": "See /usr/share/doc/libavahi-client3/copyright",
+      "license_path": "usr/share/doc/libavahi-client3/copyright",
+      "url": "https://packages.debian.org/trixie/libavahi-client3",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "distcc"
+      ],
+      "debian_version": "3.4+really3.4-12",
+      "dependencies": [
+        "libavahi-common3",
+        "libavahi-client3"
+      ],
+      "description": "simple distributed compiler client and server",
+      "license": "See /usr/share/doc/distcc/copyright",
+      "license_path": "usr/share/doc/distcc/copyright",
+      "name": "distcc",
+      "url": "https://distcc.github.io/",
+      "version": "3.4+really3.4-12"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "prometheus-blackbox-exporter"
+      ],
+      "debian_version": "0.26.0-1",
+      "dependencies": [],
+      "description": "blackbox prober for Prometheus",
+      "license": "See /usr/share/doc/prometheus-blackbox-exporter/copyright",
+      "license_path": "usr/share/doc/prometheus-blackbox-exporter/copyright",
+      "name": "prometheus-blackbox-exporter",
+      "url": "https://github.com/prometheus/blackbox_exporter",
+      "version": "0.26.0-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "how-can-i-help"
+      ],
+      "debian_version": "20",
+      "dependencies": [],
+      "description": "show opportunities for contributing to Debian",
+      "license": "See /usr/share/doc/how-can-i-help/copyright",
+      "license_path": "usr/share/doc/how-can-i-help/copyright",
+      "name": "how-can-i-help",
+      "url": "https://wiki.debian.org/how-can-i-help",
+      "version": "20"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "cfortran"
+      ],
+      "debian_version": "20210827-1.1",
+      "dependencies": [],
+      "description": "Header file permitting Fortran routines to be called in C/C++",
+      "license": "See /usr/share/doc/cfortran/copyright",
+      "license_path": "usr/share/doc/cfortran/copyright",
+      "name": "cfortran",
+      "url": "https://github.com/bastien-roucaries/cfortran",
+      "version": "20210827-1.1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "cloc"
+      ],
+      "debian_version": "2.04-1",
+      "dependencies": [
+        "perl"
+      ],
+      "description": "statistics utility to count lines of code",
+      "license": "See /usr/share/doc/cloc/copyright",
+      "license_path": "usr/share/doc/cloc/copyright",
+      "name": "cloc",
+      "url": "https://github.com/AlDanial/cloc",
+      "version": "2.04-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "v2ray"
+      ],
+      "debian_version": "4.34.0+ds-4+b12",
+      "dependencies": [],
+      "description": "Command line tool for golang-v2ray-core",
+      "license": "See /usr/share/doc/v2ray/copyright",
+      "license_path": "usr/share/doc/v2ray/copyright",
+      "name": "v2ray",
+      "url": "https://github.com/v2fly/v2ray-core",
+      "version": "4.34.0+ds-4+b12"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "help2man"
+      ],
+      "debian_version": "1.49.3",
+      "dependencies": [
+        "perl"
+      ],
+      "description": "Automatic manpage generator",
+      "license": "See /usr/share/doc/help2man/copyright",
+      "license_path": "usr/share/doc/help2man/copyright",
+      "name": "help2man",
+      "url": "https://packages.debian.org/trixie/help2man",
+      "version": "1.49.3"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "wx3.2-headers"
+      ],
+      "debian_version": "3.2.8+dfsg-2",
+      "dependencies": [],
+      "description": "wxWidgets Cross-platform C++ GUI toolkit (header files)",
+      "license": "See /usr/share/doc/wx3.2-headers/copyright",
+      "license_path": "usr/share/doc/wx3.2-headers/copyright",
+      "name": "wx3.2-headers",
+      "url": "https://www.wxwidgets.org/",
+      "version": "3.2.8+dfsg-2"
+    },
+    {
+      "name": "libsource-highlight4t64",
+      "version": "3.1.9-4.3+b1",
+      "debian_version": "3.1.9-4.3+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libsource-highlight4t64"
+      ],
+      "description": "source highlighting library",
+      "license": "See /usr/share/doc/libsource-highlight4t64/copyright",
+      "license_path": "usr/share/doc/libsource-highlight4t64/copyright",
+      "url": "https://packages.debian.org/trixie/libsource-highlight4t64",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "source-highlight"
+      ],
+      "debian_version": "3.1.9-4.3+b1",
+      "dependencies": [
+        "libsource-highlight4t64"
+      ],
+      "description": "convert source code to syntax highlighted document",
+      "license": "See /usr/share/doc/source-highlight/copyright",
+      "license_path": "usr/share/doc/source-highlight/copyright",
+      "name": "source-highlight",
+      "url": "http://www.gnu.org/software/src-highlite/",
+      "version": "3.1.9-4.3+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "gcc-14-aarch64-linux-gnu-base"
+      ],
+      "debian_version": "14.2.0-19cross1",
+      "dependencies": [],
+      "description": "GCC, the GNU Compiler Collection (base package)",
+      "license": "See /usr/share/doc/gcc-14-aarch64-linux-gnu-base/copyright",
+      "license_path": "usr/share/doc/gcc-14-aarch64-linux-gnu-base/copyright",
+      "name": "gcc-14-aarch64-linux-gnu-base",
+      "url": "http://gcc.gnu.org/",
+      "version": "14.2.0-19cross1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "erlang-jiffy"
+      ],
+      "debian_version": "1.1.2-1+b1",
+      "dependencies": [],
+      "description": "JSON NIFs (Native Implemented Functions) for Erlang",
+      "license": "See /usr/share/doc/erlang-jiffy/copyright",
+      "license_path": "usr/share/doc/erlang-jiffy/copyright",
+      "name": "erlang-jiffy",
+      "url": "https://github.com/davisp/jiffy",
+      "version": "1.1.2-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "semodule-utils"
+      ],
+      "debian_version": "3.8.1-1",
+      "dependencies": [],
+      "description": "SELinux core policy utilities (modules utilities)",
+      "license": "See /usr/share/doc/semodule-utils/copyright",
+      "license_path": "usr/share/doc/semodule-utils/copyright",
+      "name": "semodule-utils",
+      "url": "https://github.com/SELinuxProject",
+      "version": "3.8.1-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mold"
+      ],
+      "debian_version": "2.37.1+dfsg-1",
+      "dependencies": [],
+      "description": "Drop-in linker",
+      "license": "See /usr/share/doc/mold/copyright",
+      "license_path": "usr/share/doc/mold/copyright",
+      "name": "mold",
+      "url": "https://github.com/rui314/mold",
+      "version": "2.37.1+dfsg-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "highlight"
+      ],
+      "debian_version": "4.10-1+b2",
+      "dependencies": [],
+      "description": "Universal source code to formatted text converter",
+      "license": "See /usr/share/doc/highlight/copyright",
+      "license_path": "usr/share/doc/highlight/copyright",
+      "name": "highlight",
+      "url": "http://www.andre-simon.de",
+      "version": "4.10-1+b2"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "perltidy"
+      ],
+      "debian_version": "20250105-1",
+      "dependencies": [
+        "perl"
+      ],
+      "description": "Perl script indenter and reformatter",
+      "license": "See /usr/share/doc/perltidy/copyright",
+      "license_path": "usr/share/doc/perltidy/copyright",
+      "name": "perltidy",
+      "url": "https://perltidy.sourceforge.net/",
+      "version": "20250105-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "linux-libc-dev-armhf-cross"
+      ],
+      "debian_version": "6.12.38-1cross1",
+      "dependencies": [],
+      "description": "Linux Kernel Headers for development (for cross-compiling)",
+      "license": "See /usr/share/doc/linux-libc-dev-armhf-cross/copyright",
+      "license_path": "usr/share/doc/linux-libc-dev-armhf-cross/copyright",
+      "name": "linux-libc-dev-armhf-cross",
+      "url": "https://packages.debian.org/trixie/linux-libc-dev-armhf-cross",
+      "version": "6.12.38-1cross1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "tree-sitter-cli"
+      ],
+      "debian_version": "0.22.6-6+b1",
+      "dependencies": [],
+      "description": "command-line for Tree-sitter parsers",
+      "license": "See /usr/share/doc/tree-sitter-cli/copyright",
+      "license_path": "usr/share/doc/tree-sitter-cli/copyright",
+      "name": "tree-sitter-cli",
+      "url": "https://tree-sitter.github.io/tree-sitter/",
+      "version": "0.22.6-6+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "check"
+      ],
+      "debian_version": "0.15.2-3",
+      "dependencies": [],
+      "description": "unit test framework for C",
+      "license": "See /usr/share/doc/check/copyright",
+      "license_path": "usr/share/doc/check/copyright",
+      "name": "check",
+      "url": "https://libcheck.github.io/check/",
+      "version": "0.15.2-3"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "dupload"
+      ],
+      "debian_version": "2.13.2",
+      "dependencies": [
+        "perl"
+      ],
+      "description": "Debian package upload tool",
+      "license": "See /usr/share/doc/dupload/copyright",
+      "license_path": "usr/share/doc/dupload/copyright",
+      "name": "dupload",
+      "url": "https://packages.debian.org/trixie/dupload",
+      "version": "2.13.2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "webhook"
+      ],
+      "debian_version": "2.8.0-4+b19",
+      "dependencies": [],
+      "description": "Small server for creating HTTP endpoints (hooks)",
+      "license": "See /usr/share/doc/webhook/copyright",
+      "license_path": "usr/share/doc/webhook/copyright",
+      "name": "webhook",
+      "url": "https://github.com/adnanh/webhook",
+      "version": "2.8.0-4+b19"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "irtt"
+      ],
+      "debian_version": "0.9.0-2+b37",
+      "dependencies": [],
+      "description": "Isochronous Round-Trip Tester",
+      "license": "See /usr/share/doc/irtt/copyright",
+      "license_path": "usr/share/doc/irtt/copyright",
+      "name": "irtt",
+      "url": "https://github.com/peteheist/irtt",
+      "version": "0.9.0-2+b37"
+    },
+    {
+      "name": "libvala-0.56-0",
+      "version": "0.56.18-2",
+      "debian_version": "0.56.18-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libvala-0.56-0"
+      ],
+      "description": "C# like language for the GObject system - library",
+      "license": "See /usr/share/doc/libvala-0.56-0/copyright",
+      "license_path": "usr/share/doc/libvala-0.56-0/copyright",
+      "url": "https://packages.debian.org/trixie/libvala-0.56-0",
+      "dependencies": []
+    },
+    {
+      "name": "libvalacodegen-0.56-0",
+      "version": "0.56.18-2",
+      "debian_version": "0.56.18-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libvalacodegen-0.56-0"
+      ],
+      "description": "internal package for C# like language for the GObject system",
+      "license": "See /usr/share/doc/libvalacodegen-0.56-0/copyright",
+      "license_path": "usr/share/doc/libvalacodegen-0.56-0/copyright",
+      "url": "https://packages.debian.org/trixie/libvalacodegen-0.56-0",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "valac-bin"
+      ],
+      "debian_version": "0.56.18-2",
+      "dependencies": [
+        "libvala-0.56-0",
+        "libvalacodegen-0.56-0"
+      ],
+      "description": "internal package for C# like language for the GObject system",
+      "license": "See /usr/share/doc/valac-bin/copyright",
+      "license_path": "usr/share/doc/valac-bin/copyright",
+      "name": "valac-bin",
+      "url": "https://wiki.gnome.org/Projects/Vala/",
+      "version": "0.56.18-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "indent"
+      ],
+      "debian_version": "2.2.13-7",
+      "dependencies": [],
+      "description": "C language source code formatting program",
+      "license": "See /usr/share/doc/indent/copyright",
+      "license_path": "usr/share/doc/indent/copyright",
+      "name": "indent",
+      "url": "https://www.gnu.org/software/indent/",
+      "version": "2.2.13-7"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fp-utils-3.2.2"
+      ],
+      "debian_version": "3.2.2+dfsg-46",
+      "dependencies": [],
+      "description": "Free Pascal - utilities",
+      "license": "See /usr/share/doc/fp-utils-3.2.2/copyright",
+      "license_path": "usr/share/doc/fp-utils-3.2.2/copyright",
+      "name": "fp-utils-3.2.2",
+      "url": "https://www.freepascal.org/",
+      "version": "3.2.2+dfsg-46"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "cdbs"
+      ],
+      "debian_version": "0.4.173",
+      "dependencies": [],
+      "description": "common build system for Debian packages",
+      "license": "See /usr/share/doc/cdbs/copyright",
+      "license_path": "usr/share/doc/cdbs/copyright",
+      "name": "cdbs",
+      "url": "https://packages.debian.org/trixie/cdbs",
+      "version": "0.4.173"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ed"
+      ],
+      "debian_version": "1.21.1-1",
+      "dependencies": [],
+      "description": "classic UNIX line editor",
+      "license": "See /usr/share/doc/ed/copyright",
+      "license_path": "usr/share/doc/ed/copyright",
+      "name": "ed",
+      "url": "https://www.gnu.org/software/ed/",
+      "version": "1.21.1-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "arduino-ctags"
+      ],
+      "debian_version": "5.8-arduino11-3",
+      "dependencies": [],
+      "description": "Arduino fork of exuberant ctags",
+      "license": "See /usr/share/doc/arduino-ctags/copyright",
+      "license_path": "usr/share/doc/arduino-ctags/copyright",
+      "name": "arduino-ctags",
+      "url": "https://github.com/arduino/ctags",
+      "version": "5.8-arduino11-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "nvi"
+      ],
+      "debian_version": "1.81.6-23",
+      "dependencies": [],
+      "description": "4.4BSD re-implementation of vi",
+      "license": "See /usr/share/doc/nvi/copyright",
+      "license_path": "usr/share/doc/nvi/copyright",
+      "name": "nvi",
+      "url": "https://repo.or.cz/nvi.git",
+      "version": "1.81.6-23"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "vim-addon-manager"
+      ],
+      "debian_version": "0.5.11",
+      "dependencies": [],
+      "description": "manager of addons for the Vim editor",
+      "license": "See /usr/share/doc/vim-addon-manager/copyright",
+      "license_path": "usr/share/doc/vim-addon-manager/copyright",
+      "name": "vim-addon-manager",
+      "url": "https://packages.debian.org/trixie/vim-addon-manager",
+      "version": "0.5.11"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "vim-scripts"
+      ],
+      "debian_version": "20210124.4",
+      "dependencies": [
+        "vim"
+      ],
+      "description": "plugins for vim, adding bells and whistles",
+      "license": "See /usr/share/doc/vim-scripts/copyright",
+      "license_path": "usr/share/doc/vim-scripts/copyright",
+      "name": "vim-scripts",
+      "url": "http://www.vim.org/scripts/",
+      "version": "20210124.4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "hexedit"
+      ],
+      "debian_version": "1.6-2",
+      "dependencies": [],
+      "description": "viewer and editor in hexadecimal or ASCII for files or devices",
+      "license": "See /usr/share/doc/hexedit/copyright",
+      "license_path": "usr/share/doc/hexedit/copyright",
+      "name": "hexedit",
+      "url": "https://github.com/pixel/hexedit",
+      "version": "1.6-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "hx"
+      ],
+      "debian_version": "25.01.1-4",
+      "dependencies": [],
+      "description": "modal CLI text editor Helix",
+      "license": "See /usr/share/doc/hx/copyright",
+      "license_path": "usr/share/doc/hx/copyright",
+      "name": "hx",
+      "url": "https://helix-editor.com/",
+      "version": "25.01.1-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ledit"
+      ],
+      "debian_version": "2.04-8+b12",
+      "dependencies": [],
+      "description": "line editor for interactive programs",
+      "license": "See /usr/share/doc/ledit/copyright",
+      "license_path": "usr/share/doc/ledit/copyright",
+      "name": "ledit",
+      "url": "http://cristal.inria.fr/~ddr/ledit/",
+      "version": "2.04-8+b12"
+    },
+    {
+      "name": "libgee-0.8-2",
+      "version": "0.20.8-1",
+      "debian_version": "0.20.8-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgee-0.8-2"
+      ],
+      "description": "GObject based collection and utility library",
+      "license": "See /usr/share/doc/libgee-0.8-2/copyright",
+      "license_path": "usr/share/doc/libgee-0.8-2/copyright",
+      "url": "https://packages.debian.org/trixie/libgee-0.8-2",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "zile"
+      ],
+      "debian_version": "2.6.2-2+b2",
+      "dependencies": [
+        "libgee-0.8-2"
+      ],
+      "description": "very small Emacs-subset editor",
+      "license": "See /usr/share/doc/zile/copyright",
+      "license_path": "usr/share/doc/zile/copyright",
+      "name": "zile",
+      "url": "https://www.gnu.org/software/zile/",
+      "version": "2.6.2-2+b2"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "apel"
+      ],
+      "debian_version": "10.8+0.20220720-1",
+      "dependencies": [],
+      "description": "portable library for emacsen",
+      "license": "See /usr/share/doc/apel/copyright",
+      "license_path": "usr/share/doc/apel/copyright",
+      "name": "apel",
+      "url": "https://github.com/wanderlust/apel",
+      "version": "10.8+0.20220720-1"
+    },
+    {
+      "name": "libftdi1",
+      "version": "0.20-4+b2",
+      "debian_version": "0.20-4+b2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libftdi1"
+      ],
+      "description": "Library to control and program the FTDI USB controller",
+      "license": "See /usr/share/doc/libftdi1/copyright",
+      "license_path": "usr/share/doc/libftdi1/copyright",
+      "url": "https://packages.debian.org/trixie/libftdi1",
+      "dependencies": []
+    },
+    {
+      "name": "libhidapi-libusb0",
+      "version": "0.14.0-1+b2",
+      "debian_version": "0.14.0-1+b2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libhidapi-libusb0"
+      ],
+      "description": "Multi-Platform library for communication with HID devices (libusb backend)",
+      "license": "See /usr/share/doc/libhidapi-libusb0/copyright",
+      "license_path": "usr/share/doc/libhidapi-libusb0/copyright",
+      "url": "https://packages.debian.org/trixie/libhidapi-libusb0",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "avrdude"
+      ],
+      "debian_version": "7.1+dfsg-3+b2",
+      "dependencies": [
+        "libftdi1",
+        "libhidapi-libusb0"
+      ],
+      "description": "software for programming Atmel AVR microcontrollers",
+      "license": "See /usr/share/doc/avrdude/copyright",
+      "license_path": "usr/share/doc/avrdude/copyright",
+      "name": "avrdude",
+      "url": "https://github.com/avrdudes/avrdude/",
+      "version": "7.1+dfsg-3+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "dfu-util"
+      ],
+      "debian_version": "0.11-3",
+      "dependencies": [],
+      "description": "Device firmware update (DFU) USB programmer",
+      "license": "See /usr/share/doc/dfu-util/copyright",
+      "license_path": "usr/share/doc/dfu-util/copyright",
+      "name": "dfu-util",
+      "url": "https://dfu-util.sourceforge.net",
+      "version": "0.11-3"
+    },
+    {
+      "name": "libftdi1-2",
+      "version": "1.5-10",
+      "debian_version": "1.5-10",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libftdi1-2"
+      ],
+      "description": "C Library to control and program the FTDI USB controllers",
+      "license": "See /usr/share/doc/libftdi1-2/copyright",
+      "license_path": "usr/share/doc/libftdi1-2/copyright",
+      "url": "https://packages.debian.org/trixie/libftdi1-2",
+      "dependencies": []
+    },
+    {
+      "name": "libjaylink0",
+      "version": "0.4.0-1",
+      "debian_version": "0.4.0-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libjaylink0"
+      ],
+      "description": "library for interacting with J-Link programmers",
+      "license": "See /usr/share/doc/libjaylink0/copyright",
+      "license_path": "usr/share/doc/libjaylink0/copyright",
+      "url": "https://packages.debian.org/trixie/libjaylink0",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "flashrom"
+      ],
+      "debian_version": "1.4.0-3",
+      "dependencies": [
+        "libftdi1-2",
+        "libjaylink0"
+      ],
+      "description": "Identify, read, write, erase, and verify BIOS/ROM/flash chips",
+      "license": "See /usr/share/doc/flashrom/copyright",
+      "license_path": "usr/share/doc/flashrom/copyright",
+      "name": "flashrom",
+      "url": "http://www.flashrom.org",
+      "version": "1.4.0-3"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "esptool"
+      ],
+      "debian_version": "4.7.0+dfsg-0.1",
+      "dependencies": [],
+      "description": "create and flash firmware files to ESP8266 and ESP32 chips",
+      "license": "See /usr/share/doc/esptool/copyright",
+      "license_path": "usr/share/doc/esptool/copyright",
+      "name": "esptool",
+      "url": "https://github.com/espressif/esptool",
+      "version": "4.7.0+dfsg-0.1"
+    },
+    {
+      "name": "libstlink1",
+      "version": "1.8.0-1.1",
+      "debian_version": "1.8.0-1.1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libstlink1"
+      ],
+      "description": "OpenSource ST-Link tools replacement.",
+      "license": "See /usr/share/doc/libstlink1/copyright",
+      "license_path": "usr/share/doc/libstlink1/copyright",
+      "url": "https://packages.debian.org/trixie/libstlink1",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "stlink-tools"
+      ],
+      "debian_version": "1.8.0-1.1",
+      "dependencies": [
+        "libstlink1"
+      ],
+      "description": "OpenSource ST-Link tools replacement.",
+      "license": "See /usr/share/doc/stlink-tools/copyright",
+      "license_path": "usr/share/doc/stlink-tools/copyright",
+      "name": "stlink-tools",
+      "url": "https://github.com/stlink-org/stlink",
+      "version": "1.8.0-1.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "avarice"
+      ],
+      "debian_version": "2.14+svn427-2",
+      "dependencies": [],
+      "description": "use GDB with Atmel AVR debuggers",
+      "license": "See /usr/share/doc/avarice/copyright",
+      "license_path": "usr/share/doc/avarice/copyright",
+      "name": "avarice",
+      "url": "http://avarice.sourceforge.net/",
+      "version": "2.14+svn427-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mspdebug"
+      ],
+      "debian_version": "0.25-1",
+      "dependencies": [],
+      "description": "debugging tool for MSP430 microcontrollers",
+      "license": "See /usr/share/doc/mspdebug/copyright",
+      "license_path": "usr/share/doc/mspdebug/copyright",
+      "name": "mspdebug",
+      "url": "https://mspdebug.sourceforge.net/",
+      "version": "0.25-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "gputils"
+      ],
+      "debian_version": "1.5.2-1",
+      "dependencies": [],
+      "description": "GNU PIC utilities",
+      "license": "See /usr/share/doc/gputils/copyright",
+      "license_path": "usr/share/doc/gputils/copyright",
+      "name": "gputils",
+      "url": "https://gputils.sourceforge.net",
+      "version": "1.5.2-1"
+    },
+    {
+      "name": "gcc-14-base",
+      "version": "14.2.0-19",
+      "debian_version": "14.2.0-19",
+      "arch": "x86_64",
+      "debian_packages": [
+        "gcc-14-base"
+      ],
+      "description": "GCC, the GNU Compiler Collection (base package)",
+      "license": "See /usr/share/doc/gcc-14-base/copyright",
+      "license_path": "usr/share/doc/gcc-14-base/copyright",
+      "url": "https://packages.debian.org/trixie/gcc-14-base",
+      "dependencies": []
+    },
+    {
+      "name": "libgomp1",
+      "version": "14.2.0-19",
+      "debian_version": "14.2.0-19",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgomp1"
+      ],
+      "description": "GCC OpenMP (GOMP) support library",
+      "license": "See /usr/share/doc/libgomp1/copyright",
+      "license_path": "usr/share/doc/libgomp1/copyright",
+      "url": "https://packages.debian.org/trixie/libgomp1",
+      "dependencies": [
+        "gcc-14-base"
+      ],
+      "license_source_package": "gcc-14-base",
+      "license_source_path": "usr/share/doc/gcc-14-base/copyright"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ngspice"
+      ],
+      "debian_version": "44.2+ds-1",
+      "dependencies": [
+        "libgomp1"
+      ],
+      "description": "Spice circuit simulator",
+      "license": "See /usr/share/doc/ngspice/copyright",
+      "license_path": "usr/share/doc/ngspice/copyright",
+      "name": "ngspice",
+      "url": "https://ngspice.sourceforge.io",
+      "version": "44.2+ds-1"
+    },
+    {
+      "name": "libow-3.2-4t64",
+      "version": "3.2p4+dfsg1-6",
+      "debian_version": "3.2p4+dfsg1-6",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libow-3.2-4t64"
+      ],
+      "description": "1-Wire File System full library",
+      "license": "See /usr/share/doc/libow-3.2-4t64/copyright",
+      "license_path": "usr/share/doc/libow-3.2-4t64/copyright",
+      "url": "https://packages.debian.org/trixie/libow-3.2-4t64",
+      "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "owserver"
+      ],
+      "debian_version": "3.2p4+dfsg1-6",
+      "dependencies": [
+        "libow-3.2-4t64"
+      ],
+      "description": "Backend server for 1-Wire control",
+      "license": "See /usr/share/doc/owserver/copyright",
+      "license_path": "usr/share/doc/owserver/copyright",
+      "name": "owserver",
+      "url": "http://owfs.org/",
+      "version": "3.2p4+dfsg1-6"
+    }
+  ],
+  "source_integrity": {
+    "suite": "trixie",
+    "release_file": "dists/trixie/InRelease",
+    "release_sha256": "0584fba32e13e0ab8285fb16c27adea1ec03a73669c18702821094fd6ca86675",
+    "package_index_file": "dists/trixie/main/binary-amd64/Packages.xz",
+    "package_index_sha256": "7778d3e3f303b7ddb8ce0fe7c8d57473a076c6bf2e8f241f75421d2396352498",
+    "archive_signing_key_fingerprint": "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+    "archive_signing_key_sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7"
+  },
+  "sources": {
+    "sbuild": {
+      "architecture": "all",
+      "filename": "pool/main/s/sbuild/sbuild_0.89.3+deb13u4_all.deb",
+      "sha256": "544ca6dc2201741bb639a2ab52664d7d181e35877feecb743d54b80c55eb0b3f",
+      "version": "0.89.3+deb13u4"
+    },
+    "re2c": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/re2c/re2c_4.1-1_amd64.deb",
+      "sha256": "51526cd228f45a1e137412ac2ab52b2304ee149cbcbbd622bb06c8356a841f04",
+      "version": "4.1-1"
+    },
+    "heimdall-flash": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/heimdall-flash/heimdall-flash_2.1.0-1_amd64.deb",
+      "sha256": "195cc19eba6ed9954356f286122db79d37d1a21c7cd2303aa039e0441c304f3b",
+      "version": "2.1.0-1"
+    },
+    "qmake6": {
+      "architecture": "amd64",
+      "filename": "pool/main/q/qt6-base/qmake6_6.8.2+dfsg-9+deb13u2_amd64.deb",
+      "sha256": "7c2a35c10d40eb82dff3f43282f328f6a5d13d68b7af2f2c8f169794b9e04ef7",
+      "version": "6.8.2+dfsg-9+deb13u2"
+    },
+    "binutils-avr": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/binutils-avr/binutils-avr_2.43.50.20250108-1_amd64.deb",
+      "sha256": "d1b81c9a828371037a22a6daa75d1c88ac22941df2f9d729b2305b57cc940854",
+      "version": "2.43.50.20250108-1"
+    },
+    "dh-elpa-helper": {
+      "architecture": "all",
+      "filename": "pool/main/d/dh-elpa/dh-elpa-helper_2.1.9_all.deb",
+      "sha256": "0d5b447bb7084f527f993fb156a8ba093b00db5190699b2663e44b8b6aed6634",
+      "version": "2.1.9"
+    },
+    "doxygen": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/doxygen/doxygen_1.9.8+ds-2.1_amd64.deb",
+      "sha256": "9cc450ed7b3fa48618c7f4ec7a2b48d5ab84f9aeb74294cbb1d906b76e7d505c",
+      "version": "1.9.8+ds-2.1"
+    },
+    "cpp-13-x86-64-linux-gnu": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gcc-13/cpp-13-x86-64-linux-gnu_13.3.0-16_amd64.deb",
+      "sha256": "8c6efaa4557b6311c22530f5b64dcb739d0338d317161c73f0bce791a3e45c2f",
+      "version": "13.3.0-16"
+    },
+    "python3-rope": {
+      "architecture": "all",
+      "filename": "pool/main/r/rope/python3-rope_1.13.0-4_all.deb",
+      "sha256": "25023fdd32451729a1721db9d24aaf7aeab97380f0138d0d6830c7ce9675993f",
+      "version": "1.13.0-4"
+    },
+    "antlr": {
+      "architecture": "all",
+      "filename": "pool/main/a/antlr/antlr_2.7.7+dfsg-14_all.deb",
+      "sha256": "2aeba283991c93474fbf3bbf2a4fae5897ea44e904b33a11bea7cf137cdb3ee5",
+      "version": "2.7.7+dfsg-14"
+    },
+    "nasm": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nasm/nasm_2.16.03-1_amd64.deb",
+      "sha256": "e5096e91356d643f54d46f3ede1d8d44e45c81a3995fb057c28ec51e3791818f",
+      "version": "2.16.03-1"
+    },
+    "etc1tool": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/android-platform-tools/etc1tool_34.0.5-12_amd64.deb",
+      "sha256": "77f4fbb2e09f197cd3963dd11ec5413be88a8c8c0cf50c9d90fd864870f083b3",
+      "version": "34.0.5-12"
+    },
+    "dput": {
+      "architecture": "all",
+      "filename": "pool/main/d/dput/dput_1.2.4_all.deb",
+      "sha256": "262ab6ac161711b933f55679fde73870f2d6da5a03b74d72c1eb15fb70995bca",
+      "version": "1.2.4"
+    },
+    "thonny": {
+      "architecture": "all",
+      "filename": "pool/main/t/thonny/thonny_4.1.7-1_all.deb",
+      "sha256": "30bcaf19151e0d35866498a2f48a3b18114e53483f92542cfeae3268fa56b9ac",
+      "version": "4.1.7-1"
+    },
+    "binutils-arm-none-eabi": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/binutils-arm-none-eabi/binutils-arm-none-eabi_2.44-3+23+b1_amd64.deb",
+      "sha256": "c9c4944e54de852536b4f6a238a682c38a6243cdc2843dd1c4f587e046c0615b",
+      "version": "2.44-3+23+b1"
+    },
+    "hprof-conv": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/android-platform-tools/hprof-conv_34.0.5-12_amd64.deb",
+      "sha256": "281214c51efb642b2ac9ee434d30700d599ce69e83099743d104cc2b05812f46",
+      "version": "34.0.5-12"
+    },
+    "proguard-cli": {
+      "architecture": "all",
+      "filename": "pool/main/p/proguard/proguard-cli_6.2.2-3_all.deb",
+      "sha256": "07e8415788ed0c51ae950d6ec1f4ab55b32a60083b502dd7d814c2bb79fff0bb",
+      "version": "6.2.2-3"
+    },
+    "spyder": {
+      "architecture": "all",
+      "filename": "pool/main/s/spyder/spyder_6.0.5+ds-6_all.deb",
+      "sha256": "ed1552ad47e9f40e0813490d217e2d569ef5d2f35da03f021d0963b8e086769d",
+      "version": "6.0.5+ds-6"
+    },
+    "nix-bin": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nix/nix-bin_2.26.3+dfsg-1_amd64.deb",
+      "sha256": "06e8338eb0ca303802fcfe4579e184dd308d9fa89f7f0aae5974e21fac8178fb",
+      "version": "2.26.3+dfsg-1"
+    },
+    "yamllint": {
+      "architecture": "all",
+      "filename": "pool/main/y/yamllint/yamllint_1.37.1-1_all.deb",
+      "sha256": "cb90058f2a082b7e5c21e701949fca68980b30d53958359d24bbfd88ef29e3fa",
+      "version": "1.37.1-1"
+    },
+    "oathtool": {
+      "architecture": "amd64",
+      "filename": "pool/main/o/oath-toolkit/oathtool_2.6.12-1_amd64.deb",
+      "sha256": "885ed21e693b3de97664bb456e00bdc880efe1987c7cc23d5efea90bf3203b53",
+      "version": "2.6.12-1"
+    },
+    "gcc-mingw-w64-base": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gcc-mingw-w64/gcc-mingw-w64-base_14.2.0-19+27+b1_amd64.deb",
+      "sha256": "8d2c64b886ab4a435a78ddc4cd3b510f149b65fbd6be8472e8f460627562718a",
+      "version": "14.2.0-19+27+b1"
+    },
+    "translate-toolkit": {
+      "architecture": "all",
+      "filename": "pool/main/t/translate-toolkit/translate-toolkit_3.15.1-1_all.deb",
+      "sha256": "4f36c22859254f2185f3c941849009d269048fa093f2ddc7ab2b28288eef04be",
+      "version": "3.15.1-1"
+    },
+    "protobuf-compiler": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/protobuf/protobuf-compiler_3.21.12-11+deb13u1_amd64.deb",
+      "sha256": "62c6085aeeb8cbcb16747fcf7170aaddcff344874a3aa60a272e423cbeb89b3a",
+      "version": "3.21.12-11+deb13u1"
+    },
+    "shtool": {
+      "architecture": "all",
+      "filename": "pool/main/s/shtool/shtool_2.0.8-10_all.deb",
+      "sha256": "43969f411bded74f1127cee6f6654204e282688e2baaacc1d50398f48bdd6db3",
+      "version": "2.0.8-10"
+    },
+    "intltool": {
+      "architecture": "all",
+      "filename": "pool/main/i/intltool/intltool_0.51.0-7_all.deb",
+      "sha256": "181450f8be05216a9849af7105f9413538cd0b3c7115b0e38b54be9f75426350",
+      "version": "0.51.0-7"
+    },
+    "binutils-mingw-w64-x86-64": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/binutils-mingw-w64/binutils-mingw-w64-x86-64_2.44-3+12+b1_amd64.deb",
+      "sha256": "b53f4a091b16a0d0952b8e3bd6027931641386258f96b37db1f0c62c787221d3",
+      "version": "2.44-3+12+b1"
+    },
+    "device-tree-compiler": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/device-tree-compiler/device-tree-compiler_1.7.2-2+b1_amd64.deb",
+      "sha256": "1d2ee77671eb76db21ad455a0e0211ece67f57c6d12b7501b92876bbcea390d6",
+      "version": "1.7.2-2+b1"
+    },
+    "containers-storage": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/golang-github-containers-storage/containers-storage_1.57.2+ds1-1+b2_amd64.deb",
+      "sha256": "e613084ea33a43edb00567232a409b4b0fa61bbff86975fb5fd318ec03b335f4",
+      "version": "1.57.2+ds1-1+b2"
+    },
+    "python3-binwalk": {
+      "architecture": "all",
+      "filename": "pool/main/b/binwalk/python3-binwalk_2.4.3+dfsg1-2+deb13u1_all.deb",
+      "sha256": "b857724e8b9eab3859aca97605961633d9a051cc8e207bd230be2beb92f652c3",
+      "version": "2.4.3+dfsg1-2+deb13u1"
+    },
+    "gperf": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gperf/gperf_3.2.1-1_amd64.deb",
+      "sha256": "8a09d9ead1899a8ade3ed6205c06f1ce0b50792da8f92f6672a7060410fc226e",
+      "version": "3.2.1-1"
+    },
+    "teensy-loader-cli": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/teensy-loader-cli/teensy-loader-cli_2.2-1.1_amd64.deb",
+      "sha256": "72cd9bfc00232dddaf1c4f35b1b3fceabd7be5122ddde09bbd093924587231eb",
+      "version": "2.2-1.1"
+    },
+    "stress-ng": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/stress-ng/stress-ng_0.19.02-1_amd64.deb",
+      "sha256": "e944a959ef6516c6b1a167cf557e54eae5a1027b16f2fa5a00f73bea3a32b16f",
+      "version": "0.19.02-1"
+    },
+    "skopeo": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/skopeo/skopeo_1.18.0+ds1-1+b5_amd64.deb",
+      "sha256": "7ca44a3f31f3cddca9d9dc858029dd08c30faf6e93456753825509e6a59192e2",
+      "version": "1.18.0+ds1-1+b5"
+    },
+    "binutils-mingw-w64-i686": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/binutils-mingw-w64/binutils-mingw-w64-i686_2.44-3+12+b1_amd64.deb",
+      "sha256": "a8b90b43c53371e436e804a2335bfef77824dbd3d40c74e01acbed04ad333310",
+      "version": "2.44-3+12+b1"
+    },
+    "stress": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/stress/stress_1.0.7-1_amd64.deb",
+      "sha256": "a1ca561e847251f9c8aea6e6eb0ad306f20dc7ba93aee6708949afa444022144",
+      "version": "1.0.7-1"
+    },
+    "acpica-tools": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/acpica-unix/acpica-tools_20250404-1_amd64.deb",
+      "sha256": "eea598bdb5d10ae51801f7c586a51f33335c60d964f5f18203cdda47fd5ab069",
+      "version": "20250404-1"
+    },
+    "fp-units-rtl-3.2.2": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fpc/fp-units-rtl-3.2.2_3.2.2+dfsg-46_amd64.deb",
+      "sha256": "f5cffdd2b1f2c28014272e5f22b78c63c6c09036f9caadbd6b9c1029517963ed",
+      "version": "3.2.2+dfsg-46"
+    },
+    "pbuilder": {
+      "architecture": "all",
+      "filename": "pool/main/p/pbuilder/pbuilder_0.231.1_all.deb",
+      "sha256": "adf4f38fccf30c5701f5331f71ae09479e4f8461f8d4adce64dfd862b08f4033",
+      "version": "0.231.1"
+    },
+    "cppcheck": {
+      "architecture": "amd64",
+      "filename": "pool/main/c/cppcheck/cppcheck_2.17.1-2_amd64.deb",
+      "sha256": "b040d87c1b73c51437e3365d3dbb60d1b08be8a90d4a19dfe026ead0e5a478db",
+      "version": "2.17.1-2"
+    },
+    "binutils-gold-x86-64-linux-gnu": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/binutils-gold/binutils-gold-x86-64-linux-gnu_2.44-2_amd64.deb",
+      "sha256": "822bc2d2ef66db1c568bbab64f77966a234f1e17c3caf2065f3ddf75a2926fb0",
+      "version": "2.44-2"
+    },
+    "gcc-14-cross-base": {
+      "architecture": "all",
+      "filename": "pool/main/g/gcc-14-cross/gcc-14-cross-base_14.2.0-19cross1_all.deb",
+      "sha256": "a6c277ad0961c1e69bebd2509151733961ea49bb53ff64aa1dac72b5929babf0",
+      "version": "14.2.0-19cross1"
+    },
+    "castxml": {
+      "architecture": "amd64",
+      "filename": "pool/main/c/castxml/castxml_0.6.11-1_amd64.deb",
+      "sha256": "a268af5dab34767e4277e377c3e9625453777d1975635a3fece210a1ce58c37b",
+      "version": "0.6.11-1"
+    },
+    "linux-libc-dev-arm64-cross": {
+      "architecture": "all",
+      "filename": "pool/main/c/cross-toolchain-base/linux-libc-dev-arm64-cross_6.12.38-1cross1_all.deb",
+      "sha256": "fd77c13fedf057038732ef1c4fc06edd753d08092fd5f92c4629551f1f69870f",
+      "version": "6.12.38-1cross1"
+    },
+    "autopkgtest": {
+      "architecture": "all",
+      "filename": "pool/main/a/autopkgtest/autopkgtest_5.49_all.deb",
+      "sha256": "100fbf4720842e28a817013e30ad0dd62427719c785dd02b2eb788846c9cac27",
+      "version": "5.49"
+    },
+    "scons": {
+      "architecture": "all",
+      "filename": "pool/main/s/scons/scons_4.8.1+dfsg-1_all.deb",
+      "sha256": "7392d12a44fee0ca04e57980506ab28829a817404250889648ef6102670c4af6",
+      "version": "4.8.1+dfsg-1"
+    },
+    "yasm": {
+      "architecture": "amd64",
+      "filename": "pool/main/y/yasm/yasm_1.3.0-7_amd64.deb",
+      "sha256": "cfb60bd4536148525d518fa893528bcee2bc697ccdc3cf0c2da3a165f7876b00",
+      "version": "1.3.0-7"
+    },
+    "distcc": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/distcc/distcc_3.4+really3.4-12_amd64.deb",
+      "sha256": "3a62cbf1a9f531aff126c17c470150dbe299bf250ecc9986fac8b3df326b3ac3",
+      "version": "3.4+really3.4-12"
+    },
+    "prometheus-blackbox-exporter": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/prometheus-blackbox-exporter/prometheus-blackbox-exporter_0.26.0-1_amd64.deb",
+      "sha256": "548213651cead2504142c2954d066c138bb1da180262a39f0ed1b40e0adac9d1",
+      "version": "0.26.0-1"
+    },
+    "how-can-i-help": {
+      "architecture": "all",
+      "filename": "pool/main/h/how-can-i-help/how-can-i-help_20_all.deb",
+      "sha256": "debf3ed219bab01cadcc68feff5319aa55542d14954879dc17fb662a6d221c69",
+      "version": "20"
+    },
+    "cfortran": {
+      "architecture": "all",
+      "filename": "pool/main/c/cfortran/cfortran_20210827-1.1_all.deb",
+      "sha256": "49e910e074b9865ad045d517e3130ce2d76c569d0ef99e744586d17c3c79b381",
+      "version": "20210827-1.1"
+    },
+    "cloc": {
+      "architecture": "all",
+      "filename": "pool/main/c/cloc/cloc_2.04-1_all.deb",
+      "sha256": "ea3d96cf609773541715b8173bf0305cbdff6e7fac32b092d0fd453ed5005228",
+      "version": "2.04-1"
+    },
+    "v2ray": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/golang-v2ray-core/v2ray_4.34.0+ds-4+b12_amd64.deb",
+      "sha256": "0e10aa12e7033cfe0fca2971737e3c5eb4b35b2f1b3c7e1fca63eaf13c629729",
+      "version": "4.34.0+ds-4+b12"
+    },
+    "help2man": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/help2man/help2man_1.49.3_amd64.deb",
+      "sha256": "9b17251751ee4e813df789ba39c25841b9e26bf44206fd53ce4d34bc2d761eed",
+      "version": "1.49.3"
+    },
+    "wx3.2-headers": {
+      "architecture": "all",
+      "filename": "pool/main/w/wxwidgets3.2/wx3.2-headers_3.2.8+dfsg-2_all.deb",
+      "sha256": "9834b4364850cdb9945bf80fb3da94c81e68b0d09479ee239a8d2be56b640cb3",
+      "version": "3.2.8+dfsg-2"
+    },
+    "source-highlight": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/source-highlight/source-highlight_3.1.9-4.3+b1_amd64.deb",
+      "sha256": "09032bf7dc39e847bc27f9fe535a00c6cd404058f8db7c9140d94c7a463b3b9e",
+      "version": "3.1.9-4.3+b1"
+    },
+    "gcc-14-aarch64-linux-gnu-base": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gcc-14-cross/gcc-14-aarch64-linux-gnu-base_14.2.0-19cross1_amd64.deb",
+      "sha256": "4a40a7a5429a03f58bdb1f49df9b7aeecb86770f5585d88dcf6a27b5979a6d5d",
+      "version": "14.2.0-19cross1"
+    },
+    "erlang-jiffy": {
+      "architecture": "amd64",
+      "filename": "pool/main/e/erlang-jiffy/erlang-jiffy_1.1.2-1+b1_amd64.deb",
+      "sha256": "ba041183464a5c90f6227e9c19a6f7a68c5fe38690de9f939db7109cc5ba4da1",
+      "version": "1.1.2-1+b1"
+    },
+    "semodule-utils": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/semodule-utils/semodule-utils_3.8.1-1_amd64.deb",
+      "sha256": "74261f47900b1f0452a59b8591b1cf7b5d6d881385fa1675e0ddcccfbf88b1e9",
+      "version": "3.8.1-1"
+    },
+    "mold": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mold/mold_2.37.1+dfsg-1_amd64.deb",
+      "sha256": "f5ac411a91bf8a2de093b349072ae6b529dffb907dd92456e3871f222bdc5ca0",
+      "version": "2.37.1+dfsg-1"
+    },
+    "highlight": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/highlight/highlight_4.10-1+b2_amd64.deb",
+      "sha256": "365c979ff2a89d088b72144b9e7c922efd14496696a0277c87021e427916a6dd",
+      "version": "4.10-1+b2"
+    },
+    "perltidy": {
+      "architecture": "all",
+      "filename": "pool/main/p/perltidy/perltidy_20250105-1_all.deb",
+      "sha256": "d8e1c28b1d611eb6b3d0dc0acf6c1819bf3b5dc18b05ec8ad4163801da2fa4c2",
+      "version": "20250105-1"
+    },
+    "linux-libc-dev-armhf-cross": {
+      "architecture": "all",
+      "filename": "pool/main/c/cross-toolchain-base/linux-libc-dev-armhf-cross_6.12.38-1cross1_all.deb",
+      "sha256": "bf6fa2d938e493a84c34086219b3e3e391aba885d4fb349022eda9fdafa36272",
+      "version": "6.12.38-1cross1"
+    },
+    "tree-sitter-cli": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tree-sitter/tree-sitter-cli_0.22.6-6+b1_amd64.deb",
+      "sha256": "8da431afff66d67ae6fb690156a849645340ead245de141111714469f1645ab7",
+      "version": "0.22.6-6+b1"
+    },
+    "check": {
+      "architecture": "amd64",
+      "filename": "pool/main/c/check/check_0.15.2-3_amd64.deb",
+      "sha256": "897e396f814d14aa30ef1111ca652491de1fc7799dd4e38dc1d26deb987f2c2f",
+      "version": "0.15.2-3"
+    },
+    "dupload": {
+      "architecture": "all",
+      "filename": "pool/main/d/dupload/dupload_2.13.2_all.deb",
+      "sha256": "3a44d439a0fa69890f94be9f57aa5532792c052e754178457494ed646564ab86",
+      "version": "2.13.2"
+    },
+    "webhook": {
+      "architecture": "amd64",
+      "filename": "pool/main/w/webhook/webhook_2.8.0-4+b19_amd64.deb",
+      "sha256": "889a516bcdaf12c098e041f8015e0d8f29d835b744a3670b4825918a8bb65592",
+      "version": "2.8.0-4+b19"
+    },
+    "irtt": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/irtt/irtt_0.9.0-2+b37_amd64.deb",
+      "sha256": "f6e61395d081782dd19e211d39d62c0d2e52602443aeadf4adf548914ed1df3c",
+      "version": "0.9.0-2+b37"
+    },
+    "valac-bin": {
+      "architecture": "amd64",
+      "filename": "pool/main/v/vala/valac-bin_0.56.18-2_amd64.deb",
+      "sha256": "5fa26c40c0e053b91fa38a07c2a07b6f2df821d970608d2972ebc383600bc8b1",
+      "version": "0.56.18-2"
+    },
+    "indent": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/indent/indent_2.2.13-7_amd64.deb",
+      "sha256": "bee59112b63e0682dee885cb08a485b6ce8ce27add06bfb6a44fbec91cf63bc5",
+      "version": "2.2.13-7"
+    },
+    "fp-utils-3.2.2": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fpc/fp-utils-3.2.2_3.2.2+dfsg-46_amd64.deb",
+      "sha256": "dfefbaec00455cb1afb92730b744958bbd881e4fde7cdded89e76dbde84facb8",
+      "version": "3.2.2+dfsg-46"
+    },
+    "cdbs": {
+      "architecture": "all",
+      "filename": "pool/main/c/cdbs/cdbs_0.4.173_all.deb",
+      "sha256": "fe79642dfd01d4cd41d9463b133eb17d190459efd6d6e62215179d0feb2ca263",
+      "version": "0.4.173"
+    },
+    "ed": {
+      "architecture": "amd64",
+      "filename": "pool/main/e/ed/ed_1.21.1-1_amd64.deb",
+      "sha256": "b5498068d8ac54ad004bacbde2223a348fee781f9bb94328b01d8bfcbd179b48",
+      "version": "1.21.1-1"
+    },
+    "arduino-ctags": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/arduino-ctags/arduino-ctags_5.8-arduino11-3_amd64.deb",
+      "sha256": "e52dc1dbfd50b17f64a2e8687c382888d7c3a10e0b259d908df53ccaa097e4dc",
+      "version": "5.8-arduino11-3"
+    },
+    "nvi": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nvi/nvi_1.81.6-23_amd64.deb",
+      "sha256": "4956c081f4fb298cb4485f849ca1bef04f207090cfbaef5b2feb7db36c4ef5f9",
+      "version": "1.81.6-23"
+    },
+    "vim-addon-manager": {
+      "architecture": "all",
+      "filename": "pool/main/v/vim-addon-manager/vim-addon-manager_0.5.11_all.deb",
+      "sha256": "03d4ae9d63f502b8b30aa4d0f7e8246192abb513de412bf99eaee0658e6106ba",
+      "version": "0.5.11"
+    },
+    "vim-scripts": {
+      "architecture": "all",
+      "filename": "pool/main/v/vim-scripts/vim-scripts_20210124.4_all.deb",
+      "sha256": "e79e0ced5c1516f6818622cbb01bde5bfc024dea6c517e499d36a81e2fe66f09",
+      "version": "20210124.4"
+    },
+    "hexedit": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/hexedit/hexedit_1.6-2_amd64.deb",
+      "sha256": "df1330c7a3992d93464e060da60ab6a766e1249a11f970768c0efbe78f86164b",
+      "version": "1.6-2"
+    },
+    "hx": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/hx/hx_25.01.1-4_amd64.deb",
+      "sha256": "555c98e6f4eed943bc3795e91b8367c2cb77bb4badcf6942aab9166df175ddf9",
+      "version": "25.01.1-4"
+    },
+    "ledit": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/ledit/ledit_2.04-8+b12_amd64.deb",
+      "sha256": "9b52a21c0333a0239e2a6918a4a0191b8b6864f83ea5b746a81cb05e58262ab1",
+      "version": "2.04-8+b12"
+    },
+    "zile": {
+      "architecture": "amd64",
+      "filename": "pool/main/z/zile/zile_2.6.2-2+b2_amd64.deb",
+      "sha256": "b76a985ebd212be0b6e567f8530bc9a1aa85b02c073b325ea7c7cc5c8d81e403",
+      "version": "2.6.2-2+b2"
+    },
+    "apel": {
+      "architecture": "all",
+      "filename": "pool/main/a/apel/apel_10.8+0.20220720-1_all.deb",
+      "sha256": "2b7e1d8026d510ee6d0255a421283345f0095e2fec9a92d4d8875b0087e5a6c8",
+      "version": "10.8+0.20220720-1"
+    },
+    "avrdude": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/avrdude/avrdude_7.1+dfsg-3+b2_amd64.deb",
+      "sha256": "ec1b94afc3310f864a89be44d314223736747a3375919430e6675b72a14c37dd",
+      "version": "7.1+dfsg-3+b2"
+    },
+    "dfu-util": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/dfu-util/dfu-util_0.11-3_amd64.deb",
+      "sha256": "bd7cb51a089998678d02e0327fd5886b6e779d7b7f7b729c162a1e2d42eb0987",
+      "version": "0.11-3"
+    },
+    "flashrom": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/flashrom/flashrom_1.4.0-3_amd64.deb",
+      "sha256": "d55dc072e8fb1225190610090b0c4e63f4b6e961450e8d7e432b9cfbdafa9e17",
+      "version": "1.4.0-3"
+    },
+    "esptool": {
+      "architecture": "all",
+      "filename": "pool/main/e/esptool/esptool_4.7.0+dfsg-0.1_all.deb",
+      "sha256": "587d9aa263d818f5e2c66e93b5be88ca4863088932aa6f098f68e7904d31c577",
+      "version": "4.7.0+dfsg-0.1"
+    },
+    "stlink-tools": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/stlink/stlink-tools_1.8.0-1.1_amd64.deb",
+      "sha256": "ee578996f1c661cd2242c78e4c5da3346f34ecd6849abacde2d3b01d0a706f59",
+      "version": "1.8.0-1.1"
+    },
+    "avarice": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/avarice/avarice_2.14+svn427-2_amd64.deb",
+      "sha256": "d2b70fc0f896c8a544e74a6abbc54748fe404a3ec7142e36ee2dd9d2423077cd",
+      "version": "2.14+svn427-2"
+    },
+    "mspdebug": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mspdebug/mspdebug_0.25-1_amd64.deb",
+      "sha256": "eeda4a928494774e3f8b11f845b898d1153766c724944f85f57f3c59c58832a7",
+      "version": "0.25-1"
+    },
+    "gputils": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gputils/gputils_1.5.2-1_amd64.deb",
+      "sha256": "018c6d4f4caaec01e3a3fa9f08397d638ed37faeb9af7e93cf87cd7698cf260d",
+      "version": "1.5.2-1"
+    },
+    "ngspice": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/ngspice/ngspice_44.2+ds-1_amd64.deb",
+      "sha256": "4d76721dd91416055b1088cfc58626d4db47b91afda7c73258c0968ba6e4d24e",
+      "version": "44.2+ds-1"
+    },
+    "owserver": {
+      "architecture": "amd64",
+      "filename": "pool/main/o/owfs/owserver_3.2p4+dfsg1-6_amd64.deb",
+      "sha256": "51638edcc97ae98730bee45edf5ea699ff16545d91dae5d50581840b12eecdb7",
+      "version": "3.2p4+dfsg1-6"
+    },
+    "libllvm19": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/llvm-toolchain-19/libllvm19_19.1.7-3+b1_amd64.deb",
+      "sha256": "db0d614d61345ca710fb73e75105f1ec6e38898fa7b3aa99fa7eb7d8b0a11d57",
+      "version": "1:19.1.7-3+b1"
+    },
+    "libclang-cpp19": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/llvm-toolchain-19/libclang-cpp19_19.1.7-3+b1_amd64.deb",
+      "sha256": "a7d2b6df51050834f6ea5c0d5e34869c2298b0bcdaa91eff17ba3db2cd545c47",
+      "version": "1:19.1.7-3+b1"
+    },
+    "libclang1-19": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/llvm-toolchain-19/libclang1-19_19.1.7-3+b1_amd64.deb",
+      "sha256": "4e7e2a5fe236e280d32fb529350b3c1cfd9410a964629a57ea079a314c45d7a3",
+      "version": "1:19.1.7-3+b1"
+    },
+    "libz3-4": {
+      "architecture": "amd64",
+      "filename": "pool/main/z/z3/libz3-4_4.13.3-1_amd64.deb",
+      "sha256": "71383373523ef62d47eccf660cf6535c3febcbb3f88e54cb7a43124014b57359",
+      "version": "4.13.3-1"
+    },
+    "gcc-13-base": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gcc-13/gcc-13-base_13.3.0-16_amd64.deb",
+      "sha256": "e503620c4d78bc3bd14cc3ba44f604f0156154dca76fe7817c2bea03d6ff4c93",
+      "version": "13.3.0-16"
+    },
+    "libisl23": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/isl/libisl23_0.27-1_amd64.deb",
+      "sha256": "ac8518042e81c00de1effb72bba7e88ac4ecd488f7ea8b9e3ebc63159cb53b35",
+      "version": "0.27-1"
+    },
+    "libmpc3": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mpclib3/libmpc3_1.3.1-1+b3_amd64.deb",
+      "sha256": "2af0a5c128e03694a41c0b011bd8a958b7297436cdb3a15ddad7866dae8c300b",
+      "version": "1.3.1-1+b3"
+    },
+    "libpng16-16t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/libp/libpng1.6/libpng16-16t64_1.6.48-1+deb13u5_amd64.deb",
+      "sha256": "2465b4e9fa85cff54dc10a6da3e64074d8d9292c86e4a8f989b809d6b158e97e",
+      "version": "1.6.48-1+deb13u5"
+    },
+    "libboost-context1.83.0": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/boost1.83/libboost-context1.83.0_1.83.0-4.2_amd64.deb",
+      "sha256": "95951c6f8509608a53f26d4ac3015c326867a43b22b1004c387ff0dad6558510",
+      "version": "1.83.0-4.2"
+    },
+    "libcpuid17": {
+      "architecture": "amd64",
+      "filename": "pool/main/libc/libcpuid/libcpuid17_0.7.1+repack1-0.2_amd64.deb",
+      "sha256": "6b22af1f39da6947e8abded41617a5a59dd2aacb46328a194b985eee6757a470",
+      "version": "0.7.1+repack1-0.2"
+    },
+    "libcurl3t64-gnutls": {
+      "architecture": "amd64",
+      "filename": "pool/main/c/curl/libcurl3t64-gnutls_8.14.1-2+deb13u5_amd64.deb",
+      "sha256": "19da93544615a4c9a3d7df473f5bf8ebca99442454622e9b0460168dadf7b8ae",
+      "version": "8.14.1-2+deb13u5"
+    },
+    "liblowdown2": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lowdown/liblowdown2_2.0.2-2_amd64.deb",
+      "sha256": "8bba5d59c957be0487a8597c8f537b0bdab8036f872d7f9f19d12a501d1d67b3",
+      "version": "2.0.2-2"
+    },
+    "libsodium23": {
+      "architecture": "amd64",
+      "filename": "pool/main/libs/libsodium/libsodium23_1.0.18-1+deb13u1_amd64.deb",
+      "sha256": "9ff9d97bb7ce3aee7f6e6ec3a785cdbe237454a7b9fd84728121bc4ef2bebebe",
+      "version": "1.0.18-1+deb13u1"
+    },
+    "libnghttp3-9": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nghttp3/libnghttp3-9_1.8.0-1_amd64.deb",
+      "sha256": "388e4c33b72829cbf0d098afdc8539fa5ba7458eddb077f5538fdb4d5538716b",
+      "version": "1.8.0-1"
+    },
+    "libngtcp2-16": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/ngtcp2/libngtcp2-16_1.11.0-1+deb13u1_amd64.deb",
+      "sha256": "627eec81ebbd48c4e6091f5cd9dc5070b792b7075000eed60ab08c7daa961caf",
+      "version": "1.11.0-1+deb13u1"
+    },
+    "libngtcp2-crypto-gnutls8": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/ngtcp2/libngtcp2-crypto-gnutls8_1.11.0-1+deb13u1_amd64.deb",
+      "sha256": "2a7f109c0c4db6a800e4661c5e5e34e1f1f83c8162482276183d1ada9da7c96c",
+      "version": "1.11.0-1+deb13u1"
+    },
+    "librtmp1": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rtmpdump/librtmp1_2.4+20151223.gitfa8646d.1-2+b5_amd64.deb",
+      "sha256": "93baa2004cbe6c8721b9e81beed078612540aef120970b4751305c51c6697368",
+      "version": "2.4+20151223.gitfa8646d.1-2+b5"
+    },
+    "liboath0t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/o/oath-toolkit/liboath0t64_2.6.12-1_amd64.deb",
+      "sha256": "83a36666d50cd12166f98d36a4ed3635ed72b7e273e1862c9ac09a18acf05077",
+      "version": "2.6.12-1"
+    },
+    "libprotoc32t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/protobuf/libprotoc32t64_3.21.12-11+deb13u1_amd64.deb",
+      "sha256": "8a96715498f10f8e166411248164448c9a892fa1d5b25f1e02a93ea668fa72aa",
+      "version": "3.21.12-11+deb13u1"
+    },
+    "libfdt1": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/device-tree-compiler/libfdt1_1.7.2-2+b1_amd64.deb",
+      "sha256": "8e37034d7864807ae2063efcc82fc79aad59069546212e6e0908ed67f9f7e107",
+      "version": "1.7.2-2+b1"
+    },
+    "libusb-0.1-4": {
+      "architecture": "amd64",
+      "filename": "pool/main/libu/libusb/libusb-0.1-4_0.1.12-35+b1_amd64.deb",
+      "sha256": "dffa6c8ff5cd6d26827110556d5dd2e2461bf3a67823f12da52a3d7b616125b9",
+      "version": "2:0.1.12-35+b1"
+    },
+    "libipsec-mb2": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/intel-ipsec-mb/libipsec-mb2_2.0-1+b1_amd64.deb",
+      "sha256": "3fbb25a6f87dc37e9dd823be2de6cb49ca69861885a2c496d8748df83c056489",
+      "version": "2.0-1+b1"
+    },
+    "libjudydebian1": {
+      "architecture": "amd64",
+      "filename": "pool/main/j/judy/libjudydebian1_1.0.5-5.1_amd64.deb",
+      "sha256": "e4f329ec69c29a84859da4a6a8f4792d075c7eecc221d45c1666a5b92bbbdb32",
+      "version": "1.0.5-5.1"
+    },
+    "libapparmor1": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/apparmor/libapparmor1_4.1.0-1_amd64.deb",
+      "sha256": "4158976c77038b93021967f425b4cc505df18c4f5e3f444732399e7ed4af4419",
+      "version": "4.1.0-1"
+    },
+    "libjpeg62-turbo": {
+      "architecture": "amd64",
+      "filename": "pool/main/libj/libjpeg-turbo/libjpeg62-turbo_2.1.5-4_amd64.deb",
+      "sha256": "5504299ad0e3c0a9ca9f962a68a650a040db52f9f416a109e74df48d55601d3f",
+      "version": "1:2.1.5-4"
+    },
+    "libgpgme11t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gpgme1.0/libgpgme11t64_1.24.2-3_amd64.deb",
+      "sha256": "6650203af59ccf73b22cd6904fb179a799cb70d62885b19ae725c0655c04241c",
+      "version": "1.24.2-3"
+    },
+    "libassuan9": {
+      "architecture": "amd64",
+      "filename": "pool/main/liba/libassuan/libassuan9_3.0.2-2_amd64.deb",
+      "sha256": "9d78ef8f016e7f24b5e20d1ce91939fe0f1f897e5f9059793201e930ded7eb8e",
+      "version": "3.0.2-2"
+    },
+    "libtinyxml2-11": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tinyxml2/libtinyxml2-11_11.0.0+dfsg-1+b1_amd64.deb",
+      "sha256": "6b61fb15444bcd6b516163f661d6af85eb98f4e89b880060889e9ec8e4e3ad64",
+      "version": "11.0.0+dfsg-1+b1"
+    },
+    "libavahi-common3": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/avahi/libavahi-common3_0.8-16_amd64.deb",
+      "sha256": "fb092fc55f1c7f3db0ac64467f30ebae8145543570b8e99f17ce84cf1dd28bb6",
+      "version": "0.8-16"
+    },
+    "libavahi-client3": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/avahi/libavahi-client3_0.8-16_amd64.deb",
+      "sha256": "27df3f1c0190d13ec6d014c5515c2ec8e9a49d0983f48fc9e5756ee4e62d7e37",
+      "version": "0.8-16"
+    },
+    "libsource-highlight4t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/source-highlight/libsource-highlight4t64_3.1.9-4.3+b1_amd64.deb",
+      "sha256": "6d69c221c44345f33af52cc849c5d39438590d5b2030224a6fdb3e6e660f815a",
+      "version": "3.1.9-4.3+b1"
+    },
+    "libvala-0.56-0": {
+      "architecture": "amd64",
+      "filename": "pool/main/v/vala/libvala-0.56-0_0.56.18-2_amd64.deb",
+      "sha256": "c949f9c4d5ec44d3b2d604ca2d3cc67bd67d39fa438e0d7db066cc5fa8273ae2",
+      "version": "0.56.18-2"
+    },
+    "libvalacodegen-0.56-0": {
+      "architecture": "amd64",
+      "filename": "pool/main/v/vala/libvalacodegen-0.56-0_0.56.18-2_amd64.deb",
+      "sha256": "2197e5f05bfe40fe0e0f783830fc87395919299b38f74d7cca032976c8d52bc9",
+      "version": "0.56.18-2"
+    },
+    "libgee-0.8-2": {
+      "architecture": "amd64",
+      "filename": "pool/main/libg/libgee-0.8/libgee-0.8-2_0.20.8-1_amd64.deb",
+      "sha256": "7ed27d901b248188ca37882d8ed004a974f7c56fa64acfed7ffce82cbfc7fc49",
+      "version": "0.20.8-1"
+    },
+    "libftdi1": {
+      "architecture": "amd64",
+      "filename": "pool/main/libf/libftdi/libftdi1_0.20-4+b2_amd64.deb",
+      "sha256": "0bf09d33ea3cfe2a1aaf33727006da4384f1065da465cee73c6789dd44451732",
+      "version": "0.20-4+b2"
+    },
+    "libhidapi-libusb0": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/hidapi/libhidapi-libusb0_0.14.0-1+b2_amd64.deb",
+      "sha256": "8c93a8c22bbbe7d6179505372db237aeed5748dfc6b1a9e2f645161d5facb530",
+      "version": "0.14.0-1+b2"
+    },
+    "libftdi1-2": {
+      "architecture": "amd64",
+      "filename": "pool/main/libf/libftdi1/libftdi1-2_1.5-10_amd64.deb",
+      "sha256": "b85d8cccbfa9f917ea547c39bc22503c1c8676621142571e36320e26fae7ab6b",
+      "version": "1.5-10"
+    },
+    "libjaylink0": {
+      "architecture": "amd64",
+      "filename": "pool/main/libj/libjaylink/libjaylink0_0.4.0-1_amd64.deb",
+      "sha256": "162af4bc52ec48f46221403f2b890143f13aec0176e20dedb97342ec27b7864a",
+      "version": "0.4.0-1"
+    },
+    "libstlink1": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/stlink/libstlink1_1.8.0-1.1_amd64.deb",
+      "sha256": "e331a3bd948678619ec90244f1fd23b1151156d03a8a6e47806dc304c604cf7c",
+      "version": "1.8.0-1.1"
+    },
+    "libgomp1": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gcc-14/libgomp1_14.2.0-19_amd64.deb",
+      "sha256": "72b7a1a33c48f3195efeb044111b34ae684b1e640bb6495c832443b798601cd5",
+      "version": "14.2.0-19"
+    },
+    "gcc-14-base": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gcc-14/gcc-14-base_14.2.0-19_amd64.deb",
+      "sha256": "5b6825de4263824b78c4c51f6476414f3b4e89c2ab63e81dc8b9b5501e867cf6",
+      "version": "14.2.0-19"
+    },
+    "libow-3.2-4t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/o/owfs/libow-3.2-4t64_3.2p4+dfsg1-6_amd64.deb",
+      "sha256": "4a6144df234a8e86903ab50691dadc6d28191b160ae153a9523d1bd1f89148d4",
+      "version": "3.2p4+dfsg1-6"
+    }
+  },
+  "suite": "trixie",
+  "excluded_packages": {
+    "debconf-utils": "requires Debian debconf and dpkg integration that is not included in the ArkanaOS package base",
+    "rustup": "replaces cargo, rustc, rustdoc, and rust debugger paths already owned by arkpkg-repo",
+    "rust-llvm": "overlaps rust toolchain paths already owned by arkpkg-repo",
+    "codelite-plugins": "depends on a broad wxGTK plugin stack outside the lightweight workstation package set",
+    "dput-ng": "overlaps the dput command and documentation already supplied by the dput package",
+    "make-guile": "replaces the make executable already owned by arkpkg-repo",
+    "rustfmt": "requires the Debian Rust compiler driver ABI, which is incompatible with the existing arkpkg-repo Rust toolchain",
+    "neovim-runtime": "duplicates the nvim desktop files, translations, and documentation already owned by arkpkg-repo"
+  }
+}

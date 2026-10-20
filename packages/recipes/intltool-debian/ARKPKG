@@ -1,0 +1,9 @@
+Name: intltool-debian
+Description: Help i18n of RFC822 compliant config files
+Version: 0.35.0+20060710.6
+Arch: any
+URL: https://packages.debian.org/trixie/intltool-debian
+License: See /usr/share/doc/intltool-debian/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl

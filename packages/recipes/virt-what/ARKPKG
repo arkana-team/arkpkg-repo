@@ -1,0 +1,8 @@
+Name: virt-what
+Description: detect if we are running in a virtual machine
+Version: 1.27-1
+Arch: x86_64
+URL: https://people.redhat.com/~rjones/virt-what/
+License: See /usr/share/doc/virt-what/copyright
+Maintainer: arkanaOS Team
+Provides: virt-what-cvm=/usr/sbin/virt-what-cvm, virt-what=/usr/sbin/virt-what

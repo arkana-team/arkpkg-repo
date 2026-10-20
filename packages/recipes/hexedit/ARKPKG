@@ -1,0 +1,11 @@
+Name: hexedit
+Description: viewer and editor in hexadecimal or ASCII for files or devices
+Version: 1.6-2
+Arch: x86_64
+URL: https://github.com/pixel/hexedit
+License: See /usr/share/doc/hexedit/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-compat-libs
+  ncurses-libs
+Provides: hexedit=/usr/bin/hexedit
