@@ -196,7 +196,7 @@ def validate_https_url(value: object, field: str) -> str:
 
 def validate_package_metadata(
     metadata: object, package_names: set[str]
-) -> dict[str, dict[str, str]]:
+) -> dict[str, dict[str, object]]:
     if not isinstance(metadata, dict) or metadata.get("schema_version") != 1:
         raise ValueError("package metadata must use schema version 1")
     packages = metadata.get("packages")
@@ -213,24 +213,57 @@ def validate_package_metadata(
         raise ValueError("package metadata coverage mismatch (" + "; ".join(details) + ")")
 
     validated = {}
-    expected_fields = {"author", "git_repo", "git_repo_type", "git_author_url"}
+    expected_fields = {
+        "author", "git_repo", "git_repo_type", "git_author_url", "packagers"
+    }
     valid_repo_types = {"upstream", "packaging", "arkpkg-recipe"}
     for name, item in packages.items():
         if not isinstance(item, dict) or set(item) != expected_fields:
             raise ValueError(f"invalid source metadata fields for package {name!r}")
         author = item["author"]
         repo_type = item["git_repo_type"]
-        if not isinstance(author, str) or not author.strip():
-            raise ValueError(f"package author must be non-empty for {name!r}")
+        if author is not None and (not isinstance(author, str) or not author.strip()):
+            raise ValueError(f"package author must be non-empty or null for {name!r}")
         if not isinstance(repo_type, str) or repo_type not in valid_repo_types:
             raise ValueError(f"invalid git repository type for package {name!r}")
+        git_author_url = item["git_author_url"]
+        if author is None and git_author_url is not None:
+            raise ValueError(f"author profile requires a verified author for {name!r}")
+        if git_author_url is not None:
+            git_author_url = validate_https_url(
+                git_author_url, f"git_author_url for {name}"
+            )
+        packagers = item["packagers"]
+        if not isinstance(packagers, list) or not packagers:
+            raise ValueError(f"package packagers must be a non-empty list for {name!r}")
+        validated_packagers = []
+        packager_names = set()
+        for packager in packagers:
+            if (
+                not isinstance(packager, dict)
+                or set(packager) != {"name", "url"}
+                or not isinstance(packager["name"], str)
+                or not packager["name"].strip()
+            ):
+                raise ValueError(f"invalid packager entry for package {name!r}")
+            packager_name = packager["name"].strip()
+            if packager_name in packager_names:
+                raise ValueError(f"duplicate packager for package {name!r}")
+            packager_names.add(packager_name)
+            validated_packagers.append(
+                {
+                    "name": packager_name,
+                    "url": validate_https_url(
+                        packager["url"], f"packager URL for {name}"
+                    ),
+                }
+            )
         validated[name] = {
-            "author": author.strip(),
+            "author": author.strip() if isinstance(author, str) else None,
             "git_repo": validate_https_url(item["git_repo"], f"git_repo for {name}"),
             "git_repo_type": repo_type,
-            "git_author_url": validate_https_url(
-                item["git_author_url"], f"git_author_url for {name}"
-            ),
+            "git_author_url": git_author_url,
+            "packagers": validated_packagers,
         }
     return validated
 
@@ -311,38 +344,49 @@ def build_site(
             label += f"?{parsed.query}"
         return label
 
-    def repository_link(item: dict[str, str]) -> str:
+    def repository_link(item: dict[str, object]) -> str:
         return (
-            link(item["git_repo"], link_label(item["git_repo"]))
-            + f'<small class="repo-type">{html.escape(item["git_repo_type"])}</small>'
+            link(str(item["git_repo"]), link_label(str(item["git_repo"])))
+            + f'<small class="repo-type">{html.escape(str(item["git_repo_type"]))}</small>'
         )
 
     package_rows = "\n".join(
         '<tr data-package-row data-search="{}">'
         "<td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td>"
-        "<td>{}</td><td>{}</td></tr>".format(
+        "<td>{}</td><td>{}</td><td>{}</td></tr>".format(
             html.escape(
                 " ".join(
-                    str(item[key])
-                    for key in (
-                        "name", "version", "arch", "author", "git_repo",
-                        "git_author_url", "description", "git_repo_type",
-                    )
+                    [
+                        str(item[key] or "")
+                        for key in (
+                            "name", "version", "arch", "author", "git_repo",
+                            "git_author_url", "description", "git_repo_type",
+                        )
+                    ]
+                    + [packager["name"] for packager in item["packagers"]]
                 ),
                 quote=True,
             ),
-            html.escape(item["name"]),
-            html.escape(item["version"]),
-            html.escape(item["arch"]),
-            html.escape(item["author"]),
+            html.escape(str(item["name"])),
+            html.escape(str(item["version"])),
+            html.escape(str(item["arch"])),
+            html.escape(str(item["author"] or "not listed")),
             repository_link(item),
-            link(item["git_author_url"], link_label(item["git_author_url"])),
-            html.escape(item["description"]),
+            (
+                link(str(item["git_author_url"]), link_label(str(item["git_author_url"])))
+                if item["git_author_url"]
+                else "not listed"
+            ),
+            ", ".join(
+                link(packager["url"], packager["name"])
+                for packager in item["packagers"]
+            ),
+            html.escape(str(item["description"])),
         )
         for item in entries
     )
     if not package_rows:
-        package_rows = '<tr><td colspan="7">no packages published yet.</td></tr>'
+        package_rows = '<tr><td colspan="8">no packages published yet.</td></tr>'
     package_count = len(entries)
     columns = (
         ("name", "name"),
@@ -351,6 +395,7 @@ def build_site(
         ("author", "author"),
         ("git_repo", "git repository"),
         ("git_author_url", "git author"),
+        ("packagers", "packagers"),
         ("description", "description"),
     )
     table_headers = "".join(
@@ -374,12 +419,12 @@ def build_site(
         "<pre>arkpkg repo add arkanaOS https://arkana-team.github.io/arkpkg-repo</pre>"
         '<label for="package-search">search packages</label>'
         '<input id="package-search" type="search" autocomplete="off" '
-        'placeholder="search by name, author, repository, version, or description">'
+        'placeholder="search by name, author, packager, repository, version, or description">'
         f'<p id="package-count" aria-live="polite">{package_count} packages available</p>'
         '<p><a href="index.json">package index (json)</a></p>'
         f'<div class="table-wrap"><table id="package-table"><thead><tr>{table_headers}'
         "</tr></thead><tbody>"
-        f'{package_rows}<tr data-no-results hidden><td colspan="7">no packages match your search.</td></tr>'
+        f'{package_rows}<tr data-no-results hidden><td colspan="8">no packages match your search.</td></tr>'
         "</tbody></table></div>"
         f"<script>{PAGE_SCRIPT}</script>"
         "</main></body></html>\n",

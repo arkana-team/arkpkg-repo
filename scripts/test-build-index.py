@@ -57,10 +57,20 @@ class BuildIndexTests(unittest.TestCase):
                         "schema_version": 1,
                         "packages": {
                             "hello": {
-                                "author": "arkanaOS team",
+                                "author": None,
                                 "git_repo": "https://github.com/example/hello",
                                 "git_repo_type": "upstream",
-                                "git_author_url": "https://github.com/example",
+                                "git_author_url": None,
+                                "packagers": [
+                                    {
+                                        "name": "arkana-team",
+                                        "url": "https://github.com/arkana-team",
+                                    },
+                                    {
+                                        "name": "debarkak",
+                                        "url": "https://github.com/debarkak",
+                                    },
+                                ],
                             }
                         },
                     }
@@ -75,10 +85,23 @@ class BuildIndexTests(unittest.TestCase):
             self.assertEqual(index["schema_version"], 1)
             self.assertEqual(len(index["packages"]), 1)
             entry = index["packages"][0]
-            self.assertEqual(entry["author"], "arkanaOS team")
+            self.assertIsNone(entry["author"])
             self.assertEqual(entry["git_repo"], "https://github.com/example/hello")
             self.assertEqual(entry["git_repo_type"], "upstream")
-            self.assertEqual(entry["git_author_url"], "https://github.com/example")
+            self.assertIsNone(entry["git_author_url"])
+            self.assertEqual(
+                entry["packagers"],
+                [
+                    {
+                        "name": "arkana-team",
+                        "url": "https://github.com/arkana-team",
+                    },
+                    {
+                        "name": "debarkak",
+                        "url": "https://github.com/debarkak",
+                    },
+                ],
+            )
             self.assertEqual(
                 entry["download_url"],
                 "https://raw.githubusercontent.com/arkana-team/arkpkg-repo/main/"
@@ -94,16 +117,23 @@ class BuildIndexTests(unittest.TestCase):
             self.assertIn('data-sort-key="author"', page)
             self.assertIn('data-sort-key="git_repo"', page)
             self.assertIn('data-sort-key="git_author_url"', page)
+            self.assertIn('data-sort-key="packagers"', page)
             self.assertIn('href="https://github.com/example/hello"', page)
-            self.assertIn('href="https://github.com/example"', page)
+            self.assertIn('href="https://github.com/arkana-team"', page)
+            self.assertIn('href="https://github.com/debarkak"', page)
+            self.assertIn(">not listed</td>", page)
             self.assertIn('<small class="repo-type">upstream</small>', page)
 
     def test_package_metadata_requires_complete_https_links(self) -> None:
         package = {
-            "author": "arkanaOS team",
+            "author": "Example upstream author",
             "git_repo": "https://github.com/example/hello",
             "git_repo_type": "upstream",
             "git_author_url": "https://github.com/example",
+            "packagers": [
+                {"name": "arkana-team", "url": "https://github.com/arkana-team"},
+                {"name": "debarkak", "url": "https://github.com/debarkak"},
+            ],
         }
         valid = {"schema_version": 1, "packages": {"hello": package}}
         self.assertEqual(
@@ -117,6 +147,31 @@ class BuildIndexTests(unittest.TestCase):
                     "schema_version": 1,
                     "packages": {
                         "hello": {**package, "git_repo": "http://example.com/repo"}
+                    },
+                },
+                {"hello"},
+            )
+        with self.assertRaisesRegex(ValueError, "author profile requires"):
+            validate_package_metadata(
+                {
+                    "schema_version": 1,
+                    "packages": {
+                        "hello": {**package, "author": None}
+                    },
+                },
+                {"hello"},
+            )
+        with self.assertRaisesRegex(ValueError, "packager URL for hello must be HTTPS"):
+            validate_package_metadata(
+                {
+                    "schema_version": 1,
+                    "packages": {
+                        "hello": {
+                            **package,
+                            "packagers": [
+                                {"name": "arkana-team", "url": "http://example.com"}
+                            ],
+                        }
                     },
                 },
                 {"hello"},
