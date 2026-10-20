@@ -1,0 +1,8 @@
+Name: libidn12
+Description: GNU Libidn library, implementation of IETF IDN specifications
+Version: 1.43-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libidn12
+License: See /usr/share/doc/libidn12/copyright
+Maintainer: arkanaOS Team
+Provides: libidn.so.12=/usr/lib/x86_64-linux-gnu/libidn.so.12.6.6

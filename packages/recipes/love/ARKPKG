@@ -1,0 +1,17 @@
+Name: love
+Description: 2D game development framework based on Lua and OpenGL
+Version: 11.5-2
+Arch: x86_64
+URL: https://love2d.org/
+License: See /usr/share/doc/love/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmodplug1
+  libmpg123-0t64
+  libogg0
+  libopenal1
+  libsdl2-2.0-0
+  libtheoradec1
+  libvorbisfile3
+  neovim-runtime-libs
+Provides: love-11.5=/usr/bin/love-11.5

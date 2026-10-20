@@ -1,0 +1,16 @@
+Name: libleptonica6
+Description: image processing library
+Version: 1.84.1-4
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libleptonica6
+License: See /usr/share/doc/libleptonica6/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  giflib
+  libjpeg62-turbo
+  libopenjp2-7
+  libpng16-16t64
+  libtiff6
+  libwebp7
+  libwebpmux3
+Provides: libleptonica.so.6=/usr/lib/x86_64-linux-gnu/libleptonica.so.6.0.0

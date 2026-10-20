@@ -1,0 +1,10 @@
+Name: libvorbisenc2
+Description: encoder library for Vorbis General Audio Compression Codec
+Version: 1.3.7-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libvorbisenc2
+License: See /usr/share/doc/libvorbisenc2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libvorbis0a
+Provides: libvorbisenc.so.2=/usr/lib/x86_64-linux-gnu/libvorbisenc.so.2.0.12

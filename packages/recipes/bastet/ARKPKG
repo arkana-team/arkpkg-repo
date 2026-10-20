@@ -1,0 +1,11 @@
+Name: bastet
+Description: ncurses Tetris clone with a bastard algorithm
+Version: 0.43.2-2
+Arch: x86_64
+URL: http://fph.altervista.org/prog/bastet.shtml
+License: See /usr/share/doc/bastet/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libboost-program-options1.83.0
+  ncurses-compat-libs
+  ncurses-libs

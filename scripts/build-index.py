@@ -167,7 +167,9 @@ def validate_download_base_url(value: str) -> str:
         or parsed.fragment
         or port == 0
     ):
-        raise ValueError("download base URL must be HTTPS without credentials, query, or fragment")
+        raise ValueError(
+            "download base URL must be HTTPS without credentials, query, or fragment"
+        )
     return value.rstrip("/")
 
 
@@ -182,8 +184,11 @@ def build_site(
         raise ValueError("packages/ must not be a symbolic link")
     site_packages = site_dir / "packages"
     site_dir.mkdir(parents=True, exist_ok=True)
-    if site_packages.exists():
+    if site_packages.is_symlink():
+        site_packages.unlink()
+    elif site_packages.exists():
         shutil.rmtree(site_packages)
+
     entries = []
     seen = set()
     for archive_path in (
@@ -208,7 +213,8 @@ def build_site(
                 "description": metadata["Description"],
                 "file": relative_path.as_posix(),
                 "download_url": (
-                    f"{download_base_url}/{quote(relative_path.as_posix(), safe='/._+-')}"
+                    f"{download_base_url}/"
+                    f"{quote(relative_path.as_posix(), safe='/._+-')}"
                 ),
                 "sha256": digest,
             }

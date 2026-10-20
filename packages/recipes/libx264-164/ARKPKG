@@ -1,0 +1,8 @@
+Name: libx264-164
+Description: x264 video coding library
+Version: 2:0.164.3108+git31e19f9-2+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libx264-164
+License: See /usr/share/doc/libx264-164/copyright
+Maintainer: arkanaOS Team
+Provides: libx264.so.164=/usr/lib/x86_64-linux-gnu/libx264.so.164

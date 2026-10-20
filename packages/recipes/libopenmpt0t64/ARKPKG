@@ -1,0 +1,12 @@
+Name: libopenmpt0t64
+Description: module music library based on OpenMPT -- shared library
+Version: 0.7.13-1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libopenmpt0t64
+License: See /usr/share/doc/libopenmpt0t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmpg123-0t64
+  libvorbis0a
+  libvorbisfile3
+Provides: libopenmpt.so.0=/usr/lib/x86_64-linux-gnu/libopenmpt.so.0.4.4

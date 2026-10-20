@@ -1,0 +1,8 @@
+Name: libmpcdec6
+Description: MusePack decoder - library
+Version: 2:0.1~r495-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libmpcdec6
+License: See /usr/share/doc/libmpcdec6/copyright
+Maintainer: arkanaOS Team
+Provides: libmpcdec.so.6=/usr/lib/x86_64-linux-gnu/libmpcdec.so.6.1.0

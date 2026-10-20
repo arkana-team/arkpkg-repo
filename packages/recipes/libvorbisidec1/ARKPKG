@@ -1,0 +1,10 @@
+Name: libvorbisidec1
+Description: Integer-only Ogg Vorbis decoder, AKA "tremor"
+Version: 1.2.1+git20180316-8+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libvorbisidec1
+License: See /usr/share/doc/libvorbisidec1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libogg0
+Provides: libvorbisidec.so.1=/usr/lib/x86_64-linux-gnu/libvorbisidec.so.1.0.3

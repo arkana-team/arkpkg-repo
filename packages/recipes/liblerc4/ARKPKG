@@ -1,0 +1,8 @@
+Name: liblerc4
+Description: Limited Error Raster Compression library
+Version: 4.0.0+ds-5
+Arch: x86_64
+URL: https://packages.debian.org/trixie/liblerc4
+License: See /usr/share/doc/liblerc4/copyright
+Maintainer: arkanaOS Team
+Provides: libLerc.so.4=/usr/lib/x86_64-linux-gnu/libLerc.so.4

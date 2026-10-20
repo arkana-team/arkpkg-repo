@@ -1,0 +1,10 @@
+Name: libwebpdemux2
+Description: Lossy compression of digital photographic images (libwebpdemux library)
+Version: 1.5.0-0.1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libwebpdemux2
+License: See /usr/share/doc/libwebpdemux2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libwebp7
+Provides: libwebpdemux.so.2=/usr/lib/x86_64-linux-gnu/libwebpdemux.so.2.0.16

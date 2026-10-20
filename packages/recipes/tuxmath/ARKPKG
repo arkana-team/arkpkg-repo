@@ -1,0 +1,14 @@
+Name: tuxmath
+Description: math game for kids with Tux
+Version: 2.0.3-10
+Arch: x86_64
+URL: https://github.com/tux4kids/
+License: See /usr/share/doc/tuxmath/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsdl-image1.2
+  libsdl-mixer1.2
+  libsdl-net1.2
+  libsdl1.2debian
+  libt4k-common0t64
+  tuxmath-data

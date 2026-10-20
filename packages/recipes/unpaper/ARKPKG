@@ -1,0 +1,12 @@
+Name: unpaper
+Description: post-processing tool for scanned pages
+Version: 7.0.0-3+b2
+Arch: x86_64
+URL: https://www.flameeyes.eu/projects/unpaper
+License: See /usr/share/doc/unpaper/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libavcodec61
+  libavformat61
+  libavutil59
+Provides: unpaper=/usr/bin/unpaper

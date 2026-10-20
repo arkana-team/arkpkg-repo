@@ -1,0 +1,8 @@
+Name: libgsm1
+Description: Shared libraries for GSM speech compressor
+Version: 1.0.22-1+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgsm1
+License: See /usr/share/doc/libgsm1/copyright
+Maintainer: arkanaOS Team
+Provides: libgsm.so.1=/usr/lib/x86_64-linux-gnu/libgsm.so.1.0.19

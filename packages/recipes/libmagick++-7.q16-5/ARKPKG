@@ -1,0 +1,11 @@
+Name: libmagick++-7.q16-5
+Description: C++ interface to ImageMagick -- quantum depth Q16
+Version: 8:7.1.1.43+dfsg1-1+deb13u12
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libmagick++-7.q16-5
+License: See /usr/share/doc/libmagick++-7.q16-5/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmagickcore-7.q16-10
+  libmagickwand-7.q16-10
+Provides: libMagick++-7.Q16.so.5=/usr/lib/x86_64-linux-gnu/libMagick++-7.Q16.so.5.0.0

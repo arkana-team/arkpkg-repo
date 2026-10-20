@@ -1,0 +1,10 @@
+Name: libva-x11-2
+Description: Video Acceleration (VA) API for Linux -- X11 runtime
+Version: 2.22.0-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libva-x11-2
+License: See /usr/share/doc/libva-x11-2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libva2
+Provides: libva-x11.so.2=/usr/lib/x86_64-linux-gnu/libva-x11.so.2.2200.0

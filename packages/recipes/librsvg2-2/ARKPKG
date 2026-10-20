@@ -1,0 +1,16 @@
+Name: librsvg2-2
+Description: SAX-based renderer library for SVG files (runtime)
+Version: 2.60.0+dfsg-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/librsvg2-2
+License: See /usr/share/doc/librsvg2-2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo-gobject2
+  libcairo2
+  libdav1d7
+  libgdk-pixbuf-2.0-0
+  libpango-1.0-0
+  libpangocairo-1.0-0
+  xml-runtime-libs
+Provides: librsvg-2.so.2=/usr/lib/x86_64-linux-gnu/librsvg-2.so.2.60.0

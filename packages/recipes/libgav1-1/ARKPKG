@@ -1,0 +1,10 @@
+Name: libgav1-1
+Description: AV1 decoder developed by Google -- runtime library
+Version: 0.19.0-3+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgav1-1
+License: See /usr/share/doc/libgav1-1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libabsl20240722
+Provides: libgav1.so.1=/usr/lib/x86_64-linux-gnu/libgav1.so.1.0.0

@@ -1,0 +1,11 @@
+Name: libvorbisfile3
+Description: high-level API for Vorbis General Audio Compression Codec
+Version: 1.3.7-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libvorbisfile3
+License: See /usr/share/doc/libvorbisfile3/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libogg0
+  libvorbis0a
+Provides: libvorbisfile.so.3=/usr/lib/x86_64-linux-gnu/libvorbisfile.so.3.3.8

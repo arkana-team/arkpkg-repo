@@ -1,0 +1,8 @@
+Name: libjbig2dec0
+Description: JBIG2 decoder library - shared libraries
+Version: 0.20-1+b3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libjbig2dec0
+License: See /usr/share/doc/libjbig2dec0/copyright
+Maintainer: arkanaOS Team
+Provides: libjbig2dec.so.0=/usr/lib/x86_64-linux-gnu/libjbig2dec.so.0.0.0

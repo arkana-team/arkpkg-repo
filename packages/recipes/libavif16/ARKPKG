@@ -1,0 +1,15 @@
+Name: libavif16
+Description: Library for handling .avif files
+Version: 1.2.1-1.2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libavif16
+License: See /usr/share/doc/libavif16/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libaom3
+  libdav1d7
+  libgav1-1
+  librav1e0.7
+  libsvtav1enc2
+  libyuv0
+Provides: libavif.so.16=/usr/lib/x86_64-linux-gnu/libavif.so.16.2.1

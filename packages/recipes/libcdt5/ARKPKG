@@ -1,0 +1,8 @@
+Name: libcdt5
+Description: rich set of graph drawing tools - cdt library
+Version: 2.42.4-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libcdt5
+License: See /usr/share/doc/libcdt5/copyright
+Maintainer: arkanaOS Team
+Provides: libcdt.so.5=/usr/lib/x86_64-linux-gnu/libcdt.so.5.0.0

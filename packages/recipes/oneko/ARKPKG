@@ -1,0 +1,9 @@
+Name: oneko
+Description: cat chases the cursor (now a mouse) around the screen
+Version: 1.2.sakura.6-15
+Arch: x86_64
+URL: http://www.daidouji.com/oneko/
+License: See /usr/share/doc/oneko/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  psmisc

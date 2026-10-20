@@ -1,0 +1,9 @@
+Name: cowsay
+Description: configurable talking cow
+Version: 3.03+dfsg2-8
+Arch: any
+URL: https://web.archive.org/web/20120527202447/http://www.nog.net/~tony/warez/cowsay.shtml
+License: See /usr/share/doc/cowsay/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl

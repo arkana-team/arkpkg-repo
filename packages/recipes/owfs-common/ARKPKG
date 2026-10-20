@@ -1,0 +1,7 @@
+Name: owfs-common
+Description: common files used by any of the OWFS programs
+Version: 3.2p4+dfsg1-6
+Arch: any
+URL: https://packages.debian.org/trixie/owfs-common
+License: See /usr/share/doc/owfs-common/copyright
+Maintainer: arkanaOS Team

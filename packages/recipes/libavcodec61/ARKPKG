@@ -1,0 +1,40 @@
+Name: libavcodec61
+Description: FFmpeg library with de/encoders for audio/video codecs - runtime files
+Version: 7:7.1.5-0+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libavcodec61
+License: See /usr/share/doc/libavcodec61/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libaom3
+  libavutil59
+  libcairo2
+  libcodec2-1.2
+  libdav1d7
+  libgsm1
+  libjxl0.11
+  libmp3lame0
+  libopenjp2-7
+  libopus0
+  librav1e0.7
+  librsvg2-2
+  libshine3
+  libsnappy1v5
+  libspeex1
+  libsvtav1enc2
+  libswresample5
+  libtheoradec1
+  libtheoraenc1
+  libtwolame0
+  libva2
+  libvorbis0a
+  libvorbisenc2
+  libvpl2
+  libvpx9
+  libwebp7
+  libwebpmux3
+  libx264-164
+  libx265-215
+  libxvidcore4
+  libzvbi0t64
+Provides: libavcodec.so.61=/usr/lib/x86_64-linux-gnu/libavcodec.so.61.19.101

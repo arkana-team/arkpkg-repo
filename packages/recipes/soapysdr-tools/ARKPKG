@@ -1,0 +1,10 @@
+Name: soapysdr-tools
+Description: software defined radio interface library tools
+Version: 0.8.1-5+b2
+Arch: x86_64
+URL: https://github.com/pothosware/SoapySDR/wiki
+License: See /usr/share/doc/soapysdr-tools/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsoapysdr0.8
+Provides: SoapySDRUtil=/usr/bin/SoapySDRUtil

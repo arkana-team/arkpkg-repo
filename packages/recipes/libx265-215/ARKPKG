@@ -1,0 +1,10 @@
+Name: libx265-215
+Description: H.265/HEVC video stream encoder (shared library)
+Version: 4.1-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libx265-215
+License: See /usr/share/doc/libx265-215/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libnuma1
+Provides: libx265.so.215=/usr/lib/x86_64-linux-gnu/libx265.so.215

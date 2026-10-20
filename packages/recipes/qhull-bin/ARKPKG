@@ -1,0 +1,10 @@
+Name: qhull-bin
+Description: calculate convex hulls and related structures (utilities)
+Version: 2020.2-6+b2
+Arch: x86_64
+URL: https://www.qhull.org
+License: See /usr/share/doc/qhull-bin/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libqhull-r8.0
+Provides: qconvex=/usr/bin/qconvex, qdelaunay=/usr/bin/qdelaunay, qhalf=/usr/bin/qhalf, qhull=/usr/bin/qhull, qvoronoi=/usr/bin/qvoronoi, rbox=/usr/bin/rbox

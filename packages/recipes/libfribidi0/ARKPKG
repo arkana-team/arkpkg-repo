@@ -1,0 +1,8 @@
+Name: libfribidi0
+Description: Free Implementation of the Unicode BiDi algorithm
+Version: 1.0.16-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libfribidi0
+License: See /usr/share/doc/libfribidi0/copyright
+Maintainer: arkanaOS Team
+Provides: libfribidi.so.0=/usr/lib/x86_64-linux-gnu/libfribidi.so.0.4.0

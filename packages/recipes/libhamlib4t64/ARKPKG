@@ -1,0 +1,10 @@
+Name: libhamlib4t64
+Description: Run-time library to control radio transceivers and receivers
+Version: 4.6.2-1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libhamlib4t64
+License: See /usr/share/doc/libhamlib4t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libusb-libs
+Provides: libhamlib.so.4=/usr/lib/x86_64-linux-gnu/libhamlib.so.4.0.6

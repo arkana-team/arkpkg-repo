@@ -1,0 +1,10 @@
+Name: usbrelay
+Description: USB HID relay driver
+Version: 1.0-2.2+b2
+Arch: x86_64
+URL: https://github.com/darrylb123/usbrelay
+License: See /usr/share/doc/usbrelay/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libhidapi-hidraw0
+Provides: usbrelay=/usr/bin/usbrelay

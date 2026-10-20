@@ -1,0 +1,8 @@
+Name: lua-bitop
+Description: fast bit manipulation library for the Lua language
+Version: 1.0.2-7+b2
+Arch: x86_64
+URL: http://bitop.luajit.org
+License: See /usr/share/doc/lua-bitop/copyright
+Maintainer: arkanaOS Team
+Provides: liblua5.1-bitop.so.0=/usr/lib/x86_64-linux-gnu/liblua5.1-bitop.so.0.0.0, liblua5.2-bitop.so.0=/usr/lib/x86_64-linux-gnu/liblua5.2-bitop.so.0.0.0, liblua5.3-bitop.so.0=/usr/lib/x86_64-linux-gnu/liblua5.3-bitop.so.0.0.0, liblua5.4-bitop.so.0=/usr/lib/x86_64-linux-gnu/liblua5.4-bitop.so.0.0.0

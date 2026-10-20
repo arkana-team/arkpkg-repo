@@ -1,0 +1,8 @@
+Name: libemf1
+Description: Enhanced Metafile library (run-time)
+Version: 1.0.13-8+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libemf1
+License: See /usr/share/doc/libemf1/copyright
+Maintainer: arkanaOS Team
+Provides: libEMF.so.1=/usr/lib/x86_64-linux-gnu/libEMF.so.1.0.0

@@ -1,0 +1,7 @@
+Name: hoichess
+Description: xboard compatible chess engine to play chess with
+Version: 0.22.0-3
+Arch: x86_64
+URL: http://www.hoicher.de/hoichess/
+License: See /usr/share/doc/hoichess/copyright
+Maintainer: arkanaOS Team

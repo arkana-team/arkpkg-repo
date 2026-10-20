@@ -1,0 +1,8 @@
+Name: libaom3
+Description: AV1 Video Codec Library
+Version: 3.12.1-1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libaom3
+License: See /usr/share/doc/libaom3/copyright
+Maintainer: arkanaOS Team
+Provides: libaom.so.3=/usr/lib/x86_64-linux-gnu/libaom.so.3.12.1

@@ -1,0 +1,15 @@
+Name: libsdl2-mixer-2.0-0
+Description: Mixer library for Simple DirectMedia Layer 2, libraries
+Version: 2.8.1+dfsg-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsdl2-mixer-2.0-0
+License: See /usr/share/doc/libsdl2-mixer-2.0-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libflac14
+  libmpg123-0t64
+  libopusfile0
+  libsdl2-2.0-0
+  libvorbisfile3
+  libxmp4
+Provides: libSDL2_mixer-2.0.so.0=/usr/lib/x86_64-linux-gnu/libSDL2_mixer-2.0.so.0.800.1

@@ -1,0 +1,8 @@
+Name: libxkbcommon0
+Description: library interface to the XKB compiler - shared library
+Version: 1.7.0-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libxkbcommon0
+License: See /usr/share/doc/libxkbcommon0/copyright
+Maintainer: arkanaOS Team
+Provides: libxkbcommon.so.0=/usr/lib/x86_64-linux-gnu/libxkbcommon.so.0.0.0

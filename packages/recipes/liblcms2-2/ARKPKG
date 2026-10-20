@@ -1,0 +1,8 @@
+Name: liblcms2-2
+Description: Little CMS 2 color management library
+Version: 2.16-2+deb13u2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/liblcms2-2
+License: See /usr/share/doc/liblcms2-2/copyright
+Maintainer: arkanaOS Team
+Provides: liblcms2.so.2=/usr/lib/x86_64-linux-gnu/liblcms2.so.2.0.16

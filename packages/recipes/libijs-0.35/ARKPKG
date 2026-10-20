@@ -1,0 +1,8 @@
+Name: libijs-0.35
+Description: IJS raster image transport protocol: shared library
+Version: 0.35-15.2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libijs-0.35
+License: See /usr/share/doc/libijs-0.35/copyright
+Maintainer: arkanaOS Team
+Provides: libijs-0.35.so=/usr/lib/x86_64-linux-gnu/libijs-0.35.so

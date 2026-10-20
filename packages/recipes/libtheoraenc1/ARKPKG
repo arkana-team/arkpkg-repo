@@ -1,0 +1,10 @@
+Name: libtheoraenc1
+Description: Theora Video Compression Codec (shared library - libtheoraenc)
+Version: 1.2.0~alpha1+dfsg-6
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libtheoraenc1
+License: See /usr/share/doc/libtheoraenc1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libogg0
+Provides: libtheoraenc.so.1=/usr/lib/x86_64-linux-gnu/libtheoraenc.so.1.2.0

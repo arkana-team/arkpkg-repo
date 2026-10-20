@@ -1,0 +1,8 @@
+Name: libopenal1
+Description: Software implementation of the OpenAL audio API (shared library)
+Version: 1:1.24.2-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libopenal1
+License: See /usr/share/doc/libopenal1/copyright
+Maintainer: arkanaOS Team
+Provides: libopenal.so.1=/usr/lib/x86_64-linux-gnu/libopenal.so.1.24.2

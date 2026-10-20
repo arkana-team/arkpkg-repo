@@ -1,0 +1,8 @@
+Name: libgts-0.7-5t64
+Description: library to deal with 3D computational surface meshes
+Version: 0.7.6+darcs121130-5.2+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libgts-0.7-5t64
+License: See /usr/share/doc/libgts-0.7-5t64/copyright
+Maintainer: arkanaOS Team
+Provides: libgts-0.7.so.5=/usr/lib/x86_64-linux-gnu/libgts-0.7.so.5.0.1

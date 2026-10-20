@@ -1,0 +1,13 @@
+Name: libpangocairo-1.0-0
+Description: Layout and rendering of internationalized text
+Version: 1.56.3-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libpangocairo-1.0-0
+License: See /usr/share/doc/libpangocairo-1.0-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo2
+  libharfbuzz0b
+  libpango-1.0-0
+  libpangoft2-1.0-0
+Provides: libpangocairo-1.0.so.0=/usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.5600.3

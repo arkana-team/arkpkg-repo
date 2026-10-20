@@ -1,0 +1,10 @@
+Name: libmuparser2v5
+Description: fast mathematical expressions parser library (runtime)
+Version: 2.3.4-1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libmuparser2v5
+License: See /usr/share/doc/libmuparser2v5/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgomp1
+Provides: libmuparser.so.2=/usr/lib/x86_64-linux-gnu/libmuparser.so.2.3.4

@@ -1,0 +1,18 @@
+Name: libsdl2-2.0-0
+Description: Simple DirectMedia Layer
+Version: 2.32.4+dfsg-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libsdl2-2.0-0
+License: See /usr/share/doc/libsdl2-2.0-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  alsa-libs
+  libdecor-0-0
+  libpulse0
+  libsamplerate0
+  libwayland-client0
+  libwayland-cursor0
+  libwayland-egl1
+  libxkbcommon0
+  libxss1
+Provides: libSDL2-2.0.so.0=/usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0.3200.4

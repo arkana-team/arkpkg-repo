@@ -1,0 +1,12 @@
+Name: rtl-433
+Description: Decode 433.9 Mhz data
+Version: 25.02-1+deb13u1
+Arch: x86_64
+URL: https://github.com/merbanan/rtl_433
+License: See /usr/share/doc/rtl-433/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  librtlsdr0
+  libsoapysdr0.8
+  libusb-libs
+Provides: rtl_433=/usr/bin/rtl_433

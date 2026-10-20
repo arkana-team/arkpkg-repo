@@ -1,0 +1,8 @@
+Name: libmp3lame0
+Description: MP3 encoding library
+Version: 3.100-6+b3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libmp3lame0
+License: See /usr/share/doc/libmp3lame0/copyright
+Maintainer: arkanaOS Team
+Provides: libmp3lame.so.0=/usr/lib/x86_64-linux-gnu/libmp3lame.so.0.0.0

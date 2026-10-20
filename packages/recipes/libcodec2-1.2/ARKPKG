@@ -1,0 +1,8 @@
+Name: libcodec2-1.2
+Description: Codec2 runtime library
+Version: 1.2.0-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libcodec2-1.2
+License: See /usr/share/doc/libcodec2-1.2/copyright
+Maintainer: arkanaOS Team
+Provides: libcodec2.so.1.2=/usr/lib/x86_64-linux-gnu/libcodec2.so.1.2

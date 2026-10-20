@@ -1,0 +1,12 @@
+Name: djvulibre-bin
+Description: Utilities for the DjVu image format
+Version: 3.5.28-2.2
+Arch: x86_64
+URL: http://djvu.sourceforge.net/
+License: See /usr/share/doc/djvulibre-bin/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  curl
+  libdjvulibre21
+  libtiff6
+Provides: any2djvu=/usr/bin/any2djvu, bzz=/usr/bin/bzz, c44=/usr/bin/c44, cjb2=/usr/bin/cjb2, cpaldjvu=/usr/bin/cpaldjvu, csepdjvu=/usr/bin/csepdjvu, ddjvu=/usr/bin/ddjvu, djvm=/usr/bin/djvm, djvmcvt=/usr/bin/djvmcvt, djvudigital=/usr/bin/djvudigital, djvudump=/usr/bin/djvudump, djvuextract=/usr/bin/djvuextract, djvumake=/usr/bin/djvumake, djvups=/usr/bin/djvups, djvused=/usr/bin/djvused, djvutoxml=/usr/bin/djvutoxml, djvutxt=/usr/bin/djvutxt, djvuxmlparser=/usr/bin/djvuxmlparser

@@ -1,0 +1,11 @@
+Name: libswresample5
+Description: FFmpeg library for audio resampling, rematrixing etc. - runtime files
+Version: 7:7.1.5-0+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libswresample5
+License: See /usr/share/doc/libswresample5/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libavutil59
+  libsoxr0
+Provides: libswresample.so.5=/usr/lib/x86_64-linux-gnu/libswresample.so.5.3.100

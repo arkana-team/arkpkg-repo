@@ -1,0 +1,10 @@
+Name: libzvbi0t64
+Description: Vertical Blanking Interval decoder (VBI) - runtime files
+Version: 0.2.44-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libzvbi0t64
+License: See /usr/share/doc/libzvbi0t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpng16-16t64
+Provides: libzvbi-chains.so.0=/usr/lib/x86_64-linux-gnu/libzvbi-chains.so.0.0.0, libzvbi.so.0=/usr/lib/x86_64-linux-gnu/libzvbi.so.0.13.2

@@ -1,0 +1,8 @@
+Name: libpaper2
+Description: Paper sizes catalogue
+Version: 2.2.5-0.3+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libpaper2
+License: See /usr/share/doc/libpaper2/copyright
+Maintainer: arkanaOS Team
+Provides: libpaper.so.2=/usr/lib/x86_64-linux-gnu/libpaper.so.2.2.5

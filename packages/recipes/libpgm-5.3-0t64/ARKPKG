@@ -1,0 +1,8 @@
+Name: libpgm-5.3-0t64
+Description: OpenPGM shared library
+Version: 5.3.128~dfsg-2.1+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libpgm-5.3-0t64
+License: See /usr/share/doc/libpgm-5.3-0t64/copyright
+Maintainer: arkanaOS Team
+Provides: libpgm-5.3.so.0=/usr/lib/x86_64-linux-gnu/libpgm-5.3.so.0.0.128

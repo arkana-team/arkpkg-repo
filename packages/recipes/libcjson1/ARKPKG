@@ -1,0 +1,8 @@
+Name: libcjson1
+Description: Ultralightweight JSON parser in ANSI C
+Version: 1.7.18-3.1+deb13u1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libcjson1
+License: See /usr/share/doc/libcjson1/copyright
+Maintainer: arkanaOS Team
+Provides: libcjson.so.1=/usr/lib/x86_64-linux-gnu/libcjson.so.1.7.18, libcjson_utils.so.1=/usr/lib/x86_64-linux-gnu/libcjson_utils.so.1.7.18

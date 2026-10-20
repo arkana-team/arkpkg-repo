@@ -1,0 +1,10 @@
+Name: sl
+Description: Correct you if you type `sl' by mistake
+Version: 5.02-1+b1
+Arch: x86_64
+URL: https://github.com/mtoyoda/sl
+License: See /usr/share/doc/sl/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-compat-libs
+  ncurses-libs

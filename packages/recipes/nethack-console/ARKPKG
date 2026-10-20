@@ -1,0 +1,11 @@
+Name: nethack-console
+Description: dungeon crawl game - text-based interface
+Version: 3.6.7-1+b2
+Arch: x86_64
+URL: https://www.nethack.org
+License: See /usr/share/doc/nethack-console/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-compat-libs
+  ncurses-libs
+  nethack-common

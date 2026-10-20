@@ -1,0 +1,9 @@
+Name: sjeng
+Description: chess program that plays many variants
+Version: 11.2-15
+Arch: x86_64
+URL: http://sjeng.sourceforge.net
+License: See /usr/share/doc/sjeng/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgdbm6t64

@@ -1,0 +1,16 @@
+Name: sane-airscan
+Description: SANE backend for AirScan (eSCL) and WSD document scanner
+Version: 0.99.35-1
+Arch: x86_64
+URL: https://github.com/alexpevzner/sane-airscan
+License: See /usr/share/doc/sane-airscan/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  libavahi-client3
+  libavahi-common3
+  libjpeg62-turbo
+  libpng16-16t64
+  libtiff6
+  xml-runtime-libs
+Provides: airscan-discover=/usr/bin/airscan-discover

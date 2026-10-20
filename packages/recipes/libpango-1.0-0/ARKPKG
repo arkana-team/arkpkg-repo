@@ -1,0 +1,12 @@
+Name: libpango-1.0-0
+Description: Layout and rendering of internationalized text
+Version: 1.56.3-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libpango-1.0-0
+License: See /usr/share/doc/libpango-1.0-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libfribidi0
+  libharfbuzz0b
+  libthai0
+Provides: libpango-1.0.so.0=/usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.5600.3

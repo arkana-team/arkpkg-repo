@@ -1,0 +1,10 @@
+Name: pstoedit
+Description: PostScript and PDF files to editable vector graphics converter
+Version: 4.02-1+b1
+Arch: x86_64
+URL: http://www.pstoedit.net/
+License: See /usr/share/doc/pstoedit/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpstoedit0t64
+Provides: pstoedit=/usr/bin/pstoedit

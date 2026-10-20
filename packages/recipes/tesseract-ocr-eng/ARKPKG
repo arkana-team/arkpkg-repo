@@ -1,0 +1,7 @@
+Name: tesseract-ocr-eng
+Description: tesseract-ocr language files for English
+Version: 1:4.1.0-2
+Arch: any
+URL: https://packages.debian.org/trixie/tesseract-ocr-eng
+License: See /usr/share/doc/tesseract-ocr-eng/copyright
+Maintainer: arkanaOS Team

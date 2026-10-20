@@ -1,0 +1,8 @@
+Name: libpathplan4
+Description: rich set of graph drawing tools - pathplan library
+Version: 2.42.4-3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libpathplan4
+License: See /usr/share/doc/libpathplan4/copyright
+Maintainer: arkanaOS Team
+Provides: libpathplan.so.4=/usr/lib/x86_64-linux-gnu/libpathplan.so.4.0.0

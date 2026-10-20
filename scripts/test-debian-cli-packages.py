@@ -48,6 +48,28 @@ class LicensePathTests(unittest.TestCase):
                 )
             )
 
+    def test_requested_closure_reuses_an_exact_repository_dependency(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            repo_root = Path(temporary)
+            recipe = repo_root / "packages/recipes/runtime/ARKPKG"
+            archive = repo_root / "packages/runtime-1.0-x86_64.ark"
+            recipe.parent.mkdir(parents=True)
+            archive.parent.mkdir(parents=True, exist_ok=True)
+            recipe.write_text(
+                "Name: runtime\nVersion: 1.0\nArch: x86_64\n",
+                encoding="utf-8",
+            )
+            archive.touch()
+            packages = [
+                {"name": "app", "dependencies": ["runtime"]},
+                {"name": "runtime", "version": "1.0", "arch": "x86_64"},
+            ]
+
+            closure = BUILDER.requested_package_closure(
+                repo_root, packages, {"app"}
+            )
+
+            self.assertEqual(closure, {"app"})
 
 if __name__ == "__main__":
     unittest.main()

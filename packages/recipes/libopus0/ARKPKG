@@ -1,0 +1,8 @@
+Name: libopus0
+Description: Opus codec runtime library
+Version: 1.5.2-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libopus0
+License: See /usr/share/doc/libopus0/copyright
+Maintainer: arkanaOS Team
+Provides: libopus.so.0=/usr/lib/x86_64-linux-gnu/libopus.so.0.10.1

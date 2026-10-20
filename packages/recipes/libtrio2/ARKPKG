@@ -1,0 +1,8 @@
+Name: libtrio2
+Description: portable and extendable printf and string functions
+Version: 1.16+dfsg1-5+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libtrio2
+License: See /usr/share/doc/libtrio2/copyright
+Maintainer: arkanaOS Team
+Provides: libtrio.so.2=/usr/lib/x86_64-linux-gnu/libtrio.so.2.0.0

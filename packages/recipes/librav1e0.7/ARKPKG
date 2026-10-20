@@ -1,0 +1,8 @@
+Name: librav1e0.7
+Description: Fastest and safest AV1 encoder - shared library
+Version: 0.7.1-9+b2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/librav1e0.7
+License: See /usr/share/doc/librav1e0.7/copyright
+Maintainer: arkanaOS Team
+Provides: librav1e.so.0.7=/usr/lib/x86_64-linux-gnu/librav1e.so.0.7.2

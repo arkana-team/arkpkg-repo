@@ -7,6 +7,7 @@ on:
       - "packages/**"
       - "scripts/build-index.py"
       - "scripts/test-build-index.py"
+      - "scripts/test-package-index-tilde.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -36,6 +37,7 @@ jobs:
         run: |
           python3 -m venv /tmp/arkpkg-repo-venv
           /tmp/arkpkg-repo-venv/bin/pip install --disable-pip-version-check lz4
+          /tmp/arkpkg-repo-venv/bin/python scripts/test-package-index-tilde.py
           /tmp/arkpkg-repo-venv/bin/python scripts/test-build-index.py
           /tmp/arkpkg-repo-venv/bin/python scripts/build-index.py --site-dir site
 

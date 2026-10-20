@@ -1,0 +1,17 @@
+Name: graphviz
+Description: rich set of graph drawing tools
+Version: 2.42.4-3
+Arch: x86_64
+URL: https://www.graphviz.org/
+License: See /usr/share/doc/graphviz/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libann0
+  libcdt5
+  libcgraph6
+  libgd3
+  libgts-0.7-5t64
+  libgvc6
+  libgvpr2
+  liblab-gamut1
+Provides: acyclic=/usr/bin/acyclic, bcomps=/usr/bin/bcomps, ccomps=/usr/bin/ccomps, circo=/usr/bin/circo, cluster=/usr/bin/cluster, diffimg=/usr/bin/diffimg, dijkstra=/usr/bin/dijkstra, dot2gxl=/usr/bin/dot2gxl, dot=/usr/bin/dot, dot_builtins=/usr/bin/dot_builtins, dotty=/usr/bin/dotty, edgepaint=/usr/bin/edgepaint, fdp=/usr/bin/fdp, gc=/usr/bin/gc, gml2gv=/usr/bin/gml2gv, graphml2gv=/usr/bin/graphml2gv, gv2gml=/usr/bin/gv2gml, gv2gxl=/usr/bin/gv2gxl, gvcolor=/usr/bin/gvcolor, gvgen=/usr/bin/gvgen, gvmap.sh=/usr/bin/gvmap.sh, gvmap=/usr/bin/gvmap, gvpack=/usr/bin/gvpack, gvpr=/usr/bin/gvpr, gxl2dot=/usr/bin/gxl2dot, gxl2gv=/usr/bin/gxl2gv, lefty=/usr/bin/lefty, lneato=/usr/bin/lneato, mingle=/usr/bin/mingle, mm2gv=/usr/bin/mm2gv, neato=/usr/bin/neato, nop=/usr/bin/nop, osage=/usr/bin/osage, patchwork=/usr/bin/patchwork, prune=/usr/bin/prune, sccmap=/usr/bin/sccmap, sfdp=/usr/bin/sfdp, tred=/usr/bin/tred, twopi=/usr/bin/twopi, unflatten=/usr/bin/unflatten, vimdot=/usr/bin/vimdot

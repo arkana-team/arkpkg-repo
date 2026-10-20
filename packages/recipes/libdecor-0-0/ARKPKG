@@ -1,0 +1,10 @@
+Name: libdecor-0-0
+Description: client-side window decoration library
+Version: 0.2.2-2
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libdecor-0-0
+License: See /usr/share/doc/libdecor-0-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libwayland-client0
+Provides: libdecor-0.so.0=/usr/lib/x86_64-linux-gnu/libdecor-0.so.0.200.2

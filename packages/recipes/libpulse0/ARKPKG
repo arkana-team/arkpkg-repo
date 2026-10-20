@@ -1,0 +1,12 @@
+Name: libpulse0
+Description: PulseAudio client libraries
+Version: 17.0+dfsg1-2+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/libpulse0
+License: See /usr/share/doc/libpulse0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libasyncns0
+  libsndfile1
+  systemd-libs
+Provides: libpulse-simple.so.0=/usr/lib/x86_64-linux-gnu/libpulse-simple.so.0.1.1, libpulse.so.0=/usr/lib/x86_64-linux-gnu/libpulse.so.0.24.3, libpulsecommon-17.0.so=/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-17.0.so
