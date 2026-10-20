@@ -1,0 +1,402 @@
+{
+  "architecture": "amd64",
+  "excluded_packages": {},
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "pv"
+      ],
+      "debian_version": "1.9.31-1",
+      "dependencies": [],
+      "description": "Shell pipeline element to meter data passing through",
+      "license": "See /usr/share/doc/pv/copyright",
+      "license_path": "usr/share/doc/pv/copyright",
+      "name": "pv",
+      "url": "https://www.ivarch.com/programs/pv.shtml",
+      "version": "1.9.31-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "sensible-utils"
+      ],
+      "debian_version": "0.0.25",
+      "dependencies": [],
+      "description": "Utilities for sensible alternative selection",
+      "license": "See /usr/share/doc/sensible-utils/copyright",
+      "license_path": "usr/share/doc/sensible-utils/copyright",
+      "name": "sensible-utils",
+      "url": "https://packages.debian.org/trixie/sensible-utils",
+      "version": "0.0.25"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libx86emu3"
+      ],
+      "debian_version": "3.5-1.1",
+      "dependencies": [],
+      "description": "x86 emulation library",
+      "license": "See /usr/share/doc/libx86emu3/copyright",
+      "license_path": "usr/share/doc/libx86emu3/copyright",
+      "name": "libx86emu3",
+      "url": "https://github.com/wfeldt/libx86emu",
+      "version": "3.5-1.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libhd21t64"
+      ],
+      "debian_version": "21.82-1.1+b2",
+      "dependencies": [
+        "libx86emu3"
+      ],
+      "description": "Hardware identification system library",
+      "license": "See /usr/share/doc/libhd21t64/copyright",
+      "license_path": "usr/share/doc/libhd21t64/copyright",
+      "name": "libhd21t64",
+      "url": "https://github.com/openSUSE/hwinfo",
+      "version": "21.82-1.1+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "hwinfo"
+      ],
+      "debian_version": "21.82-1.1+b2",
+      "dependencies": [
+        "libhd21t64"
+      ],
+      "description": "Hardware identification system",
+      "license": "See /usr/share/doc/hwinfo/copyright",
+      "license_path": "usr/share/doc/hwinfo/copyright",
+      "name": "hwinfo",
+      "url": "https://github.com/openSUSE/hwinfo",
+      "version": "21.82-1.1+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libxaw3dxft6t64"
+      ],
+      "debian_version": "2.9.1.4-5",
+      "dependencies": [],
+      "description": "An extended version of Xaw3d with support for UTF8",
+      "license": "See /usr/share/doc/libxaw3dxft6t64/copyright",
+      "license_path": "usr/share/doc/libxaw3dxft6t64/copyright",
+      "name": "libxaw3dxft6t64",
+      "url": "https://sourceforge.net/projects/sf-xpaint/",
+      "version": "2.9.1.4-5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xpaint"
+      ],
+      "debian_version": "2.9.1.4-5",
+      "dependencies": [
+        "libxaw3dxft6t64"
+      ],
+      "description": "simple paint program for X",
+      "license": "See /usr/share/doc/xpaint/copyright",
+      "license_path": "usr/share/doc/xpaint/copyright",
+      "name": "xpaint",
+      "url": "https://sourceforge.net/projects/sf-xpaint/",
+      "version": "2.9.1.4-5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xaw3dg"
+      ],
+      "debian_version": "1.5+F-2+b1",
+      "dependencies": [],
+      "description": "Xaw3d widget set",
+      "license": "See /usr/share/doc/xaw3dg/copyright",
+      "license_path": "usr/share/doc/xaw3dg/copyright",
+      "name": "xaw3dg",
+      "url": "https://packages.debian.org/trixie/xaw3dg",
+      "version": "1.5+F-2+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xcolorsel"
+      ],
+      "debian_version": "1.1a-23+b1",
+      "dependencies": [
+        "xaw3dg"
+      ],
+      "description": "display colors and names in X",
+      "license": "See /usr/share/doc/xcolorsel/copyright",
+      "license_path": "usr/share/doc/xcolorsel/copyright",
+      "name": "xcolorsel",
+      "url": "https://packages.debian.org/trixie/xcolorsel",
+      "version": "1.1a-23+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xtermset"
+      ],
+      "debian_version": "0.5.2-7",
+      "dependencies": [],
+      "description": "change the characteristics of an xterm",
+      "license": "See /usr/share/doc/xtermset/copyright",
+      "license_path": "usr/share/doc/xtermset/copyright",
+      "name": "xtermset",
+      "url": "https://sourceforge.net/projects/clts/",
+      "version": "0.5.2-7"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mandoc"
+      ],
+      "debian_version": "1.14.6-4",
+      "dependencies": [],
+      "description": "BSD manpage compiler toolset",
+      "license": "See /usr/share/doc/mandoc/copyright",
+      "license_path": "usr/share/doc/mandoc/copyright",
+      "name": "mandoc",
+      "url": "https://mandoc.bsd.lv",
+      "version": "1.14.6-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "netpbm"
+      ],
+      "debian_version": "2:11.10.02-1",
+      "dependencies": [],
+      "description": "Graphics conversion tools between image formats",
+      "license": "See /usr/share/doc/netpbm/copyright",
+      "license_path": "usr/share/doc/netpbm/copyright",
+      "name": "netpbm",
+      "url": "https://netpbm.sourceforge.net/",
+      "version": "2:11.10.02-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ghostscript"
+      ],
+      "debian_version": "10.05.1~dfsg-1+deb13u1",
+      "dependencies": [],
+      "description": "interpreter for the PostScript language and for PDF",
+      "license": "See /usr/share/doc/ghostscript/copyright",
+      "license_path": "usr/share/doc/ghostscript/copyright",
+      "name": "ghostscript",
+      "url": "https://www.ghostscript.com/",
+      "version": "10.05.1~dfsg-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fig2dev"
+      ],
+      "debian_version": "1:3.2.9a-4",
+      "dependencies": [
+        "ghostscript",
+        "netpbm"
+      ],
+      "description": "Utilities for converting XFig figure files",
+      "license": "See /usr/share/doc/fig2dev/copyright",
+      "license_path": "usr/share/doc/fig2dev/copyright",
+      "name": "fig2dev",
+      "url": "https://sourceforge.net/projects/mcj/",
+      "version": "1:3.2.9a-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xfig"
+      ],
+      "debian_version": "1:3.2.9a-3",
+      "dependencies": [
+        "fig2dev",
+        "ghostscript",
+        "sensible-utils",
+        "xdg-utils"
+      ],
+      "description": "Facility for Interactive Generation of figures under X11",
+      "license": "See /usr/share/doc/xfig/copyright",
+      "license_path": "usr/share/doc/xfig/copyright",
+      "name": "xfig",
+      "url": "https://sourceforge.net/projects/mcj/",
+      "version": "1:3.2.9a-3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "gv"
+      ],
+      "debian_version": "1:3.7.4-3.1",
+      "dependencies": [
+        "ghostscript",
+        "xaw3dg"
+      ],
+      "description": "PostScript and PDF viewer for X",
+      "license": "See /usr/share/doc/gv/copyright",
+      "license_path": "usr/share/doc/gv/copyright",
+      "name": "gv",
+      "url": "http://www.gnu.org/software/gv/",
+      "version": "1:3.7.4-3.1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "inxi"
+      ],
+      "debian_version": "3.3.38-1-1",
+      "dependencies": [
+        "perl",
+        "pciutils"
+      ],
+      "description": "full featured system information script",
+      "license": "See /usr/share/doc/inxi/copyright",
+      "license_path": "usr/share/doc/inxi/copyright",
+      "name": "inxi",
+      "url": "https://smxi.org/docs/inxi.htm",
+      "version": "3.3.38-1-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "ranger"
+      ],
+      "debian_version": "1.9.4-2",
+      "dependencies": [
+        "sensible-utils"
+      ],
+      "description": "Console File Manager with VI Key Bindings",
+      "license": "See /usr/share/doc/ranger/copyright",
+      "license_path": "usr/share/doc/ranger/copyright",
+      "name": "ranger",
+      "url": "https://ranger.github.io",
+      "version": "1.9.4-2"
+    }
+  ],
+  "source_integrity": {
+    "archive_signing_key_fingerprint": "04B54C3CDCA79751B16BC6B5225629DF75B188BD",
+    "archive_signing_key_sha256": "6f1d277429dd7ffedcc6f8688a7ad9a458859b1139ffa026d1eeaadcbffb0da7",
+    "package_index_file": "dists/trixie/main/binary-amd64/Packages.xz",
+    "package_index_sha256": "7778d3e3f303b7ddb8ce0fe7c8d57473a076c6bf2e8f241f75421d2396352498",
+    "release_file": "dists/trixie/InRelease",
+    "release_sha256": "0584fba32e13e0ab8285fb16c27adea1ec03a73669c18702821094fd6ca86675",
+    "suite": "trixie"
+  },
+  "sources": {
+    "fig2dev": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fig2dev/fig2dev_3.2.9a-4_amd64.deb",
+      "sha256": "c29246f95032fd0cceb920de5749edfc0e4461e70f384effdfbd57170ae080b0",
+      "version": "1:3.2.9a-4"
+    },
+    "ghostscript": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/ghostscript/ghostscript_10.05.1~dfsg-1+deb13u1_amd64.deb",
+      "sha256": "82f9974dcc297bca32994a365b29f255d531060ad2c5012260f0a2b4138a9c9e",
+      "version": "10.05.1~dfsg-1+deb13u1"
+    },
+    "gv": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gv/gv_3.7.4-3.1_amd64.deb",
+      "sha256": "12bca417185bbe3965b0b78c556d543cff2a0a6a974318e3d5c5440ed693e75e",
+      "version": "1:3.7.4-3.1"
+    },
+    "hwinfo": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/hwinfo/hwinfo_21.82-1.1+b2_amd64.deb",
+      "sha256": "b3fee0993cbb9dd4d07612fb828cfe0e6afa4cf1dd50c478d84630f38c59c9ce",
+      "version": "21.82-1.1+b2"
+    },
+    "inxi": {
+      "architecture": "all",
+      "filename": "pool/main/i/inxi/inxi_3.3.38-1-1_all.deb",
+      "sha256": "cb64fd7d430eea519eab0c46effd52f08ae2a54c5183d85094bd31a1d2d93dca",
+      "version": "3.3.38-1-1"
+    },
+    "libhd21t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/hwinfo/libhd21t64_21.82-1.1+b2_amd64.deb",
+      "sha256": "4873301e77665278d151d438aebdf87651e114a12a7c3f223804958aa0ad6de1",
+      "version": "21.82-1.1+b2"
+    },
+    "libx86emu3": {
+      "architecture": "amd64",
+      "filename": "pool/main/libx/libx86emu/libx86emu3_3.5-1.1_amd64.deb",
+      "sha256": "9d4624a7cc794b0bd9608e8608f71e60fc995c65534ee06ea2869a434f821687",
+      "version": "3.5-1.1"
+    },
+    "libxaw3dxft6t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xpaint/libxaw3dxft6t64_2.9.1.4-5_amd64.deb",
+      "sha256": "144d92977e58d7d8a38262379d6e6825fc9a9797c061e746ee67b37cb280fb11",
+      "version": "2.9.1.4-5"
+    },
+    "mandoc": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mdocml/mandoc_1.14.6-4_amd64.deb",
+      "sha256": "bc6dd0d884da2c9491fce0e940ce8e250be778eb292218a72fed1ad084cf8da8",
+      "version": "1.14.6-4"
+    },
+    "netpbm": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/netpbm-free/netpbm_11.10.02-1_amd64.deb",
+      "sha256": "c33ecdd1d889a7757d6809ceca4b0967ccf3b290158363c1a35245b3379c4769",
+      "version": "2:11.10.02-1"
+    },
+    "pv": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/pv/pv_1.9.31-1_amd64.deb",
+      "sha256": "0511c9cab1bd89e8463bf0dcdf75d3aec20ded3a02f78ee90dbad220a9f80ce4",
+      "version": "1.9.31-1"
+    },
+    "ranger": {
+      "architecture": "all",
+      "filename": "pool/main/r/ranger/ranger_1.9.4-2_all.deb",
+      "sha256": "2676871600fa1385157c2c62d534890e3abf2feea4e92ab7969d9666e2b91ccc",
+      "version": "1.9.4-2"
+    },
+    "sensible-utils": {
+      "architecture": "all",
+      "filename": "pool/main/s/sensible-utils/sensible-utils_0.0.25_all.deb",
+      "sha256": "873a9b73c3478cc3148cdbf5cc2084949a0a8e4fa16131d1cbc895d2f1f3470e",
+      "version": "0.0.25"
+    },
+    "xaw3dg": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xaw3d/xaw3dg_1.5+F-2+b1_amd64.deb",
+      "sha256": "62cb89a52b02e432fee159a687913db532f6eb857efd056db2bd40ae2f00e6d5",
+      "version": "1.5+F-2+b1"
+    },
+    "xcolorsel": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xcolorsel/xcolorsel_1.1a-23+b1_amd64.deb",
+      "sha256": "efb254604a769ddc26cf0ebb239cd8e0da3ae8152a6f3edd858302da24bf91ef",
+      "version": "1.1a-23+b1"
+    },
+    "xfig": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xfig/xfig_3.2.9a-3_amd64.deb",
+      "sha256": "3d0ba378e9fef991d0af8521cc4f74b843bf63c34278464f341a19b0b445f15d",
+      "version": "1:3.2.9a-3"
+    },
+    "xpaint": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xpaint/xpaint_2.9.1.4-5_amd64.deb",
+      "sha256": "536bd59391b604152b644bc955cf9694aaffe24d9822c82e29bf2e7f3aff910f",
+      "version": "2.9.1.4-5"
+    },
+    "xtermset": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xtermset/xtermset_0.5.2-7_amd64.deb",
+      "sha256": "c2019502100c2cc2dc343316c254197fed808f0cb9e1858b5f63e88b2a207f94",
+      "version": "0.5.2-7"
+    }
+  },
+  "suite": "trixie"
+}

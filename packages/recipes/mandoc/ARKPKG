@@ -1,0 +1,8 @@
+Name: mandoc
+Description: BSD manpage compiler toolset
+Version: 1.14.6-4
+Arch: x86_64
+URL: https://mandoc.bsd.lv
+License: See /usr/share/doc/mandoc/copyright
+Maintainer: arkanaOS Team
+Provides: demandoc=/usr/bin/demandoc, makewhatis=/usr/sbin/makewhatis, mandoc=/usr/bin/mandoc, mandocd=/usr/sbin/mandocd, mapropos=/usr/bin/mapropos, mcatman=/usr/sbin/mcatman, mman=/usr/bin/mman, msoelim=/usr/bin/msoelim, mwhatis=/usr/bin/mwhatis

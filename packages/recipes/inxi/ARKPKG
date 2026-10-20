@@ -1,0 +1,11 @@
+Name: inxi
+Description: full featured system information script
+Version: 3.3.38-1-1
+Arch: any
+URL: https://smxi.org/docs/inxi.htm
+License: See /usr/share/doc/inxi/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  pciutils
+  perl
+Provides: inxi=/usr/bin/inxi

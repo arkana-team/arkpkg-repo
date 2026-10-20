@@ -1,0 +1,10 @@
+Name: xcolorsel
+Description: display colors and names in X
+Version: 1.1a-23+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/xcolorsel
+License: See /usr/share/doc/xcolorsel/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  xaw3dg
+Provides: xcolorsel=/usr/bin/xcolorsel

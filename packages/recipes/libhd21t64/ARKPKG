@@ -1,0 +1,11 @@
+Name: libhd21t64
+Description: Hardware identification system library
+Version: 21.82-1.1+b2
+Arch: x86_64
+URL: https://github.com/openSUSE/hwinfo
+License: See /usr/share/doc/libhd21t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libx86emu3
+  util-linux-libs
+Provides: libhd.so.21=/usr/lib/x86_64-linux-gnu/libhd.so.21.82

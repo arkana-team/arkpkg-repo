@@ -1,0 +1,8 @@
+Name: sensible-utils
+Description: Utilities for sensible alternative selection
+Version: 0.0.25
+Arch: any
+URL: https://packages.debian.org/trixie/sensible-utils
+License: See /usr/share/doc/sensible-utils/copyright
+Maintainer: arkanaOS Team
+Provides: select-editor=/usr/bin/select-editor, sensible-browser=/usr/bin/sensible-browser, sensible-editor=/usr/bin/sensible-editor, sensible-pager=/usr/bin/sensible-pager, sensible-terminal=/usr/bin/sensible-terminal

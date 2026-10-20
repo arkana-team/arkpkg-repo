@@ -1,0 +1,8 @@
+Name: xaw3dg
+Description: Xaw3d widget set
+Version: 1.5+F-2+b1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/xaw3dg
+License: See /usr/share/doc/xaw3dg/copyright
+Maintainer: arkanaOS Team
+Provides: libXaw3d.so.6=/usr/lib/x86_64-linux-gnu/libXaw3d.so.6.1

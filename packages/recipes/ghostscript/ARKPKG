@@ -1,0 +1,10 @@
+Name: ghostscript
+Description: interpreter for the PostScript language and for PDF
+Version: 10.05.1~dfsg-1+deb13u1
+Arch: x86_64
+URL: https://www.ghostscript.com/
+License: See /usr/share/doc/ghostscript/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgs10
+Provides: dvipdf=/usr/bin/dvipdf, eps2eps=/usr/bin/eps2eps, ghostscript=/usr/bin/ghostscript, gs=/usr/bin/gs, gsbj=/usr/bin/gsbj, gsdj500=/usr/bin/gsdj500, gsdj=/usr/bin/gsdj, gslj=/usr/bin/gslj, gslp=/usr/bin/gslp, gsnd=/usr/bin/gsnd, pdf2dsc=/usr/bin/pdf2dsc, pdf2ps=/usr/bin/pdf2ps, pf2afm=/usr/bin/pf2afm, pfbtopfa=/usr/bin/pfbtopfa, pphs=/usr/bin/pphs, printafm=/usr/bin/printafm, ps2ascii=/usr/bin/ps2ascii, ps2epsi=/usr/bin/ps2epsi, ps2pdf12=/usr/bin/ps2pdf12, ps2pdf13=/usr/bin/ps2pdf13, ps2pdf14=/usr/bin/ps2pdf14, ps2pdf=/usr/bin/ps2pdf, ps2pdfwr=/usr/bin/ps2pdfwr, ps2ps2=/usr/bin/ps2ps2, ps2ps=/usr/bin/ps2ps, ps2txt=/usr/bin/ps2txt, update-gsfontmap=/usr/sbin/update-gsfontmap

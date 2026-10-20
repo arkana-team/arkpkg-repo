@@ -1,0 +1,12 @@
+Name: fig2dev
+Description: Utilities for converting XFig figure files
+Version: 1:3.2.9a-4
+Arch: x86_64
+URL: https://sourceforge.net/projects/mcj/
+License: See /usr/share/doc/fig2dev/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ghostscript
+  libpng16-16t64
+  netpbm
+Provides: fig2dev=/usr/bin/fig2dev, fig2ps2tex=/usr/bin/fig2ps2tex, pic2tpic=/usr/bin/pic2tpic, transfig=/usr/bin/transfig

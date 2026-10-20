@@ -1,0 +1,8 @@
+Name: xtermset
+Description: change the characteristics of an xterm
+Version: 0.5.2-7
+Arch: x86_64
+URL: https://sourceforge.net/projects/clts/
+License: See /usr/share/doc/xtermset/copyright
+Maintainer: arkanaOS Team
+Provides: xtermset=/usr/bin/xtermset

@@ -1,0 +1,13 @@
+Name: xpaint
+Description: simple paint program for X
+Version: 2.9.1.4-5
+Arch: x86_64
+URL: https://sourceforge.net/projects/sf-xpaint/
+License: See /usr/share/doc/xpaint/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libjpeg62-turbo
+  libpng16-16t64
+  libtiff6
+  libxaw3dxft6t64
+Provides: imgmerge=/usr/bin/imgmerge, pdfconcat=/usr/bin/pdfconcat, xpaint=/usr/bin/xpaint
