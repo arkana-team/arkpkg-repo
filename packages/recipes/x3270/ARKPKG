@@ -1,0 +1,13 @@
+Name: x3270
+Description: X11 program for telnet sessions to IBM mainframes
+Version: 4.3ga10-5
+Arch: x86_64
+URL: https://github.com/pmattes/x3270
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Dependencies:
+  3270-common
+  libxmu
+  openssl-libs
+  xfonts-x3270-misc
+Provides: x3270=/usr/bin/x3270, x3270a=/usr/bin/x3270a

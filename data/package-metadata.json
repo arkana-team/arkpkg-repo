@@ -1,6 +1,22 @@
 {
   "schema_version": 1,
   "packages": {
+    "3270-common": {
+      "author": "Paul Mattes and contributors",
+      "git_repo": "https://github.com/pmattes/x3270",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pmattes",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "7zip": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/7zip",
@@ -801,6 +817,22 @@
         }
       ]
     },
+    "b3270": {
+      "author": "Paul Mattes and contributors",
+      "git_repo": "https://github.com/pmattes/x3270",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pmattes",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "barman": {
       "author": null,
       "git_repo": "https://salsa.debian.org/postgresql/barman",
@@ -1366,6 +1398,22 @@
       "git_repo": "https://salsa.debian.org/debian/c-ares",
       "git_repo_type": "packaging",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "c3270": {
+      "author": "Paul Mattes and contributors",
+      "git_repo": "https://github.com/pmattes/x3270",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pmattes",
       "packagers": [
         {
           "name": "arkana-team",
@@ -13169,6 +13217,22 @@
         }
       ]
     },
+    "libptytty0": {
+      "author": "Marc Lehmann and contributors",
+      "git_repo": "https://salsa.debian.org/debian/libptytty",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://software.schmorp.de/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "libpugixml1v5": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/pugixml",
@@ -14358,6 +14422,22 @@
       "git_repo": "https://salsa.debian.org/debian/libssh",
       "git_repo_type": "packaging",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libstartup-notification0": {
+      "author": "Havoc Pennington",
+      "git_repo": "https://gitlab.freedesktop.org/xdg/startup-notification",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/havocp",
       "packagers": [
         {
           "name": "arkana-team",
@@ -19953,6 +20033,22 @@
         }
       ]
     },
+    "pr3287": {
+      "author": "Paul Mattes and contributors",
+      "git_repo": "https://github.com/pmattes/x3270",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pmattes",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "printer-driver-brlaser": {
       "author": null,
       "git_repo": "https://github.com/Owl-Maintain/brlaser",
@@ -20913,11 +21009,43 @@
         }
       ]
     },
+    "rxvt-unicode": {
+      "author": "Marc Alexander Lehmann",
+      "git_repo": "https://salsa.debian.org/debian/rxvt-unicode",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://software.schmorp.de/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "rygel": {
       "author": null,
       "git_repo": "https://salsa.debian.org/gnome-team/rygel",
       "git_repo_type": "packaging",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "s3270": {
+      "author": "Paul Mattes and contributors",
+      "git_repo": "https://github.com/pmattes/x3270",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pmattes",
       "packagers": [
         {
           "name": "arkana-team",
@@ -22038,6 +22166,22 @@
       "git_repo": "https://salsa.debian.org/tcltk-team/expect",
       "git_repo_type": "packaging",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "tcl3270": {
+      "author": "Paul Mattes and contributors",
+      "git_repo": "https://github.com/pmattes/x3270",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pmattes",
       "packagers": [
         {
           "name": "arkana-team",
@@ -23425,6 +23569,22 @@
         }
       ]
     },
+    "x3270": {
+      "author": "Paul Mattes and contributors",
+      "git_repo": "https://github.com/pmattes/x3270",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pmattes",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "xauth": {
       "author": null,
       "git_repo": "https://salsa.debian.org/xorg-team/app/xauth",
@@ -23889,6 +24049,22 @@
         }
       ]
     },
+    "xfonts-x3270-misc": {
+      "author": "Paul Mattes and contributors",
+      "git_repo": "https://github.com/pmattes/x3270",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pmattes",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "xfontsel": {
       "author": null,
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xfontsel",
@@ -24133,6 +24309,22 @@
       "author": null,
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xload",
       "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xloadimage": {
+      "author": "Jim Frost",
+      "git_repo": "https://salsa.debian.org/debian/xloadimage",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {

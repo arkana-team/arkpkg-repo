@@ -1,0 +1,8 @@
+Name: libptytty0
+Description: library for OS-independent pseudo-tty management - runtime libraries
+Version: 2.0-1+b2
+Arch: x86_64
+URL: https://software.schmorp.de/pkg/libptytty.html
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Provides: libptytty.so.0=/usr/lib/x86_64-linux-gnu/libptytty.so.0

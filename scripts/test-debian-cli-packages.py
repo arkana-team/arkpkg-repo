@@ -71,5 +71,23 @@ class LicensePathTests(unittest.TestCase):
 
             self.assertEqual(closure, {"app"})
 
+
+class RepositoryProviderTests(unittest.TestCase):
+    def test_shared_library_path_is_indexed_as_runtime_provider(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            repo_root = Path(temporary)
+            recipe = repo_root / "packages/recipes/xcb-util/ARKPKG"
+            recipe.parent.mkdir(parents=True)
+            recipe.write_text(
+                "Name: xcb-util\n"
+                "Provides: xcb-util=/usr/lib/libxcb-util.so.1\n",
+                encoding="utf-8",
+            )
+
+            _, providers = BUILDER.repository_owners(repo_root, set())
+
+            self.assertEqual(providers["xcb-util"], "xcb-util")
+            self.assertEqual(providers["libxcb-util.so.1"], "xcb-util")
+
 if __name__ == "__main__":
     unittest.main()

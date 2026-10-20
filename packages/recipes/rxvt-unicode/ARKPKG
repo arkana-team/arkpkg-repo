@@ -1,0 +1,16 @@
+Name: rxvt-unicode
+Description: RXVT-like terminal emulator with Unicode and 256-color support
+Version: 9.31-3+b2
+Arch: x86_64
+URL: https://software.schmorp.de/pkg/rxvt-unicode.html
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  libgdk-pixbuf-2.0-0
+  libperl5.40
+  libptytty0
+  libstartup-notification0
+  libxft
+  libxmu
+  libxrender
+Provides: rxvt-unicode=/usr/bin/rxvt-unicode, rxvt=/usr/bin/rxvt, urclock=/usr/bin/urclock, urxvt=/usr/bin/urxvt, urxvtc=/usr/bin/urxvtc, urxvtcd=/usr/bin/urxvtcd, urxvtd=/usr/bin/urxvtd

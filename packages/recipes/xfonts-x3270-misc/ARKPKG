@@ -1,0 +1,7 @@
+Name: xfonts-x3270-misc
+Description: Font files for the x3270 IBM 3270 emulator
+Version: 4.3ga10-5
+Arch: any
+URL: https://github.com/pmattes/x3270
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
