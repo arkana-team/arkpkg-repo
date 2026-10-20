@@ -1,0 +1,18 @@
+Name: xfig
+Description: Facility for Interactive Generation of figures under X11
+Version: 1:3.2.9a-3
+Arch: x86_64
+URL: https://sourceforge.net/projects/mcj/
+License: See /usr/share/doc/xfig/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  fig2dev
+  ghostscript
+  libgs10
+  libjpeg62-turbo
+  libpng16-16t64
+  libtiff6
+  sensible-utils
+  xaw3dg
+  xdg-utils
+Provides: xfig=/usr/bin/xfig
