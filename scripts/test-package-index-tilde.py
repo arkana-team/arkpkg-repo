@@ -56,10 +56,20 @@ class PackageIndexTildeVersionTests(unittest.TestCase):
                         "schema_version": 1,
                         "packages": {
                             "hello": {
-                                "author": "arkanaOS team",
+                                "author": None,
                                 "git_repo": "https://github.com/example/hello",
                                 "git_repo_type": "upstream",
-                                "git_author_url": "https://github.com/example",
+                                "git_author_url": None,
+                                "packagers": [
+                                    {
+                                        "name": "arkana-team",
+                                        "url": "https://github.com/arkana-team",
+                                    },
+                                    {
+                                        "name": "debarkak",
+                                        "url": "https://github.com/debarkak",
+                                    },
+                                ],
                             }
                         },
                     }
@@ -72,10 +82,11 @@ class PackageIndexTildeVersionTests(unittest.TestCase):
 
             index = json.loads((site / "index.json").read_text(encoding="utf-8"))
             self.assertEqual(index["packages"][0]["version"], "1:1.2.3~rc1")
-            self.assertEqual(index["packages"][0]["author"], "arkanaOS team")
+            self.assertIsNone(index["packages"][0]["author"])
+            self.assertIsNone(index["packages"][0]["git_author_url"])
             self.assertEqual(
-                index["packages"][0]["git_author_url"],
-                "https://github.com/example",
+                [p["name"] for p in index["packages"][0]["packagers"]],
+                ["arkana-team", "debarkak"],
             )
             self.assertEqual(
                 index["packages"][0]["sha256"],
