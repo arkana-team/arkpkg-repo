@@ -14,6 +14,7 @@ import lz4.frame
 
 REQUIRED_FIELDS = {"Name", "Description", "Version", "Arch"}
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
+VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
 DEPENDENCY = re.compile(
     r"([A-Za-z0-9][A-Za-z0-9._+-]*)(?:\s*(?:>=|<=|=|>|<)\s*(\S+))?\Z"
 )
@@ -79,7 +80,7 @@ def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
         raise ValueError(f"{path.name}: package payload is empty")
     if not PACKAGE_ATOM.fullmatch(metadata["Name"]):
         raise ValueError(f"{path.name}: invalid package name {metadata['Name']!r}")
-    if not PACKAGE_ATOM.fullmatch(metadata["Version"]):
+    if not VERSION.fullmatch(metadata["Version"]):
         raise ValueError(f"{path.name}: invalid version {metadata['Version']!r}")
     if not PACKAGE_ATOM.fullmatch(metadata["Arch"]):
         raise ValueError(f"{path.name}: invalid architecture {metadata['Arch']!r}")
