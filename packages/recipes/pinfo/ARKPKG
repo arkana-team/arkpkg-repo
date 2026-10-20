@@ -1,0 +1,11 @@
+Name: pinfo
+Description: user-friendly console-based viewer for Info document files
+Version: 0.6.13-2
+Arch: x86_64
+URL: https://github.com/baszoetekouw/pinfo
+License: See /usr/share/doc/pinfo/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+  readline-libs
+Provides: pinfo=/usr/bin/pinfo
