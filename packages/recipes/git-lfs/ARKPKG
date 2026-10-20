@@ -1,0 +1,10 @@
+Name: git-lfs
+Description: Git Large File Support
+Version: 3.6.1-1+deb13u1
+Arch: x86_64
+URL: https://git-lfs.github.com/
+License: See /usr/share/doc/git-lfs/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  git
+Provides: git-lfs=/usr/bin/git-lfs
