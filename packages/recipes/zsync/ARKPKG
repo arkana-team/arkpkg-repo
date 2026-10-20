@@ -1,0 +1,8 @@
+Name: zsync
+Description: client-side implementation of the rsync algorithm
+Version: 0.6.2-8
+Arch: x86_64
+URL: http://zsync.moria.org.uk/
+License: See /usr/share/doc/zsync/copyright
+Maintainer: arkanaOS Team
+Provides: zsync=/usr/bin/zsync, zsyncmake=/usr/bin/zsyncmake
