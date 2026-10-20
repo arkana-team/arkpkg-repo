@@ -1,5 +1,4 @@
 {
-  "schema_version": 1,
   "packages": {
     "3270-common": {
       "author": "Paul Mattes and contributors",
@@ -134,6 +133,38 @@
       "git_repo": "https://salsa.debian.org/debian/acpica-unix",
       "git_repo_type": "packaging",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "aerc": {
+      "author": "Drew DeVault",
+      "git_repo": "https://salsa.debian.org/go-team/packages/aerc",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "age": {
+      "author": "Filippo Valsorda",
+      "git_repo": "https://github.com/FiloSottile/age",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/FiloSottile",
       "packagers": [
         {
           "name": "arkana-team",
@@ -2609,6 +2640,22 @@
         }
       ]
     },
+    "dmidecode": {
+      "author": "Jean Delvare",
+      "git_repo": "https://git.jff.email/cgit/dmidecode.git",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "dmrconfig": {
       "author": null,
       "git_repo": "https://github.com/OpenRTX/dmrconfig",
@@ -2833,6 +2880,22 @@
         }
       ]
     },
+    "dust": {
+      "author": "Andy Boot",
+      "git_repo": "https://github.com/bootandy/dust",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/bootandy",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "dwz": {
       "author": null,
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/dwz",
@@ -2933,6 +2996,22 @@
       "author": null,
       "git_repo": "https://salsa.debian.org/toolchain-team/elfutils",
       "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "elinks": {
+      "author": "Witold Filipczyk",
+      "git_repo": "https://github.com/rkd77/elinks",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -8849,6 +8928,22 @@
         }
       ]
     },
+    "libev4t64": {
+      "author": "Marc Alexander Lehmann",
+      "git_repo": "https://salsa.debian.org/debian/libev",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "libevdev-devel": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/libevdev",
@@ -9265,6 +9360,22 @@
         }
       ]
     },
+    "libfsplib0t64": {
+      "author": "Radim Kolar",
+      "git_repo": "https://salsa.debian.org/debian/fsplib",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "libftdi1": {
       "author": null,
       "git_repo": "https://salsa.debian.org/aurel32/libftdi1",
@@ -9654,6 +9765,22 @@
       "git_repo": "https://salsa.debian.org/debian/game-music-emu",
       "git_repo_type": "packaging",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libgmime-3.0-0t64": {
+      "author": "Jeffrey Stedfast",
+      "git_repo": "https://salsa.debian.org/debian/gmime",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/jstedfast",
       "packagers": [
         {
           "name": "arkana-team",
@@ -12193,6 +12320,22 @@
         }
       ]
     },
+    "libnotmuch5t64": {
+      "author": null,
+      "git_repo": "https://git.notmuchmail.org/git/notmuch",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "libnova-0.16-0t64": {
       "author": null,
       "git_repo": "https://salsa.debian.org/qt-kde-team/3rdparty/libnova",
@@ -13956,6 +14099,22 @@
     "libserd-0-0": {
       "author": null,
       "git_repo": "https://salsa.debian.org/multimedia-team/serd",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libsexp2": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/bremner/sfsexp",
       "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
@@ -16273,6 +16432,22 @@
         }
       ]
     },
+    "libxdo3": {
+      "author": "Jordan Sissel",
+      "git_repo": "https://github.com/jordansissel/xdotool",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/jordansissel",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "libxdp1": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/xdp-tools",
@@ -18465,6 +18640,22 @@
         }
       ]
     },
+    "neomutt": {
+      "author": "NeoMutt contributors",
+      "git_repo": "https://salsa.debian.org/mutt-team/neomutt",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "neovim": {
       "author": null,
       "git_repo": "https://salsa.debian.org/vim-team/neovim",
@@ -18980,6 +19171,22 @@
     "ntpsec-ntpdig": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/ntpsec",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "numlockx": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/debian/numlockx",
       "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
@@ -20961,6 +21168,22 @@
         }
       ]
     },
+    "restic": {
+      "author": "Alexander Neumann",
+      "git_repo": "https://github.com/restic/restic",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "rfkill": {
       "author": null,
       "git_repo": "https://github.com/util-linux/util-linux",
@@ -21364,6 +21587,22 @@
     "sctp-libs": {
       "author": null,
       "git_repo": "https://github.com/sctp/lksctp-tools",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "sd": {
+      "author": null,
+      "git_repo": "https://github.com/chmln/sd",
       "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
@@ -22129,6 +22368,22 @@
         }
       ]
     },
+    "stterm": {
+      "author": "suckless.org contributors",
+      "git_repo": "https://git.suckless.org/st",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "sudo": {
       "author": null,
       "git_repo": "https://salsa.debian.org/sudo-team/sudo",
@@ -22150,6 +22405,22 @@
       "git_repo": "https://salsa.debian.org/multimedia-team/swh-plugins",
       "git_repo_type": "packaging",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "sxiv": {
+      "author": "Bert Münnich",
+      "git_repo": "https://github.com/muennich/sxiv",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/muennich",
       "packagers": [
         {
           "name": "arkana-team",
@@ -23665,6 +23936,22 @@
         }
       ]
     },
+    "wmctrl": {
+      "author": "Tomas Styblo",
+      "git_repo": "https://github.com/Conservatory/wmctrl",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "wngerman": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/igerman98",
@@ -23761,6 +24048,22 @@
         }
       ]
     },
+    "xautomation": {
+      "author": "Steve Slaven",
+      "git_repo": "https://salsa.debian.org/debian/xautomation",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "xaw3dg": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/xaw3dg",
@@ -23782,6 +24085,22 @@
       "git_repo": "https://salsa.debian.org/xorg-team/app/xbacklight",
       "git_repo_type": "packaging",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xbanish": {
+      "author": "Joshua Stein",
+      "git_repo": "https://github.com/jcs/xbanish",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/jcs",
       "packagers": [
         {
           "name": "arkana-team",
@@ -23877,6 +24196,22 @@
       "author": null,
       "git_repo": "https://salsa.debian.org/xorg-team/lib/xcb-util.git",
       "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xclip": {
+      "author": "Kim Saunders and Maximilian Gass",
+      "git_repo": "https://github.com/astrand/xclip",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -24070,6 +24405,22 @@
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xditview",
       "git_repo_type": "arkpkg-recipe",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xdotool": {
+      "author": "Jordan Sissel",
+      "git_repo": "https://github.com/jordansissel/xdotool",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/jordansissel",
       "packagers": [
         {
           "name": "arkana-team",
@@ -24421,6 +24772,22 @@
       "author": null,
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xkbprint",
       "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xkbset": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/debian/xkbset",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -24961,6 +25328,22 @@
         }
       ]
     },
+    "xsel": {
+      "author": "Conrad Parker",
+      "git_repo": "https://salsa.debian.org/debian/xsel",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "xset": {
       "author": null,
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xset",
@@ -25093,6 +25476,22 @@
       "author": null,
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xvinfo",
       "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xvkbd": {
+      "author": "Tom Sato",
+      "git_repo": "https://salsa.debian.org/debian/xvkbd",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -25409,5 +25808,6 @@
         }
       ]
     }
-  }
+  },
+  "schema_version": 1
 }
