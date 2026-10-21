@@ -1,0 +1,8 @@
+Name: libtinfo6
+Description: Low-level terminal information library
+Version: 6.5+20250216-2
+Arch: x86_64
+URL: https://invisible-island.net/ncurses/
+License: See /usr/share/doc/libtinfo6/copyright
+Maintainer: arkanaOS Team
+Provides: libtic.so.6=/usr/lib/x86_64-linux-gnu/libtic.so.6.5, libtinfo.so.6=/usr/lib/x86_64-linux-gnu/libtinfo.so.6.5

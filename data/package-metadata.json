@@ -15168,6 +15168,22 @@
         }
       ]
     },
+    "libtinfo6": {
+      "author": "Thomas E. Dickey and ncurses contributors",
+      "git_repo": "https://github.com/ThomasDickey/ncurses-snapshots",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://invisible-island.net/dickey/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "libtinyxml2-11": {
       "author": null,
       "git_repo": "https://salsa.debian.org/debian/tinyxml2",
@@ -17237,6 +17253,22 @@
       "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/lrzsz",
       "git_repo_type": "arkpkg-recipe",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "lshw": {
+      "author": "Lyonel Vincent and contributors",
+      "git_repo": "https://github.com/lyonel/lshw",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/lyonel",
       "packagers": [
         {
           "name": "arkana-team",
