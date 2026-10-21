@@ -1,0 +1,10 @@
+Name: libopenmpt-modplug1
+Description: module music library based on OpenMPT -- modplug compat library
+Version: 0.8.9.0-openmpt1-2+b3
+Arch: x86_64
+URL: https://lib.openmpt.org/libopenmpt/
+License: See /usr/share/doc/libopenmpt-modplug1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libopenmpt0t64
+Provides: libopenmpt_modplug.so.1=/usr/lib/x86_64-linux-gnu/libopenmpt_modplug.so.1.0.0

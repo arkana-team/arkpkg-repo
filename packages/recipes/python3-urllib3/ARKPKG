@@ -1,0 +1,7 @@
+Name: python3-urllib3
+Description: HTTP library with thread-safe connection pooling for Python3
+Version: 2.3.0-3+deb13u2
+Arch: any
+URL: https://urllib3.readthedocs.org
+License: See /usr/share/doc/python3-urllib3/copyright
+Maintainer: arkanaOS Team

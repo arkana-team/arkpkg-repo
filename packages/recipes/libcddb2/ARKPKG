@@ -1,0 +1,8 @@
+Name: libcddb2
+Description: library to access CDDB data - runtime files
+Version: 1.3.2-7.1
+Arch: x86_64
+URL: http://libcddb.sourceforge.net
+License: See /usr/share/doc/libcddb2/copyright
+Maintainer: arkanaOS Team
+Provides: libcddb.so.2=/usr/lib/x86_64-linux-gnu/libcddb.so.2.2.3

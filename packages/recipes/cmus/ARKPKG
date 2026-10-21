@@ -1,0 +1,29 @@
+Name: cmus
+Description: lightweight ncurses audio player
+Version: 2.12.0-1
+Arch: x86_64
+URL: https://cmus.github.io/
+License: See /usr/share/doc/cmus/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  alsa-libs
+  libao4
+  libcddb2
+  libcdio-cdda2t64
+  libcdio19t64
+  libdiscid0
+  libfaad2
+  libflac14
+  libjack-jackd2-0
+  libmad0
+  libmpcdec6
+  libopenmpt-modplug1
+  libopusfile0
+  libpulse0
+  libsamplerate0
+  libtinfo6
+  libvorbisfile3
+  libwavpack1
+  ncurses-libs
+  systemd-libs
+Provides: cmus-remote=/usr/bin/cmus-remote, cmus=/usr/bin/cmus

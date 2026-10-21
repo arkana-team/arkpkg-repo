@@ -220,7 +220,15 @@ def extract_data_archive(deb: Path, work: Path) -> Path:
         subprocess.run(["ar", "p", str(deb), data_members[0]], stdout=output, check=True)
     payload.mkdir()
     subprocess.run(
-        ["tar", "--no-same-owner", "-xf", str(data_archive), "-C", str(payload)],
+        [
+            "tar",
+            "--no-same-owner",
+            "--same-permissions",
+            "-xf",
+            str(data_archive),
+            "-C",
+            str(payload),
+        ],
         check=True,
     )
     return payload
@@ -254,6 +262,31 @@ def merge_payload(source: Path, destination: Path) -> None:
             shutil.copy2(path, target)
         else:
             raise ValueError(f"unsupported Debian payload entry: {relative}")
+
+
+def relocate_debian_python_packages(payload: Path, staging: Path | None) -> None:
+    """Map Debian's dist-packages into the target Python's site-packages."""
+    library_dir = payload / "usr/lib"
+    source_dirs = sorted(library_dir.glob("python*/dist-packages"))
+    if not source_dirs:
+        return
+    if staging is None:
+        raise ValueError(
+            "--staging is required to map Debian Python packages into arkanaOS"
+        )
+
+    site_dirs = sorted((staging / "usr/lib").glob("python*/site-packages"))
+    if len(site_dirs) != 1 or not site_dirs[0].is_dir():
+        raise ValueError(
+            "expected exactly one target Python site-packages directory in --staging"
+        )
+    destination = payload / site_dirs[0].relative_to(staging)
+
+    for source in source_dirs:
+        if source.is_symlink() or not source.is_dir():
+            raise ValueError(f"unsafe Debian Python package directory: {source}")
+        merge_payload(source, destination)
+        shutil.rmtree(source)
 
 
 def exclude_package_paths(payload: Path, exclusions: list[str], package_name: str) -> None:
@@ -466,6 +499,7 @@ def build(args: argparse.Namespace) -> None:
                 extracted = extract_data_archive(deb, work)
                 merge_payload(extracted, payload)
 
+            relocate_debian_python_packages(payload, staging)
             exclude_package_paths(payload, package.get("exclude_paths", []), name)
 
             for link, target in package.get("symlinks", []):

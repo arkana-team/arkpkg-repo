@@ -1,0 +1,7 @@
+Name: python3-xmltodict
+Description: Makes working with XML feel like you are working with JSON (Python 3)
+Version: 0.13.0-1.1~deb13u1
+Arch: any
+URL: https://github.com/martinblech/xmltodict
+License: See /usr/share/doc/python3-xmltodict/copyright
+Maintainer: arkanaOS Team

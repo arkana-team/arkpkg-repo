@@ -1,0 +1,11 @@
+Name: pdfgrep
+Description: search in pdf files for strings matching a regular expression
+Version: 2.2.0-0.1+b2
+Arch: x86_64
+URL: https://pdfgrep.org
+License: See /usr/share/doc/pdfgrep/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpoppler-cpp2
+  pcre2-libs
+Provides: pdfgrep=/usr/bin/pdfgrep

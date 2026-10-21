@@ -22449,7 +22449,7 @@
       ]
     },
     "sxiv": {
-      "author": "Bert Münnich",
+      "author": "Bert M\u00fcnnich",
       "git_repo": "https://github.com/muennich/sxiv",
       "git_repo_type": "upstream",
       "git_author_url": "https://github.com/muennich",
@@ -23809,7 +23809,7 @@
       ]
     },
     "weechat": {
-      "author": "Sébastien Helleu",
+      "author": "S\u00e9bastien Helleu",
       "git_repo": "https://github.com/weechat/weechat",
       "git_repo_type": "upstream",
       "git_author_url": null,
@@ -25829,6 +25829,598 @@
       "git_repo": "https://salsa.debian.org/debian/zsync",
       "git_repo_type": "packaging",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "bfs": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/lamby/pkg-bfs.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cava": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/debian/cava-alsa.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cmatrix": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/debian/cmatrix.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cmus": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/multimedia-team/cmus.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "f3": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/debian/f3.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "gallery-dl": {
+      "author": null,
+      "git_repo": "https://git.unit193.net/cgit/users/unit193/gallery-dl.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "gping": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/rust-team/debcargo-conf.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libcddb2": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/nickg/libcddb.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libdiscid0": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/multimedia-team/libdiscid.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libiniparser4": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/carnil/iniparser.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libmediainfo0v5": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/multimedia-team/libmediainfo.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libopenmpt-modplug1": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/multimedia-team/libopenmpt-modplug.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libpoppler-cpp2": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/freedesktop-team/poppler.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libzen0t64": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/multimedia-team/libzen.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "mediainfo": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/multimedia-team/mediainfo.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "pdfgrep": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/debian/pdfgrep.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "powertop": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/debian/powertop.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-argcomplete": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/python-argcomplete.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-certifi": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/debian/python-certifi.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-chardet": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/chardet.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-charset-normalizer": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/python-charset-normalizer.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-idna": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/python-idna.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-mutagen": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/mutagen.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-psutil": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/morph/python-psutil.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-pycryptodome": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/pycryptodome.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-requests": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/requests.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-tomlkit": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/tomlkit.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-typing-extensions": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/python-typing-extensions.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-urllib3": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/python-urllib3.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-urwid": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/urwid.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-wcwidth": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/wcwidth.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-websockets": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/python-websockets.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-xmltodict": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/debian/python-xmltodict.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "s-tui": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/s-tui.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wavemon": {
+      "author": null,
+      "git_repo": "https://github.com/uoaerg/wavemon",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "yq": {
+      "author": null,
+      "git_repo": "https://salsa.debian.org/python-team/packages/yq.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "yt-dlp": {
+      "author": "yt-dlp contributors",
+      "git_repo": "https://github.com/yt-dlp/yt-dlp",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/yt-dlp",
       "packagers": [
         {
           "name": "arkana-team",

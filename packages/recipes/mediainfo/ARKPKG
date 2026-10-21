@@ -1,0 +1,11 @@
+Name: mediainfo
+Description: command-line utility for reading information from audio/video files
+Version: 25.04-1
+Arch: x86_64
+URL: https://mediaarea.net/MediaInfo
+License: See /usr/share/doc/mediainfo/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libmediainfo0v5
+  libzen0t64
+Provides: mediainfo=/usr/bin/mediainfo

@@ -1,0 +1,8 @@
+Name: python3-chardet
+Description: Universal Character Encoding Detector (Python3)
+Version: 5.2.0+dfsg-2
+Arch: any
+URL: https://github.com/chardet/chardet
+License: See /usr/share/doc/python3-chardet/copyright
+Maintainer: arkanaOS Team
+Provides: chardet=/usr/bin/chardet, chardetect=/usr/bin/chardetect

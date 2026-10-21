@@ -1,0 +1,13 @@
+Name: python3-requests
+Description: elegant and simple HTTP library for Python3, built for human beings
+Version: 2.32.3+dfsg-5+deb13u1
+Arch: any
+URL: https://requests.readthedocs.io/
+License: See /usr/share/doc/python3-requests/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  python3-certifi
+  python3-chardet
+  python3-charset-normalizer
+  python3-idna
+  python3-urllib3

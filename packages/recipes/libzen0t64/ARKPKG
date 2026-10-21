@@ -1,0 +1,8 @@
+Name: libzen0t64
+Description: ZenLib C++ utility library -- runtime
+Version: 0.4.41-2.1+b1
+Arch: x86_64
+URL: https://github.com/MediaArea/ZenLib/
+License: See /usr/share/doc/libzen0t64/copyright
+Maintainer: arkanaOS Team
+Provides: libzen.so.0=/usr/lib/x86_64-linux-gnu/libzen.so.0.4.41

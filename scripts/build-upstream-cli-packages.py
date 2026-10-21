@@ -61,6 +61,28 @@ PACKAGES = {
         "description": "Fast system information tool written in Nim",
         "license": "MIT",
     },
+    "yt-dlp": {
+        "version": "2026.08.19",
+        "arch": "any",
+        "url": "https://github.com/yt-dlp/yt-dlp",
+        "archive": "https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp.tar.gz",
+        "archive_sha256": "072aad4f2a7604e92155f61a275a4752dc64046c8f6d90df3710525d94cd37c1",
+        "root": "yt-dlp",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/yt-dlp/copyright",
+        "binary": "https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp",
+        "binary_sha256": "1fa6733c37ea6fb51c99ad8fe785e7b7e5f3246c9b980230329d4fb72ed8d4d6",
+        "binary_path": "usr/bin/yt-dlp",
+        "files": {
+            "yt-dlp.1": "usr/share/man/man1/yt-dlp.1",
+            "README.md": "usr/share/doc/yt-dlp/README.md",
+            "completions/bash/yt-dlp": "usr/share/bash-completion/completions/yt-dlp",
+            "completions/fish/yt-dlp.fish": "usr/share/fish/vendor_completions.d/yt-dlp.fish",
+            "completions/zsh/_yt-dlp": "usr/share/zsh/site-functions/_yt-dlp",
+        },
+        "description": "Feature-rich command-line audio and video downloader",
+        "license": "Unlicense; bundled zipimport code also includes MIT and ISC components",
+    },
 }
 INTERPRETER = re.compile(r"Requesting program interpreter: (.+?)\]")
 NEEDED = re.compile(r"Shared library: \[(.+?)\]")
@@ -195,6 +217,12 @@ def recipe_text(name: str, package: dict[str, object]) -> str:
     )
 
 
+def write_payload_file(target: Path, data: bytes, mode: int) -> None:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(data)
+    target.chmod(mode)
+
+
 def build(args: argparse.Namespace) -> None:
     repo_root = args.repo_root.resolve()
     cache = args.source_cache.resolve()
@@ -220,33 +248,40 @@ def build(args: argparse.Namespace) -> None:
             payload = package_dir / "package"
             payload.mkdir(parents=True)
 
-            if name == "nitch":
+            if package.get("binary"):
                 binary = download(
                     str(package["binary"]), str(package["binary_sha256"]), cache
                 )
-                target = payload / "usr/bin/nitch"
+                target = payload / str(
+                    package.get("binary_path", f"usr/bin/{name}")
+                )
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(binary, target)
                 target.chmod(0o755)
-                validate_elf(target, staging)
-            else:
-                for source_name, target_name in package["files"].items():
-                    data = read_tar_file(
-                        source_archive, f"{package['root']}/{source_name}"
+                header = target.read_bytes()[:4]
+                if header == b"\x7fELF":
+                    validate_elf(target, staging)
+                elif not target.read_bytes()[:160].startswith(b"#!"):
+                    raise ValueError(
+                        f"{name}: upstream binary is neither ELF nor an executable script"
                     )
-                    target = payload / str(target_name)
-                    target.parent.mkdir(parents=True, exist_ok=True)
-                    target.write_bytes(data)
-                    if str(target_name).startswith("usr/bin/"):
-                        target.chmod(0o755)
+
+            for source_name, target_name in package.get("files", {}).items():
+                data = read_tar_file(
+                    source_archive, f"{package['root']}/{source_name}"
+                )
+                target = payload / str(target_name)
+                mode = 0o755 if str(target_name).startswith("usr/bin/") else 0o644
+                write_payload_file(target, data, mode)
 
             license_target = payload / str(package["license_path"])
-            license_target.parent.mkdir(parents=True, exist_ok=True)
-            license_target.write_bytes(
+            write_payload_file(
+                license_target,
                 read_tar_file(
                     source_archive,
                     f"{package['root']}/{package['license_source']}",
-                )
+                ),
+                0o644,
             )
 
             paths = {

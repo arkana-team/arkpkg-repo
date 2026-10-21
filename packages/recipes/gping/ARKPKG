@@ -1,0 +1,8 @@
+Name: gping
+Description: ping, but with a graph
+Version: 1.19.0-3+b1
+Arch: x86_64
+URL: https://github.com/orf/gping
+License: See /usr/share/doc/gping/copyright
+Maintainer: arkanaOS Team
+Provides: gping=/usr/bin/gping

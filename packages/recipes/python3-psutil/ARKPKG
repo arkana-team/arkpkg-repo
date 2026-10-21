@@ -1,0 +1,7 @@
+Name: python3-psutil
+Description: module providing convenience functions for managing processes (Python3)
+Version: 7.0.0-2
+Arch: x86_64
+URL: https://github.com/giampaolo/psutil
+License: See /usr/share/doc/python3-psutil/copyright
+Maintainer: arkanaOS Team

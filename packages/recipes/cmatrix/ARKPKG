@@ -1,0 +1,11 @@
+Name: cmatrix
+Description: simulates the display from "The Matrix"
+Version: 2.0-6
+Arch: x86_64
+URL: https://github.com/abishekvashok/cmatrix
+License: See /usr/share/doc/cmatrix/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs
+Provides: cmatrix=/usr/bin/cmatrix

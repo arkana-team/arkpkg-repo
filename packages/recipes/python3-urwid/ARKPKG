@@ -1,0 +1,10 @@
+Name: python3-urwid
+Description: curses-based UI/widget library for Python 3
+Version: 2.6.16-1
+Arch: x86_64
+URL: https://urwid.org/
+License: See /usr/share/doc/python3-urwid/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  python3-typing-extensions
+  python3-wcwidth

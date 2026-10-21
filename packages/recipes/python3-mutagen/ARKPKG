@@ -1,0 +1,8 @@
+Name: python3-mutagen
+Description: audio metadata editing library (Python 3)
+Version: 1.47.0-1
+Arch: any
+URL: https://github.com/quodlibet/mutagen
+License: See /usr/share/doc/python3-mutagen/copyright
+Maintainer: arkanaOS Team
+Provides: mid3cp=/usr/bin/mid3cp, mid3iconv=/usr/bin/mid3iconv, mid3v2=/usr/bin/mid3v2, moggsplit=/usr/bin/moggsplit, mutagen-inspect=/usr/bin/mutagen-inspect, mutagen-pony=/usr/bin/mutagen-pony

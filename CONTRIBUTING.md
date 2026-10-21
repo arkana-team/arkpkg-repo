@@ -55,6 +55,10 @@ upstream license files. Keep package payload ownership disjoint: files must not
 be shipped by two packages. The `system-docs` archive is generated to exclude
 files already owned by other packages.
 
+When repacking Debian Python packages, pass `--staging`. The builder maps
+Debian's `dist-packages` payload into the target sysroot's Python
+`site-packages`; raw Debian paths are not on arkanaOS's default Python path.
+
 ## Validation
 
 Install the Python `lz4` module and have a built `arkpkg` executable available.

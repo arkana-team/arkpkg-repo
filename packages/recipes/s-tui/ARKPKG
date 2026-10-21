@@ -1,0 +1,11 @@
+Name: s-tui
+Description: terminal UI for monitoring your computer
+Version: 1.1.6-1.2
+Arch: any
+URL: https://github.com/amanusk/s-tui
+License: See /usr/share/doc/s-tui/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  python3-psutil
+  python3-urwid
+Provides: s-tui=/usr/bin/s-tui

@@ -1,0 +1,7 @@
+Name: python3-certifi
+Description: root certificates for validating SSL certs and verifying TLS hosts (python3)
+Version: 2025.1.31+ds-1
+Arch: any
+URL: https://github.com/certifi/python-certifi
+License: See /usr/share/doc/python3-certifi/copyright
+Maintainer: arkanaOS Team
