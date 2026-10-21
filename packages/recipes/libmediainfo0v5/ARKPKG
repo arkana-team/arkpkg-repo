@@ -1,0 +1,13 @@
+Name: libmediainfo0v5
+Description: library for reading metadata from media files -- shared library
+Version: 25.04+dfsg-1
+Arch: x86_64
+URL: https://mediaarea.net/MediaInfo
+License: See /usr/share/doc/libmediainfo0v5/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcurl3t64-gnutls
+  libmms0
+  libtinyxml2-11
+  libzen0t64
+Provides: libmediainfo.so.0=/usr/lib/x86_64-linux-gnu/libmediainfo.so.0.0.0

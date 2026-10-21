@@ -1,0 +1,7 @@
+Name: python3-typing-extensions
+Description: Backported and Experimental Type Hints for Python
+Version: 4.13.2-1
+Arch: any
+URL: https://typing-extensions.readthedocs.io/en/latest/
+License: See /usr/share/doc/python3-typing-extensions/copyright
+Maintainer: arkanaOS Team

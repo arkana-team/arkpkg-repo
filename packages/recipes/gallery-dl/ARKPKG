@@ -1,0 +1,10 @@
+Name: gallery-dl
+Description: command-line program to download image galleries
+Version: 1.29.7-1
+Arch: any
+URL: https://github.com/mikf/gallery-dl
+License: See /usr/share/doc/gallery-dl/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  python3-requests
+Provides: gallery-dl=/usr/bin/gallery-dl

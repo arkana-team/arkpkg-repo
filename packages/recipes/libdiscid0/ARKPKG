@@ -1,0 +1,8 @@
+Name: libdiscid0
+Description: library for creating MusicBrainz DiscIDs
+Version: 0.6.4-2+b2
+Arch: x86_64
+URL: https://musicbrainz.org/doc/libdiscid
+License: See /usr/share/doc/libdiscid0/copyright
+Maintainer: arkanaOS Team
+Provides: libdiscid.so.0=/usr/lib/x86_64-linux-gnu/libdiscid.so.0.6.4

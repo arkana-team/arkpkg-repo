@@ -1,0 +1,7 @@
+Name: python3-tomlkit
+Description: style-preserving TOML library for Python
+Version: 0.13.2-1
+Arch: any
+URL: https://github.com/sdispater/tomlkit
+License: See /usr/share/doc/python3-tomlkit/copyright
+Maintainer: arkanaOS Team

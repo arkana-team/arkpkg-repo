@@ -1,0 +1,8 @@
+Name: yt-dlp
+Description: Feature-rich command-line audio and video downloader
+Version: 2026.08.19
+Arch: any
+URL: https://github.com/yt-dlp/yt-dlp
+License: Unlicense; bundled zipimport code also includes MIT and ISC components
+Maintainer: arkanaOS Team
+Provides: yt-dlp=/usr/bin/yt-dlp

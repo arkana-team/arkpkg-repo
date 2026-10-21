@@ -1,0 +1,7 @@
+Name: python3-wcwidth
+Description: determine printable width of a string on a terminal
+Version: 0.2.13+dfsg1-1
+Arch: any
+URL: https://github.com/jquast/wcwidth
+License: See /usr/share/doc/python3-wcwidth/copyright
+Maintainer: arkanaOS Team

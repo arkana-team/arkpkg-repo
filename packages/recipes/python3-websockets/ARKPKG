@@ -1,0 +1,8 @@
+Name: python3-websockets
+Description: implementation of the WebSocket Protocol (RFC 6455)
+Version: 15.0.1-1
+Arch: x86_64
+URL: https://github.com/aaugustin/websockets
+License: See /usr/share/doc/python3-websockets/copyright
+Maintainer: arkanaOS Team
+Provides: websockets=/usr/bin/websockets

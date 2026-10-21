@@ -1,0 +1,10 @@
+Name: libpoppler-cpp2
+Description: PDF rendering library (CPP shared library)
+Version: 25.03.0-5+deb13u4
+Arch: x86_64
+URL: https://poppler.freedesktop.org/
+License: See /usr/share/doc/libpoppler-cpp2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpoppler147
+Provides: libpoppler-cpp.so.2=/usr/lib/x86_64-linux-gnu/libpoppler-cpp.so.2.0.0

@@ -1,0 +1,13 @@
+Name: yq
+Description: Command-line YAML processor - jq wrapper for YAML documents
+Version: 3.4.3-2
+Arch: any
+URL: https://github.com/kislyuk/yq
+License: See /usr/share/doc/yq/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  jq
+  python3-argcomplete
+  python3-tomlkit
+  python3-xmltodict
+Provides: tomlq=/usr/bin/tomlq, xq-python=/usr/bin/xq-python, yq=/usr/bin/yq

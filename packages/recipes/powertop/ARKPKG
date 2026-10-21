@@ -1,0 +1,13 @@
+Name: powertop
+Description: diagnose issues with power consumption and management
+Version: 2.15-4
+Arch: x86_64
+URL: https://github.com/fenrus75/powertop
+License: See /usr/share/doc/powertop/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libnl-libs
+  libpci
+  libtinfo6
+  ncurses-libs
+Provides: powertop=/usr/sbin/powertop

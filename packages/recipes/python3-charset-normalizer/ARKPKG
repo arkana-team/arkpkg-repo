@@ -1,0 +1,8 @@
+Name: python3-charset-normalizer
+Description: charset, encoding and language detection (Python 3)
+Version: 3.4.2-1
+Arch: x86_64
+URL: https://github.com/ousret/charset_normalizer
+License: See /usr/share/doc/python3-charset-normalizer/copyright
+Maintainer: arkanaOS Team
+Provides: normalizer=/usr/bin/normalizer

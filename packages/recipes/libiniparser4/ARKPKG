@@ -1,0 +1,8 @@
+Name: libiniparser4
+Description: runtime library for the iniParser INI file reader/writer
+Version: 4.2.6-1
+Arch: x86_64
+URL: https://gitlab.com/iniparser/iniparser
+License: See /usr/share/doc/libiniparser4/copyright
+Maintainer: arkanaOS Team
+Provides: libiniparser.so.4=/usr/lib/x86_64-linux-gnu/libiniparser.so.4.2.6

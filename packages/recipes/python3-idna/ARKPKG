@@ -1,0 +1,7 @@
+Name: python3-idna
+Description: Python IDNA2008 (RFC 5891) handling (Python 3)
+Version: 3.10-1+deb13u1
+Arch: any
+URL: https://github.com/kjd/idna
+License: See /usr/share/doc/python3-idna/copyright
+Maintainer: arkanaOS Team
