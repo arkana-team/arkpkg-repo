@@ -230,5 +230,41 @@ class WorkstationPackageManifestTests(unittest.TestCase):
         )
 
 
+class OptionalCliUtilitiesBatchTests(unittest.TestCase):
+    def test_batch_07_has_pinned_hardware_and_shell_utilities(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-07.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {"libtinfo6", "lshw"}
+        packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), expected)
+        for name, package in batch_packages.items():
+            self.assertEqual(packages[name], package)
+            for source_name in package["debian_packages"]:
+                source = batch["sources"][source_name]
+                self.assertEqual(manifest["sources"][source_name], source)
+                self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$", source_name)
+            package_metadata = metadata[name]
+            self.assertTrue(package_metadata["author"], name)
+            self.assertTrue(package_metadata["git_repo"].startswith("https://"), name)
+            self.assertTrue(package_metadata["git_author_url"].startswith("https://"), name)
+            self.assertEqual(
+                {item["name"] for item in package_metadata["packagers"]},
+                {"arkana-team", "debarkak"},
+            )
+
+        self.assertEqual(packages["libtinfo6"]["version"], "6.5+20250216-2")
+
+
 if __name__ == "__main__":
     unittest.main()
