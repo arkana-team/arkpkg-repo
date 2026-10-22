@@ -1,0 +1,12 @@
+Name: libfido2-libs
+Description: FIDO2 and WebAuthn runtime library
+Version: 1.15.0-1+b1
+Arch: x86_64
+URL: https://github.com/Yubico/libfido2
+License: See /usr/share/doc/libfido2-1/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcbor-libs
+  openssl-libs
+  systemd-libs
+Provides: libfido2.so.1=/usr/lib/x86_64-linux-gnu/libfido2.so.1.15.0

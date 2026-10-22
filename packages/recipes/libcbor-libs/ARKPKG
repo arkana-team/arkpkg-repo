@@ -1,0 +1,8 @@
+Name: libcbor-libs
+Description: CBOR serialization runtime library
+Version: 0.10.2-2
+Arch: x86_64
+URL: https://github.com/PJK/libcbor
+License: See /usr/share/doc/libcbor0.10/copyright
+Maintainer: arkanaOS Team
+Provides: libcbor.so.0.10=/usr/lib/x86_64-linux-gnu/libcbor.so.0.10.2

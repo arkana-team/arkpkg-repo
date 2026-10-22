@@ -3208,6 +3208,86 @@
       "name": "i2c-tools",
       "url": "https://www.kernel.org/pub/software/utils/i2c-tools/",
       "version": "4.4-2"
+    },
+    {
+      "name": "gron",
+      "arch": "x86_64",
+      "debian_packages": [
+        "gron"
+      ],
+      "debian_version": "0.7.1-2+b8",
+      "version": "0.7.1-2+b8",
+      "dependencies": [],
+      "description": "transform JSON into discrete, greppable assignments",
+      "license": "See /usr/share/doc/gron/copyright",
+      "license_path": "usr/share/doc/gron/copyright",
+      "url": "https://github.com/tomnomnom/gron"
+    },
+    {
+      "name": "macchanger",
+      "arch": "x86_64",
+      "debian_packages": [
+        "macchanger"
+      ],
+      "debian_version": "1.7.0-6",
+      "version": "1.7.0-6",
+      "dependencies": [],
+      "description": "utility for inspecting and changing network interface MAC addresses",
+      "license": "See /usr/share/doc/macchanger/copyright",
+      "license_path": "usr/share/doc/macchanger/copyright",
+      "url": "https://github.com/alobbs/macchanger"
+    },
+    {
+      "name": "libcbor-libs",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libcbor0.10"
+      ],
+      "debian_version": "0.10.2-2",
+      "version": "0.10.2-2",
+      "dependencies": [],
+      "description": "CBOR serialization runtime library",
+      "license": "See /usr/share/doc/libcbor0.10/copyright",
+      "license_path": "usr/share/doc/libcbor0.10/copyright",
+      "url": "https://github.com/PJK/libcbor"
+    },
+    {
+      "name": "libfido2-libs",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libfido2-1"
+      ],
+      "debian_version": "1.15.0-1+b1",
+      "version": "1.15.0-1+b1",
+      "dependencies": [
+        "libcbor-libs",
+        "openssl-libs",
+        "systemd-libs"
+      ],
+      "description": "FIDO2 and WebAuthn runtime library",
+      "license": "See /usr/share/doc/libfido2-1/copyright",
+      "license_path": "usr/share/doc/libfido2-1/copyright",
+      "url": "https://github.com/Yubico/libfido2"
+    },
+    {
+      "name": "openssh-client",
+      "arch": "x86_64",
+      "debian_packages": [
+        "openssh-client"
+      ],
+      "debian_version": "1:10.0p1-7+deb13u4",
+      "version": "10.0p1-7+deb13u4",
+      "dependencies": [
+        "dns-runtime-libs",
+        "krb5-libs",
+        "libfido2-libs",
+        "openssl-libs",
+        "vis-runtime-libs"
+      ],
+      "description": "secure shell client for remote access and file transfer",
+      "license": "See /usr/share/doc/openssh-client/copyright",
+      "license_path": "usr/share/doc/openssh-client/copyright",
+      "url": "https://www.openssh.com/"
     }
   ],
   "sources": {
@@ -3336,12 +3416,6 @@
       "filename": "pool/main/r/rust-eza/eza_0.21.0-1+b1_amd64.deb",
       "sha256": "dc438ba185af32588fe4105d4f57795f200e8247e0238ebd3402abea4e7aa06d",
       "version": "0.21.0-1+b1"
-    },
-    "fd-find": {
-      "architecture": "amd64",
-      "filename": "pool/main/r/rust-fd-find/fd-find_10.2.0-1+b5_amd64.deb",
-      "sha256": "1554c6892db7be10d4c6bdbf19f7ad4172826a1b6d01e5cc537b81d6b02db4d1",
-      "version": "10.2.0-1+b5"
     },
     "fish": {
       "architecture": "amd64",
@@ -4750,6 +4824,26 @@
     "i2c-tools": {
       "filename": "pool/main/i/i2c-tools/i2c-tools_4.4-2_amd64.deb",
       "sha256": "00be3d59e12d6de8d1871c67695f82b0ce39986c437737ac09089d26240c73aa"
+    },
+    "gron": {
+      "filename": "pool/main/g/gron/gron_0.7.1-2+b8_amd64.deb",
+      "sha256": "f5878652221430297cefab0cfd85834059e6592a700cc238a42373f96ea35838"
+    },
+    "macchanger": {
+      "filename": "pool/main/m/macchanger/macchanger_1.7.0-6_amd64.deb",
+      "sha256": "61185baaec346656ae2b7cf174a4ccb55eda6ce45df679552aa739dd42c26a6c"
+    },
+    "openssh-client": {
+      "filename": "pool/main/o/openssh/openssh-client_10.0p1-7+deb13u4_amd64.deb",
+      "sha256": "8fff343654f86c3b3266f94cd338c7b4da2e386da029327815118ea00bce03b9"
+    },
+    "libcbor0.10": {
+      "filename": "pool/main/libc/libcbor/libcbor0.10_0.10.2-2_amd64.deb",
+      "sha256": "2457686e375dcb7567ba01da6638a0711e2a55725d084d65de44dd11bb1f52e2"
+    },
+    "libfido2-1": {
+      "filename": "pool/main/libf/libfido2/libfido2-1_1.15.0-1+b1_amd64.deb",
+      "sha256": "094fc0fe20c652be848ab2a8b3793eb03bc4327140ebd232145356352004e6c0"
     }
   },
   "suite": "trixie"
