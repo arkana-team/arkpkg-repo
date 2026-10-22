@@ -1,0 +1,12 @@
+Name: man-db
+Description: Tools for reading manual pages
+Version: 2.13.1-1
+Arch: x86_64
+URL: https://man-db.nongnu.org/
+License: See /usr/share/doc/man-db/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  groff-base
+  libgdbm6t64
+  libpipeline1
+Provides: accessdb=/usr/sbin/accessdb, apropos=/usr/bin/apropos, catman=/usr/bin/catman, lexgrog=/usr/bin/lexgrog, libman-2.13.1.so=/usr/lib/man-db/libman-2.13.1.so, libmandb-2.13.1.so=/usr/lib/man-db/libmandb-2.13.1.so, man-recode=/usr/bin/man-recode, man=/usr/bin/man, mandb=/usr/bin/mandb, manpath=/usr/bin/manpath, whatis=/usr/bin/whatis
