@@ -546,6 +546,49 @@ class OptionalUnixUtilitiesBatchTests(unittest.TestCase):
             )
 
 
+class ManualPageWorkstationPackageTests(unittest.TestCase):
+    def test_batch_10_pins_man_db_and_credits_its_upstream_maintainer(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-10.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected_source = {
+            "architecture": "amd64",
+            "filename": "pool/main/m/man-db/man-db_2.13.1-1_amd64.deb",
+            "sha256": "d5a407221a0d59845484b5343a37ec6374102e949353e4b158eaa2cbaf27aa5a",
+            "version": "2.13.1-1",
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+
+        self.assertEqual(set(batch_packages), {"man-db"})
+        self.assertEqual(batch_packages["man-db"], manifest_packages["man-db"])
+        self.assertEqual(batch["sources"]["man-db"], expected_source)
+        self.assertEqual(manifest["sources"]["man-db"], expected_source)
+        self.assertEqual(
+            metadata["man-db"]["author"],
+            "Colin Watson and the man-db contributors",
+        )
+        self.assertEqual(
+            metadata["man-db"]["git_repo"], "https://gitlab.com/man-db/man-db"
+        )
+        self.assertEqual(
+            metadata["man-db"]["git_author_url"], "https://gitlab.com/cjwatson"
+        )
+        self.assertEqual(
+            {item["name"] for item in metadata["man-db"]["packagers"]},
+            {"arkana-team", "debarkak"},
+        )
+
+
 class UpstreamReleasePackageTests(unittest.TestCase):
     def test_yt_dlp_is_pinned_to_the_upstream_release_assets(self) -> None:
         package = UPSTREAM_BUILDER.PACKAGES["yt-dlp"]

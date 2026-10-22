@@ -3062,6 +3062,23 @@
       "name": "progress",
       "url": "https://github.com/Xfennec/progress",
       "version": "0.17-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "man-db"
+      ],
+      "debian_version": "2.13.1-1",
+      "dependencies": [
+        "groff-base",
+        "libpipeline1"
+      ],
+      "description": "Tools for reading manual pages",
+      "license": "See /usr/share/doc/man-db/copyright",
+      "license_path": "usr/share/doc/man-db/copyright",
+      "name": "man-db",
+      "url": "https://man-db.nongnu.org/",
+      "version": "2.13.1-1"
     }
   ],
   "sources": {
@@ -4558,6 +4575,12 @@
       "filename": "pool/main/p/progress/progress_0.17-1_amd64.deb",
       "sha256": "c91bcc19a86ec1e340fa401514e98a6e38d9ff6367b63e4dcf85387cda7bfad8",
       "version": "0.17-1"
+    },
+    "man-db": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/man-db/man-db_2.13.1-1_amd64.deb",
+      "sha256": "d5a407221a0d59845484b5343a37ec6374102e949353e4b158eaa2cbaf27aa5a",
+      "version": "2.13.1-1"
     }
   },
   "suite": "trixie"

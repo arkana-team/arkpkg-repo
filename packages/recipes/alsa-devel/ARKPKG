@@ -5,3 +5,5 @@ Arch: x86_64
 URL: https://alsa-project.org/
 License: LGPL-2.1-or-later
 Maintainer: arkanaOS Team
+Dependencies:
+  alsa-libs
