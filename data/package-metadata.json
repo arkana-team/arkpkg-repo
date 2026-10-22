@@ -26639,6 +26639,86 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "gron": {
+      "author": "Tom Hudson",
+      "git_repo": "https://github.com/tomnomnom/gron",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/tomnomnom",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "macchanger": {
+      "author": "Alvaro Lopez Ortega",
+      "git_repo": "https://github.com/alobbs/macchanger",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/alobbs",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "openssh-client": {
+      "author": "Tatu Ylonen, Markus Friedl, Theo de Raadt, Niels Provos, Dug Song, and OpenSSH contributors",
+      "git_repo": "https://github.com/openssh/openssh-portable",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/openssh",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libcbor-libs": {
+      "author": "Pavel Kalvoda",
+      "git_repo": "https://github.com/PJK/libcbor",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/PJK",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libfido2-libs": {
+      "author": "Yubico AB",
+      "git_repo": "https://github.com/Yubico/libfido2",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/Yubico",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

@@ -1,0 +1,14 @@
+Name: openssh-client
+Description: secure shell client for remote access and file transfer
+Version: 10.0p1-7+deb13u4
+Arch: x86_64
+URL: https://www.openssh.com/
+License: See /usr/share/doc/openssh-client/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  dns-runtime-libs
+  krb5-libs
+  libfido2-libs
+  openssl-libs
+  vis-runtime-libs
+Provides: scp=/usr/bin/scp, sftp=/usr/bin/sftp, ssh-add=/usr/bin/ssh-add, ssh-agent=/usr/bin/ssh-agent, ssh-argv0=/usr/bin/ssh-argv0, ssh-copy-id=/usr/bin/ssh-copy-id, ssh-keygen=/usr/bin/ssh-keygen, ssh-keyscan=/usr/bin/ssh-keyscan, ssh=/usr/bin/ssh

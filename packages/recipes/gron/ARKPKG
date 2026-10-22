@@ -1,0 +1,8 @@
+Name: gron
+Description: transform JSON into discrete, greppable assignments
+Version: 0.7.1-2+b8
+Arch: x86_64
+URL: https://github.com/tomnomnom/gron
+License: See /usr/share/doc/gron/copyright
+Maintainer: arkanaOS Team
+Provides: gron=/usr/bin/gron

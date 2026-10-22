@@ -1,0 +1,8 @@
+Name: macchanger
+Description: utility for inspecting and changing network interface MAC addresses
+Version: 1.7.0-6
+Arch: x86_64
+URL: https://github.com/alobbs/macchanger
+License: See /usr/share/doc/macchanger/copyright
+Maintainer: arkanaOS Team
+Provides: macchanger=/usr/bin/macchanger
