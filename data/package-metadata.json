@@ -26431,6 +26431,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "glow": {
+      "author": "Charmbracelet",
+      "git_repo": "https://github.com/charmbracelet/glow",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/charmbracelet",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "hstr": {
+      "author": "Martin Dvorak",
+      "git_repo": "https://github.com/dvorka/hstr",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/dvorka",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "progress": {
+      "author": "Julien LOLLIVIER",
+      "git_repo": "https://github.com/Xfennec/progress",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/Xfennec",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

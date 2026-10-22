@@ -491,6 +491,61 @@ class OptionalWorkstationUtilitiesBatchTests(unittest.TestCase):
         )
 
 
+class OptionalUnixUtilitiesBatchTests(unittest.TestCase):
+    def test_batch_09_pins_history_markdown_and_copy_tools(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-09.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "glow": (
+                "2.0.0-1+b5",
+                "3e36a1b585d953429b429ec53a51b75ff1e182b7a76f547d5c60014899d08218",
+                "Charmbracelet",
+            ),
+            "hstr": (
+                "3.1+ds-1+b1",
+                "0d7eb3c71a675bcfdd1cff196d3fac98e5c5cf3e6c5429ec425cac6363d14646",
+                "Martin Dvorak",
+            ),
+            "progress": (
+                "0.17-1",
+                "c91bcc19a86ec1e340fa401514e98a6e38d9ff6367b63e4dcf85387cda7bfad8",
+                "Julien LOLLIVIER",
+            ),
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+
+        for name, (version, digest, author) in expected.items():
+            package = batch_packages[name]
+            self.assertEqual(package, manifest_packages[name])
+            self.assertEqual(package["version"], version)
+            self.assertEqual(package["debian_version"], version)
+            source = batch["sources"][name]
+            self.assertEqual(source, manifest["sources"][name])
+            self.assertEqual(source["version"], version)
+            self.assertEqual(source["sha256"], digest)
+            self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$")
+            self.assertEqual(metadata[name]["author"], author)
+            self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+            self.assertTrue(metadata[name]["git_repo"].startswith("https://"))
+            self.assertTrue(metadata[name]["git_author_url"].startswith("https://"))
+            self.assertEqual(
+                {item["name"] for item in metadata[name]["packagers"]},
+                {"arkana-team", "debarkak"},
+            )
+
+
 class UpstreamReleasePackageTests(unittest.TestCase):
     def test_yt_dlp_is_pinned_to_the_upstream_release_assets(self) -> None:
         package = UPSTREAM_BUILDER.PACKAGES["yt-dlp"]
