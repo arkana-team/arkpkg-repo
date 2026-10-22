@@ -1,0 +1,75 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "glow"
+      ],
+      "debian_version": "2.0.0-1+b5",
+      "dependencies": [],
+      "description": "Render Markdown on the command-line",
+      "license": "See /usr/share/doc/glow/copyright",
+      "license_path": "usr/share/doc/glow/copyright",
+      "name": "glow",
+      "url": "https://github.com/charmbracelet/glow",
+      "version": "2.0.0-1+b5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "hstr"
+      ],
+      "debian_version": "3.1+ds-1+b1",
+      "dependencies": [
+        "libtinfo6",
+        "ncurses-libs",
+        "readline-libs"
+      ],
+      "description": "Suggest box like shell history completion",
+      "license": "See /usr/share/doc/hstr/copyright",
+      "license_path": "usr/share/doc/hstr/copyright",
+      "name": "hstr",
+      "url": "https://github.com/dvorka/hstr",
+      "version": "3.1+ds-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "progress"
+      ],
+      "debian_version": "0.17-1",
+      "dependencies": [
+        "libtinfo6",
+        "ncurses-libs"
+      ],
+      "description": "Coreutils Progress Viewer (formerly known as cv)",
+      "license": "See /usr/share/doc/progress/copyright",
+      "license_path": "usr/share/doc/progress/copyright",
+      "name": "progress",
+      "url": "https://github.com/Xfennec/progress",
+      "version": "0.17-1"
+    }
+  ],
+  "sources": {
+    "glow": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/glow/glow_2.0.0-1+b5_amd64.deb",
+      "sha256": "3e36a1b585d953429b429ec53a51b75ff1e182b7a76f547d5c60014899d08218",
+      "version": "2.0.0-1+b5"
+    },
+    "hstr": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/hstr/hstr_3.1+ds-1+b1_amd64.deb",
+      "sha256": "0d7eb3c71a675bcfdd1cff196d3fac98e5c5cf3e6c5429ec425cac6363d14646",
+      "version": "3.1+ds-1+b1"
+    },
+    "progress": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/progress/progress_0.17-1_amd64.deb",
+      "sha256": "c91bcc19a86ec1e340fa401514e98a6e38d9ff6367b63e4dcf85387cda7bfad8",
+      "version": "0.17-1"
+    }
+  },
+  "suite": "trixie"
+}

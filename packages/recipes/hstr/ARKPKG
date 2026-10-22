@@ -1,0 +1,12 @@
+Name: hstr
+Description: Suggest box like shell history completion
+Version: 3.1+ds-1+b1
+Arch: x86_64
+URL: https://github.com/dvorka/hstr
+License: See /usr/share/doc/hstr/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-libs
+  readline-libs
+Provides: hstr=/usr/bin/hstr

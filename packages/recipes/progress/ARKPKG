@@ -1,0 +1,11 @@
+Name: progress
+Description: Coreutils Progress Viewer (formerly known as cv)
+Version: 0.17-1
+Arch: x86_64
+URL: https://github.com/Xfennec/progress
+License: See /usr/share/doc/progress/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-libs
+Provides: progress=/usr/bin/progress
