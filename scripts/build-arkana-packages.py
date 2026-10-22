@@ -202,6 +202,7 @@ PACKAGES = (
     "fuse3-devel",
     "libmagic-devel",
     "libedit-devel",
+    "libxcrypt-libs",
     "libxcrypt-devel",
     "perl",
     "fvwm3",
@@ -1355,7 +1356,11 @@ STAGED_PACKAGE_FILES = {
     "libxcrypt-devel": (
         "usr/include/crypt.h",
         "usr/lib/pkgconfig/libxcrypt.pc",
+    ),
+    "libxcrypt-libs": (
         "usr/lib/libcrypt.so",
+        "usr/lib/libcrypt.so.2",
+        "usr/lib/libcrypt.so.2.0.0",
     ),
     "libnsl-devel": (
         "usr/include/rpcsvc",

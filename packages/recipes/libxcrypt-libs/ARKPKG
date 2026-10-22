@@ -1,0 +1,8 @@
+Name: libxcrypt-libs
+Description: libxcrypt runtime and linker libraries
+Version: 4.4.38
+Arch: x86_64
+URL: https://github.com/besser82/libxcrypt
+License: LGPL-2.1-or-later
+Maintainer: arkanaOS Team
+Provides: libcrypt.so=/usr/lib/libcrypt.so, libcrypt.so.2=/usr/lib/libcrypt.so.2.0.0

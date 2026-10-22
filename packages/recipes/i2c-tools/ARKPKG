@@ -1,0 +1,11 @@
+Name: i2c-tools
+Description: hardware bus probing, chip inspection, and register access utilities
+Version: 4.4-2
+Arch: x86_64
+URL: https://www.kernel.org/pub/software/utils/i2c-tools/
+License: GPL-2+
+Maintainer: arkanaOS Team
+Dependencies:
+  libi2c0
+  perl
+Provides: ddcmon=/usr/bin/ddcmon, decode-dimms=/usr/bin/decode-dimms, decode-edid=/usr/bin/decode-edid, decode-vaio=/usr/bin/decode-vaio, i2c-stub-from-dump=/usr/sbin/i2c-stub-from-dump, i2cdetect=/usr/sbin/i2cdetect, i2cdump=/usr/sbin/i2cdump, i2cget=/usr/sbin/i2cget, i2cset=/usr/sbin/i2cset, i2ctransfer=/usr/sbin/i2ctransfer

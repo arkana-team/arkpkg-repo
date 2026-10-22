@@ -1,0 +1,8 @@
+Name: lsscsi
+Description: list all SCSI devices or hosts currently on system
+Version: 0.32-2
+Arch: x86_64
+URL: https://sg.danny.cz/scsi/lsscsi.html
+License: GPL-2+
+Maintainer: arkanaOS Team
+Provides: lsscsi=/usr/bin/lsscsi

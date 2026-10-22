@@ -1,0 +1,8 @@
+Name: dash
+Description: POSIX-compliant shell
+Version: 0.5.12-12
+Arch: x86_64
+URL: http://gondor.apana.org.au/~herbert/dash/
+License: Mixed BSD-3-Clause, GPL-2+, and public domain
+Maintainer: arkanaOS Team
+Provides: dash=/usr/bin/dash
