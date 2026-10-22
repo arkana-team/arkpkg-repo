@@ -1,0 +1,10 @@
+Name: units
+Description: Converts between different systems of units
+Version: 2.24-1+deb13u1
+Arch: x86_64
+URL: https://www.gnu.org/software/units/
+License: See /usr/share/doc/units/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  readline-libs
+Provides: units=/usr/bin/units, units_cur=/usr/bin/units_cur

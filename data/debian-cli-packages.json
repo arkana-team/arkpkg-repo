@@ -3079,6 +3079,70 @@
       "name": "man-db",
       "url": "https://man-db.nongnu.org/",
       "version": "2.13.1-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fortune-mod"
+      ],
+      "debian_version": "1:1.99.1-9",
+      "dependencies": [
+        "fortunes-min"
+      ],
+      "description": "Provides fortune cookies on demand",
+      "license": "See /usr/share/doc/fortune-mod/copyright",
+      "license_path": "usr/share/doc/fortune-mod/copyright",
+      "name": "fortune-mod",
+      "url": "https://github.com/shlomif/fortune-mod",
+      "version": "1:1.99.1-9",
+      "symlinks": [
+        [
+          "usr/bin/fortune",
+          "../games/fortune"
+        ]
+      ]
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "fortunes-min"
+      ],
+      "debian_version": "1:1.99.1-9",
+      "dependencies": [],
+      "description": "Selected fortune cookie data files",
+      "license": "See /usr/share/doc/fortunes-min/copyright",
+      "license_path": "usr/share/doc/fortunes-min/copyright",
+      "name": "fortunes-min",
+      "url": "https://github.com/shlomif/fortune-mod",
+      "version": "1:1.99.1-9"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "units"
+      ],
+      "debian_version": "2.24-1+deb13u1",
+      "dependencies": [],
+      "description": "Converts between different systems of units",
+      "license": "See /usr/share/doc/units/copyright",
+      "license_path": "usr/share/doc/units/copyright",
+      "name": "units",
+      "url": "https://www.gnu.org/software/units/",
+      "version": "2.24-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "lnav"
+      ],
+      "debian_version": "0.12.4-1+deb13u1",
+      "dependencies": [],
+      "description": "Ncurses-based log file viewer",
+      "license": "See /usr/share/doc/lnav/copyright",
+      "license_path": "usr/share/doc/lnav/copyright",
+      "name": "lnav",
+      "url": "https://lnav.org/",
+      "version": "0.12.4-1+deb13u1"
     }
   ],
   "sources": {
@@ -4581,6 +4645,30 @@
       "filename": "pool/main/m/man-db/man-db_2.13.1-1_amd64.deb",
       "sha256": "d5a407221a0d59845484b5343a37ec6374102e949353e4b158eaa2cbaf27aa5a",
       "version": "2.13.1-1"
+    },
+    "fortune-mod": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fortune-mod/fortune-mod_1.99.1-9_amd64.deb",
+      "sha256": "866b82c51f269bd5bdc29134ec5407564f597a3ba6d9a5dfb8d5a0e34b6f205e",
+      "version": "1:1.99.1-9"
+    },
+    "fortunes-min": {
+      "architecture": "all",
+      "filename": "pool/main/f/fortune-mod/fortunes-min_1.99.1-9_all.deb",
+      "sha256": "25d0560c014229f5736e377a4d343cb8e058a75466fc4ffee6be17ded67ea3e9",
+      "version": "1:1.99.1-9"
+    },
+    "units": {
+      "architecture": "amd64",
+      "filename": "pool/main/u/units/units_2.24-1+deb13u1_amd64.deb",
+      "sha256": "d7dc5caa0ed463f5ecc247c4067a4504088bac9eedba8ad2ff355aefde936406",
+      "version": "2.24-1+deb13u1"
+    },
+    "lnav": {
+      "architecture": "amd64",
+      "filename": "pool/main/l/lnav/lnav_0.12.4-1+deb13u1_amd64.deb",
+      "sha256": "49048278d87d28f1947eec96403635945d7c338493c8d419efd4f2e2ce488978",
+      "version": "0.12.4-1+deb13u1"
     }
   },
   "suite": "trixie"

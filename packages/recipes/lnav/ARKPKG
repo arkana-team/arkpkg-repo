@@ -1,0 +1,15 @@
+Name: lnav
+Description: Ncurses-based log file viewer
+Version: 0.12.4-1+deb13u1
+Arch: x86_64
+URL: https://lnav.org/
+License: See /usr/share/doc/lnav/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcurl3t64-gnutls
+  libsqlite3-0
+  libtinfo6
+  libunistring-libs
+  pcre2-libs
+  readline-libs
+Provides: lnav=/usr/bin/lnav

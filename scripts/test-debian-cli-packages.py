@@ -589,6 +589,77 @@ class ManualPageWorkstationPackageTests(unittest.TestCase):
         )
 
 
+class ClassicUnixWorkstationPackageTests(unittest.TestCase):
+    def test_batch_11_pins_fortune_units_and_lnav_with_source_credits(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-11.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected_sources = {
+            "fortune-mod": {
+                "architecture": "amd64",
+                "filename": "pool/main/f/fortune-mod/fortune-mod_1.99.1-9_amd64.deb",
+                "sha256": "866b82c51f269bd5bdc29134ec5407564f597a3ba6d9a5dfb8d5a0e34b6f205e",
+                "version": "1:1.99.1-9",
+            },
+            "fortunes-min": {
+                "architecture": "all",
+                "filename": "pool/main/f/fortune-mod/fortunes-min_1.99.1-9_all.deb",
+                "sha256": "25d0560c014229f5736e377a4d343cb8e058a75466fc4ffee6be17ded67ea3e9",
+                "version": "1:1.99.1-9",
+            },
+            "units": {
+                "architecture": "amd64",
+                "filename": "pool/main/u/units/units_2.24-1+deb13u1_amd64.deb",
+                "sha256": "d7dc5caa0ed463f5ecc247c4067a4504088bac9eedba8ad2ff355aefde936406",
+                "version": "2.24-1+deb13u1",
+            },
+            "lnav": {
+                "architecture": "amd64",
+                "filename": "pool/main/l/lnav/lnav_0.12.4-1+deb13u1_amd64.deb",
+                "sha256": "49048278d87d28f1947eec96403635945d7c338493c8d419efd4f2e2ce488978",
+                "version": "0.12.4-1+deb13u1",
+            },
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+
+        self.assertEqual(set(batch_packages), set(expected_sources))
+        for name, source in expected_sources.items():
+            self.assertEqual(batch_packages[name], manifest_packages[name])
+            self.assertEqual(batch["sources"][name], source)
+            self.assertEqual(manifest["sources"][name], source)
+            self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$")
+            self.assertEqual(
+                {item["name"] for item in metadata[name]["packagers"]},
+                {"arkana-team", "debarkak"},
+            )
+
+        self.assertEqual(batch_packages["fortune-mod"]["dependencies"], ["fortunes-min"])
+        self.assertEqual(
+            batch_packages["fortune-mod"]["symlinks"],
+            [["usr/bin/fortune", "../games/fortune"]],
+        )
+        self.assertEqual(
+            metadata["fortune-mod"]["git_repo"],
+            "https://github.com/shlomif/fortune-mod",
+        )
+        self.assertEqual(metadata["fortune-mod"]["git_author_url"], "https://github.com/shlomif")
+        self.assertEqual(metadata["units"]["author"], "Adrian Mariano")
+        self.assertEqual(metadata["units"]["git_repo_type"], "packaging")
+        self.assertIsNone(metadata["units"]["git_author_url"])
+        self.assertEqual(metadata["lnav"]["author"], "Tim Stack and lnav contributors")
+        self.assertEqual(metadata["lnav"]["git_author_url"], "https://github.com/tstack")
+
+
 class UpstreamReleasePackageTests(unittest.TestCase):
     def test_yt_dlp_is_pinned_to_the_upstream_release_assets(self) -> None:
         package = UPSTREAM_BUILDER.PACKAGES["yt-dlp"]
