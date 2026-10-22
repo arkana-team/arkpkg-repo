@@ -3143,6 +3143,71 @@
       "name": "lnav",
       "url": "https://lnav.org/",
       "version": "0.12.4-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "dash"
+      ],
+      "debian_version": "0.5.12-12",
+      "dependencies": [],
+      "description": "POSIX-compliant shell",
+      "license": "Mixed BSD-3-Clause, GPL-2+, and public domain",
+      "license_path": "usr/share/doc/dash/copyright",
+      "name": "dash",
+      "url": "http://gondor.apana.org.au/~herbert/dash/",
+      "version": "0.5.12-12",
+      "exclude_paths": [
+        "usr/bin/sh",
+        "usr/share/debianutils/shells.d/dash",
+        "usr/share/menu/dash",
+        "usr/share/man/man1/sh.1.gz"
+      ]
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "lsscsi"
+      ],
+      "debian_version": "0.32-2",
+      "dependencies": [],
+      "description": "list all SCSI devices or hosts currently on system",
+      "license": "GPL-2+",
+      "license_path": "usr/share/doc/lsscsi/copyright",
+      "name": "lsscsi",
+      "url": "https://sg.danny.cz/scsi/lsscsi.html",
+      "version": "0.32-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libi2c0"
+      ],
+      "debian_version": "4.4-2",
+      "dependencies": [],
+      "description": "userspace I2C programming library",
+      "license": "LGPL-2.1+ and GPL-2+",
+      "license_path": "usr/share/doc/libi2c0/copyright",
+      "name": "libi2c0",
+      "url": "https://www.kernel.org/pub/software/utils/i2c-tools/",
+      "version": "4.4-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "i2c-tools"
+      ],
+      "debian_version": "4.4-2",
+      "dependencies": [
+        "libi2c0",
+        "perl"
+      ],
+      "description": "hardware bus probing, chip inspection, and register access utilities",
+      "license": "GPL-2+",
+      "license_path": "usr/share/doc/i2c-tools/copyright",
+      "name": "i2c-tools",
+      "url": "https://www.kernel.org/pub/software/utils/i2c-tools/",
+      "version": "4.4-2"
     }
   ],
   "sources": {
@@ -4669,6 +4734,22 @@
       "filename": "pool/main/l/lnav/lnav_0.12.4-1+deb13u1_amd64.deb",
       "sha256": "49048278d87d28f1947eec96403635945d7c338493c8d419efd4f2e2ce488978",
       "version": "0.12.4-1+deb13u1"
+    },
+    "dash": {
+      "filename": "pool/main/d/dash/dash_0.5.12-12_amd64.deb",
+      "sha256": "a8902cb6d8650134764a25fb80aec8589d858ef71ece1680a62e84816c37bb04"
+    },
+    "lsscsi": {
+      "filename": "pool/main/l/lsscsi/lsscsi_0.32-2_amd64.deb",
+      "sha256": "21cbbe49fa99acdcc910b9e1e9d526b4c1ebc05b9c3767ff67b44395266e540f"
+    },
+    "libi2c0": {
+      "filename": "pool/main/i/i2c-tools/libi2c0_4.4-2_amd64.deb",
+      "sha256": "1ce7a519db7a97b2f624febc2f6e7fdb267a3168020c0981dfea91a2a2c7879b"
+    },
+    "i2c-tools": {
+      "filename": "pool/main/i/i2c-tools/i2c-tools_4.4-2_amd64.deb",
+      "sha256": "00be3d59e12d6de8d1871c67695f82b0ce39986c437737ac09089d26240c73aa"
     }
   },
   "suite": "trixie"

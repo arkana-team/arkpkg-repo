@@ -26559,6 +26559,86 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "dash": {
+      "author": "Herbert Xu and original ash contributors",
+      "git_repo": "https://salsa.debian.org/debian/dash.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "lsscsi": {
+      "author": "Doug Gilbert",
+      "git_repo": "https://github.com/doug-gilbert/lsscsi",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/doug-gilbert",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libi2c0": {
+      "author": "Jean Delvare, Frodo Looijaard, Simon G. Vogl, and contributors",
+      "git_repo": "https://salsa.debian.org/aurel32/i2c-tools.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "i2c-tools": {
+      "author": "Jean Delvare, Frodo Looijaard, Mark D. Studebaker, and contributors",
+      "git_repo": "https://salsa.debian.org/aurel32/i2c-tools.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libxcrypt-libs": {
+      "author": null,
+      "git_repo": "https://github.com/besser82/libxcrypt",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

@@ -1,0 +1,8 @@
+Name: libi2c0
+Description: userspace I2C programming library
+Version: 4.4-2
+Arch: x86_64
+URL: https://www.kernel.org/pub/software/utils/i2c-tools/
+License: LGPL-2.1+ and GPL-2+
+Maintainer: arkanaOS Team
+Provides: libi2c.so.0=/usr/lib/x86_64-linux-gnu/libi2c.so.0.1.1
