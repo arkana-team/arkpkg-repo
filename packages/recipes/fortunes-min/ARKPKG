@@ -1,0 +1,7 @@
+Name: fortunes-min
+Description: Selected fortune cookie data files
+Version: 1:1.99.1-9
+Arch: any
+URL: https://github.com/shlomif/fortune-mod
+License: See /usr/share/doc/fortunes-min/copyright
+Maintainer: arkanaOS Team

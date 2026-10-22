@@ -1,0 +1,11 @@
+Name: fortune-mod
+Description: Provides fortune cookies on demand
+Version: 1:1.99.1-9
+Arch: x86_64
+URL: https://github.com/shlomif/fortune-mod
+License: See /usr/share/doc/fortune-mod/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  fortunes-min
+  librecode3
+Provides: fortune=/usr/bin/fortune, strfile=/usr/bin/strfile, unstr=/usr/bin/unstr

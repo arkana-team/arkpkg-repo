@@ -26495,6 +26495,70 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "fortune-mod": {
+      "author": "Shlomi Fish and fortune-mod contributors",
+      "git_repo": "https://github.com/shlomif/fortune-mod",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/shlomif",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "fortunes-min": {
+      "author": "Shlomi Fish and fortune-mod contributors",
+      "git_repo": "https://github.com/shlomif/fortune-mod",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/shlomif",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "units": {
+      "author": "Adrian Mariano",
+      "git_repo": "https://salsa.debian.org/debian/units.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "lnav": {
+      "author": "Tim Stack and lnav contributors",
+      "git_repo": "https://github.com/tstack/lnav",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/tstack",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
