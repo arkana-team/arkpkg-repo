@@ -144,7 +144,14 @@ class BuildIndexTests(unittest.TestCase):
             )
             self.assertIn(
                 ".category-panel, .catalogue-panel, .details-panel { "
-                "border: 3px solid; border-color: #fff #596269 #596269 #fff",
+                "border: 3px solid; border-color: #fff #4f585f #4f585f #fff",
+                style,
+            )
+            self.assertIn("4px 4px 0 #aeb4b9, 5px 6px 7px #343a4055", style)
+            self.assertIn(
+                ".intro { display: flex; flex-wrap: wrap; align-items: center; "
+                "justify-content: space-between; gap: .7rem 1.5rem; padding: .7rem; "
+                "border: 2px solid; border-color: #fff #626a70 #626a70 #fff",
                 style,
             )
             self.assertIn(
@@ -161,9 +168,15 @@ class BuildIndexTests(unittest.TestCase):
                 style,
             )
             self.assertIn("inset -1px -1px 0 #858d93", style)
-            self.assertIn("3px 3px 3px #42494f70", style)
+            self.assertIn("3px 3px 0 #aab0b4, 4px 5px 5px #42494f60", style)
+            self.assertIn("1px 1px 0 #9ba2a8, 2px 3px 2px #42494f60", style)
             self.assertIn("box-shadow: inset 2px 2px 3px #596168a0", style)
-            self.assertIn("2px 2px 2px #42494f70", style)
+            self.assertIn("transform: translate(1px, 1px)", style)
+            self.assertIn(
+                ".table-wrap { overflow: auto; max-height: 34rem; border: 2px solid; "
+                "border-color: #596269 #fff #fff #596269",
+                style,
+            )
             self.assertIn('.category-list button[aria-pressed="true"]', style)
             self.assertIn(".download-link:active", style)
             self.assertIn("linear-gradient(180deg", style)
