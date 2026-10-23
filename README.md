@@ -14,6 +14,10 @@ GitHub Pages serves the small index and catalog. Package archives are downloaded
 from this repository's raw file host and verified against the SHA-256 digest in
 the index.
 
+The catalogue lets you search packages, browse by category, sort the list, and
+inspect package details before downloading. Entries include upstream and
+packager credits, source links, dependencies, and direct `.ark` archive links.
+
 Add the repository once, then search for and install optional packages with
 `arkpkg`:
 

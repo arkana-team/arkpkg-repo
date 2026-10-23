@@ -13,6 +13,9 @@ own contribution unless you have repository permission to do so.
 - `scripts/build-*.py` builds packages from pinned upstream sources or staged
   sysroot files.
 - `scripts/build-index.py` creates the static Pages site and `index.json`.
+- `scripts/test-build-index.py` checks catalogue rendering, metadata, and
+  generated assets; `scripts/test-package-index-tilde.py` covers Debian version
+  ordering in the package index.
 - `scripts/test-packages.py` checks archive metadata, dependencies, file
   ownership, and install/verify/remove behavior.
 
@@ -67,6 +70,8 @@ Run the repository audit and generate a preview of the Pages site:
 ```sh
 ruff check scripts/*.py
 python3 -m py_compile scripts/*.py
+python3 scripts/test-build-index.py
+python3 scripts/test-package-index-tilde.py
 python3 scripts/test-packages.py --repo-root . --arkpkg /path/to/arkpkg
 python3 scripts/build-index.py --repo-root . --site-dir /tmp/arkpkg-site
 ```
@@ -75,6 +80,11 @@ The full package test uses a temporary root and installs, verifies, and removes
 every archive. Inspect the generated index and site before submitting. Do not
 commit the generated `site/` directory; GitHub Actions publishes it after
 package changes reach `main`.
+
+Keep the catalogue static and usable with keyboard and mobile layouts. Preserve
+its search, category filters, sorting, and package details panel. Make styling
+changes in `scripts/build-index.py`, keep depth and shadows restrained, and add
+or update generated-page checks in `scripts/test-build-index.py`.
 
 ## Pull requests
 
