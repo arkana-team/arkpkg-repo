@@ -42,6 +42,13 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def source_download_url(source: dict[str, str]) -> str:
+    filename = PurePosixPath(source["filename"])
+    if filename.is_absolute() or ".." in filename.parts:
+        raise ValueError(f"unsafe Debian filename: {source['filename']!r}")
+    return f"{BASE_URL}/{filename.as_posix()}"
+
+
 def is_elf(path: Path) -> bool:
     try:
         with path.open("rb") as source:
@@ -167,15 +174,13 @@ def requested_package_closure(
 
 def obtain_deb(source: dict[str, str], cache: Path) -> Path:
     filename = PurePosixPath(source["filename"])
-    if filename.is_absolute() or ".." in filename.parts:
-        raise ValueError(f"unsafe Debian filename: {source['filename']!r}")
     archive = cache / filename.name
     if archive.is_file() and sha256(archive) == source["sha256"]:
         return archive
     archive.unlink(missing_ok=True)
     archive.parent.mkdir(parents=True, exist_ok=True)
     request = urllib.request.Request(
-        f"{BASE_URL}/{filename.as_posix()}",
+        source_download_url(source),
         headers={"User-Agent": "arkpkg-repo-cli-package-builder/1"},
     )
     temporary = archive.with_suffix(archive.suffix + ".download")

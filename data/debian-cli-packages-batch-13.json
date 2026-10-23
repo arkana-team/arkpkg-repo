@@ -1,0 +1,48 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "install-info"
+      ],
+      "debian_version": "7.1.1-1+b1",
+      "description": "create the Info directory index for installed Texinfo manuals",
+      "license": "See /usr/share/doc/install-info/copyright",
+      "license_path": "usr/share/doc/install-info/copyright",
+      "name": "install-info",
+      "url": "https://www.gnu.org/software/texinfo/",
+      "version": "7.1.1-1+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "info"
+      ],
+      "debian_version": "7.1.1-1+b1",
+      "dependencies": [
+        "install-info"
+      ],
+      "description": "standalone GNU Info documentation browser",
+      "license": "See /usr/share/doc/info/copyright",
+      "license_path": "usr/share/doc/info/copyright",
+      "name": "info",
+      "url": "https://www.gnu.org/software/texinfo/",
+      "version": "7.1.1-1+b1"
+    }
+  ],
+  "sources": {
+    "install-info": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/texinfo/install-info_7.1.1-1+b1_amd64.deb",
+      "sha256": "96534736eea475b3be51d94d4969e29ab27d80fb80627d50ead9f10c24848e09",
+      "version": "7.1.1-1+b1"
+    },
+    "info": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/texinfo/info_7.1.1-1+b1_amd64.deb",
+      "sha256": "3e71742dc4f2d32d93572f200a9125e6e625b88ca664729e587bfc46001fbdc6",
+      "version": "7.1.1-1+b1"
+    }
+  }
+}

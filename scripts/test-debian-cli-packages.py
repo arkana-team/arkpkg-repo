@@ -74,6 +74,23 @@ class DebianArchivePermissionTests(unittest.TestCase):
             )
 
 
+class DebianSourceUrlTests(unittest.TestCase):
+    def test_source_download_url_defaults_to_the_main_archive(self) -> None:
+        source = {"filename": "pool/main/c/curl/curl_1.0_amd64.deb"}
+        self.assertEqual(
+            BUILDER.source_download_url(source),
+            "https://deb.debian.org/debian/pool/main/c/curl/curl_1.0_amd64.deb",
+        )
+
+    def test_source_download_url_rejects_unsafe_paths(self) -> None:
+        for source in (
+            {"filename": "pool/main/../private.deb"},
+            {"filename": "/tmp/package.deb"},
+        ):
+            with self.subTest(source=source), self.assertRaises(ValueError):
+                BUILDER.source_download_url(source)
+
+
 class UpstreamPayloadPermissionTests(unittest.TestCase):
     def test_written_files_have_explicit_modes_despite_restrictive_umask(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -739,6 +756,55 @@ class ClassicUnixWorkstationPackageTests(unittest.TestCase):
         self.assertIsNone(metadata["units"]["git_author_url"])
         self.assertEqual(metadata["lnav"]["author"], "Tim Stack and lnav contributors")
         self.assertEqual(metadata["lnav"]["git_author_url"], "https://github.com/tstack")
+
+
+class InfoPackageTests(unittest.TestCase):
+    def test_batch_13_pins_gnu_info_packages(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-13.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected_sources = {
+            "install-info": {
+                "architecture": "amd64",
+                "filename": "pool/main/t/texinfo/install-info_7.1.1-1+b1_amd64.deb",
+                "sha256": "96534736eea475b3be51d94d4969e29ab27d80fb80627d50ead9f10c24848e09",
+                "version": "7.1.1-1+b1",
+            },
+            "info": {
+                "architecture": "amd64",
+                "filename": "pool/main/t/texinfo/info_7.1.1-1+b1_amd64.deb",
+                "sha256": "3e71742dc4f2d32d93572f200a9125e6e625b88ca664729e587bfc46001fbdc6",
+                "version": "7.1.1-1+b1",
+            },
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+
+        self.assertEqual(set(batch_packages), set(expected_sources))
+        for name, source in expected_sources.items():
+            self.assertEqual(batch_packages[name], manifest_packages[name])
+            self.assertEqual(batch["sources"][name], source)
+            self.assertEqual(manifest["sources"][name], source)
+            self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$")
+            self.assertEqual(
+                {item["name"] for item in metadata[name]["packagers"]},
+                {"arkana-team", "debarkak"},
+            )
+
+        self.assertEqual(batch_packages["info"]["dependencies"], ["install-info"])
+        for name in ("info", "install-info"):
+            self.assertEqual(metadata[name]["author"], "GNU Texinfo contributors")
+            self.assertEqual(metadata[name]["git_repo"], "https://gnu.googlesource.com/texinfo/")
+            self.assertIsNone(metadata[name]["git_author_url"])
 
 
 class UpstreamReleasePackageTests(unittest.TestCase):
