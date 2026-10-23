@@ -60,12 +60,12 @@ h1 { margin: .3rem 0 .25rem; font-size: 1.45rem; font-weight: 600; }
 .intro p { margin: .2rem 0; color: #515960; font-size: .9rem; }
 .repo-command { padding: .38rem .6rem; border: 1px solid var(--line); border-radius: .35rem; background: #f8faff; color: #34445e; font-size: .8rem; overflow-wrap: anywhere; }
 .stats-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; margin: .9rem 0; }
-.stat { display: flex; align-items: baseline; gap: .5rem; padding: .5rem .7rem; border: 1px solid var(--line); border-radius: .4rem; background: #fff; }
+.stat { display: flex; align-items: baseline; gap: .5rem; padding: .5rem .7rem; border: 1px solid var(--line); border-radius: .4rem; background: #fff; box-shadow: inset 0 1px 0 #fff, 0 1px 2px #28313d0b; }
 .stat strong { color: #263956; font-size: 1.05rem; }
 .stat span { color: var(--muted); font-size: .78rem; }
 .catalogue-layout { display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); gap: .9rem; align-items: start; }
-.category-panel, .catalogue-panel, .details-panel { border: 1px solid var(--line); border-radius: .45rem; background: var(--panel); box-shadow: 0 1px 2px #2030500c; overflow: hidden; }
-.panel-heading { margin: 0; padding: .65rem .75rem; border-bottom: 1px solid var(--line); background: #f8faff; color: #34445e; font-size: .83rem; font-weight: 700; }
+.category-panel, .catalogue-panel, .details-panel { border: 1px solid #cbd0d6; border-radius: .4rem; background: var(--panel); box-shadow: inset 0 1px 0 #fff, 0 1px 3px #28313d14; overflow: hidden; }
+.panel-heading { margin: 0; padding: .65rem .75rem; border-bottom: 1px solid #d0d4d9; background: #f0f1f3; box-shadow: inset 0 1px 0 #fff; color: #3e4853; font-size: .83rem; font-weight: 700; }
 .category-list { margin: 0; padding: .35rem; list-style: none; }
 .category-list button { display: flex; width: 100%; justify-content: space-between; gap: .5rem; padding: .34rem .45rem; border: 0; border-radius: .15rem; background: transparent; color: #26323a; text-align: left; cursor: pointer; font-size: .82rem; }
 .category-list button:hover { background: #f1f5fc; }
@@ -74,7 +74,7 @@ h1 { margin: .3rem 0 .25rem; font-size: 1.45rem; font-weight: 600; }
 .catalogue-tools { display: flex; align-items: end; justify-content: space-between; gap: .75rem; padding: .65rem; border-bottom: 1px solid #d2d5d7; background: #fff; }
 .search-field { flex: 1; min-width: 12rem; }
 .search-field label { display: block; margin-bottom: .22rem; color: #4c545b; font-size: .76rem; font-weight: 700; }
-.search-field input, .mobile-category { width: 100%; min-height: 2.1rem; padding: .38rem .55rem; border: 1px solid #c6d0df; border-radius: .35rem; background: #fff; }
+.search-field input, .mobile-category { width: 100%; min-height: 2.1rem; padding: .38rem .55rem; border: 1px solid #c6cbd1; border-radius: .3rem; background: #fff; box-shadow: inset 0 1px 2px #202b3b0c; }
 .result-count { margin: 0; color: #5c646b; font-size: .78rem; white-space: nowrap; }
 .mobile-category { display: none; }
 .mobile-category-label { display: none; color: #4c545b; font-size: .76rem; font-weight: 700; }
@@ -95,7 +95,7 @@ th button span { color: #687078; }
 .download-link { display: inline-block; padding: .24rem .48rem; border: 1px solid #cbd7ef; border-radius: .3rem; background: #f1f5ff; color: #284b98; text-decoration: none; white-space: nowrap; }
 .download-link:hover { border-color: var(--accent); background: #e7eeff; }
 .details-panel { margin-top: .8rem; background: #fff; }
-.details-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .6rem .75rem; border-bottom: 1px solid var(--line); background: #f8faff; }
+.details-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .6rem .75rem; border-bottom: 1px solid #d0d4d9; background: #f0f1f3; box-shadow: inset 0 1px 0 #fff; }
 .details-header h2 { margin: 0; font-size: .9rem; }
 .details-panel > p { margin: .7rem; color: #4f585f; font-size: .84rem; }
 .details-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0; border-top: 1px solid #e0e2e3; }
