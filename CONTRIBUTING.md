@@ -90,5 +90,6 @@ or update generated-page checks in `scripts/test-build-index.py`.
 
 Use a specific title such as `feat: add xfe package` or
 `fix: correct pkgconf package metadata`. Describe the package, its upstream
-source and license, dependencies, and the checks you ran. Keep package names
-lowercase and spell the distribution name `arkanaOS`.
+source and license, dependencies, and the checks you ran. all lowercase would
+be prefered as it matches with some of our text styling. Keep official project
+spelling when referencing `arkanaOS`, `arkpkg`, `arkcfg`, and `arkpkg-repo`.
