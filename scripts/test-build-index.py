@@ -138,30 +138,34 @@ class BuildIndexTests(unittest.TestCase):
             self.assertIn(".catalogue-layout", style)
             self.assertIn("@media (max-width: 760px)", style)
             self.assertIn("--accent: #3159b8", style)
-            self.assertIn("background: #d4d7da", style)
+            self.assertIn(
+                "background: linear-gradient(180deg, #f1f2f3 0%, #d6d9dc 100%)",
+                style,
+            )
             self.assertIn(
                 ".category-panel, .catalogue-panel, .details-panel { "
-                "border: 3px solid; border-color: #fff #70777d #70777d #fff",
+                "border: 3px solid; border-color: #fff #69727a #69727a #fff",
                 style,
             )
             self.assertIn(
                 ".category-list button { display: flex; width: 100%; "
                 "justify-content: space-between; gap: .5rem; padding: .28rem .4rem; "
-                "border: 2px solid; border-color: #fff #747b81 #747b81 #fff",
+                "border: 2px solid; border-color: #fff #626b73 #626b73 #fff; "
+                "border-radius: 2px; background: linear-gradient(180deg, #f0f1f2 0%, #d0d3d6 100%)",
                 style,
             )
             self.assertIn(
                 ".search-field input, .mobile-category { width: 100%; "
                 "min-height: 2.1rem; padding: .38rem .55rem; border: 3px solid; "
-                "border-color: #70777d #fff #fff #70777d",
+                "border-color: #69727a #fff #fff #69727a",
                 style,
             )
-            self.assertIn("inset -1px -1px 0 #939aa0", style)
-            self.assertIn("box-shadow: inset 1px 1px 2px #747b8180", style)
-            self.assertIn("2px 2px 1px #656c7350", style)
+            self.assertIn("inset -1px -1px 0 #92999f", style)
+            self.assertIn("box-shadow: inset 2px 2px 3px #596168a0", style)
+            self.assertIn("2px 2px 2px #4b535b60", style)
             self.assertIn('.category-list button[aria-pressed="true"]', style)
             self.assertIn(".download-link:active", style)
-            self.assertNotIn("linear-gradient", style)
+            self.assertIn("linear-gradient(180deg", style)
             self.assertIn("function selectCategory", script)
             self.assertIn("function showDetails", script)
 
