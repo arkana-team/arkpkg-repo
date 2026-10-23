@@ -1,0 +1,8 @@
+Name: xsettingsd
+Description: Small XSETTINGS daemon for desktop application preferences
+Version: 1.0.2-1
+Arch: x86_64
+URL: https://codeberg.org/derat/xsettingsd
+License: See /usr/share/doc/xsettingsd/copyright
+Maintainer: arkanaOS Team
+Provides: dump_xsettings=/usr/bin/dump_xsettings, xsettingsd=/usr/bin/xsettingsd

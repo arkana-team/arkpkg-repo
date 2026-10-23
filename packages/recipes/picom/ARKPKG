@@ -1,0 +1,15 @@
+Name: picom
+Description: Lightweight X11 compositor with optional effects
+Version: 12.5-1
+Arch: x86_64
+URL: https://github.com/yshui/picom
+License: See /usr/share/doc/picom/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libconfig-libs
+  libev4t64
+  libxcb-image0
+  libxcb-render-util0
+  pcre2-libs
+  xcb-util
+Provides: picom-inspect=/usr/bin/picom-inspect, picom-trans=/usr/bin/picom-trans, picom=/usr/bin/picom

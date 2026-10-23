@@ -951,6 +951,107 @@ class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
         self.assertEqual(batch_packages["dialog"]["dependencies"], ["libdialog15"])
         self.assertEqual(batch_packages["libsecret-1-0"]["dependencies"], ["libsecret-common"])
 
+    def test_batch_16_pins_optional_nscde_session_tools(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-16.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected_sources = {
+            "dunst": (
+                "amd64",
+                "pool/main/d/dunst/dunst_1.12.2-1_amd64.deb",
+                "88cc8e6e31632bcdec59526df101aeaf294cde5673e2e5fd9506c3b28de7a461",
+                "1.12.2-1",
+            ),
+            "libconfig11": (
+                "amd64",
+                "pool/main/libc/libconfig/libconfig11_1.7.3-2_amd64.deb",
+                "0609351b0069ef47f9ade42625a760f8889aeb55bd7107339f61a4abf9a4068e",
+                "1.7.3-2",
+            ),
+            "libxcb-image0": (
+                "amd64",
+                "pool/main/x/xcb-util-image/libxcb-image0_0.4.0-2+b2_amd64.deb",
+                "81e2654e1b1da5cff9ea2bf46970a46eb5c81f1e35b1356691705e8cd6ab3ed6",
+                "0.4.0-2+b2",
+            ),
+            "libxcb-render-util0": (
+                "amd64",
+                "pool/main/x/xcb-util-renderutil/libxcb-render-util0_0.3.10-1_amd64.deb",
+                "9bdd6247e45cea5047e4da883dabf168366474fb1b00a37bb194359ca1f975ab",
+                "0.3.10-1",
+            ),
+            "picom": (
+                "amd64",
+                "pool/main/p/picom/picom_12.5-1_amd64.deb",
+                "4d5054faf9ef9af5e16b0720433a30968f17bfb6cae7bc64212492f8cbbc7b52",
+                "12.5-1",
+            ),
+            "xsettingsd": (
+                "amd64",
+                "pool/main/x/xsettingsd/xsettingsd_1.0.2-1_amd64.deb",
+                "4cc6d9a3e2871a28735f84e7ac68eecb7b89e03ee3edc23ded58948ceca72a48",
+                "1.0.2-1",
+            ),
+        }
+        expected_authors = {
+            "dunst": ("Dunst contributors", "https://github.com/dunst-project/dunst"),
+            "libconfig-libs": (
+                "Mark A. Lindner",
+                "https://github.com/hyperrealm/libconfig",
+            ),
+            "libxcb-image0": (
+                "XCB contributors",
+                "https://gitlab.freedesktop.org/xorg/lib/libxcb-image",
+            ),
+            "libxcb-render-util0": (
+                "XCB contributors",
+                "https://gitlab.freedesktop.org/xorg/lib/libxcb-render-util",
+            ),
+            "picom": ("Yuxuan Shui and contributors", "https://github.com/yshui/picom"),
+            "xsettingsd": ("Daniel Erat", "https://codeberg.org/derat/xsettingsd"),
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected_authors))
+
+        for name, (architecture, filename, checksum, version) in expected_sources.items():
+            expected = {
+                "architecture": architecture,
+                "filename": filename,
+                "sha256": checksum,
+                "version": version,
+            }
+            self.assertEqual(batch["sources"][name], expected)
+            self.assertEqual(manifest["sources"][name], expected)
+
+        for name, (author, git_repo) in expected_authors.items():
+            self.assertEqual(batch_packages[name], manifest_packages[name])
+            self.assertEqual(metadata[name]["author"], author)
+            self.assertEqual(metadata[name]["git_repo"], git_repo)
+            self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+            self.assertTrue(metadata[name]["git_author_url"].startswith("https://"))
+            self.assertEqual(
+                {item["name"] for item in metadata[name]["packagers"]},
+                {"arkana-team", "debarkak"},
+            )
+            recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+            self.assertTrue(recipe.is_file(), f"missing recipe for {name}")
+            self.assertIn(f"Name: {name}\n", recipe.read_text(encoding="utf-8"))
+
+        self.assertEqual(
+            batch_packages["picom"]["dependencies"],
+            ["libconfig-libs", "libxcb-image0", "libxcb-render-util0"],
+        )
+
 
 class UpstreamReleasePackageTests(unittest.TestCase):
     def test_yt_dlp_is_pinned_to_the_upstream_release_assets(self) -> None:

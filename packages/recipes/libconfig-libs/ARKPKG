@@ -1,0 +1,8 @@
+Name: libconfig-libs
+Description: C configuration library required by picom
+Version: 1.7.3-2
+Arch: x86_64
+URL: https://github.com/hyperrealm/libconfig
+License: See /usr/share/doc/libconfig11/copyright
+Maintainer: arkanaOS Team
+Provides: libconfig.so.11=/usr/lib/x86_64-linux-gnu/libconfig.so.11.1.0

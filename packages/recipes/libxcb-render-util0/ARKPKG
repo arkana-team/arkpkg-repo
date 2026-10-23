@@ -1,0 +1,8 @@
+Name: libxcb-render-util0
+Description: XCB Render extension utility library
+Version: 0.3.10-1
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/xorg/lib/libxcb-render-util
+License: See /usr/share/doc/libxcb-render-util0/copyright
+Maintainer: arkanaOS Team
+Provides: libxcb-render-util.so.0=/usr/lib/x86_64-linux-gnu/libxcb-render-util.so.0.0.0
