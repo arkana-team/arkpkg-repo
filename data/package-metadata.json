@@ -26959,6 +26959,102 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "dunst": {
+      "author": "Dunst contributors",
+      "git_repo": "https://github.com/dunst-project/dunst",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/dunst-project",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libconfig-libs": {
+      "author": "Mark A. Lindner",
+      "git_repo": "https://github.com/hyperrealm/libconfig",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/hyperrealm",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "picom": {
+      "author": "Yuxuan Shui and contributors",
+      "git_repo": "https://github.com/yshui/picom",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/yshui",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xsettingsd": {
+      "author": "Daniel Erat",
+      "git_repo": "https://codeberg.org/derat/xsettingsd",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/derat",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libxcb-image0": {
+      "author": "XCB contributors",
+      "git_repo": "https://gitlab.freedesktop.org/xorg/lib/libxcb-image",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gitlab.freedesktop.org/xorg/lib/libxcb-image/-/graphs/master",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libxcb-render-util0": {
+      "author": "XCB contributors",
+      "git_repo": "https://gitlab.freedesktop.org/xorg/lib/libxcb-render-util",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gitlab.freedesktop.org/xorg/lib/libxcb-render-util/-/graphs/master",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

@@ -3528,6 +3528,99 @@
         "libgmime-3.0-0t64",
         "libtalloc2"
       ]
+    },
+    {
+      "name": "dunst",
+      "version": "1.12.2-1",
+      "arch": "x86_64",
+      "debian_version": "1.12.2-1",
+      "description": "Lightweight and customizable X11 notification daemon",
+      "url": "https://github.com/dunst-project/dunst",
+      "license": "See /usr/share/doc/dunst/copyright",
+      "license_path": "usr/share/doc/dunst/copyright",
+      "debian_packages": [
+        "dunst"
+      ],
+      "dependencies": [
+        "libnotify4",
+        "xdg-utils"
+      ]
+    },
+    {
+      "name": "libconfig-libs",
+      "version": "1.7.3-2",
+      "arch": "x86_64",
+      "debian_version": "1.7.3-2",
+      "description": "C configuration library required by picom",
+      "url": "https://github.com/hyperrealm/libconfig",
+      "license": "See /usr/share/doc/libconfig11/copyright",
+      "license_path": "usr/share/doc/libconfig11/copyright",
+      "debian_packages": [
+        "libconfig11"
+      ],
+      "dependencies": []
+    },
+    {
+      "name": "picom",
+      "version": "12.5-1",
+      "arch": "x86_64",
+      "debian_version": "12.5-1",
+      "description": "Lightweight X11 compositor with optional effects",
+      "url": "https://github.com/yshui/picom",
+      "license": "See /usr/share/doc/picom/copyright",
+      "license_path": "usr/share/doc/picom/copyright",
+      "debian_packages": [
+        "picom"
+      ],
+      "dependencies": [
+        "libconfig-libs",
+        "libxcb-image0",
+        "libxcb-render-util0"
+      ]
+    },
+    {
+      "name": "xsettingsd",
+      "version": "1.0.2-1",
+      "arch": "x86_64",
+      "debian_version": "1.0.2-1",
+      "description": "Small XSETTINGS daemon for desktop application preferences",
+      "url": "https://codeberg.org/derat/xsettingsd",
+      "license": "See /usr/share/doc/xsettingsd/copyright",
+      "license_path": "usr/share/doc/xsettingsd/copyright",
+      "debian_packages": [
+        "xsettingsd"
+      ],
+      "dependencies": []
+    },
+    {
+      "name": "libxcb-image0",
+      "version": "0.4.0-2+b2",
+      "arch": "x86_64",
+      "debian_version": "0.4.0-2+b2",
+      "description": "XCB image and shared-memory image utility library",
+      "url": "https://gitlab.freedesktop.org/xorg/lib/libxcb-image",
+      "license": "See /usr/share/doc/libxcb-image0/copyright",
+      "license_path": "usr/share/doc/libxcb-image0/copyright",
+      "debian_packages": [
+        "libxcb-image0"
+      ],
+      "dependencies": [
+        "xcb-util"
+      ]
+    },
+    {
+      "name": "libxcb-render-util0",
+      "version": "0.3.10-1",
+      "arch": "x86_64",
+      "debian_version": "0.3.10-1",
+      "description": "XCB Render extension utility library",
+      "url": "https://gitlab.freedesktop.org/xorg/lib/libxcb-render-util",
+      "license": "See /usr/share/doc/libxcb-render-util0/copyright",
+      "license_path": "usr/share/doc/libxcb-render-util0/copyright",
+      "debian_packages": [
+        "libxcb-render-util0"
+      ],
+      "dependencies": []
     }
   ],
   "sources": {
@@ -5174,6 +5267,42 @@
       "filename": "pool/main/n/notmuch/notmuch_0.39-1_amd64.deb",
       "sha256": "f48553940896c3c408d43bf1305d6687cea0d4c91824206082584b4bebef2da3",
       "version": "0.39-1"
+    },
+    "dunst": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/dunst/dunst_1.12.2-1_amd64.deb",
+      "sha256": "88cc8e6e31632bcdec59526df101aeaf294cde5673e2e5fd9506c3b28de7a461",
+      "version": "1.12.2-1"
+    },
+    "picom": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/picom/picom_12.5-1_amd64.deb",
+      "sha256": "4d5054faf9ef9af5e16b0720433a30968f17bfb6cae7bc64212492f8cbbc7b52",
+      "version": "12.5-1"
+    },
+    "xsettingsd": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xsettingsd/xsettingsd_1.0.2-1_amd64.deb",
+      "sha256": "4cc6d9a3e2871a28735f84e7ac68eecb7b89e03ee3edc23ded58948ceca72a48",
+      "version": "1.0.2-1"
+    },
+    "libconfig11": {
+      "architecture": "amd64",
+      "filename": "pool/main/libc/libconfig/libconfig11_1.7.3-2_amd64.deb",
+      "sha256": "0609351b0069ef47f9ade42625a760f8889aeb55bd7107339f61a4abf9a4068e",
+      "version": "1.7.3-2"
+    },
+    "libxcb-image0": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xcb-util-image/libxcb-image0_0.4.0-2+b2_amd64.deb",
+      "sha256": "81e2654e1b1da5cff9ea2bf46970a46eb5c81f1e35b1356691705e8cd6ab3ed6",
+      "version": "0.4.0-2+b2"
+    },
+    "libxcb-render-util0": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xcb-util-renderutil/libxcb-render-util0_0.3.10-1_amd64.deb",
+      "sha256": "9bdd6247e45cea5047e4da883dabf168366474fb1b00a37bb194359ca1f975ab",
+      "version": "0.3.10-1"
     }
   },
   "suite": "trixie"
