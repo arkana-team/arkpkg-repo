@@ -1,0 +1,20 @@
+Name: dunst
+Description: Lightweight and customizable X11 notification daemon
+Version: 1.12.2-1
+Arch: x86_64
+URL: https://github.com/dunst-project/dunst
+License: See /usr/share/doc/dunst/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo2
+  libgdk-pixbuf-2.0-0
+  libnotify4
+  libpango-1.0-0
+  libpangocairo-1.0-0
+  libwayland-client0
+  libwayland-cursor0
+  libxinerama
+  libxrandr
+  libxss1
+  xdg-utils
+Provides: dunst=/usr/bin/dunst, dunstctl=/usr/bin/dunstctl, dunstify=/usr/bin/dunstify
