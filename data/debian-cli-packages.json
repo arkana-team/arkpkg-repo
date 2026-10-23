@@ -3621,6 +3621,78 @@
         "libxcb-render-util0"
       ],
       "dependencies": []
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "intel-gpu-tools"
+      ],
+      "debian_version": "2.0-1",
+      "dependencies": [
+        "libproc2-0"
+      ],
+      "description": "Intel GPU diagnostics and performance monitoring tools",
+      "license": "See /usr/share/doc/intel-gpu-tools/copyright",
+      "license_path": "usr/share/doc/intel-gpu-tools/copyright",
+      "name": "intel-gpu-tools",
+      "url": "https://gitlab.freedesktop.org/drm/igt-gpu-tools",
+      "version": "2.0-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "nvtop"
+      ],
+      "debian_version": "3.2.0-1",
+      "dependencies": [],
+      "description": "Interactive GPU monitor for AMD, Intel, and NVIDIA devices",
+      "license": "See /usr/share/doc/nvtop/copyright",
+      "license_path": "usr/share/doc/nvtop/copyright",
+      "name": "nvtop",
+      "url": "https://github.com/Syllo/nvtop",
+      "version": "3.2.0-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "radeontop"
+      ],
+      "debian_version": "1.4-2",
+      "dependencies": [],
+      "description": "Terminal monitor for AMD Radeon GPU utilization",
+      "license": "See /usr/share/doc/radeontop/copyright",
+      "license_path": "usr/share/doc/radeontop/copyright",
+      "name": "radeontop",
+      "url": "https://github.com/clbr/radeontop",
+      "version": "1.4-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "xss-lock"
+      ],
+      "debian_version": "0.3.0+git20230128.0c562b-1+b2",
+      "dependencies": [],
+      "description": "Lock idle X11 sessions by invoking a selected screen locker",
+      "license": "See /usr/share/doc/xss-lock/copyright",
+      "license_path": "usr/share/doc/xss-lock/copyright",
+      "name": "xss-lock",
+      "url": "https://github.com/wavexx/xss-lock",
+      "version": "0.3.0+git20230128.0c562b-1+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libproc2-0"
+      ],
+      "debian_version": "2:4.0.4-9",
+      "dependencies": [],
+      "description": "Process information library for the Debian-built Intel GPU diagnostics",
+      "license": "See /usr/share/doc/libproc2-0/copyright",
+      "license_path": "usr/share/doc/libproc2-0/copyright",
+      "name": "libproc2-0",
+      "url": "https://gitlab.com/procps-ng/procps",
+      "version": "4.0.4-9"
     }
   ],
   "sources": {
@@ -5303,6 +5375,36 @@
       "filename": "pool/main/x/xcb-util-renderutil/libxcb-render-util0_0.3.10-1_amd64.deb",
       "sha256": "9bdd6247e45cea5047e4da883dabf168366474fb1b00a37bb194359ca1f975ab",
       "version": "0.3.10-1"
+    },
+    "intel-gpu-tools": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/intel-gpu-tools/intel-gpu-tools_2.0-1_amd64.deb",
+      "sha256": "419f9c9fe7978d01700d71a0ef1b4544b979daf9ee1aa72838169a21e3aa2fe1",
+      "version": "2.0-1"
+    },
+    "nvtop": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/nvtop/nvtop_3.2.0-1_amd64.deb",
+      "sha256": "805038ff92ce444bfe3a0c15a8e08a17e565fba011297c0c482152d7e6640901",
+      "version": "3.2.0-1"
+    },
+    "radeontop": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/radeontop/radeontop_1.4-2_amd64.deb",
+      "sha256": "218edd2934625b547ad1eb9a7bf229a629f36583f32880640473ac11515fe7f9",
+      "version": "1.4-2"
+    },
+    "xss-lock": {
+      "architecture": "amd64",
+      "filename": "pool/main/x/xss-lock/xss-lock_0.3.0+git20230128.0c562b-1+b2_amd64.deb",
+      "sha256": "47f81d5e5e708b27d5975687bef44636d3ed774e3903d3d6073b58156618b659",
+      "version": "0.3.0+git20230128.0c562b-1+b2"
+    },
+    "libproc2-0": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/procps/libproc2-0_4.0.4-9_amd64.deb",
+      "sha256": "c9d61caab1b2ddfc3f17edb95be31b9809fcb2daf27d853dff615bc4ebd08b4b",
+      "version": "4.0.4-9"
     }
   },
   "suite": "trixie"

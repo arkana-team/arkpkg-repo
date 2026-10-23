@@ -1052,6 +1052,90 @@ class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
             ["libconfig-libs", "libxcb-image0", "libxcb-render-util0"],
         )
 
+    def test_batch_17_pins_optional_gpu_and_x11_session_tools(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-17.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected_sources = {
+            "libproc2-0": (
+                "amd64",
+                "pool/main/p/procps/libproc2-0_4.0.4-9_amd64.deb",
+                "c9d61caab1b2ddfc3f17edb95be31b9809fcb2daf27d853dff615bc4ebd08b4b",
+                "4.0.4-9",
+            ),
+            "intel-gpu-tools": (
+                "amd64",
+                "pool/main/i/intel-gpu-tools/intel-gpu-tools_2.0-1_amd64.deb",
+                "419f9c9fe7978d01700d71a0ef1b4544b979daf9ee1aa72838169a21e3aa2fe1",
+                "2.0-1",
+            ),
+            "nvtop": (
+                "amd64",
+                "pool/main/n/nvtop/nvtop_3.2.0-1_amd64.deb",
+                "805038ff92ce444bfe3a0c15a8e08a17e565fba011297c0c482152d7e6640901",
+                "3.2.0-1",
+            ),
+            "radeontop": (
+                "amd64",
+                "pool/main/r/radeontop/radeontop_1.4-2_amd64.deb",
+                "218edd2934625b547ad1eb9a7bf229a629f36583f32880640473ac11515fe7f9",
+                "1.4-2",
+            ),
+            "xss-lock": (
+                "amd64",
+                "pool/main/x/xss-lock/xss-lock_0.3.0+git20230128.0c562b-1+b2_amd64.deb",
+                "47f81d5e5e708b27d5975687bef44636d3ed774e3903d3d6073b58156618b659",
+                "0.3.0+git20230128.0c562b-1+b2",
+            ),
+        }
+        expected_repositories = {
+            "libproc2-0": "https://gitlab.com/procps-ng/procps",
+            "intel-gpu-tools": "https://gitlab.freedesktop.org/drm/igt-gpu-tools",
+            "nvtop": "https://github.com/Syllo/nvtop",
+            "radeontop": "https://github.com/clbr/radeontop",
+            "xss-lock": "https://github.com/wavexx/xss-lock",
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected_sources))
+
+        for name, (architecture, filename, checksum, version) in expected_sources.items():
+            source = {
+                "architecture": architecture,
+                "filename": filename,
+                "sha256": checksum,
+                "version": version,
+            }
+            self.assertEqual(batch["sources"][name], source)
+            self.assertEqual(manifest["sources"][name], source)
+            self.assertEqual(batch_packages[name], manifest_packages[name])
+            self.assertIsNone(metadata[name]["author"])
+            self.assertIsNone(metadata[name]["git_author_url"])
+            self.assertEqual(metadata[name]["git_repo"], expected_repositories[name])
+            self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+            self.assertEqual(
+                {item["name"] for item in metadata[name]["packagers"]},
+                {"arkana-team", "debarkak"},
+            )
+            archive = repo_root / "packages" / f"{name}-{batch_packages[name]['version']}-x86_64.ark"
+            self.assertTrue(archive.is_file(), f"missing built archive for {name}")
+            recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+            self.assertTrue(recipe.is_file(), f"missing recipe for {name}")
+            self.assertIn(f"Name: {name}\n", recipe.read_text(encoding="utf-8"))
+
+        self.assertEqual(batch_packages["intel-gpu-tools"]["dependencies"], ["libproc2-0"])
+        self.assertEqual(batch_packages["libproc2-0"]["debian_version"], "2:4.0.4-9")
+        self.assertEqual(batch_packages["libproc2-0"]["version"], "4.0.4-9")
+
 
 class UpstreamReleasePackageTests(unittest.TestCase):
     def test_yt_dlp_is_pinned_to_the_upstream_release_assets(self) -> None:
