@@ -139,30 +139,31 @@ class BuildIndexTests(unittest.TestCase):
             self.assertIn("@media (max-width: 760px)", style)
             self.assertIn("--accent: #3159b8", style)
             self.assertIn(
-                "background: linear-gradient(180deg, #f1f2f3 0%, #d6d9dc 100%)",
+                "background: linear-gradient(180deg, #f2f3f4 0%, #c7cbce 100%)",
                 style,
             )
             self.assertIn(
                 ".category-panel, .catalogue-panel, .details-panel { "
-                "border: 3px solid; border-color: #fff #69727a #69727a #fff",
+                "border: 3px solid; border-color: #fff #596269 #596269 #fff",
                 style,
             )
             self.assertIn(
                 ".category-list button { display: flex; width: 100%; "
                 "justify-content: space-between; gap: .5rem; padding: .28rem .4rem; "
-                "border: 2px solid; border-color: #fff #626b73 #626b73 #fff; "
-                "border-radius: 2px; background: linear-gradient(180deg, #f0f1f2 0%, #d0d3d6 100%)",
+                "border: 3px solid; border-color: #fff #555e66 #555e66 #fff; "
+                "border-radius: 2px; background: linear-gradient(180deg, #f2f3f4 0%, #c4c8cb 100%)",
                 style,
             )
             self.assertIn(
                 ".search-field input, .mobile-category { width: 100%; "
                 "min-height: 2.1rem; padding: .38rem .55rem; border: 3px solid; "
-                "border-color: #69727a #fff #fff #69727a",
+                "border-color: #596269 #fff #fff #596269",
                 style,
             )
-            self.assertIn("inset -1px -1px 0 #92999f", style)
+            self.assertIn("inset -1px -1px 0 #858d93", style)
+            self.assertIn("3px 3px 3px #42494f70", style)
             self.assertIn("box-shadow: inset 2px 2px 3px #596168a0", style)
-            self.assertIn("2px 2px 2px #4b535b60", style)
+            self.assertIn("2px 2px 2px #42494f70", style)
             self.assertIn('.category-list button[aria-pressed="true"]', style)
             self.assertIn(".download-link:active", style)
             self.assertIn("linear-gradient(180deg", style)
