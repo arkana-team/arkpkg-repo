@@ -1,0 +1,10 @@
+Name: libxcb-image0
+Description: XCB image and shared-memory image utility library
+Version: 0.4.0-2+b2
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/xorg/lib/libxcb-image
+License: See /usr/share/doc/libxcb-image0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  xcb-util
+Provides: libxcb-image.so.0=/usr/lib/x86_64-linux-gnu/libxcb-image.so.0.0.0
