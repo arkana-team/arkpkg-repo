@@ -1,0 +1,10 @@
+Name: xss-lock
+Description: Lock idle X11 sessions by invoking a selected screen locker
+Version: 0.3.0+git20230128.0c562b-1+b2
+Arch: x86_64
+URL: https://github.com/wavexx/xss-lock
+License: See /usr/share/doc/xss-lock/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  xcb-util
+Provides: xss-lock=/usr/bin/xss-lock

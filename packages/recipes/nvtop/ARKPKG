@@ -1,0 +1,12 @@
+Name: nvtop
+Description: Interactive GPU monitor for AMD, Intel, and NVIDIA devices
+Version: 3.2.0-1
+Arch: x86_64
+URL: https://github.com/Syllo/nvtop
+License: See /usr/share/doc/nvtop/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-libs
+  systemd-libs
+Provides: nvtop=/usr/bin/nvtop
