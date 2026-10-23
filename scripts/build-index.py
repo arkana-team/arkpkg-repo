@@ -684,6 +684,7 @@ def build_site(
     package_count = len(entries)
     architecture_count = len({str(item["arch"]) for item in entries})
     source_count = len({str(item["git_repo"]) for item in entries})
+    stylesheet_version = hashlib.sha256(PAGE_STYLE.encode("utf-8")).hexdigest()[:12]
     (site_dir / "catalogue.css").write_text(PAGE_STYLE, encoding="utf-8")
     (site_dir / "catalogue.js").write_text(PAGE_SCRIPT, encoding="utf-8")
     (site_dir / "index.html").write_text(
@@ -691,7 +692,7 @@ def build_site(
         '<html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
         '<meta name="theme-color" content="#3159b8">'
-        '<link rel="stylesheet" href="catalogue.css">'
+        f'<link rel="stylesheet" href="catalogue.css?v={stylesheet_version}">'
         '<title>arkpkg software catalogue</title></head><body>'
         '<header class="site-header"><div class="masthead">'
         '<a class="brand" href="#packages"><strong>arkpkg</strong>'

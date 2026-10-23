@@ -126,7 +126,8 @@ class BuildIndexTests(unittest.TestCase):
             self.assertIn('data-git-repo-type="upstream"', page)
             self.assertIn('data-category-filter="all"', page)
             self.assertIn('id="details-packagers"', page)
-            self.assertIn('href="catalogue.css"', page)
+            style_version = hashlib.sha256(style.encode("utf-8")).hexdigest()[:12]
+            self.assertIn(f'href="catalogue.css?v={style_version}"', page)
             self.assertIn('src="catalogue.js"', page)
             self.assertIn('id="mobile-category"', page)
             self.assertIn("software catalogue for arkanaOS", page)
