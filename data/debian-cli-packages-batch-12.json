@@ -1,0 +1,76 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libwtmpdb0"
+      ],
+      "debian_version": "0.73.0-3+deb13u1",
+      "description": "wtmp database shared library",
+      "license": "See /usr/share/doc/libwtmpdb0/copyright",
+      "license_path": "usr/share/doc/libwtmpdb0/copyright",
+      "name": "libwtmpdb0",
+      "url": "https://github.com/thkukuk/wtmpdb",
+      "version": "0.73.0-3+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "openssh-server"
+      ],
+      "debian_version": "1:10.0p1-7+deb13u4",
+      "dependencies": [
+        "libwtmpdb0",
+        "openssh-client",
+        "openssh-sftp-server"
+      ],
+      "description": "secure shell server for remote access",
+      "license": "See /usr/share/doc/openssh-server/copyright",
+      "license_path": "usr/share/doc/openssh-server/copyright",
+      "license_source_package": "openssh-client",
+      "license_source_path": "usr/share/doc/openssh-client/copyright",
+      "name": "openssh-server",
+      "url": "https://www.openssh.com/",
+      "version": "10.0p1-7+deb13u4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "openssh-sftp-server"
+      ],
+      "debian_version": "1:10.0p1-7+deb13u4",
+      "dependencies": [
+        "openssh-client"
+      ],
+      "description": "secure file transfer server module for OpenSSH",
+      "license": "See /usr/share/doc/openssh-sftp-server/copyright",
+      "license_path": "usr/share/doc/openssh-sftp-server/copyright",
+      "license_source_package": "openssh-client",
+      "license_source_path": "usr/share/doc/openssh-client/copyright",
+      "name": "openssh-sftp-server",
+      "url": "https://www.openssh.com/",
+      "version": "10.0p1-7+deb13u4"
+    }
+  ],
+  "sources": {
+    "libwtmpdb0": {
+      "architecture": "amd64",
+      "filename": "pool/main/w/wtmpdb/libwtmpdb0_0.73.0-3+deb13u1_amd64.deb",
+      "sha256": "8d6bc1c961d734da58b2d4c35b0a3cd6ad2fe81655bd982c655a97c2255b1c9b",
+      "version": "0.73.0-3+deb13u1"
+    },
+    "openssh-server": {
+      "architecture": "amd64",
+      "filename": "pool/main/o/openssh/openssh-server_10.0p1-7+deb13u4_amd64.deb",
+      "sha256": "b4a02524fd2be375624d917ee8102a16567e9e8dd786b41c35e22360cdd37f9d",
+      "version": "1:10.0p1-7+deb13u4"
+    },
+    "openssh-sftp-server": {
+      "architecture": "amd64",
+      "filename": "pool/main/o/openssh/openssh-sftp-server_10.0p1-7+deb13u4_amd64.deb",
+      "sha256": "28a82485438fafc8d6a7552ab61cac827338c16f39e3790d6ebcc146d452e542",
+      "version": "1:10.0p1-7+deb13u4"
+    }
+  }
+}

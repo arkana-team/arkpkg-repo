@@ -1,0 +1,9 @@
+Name: openssh-sftp-server
+Description: secure file transfer server module for OpenSSH
+Version: 10.0p1-7+deb13u4
+Arch: x86_64
+URL: https://www.openssh.com/
+License: See /usr/share/doc/openssh-sftp-server/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  openssh-client

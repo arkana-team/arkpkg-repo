@@ -26719,6 +26719,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "libwtmpdb0": {
+      "author": "Thorsten Kukuk",
+      "git_repo": "https://github.com/thkukuk/wtmpdb",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/thkukuk",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "openssh-server": {
+      "author": "Tatu Ylonen, Markus Friedl, Theo de Raadt, Niels Provos, Dug Song, and OpenSSH contributors",
+      "git_repo": "https://github.com/openssh/openssh-portable",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/openssh",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "openssh-sftp-server": {
+      "author": "Tatu Ylonen, Markus Friedl, Theo de Raadt, Niels Provos, Dug Song, and OpenSSH contributors",
+      "git_repo": "https://github.com/openssh/openssh-portable",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/openssh",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

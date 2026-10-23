@@ -1,0 +1,19 @@
+Name: openssh-server
+Description: secure shell server for remote access
+Version: 10.0p1-7+deb13u4
+Arch: x86_64
+URL: https://www.openssh.com/
+License: See /usr/share/doc/openssh-server/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  audit-libs
+  krb5-libs
+  libcrypt1
+  libwrap-libs
+  libwtmpdb0
+  openssh-client
+  openssh-sftp-server
+  openssl-libs
+  pam-libs
+  vis-runtime-libs
+Provides: sshd=/usr/sbin/sshd

@@ -340,6 +340,87 @@ class WorkstationPackageManifestTests(unittest.TestCase):
             ],
         )
 
+    def test_openssh_server_packages_keep_the_client_dependency_chain(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        packages = {package["name"]: package for package in manifest["packages"]}
+        server = packages["openssh-server"]
+        sftp = packages["openssh-sftp-server"]
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-12.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch_packages = {package["name"]: package for package in batch["packages"]}
+        self.assertEqual(
+            set(batch_packages),
+            {"libwtmpdb0", "openssh-server", "openssh-sftp-server"},
+        )
+        for name, package in batch_packages.items():
+            self.assertEqual(packages[name], package)
+        for name, source in batch["sources"].items():
+            self.assertEqual(manifest["sources"][name], source)
+
+        self.assertIn("openssh-client", server["dependencies"])
+        self.assertIn("openssh-sftp-server", server["dependencies"])
+        self.assertIn("libwtmpdb0", server["dependencies"])
+        self.assertIn("openssh-client", sftp["dependencies"])
+        self.assertEqual(server["version"], sftp["version"])
+
+        for name, package in (("openssh-server", server), ("openssh-sftp-server", sftp)):
+            self.assertEqual(package["debian_version"], f"1:{package['version']}")
+            self.assertEqual(package["license_source_package"], "openssh-client")
+            self.assertEqual(
+                package["license_source_path"],
+                "usr/share/doc/openssh-client/copyright",
+            )
+            self.assertIn(package["license_source_package"], package["dependencies"])
+            source = manifest["sources"][package["debian_packages"][0]]
+            self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$")
+            self.assertIn(package["version"], source["filename"])
+            package_metadata = metadata[name]
+            self.assertEqual(
+                package_metadata["author"],
+                "Tatu Ylonen, Markus Friedl, Theo de Raadt, Niels Provos, "
+                "Dug Song, and OpenSSH contributors",
+            )
+            self.assertEqual(
+                package_metadata["git_author_url"], "https://github.com/openssh"
+            )
+            self.assertEqual(package_metadata["git_repo_type"], "upstream")
+            self.assertEqual(
+                package_metadata["git_repo"],
+                "https://github.com/openssh/openssh-portable",
+            )
+            self.assertEqual(
+                {item["name"] for item in package_metadata["packagers"]},
+                {"arkana-team", "debarkak"},
+            )
+
+        library = batch_packages["libwtmpdb0"]
+        self.assertEqual(library["version"], "0.73.0-3+deb13u1")
+        self.assertEqual(library["debian_version"], library["version"])
+        library_source = manifest["sources"]["libwtmpdb0"]
+        self.assertEqual(library_source["version"], library["version"])
+        self.assertEqual(
+            library_source["filename"],
+            "pool/main/w/wtmpdb/libwtmpdb0_0.73.0-3+deb13u1_amd64.deb",
+        )
+        self.assertRegex(library_source["sha256"], r"^[0-9a-f]{64}$")
+        library_metadata = metadata["libwtmpdb0"]
+        self.assertEqual(library_metadata["author"], "Thorsten Kukuk")
+        self.assertEqual(
+            library_metadata["git_repo"], "https://github.com/thkukuk/wtmpdb"
+        )
+        self.assertEqual(
+            library_metadata["git_author_url"], "https://github.com/thkukuk"
+        )
+
 
 class OptionalCliUtilitiesBatchTests(unittest.TestCase):
     def test_batch_07_has_pinned_hardware_and_shell_utilities(self) -> None:
