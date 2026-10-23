@@ -1,0 +1,45 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "name": "alpine",
+      "version": "2.26+dfsg-3",
+      "arch": "x86_64",
+      "debian_version": "2.26+dfsg-3",
+      "description": "Text-based email client, friendly for novices but powerful",
+      "url": "https://alpineapp.email/",
+      "license": "See /usr/share/doc/alpine/copyright",
+      "license_path": "usr/share/doc/alpine/copyright",
+      "debian_packages": [
+        "alpine"
+      ]
+    },
+    {
+      "name": "s-nail",
+      "version": "14.9.25-1",
+      "arch": "x86_64",
+      "debian_version": "14.9.25-1",
+      "description": "Feature-rich BSD mail(1) client with MIME and SMTP support",
+      "url": "https://www.sdaoden.eu/",
+      "license": "See /usr/share/doc/s-nail/copyright",
+      "license_path": "usr/share/doc/s-nail/copyright",
+      "debian_packages": [
+        "s-nail"
+      ]
+    }
+  ],
+  "sources": {
+    "alpine": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/alpine/alpine_2.26+dfsg-3_amd64.deb",
+      "sha256": "7712f180873fb67a674ae0ff59ae06b49fdf03f06d533578f7c81b43109f498d",
+      "version": "2.26+dfsg-3"
+    },
+    "s-nail": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/s-nail/s-nail_14.9.25-1_amd64.deb",
+      "sha256": "06f48c7dbc02bfcbb3d0bc83d52231f98d5619ff0b8b1c1bfb75afb172d771b5",
+      "version": "14.9.25-1"
+    }
+  }
+}

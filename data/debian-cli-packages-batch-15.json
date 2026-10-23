@@ -1,0 +1,189 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "name": "dialog",
+      "version": "1.3-20250116-1",
+      "arch": "x86_64",
+      "debian_version": "1.3-20250116-1",
+      "description": "Displays user-friendly dialog boxes from shell scripts",
+      "url": "https://invisible-island.net/dialog/dialog.html",
+      "license": "See /usr/share/doc/dialog/copyright",
+      "license_path": "usr/share/doc/dialog/copyright",
+      "debian_packages": [
+        "dialog"
+      ],
+      "dependencies": [
+        "libdialog15"
+      ]
+    },
+    {
+      "name": "gpm",
+      "version": "1.20.7-11+b2",
+      "arch": "x86_64",
+      "debian_version": "1.20.7-11+b2",
+      "description": "General Purpose Mouse interface for Linux virtual consoles",
+      "url": "https://nico.schottelius.org/software/gpm/",
+      "license": "See /usr/share/doc/gpm/copyright",
+      "license_path": "usr/share/doc/gpm/copyright",
+      "debian_packages": [
+        "gpm"
+      ],
+      "dependencies": [
+        "mc-runtime-libs"
+      ]
+    },
+    {
+      "name": "isync",
+      "version": "1.5.1-1",
+      "arch": "x86_64",
+      "debian_version": "1.5.1-1",
+      "description": "IMAP and MailDir mailbox synchronizer",
+      "url": "https://isync.sourceforge.io/",
+      "license": "See /usr/share/doc/isync/copyright",
+      "license_path": "usr/share/doc/isync/copyright",
+      "debian_packages": [
+        "isync"
+      ],
+      "dependencies": [
+        "libdb5.3t64",
+        "libsasl2-2",
+        "openssl-libs"
+      ]
+    },
+    {
+      "name": "libdialog15",
+      "version": "1.3-20250116-1",
+      "arch": "x86_64",
+      "debian_version": "1.3-20250116-1",
+      "description": "Displays user-friendly dialog boxes shared library",
+      "url": "https://invisible-island.net/dialog/dialog.html",
+      "license": "See /usr/share/doc/libdialog15/copyright",
+      "license_path": "usr/share/doc/libdialog15/copyright",
+      "debian_packages": [
+        "libdialog15"
+      ],
+      "dependencies": [
+        "ncurses-libs",
+        "libtinfo6"
+      ]
+    },
+    {
+      "name": "libsecret-1-0",
+      "version": "0.21.7-1",
+      "arch": "x86_64",
+      "debian_version": "0.21.7-1",
+      "description": "Secret store service client library",
+      "url": "https://gnome.pages.gitlab.gnome.org/libsecret/",
+      "license": "See /usr/share/doc/libsecret-1-0/copyright",
+      "license_path": "usr/share/doc/libsecret-1-0/copyright",
+      "debian_packages": [
+        "libsecret-1-0"
+      ],
+      "dependencies": [
+        "libsecret-common"
+      ]
+    },
+    {
+      "name": "libsecret-common",
+      "version": "0.21.7-1",
+      "arch": "any",
+      "debian_version": "0.21.7-1",
+      "description": "Secret store common files",
+      "url": "https://gnome.pages.gitlab.gnome.org/libsecret/",
+      "license": "See /usr/share/doc/libsecret-common/copyright",
+      "license_path": "usr/share/doc/libsecret-common/copyright",
+      "debian_packages": [
+        "libsecret-common"
+      ],
+      "dependencies": []
+    },
+    {
+      "name": "msmtp",
+      "version": "1.8.28-3",
+      "arch": "x86_64",
+      "debian_version": "1.8.28-3",
+      "description": "Lightweight SMTP client with support for server profiles",
+      "url": "https://marlam.de/msmtp/",
+      "license": "See /usr/share/doc/msmtp/copyright",
+      "license_path": "usr/share/doc/msmtp/copyright",
+      "debian_packages": [
+        "msmtp"
+      ],
+      "dependencies": [
+        "gnutls-libs",
+        "libgsasl18",
+        "libidn2-libs",
+        "libsecret-1-0"
+      ]
+    },
+    {
+      "name": "notmuch",
+      "version": "0.39-1",
+      "arch": "x86_64",
+      "debian_version": "0.39-1",
+      "description": "Thread-based email index, search and tagging",
+      "url": "https://notmuchmail.org/",
+      "license": "See /usr/share/doc/notmuch/copyright",
+      "license_path": "usr/share/doc/notmuch/copyright",
+      "debian_packages": [
+        "notmuch"
+      ],
+      "dependencies": [
+        "libnotmuch5t64",
+        "libgmime-3.0-0t64",
+        "libtalloc2"
+      ]
+    }
+  ],
+  "sources": {
+    "dialog": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/dialog/dialog_1.3-20250116-1_amd64.deb",
+      "sha256": "31a7870a8906b2bbe90b4aaf09cf2eaa18dbd4939941902ca26f78b799dfa4b9",
+      "version": "1.3-20250116-1"
+    },
+    "gpm": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gpm/gpm_1.20.7-11+b2_amd64.deb",
+      "sha256": "e6c5fd0e376597d2153166bc1b5701270f69596382ce78e36e11ba031d65e003",
+      "version": "1.20.7-11+b2"
+    },
+    "isync": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/isync/isync_1.5.1-1_amd64.deb",
+      "sha256": "1d7eea9d7557a36054f1e221a4d448d6c4c3a203267cf08a1e503ed7fcd31fe7",
+      "version": "1.5.1-1"
+    },
+    "libdialog15": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/dialog/libdialog15_1.3-20250116-1_amd64.deb",
+      "sha256": "62546547d12ee0170005204ac8df00233e3f4f58cde2ef059bff13c4d6a696cb",
+      "version": "1.3-20250116-1"
+    },
+    "libsecret-1-0": {
+      "architecture": "amd64",
+      "filename": "pool/main/libs/libsecret/libsecret-1-0_0.21.7-1_amd64.deb",
+      "sha256": "949c5428cd3427486ac6c4dfc6d9400ce786c504c02334acc903c873aa52d14f",
+      "version": "0.21.7-1"
+    },
+    "libsecret-common": {
+      "architecture": "all",
+      "filename": "pool/main/libs/libsecret/libsecret-common_0.21.7-1_all.deb",
+      "sha256": "ce336a4ea6d27bfe85c195b88ab9a8eb95ce197228648634b8ace35ddb9bd808",
+      "version": "0.21.7-1"
+    },
+    "msmtp": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/msmtp/msmtp_1.8.28-3_amd64.deb",
+      "sha256": "403822d579c8be76065bb8aafd5934ecfd2faf97f7738bb3aebe801710b787d7",
+      "version": "1.8.28-3"
+    },
+    "notmuch": {
+      "architecture": "amd64",
+      "filename": "pool/main/n/notmuch/notmuch_0.39-1_amd64.deb",
+      "sha256": "f48553940896c3c408d43bf1305d6687cea0d4c91824206082584b4bebef2da3",
+      "version": "0.39-1"
+    }
+  }
+}
