@@ -137,9 +137,15 @@ class BuildIndexTests(unittest.TestCase):
             self.assertIn(".catalogue-layout", style)
             self.assertIn("@media (max-width: 760px)", style)
             self.assertIn("--accent: #3159b8", style)
-            self.assertIn("background: #f0f1f3", style)
-            self.assertIn("inset 0 1px 0 #fff, 0 1px 3px #28313d14", style)
-            self.assertIn("inset 0 1px 2px #202b3b0c", style)
+            self.assertIn("background: #dfe1e3", style)
+            self.assertIn(
+                "inset 1px 1px 0 #fff, inset -1px -1px 0 #b3b8be, "
+                "0 2px 5px #28313d24",
+                style,
+            )
+            self.assertIn("inset 2px 2px 3px #545d6624", style)
+            self.assertIn('.category-list button[aria-pressed="true"]', style)
+            self.assertIn(".download-link:active", style)
             self.assertNotIn("linear-gradient", style)
             self.assertIn("function selectCategory", script)
             self.assertIn("function showDetails", script)
