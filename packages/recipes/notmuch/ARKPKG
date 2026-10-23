@@ -1,0 +1,12 @@
+Name: notmuch
+Description: Thread-based email index, search and tagging
+Version: 0.39-1
+Arch: x86_64
+URL: https://notmuchmail.org/
+License: See /usr/share/doc/notmuch/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgmime-3.0-0t64
+  libnotmuch5t64
+  libtalloc2
+Provides: notmuch-emacs-mua=/usr/bin/notmuch-emacs-mua, notmuch=/usr/bin/notmuch

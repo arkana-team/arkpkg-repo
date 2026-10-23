@@ -1,0 +1,13 @@
+Name: msmtp
+Description: Lightweight SMTP client with support for server profiles
+Version: 1.8.28-3
+Arch: x86_64
+URL: https://marlam.de/msmtp/
+License: See /usr/share/doc/msmtp/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  libgsasl18
+  libidn2-libs
+  libsecret-1-0
+Provides: msmtp=/usr/bin/msmtp

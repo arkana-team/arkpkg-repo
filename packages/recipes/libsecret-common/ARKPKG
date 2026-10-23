@@ -1,0 +1,7 @@
+Name: libsecret-common
+Description: Secret store common files
+Version: 0.21.7-1
+Arch: any
+URL: https://gnome.pages.gitlab.gnome.org/libsecret/
+License: See /usr/share/doc/libsecret-common/copyright
+Maintainer: arkanaOS Team
