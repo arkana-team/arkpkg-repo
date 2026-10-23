@@ -86,7 +86,9 @@ td { padding: .35rem .5rem; border-bottom: 1px solid #e0e2e3; vertical-align: to
 tbody tr:nth-child(even) { background: #e9ebed; }
 tbody tr:hover { background: #e3e8ef; }
 tbody tr.is-selected { background: #dce4f5; }
-th button { padding: 0; border: 0; background: none; color: inherit; cursor: pointer; font: inherit; font-weight: 700; }
+th button { padding: .16rem .38rem; border: 2px solid; border-color: #fff #69727a #69727a #fff; border-radius: 2px; background: linear-gradient(180deg, #f4f5f6 0%, #c9cdd0 100%); box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a2a8ad, 1px 1px 0 #858d93; color: inherit; cursor: pointer; font: inherit; font-weight: 700; }
+th button:hover { background: linear-gradient(180deg, #fff 0%, #d7dadd 100%); }
+th button:active, th[aria-sort="ascending"] button, th[aria-sort="descending"] button { transform: translate(1px, 1px); border-color: #69727a #fff #fff #69727a; background: linear-gradient(180deg, #c3c7ca 0%, #d7dadd 100%); box-shadow: inset 2px 2px 2px #50586090, inset -1px -1px 0 #fff; }
 th button span { color: #687078; }
 .package-select { display: block; padding: 0; border: 0; background: none; color: #3159b8; text-align: left; cursor: pointer; font-weight: 700; }
 .package-select:hover { text-decoration: underline; }

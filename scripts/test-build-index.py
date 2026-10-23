@@ -173,6 +173,16 @@ class BuildIndexTests(unittest.TestCase):
             self.assertIn("box-shadow: inset 2px 2px 3px #596168a0", style)
             self.assertIn("transform: translate(1px, 1px)", style)
             self.assertIn(
+                "th button { padding: .16rem .38rem; border: 2px solid; "
+                "border-color: #fff #69727a #69727a #fff",
+                style,
+            )
+            self.assertIn(
+                'th[aria-sort="ascending"] button, '
+                'th[aria-sort="descending"] button',
+                style,
+            )
+            self.assertIn(
                 ".table-wrap { overflow: auto; max-height: 34rem; border: 2px solid; "
                 "border-color: #596269 #fff #fff #596269",
                 style,
