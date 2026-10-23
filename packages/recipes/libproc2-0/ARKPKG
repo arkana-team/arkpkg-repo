@@ -1,0 +1,10 @@
+Name: libproc2-0
+Description: Process information library for the Debian-built Intel GPU diagnostics
+Version: 4.0.4-9
+Arch: x86_64
+URL: https://gitlab.com/procps-ng/procps
+License: See /usr/share/doc/libproc2-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  systemd-libs
+Provides: libproc2.so.0=/usr/lib/x86_64-linux-gnu/libproc2.so.0.0.2
