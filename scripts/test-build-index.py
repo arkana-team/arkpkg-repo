@@ -140,12 +140,21 @@ class BuildIndexTests(unittest.TestCase):
             self.assertIn("background: #d7dade", style)
             self.assertIn(
                 ".category-panel, .catalogue-panel, .details-panel { "
-                "border: 2px outset #c2c6c9",
+                "border: 2px solid; border-color: #fff #777e84 #777e84 #fff",
                 style,
             )
-            self.assertIn("border: 2px outset #c0c4c8", style)
-            self.assertIn("border: 2px inset #c0c4c8", style)
-            self.assertIn("border-style: inset", style)
+            self.assertIn(
+                ".category-list button { display: flex; width: 100%; "
+                "justify-content: space-between; gap: .5rem; padding: .28rem .4rem; "
+                "border: 2px solid; border-color: #fff #777e84 #777e84 #fff",
+                style,
+            )
+            self.assertIn(
+                ".search-field input, .mobile-category { width: 100%; "
+                "min-height: 2.1rem; padding: .38rem .55rem; border: 2px solid; "
+                "border-color: #777e84 #fff #fff #777e84",
+                style,
+            )
             self.assertIn('.category-list button[aria-pressed="true"]', style)
             self.assertIn(".download-link:active", style)
             self.assertNotIn("linear-gradient", style)
