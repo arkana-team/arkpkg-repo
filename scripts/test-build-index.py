@@ -23,6 +23,7 @@ spec.loader.exec_module(build_index)
 build_site = build_index.build_site
 validate_download_base_url = build_index.validate_download_base_url
 validate_package_metadata = build_index.validate_package_metadata
+package_category = build_index.package_category
 
 
 class BuildIndexTests(unittest.TestCase):
@@ -113,16 +114,48 @@ class BuildIndexTests(unittest.TestCase):
             )
             self.assertFalse((site / "packages").exists())
             self.assertTrue((site / "index.html").is_file())
+            self.assertTrue((site / "catalogue.css").is_file())
+            self.assertTrue((site / "catalogue.js").is_file())
             page = (site / "index.html").read_text(encoding="utf-8")
+            style = (site / "catalogue.css").read_text(encoding="utf-8")
+            script = (site / "catalogue.js").read_text(encoding="utf-8")
             self.assertIn('data-sort-key="author"', page)
             self.assertIn('data-sort-key="git_repo"', page)
-            self.assertIn('data-sort-key="git_author_url"', page)
-            self.assertIn('data-sort-key="packagers"', page)
             self.assertIn('href="https://github.com/example/hello"', page)
-            self.assertIn('href="https://github.com/arkana-team"', page)
-            self.assertIn('href="https://github.com/debarkak"', page)
+            self.assertIn('data-packagers="[{&quot;name&quot;:&quot;arkana-team&quot;', page)
+            self.assertIn('data-git-repo-type="upstream"', page)
+            self.assertIn('data-category-filter="all"', page)
+            self.assertIn('id="details-packagers"', page)
+            self.assertIn('href="catalogue.css"', page)
+            self.assertIn('src="catalogue.js"', page)
+            self.assertIn('id="mobile-category"', page)
+            self.assertIn("software catalogue for arkanaOS", page)
+            self.assertNotIn("solaris", page.lower())
+            self.assertNotIn("oracle", page.lower())
             self.assertIn(">not listed</td>", page)
             self.assertIn('<small class="repo-type">upstream</small>', page)
+            self.assertIn(".catalogue-layout", style)
+            self.assertIn("@media (max-width: 760px)", style)
+            self.assertIn("--accent: #3159b8", style)
+            self.assertNotIn("linear-gradient", style)
+            self.assertIn("function selectCategory", script)
+            self.assertIn("function showDetails", script)
+
+    def test_package_categories_cover_common_workstation_software(self) -> None:
+        cases = (
+            ("libx11", "X11 shared libraries", "libraries"),
+            ("rustc-runtime", "Rust compiler driver shared library", "libraries"),
+            ("linux-firmware", "Firmware for network devices", "drivers"),
+            ("printer-driver-brlaser", "Printer driver for Brother printers", "drivers"),
+            ("nscde", "A desktop environment for X11", "desktop"),
+            ("coreutils", "GNU core utilities", "system"),
+            ("openssh-client", "Secure shell networking tools", "networking"),
+            ("nginx", "A web server", "web-services"),
+            ("hello", "A command line greeting program", "applications"),
+        )
+        for name, description, expected in cases:
+            with self.subTest(name=name):
+                self.assertEqual(package_category(name, description), expected)
 
     def test_package_metadata_requires_complete_https_links(self) -> None:
         package = {
