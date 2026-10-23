@@ -26799,6 +26799,166 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "alpine": {
+      "author": "Eduardo Chappa and Alpine contributors",
+      "git_repo": "https://repo.or.cz/alpine.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://alpineapp.email/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "s-nail": {
+      "author": "Steffen Nurpmeso",
+      "git_repo": "https://git.sdaoden.eu/scm/s-nail.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://www.sdaoden.eu/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "dialog": {
+      "author": "Thomas E. Dickey and dialog contributors",
+      "git_repo": "https://salsa.debian.org/sanvila/dialog.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://invisible-island.net/contact/contact.html",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "gpm": {
+      "author": "Alessandro Rubini and GPM contributors",
+      "git_repo": "https://github.com/telmich/gpm",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://nico.schottelius.org/software/gpm/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "isync": {
+      "author": "Michael Elkins (original author), Oswald Buddenhagen (current maintainer)",
+      "git_repo": "https://git.code.sf.net/p/isync/isync",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://isync.sourceforge.io/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libdialog15": {
+      "author": "Thomas E. Dickey and dialog contributors",
+      "git_repo": "https://salsa.debian.org/sanvila/dialog.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://invisible-island.net/contact/contact.html",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libsecret-1-0": {
+      "author": "Stef Walter, Daiki Ueno, Niels De Graef and GNOME contributors",
+      "git_repo": "https://gitlab.gnome.org/GNOME/libsecret.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gnome.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libsecret-common": {
+      "author": "Stef Walter, Daiki Ueno, Niels De Graef and GNOME contributors",
+      "git_repo": "https://gitlab.gnome.org/GNOME/libsecret.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gnome.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "msmtp": {
+      "author": "Martin Lambers",
+      "git_repo": "https://git.marlam.de/git/msmtp.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://marlam.de/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "notmuch": {
+      "author": "Carl Worth, Jameson Graef Rollins, David Bremner and contributors",
+      "git_repo": "https://git.notmuchmail.org/git/notmuch",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://notmuchmail.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

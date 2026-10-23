@@ -807,6 +807,151 @@ class InfoPackageTests(unittest.TestCase):
             self.assertIsNone(metadata[name]["git_author_url"])
 
 
+class MailClientPackageTests(unittest.TestCase):
+    def test_batch_14_pins_alpine_and_s_nail_with_upstream_credits(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-14.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected_sources = {
+            "alpine": {
+                "architecture": "amd64",
+                "filename": "pool/main/a/alpine/alpine_2.26+dfsg-3_amd64.deb",
+                "sha256": "7712f180873fb67a674ae0ff59ae06b49fdf03f06d533578f7c81b43109f498d",
+                "version": "2.26+dfsg-3",
+            },
+            "s-nail": {
+                "architecture": "amd64",
+                "filename": "pool/main/s/s-nail/s-nail_14.9.25-1_amd64.deb",
+                "sha256": "06f48c7dbc02bfcbb3d0bc83d52231f98d5619ff0b8b1c1bfb75afb172d771b5",
+                "version": "14.9.25-1",
+            },
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+
+        self.assertEqual(set(batch_packages), set(expected_sources))
+        for name, source in expected_sources.items():
+            self.assertEqual(batch_packages[name], manifest_packages[name])
+            self.assertEqual(batch["sources"][name], source)
+            self.assertEqual(manifest["sources"][name], source)
+            self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$")
+            self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+            self.assertTrue(metadata[name]["git_author_url"].startswith("https://"))
+            self.assertEqual(
+                {item["name"] for item in metadata[name]["packagers"]},
+                {"arkana-team", "debarkak"},
+            )
+
+        self.assertEqual(metadata["alpine"]["author"], "Eduardo Chappa and Alpine contributors")
+        self.assertEqual(metadata["alpine"]["git_repo"], "https://repo.or.cz/alpine.git")
+        self.assertEqual(metadata["s-nail"]["author"], "Steffen Nurpmeso")
+        self.assertEqual(metadata["s-nail"]["git_repo"], "https://git.sdaoden.eu/scm/s-nail.git")
+
+
+class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
+    def test_batch_15_pins_mail_and_console_tools(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-15.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected_sources = {
+            "dialog": (
+                "amd64",
+                "pool/main/d/dialog/dialog_1.3-20250116-1_amd64.deb",
+                "31a7870a8906b2bbe90b4aaf09cf2eaa18dbd4939941902ca26f78b799dfa4b9",
+                "1.3-20250116-1",
+            ),
+            "gpm": (
+                "amd64",
+                "pool/main/g/gpm/gpm_1.20.7-11+b2_amd64.deb",
+                "e6c5fd0e376597d2153166bc1b5701270f69596382ce78e36e11ba031d65e003",
+                "1.20.7-11+b2",
+            ),
+            "isync": (
+                "amd64",
+                "pool/main/i/isync/isync_1.5.1-1_amd64.deb",
+                "1d7eea9d7557a36054f1e221a4d448d6c4c3a203267cf08a1e503ed7fcd31fe7",
+                "1.5.1-1",
+            ),
+            "libdialog15": (
+                "amd64",
+                "pool/main/d/dialog/libdialog15_1.3-20250116-1_amd64.deb",
+                "62546547d12ee0170005204ac8df00233e3f4f58cde2ef059bff13c4d6a696cb",
+                "1.3-20250116-1",
+            ),
+            "libsecret-1-0": (
+                "amd64",
+                "pool/main/libs/libsecret/libsecret-1-0_0.21.7-1_amd64.deb",
+                "949c5428cd3427486ac6c4dfc6d9400ce786c504c02334acc903c873aa52d14f",
+                "0.21.7-1",
+            ),
+            "libsecret-common": (
+                "all",
+                "pool/main/libs/libsecret/libsecret-common_0.21.7-1_all.deb",
+                "ce336a4ea6d27bfe85c195b88ab9a8eb95ce197228648634b8ace35ddb9bd808",
+                "0.21.7-1",
+            ),
+            "msmtp": (
+                "amd64",
+                "pool/main/m/msmtp/msmtp_1.8.28-3_amd64.deb",
+                "403822d579c8be76065bb8aafd5934ecfd2faf97f7738bb3aebe801710b787d7",
+                "1.8.28-3",
+            ),
+            "notmuch": (
+                "amd64",
+                "pool/main/n/notmuch/notmuch_0.39-1_amd64.deb",
+                "f48553940896c3c408d43bf1305d6687cea0d4c91824206082584b4bebef2da3",
+                "0.39-1",
+            ),
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+
+        self.assertEqual(set(batch_packages), set(expected_sources))
+        self.assertNotIn("fd-find", batch_packages)
+        self.assertNotIn("whiptail", batch_packages)
+        self.assertIn("fd", manifest_packages)
+        self.assertNotIn("fd-find", metadata)
+        self.assertNotIn("whiptail", metadata)
+        newt_recipe = (repo_root / "packages/recipes/newt-tools/ARKPKG").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Provides: whiptail=/usr/bin/whiptail", newt_recipe)
+        for name, (architecture, filename, checksum, version) in expected_sources.items():
+            expected = {
+                "architecture": architecture,
+                "filename": filename,
+                "sha256": checksum,
+                "version": version,
+            }
+            self.assertEqual(batch_packages[name], manifest_packages[name])
+            self.assertEqual(batch["sources"][name], expected)
+            self.assertEqual(manifest["sources"][name], expected)
+            self.assertEqual(metadata[name]["packagers"][0]["name"], "arkana-team")
+            self.assertEqual(metadata[name]["packagers"][1]["name"], "debarkak")
+            self.assertTrue(metadata[name]["git_repo"].startswith("https://"))
+            self.assertTrue(metadata[name]["git_author_url"].startswith("https://"))
+        self.assertEqual(batch_packages["dialog"]["dependencies"], ["libdialog15"])
+        self.assertEqual(batch_packages["libsecret-1-0"]["dependencies"], ["libsecret-common"])
+
+
 class UpstreamReleasePackageTests(unittest.TestCase):
     def test_yt_dlp_is_pinned_to_the_upstream_release_assets(self) -> None:
         package = UPSTREAM_BUILDER.PACKAGES["yt-dlp"]

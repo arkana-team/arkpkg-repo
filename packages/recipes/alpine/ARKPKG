@@ -1,0 +1,14 @@
+Name: alpine
+Description: Text-based email client, friendly for novices but powerful
+Version: 2.26+dfsg-3
+Arch: x86_64
+URL: https://alpineapp.email/
+License: See /usr/share/doc/alpine/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  krb5-libs
+  libcrypt1
+  libtinfo6
+  openldap-libs
+  openssl-libs
+Provides: alpine-mlock=/usr/bin/alpine-mlock, alpine=/usr/bin/alpine, alpinef=/usr/bin/alpinef, rpdump=/usr/bin/rpdump, rpload=/usr/bin/rpload

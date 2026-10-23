@@ -1,0 +1,12 @@
+Name: isync
+Description: IMAP and MailDir mailbox synchronizer
+Version: 1.5.1-1
+Arch: x86_64
+URL: https://isync.sourceforge.io/
+License: See /usr/share/doc/isync/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdb5.3t64
+  libsasl2-2
+  openssl-libs
+Provides: mbsync-get-cert=/usr/bin/mbsync-get-cert, mbsync=/usr/bin/mbsync, mdconvert=/usr/bin/mdconvert

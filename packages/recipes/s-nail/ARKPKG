@@ -1,0 +1,13 @@
+Name: s-nail
+Description: Feature-rich BSD mail(1) client with MIME and SMTP support
+Version: 14.9.25-1
+Arch: x86_64
+URL: https://www.sdaoden.eu/
+License: See /usr/share/doc/s-nail/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  krb5-libs
+  libidn2-libs
+  libtinfo6
+  openssl-libs
+Provides: s-nail=/usr/bin/s-nail

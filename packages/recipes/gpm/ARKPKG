@@ -1,0 +1,10 @@
+Name: gpm
+Description: General Purpose Mouse interface for Linux virtual consoles
+Version: 1.20.7-11+b2
+Arch: x86_64
+URL: https://nico.schottelius.org/software/gpm/
+License: See /usr/share/doc/gpm/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  mc-runtime-libs
+Provides: gpm-microtouch-setup=/usr/sbin/gpm-microtouch-setup, gpm-mouse-test=/usr/sbin/gpm-mouse-test, gpm=/usr/sbin/gpm, mev=/usr/bin/mev

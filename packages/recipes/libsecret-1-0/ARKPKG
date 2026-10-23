@@ -1,0 +1,10 @@
+Name: libsecret-1-0
+Description: Secret store service client library
+Version: 0.21.7-1
+Arch: x86_64
+URL: https://gnome.pages.gitlab.gnome.org/libsecret/
+License: See /usr/share/doc/libsecret-1-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsecret-common
+Provides: libsecret-1.so.0=/usr/lib/x86_64-linux-gnu/libsecret-1.so.0.0.0

@@ -1,0 +1,12 @@
+Name: dialog
+Description: Displays user-friendly dialog boxes from shell scripts
+Version: 1.3-20250116-1
+Arch: x86_64
+URL: https://invisible-island.net/dialog/dialog.html
+License: See /usr/share/doc/dialog/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdialog15
+  libtinfo6
+  ncurses-libs
+Provides: dialog=/usr/bin/dialog
