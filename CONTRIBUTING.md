@@ -62,6 +62,17 @@ When repacking Debian Python packages, pass `--staging`. The builder maps
 Debian's `dist-packages` payload into the target sysroot's Python
 `site-packages`; raw Debian paths are not on arkanaOS's default Python path.
 
+Optional X11 and workstation applications use a checksum-pinned Debian Trixie
+manifest. Build only the packages you need, for example:
+
+```sh
+python3 scripts/build-debian-cli-packages.py \
+  --manifest data/debian-workstation-packages.json \
+  --arkpkg-build /path/to/arkpkg-build \
+  --staging /path/to/arkanaOS/staging \
+  --packages mpv ffmpeg
+```
+
 ## Validation
 
 Install the Python `lz4` module and have a built `arkpkg` executable available.

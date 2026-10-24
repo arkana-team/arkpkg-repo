@@ -1,0 +1,8 @@
+Name: libdisplay-info2
+Description: EDID and DisplayID library (shared library)
+Version: 0.2.0-2
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/emersion/libdisplay-info
+License: See /usr/share/doc/libdisplay-info2/copyright
+Maintainer: arkanaOS Team
+Provides: libdisplay-info.so.2=/usr/lib/x86_64-linux-gnu/libdisplay-info.so.0.2.0

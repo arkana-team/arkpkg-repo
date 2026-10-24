@@ -1,0 +1,10 @@
+Name: libiec61883-0
+Description: Library implementing parts of IEC 61883 for IEEE 1394 devices
+Version: 1.2.0-7
+Arch: x86_64
+URL: https://ieee1394.docs.kernel.org/en/latest/libiec61883.html
+License: See /usr/share/doc/libiec61883-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libraw1394-11
+Provides: libiec61883.so.0=/usr/lib/x86_64-linux-gnu/libiec61883.so.0.1.1

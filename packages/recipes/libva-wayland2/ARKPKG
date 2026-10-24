@@ -1,0 +1,11 @@
+Name: libva-wayland2
+Description: VA-API Wayland runtime library
+Version: 2.22.0-3
+Arch: x86_64
+URL: https://github.com/intel/libva
+License: See /usr/share/doc/libva-wayland2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libva2
+  libwayland-client0
+Provides: libva-wayland.so.2=/usr/lib/x86_64-linux-gnu/libva-wayland.so.2.2200.0

@@ -1,0 +1,8 @@
+Name: libxpresent1
+Description: X11 Present extension library
+Version: 1.0.1-1+b2
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/xorg/lib/libxpresent
+License: See /usr/share/doc/libxpresent1/copyright
+Maintainer: arkanaOS Team
+Provides: libXpresent.so.1=/usr/lib/x86_64-linux-gnu/libXpresent.so.1.0.0

@@ -1,0 +1,11 @@
+Name: libxcb-cursor0
+Description: XCB cursor library providing a libXcursor-compatible API
+Version: 0.1.5-1
+Arch: x86_64
+URL: https://xcb.freedesktop.org/
+License: See /usr/share/doc/libxcb-cursor0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxcb-image0
+  libxcb-render-util0
+Provides: libxcb-cursor.so.0=/usr/lib/x86_64-linux-gnu/libxcb-cursor.so.0.0.0

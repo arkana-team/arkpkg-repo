@@ -1,0 +1,8 @@
+Name: libsixel1
+Description: DEC SIXEL graphics codec library
+Version: 1.10.5-1
+Arch: x86_64
+URL: https://github.com/libsixel/libsixel
+License: See /usr/share/doc/libsixel1/copyright
+Maintainer: arkanaOS Team
+Provides: libsixel.so.1=/usr/lib/x86_64-linux-gnu/libsixel.so.1.0.0

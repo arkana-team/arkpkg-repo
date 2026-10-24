@@ -1,0 +1,26 @@
+Name: libavdevice61
+Description: FFmpeg library for handling input and output devices
+Version: 7.1.5-0+deb13u1
+Arch: x86_64
+URL: https://ffmpeg.org/
+License: See /usr/share/doc/libavdevice61/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  alsa-libs
+  libavc1394-0
+  libavcodec61
+  libavfilter-extra10
+  libavformat61
+  libavutil59
+  libcaca0
+  libcdio-cdda2t64
+  libcdio-paranoia2t64
+  libdc1394-25
+  libiec61883-0
+  libjack-jackd2-0
+  libopenal1
+  libpulse0
+  libraw1394-11
+  libsdl2-2.0-0
+  libxv
+Provides: libavdevice.so.61=/usr/lib/x86_64-linux-gnu/libavdevice.so.61.3.100

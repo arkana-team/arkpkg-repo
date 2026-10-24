@@ -5,6 +5,7 @@ import importlib.util
 import io
 import json
 import os
+import re
 import stat
 import subprocess
 import tarfile
@@ -89,6 +90,113 @@ class DebianSourceUrlTests(unittest.TestCase):
         ):
             with self.subTest(source=source), self.assertRaises(ValueError):
                 BUILDER.source_download_url(source)
+
+
+class WorkstationManifestTests(unittest.TestCase):
+    def test_workstation_packages_are_checksum_pinned(self) -> None:
+        manifest_path = (
+            Path(__file__).resolve().parents[1]
+            / "data/debian-workstation-packages.json"
+        )
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(manifest["suite"], "trixie")
+        self.assertEqual(manifest["architecture"], "amd64")
+        packages = manifest["packages"]
+        names = {package["name"] for package in packages}
+        self.assertEqual(
+            names,
+            {
+                "ffmpeg",
+                "libavc1394-0",
+                "libxcb-cursor0",
+                "libavdevice61",
+                "libdc1394-25",
+                "libdisplay-info2",
+                "libarchive13t64",
+                "libiec61883-0",
+                "liblua5.2-0",
+                "libm17n-0",
+                "libotf1",
+                "libraw1394-11",
+                "libsixel1",
+                "libva-wayland2",
+                "libxpresent1",
+                "m17n-db",
+                "mpv",
+                "rofi",
+                "suckless-tools",
+                "sxhkd",
+                "x11vnc",
+                "xmahjongg",
+            },
+        )
+        package_by_name = {package["name"]: package for package in packages}
+        self.assertEqual(
+            set(package_by_name["libavdevice61"]["dependencies"]),
+            {
+                "libavc1394-0",
+                "libdc1394-25",
+                "libiec61883-0",
+                "libraw1394-11",
+            },
+        )
+        self.assertIn(
+            "libraw1394-11", package_by_name["libdc1394-25"]["dependencies"]
+        )
+        self.assertEqual(package_by_name["rofi"]["dependencies"], ["libxcb-cursor0"])
+        self.assertTrue(
+            {"libarchive13t64", "libdisplay-info2"}
+            <= set(package_by_name["mpv"]["dependencies"])
+        )
+        self.assertEqual(
+            set(package_by_name["libm17n-0"]["dependencies"]),
+            {"libotf1", "m17n-db"},
+        )
+
+        sources = manifest["sources"]
+        for package in packages:
+            for source_name in package["debian_packages"]:
+                with self.subTest(package=package["name"], source=source_name):
+                    source = sources[source_name]
+                    self.assertTrue(source["filename"].startswith("pool/"))
+                    self.assertNotIn("..", source["filename"].split("/"))
+                    self.assertRegex(source["sha256"], re.compile(r"^[0-9a-f]{64}$"))
+
+        positions = {package["name"]: index for index, package in enumerate(packages)}
+        for package in packages:
+            for dependency in package.get("dependencies", []):
+                if dependency in positions:
+                    self.assertLess(positions[dependency], positions[package["name"]])
+
+        metadata = json.loads(
+            (Path(__file__).resolve().parents[1] / "data/package-metadata.json")
+            .read_text(encoding="utf-8")
+        )["packages"]
+        nullable_author_profiles = {
+            "ffmpeg",
+            "libarchive13t64",
+            "libavdevice61",
+            "libdisplay-info2",
+            "libiec61883-0",
+            "libraw1394-11",
+            "libva-wayland2",
+            "libxpresent1",
+            "mpv",
+        }
+        for package in packages:
+            with self.subTest(credits=package["name"]):
+                entry = metadata[package["name"]]
+                self.assertTrue(entry["author"])
+                self.assertTrue(entry["git_repo"].startswith("https://"))
+                if package["name"] in nullable_author_profiles:
+                    self.assertIsNone(entry["git_author_url"])
+                else:
+                    self.assertTrue(entry["git_author_url"].startswith("https://"))
+                self.assertEqual(
+                    {item["name"] for item in entry["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
 
 
 class UpstreamPayloadPermissionTests(unittest.TestCase):

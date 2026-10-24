@@ -1,0 +1,16 @@
+Name: libm17n-0
+Description: Multilingual text processing library
+Version: 1.8.5-1
+Arch: x86_64
+URL: https://www.nongnu.org/m17n/
+License: See /usr/share/doc/libm17n-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libfribidi0
+  libgd3
+  libotf1
+  libthai0
+  libxft
+  m17n-db
+  xml-runtime-libs
+Provides: libm17n-X.so=/usr/lib/x86_64-linux-gnu/m17n/1.0/libm17n-X.so, libm17n-core.so.0=/usr/lib/x86_64-linux-gnu/libm17n-core.so.0.4.2, libm17n-flt.so.0=/usr/lib/x86_64-linux-gnu/libm17n-flt.so.0.4.2, libm17n-gd.so=/usr/lib/x86_64-linux-gnu/m17n/1.0/libm17n-gd.so, libm17n-gui.so.0=/usr/lib/x86_64-linux-gnu/libm17n-gui.so.0.4.2, libm17n.so.0=/usr/lib/x86_64-linux-gnu/libm17n.so.0.4.2
