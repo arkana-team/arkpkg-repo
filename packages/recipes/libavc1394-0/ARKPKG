@@ -1,0 +1,10 @@
+Name: libavc1394-0
+Description: Library for controlling IEEE 1394 audio and video devices
+Version: 0.5.4-5+b2
+Arch: x86_64
+URL: https://sourceforge.net/projects/libavc1394/
+License: See /usr/share/doc/libavc1394-0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libraw1394-11
+Provides: libavc1394.so.0=/usr/lib/x86_64-linux-gnu/libavc1394.so.0.3.0, librom1394.so.0=/usr/lib/x86_64-linux-gnu/librom1394.so.0.3.0
