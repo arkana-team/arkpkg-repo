@@ -1,0 +1,8 @@
+Name: m17n-db
+Description: Multilingual text processing database
+Version: 1.8.10-1
+Arch: any
+URL: https://www.nongnu.org/m17n/
+License: See /usr/share/doc/m17n-db/copyright
+Maintainer: arkanaOS Team
+Provides: m17n-db=/usr/bin/m17n-db
