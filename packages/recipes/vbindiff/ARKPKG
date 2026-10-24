@@ -1,0 +1,13 @@
+Name: vbindiff
+Description: Visual binary comparison tool for hexadecimal and ASCII data
+Version: 3.0-beta5-2
+Arch: x86_64
+URL: https://github.com/madsen/vbindiff
+License: GPL-2+ AND MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  gcc-libs
+  libtinfo6
+  ncurses-compat-libs
+  ncurses-libs
+Provides: vbindiff=/usr/bin/vbindiff

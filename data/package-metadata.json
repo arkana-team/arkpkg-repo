@@ -5633,10 +5633,10 @@
       ]
     },
     "hexyl": {
-      "author": null,
+      "author": "David Peter",
       "git_repo": "https://github.com/sharkdp/hexyl",
       "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_author_url": "https://github.com/sharkdp",
       "packagers": [
         {
           "name": "arkana-team",
@@ -27477,6 +27477,70 @@
       "git_repo": "https://gitlab.freedesktop.org/emersion/libdisplay-info",
       "git_repo_type": "upstream",
       "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "dhex": {
+      "author": "Thomas Dettbarn",
+      "git_repo": "https://github.com/cxd4/dhex",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "hexcurse": {
+      "author": "James Stephenson and Lonny Gomes",
+      "git_repo": "https://github.com/LonnyGomes/hexcurse",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "hexer": {
+      "author": "Sascha Demetrio",
+      "git_repo": "https://gitlab.com/hexer/hexer",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "vbindiff": {
+      "author": "Christopher J. Madsen",
+      "git_repo": "https://github.com/madsen/vbindiff",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/madsen",
       "packagers": [
         {
           "name": "arkana-team",

@@ -1,0 +1,92 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "dhex": {
+      "filename": "pool/main/d/dhex/dhex_0.69-4+b1_amd64.deb",
+      "sha256": "21f22e76f794e3b87ca5255c0db4858750b11d2977a508cf7b5d295e141d75b1"
+    },
+    "hexcurse": {
+      "filename": "pool/main/h/hexcurse/hexcurse_1.58-1.4_amd64.deb",
+      "sha256": "8496c3291334f1942ceece12d229b393cb7de922a8ac7ef2b4c5b69904411d1c"
+    },
+    "hexer": {
+      "filename": "pool/main/h/hexer/hexer_1.0.6-2_amd64.deb",
+      "sha256": "d988f48363f9855407c137bdeafcb6f1d892c7a02795465b50d3ff16483e3180"
+    },
+    "vbindiff": {
+      "filename": "pool/main/v/vbindiff/vbindiff_3.0-beta5-2_amd64.deb",
+      "sha256": "fd849491320cd1fafc5d2a3edc1fbee3268cde7d4620bcc247091b43c5c7235d"
+    }
+  },
+  "packages": [
+    {
+      "name": "dhex",
+      "description": "Ncurses hex editor with binary diff mode",
+      "version": "0.69-4+b1",
+      "debian_version": "0.69-4+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "dhex"
+      ],
+      "dependencies": [
+        "ncurses-compat-libs",
+        "ncurses-libs"
+      ],
+      "url": "https://www.dettus.net/dhex/",
+      "license": "GPL-2+",
+      "license_path": "usr/share/doc/dhex/copyright"
+    },
+    {
+      "name": "hexcurse",
+      "description": "Ncurses-based interactive hexadecimal file editor",
+      "version": "1.58-1.4",
+      "debian_version": "1.58-1.4",
+      "arch": "x86_64",
+      "debian_packages": [
+        "hexcurse"
+      ],
+      "dependencies": [
+        "ncurses-compat-libs",
+        "ncurses-libs"
+      ],
+      "url": "https://github.com/LonnyGomes/hexcurse",
+      "license": "GPL-2+",
+      "license_path": "usr/share/doc/hexcurse/copyright"
+    },
+    {
+      "name": "hexer",
+      "description": "Multi-buffer binary editor with a vi-like interface",
+      "version": "1.0.6-2",
+      "debian_version": "1.0.6-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "hexer"
+      ],
+      "dependencies": [
+        "ncurses-libs"
+      ],
+      "url": "https://devel.ringlet.net/editors/hexer/",
+      "license": "BSD-3-Clause AND GPL-2+",
+      "license_path": "usr/share/doc/hexer/copyright"
+    },
+    {
+      "name": "vbindiff",
+      "description": "Visual binary comparison tool for hexadecimal and ASCII data",
+      "version": "3.0-beta5-2",
+      "debian_version": "3.0-beta5-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "vbindiff"
+      ],
+      "dependencies": [
+        "gcc-libs",
+        "ncurses-compat-libs",
+        "ncurses-libs"
+      ],
+      "url": "https://github.com/madsen/vbindiff",
+      "license": "GPL-2+ AND MIT",
+      "license_path": "usr/share/doc/vbindiff/copyright"
+    }
+  ]
+}
