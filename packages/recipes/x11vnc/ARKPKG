@@ -1,0 +1,21 @@
+Name: x11vnc
+Description: VNC server for sharing an existing X11 desktop session
+Version: 0.9.17-1
+Arch: x86_64
+URL: https://www.karlrunge.com/x11vnc/
+License: See /usr/share/doc/x11vnc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  libavahi-client3
+  libavahi-common3
+  libcrypt1
+  libjpeg62-turbo
+  liblzo2-2
+  libsasl2-2
+  libxdamage
+  libxfixes
+  libxinerama
+  libxrandr
+  openssl-libs
+Provides: Xdummy=/usr/bin/Xdummy, libvncclient.so.1=/usr/lib/x86_64-linux-gnu/libvncclient.so.0.9.15, libvncserver.so.1=/usr/lib/x86_64-linux-gnu/libvncserver.so.0.9.15, x11vnc=/usr/bin/x11vnc
