@@ -1,0 +1,19 @@
+Name: ffmpeg
+Description: Tools for transcoding, streaming, and playing multimedia files
+Version: 7.1.5-0+deb13u1
+Arch: x86_64
+URL: https://ffmpeg.org/
+License: See /usr/share/doc/ffmpeg/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libavcodec61
+  libavdevice61
+  libavfilter-extra10
+  libavformat61
+  libavutil59
+  libplacebo349
+  libpostproc58
+  libsdl2-2.0-0
+  libswresample5
+  libswscale8
+Provides: ffmpeg=/usr/bin/ffmpeg, ffplay=/usr/bin/ffplay, ffprobe=/usr/bin/ffprobe, qt-faststart=/usr/bin/qt-faststart
