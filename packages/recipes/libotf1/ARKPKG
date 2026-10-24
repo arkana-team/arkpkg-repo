@@ -1,0 +1,8 @@
+Name: libotf1
+Description: OpenType font processing library
+Version: 0.9.16-4+b2
+Arch: x86_64
+URL: https://savannah.nongnu.org/projects/m17n
+License: See /usr/share/doc/libotf1/copyright
+Maintainer: arkanaOS Team
+Provides: libotf.so.1=/usr/lib/x86_64-linux-gnu/libotf.so.1.0.0
