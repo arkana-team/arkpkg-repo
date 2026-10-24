@@ -1,0 +1,8 @@
+Name: sxhkd
+Description: Simple X11 hotkey daemon
+Version: 0.6.2-2
+Arch: x86_64
+URL: https://github.com/baskerville/sxhkd
+License: See /usr/share/doc/sxhkd/copyright
+Maintainer: arkanaOS Team
+Provides: libxcb-keysyms.so.1=/usr/lib/x86_64-linux-gnu/libxcb-keysyms.so.1.0.0, sxhkd=/usr/bin/sxhkd
