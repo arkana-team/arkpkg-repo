@@ -1,0 +1,7 @@
+Name: xmahjongg
+Description: Classic tile-based solitaire game for X11
+Version: 3.7-6
+Arch: x86_64
+URL: https://www.lcdf.org/xmahjongg/
+License: See /usr/share/doc/xmahjongg/copyright
+Maintainer: arkanaOS Team
