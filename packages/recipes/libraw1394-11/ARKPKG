@@ -1,0 +1,8 @@
+Name: libraw1394-11
+Description: Library for direct access to IEEE 1394 FireWire buses
+Version: 2.1.2-2+b2
+Arch: x86_64
+URL: https://ieee1394.docs.kernel.org/en/latest/libraw1394.html
+License: See /usr/share/doc/libraw1394-11/copyright
+Maintainer: arkanaOS Team
+Provides: libraw1394.so.11=/usr/lib/x86_64-linux-gnu/libraw1394.so.11.1.0
