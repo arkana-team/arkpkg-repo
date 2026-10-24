@@ -27490,9 +27490,9 @@
     },
     "dhex": {
       "author": "Thomas Dettbarn",
-      "git_repo": "https://github.com/cxd4/dhex",
-      "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_repo": "https://salsa.debian.org/debian/dhex",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.dettus.net/",
       "packagers": [
         {
           "name": "arkana-team",

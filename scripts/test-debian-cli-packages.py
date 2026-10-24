@@ -187,7 +187,6 @@ class WorkstationManifestTests(unittest.TestCase):
             "libva-wayland2",
             "libxpresent1",
             "mpv",
-            "dhex",
             "hexcurse",
             "hexer",
         }
@@ -228,10 +227,16 @@ class WorkstationManifestTests(unittest.TestCase):
             "vbindiff": "Christopher J. Madsen",
         }
         expected_repositories = {
-            "dhex": "https://github.com/cxd4/dhex",
+            "dhex": "https://salsa.debian.org/debian/dhex",
             "hexcurse": "https://github.com/LonnyGomes/hexcurse",
             "hexer": "https://gitlab.com/hexer/hexer",
             "vbindiff": "https://github.com/madsen/vbindiff",
+        }
+        expected_repository_types = {
+            "dhex": "packaging",
+            "hexcurse": "upstream",
+            "hexer": "upstream",
+            "vbindiff": "upstream",
         }
         manifest_packages = {item["name"]: item for item in manifest["packages"]}
         batch_packages = {item["name"]: item for item in batch["packages"]}
@@ -249,11 +254,17 @@ class WorkstationManifestTests(unittest.TestCase):
             self.assertEqual(
                 metadata[name]["git_repo"], expected_repositories[name]
             )
-            self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+            self.assertEqual(
+                metadata[name]["git_repo_type"], expected_repository_types[name]
+            )
             self.assertEqual(
                 {item["name"] for item in metadata[name]["packagers"]},
                 {"arkana-team", "debarkak"},
             )
+
+        self.assertEqual(
+            metadata["dhex"]["git_author_url"], "https://www.dettus.net/"
+        )
 
         self.assertEqual(
             set(manifest_packages["dhex"]["dependencies"]),
