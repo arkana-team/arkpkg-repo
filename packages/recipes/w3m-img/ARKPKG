@@ -1,0 +1,10 @@
+Name: w3m-img
+Description: Inline image display support for the w3m text browser
+Version: 0.5.3+git20230121-2.1
+Arch: x86_64
+URL: https://salsa.debian.org/debian/w3m
+License: See /usr/share/doc/w3m-img/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libimlib2t64
+  w3m

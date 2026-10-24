@@ -1,0 +1,11 @@
+Name: sc
+Description: Classic terminal spreadsheet calculator
+Version: 7.16-1.1.2-1
+Arch: x86_64
+URL: https://github.com/n-t-roff/sc
+License: See /usr/share/doc/sc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-libs
+Provides: psc=/usr/bin/psc, sc=/usr/bin/sc, scqref=/usr/bin/scqref

@@ -1,0 +1,10 @@
+Name: pcal
+Description: Generate PostScript calendars from the command line
+Version: 4.11.0-4+b1
+Arch: x86_64
+URL: https://pcal.sourceforge.net/
+License: See /usr/share/doc/pcal/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libpaper2
+Provides: pcal=/usr/bin/pcal

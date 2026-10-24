@@ -1,0 +1,10 @@
+Name: jove
+Description: Compact Emacs-style text editor with macros and multiple buffers
+Version: 4.17.5.4-1
+Arch: x86_64
+URL: https://github.com/jonmacs/jove
+License: See /usr/share/doc/jove/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+Provides: jove=/usr/bin/jove, teachjove=/usr/bin/teachjove
