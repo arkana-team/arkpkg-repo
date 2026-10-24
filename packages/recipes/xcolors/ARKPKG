@@ -1,0 +1,10 @@
+Name: xcolors
+Description: Browse X11 color names and inspect their screen colors
+Version: 1.5a-10.1
+Arch: x86_64
+URL: https://salsa.debian.org/debian/xcolor
+License: See /usr/share/doc/xcolors/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxaw7
+Provides: xcolors=/usr/bin/xcolors

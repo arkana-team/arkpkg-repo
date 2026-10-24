@@ -27551,6 +27551,102 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "jove": {
+      "author": "Jonathan Payne",
+      "git_repo": "https://github.com/jonmacs/jove",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "sc": {
+      "author": "James Gosling and Mark Weiser, with contributions by Robert Bond and others",
+      "git_repo": "https://github.com/n-t-roff/sc",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libxaw7": {
+      "author": "The X Consortium and X.Org contributors",
+      "git_repo": "https://gitlab.freedesktop.org/xorg/lib/libxaw",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "pcal": {
+      "author": "Patrick Wood, Jef Poskanzer, Craig Leres, and contributors",
+      "git_repo": "https://salsa.debian.org/debian/pcal",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "w3m-img": {
+      "author": "Akinori Ito, Hironori Sakamoto, and Fumitoshi Ukai",
+      "git_repo": "https://salsa.debian.org/debian/w3m",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xcolors": {
+      "author": "Stephen Gildea",
+      "git_repo": "https://salsa.debian.org/debian/xcolor",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

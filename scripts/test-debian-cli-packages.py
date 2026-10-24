@@ -115,6 +115,8 @@ class WorkstationManifestTests(unittest.TestCase):
                 "dhex",
                 "hexcurse",
                 "hexer",
+                "jove",
+                "libxaw7",
                 "libavc1394-0",
                 "libxcb-cursor0",
                 "libavdevice61",
@@ -131,12 +133,16 @@ class WorkstationManifestTests(unittest.TestCase):
                 "libxpresent1",
                 "m17n-db",
                 "mpv",
+                "pcal",
                 "rofi",
+                "sc",
                 "suckless-tools",
                 "sxhkd",
                 "x11vnc",
                 "xmahjongg",
                 "vbindiff",
+                "w3m-img",
+                "xcolors",
             },
         )
         package_by_name = {package["name"]: package for package in packages}
@@ -193,6 +199,12 @@ class WorkstationManifestTests(unittest.TestCase):
             "mpv",
             "hexcurse",
             "hexer",
+            "jove",
+            "libxaw7",
+            "pcal",
+            "sc",
+            "w3m-img",
+            "xcolors",
         }
         for package in packages:
             with self.subTest(credits=package["name"]):
@@ -283,6 +295,97 @@ class WorkstationManifestTests(unittest.TestCase):
             set(manifest_packages["vbindiff"]["dependencies"]),
             {"gcc-libs", "ncurses-compat-libs", "ncurses-libs"},
         )
+
+        self.assertEqual(manifest_packages["w3m-img"]["dependencies"], ["w3m"])
+        self.assertEqual(manifest_packages["xcolors"]["dependencies"], ["libxaw7"])
+
+    def test_classic_workstation_batch_has_pinned_sources_and_credits(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-03.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "jove": (
+                "4.17.5.4-1",
+                "c55c28891cb409b358b527dbcea03c0d58c4cee7e67c680670c90540f5544854",
+                "Jonathan Payne",
+                "https://github.com/jonmacs/jove",
+                "upstream",
+            ),
+            "sc": (
+                "7.16-1.1.2-1",
+                "d2771111a9da871b402683cd5483b9e4b784fd477cbd57657c54cb288355f157",
+                "James Gosling and Mark Weiser, with contributions by Robert Bond and others",
+                "https://github.com/n-t-roff/sc",
+                "upstream",
+            ),
+            "libxaw7": (
+                "2:1.0.16-1",
+                "e79f3ab51ecbbfd3414a0568a8947ac59a29c30d631e6c7b6e07ea46e688c047",
+                "The X Consortium and X.Org contributors",
+                "https://gitlab.freedesktop.org/xorg/lib/libxaw",
+                "upstream",
+            ),
+            "pcal": (
+                "4.11.0-4+b1",
+                "c25973bea3c67469dbdb49bda2d34ee0a90e3eb3967831edf7be105e3e5e09a0",
+                "Patrick Wood, Jef Poskanzer, Craig Leres, and contributors",
+                "https://salsa.debian.org/debian/pcal",
+                "packaging",
+            ),
+            "w3m-img": (
+                "0.5.3+git20230121-2.1",
+                "d80216f27aab5c81b601dd9ede59b8630222ba43f7f45dbbb814d0c3e8e96f09",
+                "Akinori Ito, Hironori Sakamoto, and Fumitoshi Ukai",
+                "https://salsa.debian.org/debian/w3m",
+                "packaging",
+            ),
+            "xcolors": (
+                "1.5a-10.1",
+                "1f0efd04e4dbadcb696d05520a0afa9d033b2f3393446037f27f6f5cc1e176df",
+                "Stephen Gildea",
+                "https://salsa.debian.org/debian/xcolor",
+                "packaging",
+            ),
+        }
+        all_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+
+        for name, (version, digest, author, git_repo, repo_type) in expected.items():
+            with self.subTest(package=name):
+                package = batch_packages[name]
+                self.assertEqual(package, all_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(batch["sources"][name], manifest["sources"][name])
+                self.assertEqual(batch["sources"][name]["sha256"], digest)
+                self.assertRegex(digest, r"^[0-9a-f]{64}$")
+                self.assertTrue(batch["sources"][name]["filename"].startswith("pool/"))
+                self.assertEqual(package["debian_packages"], [name])
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], repo_type)
+                self.assertIsNone(metadata[name]["git_author_url"])
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+        positions = {
+            item["name"]: index for index, item in enumerate(manifest["packages"])
+        }
+        self.assertLess(positions["libxaw7"], positions["xcolors"])
 
     def test_hexyl_metadata_identifies_its_upstream_author(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]
