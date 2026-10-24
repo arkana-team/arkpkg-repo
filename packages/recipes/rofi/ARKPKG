@@ -1,0 +1,17 @@
+Name: rofi
+Description: Window switcher, run dialog, and application launcher
+Version: 1.7.5-0.1+b2
+Arch: x86_64
+URL: https://github.com/davatorium/rofi
+License: See /usr/share/doc/rofi/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo2
+  libgdk-pixbuf-2.0-0
+  libpango-1.0-0
+  libpangocairo-1.0-0
+  libstartup-notification0
+  libxcb-cursor0
+  libxkbcommon0
+  xcb-util
+Provides: rofi-sensible-terminal=/usr/bin/rofi-sensible-terminal, rofi-theme-selector=/usr/bin/rofi-theme-selector, rofi=/usr/bin/rofi
