@@ -1,0 +1,11 @@
+Name: hexer
+Description: Multi-buffer binary editor with a vi-like interface
+Version: 1.0.6-2
+Arch: x86_64
+URL: https://devel.ringlet.net/editors/hexer/
+License: BSD-3-Clause AND GPL-2+
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-libs
+Provides: hexer=/usr/bin/hexer

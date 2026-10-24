@@ -108,6 +108,9 @@ class WorkstationManifestTests(unittest.TestCase):
             names,
             {
                 "ffmpeg",
+                "dhex",
+                "hexcurse",
+                "hexer",
                 "libavc1394-0",
                 "libxcb-cursor0",
                 "libavdevice61",
@@ -129,6 +132,7 @@ class WorkstationManifestTests(unittest.TestCase):
                 "sxhkd",
                 "x11vnc",
                 "xmahjongg",
+                "vbindiff",
             },
         )
         package_by_name = {package["name"]: package for package in packages}
@@ -183,6 +187,9 @@ class WorkstationManifestTests(unittest.TestCase):
             "libva-wayland2",
             "libxpresent1",
             "mpv",
+            "dhex",
+            "hexcurse",
+            "hexer",
         }
         for package in packages:
             with self.subTest(credits=package["name"]):
@@ -197,6 +204,80 @@ class WorkstationManifestTests(unittest.TestCase):
                     {item["name"] for item in entry["packagers"]},
                     {"arkana-team", "debarkak"},
                 )
+
+    def test_hex_tools_batch_has_pinned_sources_and_upstream_credits(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-02.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {"dhex", "hexcurse", "hexer", "vbindiff"}
+        expected_authors = {
+            "dhex": "Thomas Dettbarn",
+            "hexcurse": "James Stephenson and Lonny Gomes",
+            "hexer": "Sascha Demetrio",
+            "vbindiff": "Christopher J. Madsen",
+        }
+        expected_repositories = {
+            "dhex": "https://github.com/cxd4/dhex",
+            "hexcurse": "https://github.com/LonnyGomes/hexcurse",
+            "hexer": "https://gitlab.com/hexer/hexer",
+            "vbindiff": "https://github.com/madsen/vbindiff",
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), expected)
+
+        for name in expected:
+            package = batch_packages[name]
+            self.assertEqual(package, manifest_packages[name])
+            self.assertEqual(batch["sources"][name], manifest["sources"][name])
+            self.assertRegex(batch["sources"][name]["sha256"], r"^[0-9a-f]{64}$")
+            self.assertTrue(batch["sources"][name]["filename"].startswith("pool/"))
+            self.assertEqual(package["debian_packages"], [name])
+            self.assertTrue(package["license_path"].endswith("/copyright"))
+            self.assertEqual(metadata[name]["author"], expected_authors[name])
+            self.assertEqual(
+                metadata[name]["git_repo"], expected_repositories[name]
+            )
+            self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+            self.assertEqual(
+                {item["name"] for item in metadata[name]["packagers"]},
+                {"arkana-team", "debarkak"},
+            )
+
+        self.assertEqual(
+            set(manifest_packages["dhex"]["dependencies"]),
+            {"ncurses-compat-libs", "ncurses-libs"},
+        )
+        self.assertEqual(
+            set(manifest_packages["hexcurse"]["dependencies"]),
+            {"ncurses-compat-libs", "ncurses-libs"},
+        )
+        self.assertEqual(manifest_packages["hexer"]["dependencies"], ["ncurses-libs"])
+        self.assertEqual(
+            set(manifest_packages["vbindiff"]["dependencies"]),
+            {"gcc-libs", "ncurses-compat-libs", "ncurses-libs"},
+        )
+
+    def test_hexyl_metadata_identifies_its_upstream_author(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]["hexyl"]
+
+        self.assertEqual(metadata["author"], "David Peter")
+        self.assertEqual(metadata["git_repo"], "https://github.com/sharkdp/hexyl")
+        self.assertEqual(metadata["git_author_url"], "https://github.com/sharkdp")
 
 
 class UpstreamPayloadPermissionTests(unittest.TestCase):

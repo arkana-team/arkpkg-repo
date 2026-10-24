@@ -1,0 +1,12 @@
+Name: dhex
+Description: Ncurses hex editor with binary diff mode
+Version: 0.69-4+b1
+Arch: x86_64
+URL: https://www.dettus.net/dhex/
+License: GPL-2+
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs
+  ncurses-libs
+Provides: dhex=/usr/bin/dhex
