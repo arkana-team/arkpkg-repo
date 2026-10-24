@@ -27135,6 +27135,358 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "mpv": {
+      "author": "mpv contributors",
+      "git_repo": "https://github.com/mpv-player/mpv",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/mpv-player/mpv/graphs/contributors",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ffmpeg": {
+      "author": "FFmpeg developers",
+      "git_repo": "https://git.ffmpeg.org/ffmpeg.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://git.ffmpeg.org/ffmpeg.git",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "emacs-lucid": {
+      "author": "GNU Emacs developers",
+      "git_repo": "https://git.savannah.gnu.org/git/emacs.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://savannah.gnu.org/projects/emacs",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "x11vnc": {
+      "author": "Karl J. Runge and the LibVNC/x11vnc contributors",
+      "git_repo": "https://salsa.debian.org/debian-remote-team/x11vnc.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/LibVNC/x11vnc/graphs/contributors",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "sxhkd": {
+      "author": "Bastien Dejean",
+      "git_repo": "https://github.com/baskerville/sxhkd",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/baskerville",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "rofi": {
+      "author": "Dave Davenport and contributors",
+      "git_repo": "https://github.com/davatorium/rofi",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/DaveDavenport",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xmahjongg": {
+      "author": "Eddie Kohler and Jean Philippe Eimer",
+      "git_repo": "https://github.com/phileimer/xmahjongg",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/phileimer/xmahjongg",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "suckless-tools": {
+      "author": "suckless.org contributors",
+      "git_repo": "https://git.suckless.org/suckless-tools",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://git.suckless.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libxpresent1": {
+      "author": "X.Org contributors",
+      "git_repo": "https://gitlab.freedesktop.org/xorg/lib/libxpresent",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gitlab.freedesktop.org/xorg/lib/libxpresent/-/graphs/master",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libavdevice61": {
+      "author": "FFmpeg developers",
+      "git_repo": "https://git.ffmpeg.org/ffmpeg.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://git.ffmpeg.org/ffmpeg.git",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "liblua5.2-0": {
+      "author": "Roberto Ierusalimschy, Luiz Henrique de Figueiredo, and Waldemar Celes",
+      "git_repo": "https://github.com/lua/lua",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://www.lua.org/authors.html",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libsixel1": {
+      "author": "Hayaki Saito and contributors",
+      "git_repo": "https://github.com/libsixel/libsixel",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/saitoha",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libva-wayland2": {
+      "author": "Intel and libva contributors",
+      "git_repo": "https://github.com/intel/libva",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/intel/libva/graphs/contributors",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libraw1394-11": {
+      "author": "Andreas Bombe and contributors",
+      "git_repo": "https://git.kernel.org/pub/scm/libs/ieee1394/libraw1394.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://git.kernel.org/pub/scm/libs/ieee1394/libraw1394.git/log/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libavc1394-0": {
+      "author": "Dan Dennedy and contributors",
+      "git_repo": "https://salsa.debian.org/multimedia-team/libavc1394.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/dennedy",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libdc1394-25": {
+      "author": "Damien Douxchamps and libdc1394 contributors",
+      "git_repo": "https://salsa.debian.org/multimedia-team/libdc1394.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://sourceforge.net/projects/libdc1394/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libiec61883-0": {
+      "author": "Kristian H\u00f8gsberg and contributors",
+      "git_repo": "https://salsa.debian.org/debian/libiec61883.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://git.kernel.org/pub/scm/libs/ieee1394/libiec61883.git/log/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libgccjit0": {
+      "author": "GNU GCC developers",
+      "git_repo": "https://gcc.gnu.org/git/gcc.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gcc.gnu.org/git/gcc.git",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libm17n-0": {
+      "author": "m17n project contributors",
+      "git_repo": "https://git.savannah.gnu.org/cgit/m17n/m17n-lib.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://www.nongnu.org/m17n/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libotf1": {
+      "author": "m17n project contributors",
+      "git_repo": "https://salsa.debian.org/debian/libotf.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.nongnu.org/m17n/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "m17n-db": {
+      "author": "m17n project contributors",
+      "git_repo": "https://git.savannah.gnu.org/cgit/m17n/m17n-db.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://www.nongnu.org/m17n/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libxcb-cursor0": {
+      "author": "Michael Stapelberg",
+      "git_repo": "https://gitlab.freedesktop.org/xorg/lib/libxcb-cursor",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://michael.stapelberg.ch/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
