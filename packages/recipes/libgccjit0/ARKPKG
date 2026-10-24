@@ -1,0 +1,14 @@
+Name: libgccjit0
+Description: GCC just-in-time compilation library
+Version: 14.2.0-19
+Arch: x86_64
+URL: https://gcc.gnu.org/
+License: See /usr/share/doc/libgccjit0/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gcc-14-base
+  gmp-libs
+  libisl23
+  libmpc3
+  mpfr-libs
+Provides: libgccjit.so.0=/usr/lib/x86_64-linux-gnu/libgccjit.so.0.0.1
