@@ -1,0 +1,14 @@
+Name: suckless-tools
+Description: Simple X11 commands for minimal window managers
+Version: 48-1+b1
+Arch: x86_64
+URL: https://suckless.org/
+License: See /usr/share/doc/suckless-tools/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxft
+  libxinerama
+  libxrandr
+  libxss1
+  pam-libs
+Provides: dmenu=/usr/bin/dmenu, dmenu_path=/usr/bin/dmenu_path, dmenu_run=/usr/bin/dmenu_run, lsw=/usr/bin/lsw, slock=/usr/bin/slock, slstatus=/usr/bin/slstatus, sprop=/usr/bin/sprop, sselp=/usr/bin/sselp, ssid=/usr/bin/ssid, stest=/usr/bin/stest, swarp=/usr/bin/swarp, tabbed.default=/usr/bin/tabbed.default, tabbed.meta=/usr/bin/tabbed.meta, wmname=/usr/bin/wmname, xssstate=/usr/bin/xssstate
