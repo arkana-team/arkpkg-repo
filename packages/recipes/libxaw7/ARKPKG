@@ -1,0 +1,10 @@
+Name: libxaw7
+Description: X Athena Widgets runtime library for X11 applications
+Version: 2:1.0.16-1
+Arch: x86_64
+URL: https://gitlab.freedesktop.org/xorg/lib/libxaw
+License: See /usr/share/doc/libxaw7/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxmu
+Provides: libXaw.so.7=/usr/lib/x86_64-linux-gnu/libXaw7.so.7.0.0

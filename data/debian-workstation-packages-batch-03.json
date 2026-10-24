@@ -1,0 +1,120 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "jove": {
+      "filename": "pool/main/j/jove/jove_4.17.5.4-1_amd64.deb",
+      "sha256": "c55c28891cb409b358b527dbcea03c0d58c4cee7e67c680670c90540f5544854"
+    },
+    "sc": {
+      "filename": "pool/main/s/sc/sc_7.16-1.1.2-1_amd64.deb",
+      "sha256": "d2771111a9da871b402683cd5483b9e4b784fd477cbd57657c54cb288355f157"
+    },
+    "libxaw7": {
+      "filename": "pool/main/libx/libxaw/libxaw7_1.0.16-1_amd64.deb",
+      "sha256": "e79f3ab51ecbbfd3414a0568a8947ac59a29c30d631e6c7b6e07ea46e688c047"
+    },
+    "pcal": {
+      "filename": "pool/main/p/pcal/pcal_4.11.0-4+b1_amd64.deb",
+      "sha256": "c25973bea3c67469dbdb49bda2d34ee0a90e3eb3967831edf7be105e3e5e09a0"
+    },
+    "w3m-img": {
+      "filename": "pool/main/w/w3m/w3m-img_0.5.3+git20230121-2.1_amd64.deb",
+      "sha256": "d80216f27aab5c81b601dd9ede59b8630222ba43f7f45dbbb814d0c3e8e96f09"
+    },
+    "xcolors": {
+      "filename": "pool/main/x/xcolors/xcolors_1.5a-10.1_amd64.deb",
+      "sha256": "1f0efd04e4dbadcb696d05520a0afa9d033b2f3393446037f27f6f5cc1e176df"
+    }
+  },
+  "packages": [
+    {
+      "name": "jove",
+      "description": "Compact Emacs-style text editor with macros and multiple buffers",
+      "version": "4.17.5.4-1",
+      "debian_version": "4.17.5.4-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "jove"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/jonmacs/jove",
+      "license": "See /usr/share/doc/jove/copyright",
+      "license_path": "usr/share/doc/jove/copyright"
+    },
+    {
+      "name": "sc",
+      "description": "Classic terminal spreadsheet calculator",
+      "version": "7.16-1.1.2-1",
+      "debian_version": "7.16-1.1.2-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "sc"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/n-t-roff/sc",
+      "license": "See /usr/share/doc/sc/copyright",
+      "license_path": "usr/share/doc/sc/copyright"
+    },
+    {
+      "name": "libxaw7",
+      "description": "X Athena Widgets runtime library for X11 applications",
+      "version": "2:1.0.16-1",
+      "debian_version": "2:1.0.16-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libxaw7"
+      ],
+      "dependencies": [],
+      "url": "https://gitlab.freedesktop.org/xorg/lib/libxaw",
+      "license": "See /usr/share/doc/libxaw7/copyright",
+      "license_path": "usr/share/doc/libxaw7/copyright"
+    },
+    {
+      "name": "pcal",
+      "description": "Generate PostScript calendars from the command line",
+      "version": "4.11.0-4+b1",
+      "debian_version": "4.11.0-4+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "pcal"
+      ],
+      "dependencies": [],
+      "url": "https://pcal.sourceforge.net/",
+      "license": "See /usr/share/doc/pcal/copyright",
+      "license_path": "usr/share/doc/pcal/copyright"
+    },
+    {
+      "name": "w3m-img",
+      "description": "Inline image display support for the w3m text browser",
+      "version": "0.5.3+git20230121-2.1",
+      "debian_version": "0.5.3+git20230121-2.1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "w3m-img"
+      ],
+      "dependencies": [
+        "w3m"
+      ],
+      "url": "https://salsa.debian.org/debian/w3m",
+      "license": "See /usr/share/doc/w3m-img/copyright",
+      "license_path": "usr/share/doc/w3m-img/copyright"
+    },
+    {
+      "name": "xcolors",
+      "description": "Browse X11 color names and inspect their screen colors",
+      "version": "1.5a-10.1",
+      "debian_version": "1.5a-10.1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xcolors"
+      ],
+      "dependencies": [
+        "libxaw7"
+      ],
+      "url": "https://salsa.debian.org/debian/xcolor",
+      "license": "See /usr/share/doc/xcolors/copyright",
+      "license_path": "usr/share/doc/xcolors/copyright"
+    }
+  ]
+}
