@@ -1,0 +1,41 @@
+Name: emacs-lucid
+Description: GNU Emacs editor with the Lucid X11 interface
+Version: 30.1+1-6+deb13u1
+Arch: x86_64
+URL: https://www.gnu.org/software/emacs/
+License: See /usr/share/doc/emacs-lucid/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  acl-libs
+  alsa-libs
+  attr-libs
+  giflib
+  gmp-libs
+  gnutls-libs
+  libcairo2
+  libgccjit0
+  libgdk-pixbuf-2.0-0
+  libharfbuzz0b
+  libjpeg62-turbo
+  liblcms2-2
+  libm17n-0
+  libotf1
+  libpng16-16t64
+  librsvg2-2
+  libsqlite3-0
+  libtiff6
+  libtinfo6
+  libwebpdemux2
+  libxcomposite
+  libxfixes
+  libxinerama
+  libxmu
+  libxrandr
+  libxrender
+  mc-runtime-libs
+  neovim-runtime-libs
+  systemd-libs
+  vis-runtime-libs
+  xaw3dg
+  xml-runtime-libs
+Provides: ctags.emacs=/usr/bin/ctags.emacs, ebrowse.emacs=/usr/bin/ebrowse.emacs, emacs-lucid=/usr/bin/emacs-lucid, emacsclient.emacs=/usr/bin/emacsclient.emacs, etags.emacs=/usr/bin/etags.emacs
