@@ -107,13 +107,13 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertEqual(
             names,
             {
-                "emacs-lucid",
                 "ffmpeg",
                 "libavc1394-0",
                 "libxcb-cursor0",
                 "libavdevice61",
                 "libdc1394-25",
-                "libgccjit0",
+                "libdisplay-info2",
+                "libarchive13t64",
                 "libiec61883-0",
                 "liblua5.2-0",
                 "libm17n-0",
@@ -145,15 +145,9 @@ class WorkstationManifestTests(unittest.TestCase):
             "libraw1394-11", package_by_name["libdc1394-25"]["dependencies"]
         )
         self.assertEqual(package_by_name["rofi"]["dependencies"], ["libxcb-cursor0"])
-        self.assertEqual(
-            set(package_by_name["emacs-lucid"]["dependencies"]),
-            {"libgccjit0", "libm17n-0"},
-        )
-        self.assertEqual(package_by_name["libgccjit0"]["dependencies"], ["gcc-14-base"])
-        self.assertEqual(package_by_name["libgccjit0"]["license_source_package"], "gcc-14-base")
-        self.assertEqual(
-            package_by_name["libgccjit0"]["license_source_path"],
-            "usr/share/doc/gcc-14-base/copyright",
+        self.assertTrue(
+            {"libarchive13t64", "libdisplay-info2"}
+            <= set(package_by_name["mpv"]["dependencies"])
         )
         self.assertEqual(
             set(package_by_name["libm17n-0"]["dependencies"]),
@@ -179,12 +173,26 @@ class WorkstationManifestTests(unittest.TestCase):
             (Path(__file__).resolve().parents[1] / "data/package-metadata.json")
             .read_text(encoding="utf-8")
         )["packages"]
+        nullable_author_profiles = {
+            "ffmpeg",
+            "libarchive13t64",
+            "libavdevice61",
+            "libdisplay-info2",
+            "libiec61883-0",
+            "libraw1394-11",
+            "libva-wayland2",
+            "libxpresent1",
+            "mpv",
+        }
         for package in packages:
             with self.subTest(credits=package["name"]):
                 entry = metadata[package["name"]]
                 self.assertTrue(entry["author"])
                 self.assertTrue(entry["git_repo"].startswith("https://"))
-                self.assertTrue(entry["git_author_url"].startswith("https://"))
+                if package["name"] in nullable_author_profiles:
+                    self.assertIsNone(entry["git_author_url"])
+                else:
+                    self.assertTrue(entry["git_author_url"].startswith("https://"))
                 self.assertEqual(
                     {item["name"] for item in entry["packagers"]},
                     {"arkana-team", "debarkak"},

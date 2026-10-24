@@ -27140,7 +27140,7 @@
       "author": "mpv contributors",
       "git_repo": "https://github.com/mpv-player/mpv",
       "git_repo_type": "upstream",
-      "git_author_url": "https://github.com/mpv-player/mpv/graphs/contributors",
+      "git_author_url": null,
       "packagers": [
         {
           "name": "arkana-team",
@@ -27156,23 +27156,7 @@
       "author": "FFmpeg developers",
       "git_repo": "https://git.ffmpeg.org/ffmpeg.git",
       "git_repo_type": "upstream",
-      "git_author_url": "https://git.ffmpeg.org/ffmpeg.git",
-      "packagers": [
-        {
-          "name": "arkana-team",
-          "url": "https://github.com/arkana-team"
-        },
-        {
-          "name": "debarkak",
-          "url": "https://github.com/debarkak"
-        }
-      ]
-    },
-    "emacs-lucid": {
-      "author": "GNU Emacs developers",
-      "git_repo": "https://git.savannah.gnu.org/git/emacs.git",
-      "git_repo_type": "upstream",
-      "git_author_url": "https://savannah.gnu.org/projects/emacs",
+      "git_author_url": null,
       "packagers": [
         {
           "name": "arkana-team",
@@ -27268,7 +27252,7 @@
       "author": "X.Org contributors",
       "git_repo": "https://gitlab.freedesktop.org/xorg/lib/libxpresent",
       "git_repo_type": "upstream",
-      "git_author_url": "https://gitlab.freedesktop.org/xorg/lib/libxpresent/-/graphs/master",
+      "git_author_url": null,
       "packagers": [
         {
           "name": "arkana-team",
@@ -27284,7 +27268,7 @@
       "author": "FFmpeg developers",
       "git_repo": "https://git.ffmpeg.org/ffmpeg.git",
       "git_repo_type": "upstream",
-      "git_author_url": "https://git.ffmpeg.org/ffmpeg.git",
+      "git_author_url": null,
       "packagers": [
         {
           "name": "arkana-team",
@@ -27332,7 +27316,7 @@
       "author": "Intel and libva contributors",
       "git_repo": "https://github.com/intel/libva",
       "git_repo_type": "upstream",
-      "git_author_url": "https://github.com/intel/libva/graphs/contributors",
+      "git_author_url": null,
       "packagers": [
         {
           "name": "arkana-team",
@@ -27348,7 +27332,7 @@
       "author": "Andreas Bombe and contributors",
       "git_repo": "https://git.kernel.org/pub/scm/libs/ieee1394/libraw1394.git",
       "git_repo_type": "upstream",
-      "git_author_url": "https://git.kernel.org/pub/scm/libs/ieee1394/libraw1394.git/log/",
+      "git_author_url": null,
       "packagers": [
         {
           "name": "arkana-team",
@@ -27396,23 +27380,7 @@
       "author": "Kristian H\u00f8gsberg and contributors",
       "git_repo": "https://salsa.debian.org/debian/libiec61883.git",
       "git_repo_type": "packaging",
-      "git_author_url": "https://git.kernel.org/pub/scm/libs/ieee1394/libiec61883.git/log/",
-      "packagers": [
-        {
-          "name": "arkana-team",
-          "url": "https://github.com/arkana-team"
-        },
-        {
-          "name": "debarkak",
-          "url": "https://github.com/debarkak"
-        }
-      ]
-    },
-    "libgccjit0": {
-      "author": "GNU GCC developers",
-      "git_repo": "https://gcc.gnu.org/git/gcc.git",
-      "git_repo_type": "upstream",
-      "git_author_url": "https://gcc.gnu.org/git/gcc.git",
+      "git_author_url": null,
       "packagers": [
         {
           "name": "arkana-team",
@@ -27477,6 +27445,38 @@
       "git_repo": "https://gitlab.freedesktop.org/xorg/lib/libxcb-cursor",
       "git_repo_type": "upstream",
       "git_author_url": "https://michael.stapelberg.ch/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libarchive13t64": {
+      "author": "libarchive contributors",
+      "git_repo": "https://github.com/libarchive/libarchive",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libdisplay-info2": {
+      "author": "Jonas \u00c5dahl and libdisplay-info contributors",
+      "git_repo": "https://gitlab.freedesktop.org/emersion/libdisplay-info",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
       "packagers": [
         {
           "name": "arkana-team",

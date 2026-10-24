@@ -1,0 +1,12 @@
+Name: libarchive13t64
+Description: Multi-format archive and compression library (shared library)
+Version: 3.7.4-4+deb13u1
+Arch: x86_64
+URL: https://www.libarchive.org/
+License: See /usr/share/doc/libarchive13t64/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  acl-libs
+  nettle-libs
+  xml-runtime-libs
+Provides: libarchive.so.13=/usr/lib/x86_64-linux-gnu/libarchive.so.13.7.4

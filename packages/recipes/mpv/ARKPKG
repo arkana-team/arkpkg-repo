@@ -7,6 +7,7 @@ License: See /usr/share/doc/mpv/copyright
 Maintainer: arkanaOS Team
 Dependencies:
   alsa-libs
+  libarchive13t64
   libass9
   libavcodec61
   libavdevice61
@@ -18,6 +19,7 @@ Dependencies:
   libcdio-cdda2t64
   libcdio-paranoia2t64
   libcdio19t64
+  libdisplay-info2
   libdvdnav4
   libjack-jackd2-0
   libjpeg62-turbo

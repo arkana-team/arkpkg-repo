@@ -2,26 +2,6 @@
   "suite": "trixie",
   "architecture": "amd64",
   "sources": {
-    "emacs-bin-common": {
-      "filename": "pool/main/e/emacs/emacs-bin-common_30.1+1-6+deb13u1_amd64.deb",
-      "sha256": "86ad88ffb8d0024fe22a4b95863918655ecb10523c4bcdd199540da75f67c4db"
-    },
-    "emacs-common": {
-      "filename": "pool/main/e/emacs/emacs-common_30.1+1-6+deb13u1_all.deb",
-      "sha256": "1a20b06410720a432bd6c82a455a919b7083011e02a3c7b46243e65d8582791b"
-    },
-    "emacs-el": {
-      "filename": "pool/main/e/emacs/emacs-el_30.1+1-6+deb13u1_all.deb",
-      "sha256": "374eb66e5dd66e5b643e9e584ee4d9376df14b1272fc16e7353953bbdf29063b"
-    },
-    "emacs-lucid": {
-      "filename": "pool/main/e/emacs/emacs-lucid_30.1+1-6+deb13u1_amd64.deb",
-      "sha256": "60017fb86c689e8fa082b7fded19f514c1fa1796db58d94af070caab29769633"
-    },
-    "emacsen-common": {
-      "filename": "pool/main/e/emacsen-common/emacsen-common_3.0.8_all.deb",
-      "sha256": "8b164951c11937eae26b0528f65d75d5dda64985ec8ccf0cb48605842b4d5495"
-    },
     "ffmpeg": {
       "filename": "pool/main/f/ffmpeg/ffmpeg_7.1.5-0+deb13u1_amd64.deb",
       "sha256": "8669bc77e55393c14e0dd257ba9a916007cb6da0e1074c9b5e1d53812024f2af"
@@ -62,10 +42,6 @@
       "filename": "pool/main/x/xmahjongg/xmahjongg_3.7-6_amd64.deb",
       "sha256": "b71eabbdbe21e896fb06cb7054d7fdb6094b69c9106959f11cbbdc2ac78a26ca"
     },
-    "xserver-common": {
-      "filename": "pool/main/x/xorg-server/xserver-common_21.1.16-1.3+deb13u3_all.deb",
-      "sha256": "dc1d37303c103b23c40cd1ea694c5c6561e0e8dc1734a73c7a0ae0ef080e7fcc"
-    },
     "libxpresent1": {
       "filename": "pool/main/libx/libxpresent/libxpresent1_1.0.1-1+b2_amd64.deb",
       "sha256": "0d0073d5928f380320412d20de5b961686a3619c8e7a3f66dbc54e14d5d5d554"
@@ -102,10 +78,6 @@
       "filename": "pool/main/libi/libiec61883/libiec61883-0_1.2.0-7_amd64.deb",
       "sha256": "688dd2a0f65997d915acbd4ee5415e3b7704caf7854f20fd6b685bc56e254944"
     },
-    "libgccjit0": {
-      "filename": "pool/main/g/gcc-14/libgccjit0_14.2.0-19_amd64.deb",
-      "sha256": "cab79f341f9b1ee14a03bc6ca1c1ecdb2d52b2a346d1e011c47682e5f45453f9"
-    },
     "libm17n-0": {
       "filename": "pool/main/m/m17n-lib/libm17n-0_1.8.5-1_amd64.deb",
       "sha256": "1834804fa068208f22836bd853b53a62c6b51cb8f000060324a22866d2a6528b"
@@ -118,15 +90,17 @@
       "filename": "pool/main/m/m17n-db/m17n-db_1.8.10-1_all.deb",
       "sha256": "4b73824427f524e3cc455d9228dcbd5aa924fe3777742f859ab144eb3f8c0ba0"
     },
-    "gcc-14-base": {
-      "architecture": "amd64",
-      "filename": "pool/main/g/gcc-14/gcc-14-base_14.2.0-19_amd64.deb",
-      "sha256": "5b6825de4263824b78c4c51f6476414f3b4e89c2ab63e81dc8b9b5501e867cf6",
-      "version": "14.2.0-19"
-    },
     "libxcb-cursor0": {
       "filename": "pool/main/x/xcb-util-cursor/libxcb-cursor0_0.1.5-1_amd64.deb",
       "sha256": "e0c77e6e96843581ff2668dc9a10f676be0e78209ef198e98646184858efe164"
+    },
+    "libarchive13t64": {
+      "filename": "pool/main/liba/libarchive/libarchive13t64_3.7.4-4+deb13u1_amd64.deb",
+      "sha256": "12e06195a899e8db371803ed70111fc7302573d3ed84e967d3d48ef2d543ace8"
+    },
+    "libdisplay-info2": {
+      "filename": "pool/main/libd/libdisplay-info/libdisplay-info2_0.2.0-2_amd64.deb",
+      "sha256": "961924d484d4c14b6decb76cf0e860a1e7b6c89bfc85e527d873a89faf24b846"
     }
   },
   "packages": [
@@ -268,6 +242,34 @@
       "license_path": "usr/share/doc/libva-wayland2/copyright"
     },
     {
+      "name": "libarchive13t64",
+      "description": "Multi-format archive and compression library (shared library)",
+      "version": "3.7.4-4+deb13u1",
+      "debian_version": "3.7.4-4+deb13u1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libarchive13t64"
+      ],
+      "dependencies": [],
+      "url": "https://www.libarchive.org/",
+      "license": "See /usr/share/doc/libarchive13t64/copyright",
+      "license_path": "usr/share/doc/libarchive13t64/copyright"
+    },
+    {
+      "name": "libdisplay-info2",
+      "description": "EDID and DisplayID library (shared library)",
+      "version": "0.2.0-2",
+      "debian_version": "0.2.0-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libdisplay-info2"
+      ],
+      "dependencies": [],
+      "url": "https://gitlab.freedesktop.org/emersion/libdisplay-info",
+      "license": "See /usr/share/doc/libdisplay-info2/copyright",
+      "license_path": "usr/share/doc/libdisplay-info2/copyright"
+    },
+    {
       "name": "mpv",
       "description": "Video player based on MPlayer and mplayer2",
       "version": "0.40.0-3+deb13u1",
@@ -277,33 +279,17 @@
         "mpv"
       ],
       "dependencies": [
+        "libarchive13t64",
         "libavdevice61",
+        "libdisplay-info2",
         "liblua5.2-0",
-        "libva-wayland2",
         "libsixel1",
+        "libva-wayland2",
         "libxpresent1"
       ],
       "url": "https://mpv.io/",
       "license": "See /usr/share/doc/mpv/copyright",
       "license_path": "usr/share/doc/mpv/copyright"
-    },
-    {
-      "name": "libgccjit0",
-      "description": "GCC just-in-time compilation library",
-      "version": "14.2.0-19",
-      "debian_version": "14.2.0-19",
-      "arch": "x86_64",
-      "debian_packages": [
-        "libgccjit0"
-      ],
-      "dependencies": [
-        "gcc-14-base"
-      ],
-      "url": "https://gcc.gnu.org/",
-      "license": "See /usr/share/doc/libgccjit0/copyright",
-      "license_path": "usr/share/doc/libgccjit0/copyright",
-      "license_source_package": "gcc-14-base",
-      "license_source_path": "usr/share/doc/gcc-14-base/copyright"
     },
     {
       "name": "libotf1",
@@ -349,27 +335,6 @@
       "url": "https://www.nongnu.org/m17n/",
       "license": "See /usr/share/doc/libm17n-0/copyright",
       "license_path": "usr/share/doc/libm17n-0/copyright"
-    },
-    {
-      "name": "emacs-lucid",
-      "description": "GNU Emacs editor with the Lucid X11 interface",
-      "version": "30.1+1-6+deb13u1",
-      "debian_version": "1:30.1+1-6+deb13u1",
-      "arch": "x86_64",
-      "debian_packages": [
-        "emacs-lucid",
-        "emacs-bin-common",
-        "emacs-common",
-        "emacs-el",
-        "emacsen-common"
-      ],
-      "dependencies": [
-        "libgccjit0",
-        "libm17n-0"
-      ],
-      "url": "https://www.gnu.org/software/emacs/",
-      "license": "See /usr/share/doc/emacs-lucid/copyright",
-      "license_path": "usr/share/doc/emacs-lucid/copyright"
     },
     {
       "name": "ffmpeg",
