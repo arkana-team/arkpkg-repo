@@ -90,6 +90,15 @@ def installed_packages(arkpkg: Path, sysroot: Path) -> set[str]:
     return {line.split()[0] for line in result.stdout.splitlines() if line.split()}
 
 
+def create_output_staging(path: Path | None) -> Path:
+    if path is None:
+        return Path(tempfile.mkdtemp(prefix="arkpkg-xosview-staging-"))
+    # Exclusively create the destination; do not resolve or remove existing paths.
+    path = path.absolute()
+    path.mkdir(mode=0o700, parents=True)
+    return path
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sysroot", type=Path, required=True)
@@ -102,7 +111,9 @@ def main() -> None:
         "--source-cache", type=Path, default=Path("/tmp/arkpkg-xosview-sources")
     )
     parser.add_argument(
-        "--output-staging", type=Path, default=Path("/tmp/arkpkg-xosview-staging")
+        "--output-staging",
+        type=Path,
+        help="new staging directory (default: a private temporary directory)",
     )
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--jobs", type=int, default=2, choices=(1, 2))
@@ -120,10 +131,7 @@ def build(args: argparse.Namespace, source: Path) -> None:
         if not (sysroot / "usr/bin" / binary).exists():
             raise FileNotFoundError(f"target build root lacks /usr/bin/{binary}")
 
-    output_staging = args.output_staging.resolve()
-    if output_staging.exists():
-        shutil.rmtree(output_staging)
-    output_staging.mkdir(parents=True)
+    output_staging = create_output_staging(args.output_staging)
     logs = Path("/tmp") / f"arkpkg-xosview-{uuid.uuid4().hex}.log"
     work_rel = f"/tmp/arkpkg-xosview-{uuid.uuid4().hex}"
     work_host = sysroot / work_rel.lstrip("/")
