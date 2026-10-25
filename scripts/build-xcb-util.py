@@ -4,19 +4,16 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
-import shutil
-import stat
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
 
 import lz4.frame
+from source_cache import source_snapshot
 
 NAME = "xcb-util"
 VERSION = "0.4.1"
@@ -33,47 +30,16 @@ def privileged(command: list[str], *, log: Path | None = None) -> None:
             subprocess.run(full, stdout=output, stderr=subprocess.STDOUT, check=True)
 
 
-def source_archive(cache: Path) -> Path:
-    cache = cache.parent.resolve() / cache.name
-    # Check parents too: an untrusted parent could replace a private cache.
-    for directory in (*reversed(cache.parents), cache):
-        directory.mkdir(mode=0o700, exist_ok=True)
-        metadata = directory.lstat()
-        if (
-            not stat.S_ISDIR(metadata.st_mode)
-            or metadata.st_uid not in (0, os.geteuid())
-            or (metadata.st_mode & 0o022 and not metadata.st_mode & stat.S_ISVTX)
-        ):
-            raise ValueError(f"untrusted source cache directory: {directory}")
-    if metadata.st_uid != os.geteuid() or metadata.st_mode & 0o077:
-        raise ValueError(f"source cache must be private and owned by this user: {cache}")
-
-    archive_path = cache / f"{NAME}-{VERSION}.tar.xz"
-    if archive_path.is_symlink():
-        raise ValueError(f"source archive must not be a symbolic link: {archive_path}")
-    if archive_path.is_file():
-        verify_source_archive(archive_path)
-        return archive_path
-
-    request = urllib.request.Request(
-        URL, headers={"User-Agent": "arkpkg-repo-xcb-util-builder/1"}
+def source_archive(cache: Path, snapshots: Path) -> Path:
+    archive_path = source_snapshot(
+        cache,
+        snapshots,
+        f"{NAME}-{VERSION}.tar.xz",
+        URL,
+        SHA256,
+        user_agent="arkpkg-repo-xcb-util-builder/1",
+        timeout=90,
     )
-    with tempfile.TemporaryDirectory(prefix=".download-", dir=cache) as temporary:
-        download_path = Path(temporary) / archive_path.name
-        with (
-            download_path.open("xb") as output,
-            urllib.request.urlopen(request, timeout=90) as response,
-        ):
-            shutil.copyfileobj(response, output)
-        verify_source_archive(download_path)
-        download_path.replace(archive_path)
-    return archive_path
-
-
-def verify_source_archive(archive_path: Path) -> None:
-    digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-    if digest != SHA256:
-        raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
     roots = set()
     with tarfile.open(archive_path, "r:xz") as archive:
         for member in archive:
@@ -84,6 +50,7 @@ def verify_source_archive(archive_path: Path) -> None:
                 roots.add(path.parts[0])
     if roots != {f"{NAME}-{VERSION}"}:
         raise ValueError(f"unexpected source roots in archive: {sorted(roots)}")
+    return archive_path
 
 
 def package_name(archive_path: Path) -> str:
@@ -119,21 +86,35 @@ def main() -> None:
     parser.add_argument("--xorg-util-macros-archive", type=Path, required=True)
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument(
-        "--source-cache", type=Path,
+        "--source-cache",
+        type=Path,
         default=Path.home() / ".cache/arkpkg-xcb-util-sources",
         help="private source cache owned by the current user",
     )
     parser.add_argument(
-        "--output-staging", type=Path, default=Path("/tmp/arkpkg-xcb-util-staging")
+        "--output-staging", type=Path,
+        help="new staging directory (default: a private temporary directory)",
     )
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--jobs", type=int, default=2, choices=(1, 2))
     args = parser.parse_args()
 
+    with tempfile.TemporaryDirectory(prefix="arkpkg-xcb-util-sources-") as temporary:
+        build_with_sources(args, Path(temporary))
+
+
+def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
     sysroot = args.sysroot.resolve()
     arpkg = args.arkpkg.resolve()
     macros_archive = args.xorg_util_macros_archive.resolve()
-    source = source_archive(args.source_cache)
+    if args.output_staging is None:
+        output_staging = Path(tempfile.mkdtemp(prefix="arkpkg-xcb-util-staging-"))
+    else:
+        # Do not resolve or remove a preexisting path, including dangling symlinks.
+        output_staging = args.output_staging.absolute()
+        output_staging.mkdir(mode=0o700, parents=True)
+
+    source = source_archive(args.source_cache.resolve(), snapshots)
     for binary in ("gcc", "make", "pkg-config", "tar", "strip"):
         if not (sysroot / "usr/bin" / binary).exists():
             raise FileNotFoundError(f"target build root lacks /usr/bin/{binary}")
@@ -148,10 +129,6 @@ def main() -> None:
 
     work_rel = f"/tmp/arkpkg-xcb-util-{uuid.uuid4().hex}"
     work_host = sysroot / work_rel.lstrip("/")
-    output_staging = args.output_staging.resolve()
-    if output_staging.exists():
-        shutil.rmtree(output_staging)
-    output_staging.mkdir(parents=True)
     logs = Path("/tmp") / f"arkpkg-xcb-util-{uuid.uuid4().hex}.log"
     try:
         privileged(["install", "-d", "-m", "755", str(work_host)])
