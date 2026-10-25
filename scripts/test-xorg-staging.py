@@ -74,24 +74,31 @@ class XorgStagingTests(unittest.TestCase):
         def source(cache, name="xbitmaps", *args):
             return self.sources[name]
 
+        observed = []
+
+        def run(command, *, check):
+            payload = Path(command[command.index("--staging") + 1])
+            self.assertTrue((payload / "usr").is_dir())
+            self.assertTrue(check)
+            root = payload.parent if is_font else payload
+            observed.append(
+                (root, stat.S_IMODE(root.stat().st_mode))
+            )
+            if build_error is not None:
+                raise build_error
+
         with (
             patch.object(sys, "argv", argv),
             patch.object(tempfile, "tempdir", str(self.root)),
             patch.object(builder, "obtain_source", side_effect=source),
-            patch.object(builder.subprocess, "run", side_effect=build_error) as run,
+            patch.object(builder.subprocess, "run", side_effect=run),
             redirect_stdout(io.StringIO()),
         ):
             builder.main()
-        staged = []
-        for call in run.call_args_list:
-            command = call.args[0]
-            payload = Path(command[command.index("--staging") + 1])
-            self.assertTrue((payload / "usr").is_dir())
-            self.assertTrue(call.kwargs["check"])
-            staged.append(payload.parent if is_font else payload)
-        self.assertEqual(len(staged), 2 if is_font else 1)
-        self.assertEqual(len(set(staged)), 1)
-        return staged[0]
+        self.assertEqual(len(observed), 2 if is_font else 1)
+        self.assertEqual(len({path for path, _ in observed}), 1)
+        self.assertEqual(len({mode for _, mode in observed}), 1)
+        return observed[0]
 
     def test_default_staging_is_private_and_unique(self) -> None:
         victim = self.root / "victim"
@@ -102,19 +109,23 @@ class XorgStagingTests(unittest.TestCase):
             (self.root / name).symlink_to(victim, target_is_directory=True)
         for builder in self.builders:
             with self.subTest(builder=builder.__file__):
-                first = self.invoke(builder)
-                second = self.invoke(builder)
+                first, first_mode = self.invoke(builder)
+                second, second_mode = self.invoke(builder)
                 self.assertNotEqual(first, second)
-                for staging in (first, second):
+                for staging, mode in ((first, first_mode), (second, second_mode)):
                     self.assertFalse(staging.is_symlink())
-                    self.assertEqual(stat.S_IMODE(staging.stat().st_mode), 0o700)
+                    self.assertEqual(mode, 0o700)
+                    self.assertFalse(staging.exists())
                 self.assertEqual(sentinel.read_bytes(), b"unrelated data")
 
     def test_new_explicit_staging_builds_packages(self) -> None:
         for index, builder in enumerate(self.builders):
             with self.subTest(builder=builder.__file__):
                 staging = self.root / str(index) / "new-staging"
-                self.assertEqual(self.invoke(builder, staging), staging)
+                actual, mode = self.invoke(builder, staging)
+                self.assertEqual(actual, staging)
+                self.assertEqual(mode, 0o700)
+                self.assertTrue(staging.exists())
                 self.assertEqual(stat.S_IMODE(staging.stat().st_mode), 0o700)
 
     def test_existing_destinations_are_preserved(self) -> None:

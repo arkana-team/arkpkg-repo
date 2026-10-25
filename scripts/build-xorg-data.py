@@ -97,12 +97,17 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
 
-    repo_root = Path(__file__).resolve().parents[1]
     if args.staging is None:
-        staging = Path(tempfile.mkdtemp(prefix="arkpkg-xorg-data-staging-"))
+        with tempfile.TemporaryDirectory(prefix="arkpkg-xorg-data-staging-") as temporary:
+            build(args, Path(temporary))
     else:
         staging = args.staging.absolute()
         staging.mkdir(mode=0o700, parents=True)
+        build(args, staging)
+
+
+def build(args: argparse.Namespace, staging: Path) -> None:
+    repo_root = Path(__file__).resolve().parents[1]
     source = obtain_source(args.source_cache.resolve())
     count = stage_package(source, staging)
     command = [
@@ -119,7 +124,8 @@ def main() -> None:
         command.extend(("--output-dir", str(args.output_dir.resolve())))
     subprocess.run(command, check=True)
     print(f"Staged {count} upstream X.Org bitmaps in {NAME}")
-    print(f"Package staging preserved at {staging}")
+    if args.staging is not None:
+        print(f"Package staging preserved at {staging}")
 
 
 if __name__ == "__main__":

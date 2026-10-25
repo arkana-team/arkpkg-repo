@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import tarfile
@@ -260,17 +262,40 @@ FONT_NAME = re.compile(rb"^FONT\s+([^\r\n]+)", re.MULTILINE)
 def obtain_source(
     cache: Path, name: str, version: str, url: str, expected_sha256: str
 ) -> Path:
-    cache.mkdir(parents=True, exist_ok=True)
+    cache = cache.parent.resolve() / cache.name
+    cache.mkdir(mode=0o700, parents=True, exist_ok=True)
+    cache_stat = cache.lstat()
+    if (
+        not stat.S_ISDIR(cache_stat.st_mode)
+        or cache_stat.st_uid != os.geteuid()
+        or cache_stat.st_mode & 0o022
+    ):
+        raise ValueError(f"source cache must be owned and writable only by this user: {cache}")
+    # A writable parent could let another user replace the checked cache directory.
+    for parent in cache.parents:
+        parent_stat = parent.stat()
+        if parent_stat.st_uid not in {0, os.geteuid()} or (
+            parent_stat.st_mode & 0o022 and not parent_stat.st_mode & stat.S_ISVTX
+        ):
+            raise ValueError(f"unsafe source cache parent: {parent}")
     archive_path = cache / f"{name}-{version}.tar.xz"
     if not archive_path.is_file():
         request = urllib.request.Request(
             url, headers={"User-Agent": "arkpkg-repo-font-builder/1"}
         )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            archive_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
+        with tempfile.NamedTemporaryFile(dir=cache, prefix=".download-", delete=False) as output:
+            temporary_path = Path(output.name)
+            try:
+                with urllib.request.urlopen(request, timeout=90) as response:
+                    shutil.copyfileobj(response, output)
+                output.flush()
+                output.seek(0)
+                digest = hashlib.sha256(output.read()).hexdigest()
+                if digest != expected_sha256:
+                    raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
+                temporary_path.replace(archive_path)
+            finally:
+                temporary_path.unlink(missing_ok=True)
     digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
     if digest != expected_sha256:
         raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
@@ -438,9 +463,8 @@ def main() -> None:
         "--source-cache", type=Path, default=Path("/tmp/arkpkg-xorg-sources")
     )
     parser.add_argument(
-        "--staging",
-        type=Path,
-        help="new staging directory (default: private temporary directory)",
+        "--staging", type=Path,
+        help="create and retain a new staging directory (default: private temporary directory)",
     )
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path)
@@ -452,12 +476,18 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    repo_root = Path(__file__).resolve().parents[1]
     if args.staging is None:
-        staging = Path(tempfile.mkdtemp(prefix="arkpkg-font-staging-"))
+        with tempfile.TemporaryDirectory(prefix="arkpkg-font-staging-") as temporary:
+            build(args, Path(temporary))
     else:
         staging = args.staging.absolute()
+        # Refuse pre-existing entries, including symlinks, without deleting them.
         staging.mkdir(mode=0o700, parents=True)
+        build(args, staging)
+
+
+def build(args: argparse.Namespace, staging: Path) -> None:
+    repo_root = Path(__file__).resolve().parents[1]
     alias_staging = staging / ALIAS_NAME
     font_stagings = []
     font_counts = {}
@@ -465,7 +495,7 @@ def main() -> None:
         ALIAS_NAME,
         *(name for name, *_ in FONT_PACKAGES),
     ]
-    cache = args.source_cache.resolve()
+    cache = args.source_cache.absolute()
     for name, version, digest, font_directory, license_files in FONT_PACKAGES:
         if name not in package_names:
             continue
@@ -530,7 +560,8 @@ def main() -> None:
         print(f"Staged {count} upstream font files in {package_name}")
     if ALIAS_NAME in package_names:
         print(f"Staged {alias_count} upstream X.Org font alias sets")
-    print(f"Package staging preserved at {staging}")
+    if args.staging is not None:
+        print(f"Package staging preserved at {staging}")
 
 
 if __name__ == "__main__":
