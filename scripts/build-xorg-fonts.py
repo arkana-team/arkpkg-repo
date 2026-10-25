@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import tarfile
+import tempfile
 import urllib.request
 from pathlib import Path, PurePosixPath
 
@@ -437,7 +438,9 @@ def main() -> None:
         "--source-cache", type=Path, default=Path("/tmp/arkpkg-xorg-sources")
     )
     parser.add_argument(
-        "--staging", type=Path, default=Path("/tmp/arkpkg-font-staging")
+        "--staging",
+        type=Path,
+        help="new staging directory (default: private temporary directory)",
     )
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path)
@@ -450,9 +453,11 @@ def main() -> None:
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
-    staging = args.staging.resolve()
-    if staging.exists():
-        shutil.rmtree(staging)
+    if args.staging is None:
+        staging = Path(tempfile.mkdtemp(prefix="arkpkg-font-staging-"))
+    else:
+        staging = args.staging.absolute()
+        staging.mkdir(mode=0o700, parents=True)
     alias_staging = staging / ALIAS_NAME
     font_stagings = []
     font_counts = {}
@@ -525,6 +530,7 @@ def main() -> None:
         print(f"Staged {count} upstream font files in {package_name}")
     if ALIAS_NAME in package_names:
         print(f"Staged {alias_count} upstream X.Org font alias sets")
+    print(f"Package staging preserved at {staging}")
 
 
 if __name__ == "__main__":
