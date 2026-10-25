@@ -111,16 +111,21 @@ def prepare_cache(cache: Path) -> Path:
         if metadata.st_mode & 0o022 and (
             directory == cache or not metadata.st_mode & stat.S_ISVTX
         ):
-            raise ValueError(f"source cache directory is writable by others: {directory}")
+            raise ValueError(
+                f"unsafe source cache directory is writable by others: {directory}"
+            )
     return cache
 
 
-def download(url: str, expected: str, cache: Path) -> Path:
+def download(url: str, expected: str, cache: Path, work: Path) -> Path:
+    """Return verified bytes from a private snapshot, never from the shared cache."""
     cache = prepare_cache(cache)
     target = cache / url.rsplit("/", 1)[-1]
-    if not target.is_symlink() and target.is_file() and sha256(target) == expected:
-        return target
-    target.unlink(missing_ok=True)
+    snapshot = work / target.name
+    if not target.is_symlink() and target.is_file():
+        shutil.copyfile(target, snapshot)
+        if sha256(snapshot) == expected:
+            return snapshot
     request = urllib.request.Request(
         url, headers={"User-Agent": "arkpkg-repo-upstream-package-builder/1"}
     )
@@ -141,8 +146,10 @@ def download(url: str, expected: str, cache: Path) -> Path:
                     if attempt == 3:
                         raise
                     time.sleep(2**attempt)
-        actual = sha256(temporary)
+        shutil.copyfile(temporary, snapshot)
+        actual = sha256(snapshot)
         if actual != expected:
+            snapshot.unlink(missing_ok=True)
             raise ValueError(
                 f"SHA-256 mismatch for {target.name}: expected {expected}, got {actual}"
             )
@@ -150,7 +157,7 @@ def download(url: str, expected: str, cache: Path) -> Path:
     finally:
         if temporary is not None:
             temporary.unlink(missing_ok=True)
-    return target
+    return snapshot
 
 
 def read_tar_file(archive_path: Path, member_name: str) -> bytes:
@@ -263,17 +270,19 @@ def build(args: argparse.Namespace) -> None:
 
     for index, name in enumerate(selected, 1):
         package = PACKAGES[name]
-        source_archive = download(
-            str(package["archive"]), str(package["archive_sha256"]), cache
-        )
         with tempfile.TemporaryDirectory(prefix=f"arkpkg-{name}-") as temporary:
+            work = Path(temporary) / "sources"
+            work.mkdir()
+            source_archive = download(
+                str(package["archive"]), str(package["archive_sha256"]), cache, work
+            )
             package_dir = Path(temporary) / name
             payload = package_dir / "package"
             payload.mkdir(parents=True)
 
             if package.get("binary"):
                 binary = download(
-                    str(package["binary"]), str(package["binary_sha256"]), cache
+                    str(package["binary"]), str(package["binary_sha256"]), cache, work
                 )
                 target = payload / str(
                     package.get("binary_path", f"usr/bin/{name}")
