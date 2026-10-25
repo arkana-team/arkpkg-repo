@@ -11,6 +11,8 @@ on:
       - "scripts/test-build-index.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
+      - "scripts/build-upstream-cli-packages.py"
+      - "scripts/test-upstream-cli-packages.py"
       - ".github/workflows/package-index-tests.yml"
   push:
     paths:
@@ -22,6 +24,8 @@ on:
       - "scripts/test-build-index.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
+      - "scripts/build-upstream-cli-packages.py"
+      - "scripts/test-upstream-cli-packages.py"
       - ".github/workflows/package-index-tests.yml"
 
 permissions:
@@ -44,5 +48,7 @@ jobs:
         run: python3 scripts/test-package-index-tilde.py -v
       - name: Test pinned Debian package metadata
         run: python3 scripts/test-debian-cli-packages.py -v
+      - name: Test upstream source cache integrity
+        run: python3 scripts/test-upstream-cli-packages.py -v
       - name: Test package metadata and Pages generation
         run: python3 scripts/test-build-index.py -v

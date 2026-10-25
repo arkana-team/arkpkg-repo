@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import tarfile
@@ -96,37 +98,59 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def download(url: str, expected: str, cache: Path) -> Path:
+def prepare_cache(cache: Path) -> None:
+    cache.mkdir(mode=0o700, parents=True, exist_ok=True)
+    metadata = cache.lstat()
+    if (
+        not stat.S_ISDIR(metadata.st_mode)
+        or metadata.st_uid != os.geteuid()
+        or metadata.st_mode & 0o022
+    ):
+        raise ValueError(
+            f"unsafe source cache: {cache}; must be a real directory owned by "
+            "the current user and not writable by group or others"
+        )
+
+
+def download(url: str, expected: str, cache: Path, work: Path) -> Path:
+    """Return a verified snapshot in the caller's private temporary directory."""
     target = cache / url.rsplit("/", 1)[-1]
-    if target.is_file() and sha256(target) == expected:
-        return target
-    target.unlink(missing_ok=True)
-    temporary = target.with_suffix(target.suffix + ".download")
+    snapshot = work / target.name
+    if target.is_file():
+        shutil.copyfile(target, snapshot)
+        if sha256(snapshot) == expected:
+            return snapshot
     request = urllib.request.Request(
         url, headers={"User-Agent": "arkpkg-repo-upstream-package-builder/1"}
     )
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(
+                request, timeout=120
+            ) as response, snapshot.open("wb") as output:
+                shutil.copyfileobj(response, output)
+            break
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
+            snapshot.unlink(missing_ok=True)
+            if attempt == 3:
+                raise
+            time.sleep(2**attempt)
+    actual = sha256(snapshot)
+    if actual != expected:
+        raise ValueError(
+            f"SHA-256 mismatch for {target.name}: expected {expected}, got {actual}"
+        )
+    temporary = None
     try:
-        for attempt in range(4):
-            try:
-                with urllib.request.urlopen(
-                    request, timeout=120
-                ) as response, temporary.open("wb") as output:
-                    shutil.copyfileobj(response, output)
-                break
-            except (urllib.error.URLError, TimeoutError, ConnectionError):
-                temporary.unlink(missing_ok=True)
-                if attempt == 3:
-                    raise
-                time.sleep(2**attempt)
-        actual = sha256(temporary)
-        if actual != expected:
-            raise ValueError(
-                f"SHA-256 mismatch for {target.name}: expected {expected}, got {actual}"
-            )
+        with tempfile.NamedTemporaryFile(dir=cache, delete=False) as output:
+            temporary = Path(output.name)
+            with snapshot.open("rb") as source:
+                shutil.copyfileobj(source, output)
         temporary.replace(target)
     finally:
-        temporary.unlink(missing_ok=True)
-    return target
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+    return snapshot
 
 
 def read_tar_file(archive_path: Path, member_name: str) -> bytes:
@@ -225,8 +249,8 @@ def write_payload_file(target: Path, data: bytes, mode: int) -> None:
 
 def build(args: argparse.Namespace) -> None:
     repo_root = args.repo_root.resolve()
-    cache = args.source_cache.resolve()
-    cache.mkdir(parents=True, exist_ok=True)
+    cache = args.source_cache.absolute()
+    prepare_cache(cache)
     staging = args.staging.resolve()
     selected = args.packages or sorted(PACKAGES)
     unknown = set(selected).difference(PACKAGES)
@@ -240,17 +264,19 @@ def build(args: argparse.Namespace) -> None:
 
     for index, name in enumerate(selected, 1):
         package = PACKAGES[name]
-        source_archive = download(
-            str(package["archive"]), str(package["archive_sha256"]), cache
-        )
         with tempfile.TemporaryDirectory(prefix=f"arkpkg-{name}-") as temporary:
+            work = Path(temporary) / "sources"
+            work.mkdir()
+            source_archive = download(
+                str(package["archive"]), str(package["archive_sha256"]), cache, work
+            )
             package_dir = Path(temporary) / name
             payload = package_dir / "package"
             payload.mkdir(parents=True)
 
             if package.get("binary"):
                 binary = download(
-                    str(package["binary"]), str(package["binary_sha256"]), cache
+                    str(package["binary"]), str(package["binary_sha256"]), cache, work
                 )
                 target = payload / str(
                     package.get("binary_path", f"usr/bin/{name}")
