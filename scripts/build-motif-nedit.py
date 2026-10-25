@@ -40,14 +40,20 @@ def privileged(command: list[str], *, log: Path | None = None) -> None:
             subprocess.run(full, stdout=output, stderr=subprocess.STDOUT, check=True)
 
 
-def get_source(cache: Path, spec: tuple[str, str, str, str]) -> Path:
+def get_source(cache: Path, spec: tuple[str, str, str, str], private_work: Path) -> Path:
+    """Copy cached bytes into private work before validating or using them."""
     filename, url, expected, root = spec
-    cache.mkdir(parents=True, exist_ok=True)
-    path = cache / filename
-    if not path.is_file():
+    cache.mkdir(mode=0o700, parents=True, exist_ok=True)
+    metadata = cache.stat()
+    if metadata.st_uid != os.geteuid() or metadata.st_mode & 0o022:
+        raise ValueError(f"source cache must be owned by the current user and not writable by others: {cache}")
+    cached_path = cache / filename
+    if not cached_path.is_file():
         request = urllib.request.Request(url, headers={"User-Agent": "arkpkg-repo-builder/1"})
-        with urllib.request.urlopen(request, timeout=90) as response, path.open("wb") as output:
+        with urllib.request.urlopen(request, timeout=90) as response, cached_path.open("xb") as output:
             shutil.copyfileobj(response, output)
+    path = private_work / filename
+    shutil.copyfile(cached_path, path)
     actual = hashlib.sha256(path.read_bytes()).hexdigest()
     if actual != expected:
         raise ValueError(f"SHA-256 mismatch for {filename}: {actual}")
@@ -184,12 +190,11 @@ def build_motif_archives(
     sysroot: Path,
     staging: Path,
     output: Path,
-    cache: Path,
+    motif_source: Path,
     builder: Path,
     jobs: int,
     log: Path,
 ) -> None:
-    motif_source = get_source(cache, MOTIF)
     motif_patch = """from pathlib import Path
 import re
 string_calls = re.compile(
@@ -258,13 +263,15 @@ def build(args: argparse.Namespace) -> None:
     cache = args.source_cache.resolve()
     arpkg = args.arkpkg.resolve()
     builder = args.arkpkg_build.resolve()
-    nedit_source = get_source(cache, NEDIT)
-    if staging.exists():
-        privileged(["/usr/bin/python3", "-c", "import shutil,sys; shutil.rmtree(sys.argv[1],ignore_errors=True)", str(staging)])
-    staging.mkdir(parents=True)
-    logs = Path(tempfile.mkdtemp(prefix="arkpkg-motif-nedit-logs-"))
+    # mkdtemp creates a private directory; retain the validated sources until all
+    # privileged builds and license copies finish, then remove them in finally.
+    private_work = Path(tempfile.mkdtemp(prefix="arkpkg-motif-nedit-"))
     installed: list[str] = []
     try:
+        nedit_source = get_source(cache, NEDIT, private_work)
+        if staging.exists():
+            privileged(["/usr/bin/python3", "-c", "import shutil,sys; shutil.rmtree(sys.argv[1],ignore_errors=True)", str(staging)])
+        staging.mkdir(parents=True)
         if args.reuse_motif:
             for name in MOTIF_PACKAGES:
                 matches = list(output.glob(f"{name}-2.3.8-*.ark"))
@@ -279,10 +286,10 @@ def build(args: argparse.Namespace) -> None:
                 sysroot,
                 staging,
                 output,
-                cache,
+                get_source(cache, MOTIF, private_work),
                 builder,
                 args.jobs,
-                logs / "motif.log",
+                private_work / "motif.log",
             )
 
         current = installed_packages(arpkg, sysroot)
@@ -310,7 +317,7 @@ def build(args: argparse.Namespace) -> None:
                 "/usr/bin/install -D -m 644 doc/nc.man @PAYLOAD@/usr/share/man/man1/nedit-client.1",
                 "@PAYLOAD@/usr/bin/nedit -V",
             ],
-            log=logs / "nedit.log",
+            log=private_work / "nedit.log",
         )
         try:
             for relative in ("usr/bin/nedit", "usr/bin/nedit-client"):
@@ -325,7 +332,7 @@ def build(args: argparse.Namespace) -> None:
     finally:
         for name in reversed(installed):
             privileged([str(arpkg), "--root", str(sysroot), "remove", name, "-y"])
-        shutil.rmtree(logs, ignore_errors=True)
+        shutil.rmtree(private_work, ignore_errors=True)
 
 
 def parse_args() -> argparse.Namespace:
