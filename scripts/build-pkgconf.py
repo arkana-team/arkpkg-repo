@@ -18,6 +18,8 @@ from pathlib import Path, PurePosixPath
 VERSION = "3.0.8"
 SOURCE_URL = f"https://distfiles.ariadne.space/pkgconf/pkgconf-{VERSION}.tar.xz"
 SOURCE_SHA256 = "943f0bc88bcaeceb630b00262e2a8ad5ea4fac3fba72a4267d8b9ec6b35d1194"
+# ARKPKG is small text metadata; cap its logical size, including sparse holes.
+MAX_METADATA_SIZE = 64 * 1024
 
 
 def privileged(command: list[str], *, log: Path | None = None) -> None:
@@ -53,10 +55,19 @@ def package_name(archive_path: Path) -> str:
         for member in archive:
             if member.name != "ARKPKG" or not member.isfile():
                 continue
+            if member.size > MAX_METADATA_SIZE:
+                raise ValueError(
+                    f"ARKPKG metadata exceeds {MAX_METADATA_SIZE} bytes: {archive_path}"
+                )
             stream = archive.extractfile(member)
             if stream is None:
                 break
-            for line in stream.read().decode("utf-8").splitlines():
+            metadata = stream.read(MAX_METADATA_SIZE + 1)
+            if len(metadata) > MAX_METADATA_SIZE:
+                raise ValueError(
+                    f"ARKPKG metadata exceeds {MAX_METADATA_SIZE} bytes: {archive_path}"
+                )
+            for line in metadata.decode("utf-8").splitlines():
                 key, separator, value = line.partition(":")
                 if separator and key.strip() == "Name":
                     return value.strip()

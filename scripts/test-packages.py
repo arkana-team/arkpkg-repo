@@ -12,6 +12,7 @@ from pathlib import Path, PurePosixPath
 
 import lz4.frame
 
+MAX_METADATA_BYTES = 1024 * 1024  # Logical size, including sparse TAR holes.
 REQUIRED_FIELDS = {"Name", "Description", "Version", "Arch"}
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
@@ -96,12 +97,17 @@ def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
             if normalized == "ARKPKG" and member.isfile():
                 if metadata is not None:
                     raise ValueError(f"{path.name}: multiple root ARKPKG files")
+                if not 0 <= member.size <= MAX_METADATA_BYTES:
+                    raise ValueError(f"{path.name}: ARKPKG metadata size exceeds limit")
                 stream = archive.extractfile(member)
                 if stream is None:
                     raise ValueError(f"{path.name}: unreadable ARKPKG metadata")
+                data = stream.read(MAX_METADATA_BYTES + 1)
+                if len(data) > MAX_METADATA_BYTES:
+                    raise ValueError(f"{path.name}: ARKPKG metadata size exceeds limit")
                 fields: dict[str, str] = {}
                 current_section = ""
-                for line in stream.read().decode("utf-8").splitlines():
+                for line in data.decode("utf-8").splitlines():
                     key, separator, value = line.partition(":")
                     if separator:
                         current_section = key.strip()

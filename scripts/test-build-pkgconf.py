@@ -1,199 +1,112 @@
 #!/usr/bin/env python3
-"""Test source validation before the privileged pkgconf build."""
+"""Check bounded dependency metadata reads in the pkgconf builder."""
 
-import argparse
-import hashlib
+from __future__ import annotations
+
 import importlib.util
 import io
-import os
-import stat
 import tarfile
 import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
 
-BUILDER_PATH = Path(__file__).with_name("build-pkgconf.py")
-SPEC = importlib.util.spec_from_file_location("pkgconf_builder", BUILDER_PATH)
-if SPEC is None or SPEC.loader is None:
-    raise RuntimeError("could not load the pkgconf builder")
-BUILDER = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(BUILDER)
+import lz4.frame
+
+SCRIPT = Path(__file__).resolve().with_name("build-pkgconf.py")
+spec = importlib.util.spec_from_file_location("arkpkg_build_pkgconf", SCRIPT)
+if spec is None or spec.loader is None:
+    raise RuntimeError(f"could not load {SCRIPT}")
+build_pkgconf = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(build_pkgconf)
 
 
-def source_bytes(name: str | None = None) -> bytes:
-    output = io.BytesIO()
-    with tarfile.open(fileobj=output, mode="w:xz") as archive:
-        member = tarfile.TarInfo(name or f"pkgconf-{BUILDER.VERSION}/configure")
-        content = b"#!/bin/sh\necho expected source\n"
-        member.size = len(content)
-        archive.addfile(member, io.BytesIO(content))
-    return output.getvalue()
-
-
-class SourceArchiveTests(unittest.TestCase):
+class PackageNameTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.temporary = tempfile.TemporaryDirectory()
-        self.addCleanup(self.temporary.cleanup)
-        self.root = Path(self.temporary.name)
-        self.cache = self.root / "cache"
-        self.cache.mkdir(mode=0o700)
-        self.snapshot = self.root / "snapshot"
-        self.snapshot.mkdir(mode=0o700)
-        self.archive = self.cache / f"pkgconf-{BUILDER.VERSION}.tar.xz"
-        self.expected = source_bytes()
-        self.archive.write_bytes(self.expected)
-        digest = mock.patch.object(
-            BUILDER, "SOURCE_SHA256", hashlib.sha256(self.expected).hexdigest()
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.archive_path = Path(temporary.name) / "dependency.ark"
+
+    def write_metadata(self, metadata: bytes, *, sparse_size: int | None = None) -> None:
+        member = tarfile.TarInfo("ARKPKG")
+        member.size = len(metadata)
+        if sparse_size is not None:
+            member.pax_headers = {
+                "GNU.sparse.map": f"0,{len(metadata)}",
+                "GNU.sparse.size": str(sparse_size),
+            }
+        with (
+            lz4.frame.open(self.archive_path, "wb") as compressed,
+            tarfile.open(fileobj=compressed, mode="w|") as archive,
+        ):
+            archive.addfile(member, io.BytesIO(metadata))
+
+    def test_name_field_parsing(self) -> None:
+        self.write_metadata("Description: café\n Name : dependency \n".encode())
+        self.assertEqual(build_pkgconf.package_name(self.archive_path), "dependency")
+
+    def test_metadata_at_size_limit(self) -> None:
+        metadata = b"Name: dependency\n"
+        self.write_metadata(metadata.ljust(build_pkgconf.MAX_METADATA_SIZE, b"\n"))
+        self.assertEqual(build_pkgconf.package_name(self.archive_path), "dependency")
+
+    def test_oversized_metadata_rejected_before_extraction(self) -> None:
+        # A Name at the start must not let oversized metadata bypass the limit.
+        self.write_metadata(
+            b"Name: dependency\n".ljust(build_pkgconf.MAX_METADATA_SIZE + 1, b"\n")
         )
-        digest.start()
-        self.addCleanup(digest.stop)
+        with (
+            mock.patch.object(tarfile.TarFile, "extractfile") as extract,
+            self.assertRaisesRegex(ValueError, "ARKPKG metadata exceeds"),
+        ):
+            build_pkgconf.package_name(self.archive_path)
+        extract.assert_not_called()
 
-    def test_privileged_install_uses_validated_snapshot_after_cache_changes(
-        self,
-    ) -> None:
-        sysroot = self.root / "sysroot"
-        binary_dir = sysroot / "usr/bin"
-        binary_dir.mkdir(parents=True)
-        for binary in ("gcc", "make", "tar", "strip", "libtool"):
-            (binary_dir / binary).touch()
-        args = argparse.Namespace(
-            sysroot=sysroot,
-            source_cache=self.cache,
-            output_staging=self.root / "staging",
-            arkpkg=None,
-            build_dependency_archive=[],
-            jobs=1,
+    def test_sparse_logical_size_rejected_before_extraction(self) -> None:
+        logical_size = 1024**3
+        self.write_metadata(b"Name: dependency\n", sparse_size=logical_size)
+        self.assertLess(self.archive_path.stat().st_size, 1024)
+        with (
+            lz4.frame.open(self.archive_path, "rb") as compressed,
+            tarfile.open(fileobj=compressed, mode="r|") as archive,
+        ):
+            member = next(iter(archive))
+            self.assertTrue(member.isfile())
+            self.assertTrue(member.issparse())
+            self.assertEqual(member.size, logical_size)
+        with (
+            mock.patch.object(tarfile.TarFile, "extractfile") as extract,
+            self.assertRaisesRegex(ValueError, "ARKPKG metadata exceeds"),
+        ):
+            build_pkgconf.package_name(self.archive_path)
+        extract.assert_not_called()
+
+    def test_sparse_metadata_within_limit(self) -> None:
+        self.write_metadata(
+            b"Name: dependency\n", sparse_size=build_pkgconf.MAX_METADATA_SIZE
         )
-        for mutation in ("replace", "overwrite", "replace directory"):
-            with self.subTest(mutation=mutation):
-                self.archive.write_bytes(self.expected)
-                installed_sources = []
+        self.assertEqual(build_pkgconf.package_name(self.archive_path), "dependency")
 
-                def privileged(
-                    command: list[str],
-                    *,
-                    log: Path | None = None,
-                    mutation: str = mutation,
-                    installed_sources: list[Path] = installed_sources,
-                ) -> None:
-                    if command[:2] == ["install", "-d"]:
-                        if mutation == "replace":
-                            replacement = self.cache / "replacement"
-                            replacement.write_bytes(b"substituted source")
-                            replacement.replace(self.archive)
-                        elif mutation == "overwrite":
-                            self.archive.write_bytes(b"substituted source")
-                        else:
-                            self.cache.rename(self.root / "old-cache")
-                            self.cache.mkdir(mode=0o700)
-                            self.archive.write_bytes(b"substituted source")
-                    elif command[:2] == ["install", "-m"]:
-                        source = Path(command[3])
-                        installed_sources.append(source)
-                        self.assertNotEqual(source.parent, self.cache)
-                        self.assertEqual(source.read_bytes(), self.expected)
-                        self.assertEqual(
-                            stat.S_IMODE(source.parent.stat().st_mode), 0o700
-                        )
-                    elif command[0] == "chroot":
-                        raise RuntimeError("stop before privileged execution")
-
-                with (
-                    mock.patch.object(BUILDER, "privileged", side_effect=privileged),
-                    self.assertRaisesRegex(
-                        RuntimeError, "stop before privileged execution"
-                    ),
-                ):
-                    BUILDER.build(args)
-                self.assertEqual(len(installed_sources), 1)
-                self.assertFalse(installed_sources[0].exists())
-
-    def test_checksum_is_checked_after_snapshot_copy(self) -> None:
-        copyfile = BUILDER.shutil.copyfile
-
-        def replace_during_copy(source: Path, destination: Path) -> None:
-            self.archive.write_bytes(b"substituted before snapshot")
-            copyfile(source, destination)
-
+    def test_bounded_read_rejects_excess_before_decoding(self) -> None:
+        self.write_metadata(b"Name: dependency\n")
+        stream = mock.Mock()
+        stream.read.return_value = b"\xff" * (build_pkgconf.MAX_METADATA_SIZE + 1)
         with (
-            mock.patch.object(
-                BUILDER.shutil, "copyfile", side_effect=replace_during_copy
-            ),
-            self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
+            mock.patch.object(tarfile.TarFile, "extractfile", return_value=stream),
+            self.assertRaisesRegex(ValueError, "ARKPKG metadata exceeds"),
         ):
-            BUILDER.source_archive(self.cache, self.snapshot)
+            build_pkgconf.package_name(self.archive_path)
+        stream.read.assert_called_once_with(build_pkgconf.MAX_METADATA_SIZE + 1)
 
-    def test_downloaded_source_is_snapshotted_and_validated(self) -> None:
-        self.archive.unlink()
-        self.cache.rmdir()
-        with mock.patch.object(
-            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.expected)
-        ) as download:
-            snapshot = BUILDER.source_archive(self.cache, self.snapshot)
-        download.assert_called_once()
-        self.assertEqual(snapshot.read_bytes(), self.expected)
-        self.assertEqual(self.archive.read_bytes(), self.expected)
-        self.assertEqual(stat.S_IMODE(self.cache.stat().st_mode), 0o700)
+    def test_missing_name(self) -> None:
+        self.write_metadata(b"Description: dependency\n")
+        with self.assertRaisesRegex(ValueError, "no Name field"):
+            build_pkgconf.package_name(self.archive_path)
 
-    def test_download_does_not_follow_dangling_cache_symlink(self) -> None:
-        self.archive.unlink()
-        target = self.root / "unrelated-file"
-        self.archive.symlink_to(target)
-        with (
-            mock.patch.object(
-                BUILDER.urllib.request,
-                "urlopen",
-                return_value=io.BytesIO(self.expected),
-            ),
-            self.assertRaises(FileExistsError),
-        ):
-            BUILDER.source_archive(self.cache, self.snapshot)
-        self.assertFalse(target.exists())
-
-    def test_rejects_cache_writable_by_others(self) -> None:
-        for mode in (0o770, 0o707):
-            with self.subTest(mode=mode):
-                self.cache.chmod(mode)
-                with self.assertRaisesRegex(ValueError, "not writable by others"):
-                    BUILDER.source_archive(self.cache, self.snapshot)
-
-    def test_rejects_cache_owned_by_another_user(self) -> None:
-        with (
-            mock.patch.object(BUILDER.os, "geteuid", return_value=os.geteuid() + 1),
-            self.assertRaisesRegex(ValueError, "owned by the current user"),
-        ):
-            BUILDER.source_archive(self.cache, self.snapshot)
-
-    def test_rejects_unsafe_members_even_with_matching_digest(self) -> None:
-        for name in (
-            "/absolute",
-            "../outside",
-            f"pkgconf-{BUILDER.VERSION}/../outside",
-            "other/configure",
-        ):
-            with self.subTest(name=name):
-                data = source_bytes(name)
-                self.archive.write_bytes(data)
-                with (
-                    mock.patch.object(
-                        BUILDER, "SOURCE_SHA256", hashlib.sha256(data).hexdigest()
-                    ),
-                    self.assertRaisesRegex(
-                        ValueError, "unsafe source path|unexpected source roots"
-                    ),
-                ):
-                    BUILDER.source_archive(self.cache, self.snapshot)
-
-    def test_invalid_source_stops_before_privileged_operations(self) -> None:
-        self.archive.write_bytes(b"invalid source")
-        args = argparse.Namespace(source_cache=self.cache)
-        with (
-            mock.patch.object(BUILDER, "privileged") as privileged,
-            self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
-        ):
-            BUILDER.build(args)
-        privileged.assert_not_called()
+    def test_invalid_utf8(self) -> None:
+        self.write_metadata(b"Name: dependency\nDescription: \xff\n")
+        with self.assertRaises(UnicodeDecodeError):
+            build_pkgconf.package_name(self.archive_path)
 
 
 if __name__ == "__main__":
