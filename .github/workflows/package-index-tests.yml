@@ -9,8 +9,11 @@ on:
       - "data/package-metadata.json"
       - "scripts/build-index.py"
       - "scripts/test-build-index.py"
+      - "scripts/test-package-metadata-limits.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
+      - "scripts/build-motif-nedit.py"
+      - "scripts/test-motif-nedit-sources.py"
       - ".github/workflows/package-index-tests.yml"
   push:
     paths:
@@ -20,8 +23,11 @@ on:
       - "data/package-metadata.json"
       - "scripts/build-index.py"
       - "scripts/test-build-index.py"
+      - "scripts/test-package-metadata-limits.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
+      - "scripts/build-motif-nedit.py"
+      - "scripts/test-motif-nedit-sources.py"
       - ".github/workflows/package-index-tests.yml"
 
 permissions:
@@ -44,5 +50,9 @@ jobs:
         run: python3 scripts/test-package-index-tilde.py -v
       - name: Test pinned Debian package metadata
         run: python3 scripts/test-debian-cli-packages.py -v
+      - name: Test Motif and NEdit source snapshots
+        run: python3 scripts/test-motif-nedit-sources.py -v
       - name: Test package metadata and Pages generation
         run: python3 scripts/test-build-index.py -v
+      - name: Test archive metadata limits
+        run: python3 scripts/test-package-metadata-limits.py -v

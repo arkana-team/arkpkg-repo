@@ -36,10 +36,22 @@ def privileged(command: list[str], *, log: Path | None = None) -> None:
             subprocess.run(full, stdout=output, stderr=subprocess.STDOUT, check=True)
 
 
-def source_archive(cache: Path, name: str, url: str, digest: str, root: str) -> Path:
+def source_archive(
+    cache: Path, name: str, url: str, digest: str, root: str, *, sources: Path
+) -> Path:
     cache.mkdir(parents=True, exist_ok=True)
-    archive_path = cache / name
-    if not archive_path.is_file():
+    cache_stat = cache.stat()
+    if cache_stat.st_uid != os.geteuid() or cache_stat.st_mode & 0o022:
+        raise PermissionError(
+            f"source cache must be owned by the current user and not writable by others: {cache}"
+        )
+    cached_path = cache / name
+    archive_path = sources / name
+    # Validate private bytes; no later consumer may reopen the cache entry.
+    try:
+        shutil.copyfile(cached_path, archive_path)
+        downloaded = False
+    except FileNotFoundError:
         request = urllib.request.Request(
             url, headers={"User-Agent": "arkpkg-repo-gui-package-builder/1"}
         )
@@ -48,6 +60,7 @@ def source_archive(cache: Path, name: str, url: str, digest: str, root: str) -> 
             archive_path.open("wb") as output,
         ):
             shutil.copyfileobj(response, output)
+        downloaded = True
     actual = hashlib.sha256(archive_path.read_bytes()).hexdigest()
     if actual != digest:
         raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {actual}")
@@ -61,6 +74,13 @@ def source_archive(cache: Path, name: str, url: str, digest: str, root: str) -> 
                 roots.add(path.parts[0])
         if roots != {root}:
             raise ValueError(f"unexpected source root in {archive_path.name}: {sorted(roots)}")
+    if downloaded:
+        try:
+            # Never follow or truncate an entry created while downloading.
+            with cached_path.open("xb") as output, archive_path.open("rb") as source:
+                shutil.copyfileobj(source, output)
+        except FileExistsError:
+            pass
     return archive_path
 
 
@@ -197,6 +217,11 @@ def install_package(arkpkg: Path, sysroot: Path, archive: Path) -> str:
 
 
 def build(args: argparse.Namespace) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-fltk-dillo-sources-") as temporary:
+        build_from_sources(args, Path(temporary))
+
+
+def build_from_sources(args: argparse.Namespace, sources: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
     sysroot = args.sysroot.resolve()
     output_dir = args.output_dir.resolve()
@@ -211,10 +236,10 @@ def build(args: argparse.Namespace) -> None:
     fltk_source = None
     if not args.reuse_fltk:
         fltk_source = source_archive(
-            source_cache, FLTK_ARCHIVE, FLTK_URL, FLTK_SHA256, FLTK_ROOT
+            source_cache, FLTK_ARCHIVE, FLTK_URL, FLTK_SHA256, FLTK_ROOT, sources=sources
         )
     dillo_source = source_archive(
-        source_cache, DILLO_ARCHIVE, DILLO_URL, DILLO_SHA256, DILLO_ROOT
+        source_cache, DILLO_ARCHIVE, DILLO_URL, DILLO_SHA256, DILLO_ROOT, sources=sources
     )
     if output_staging.exists():
         shutil.rmtree(output_staging)

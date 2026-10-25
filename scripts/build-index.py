@@ -363,7 +363,7 @@ def read_metadata(archive_path: Path) -> dict[str, str]:
             if normalized_name == "ARKPKG" and member.isfile():
                 if member.issparse():
                     raise ValueError("ARKPKG metadata must not be sparse")
-                if member.size > MAX_METADATA_SIZE:
+                if not 0 <= member.size <= MAX_METADATA_SIZE:
                     raise ValueError(
                         f"ARKPKG metadata exceeds {MAX_METADATA_SIZE} bytes"
                     )
