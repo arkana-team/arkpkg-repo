@@ -9,6 +9,7 @@ import tarfile
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import lz4.frame
 
@@ -24,6 +25,78 @@ build_site = build_index.build_site
 validate_download_base_url = build_index.validate_download_base_url
 validate_package_metadata = build_index.validate_package_metadata
 package_category = build_index.package_category
+
+
+class MetadataReadTests(unittest.TestCase):
+    METADATA = (
+        b"Name: hello\nDescription: sample package\nVersion: 1.0\nArch: any\n"
+    )
+
+    def write_archive(
+        self, path: Path, member: tarfile.TarInfo, content: bytes
+    ) -> None:
+        with (
+            lz4.frame.open(path, "wb") as compressed,
+            tarfile.open(fileobj=compressed, mode="w|") as archive,
+        ):
+            member.size = len(content)
+            archive.addfile(member, io.BytesIO(content))
+            package = tarfile.TarInfo("package/")
+            package.type = tarfile.DIRTYPE
+            archive.addfile(package)
+
+    def test_metadata_at_size_limit_is_accepted(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            content = self.METADATA.ljust(build_index.MAX_METADATA_SIZE, b"\n")
+            self.write_archive(path, tarfile.TarInfo("./ARKPKG"), content)
+            self.assertEqual(build_index.read_metadata(path)["Name"], "hello")
+
+    def test_oversized_metadata_is_rejected_before_extraction(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            content = self.METADATA.ljust(build_index.MAX_METADATA_SIZE + 1, b"\n")
+            self.write_archive(path, tarfile.TarInfo("./ARKPKG"), content)
+            with patch.object(tarfile.TarFile, "extractfile") as extract:
+                with self.assertRaisesRegex(ValueError, "ARKPKG metadata exceeds"):
+                    build_index.read_metadata(path)
+                extract.assert_not_called()
+
+    def test_sparse_metadata_is_rejected_before_extraction(self) -> None:
+        for logical_size in (len(self.METADATA) + 1, 1 << 40):
+            with (
+                self.subTest(logical_size=logical_size),
+                tempfile.TemporaryDirectory() as temporary,
+            ):
+                path = Path(temporary) / "hello.ark"
+                member = tarfile.TarInfo("./ARKPKG")
+                member.pax_headers = {
+                    "GNU.sparse.map": f"0,{len(self.METADATA)}",
+                    "GNU.sparse.size": str(logical_size),
+                }
+                self.write_archive(path, member, self.METADATA)
+                with (
+                    lz4.frame.open(path, "rb") as compressed,
+                    tarfile.open(fileobj=compressed, mode="r|") as archive,
+                ):
+                    parsed = next(iter(archive))
+                    self.assertTrue(parsed.isfile())
+                    self.assertTrue(parsed.issparse())
+                    self.assertEqual(parsed.size, logical_size)
+                with patch.object(tarfile.TarFile, "extractfile") as extract:
+                    with self.assertRaisesRegex(ValueError, "must not be sparse"):
+                        build_index.read_metadata(path)
+                    extract.assert_not_called()
+
+    def test_metadata_read_is_bounded_and_checked_before_decoding(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            self.write_archive(path, tarfile.TarInfo("ARKPKG"), self.METADATA)
+            with patch.object(tarfile.ExFileObject, "read") as read:
+                read.return_value = b"\xff" * (build_index.MAX_METADATA_SIZE + 1)
+                with self.assertRaisesRegex(ValueError, "ARKPKG metadata exceeds"):
+                    build_index.read_metadata(path)
+                read.assert_called_once_with(build_index.MAX_METADATA_SIZE + 1)
 
 
 class BuildIndexTests(unittest.TestCase):

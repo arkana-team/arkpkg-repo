@@ -33,18 +33,21 @@ def privileged(command: list[str], *, log: Path | None = None) -> None:
             subprocess.run(full, stdout=output, stderr=subprocess.STDOUT, check=True)
 
 
-def source_archive(cache: Path) -> Path:
+def source_archive(cache: Path, private: Path) -> Path:
     cache.mkdir(parents=True, exist_ok=True)
-    archive_path = cache / f"{SOURCE_ROOT}.tar.gz"
-    if not archive_path.is_file():
+    cached_path = cache / f"{SOURCE_ROOT}.tar.gz"
+    if not cached_path.is_file():
         request = urllib.request.Request(
             URL, headers={"User-Agent": "arkpkg-repo-xosview-builder/1"}
         )
         with (
             urllib.request.urlopen(request, timeout=120) as response,
-            archive_path.open("wb") as output,
+            cached_path.open("wb") as output,
         ):
             shutil.copyfileobj(response, output)
+    # Verify and consume a private snapshot: the cache owner can replace its files.
+    archive_path = private / cached_path.name
+    shutil.copyfile(cached_path, archive_path)
     digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
     if digest != SHA256:
         raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
@@ -116,9 +119,14 @@ def main() -> None:
     parser.add_argument("--jobs", type=int, default=2, choices=(1, 2))
     args = parser.parse_args()
 
+    with tempfile.TemporaryDirectory(prefix="arkpkg-xosview-source-") as temporary:
+        source = source_archive(args.source_cache.resolve(), Path(temporary))
+        build(args, source)
+
+
+def build(args: argparse.Namespace, source: Path) -> None:
     sysroot = args.sysroot.resolve()
     arpkg = args.arkpkg.resolve()
-    source = source_archive(args.source_cache.resolve())
     for binary in ("gcc", "g++", "make", "pkg-config", "tar", "strip"):
         if not (sysroot / "usr/bin" / binary).exists():
             raise FileNotFoundError(f"target build root lacks /usr/bin/{binary}")

@@ -6,6 +6,7 @@ on:
       - "packages/**"
       - "packages/recipes/**"
       - "scripts/test-packages.py"
+      - "scripts/test-package-metadata-limits.py"
       - "scripts/test-package-audit-versions.py"
       - ".github/workflows/package-audit.yml"
   push:
@@ -13,6 +14,7 @@ on:
       - "packages/**"
       - "packages/recipes/**"
       - "scripts/test-packages.py"
+      - "scripts/test-package-metadata-limits.py"
       - "scripts/test-package-audit-versions.py"
       - ".github/workflows/package-audit.yml"
 
@@ -34,5 +36,7 @@ jobs:
         run: python3 -m pip install lz4
       - name: Test package version selection
         run: python3 scripts/test-package-audit-versions.py -v
+      - name: Test archive metadata limits
+        run: python3 scripts/test-package-metadata-limits.py -v
       - name: Audit all package archives
         run: python3 scripts/test-packages.py --arkpkg /usr/bin/true --audit-only

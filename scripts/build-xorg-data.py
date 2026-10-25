@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import tarfile
+import tempfile
 import urllib.request
 from pathlib import Path
 
@@ -88,17 +89,25 @@ def main() -> None:
         "--source-cache", type=Path, default=Path("/tmp/arkpkg-xorg-sources")
     )
     parser.add_argument(
-        "--staging", type=Path, default=Path("/tmp/arkpkg-xorg-data-staging")
+        "--staging",
+        type=Path,
+        help="new staging directory (default: private temporary directory)",
     )
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
 
+    if args.staging is None:
+        with tempfile.TemporaryDirectory(prefix="arkpkg-xorg-data-staging-") as temporary:
+            build(args, Path(temporary))
+    else:
+        staging = args.staging.absolute()
+        staging.mkdir(mode=0o700, parents=True)
+        build(args, staging)
+
+
+def build(args: argparse.Namespace, staging: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
-    staging = args.staging.resolve()
-    if staging.exists():
-        shutil.rmtree(staging)
-    staging.mkdir(parents=True)
     source = obtain_source(args.source_cache.resolve())
     count = stage_package(source, staging)
     command = [
@@ -115,6 +124,8 @@ def main() -> None:
         command.extend(("--output-dir", str(args.output_dir.resolve())))
     subprocess.run(command, check=True)
     print(f"Staged {count} upstream X.Org bitmaps in {NAME}")
+    if args.staging is not None:
+        print(f"Package staging preserved at {staging}")
 
 
 if __name__ == "__main__":
