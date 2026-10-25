@@ -276,6 +276,7 @@ class WorkstationManifestTests(unittest.TestCase):
                 )
 
     def test_hex_tools_batch_has_pinned_sources_and_upstream_credits(self) -> None:
+        """Validate pinned archives and upstream credits for hex-tool packages."""
         repo_root = Path(__file__).resolve().parents[1]
         manifest = json.loads(
             (repo_root / "data/debian-workstation-packages.json").read_text(
