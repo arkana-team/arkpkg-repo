@@ -15,6 +15,7 @@ import json
 import os
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import tarfile
@@ -172,29 +173,57 @@ def requested_package_closure(
     return requested
 
 
+def prepare_source_cache(cache: Path) -> Path:
+    """Create a private cache whose path cannot be replaced by another user."""
+    cache = cache.absolute()
+    owner = os.geteuid()
+    for directory in (*reversed(cache.parents), cache):
+        directory.mkdir(mode=0o700, exist_ok=True)
+        info = directory.lstat()
+        if (
+            not stat.S_ISDIR(info.st_mode)
+            or info.st_uid not in {0, owner}
+            or (info.st_mode & 0o022 and not info.st_mode & stat.S_ISVTX)
+        ):
+            raise ValueError(f"unsafe source cache directory: {directory}")
+        # A trusted sticky parent (such as /tmp) protects our directory entry.
+        if directory == cache and (info.st_uid != owner or info.st_mode & 0o077):
+            raise ValueError(
+                f"source cache must be owned by uid {owner} with mode 0700: {cache}"
+            )
+    return cache
+
+
 def obtain_deb(source: dict[str, str], cache: Path) -> Path:
+    cache = prepare_source_cache(cache)
     filename = PurePosixPath(source["filename"])
     archive = cache / filename.name
-    if archive.is_file() and sha256(archive) == source["sha256"]:
+    if (
+        not archive.is_symlink()
+        and archive.is_file()
+        and sha256(archive) == source["sha256"]
+    ):
         return archive
     archive.unlink(missing_ok=True)
-    archive.parent.mkdir(parents=True, exist_ok=True)
     request = urllib.request.Request(
         source_download_url(source),
         headers={"User-Agent": "arkpkg-repo-cli-package-builder/1"},
     )
-    temporary = archive.with_suffix(archive.suffix + ".download")
+    temporary = None
     try:
         for attempt in range(4):
             try:
-                with (
-                    urllib.request.urlopen(request, timeout=120) as response,
-                    temporary.open("wb") as output,
-                ):
-                    shutil.copyfileobj(response, output)
+                with tempfile.NamedTemporaryFile(
+                    dir=cache, prefix=f".{archive.name}.", suffix=".download", delete=False
+                ) as output:
+                    temporary = Path(output.name)
+                    with urllib.request.urlopen(request, timeout=120) as response:
+                        shutil.copyfileobj(response, output)
                 break
             except (urllib.error.URLError, TimeoutError, ConnectionError):
-                temporary.unlink(missing_ok=True)
+                if temporary is not None:
+                    temporary.unlink(missing_ok=True)
+                    temporary = None
                 if attempt == 3:
                     raise
                 time.sleep(2**attempt)
@@ -206,7 +235,8 @@ def obtain_deb(source: dict[str, str], cache: Path) -> Path:
             )
         temporary.replace(archive)
     finally:
-        temporary.unlink(missing_ok=True)
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
     return archive
 
 
@@ -479,8 +509,7 @@ def build(args: argparse.Namespace) -> None:
     if requested:
         requested = requested_package_closure(repo_root, packages, requested)
 
-    cache = args.source_cache.resolve()
-    cache.mkdir(parents=True, exist_ok=True)
+    cache = prepare_source_cache(args.source_cache)
     staging = args.staging.resolve() if args.staging else None
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)

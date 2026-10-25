@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Test license paths shared through package dependency symlinks."""
 
+import argparse
 import hashlib
 import importlib.util
 import io
@@ -14,6 +15,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
+from unittest.mock import patch
 
 BUILDER_PATH = Path(__file__).with_name("build-debian-cli-packages.py")
 SPEC = importlib.util.spec_from_file_location("debian_cli_builder", BUILDER_PATH)
@@ -1520,6 +1522,133 @@ class UpstreamReleasePackageTests(unittest.TestCase):
         )
         self.assertEqual(package["binary_path"], "usr/bin/yt-dlp")
         self.assertIn("usr/share/man/man1/yt-dlp.1", package["files"].values())
+
+
+class DebianDownloadCacheTests(unittest.TestCase):
+    def setUp(self) -> None:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.cache = self.root / "cache"
+        self.content = b"pinned Debian package bytes"
+        self.source = {
+            "filename": "pool/main/f/fixture/fixture.deb",
+            "sha256": hashlib.sha256(self.content).hexdigest(),
+        }
+
+    def test_download_creates_private_cache_and_reuses_verified_archive(self) -> None:
+        with patch.object(
+            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.content)
+        ) as download:
+            archive = BUILDER.obtain_deb(self.source, self.cache)
+            self.assertEqual(BUILDER.obtain_deb(self.source, self.cache), archive)
+        download.assert_called_once()
+        self.assertEqual(archive.read_bytes(), self.content)
+        self.assertEqual(stat.S_IMODE(self.cache.stat().st_mode), 0o700)
+        self.assertEqual(stat.S_IMODE(archive.stat().st_mode), 0o600)
+        self.assertEqual(list(self.cache.iterdir()), [archive])
+
+    def test_predictable_download_symlink_cannot_overwrite_another_file(self) -> None:
+        self.cache.mkdir(mode=0o700)
+        victim = self.root / "unrelated-file"
+        victim.write_bytes(b"keep me")
+        trap = self.cache / "fixture.deb.download"
+        trap.symlink_to(victim)
+        archive = self.cache / "fixture.deb"
+        archive.symlink_to(victim)
+        with patch.object(
+            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.content)
+        ):
+            self.assertEqual(BUILDER.obtain_deb(self.source, self.cache), archive)
+        self.assertEqual(victim.read_bytes(), b"keep me")
+        self.assertTrue(trap.is_symlink())
+        self.assertFalse(archive.is_symlink())
+        self.assertEqual(archive.read_bytes(), self.content)
+
+    def test_checksum_failure_removes_download_without_publishing_archive(self) -> None:
+        with (
+            patch.object(BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(b"bad")),
+            self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
+        ):
+            BUILDER.obtain_deb(self.source, self.cache)
+        self.assertEqual(list(self.cache.iterdir()), [])
+
+    def test_network_retries_clean_up_temporary_files(self) -> None:
+        for succeeds in (True, False):
+            with self.subTest(succeeds=succeeds):
+                responses = [BUILDER.urllib.error.URLError("interrupted")] * 4
+                if succeeds:
+                    responses[-1] = io.BytesIO(self.content)
+                with (
+                    patch.object(BUILDER.urllib.request, "urlopen", side_effect=responses),
+                    patch.object(BUILDER.time, "sleep"),
+                ):
+                    if succeeds:
+                        archive = BUILDER.obtain_deb(self.source, self.cache)
+                        self.assertEqual(archive.read_bytes(), self.content)
+                        archive.unlink()
+                    else:
+                        with self.assertRaises(BUILDER.urllib.error.URLError):
+                            BUILDER.obtain_deb(self.source, self.cache)
+                self.assertEqual(list(self.cache.iterdir()), [])
+
+    def test_non_private_caches_are_rejected_before_network_access(self) -> None:
+        self.cache.mkdir(mode=0o700)
+        for mode in (0o755, 0o770, 0o777, 0o1777):
+            with self.subTest(mode=oct(mode)):
+                self.cache.chmod(mode)
+                with (
+                    patch.object(BUILDER.urllib.request, "urlopen") as download,
+                    self.assertRaisesRegex(ValueError, "source cache"),
+                ):
+                    BUILDER.obtain_deb(self.source, self.cache)
+                download.assert_not_called()
+
+    def test_cache_owned_by_another_user_is_rejected(self) -> None:
+        self.cache.mkdir(mode=0o700)
+        original_lstat = Path.lstat
+
+        def lstat(path: Path, *args, **kwargs):
+            info = original_lstat(path, *args, **kwargs)
+            if path == self.cache:
+                values = list(info)
+                values[4] = os.geteuid() + 1
+                return os.stat_result(values)
+            return info
+
+        with (
+            patch.object(Path, "lstat", autospec=True, side_effect=lstat),
+            patch.object(BUILDER.urllib.request, "urlopen") as download,
+            self.assertRaisesRegex(ValueError, "source cache"),
+        ):
+            BUILDER.obtain_deb(self.source, self.cache)
+        download.assert_not_called()
+
+    def test_replaceable_parent_is_rejected_before_creating_cache(self) -> None:
+        self.root.chmod(0o777)
+        with self.assertRaisesRegex(ValueError, "unsafe source cache directory"):
+            BUILDER.obtain_deb(self.source, self.cache)
+        self.assertFalse(self.cache.exists())
+
+    def test_symlink_cache_and_parent_are_rejected(self) -> None:
+        target = self.root / "target"
+        target.mkdir(mode=0o700)
+        self.cache.symlink_to(target, target_is_directory=True)
+        for cache in (self.cache, self.cache / "nested"):
+            with self.subTest(cache=cache), self.assertRaisesRegex(ValueError, "source cache"):
+                BUILDER.obtain_deb(self.source, cache)
+        self.assertEqual(list(target.iterdir()), [])
+
+    def test_build_does_not_resolve_away_cache_symlinks(self) -> None:
+        self.cache.symlink_to(self.root, target_is_directory=True)
+        manifest = self.root / "manifest.json"
+        manifest.write_text(json.dumps({"sources": {}, "packages": []}), encoding="utf-8")
+        args = argparse.Namespace(
+            repo_root=self.root, manifest=manifest, packages=[], source_cache=self.cache
+        )
+        with self.assertRaisesRegex(ValueError, "source cache"):
+            BUILDER.build(args)
+
 
 
 if __name__ == "__main__":
