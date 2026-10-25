@@ -13,6 +13,7 @@ from urllib.parse import quote, urlsplit
 
 import lz4.frame
 
+MAX_METADATA_BYTES = 1024 * 1024  # Logical size, including sparse TAR holes.
 PACKAGE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 PACKAGE_VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
@@ -360,11 +361,16 @@ def read_metadata(archive_path: Path) -> dict[str, str]:
             if normalized_name == "package" or normalized_name.startswith("package/"):
                 has_package_tree = True
             if normalized_name == "ARKPKG" and member.isfile():
+                if not 0 <= member.size <= MAX_METADATA_BYTES:
+                    raise ValueError("ARKPKG metadata size exceeds limit")
                 stream = archive.extractfile(member)
                 if stream is None:
                     break
+                data = stream.read(MAX_METADATA_BYTES + 1)
+                if len(data) > MAX_METADATA_BYTES:
+                    raise ValueError("ARKPKG metadata size exceeds limit")
                 values: dict[str, str] = {}
-                for line in stream.read().decode("utf-8").splitlines():
+                for line in data.decode("utf-8").splitlines():
                     key, separator, value = line.partition(":")
                     if separator and key in {"Name", "Description", "Version", "Arch"}:
                         if key in values:

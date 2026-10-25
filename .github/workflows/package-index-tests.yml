@@ -9,6 +9,7 @@ on:
       - "data/package-metadata.json"
       - "scripts/build-index.py"
       - "scripts/test-build-index.py"
+      - "scripts/test-package-metadata-limits.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
       - ".github/workflows/package-index-tests.yml"
@@ -20,6 +21,7 @@ on:
       - "data/package-metadata.json"
       - "scripts/build-index.py"
       - "scripts/test-build-index.py"
+      - "scripts/test-package-metadata-limits.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
       - ".github/workflows/package-index-tests.yml"
@@ -46,3 +48,5 @@ jobs:
         run: python3 scripts/test-debian-cli-packages.py -v
       - name: Test package metadata and Pages generation
         run: python3 scripts/test-build-index.py -v
+      - name: Test archive metadata limits
+        run: python3 scripts/test-package-metadata-limits.py -v
