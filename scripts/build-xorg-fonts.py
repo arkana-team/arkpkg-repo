@@ -463,7 +463,8 @@ def main() -> None:
         "--source-cache", type=Path, default=Path("/tmp/arkpkg-xorg-sources")
     )
     parser.add_argument(
-        "--staging", type=Path, default=Path("/tmp/arkpkg-font-staging")
+        "--staging", type=Path,
+        help="create and retain a new staging directory (default: private temporary directory)",
     )
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path)
@@ -475,10 +476,18 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    if args.staging is None:
+        with tempfile.TemporaryDirectory(prefix="arkpkg-font-staging-") as temporary:
+            build(args, Path(temporary))
+    else:
+        staging = args.staging.absolute()
+        # Refuse pre-existing entries, including symlinks, without deleting them.
+        staging.mkdir(mode=0o700, parents=True)
+        build(args, staging)
+
+
+def build(args: argparse.Namespace, staging: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
-    staging = args.staging.resolve()
-    if staging.exists():
-        shutil.rmtree(staging)
     alias_staging = staging / ALIAS_NAME
     font_stagings = []
     font_counts = {}
