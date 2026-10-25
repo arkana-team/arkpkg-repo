@@ -4,16 +4,16 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
+
+from source_cache import source_snapshot
 
 SOURCE_NAME = "xcursor-themes"
 VERSION = "1.0.7"
@@ -57,21 +57,16 @@ def package_name(archive_path: Path) -> str:
     raise ValueError(f"package archive has no Name field: {archive_path}")
 
 
-def source_archive(cache: Path) -> Path:
-    cache.mkdir(parents=True, exist_ok=True)
-    archive_path = cache / f"{SOURCE_NAME}-{VERSION}.tar.xz"
-    if not archive_path.is_file():
-        request = urllib.request.Request(
-            SOURCE_URL, headers={"User-Agent": "arkpkg-repo-xcursor-builder/1"}
-        )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            archive_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
-    digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-    if digest != SOURCE_SHA256:
-        raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
+def source_archive(cache: Path, snapshots: Path) -> Path:
+    archive_path = source_snapshot(
+        cache,
+        snapshots,
+        f"{SOURCE_NAME}-{VERSION}.tar.xz",
+        SOURCE_URL,
+        SOURCE_SHA256,
+        user_agent="arkpkg-repo-xcursor-builder/1",
+        timeout=90,
+    )
     expected_root = f"{SOURCE_NAME}-{VERSION}"
     with tarfile.open(archive_path, "r:xz") as source:
         roots = set()
@@ -100,10 +95,15 @@ def copy_tree(source: Path, destination: Path) -> None:
 
 
 def build(args: argparse.Namespace) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-xcursor-sources-") as temporary:
+        build_with_sources(args, Path(temporary))
+
+
+def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
     sysroot = args.sysroot.resolve()
     repo_root = Path(__file__).resolve().parents[1]
     package_builder = repo_root / "scripts/build-arkana-packages.py"
-    archive = source_archive(args.source_cache.resolve())
+    archive = source_archive(args.source_cache.resolve(), snapshots)
     output_staging = args.output_staging.resolve()
 
     for binary in ("bash", "make", "pkg-config", "tar"):

@@ -4,16 +4,16 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
+
+from source_cache import source_snapshot
 
 FOX_NAME = "fox1.6-1.6.57"
 FOX_VERSION = "1.6.57"
@@ -65,22 +65,22 @@ def package_name(archive_path: Path) -> str:
 
 
 def source_archive(
-    cache: Path, filename: str, url: str, expected_sha256: str, expected_root: str
+    cache: Path,
+    snapshots: Path,
+    filename: str,
+    url: str,
+    expected_sha256: str,
+    expected_root: str,
 ) -> Path:
-    cache.mkdir(parents=True, exist_ok=True)
-    archive_path = cache / filename
-    if not archive_path.is_file():
-        request = urllib.request.Request(
-            url, headers={"User-Agent": "arkpkg-repo-xfe-builder/1"}
-        )
-        with (
-            urllib.request.urlopen(request, timeout=120) as response,
-            archive_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
-    digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-    if digest != expected_sha256:
-        raise ValueError(f"SHA-256 mismatch for {filename}: {digest}")
+    archive_path = source_snapshot(
+        cache,
+        snapshots,
+        filename,
+        url,
+        expected_sha256,
+        user_agent="arkpkg-repo-xfe-builder/1",
+        timeout=120,
+    )
     with tarfile.open(archive_path, "r:*") as source:
         roots = set()
         for member in source:
@@ -168,15 +168,25 @@ def add_license(archive: Path, source_root: str, source_path: str, destination: 
 
 
 def build(args: argparse.Namespace) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-xfe-sources-") as temporary:
+        build_with_sources(args, Path(temporary))
+
+
+def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
     sysroot = args.sysroot.resolve()
     repo_root = Path(__file__).resolve().parents[1]
     package_builder = repo_root / "scripts/build-arkana-packages.py"
     source_cache = args.source_cache.resolve()
     fox_archive = source_archive(
-        source_cache, FOX_ARCHIVE, FOX_URL, FOX_SHA256, FOX_NAME
+        source_cache, snapshots, FOX_ARCHIVE, FOX_URL, FOX_SHA256, FOX_NAME
     )
     xfe_archive = source_archive(
-        source_cache, XFE_ARCHIVE, XFE_URL, XFE_SHA256, f"{XFE_NAME}-{XFE_VERSION}"
+        source_cache,
+        snapshots,
+        XFE_ARCHIVE,
+        XFE_URL,
+        XFE_SHA256,
+        f"{XFE_NAME}-{XFE_VERSION}",
     )
     output_staging = args.output_staging.resolve()
     if output_staging.exists():
