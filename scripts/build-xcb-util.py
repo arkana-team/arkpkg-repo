@@ -87,7 +87,10 @@ def main() -> None:
     parser.add_argument("--xorg-util-macros-archive", type=Path, required=True)
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument(
-        "--source-cache", type=Path, default=Path("/tmp/arkpkg-xorg-sources")
+        "--source-cache",
+        type=Path,
+        default=Path.home() / ".cache/arkpkg-xcb-util-sources",
+        help="private source cache owned by the current user",
     )
     parser.add_argument(
         "--output-staging", type=Path, default=Path("/tmp/arkpkg-xcb-util-staging")
