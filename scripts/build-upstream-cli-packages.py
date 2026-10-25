@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import tarfile
@@ -96,28 +98,49 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def prepare_cache(cache: Path) -> Path:
+    cache = cache.absolute()
+    # Check parents too: another user must not be able to replace the cache.
+    for directory in reversed((cache, *cache.parents)):
+        directory.mkdir(mode=0o700, exist_ok=True)
+        metadata = directory.lstat()
+        allowed_owners = {os.geteuid()} if directory == cache else {0, os.geteuid()}
+        if not stat.S_ISDIR(metadata.st_mode) or metadata.st_uid not in allowed_owners:
+            raise ValueError(f"unsafe source cache directory: {directory}")
+        # A trusted sticky parent, such as /tmp, protects its owned children.
+        if metadata.st_mode & 0o022 and (
+            directory == cache or not metadata.st_mode & stat.S_ISVTX
+        ):
+            raise ValueError(f"source cache directory is writable by others: {directory}")
+    return cache
+
+
 def download(url: str, expected: str, cache: Path) -> Path:
+    cache = prepare_cache(cache)
     target = cache / url.rsplit("/", 1)[-1]
-    if target.is_file() and sha256(target) == expected:
+    if not target.is_symlink() and target.is_file() and sha256(target) == expected:
         return target
     target.unlink(missing_ok=True)
-    temporary = target.with_suffix(target.suffix + ".download")
     request = urllib.request.Request(
         url, headers={"User-Agent": "arkpkg-repo-upstream-package-builder/1"}
     )
+    temporary = None
     try:
-        for attempt in range(4):
-            try:
-                with urllib.request.urlopen(
-                    request, timeout=120
-                ) as response, temporary.open("wb") as output:
-                    shutil.copyfileobj(response, output)
-                break
-            except (urllib.error.URLError, TimeoutError, ConnectionError):
-                temporary.unlink(missing_ok=True)
-                if attempt == 3:
-                    raise
-                time.sleep(2**attempt)
+        with tempfile.NamedTemporaryFile(
+            dir=cache, prefix=f".{target.name}.", suffix=".download", delete=False
+        ) as output:
+            temporary = Path(output.name)
+            for attempt in range(4):
+                try:
+                    output.seek(0)
+                    output.truncate()
+                    with urllib.request.urlopen(request, timeout=120) as response:
+                        shutil.copyfileobj(response, output)
+                    break
+                except (urllib.error.URLError, TimeoutError, ConnectionError):
+                    if attempt == 3:
+                        raise
+                    time.sleep(2**attempt)
         actual = sha256(temporary)
         if actual != expected:
             raise ValueError(
@@ -125,7 +148,8 @@ def download(url: str, expected: str, cache: Path) -> Path:
             )
         temporary.replace(target)
     finally:
-        temporary.unlink(missing_ok=True)
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
     return target
 
 
@@ -225,8 +249,7 @@ def write_payload_file(target: Path, data: bytes, mode: int) -> None:
 
 def build(args: argparse.Namespace) -> None:
     repo_root = args.repo_root.resolve()
-    cache = args.source_cache.resolve()
-    cache.mkdir(parents=True, exist_ok=True)
+    cache = prepare_cache(args.source_cache)
     staging = args.staging.resolve()
     selected = args.packages or sorted(PACKAGES)
     unknown = set(selected).difference(PACKAGES)
