@@ -12,6 +12,11 @@ on:
       - "scripts/test-package-metadata-limits.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
+      - "scripts/build-pkgconf.py"
+      - "scripts/test-build-pkgconf.py"
+      - "scripts/test-build-pkgconf-sources.py"
+      - "scripts/build-upstream-cli-packages.py"
+      - "scripts/test-upstream-cli-packages.py"
       - "scripts/build-motif-nedit.py"
       - "scripts/test-motif-nedit-sources.py"
       - ".github/workflows/package-index-tests.yml"
@@ -26,6 +31,11 @@ on:
       - "scripts/test-package-metadata-limits.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
+      - "scripts/build-pkgconf.py"
+      - "scripts/test-build-pkgconf.py"
+      - "scripts/test-build-pkgconf-sources.py"
+      - "scripts/build-upstream-cli-packages.py"
+      - "scripts/test-upstream-cli-packages.py"
       - "scripts/build-motif-nedit.py"
       - "scripts/test-motif-nedit-sources.py"
       - ".github/workflows/package-index-tests.yml"
@@ -50,6 +60,12 @@ jobs:
         run: python3 scripts/test-package-index-tilde.py -v
       - name: Test pinned Debian package metadata
         run: python3 scripts/test-debian-cli-packages.py -v
+      - name: Test pkgconf metadata bounds
+        run: python3 scripts/test-build-pkgconf.py -v
+      - name: Test pkgconf source snapshots
+        run: python3 scripts/test-build-pkgconf-sources.py -v
+      - name: Test upstream source cache integrity
+        run: python3 scripts/test-upstream-cli-packages.py -v
       - name: Test Motif and NEdit source snapshots
         run: python3 scripts/test-motif-nedit-sources.py -v
       - name: Test package metadata and Pages generation
