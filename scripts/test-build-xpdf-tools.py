@@ -21,11 +21,13 @@ if SPEC is None or SPEC.loader is None:
     raise RuntimeError("could not load the Xpdf builder")
 BUILDER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(BUILDER)
+TEST_TMP = Path.home() / ".cache"
+TEST_TMP.mkdir(mode=0o700, parents=True, exist_ok=True)
 
 
 class SourceAuthenticationTests(unittest.TestCase):
     def setUp(self) -> None:
-        temporary = tempfile.TemporaryDirectory()
+        temporary = tempfile.TemporaryDirectory(dir=TEST_TMP)
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
         self.cache = self.root / "cache"
@@ -187,7 +189,7 @@ class SourceAuthenticationTests(unittest.TestCase):
                 ],
             ),
             patch.object(BUILDER, "privileged", side_effect=privileged),
-            patch.object(BUILDER.tempfile, "tempdir", str(self.cache)),
+            patch.object(BUILDER.tempfile, "tempdir", str(TEST_TMP)),
             patch.object(BUILDER.subprocess, "run") as package_build,
         ):
             if fail_install:
@@ -208,7 +210,9 @@ class SourceAuthenticationTests(unittest.TestCase):
 
 class XpdfStagingTests(unittest.TestCase):
     def setUp(self) -> None:
-        temporary = tempfile.TemporaryDirectory(prefix="xpdf-staging-test-")
+        temporary = tempfile.TemporaryDirectory(
+            prefix="xpdf-staging-test-", dir=TEST_TMP
+        )
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
         self.sysroot = self.root / "sysroot"

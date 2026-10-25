@@ -152,9 +152,7 @@ def main() -> None:
         )
     )
     try:
-        with tempfile.TemporaryDirectory(
-            prefix="arkpkg-xpdf-source-", dir="/tmp"
-        ) as source_dir:
+        with tempfile.TemporaryDirectory(prefix="arkpkg-xpdf-source-") as source_dir:
             source = obtain_source(args.source_cache.resolve(), Path(source_dir))
             privileged(["install", "-d", "-m", "755", str(work_host)])
             privileged(["install", "-m", "644", str(source), str(work_host / source.name)])
