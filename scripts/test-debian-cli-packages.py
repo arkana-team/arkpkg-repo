@@ -133,11 +133,13 @@ class WorkstationManifestTests(unittest.TestCase):
                 "libavdevice61",
                 "libdc1394-25",
                 "libdisplay-info2",
+                "libglew2.2",
                 "libarchive13t64",
                 "libiec61883-0",
                 "liblua5.2-0",
                 "libm17n-0",
                 "libotf1",
+                "libslopy7.6",
                 "libraw1394-11",
                 "libsixel1",
                 "libva-wayland2",
@@ -153,6 +155,10 @@ class WorkstationManifestTests(unittest.TestCase):
                 "robotfindskitten",
                 "sc",
                 "suckless-tools",
+                "slop",
+                "maim",
+                "nsxiv",
+                "xbindkeys",
                 "sxhkd",
                 "tty-solitaire",
                 "unrar-free",
@@ -700,6 +706,103 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertEqual(manifest_packages["x2x"]["dependencies"], [])
         self.assertEqual(manifest_packages["xrootconsole"]["dependencies"], [])
         self.assertEqual(manifest_packages["tigervnc-viewer"]["dependencies"], [])
+
+    def test_remote_workstation_batch_06_is_pinned_and_credited(self) -> None:
+        """Validate X11 utility pins, package records, and upstream credits."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-06.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "libglew2.2": (
+                "2.2.0-4+b2",
+                "0bd19a4e495a6e0dccd849c77e7d63117e151de8fcc046447e3fa3f6d70bb0c1",
+                "Milan Ikits, Marcelo E. Magallon, and Lev Povalahev",
+                "https://github.com/nigels-com/glew",
+                "upstream",
+                "https://github.com/nigels-com",
+            ),
+            "libslopy7.6": (
+                "7.6-5",
+                "a475f3beab332e7da7777c025afedd51e6f4559fb3f6185bcad4bd4fffda2893",
+                "Dalton Nell and contributors",
+                "https://github.com/naelstrof/slop",
+                "upstream",
+                "https://github.com/naelstrof",
+            ),
+            "maim": (
+                "5.8.0-1",
+                "d872ab3a3a3726067ca44dc02b87ca892a47f585be151d8d4641e5a137b27772",
+                "Dalton Nell and contributors",
+                "https://github.com/naelstrof/maim",
+                "upstream",
+                "https://github.com/naelstrof",
+            ),
+            "nsxiv": (
+                "33-1",
+                "213007b215de5b77aebac87a1463ad705e3a0ca828feec38fe38d34a307b9336",
+                "Bert Münnich and nsxiv contributors",
+                "https://codeberg.org/nsxiv/nsxiv",
+                "upstream",
+                "https://codeberg.org/nsxiv",
+            ),
+            "slop": (
+                "7.6-5",
+                "09621d32aa02e0b1ae0bc7d9c2faa5e095957d75d34672f1253781770b0b9f40",
+                "Dalton Nell and contributors",
+                "https://github.com/naelstrof/slop",
+                "upstream",
+                "https://github.com/naelstrof",
+            ),
+            "xbindkeys": (
+                "1.8.7-2",
+                "5b30ba7ae3f4c6c11fa216664f5f0588b34341c8ac1c6e31a862c045869e0dae",
+                "Philippe Brochard and Marcello Mathias Herreshoff",
+                "https://www.nongnu.org/xbindkeys/",
+                "upstream",
+                "https://hocwp.free.fr/",
+            ),
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+
+        for name, (version, digest, author, git_repo, repo_type, author_url) in (
+            expected.items()
+        ):
+            with self.subTest(package=name):
+                package = batch_packages[name]
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(package["debian_packages"], [name])
+                self.assertEqual(batch["sources"][name], manifest["sources"][name])
+                self.assertEqual(batch["sources"][name]["sha256"], digest)
+                self.assertTrue(batch["sources"][name]["filename"].startswith("pool/"))
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], repo_type)
+                self.assertEqual(metadata[name]["git_author_url"], author_url)
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+        self.assertIn("libglew2.2", manifest_packages["libslopy7.6"]["dependencies"])
+        self.assertIn("libslopy7.6", manifest_packages["slop"]["dependencies"])
+        self.assertIn("slop", manifest_packages["maim"]["dependencies"])
+        self.assertNotIn("exclude_paths", manifest_packages["nsxiv"])
+        self.assertIn("guile", manifest_packages["xbindkeys"]["dependencies"])
 
 
 class UpstreamDownloadTests(unittest.TestCase):

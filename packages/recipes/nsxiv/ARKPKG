@@ -1,0 +1,12 @@
+Name: nsxiv
+Description: Lightweight image viewer for X11
+Version: 33-1
+Arch: x86_64
+URL: https://codeberg.org/nsxiv/nsxiv
+License: GPL-2.0+
+Maintainer: arkanaOS Team
+Dependencies:
+  libexif12
+  libimlib2t64
+  libxft
+Provides: nsxiv=/usr/bin/nsxiv

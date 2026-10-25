@@ -1,0 +1,11 @@
+Name: slop
+Description: Select and highlight a region of an X11 display
+Version: 7.6-5
+Arch: x86_64
+URL: https://github.com/naelstrof/slop
+License: GPL-3.0+
+Maintainer: arkanaOS Team
+Dependencies:
+  libicu76
+  libslopy7.6
+Provides: slop=/usr/bin/slop

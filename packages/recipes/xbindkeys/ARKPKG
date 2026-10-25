@@ -1,0 +1,10 @@
+Name: xbindkeys
+Description: Bind X11 key and mouse combinations to commands
+Version: 1.8.7-2
+Arch: x86_64
+URL: https://www.nongnu.org/xbindkeys/
+License: GPL-2+
+Maintainer: arkanaOS Team
+Dependencies:
+  guile
+Provides: xbindkeys=/usr/bin/xbindkeys, xbindkeys_autostart=/usr/bin/xbindkeys_autostart, xbindkeys_show=/usr/bin/xbindkeys_show

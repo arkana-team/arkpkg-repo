@@ -1,0 +1,8 @@
+Name: libglew2.2
+Description: OpenGL Extension Wrangler Library runtime
+Version: 2.2.0-4+b2
+Arch: x86_64
+URL: https://github.com/nigels-com/glew
+License: BSD-3-Clause
+Maintainer: arkanaOS Team
+Provides: libGLEW.so.2.2=/usr/lib/x86_64-linux-gnu/libGLEW.so.2.2.0

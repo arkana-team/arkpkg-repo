@@ -1,0 +1,19 @@
+Name: maim
+Description: X11 screenshot utility with optional region selection
+Version: 5.8.0-1
+Arch: x86_64
+URL: https://github.com/naelstrof/maim
+License: GPL-3+
+Maintainer: arkanaOS Team
+Dependencies:
+  libicu76
+  libjpeg62-turbo
+  libpng16-16t64
+  libslopy7.6
+  libwebp7
+  libxcomposite
+  libxfixes
+  libxrandr
+  libxrender
+  slop
+Provides: maim=/usr/bin/maim
