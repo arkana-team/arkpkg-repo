@@ -1,0 +1,8 @@
+Name: bmake
+Description: Portable BSD make implementation
+Version: 20200710-17
+Arch: x86_64
+URL: https://www.crufty.net/help/sjg/bmake.html
+License: See /usr/share/doc/bmake/copyright
+Maintainer: arkanaOS Team
+Provides: bmake=/usr/bin/bmake, mkdep=/usr/bin/mkdep, pmake=/usr/bin/pmake

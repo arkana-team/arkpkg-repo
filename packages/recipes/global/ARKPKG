@@ -1,0 +1,13 @@
+Name: global
+Description: Source-code tagging and cross-reference tools
+Version: 6.6.13-1
+Arch: x86_64
+URL: https://www.gnu.org/software/global/global.html
+License: See /usr/share/doc/global/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libltdl
+  libsqlite3-0
+  libtinfo6
+  ncurses-compat-libs
+Provides: exuberant-ctags.so=/usr/lib/x86_64-linux-gnu/gtags/exuberant-ctags.so, global=/usr/bin/global, globash=/usr/bin/globash, gozilla=/usr/bin/gozilla, gtags-cscope=/usr/bin/gtags-cscope, gtags=/usr/bin/gtags, htags-server=/usr/bin/htags-server, htags=/usr/bin/htags, pygments-parser.so=/usr/lib/x86_64-linux-gnu/gtags/pygments-parser.so, universal-ctags.so=/usr/lib/x86_64-linux-gnu/gtags/universal-ctags.so, user-custom.so=/usr/lib/x86_64-linux-gnu/gtags/user-custom.so

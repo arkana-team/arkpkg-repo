@@ -1,0 +1,10 @@
+Name: robotfindskitten
+Description: Terminal exploration game about a robot finding a kitten
+Version: 2.8284271.702-1
+Arch: x86_64
+URL: http://www.robotfindskitten.org/
+License: See /usr/share/doc/robotfindskitten/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs

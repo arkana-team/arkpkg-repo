@@ -1,0 +1,10 @@
+Name: atool
+Description: Command-line front end for managing common archive formats
+Version: 0.39.0-14
+Arch: x86_64
+URL: https://www.nongnu.org/atool/
+License: See /usr/share/doc/atool/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: acat=/usr/bin/acat, adiff=/usr/bin/adiff, als=/usr/bin/als, apack=/usr/bin/apack, arepack=/usr/bin/arepack, atool=/usr/bin/atool, aunpack=/usr/bin/aunpack

@@ -73,6 +73,10 @@ python3 scripts/build-debian-cli-packages.py \
   --packages mpv ffmpeg
 ```
 
+Building `xfonts-base`, `xfonts-75dpi`, or `xfonts-100dpi` also requires
+`mkfontscale` and `mkfontdir` on `PATH`; the builder generates each package's
+`fonts.scale` and `fonts.dir` indexes before creating its archive.
+
 ## Validation
 
 Install the Python `lz4` module and have a built `arkpkg` executable available.

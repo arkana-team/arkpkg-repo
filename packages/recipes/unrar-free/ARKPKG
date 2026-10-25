@@ -1,0 +1,10 @@
+Name: unrar-free
+Description: Free software extractor for RAR archives
+Version: 1:0.3.1-1
+Arch: x86_64
+URL: https://gitlab.com/bgermann/unrar-free
+License: See /usr/share/doc/unrar-free/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libarchive13t64
+Provides: unrar-free=/usr/bin/unrar-free

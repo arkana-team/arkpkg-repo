@@ -1,0 +1,8 @@
+Name: xmbmon
+Description: X based hardware monitor without kernel dependencies
+Version: 2.05-10
+Arch: x86_64
+URL: http://www.nt.phys.kyushu-u.ac.jp/shimizu/download/download.html
+License: See /usr/share/doc/xmbmon/copyright
+Maintainer: arkanaOS Team
+Provides: xmbmon=/usr/bin/xmbmon

@@ -33,6 +33,11 @@ PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 NEEDED = re.compile(r"Shared library: \[(.+?)\]")
 SONAME = re.compile(r"Library soname: \[(.+?)\]")
 LIBRARY_FILE = re.compile(r"lib[^/]+\.so(?:\.[A-Za-z0-9._+-]+)?\Z")
+BITMAP_FONT_DIRECTORIES = {
+    "xfonts-base": "usr/share/fonts/X11/misc",
+    "xfonts-75dpi": "usr/share/fonts/X11/75dpi",
+    "xfonts-100dpi": "usr/share/fonts/X11/100dpi",
+}
 
 
 def sha256(path: Path) -> str:
@@ -48,6 +53,37 @@ def source_download_url(source: dict[str, str]) -> str:
     if filename.is_absolute() or ".." in filename.parts:
         raise ValueError(f"unsafe Debian filename: {source['filename']!r}")
     return f"{BASE_URL}/{filename.as_posix()}"
+
+
+def generate_bitmap_font_indexes(payload: Path, package_name: str) -> None:
+    """Generate legacy X11 font indexes for Debian's bitmap font payloads."""
+    relative_directory = BITMAP_FONT_DIRECTORIES.get(package_name)
+    if relative_directory is None:
+        return
+
+    font_directory = payload / relative_directory
+    if not font_directory.is_dir():
+        raise FileNotFoundError(
+            f"{package_name}: missing bitmap font directory {relative_directory}"
+        )
+
+    tools = {name: shutil.which(name) for name in ("mkfontscale", "mkfontdir")}
+    missing = [name for name, path in tools.items() if path is None]
+    if missing:
+        raise FileNotFoundError(
+            f"{package_name}: required font index tool(s) not found: "
+            f"{', '.join(missing)}"
+        )
+
+    for name in ("mkfontscale", "mkfontdir"):
+        tool = tools[name]
+        assert tool is not None
+        subprocess.run([tool], cwd=font_directory, check=True)
+
+    for filename in ("fonts.scale", "fonts.dir"):
+        index = font_directory / filename
+        if not index.is_file() or index.is_symlink():
+            raise RuntimeError(f"{package_name}: {filename} was not generated")
 
 
 def is_elf(path: Path) -> bool:
@@ -535,6 +571,7 @@ def build(args: argparse.Namespace) -> None:
 
             relocate_debian_python_packages(payload, staging)
             exclude_package_paths(payload, package.get("exclude_paths", []), name)
+            generate_bitmap_font_indexes(payload, name)
 
             for link, target in package.get("symlinks", []):
                 link_path = payload / link

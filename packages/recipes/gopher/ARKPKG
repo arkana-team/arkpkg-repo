@@ -1,0 +1,11 @@
+Name: gopher
+Description: Distributed hypertext client for the Gopher protocol
+Version: 3.0.18
+Arch: x86_64
+URL: https://github.com/jgoerzen/gopher
+License: See /usr/share/doc/gopher/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs
+Provides: gopher=/usr/bin/gopher, gophfilt=/usr/bin/gophfilt

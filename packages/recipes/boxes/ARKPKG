@@ -1,0 +1,11 @@
+Name: boxes
+Description: Text-mode box and comment drawing filter
+Version: 2.3.1-1
+Arch: x86_64
+URL: https://boxes.thomasjensen.com/
+License: See /usr/share/doc/boxes/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  libunistring-libs
+Provides: boxes=/usr/bin/boxes

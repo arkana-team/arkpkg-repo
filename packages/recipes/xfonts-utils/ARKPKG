@@ -1,0 +1,12 @@
+Name: xfonts-utils
+Description: Utilities for compiling and indexing X.Org bitmap fonts
+Version: 1:7.7+7
+Arch: x86_64
+URL: https://www.x.org/
+License: See /usr/share/doc/xfonts-utils/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  fonttosfnt
+  mkfontscale
+  xfonts-encodings
+Provides: bdftopcf=/usr/bin/bdftopcf, update-fonts-alias=/usr/sbin/update-fonts-alias, update-fonts-dir=/usr/sbin/update-fonts-dir, update-fonts-scale=/usr/sbin/update-fonts-scale

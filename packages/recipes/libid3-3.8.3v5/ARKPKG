@@ -1,0 +1,8 @@
+Name: libid3-3.8.3v5
+Description: ID3v1 and ID3v2 tag manipulation library
+Version: 3.8.3-18+b3
+Arch: x86_64
+URL: http://id3lib.sourceforge.net/
+License: See /usr/share/doc/libid3-3.8.3v5/copyright
+Maintainer: arkanaOS Team
+Provides: libid3-3.8.so.3=/usr/lib/x86_64-linux-gnu/libid3-3.8.so.3.0.0

@@ -1,0 +1,10 @@
+Name: id3v2
+Description: Command-line ID3v2 audio tag editor
+Version: 0.1.12+dfsg-7
+Arch: x86_64
+URL: https://id3v2.sourceforge.net/
+License: See /usr/share/doc/id3v2/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libid3-3.8.3v5
+Provides: id3v2=/usr/bin/id3v2

@@ -1,0 +1,10 @@
+Name: nudoku
+Description: Terminal Sudoku game using ncurses
+Version: 2.1.0-0.2
+Arch: x86_64
+URL: https://github.com/jubalh/nudoku
+License: See /usr/share/doc/nudoku/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-libs

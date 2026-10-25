@@ -111,12 +111,22 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertEqual(
             names,
             {
+                "astyle",
+                "atool",
+                "bmake",
+                "boxes",
+                "cscope",
                 "ffmpeg",
                 "dhex",
                 "hexcurse",
                 "hexer",
+                "freesweep",
+                "global",
+                "greed",
+                "id3v2",
                 "jove",
                 "libxaw7",
+                "libid3-3.8.3v5",
                 "libavc1394-0",
                 "libxcb-cursor0",
                 "libavdevice61",
@@ -132,13 +142,27 @@ class WorkstationManifestTests(unittest.TestCase):
                 "libva-wayland2",
                 "libxpresent1",
                 "m17n-db",
+                "moon-buggy",
                 "mpv",
+                "nudoku",
+                "gopher",
                 "pcal",
+                "rename",
                 "rofi",
+                "robotfindskitten",
                 "sc",
                 "suckless-tools",
                 "sxhkd",
+                "tty-solitaire",
+                "unrar-free",
+                "vitetris",
                 "x11vnc",
+                "xmbmon",
+                "xfonts-100dpi",
+                "xfonts-75dpi",
+                "xfonts-base",
+                "xfonts-encodings",
+                "xfonts-utils",
                 "xmahjongg",
                 "vbindiff",
                 "w3m-img",
@@ -159,6 +183,30 @@ class WorkstationManifestTests(unittest.TestCase):
             "libraw1394-11", package_by_name["libdc1394-25"]["dependencies"]
         )
         self.assertEqual(package_by_name["rofi"]["dependencies"], ["libxcb-cursor0"])
+        self.assertEqual(package_by_name["atool"]["dependencies"], ["perl"])
+        self.assertEqual(package_by_name["rename"]["dependencies"], ["perl"])
+        expected_font_alias_symlinks = {
+            "xfonts-base": [
+                [
+                    "usr/share/fonts/X11/misc/fonts.alias",
+                    "../../../../../etc/X11/fonts/misc/xfonts-base.alias",
+                ]
+            ],
+            "xfonts-75dpi": [
+                [
+                    "usr/share/fonts/X11/75dpi/fonts.alias",
+                    "../../../../../etc/X11/fonts/75dpi/xfonts-75dpi.alias",
+                ]
+            ],
+            "xfonts-100dpi": [
+                [
+                    "usr/share/fonts/X11/100dpi/fonts.alias",
+                    "../../../../../etc/X11/fonts/100dpi/xfonts-100dpi.alias",
+                ]
+            ],
+        }
+        for name, symlinks in expected_font_alias_symlinks.items():
+            self.assertEqual(package_by_name[name]["symlinks"], symlinks)
         self.assertTrue(
             {"libarchive13t64", "libdisplay-info2"}
             <= set(package_by_name["mpv"]["dependencies"])
@@ -205,6 +253,7 @@ class WorkstationManifestTests(unittest.TestCase):
             "sc",
             "w3m-img",
             "xcolors",
+            "xmbmon",
         }
         for package in packages:
             with self.subTest(credits=package["name"]):
@@ -396,6 +445,182 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertEqual(metadata["author"], "David Peter")
         self.assertEqual(metadata["git_repo"], "https://github.com/sharkdp/hexyl")
         self.assertEqual(metadata["git_author_url"], "https://github.com/sharkdp")
+
+    def test_classic_workstation_batch_04_is_pinned_and_credited(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-04.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "astyle": (
+                "3.1-3+b3",
+                "c9d64823182e577eb2c9cc75e8e76de7fe4a4407f3bf8f3a86d073c233698d1e",
+            ),
+            "atool": (
+                "0.39.0-14",
+                "84cc879bd99bf927fea54a652673d4ab65105d05318e4da4fb69c08e9aeefbba",
+            ),
+            "bmake": (
+                "20200710-17",
+                "7def59c505272cae2235b9b546e494e38ad422821cb4b13c6e7b9bd73c45fd31",
+            ),
+            "boxes": (
+                "2.3.1-1",
+                "3f5b05d39df74f3f1af4561dab0262a28211fb46e6f40b3f704741ae50985fa6",
+            ),
+            "cscope": (
+                "15.9-2",
+                "dfd2420cf5a8de16bf546c70b5eeb2f7d2825155ff0d1c54cd4d65c5c7e2c248",
+            ),
+            "freesweep": (
+                "1.0.2-2",
+                "d15fe209bb89583ee9d9b426d551e219a505c57817690d97f1d9161033195fb5",
+            ),
+            "greed": (
+                "4.3-2",
+                "be1e996e81589b2ea085f5c7399a03b5eaa65989172d3d19cdef332ffd0f3ad2",
+            ),
+            "global": (
+                "6.6.13-1",
+                "d2547b8d8fffaa4a3bcd56f57dbb04f85d1fd22f34a1f3d173e6e5d70cb91858",
+            ),
+            "id3v2": (
+                "0.1.12+dfsg-7",
+                "cb727feb74891d5f354a01ea68c7756bbf6846cb12bd865ecd1e40736e03e0a6",
+            ),
+            "libid3-3.8.3v5": (
+                "3.8.3-18+b3",
+                "6a1e7980c7788fce3d0754d21a26693d60c01444580e3c22c6f92b2cc9612e67",
+            ),
+            "moon-buggy": (
+                "1:1.0.51-15",
+                "7e46ff0d1d9a83423e42755c9ab079daba590d0dc21cf1347081163e2621e6ec",
+            ),
+            "nudoku": (
+                "2.1.0-0.2",
+                "5355f7045cc7388e2eb06582cfeb8364dc949879298263502f275d6a02351ac8",
+            ),
+            "gopher": (
+                "3.0.18",
+                "77ad5fe5fff12280da5687873454deea427cf0cbadb388738bd37f434876dc12",
+            ),
+            "rename": (
+                "2.02-1",
+                "b3d96a5da8e89e7fce6c9c144a1199c40c29b608bbd62ac72f7e779d088ea537",
+            ),
+            "robotfindskitten": (
+                "2.8284271.702-1",
+                "a4ade5ccc5552296df46f3db66b4582f4adada924c9ec7a11bd11ab2a42f1bb6",
+            ),
+            "tty-solitaire": (
+                "1.3.1-1+b1",
+                "8688db5b90c2d9ba32683747f966b4f15fc7203389c3172c8a244f78c2791bfc",
+            ),
+            "unrar-free": (
+                "1:0.3.1-1",
+                "3481b72c4b0ea60ceba920ed8e6c255084c8c1c0c85ffe2971117305715d0467",
+            ),
+            "vitetris": (
+                "0.59.1-3",
+                "5b1fb6539d518b9935c8e59801a793e4b6e493730dc605f8b43c57cceeca0bb4",
+            ),
+            "xmbmon": (
+                "2.05-10",
+                "b9e538f7c2cd6194169eaec7afed22cae95aea88477d198a3529c922dbcf5872",
+            ),
+            "xfonts-encodings": (
+                "1:1.0.4-2.2",
+                "56143f317d241b6dee0275aa1066df936a776810d3bb83fe58563965d9bbe3d3",
+            ),
+            "xfonts-utils": (
+                "1:7.7+7",
+                "36e77ba3fd25a42d4b807808de93eba87c0bd53981ee94d27da4cee502387f35",
+            ),
+            "xfonts-100dpi": (
+                "1:1.0.5",
+                "fcb97826afdd312bba1a4d13870be239767065880d523cddd91b882d2a1332ba",
+            ),
+            "xfonts-75dpi": (
+                "1:1.0.5",
+                "5f2ba56e3c57e494fab35c4907c4be6026aa6d0e94eecbd37f957c8a6b8746ed",
+            ),
+            "xfonts-base": (
+                "1:1.0.5+nmu1",
+                "24446137c63de94283dc808eef438918e243f518629844289a5af50a8e0aec23",
+            ),
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+
+        for name, (version, digest) in expected.items():
+            with self.subTest(package=name):
+                package = batch_packages[name]
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(batch["sources"][name], manifest["sources"][name])
+                self.assertEqual(batch["sources"][name]["sha256"], digest)
+                self.assertTrue(batch["sources"][name]["filename"].startswith("pool/"))
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                self.assertTrue(metadata[name]["author"])
+                self.assertTrue(metadata[name]["git_repo"].startswith("https://"))
+                self.assertIn(
+                    metadata[name]["git_repo_type"],
+                    {"upstream", "packaging", "arkpkg-recipe"},
+                )
+                if name == "xmbmon":
+                    self.assertIsNone(metadata[name]["git_author_url"])
+                else:
+                    self.assertTrue(metadata[name]["git_author_url"].startswith("http"))
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+        self.assertEqual(
+            manifest_packages["id3v2"]["dependencies"], ["libid3-3.8.3v5"]
+        )
+        self.assertEqual(
+            metadata["bmake"]["author"],
+            "Adam de Boor, Simon J. Gerraty, and NetBSD contributors",
+        )
+        self.assertEqual(
+            metadata["gopher"]["author"],
+            "University of Minnesota, John Goerzen, and the Gopher team",
+        )
+        self.assertEqual(metadata["xmbmon"]["author"], "Yoshifumi R. Shimizu")
+        self.assertEqual(
+            metadata["xmbmon"]["git_repo"],
+            "https://salsa.debian.org/salvage-team/xmbmon.git",
+        )
+        self.assertEqual(
+            metadata["xmbmon"]["git_author_url"],
+            None,
+        )
+        self.assertEqual(
+            manifest_packages["xfonts-utils"]["dependencies"],
+            ["fonttosfnt", "mkfontscale", "xfonts-encodings"],
+        )
+        self.assertEqual(
+            set(manifest_packages["xfonts-utils"]["exclude_paths"]),
+            {
+                "usr/bin/bdftruncate",
+                "usr/bin/fonttosfnt",
+                "usr/bin/mkfontdir",
+                "usr/bin/mkfontscale",
+                "usr/bin/ucs2any",
+            },
+        )
 
 
 class UpstreamDownloadTests(unittest.TestCase):
@@ -1752,6 +1977,74 @@ class DebianDownloadCacheTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source cache"):
             BUILDER.build(args)
 
+
+
+class BitmapFontIndexTests(unittest.TestCase):
+    def test_debian_bitmap_font_packages_generate_legacy_indexes(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            payload = root / "payload"
+            fake_bin = root / "bin"
+            fake_bin.mkdir()
+            log = root / "tool-calls.log"
+
+            mkfontscale = fake_bin / "mkfontscale"
+            mkfontscale.write_text(
+                "#!/bin/sh\n"
+                "printf 'mkfontscale %s\\n' \"$PWD\" >> \"$FONT_INDEX_LOG\"\n"
+                "printf '1\\nfixture.pcf.gz test-xlfd\\n' > fonts.scale\n",
+                encoding="utf-8",
+            )
+            mkfontscale.chmod(0o755)
+            mkfontdir = fake_bin / "mkfontdir"
+            mkfontdir.write_text(
+                "#!/bin/sh\n"
+                "printf 'mkfontdir %s\\n' \"$PWD\" >> \"$FONT_INDEX_LOG\"\n"
+                "printf '1\\nfixture.pcf.gz test-xlfd\\n' > fonts.dir\n",
+                encoding="utf-8",
+            )
+            mkfontdir.chmod(0o755)
+
+            with patch.dict(
+                os.environ,
+                {"PATH": str(fake_bin), "FONT_INDEX_LOG": str(log)},
+            ):
+                for package, relative_directory in BUILDER.BITMAP_FONT_DIRECTORIES.items():
+                    font_directory = payload / relative_directory
+                    font_directory.mkdir(parents=True)
+                    BUILDER.generate_bitmap_font_indexes(payload, package)
+                    for index_name in ("fonts.scale", "fonts.dir"):
+                        self.assertEqual(
+                            (font_directory / index_name).read_text(encoding="ascii"),
+                            "1\nfixture.pcf.gz test-xlfd\n",
+                        )
+
+            expected = []
+            for relative_directory in BUILDER.BITMAP_FONT_DIRECTORIES.values():
+                font_directory = payload / relative_directory
+                expected.extend(
+                    f"{tool} {font_directory}"
+                    for tool in ("mkfontscale", "mkfontdir")
+                )
+            self.assertEqual(log.read_text(encoding="utf-8").splitlines(), expected)
+
+    def test_non_font_packages_do_not_require_font_tools(self) -> None:
+        with (
+            tempfile.TemporaryDirectory() as temporary,
+            patch.object(BUILDER.shutil, "which", return_value=None),
+        ):
+            BUILDER.generate_bitmap_font_indexes(Path(temporary), "atool")
+
+    def test_missing_font_index_tools_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            payload = Path(temporary)
+            font_directory = payload / BUILDER.BITMAP_FONT_DIRECTORIES["xfonts-base"]
+            font_directory.mkdir(parents=True)
+            with (
+                patch.object(BUILDER.shutil, "which", return_value=None),
+                self.assertRaisesRegex(FileNotFoundError, "mkfontscale, mkfontdir"),
+            ):
+                BUILDER.generate_bitmap_font_indexes(payload, "xfonts-base")
 
 
 if __name__ == "__main__":
