@@ -560,6 +560,8 @@ def build(args: argparse.Namespace, staging: Path) -> None:
         print(f"Staged {count} upstream font files in {package_name}")
     if ALIAS_NAME in package_names:
         print(f"Staged {alias_count} upstream X.Org font alias sets")
+    if args.staging is not None:
+        print(f"Package staging preserved at {staging}")
 
 
 if __name__ == "__main__":
