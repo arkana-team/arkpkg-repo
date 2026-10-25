@@ -276,7 +276,6 @@ class WorkstationManifestTests(unittest.TestCase):
                 )
 
     def test_hex_tools_batch_has_pinned_sources_and_upstream_credits(self) -> None:
-        """Validate pinned archives and upstream credits for hex-tool packages."""
         repo_root = Path(__file__).resolve().parents[1]
         manifest = json.loads(
             (repo_root / "data/debian-workstation-packages.json").read_text(
@@ -454,6 +453,7 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertEqual(metadata["git_author_url"], "https://github.com/sharkdp")
 
     def test_classic_workstation_batch_04_is_pinned_and_credited(self) -> None:
+        """Validate pinned archives and source credits for workstation batch 04."""
         repo_root = Path(__file__).resolve().parents[1]
         manifest = json.loads(
             (repo_root / "data/debian-workstation-packages.json").read_text(
