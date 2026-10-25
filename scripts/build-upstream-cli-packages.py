@@ -98,54 +98,61 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def prepare_cache(cache: Path) -> None:
-    cache.mkdir(mode=0o700, parents=True, exist_ok=True)
-    metadata = cache.lstat()
-    if (
-        not stat.S_ISDIR(metadata.st_mode)
-        or metadata.st_uid != os.geteuid()
-        or metadata.st_mode & 0o022
-    ):
-        raise ValueError(
-            f"unsafe source cache: {cache}; must be a real directory owned by "
-            "the current user and not writable by group or others"
-        )
+def prepare_cache(cache: Path) -> Path:
+    cache = cache.absolute()
+    # Check parents too: another user must not be able to replace the cache.
+    for directory in reversed((cache, *cache.parents)):
+        directory.mkdir(mode=0o700, exist_ok=True)
+        metadata = directory.lstat()
+        allowed_owners = {os.geteuid()} if directory == cache else {0, os.geteuid()}
+        if not stat.S_ISDIR(metadata.st_mode) or metadata.st_uid not in allowed_owners:
+            raise ValueError(f"unsafe source cache directory: {directory}")
+        # A trusted sticky parent, such as /tmp, protects its owned children.
+        if metadata.st_mode & 0o022 and (
+            directory == cache or not metadata.st_mode & stat.S_ISVTX
+        ):
+            raise ValueError(
+                f"unsafe source cache directory is writable by others: {directory}"
+            )
+    return cache
 
 
 def download(url: str, expected: str, cache: Path, work: Path) -> Path:
-    """Return a verified snapshot in the caller's private temporary directory."""
+    """Return verified bytes from a private snapshot, never from the shared cache."""
+    cache = prepare_cache(cache)
     target = cache / url.rsplit("/", 1)[-1]
     snapshot = work / target.name
-    if target.is_file():
+    if not target.is_symlink() and target.is_file():
         shutil.copyfile(target, snapshot)
         if sha256(snapshot) == expected:
             return snapshot
     request = urllib.request.Request(
         url, headers={"User-Agent": "arkpkg-repo-upstream-package-builder/1"}
     )
-    for attempt in range(4):
-        try:
-            with urllib.request.urlopen(
-                request, timeout=120
-            ) as response, snapshot.open("wb") as output:
-                shutil.copyfileobj(response, output)
-            break
-        except (urllib.error.URLError, TimeoutError, ConnectionError):
-            snapshot.unlink(missing_ok=True)
-            if attempt == 3:
-                raise
-            time.sleep(2**attempt)
-    actual = sha256(snapshot)
-    if actual != expected:
-        raise ValueError(
-            f"SHA-256 mismatch for {target.name}: expected {expected}, got {actual}"
-        )
     temporary = None
     try:
-        with tempfile.NamedTemporaryFile(dir=cache, delete=False) as output:
+        with tempfile.NamedTemporaryFile(
+            dir=cache, prefix=f".{target.name}.", suffix=".download", delete=False
+        ) as output:
             temporary = Path(output.name)
-            with snapshot.open("rb") as source:
-                shutil.copyfileobj(source, output)
+            for attempt in range(4):
+                try:
+                    output.seek(0)
+                    output.truncate()
+                    with urllib.request.urlopen(request, timeout=120) as response:
+                        shutil.copyfileobj(response, output)
+                    break
+                except (urllib.error.URLError, TimeoutError, ConnectionError):
+                    if attempt == 3:
+                        raise
+                    time.sleep(2**attempt)
+        shutil.copyfile(temporary, snapshot)
+        actual = sha256(snapshot)
+        if actual != expected:
+            snapshot.unlink(missing_ok=True)
+            raise ValueError(
+                f"SHA-256 mismatch for {target.name}: expected {expected}, got {actual}"
+            )
         temporary.replace(target)
     finally:
         if temporary is not None:
@@ -249,8 +256,7 @@ def write_payload_file(target: Path, data: bytes, mode: int) -> None:
 
 def build(args: argparse.Namespace) -> None:
     repo_root = args.repo_root.resolve()
-    cache = args.source_cache.absolute()
-    prepare_cache(cache)
+    cache = prepare_cache(args.source_cache)
     staging = args.staging.resolve()
     selected = args.packages or sorted(PACKAGES)
     unknown = set(selected).difference(PACKAGES)

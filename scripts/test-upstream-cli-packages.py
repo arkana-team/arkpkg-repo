@@ -94,10 +94,14 @@ class UpstreamCacheTests(unittest.TestCase):
             target = cache / "source.tar.gz"
             target.write_bytes(trusted)
             copyfile = BUILDER.shutil.copyfile
+            cache_copy_seen = False
 
             def corrupt_copy(source, destination):
+                nonlocal cache_copy_seen
                 copyfile(source, destination)
-                Path(destination).write_bytes(b"changed during copy")
+                if source == target and not cache_copy_seen:
+                    cache_copy_seen = True
+                    Path(destination).write_bytes(b"changed during cache copy")
 
             with (
                 mock.patch.object(BUILDER.shutil, "copyfile", side_effect=corrupt_copy),
