@@ -1,0 +1,20 @@
+Name: tigervnc-viewer
+Description: TigerVNC remote desktop client for X11
+Version: 1.15.0+dfsg-2.1~deb13u1
+Arch: x86_64
+URL: https://github.com/TigerVNC/tigervnc
+License: GPL-2+
+Maintainer: arkanaOS Team
+Dependencies:
+  gmp-libs
+  gnutls-libs
+  libavcodec61
+  libavutil59
+  libfltk-images1.3t64
+  libfltk1.3t64
+  libjpeg62-turbo
+  libswscale8
+  libxrandr
+  libxrender
+  nettle-libs
+Provides: xtigervncviewer=/usr/bin/xtigervncviewer

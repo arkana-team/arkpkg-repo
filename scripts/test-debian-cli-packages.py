@@ -158,6 +158,9 @@ class WorkstationManifestTests(unittest.TestCase):
                 "vitetris",
                 "x11vnc",
                 "xmbmon",
+                "x2x",
+                "xrootconsole",
+                "tigervnc-viewer",
                 "xfonts-100dpi",
                 "xfonts-75dpi",
                 "xfonts-base",
@@ -254,6 +257,8 @@ class WorkstationManifestTests(unittest.TestCase):
             "w3m-img",
             "xcolors",
             "xmbmon",
+            "x2x",
+            "xrootconsole",
         }
         for package in packages:
             with self.subTest(credits=package["name"]):
@@ -621,6 +626,76 @@ class WorkstationManifestTests(unittest.TestCase):
                 "usr/bin/ucs2any",
             },
         )
+
+    def test_remote_workstation_batch_05_is_pinned_and_credited(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-05.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "tigervnc-viewer": (
+                "1.15.0+dfsg-2.1~deb13u1",
+                "4967ae5b5005f531548a73dea293abc7c73cf3f2f35711e3bc7369e84dd62ad7",
+                "TigerVNC Team",
+                "https://github.com/TigerVNC/tigervnc",
+                "upstream",
+                "https://github.com/TigerVNC",
+            ),
+            "x2x": (
+                "1.30-12",
+                "7ff27eb1a70c77d02d1eb98821ca829a6a5f46496a1e6ddba5e17f4cd592e092",
+                "David Chaiken",
+                "https://github.com/dottedmag/x2x",
+                "upstream",
+                None,
+            ),
+            "xrootconsole": (
+                "1:0.6-5",
+                "1d610974c5532d7b7dc9bfde11580a701982b9e2cbe1cbde05f7e6c4ca98f3dd",
+                "Eric Youngblut",
+                "https://salsa.debian.org/debian/xrootconsole.git",
+                "packaging",
+                None,
+            ),
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+
+        for name, (version, digest, author, git_repo, repo_type, author_url) in (
+            expected.items()
+        ):
+            with self.subTest(package=name):
+                package = batch_packages[name]
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(package["debian_packages"], [name])
+                self.assertEqual(batch["sources"][name], manifest["sources"][name])
+                self.assertEqual(batch["sources"][name]["sha256"], digest)
+                self.assertTrue(batch["sources"][name]["filename"].startswith("pool/"))
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], repo_type)
+                self.assertEqual(metadata[name]["git_author_url"], author_url)
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+        self.assertEqual(manifest_packages["x2x"]["dependencies"], [])
+        self.assertEqual(manifest_packages["xrootconsole"]["dependencies"], [])
+        self.assertEqual(manifest_packages["tigervnc-viewer"]["dependencies"], [])
 
 
 class UpstreamDownloadTests(unittest.TestCase):

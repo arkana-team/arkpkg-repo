@@ -28031,6 +28031,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "x2x": {
+      "author": "David Chaiken",
+      "git_repo": "https://github.com/dottedmag/x2x",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xrootconsole": {
+      "author": "Eric Youngblut",
+      "git_repo": "https://salsa.debian.org/debian/xrootconsole.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "tigervnc-viewer": {
+      "author": "TigerVNC Team",
+      "git_repo": "https://github.com/TigerVNC/tigervnc",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/TigerVNC",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
