@@ -42,18 +42,23 @@ def privileged(command: list[str], *, log: Path | None = None) -> None:
             subprocess.run(full, stdout=output, stderr=subprocess.STDOUT, check=True)
 
 
-def obtain_source(cache: Path) -> Path:
+def obtain_source(cache: Path, private_dir: Path) -> Path:
+    """Return a verified copy in a caller-owned private directory."""
     cache.mkdir(parents=True, exist_ok=True)
-    archive_path = cache / f"{SOURCE_ROOT}.tar.gz"
-    if not archive_path.is_file():
+    cached_path = cache / f"{SOURCE_ROOT}.tar.gz"
+    if not cached_path.is_file():
         request = urllib.request.Request(
             SOURCE_URL, headers={"User-Agent": "arkpkg-repo-xpdf-builder/1"}
         )
         with (
             urllib.request.urlopen(request, timeout=90) as response,
-            archive_path.open("wb") as output,
+            cached_path.open("wb") as output,
         ):
             shutil.copyfileobj(response, output)
+    # The cache can be replaced or modified by another user. Authenticate only
+    # the private copy that the privileged install will actually consume.
+    archive_path = private_dir / cached_path.name
+    shutil.copyfile(cached_path, archive_path)
     digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
     if digest != SOURCE_SHA256:
         raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
@@ -87,10 +92,7 @@ def main() -> None:
     for binary in ("cmake", "gcc", "g++", "make", "tar", "strip"):
         if not (sysroot / "usr/bin" / binary).exists():
             raise FileNotFoundError(f"target build root lacks /usr/bin/{binary}")
-    source = obtain_source(args.source_cache.resolve())
     output_staging = args.output_staging.resolve()
-    shutil.rmtree(output_staging, ignore_errors=True)
-    output_staging.mkdir(parents=True)
 
     work_rel = f"/tmp/arkpkg-xpdf-{uuid.uuid4().hex}"
     work_host = sysroot / work_rel.lstrip("/")
@@ -144,8 +146,14 @@ def main() -> None:
         )
     )
     try:
-        privileged(["install", "-d", "-m", "755", str(work_host)])
-        privileged(["install", "-m", "644", str(source), str(work_host / source.name)])
+        with tempfile.TemporaryDirectory(
+            prefix="arkpkg-xpdf-source-", dir="/tmp"
+        ) as source_dir:
+            source = obtain_source(args.source_cache.resolve(), Path(source_dir))
+            shutil.rmtree(output_staging, ignore_errors=True)
+            output_staging.mkdir(parents=True)
+            privileged(["install", "-d", "-m", "755", str(work_host)])
+            privileged(["install", "-m", "644", str(source), str(work_host / source.name)])
         try:
             privileged(
                 [
