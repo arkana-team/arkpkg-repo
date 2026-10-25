@@ -178,6 +178,8 @@ def main() -> None:
             if not (payload / "usr/bin" / tool).is_file():
                 raise FileNotFoundError(f"Xpdf failed to build {tool}")
         shutil.copytree(payload, output_staging, dirs_exist_ok=True, symlinks=True)
+        # copytree also copies the payload root's mode onto the private staging root.
+        output_staging.chmod(0o700)
     finally:
         privileged(
             [
