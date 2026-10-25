@@ -203,7 +203,7 @@ class SourceCacheTests(unittest.TestCase):
         args = argparse.Namespace(
             sysroot=sysroot,
             source_cache=self.cache,
-            output_staging=self.root / "staging",
+            output_staging=self.root / f"staging-{filename}",
             arkpkg=self.root / "arkpkg",
             arkpkg_build=self.root / "arkpkg-build",
             build_dependency_archive=[],

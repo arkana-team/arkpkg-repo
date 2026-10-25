@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import shutil
 import subprocess
 import sys
 import tarfile
@@ -93,7 +92,8 @@ def main() -> None:
         help="private source cache owned by the current user",
     )
     parser.add_argument(
-        "--output-staging", type=Path, default=Path("/tmp/arkpkg-xcb-util-staging")
+        "--output-staging", type=Path,
+        help="new staging directory (default: a private temporary directory)",
     )
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--jobs", type=int, default=2, choices=(1, 2))
@@ -107,6 +107,13 @@ def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
     sysroot = args.sysroot.resolve()
     arpkg = args.arkpkg.resolve()
     macros_archive = args.xorg_util_macros_archive.resolve()
+    if args.output_staging is None:
+        output_staging = Path(tempfile.mkdtemp(prefix="arkpkg-xcb-util-staging-"))
+    else:
+        # Do not resolve or remove a preexisting path, including dangling symlinks.
+        output_staging = args.output_staging.absolute()
+        output_staging.mkdir(mode=0o700, parents=True)
+
     source = source_archive(args.source_cache.resolve(), snapshots)
     for binary in ("gcc", "make", "pkg-config", "tar", "strip"):
         if not (sysroot / "usr/bin" / binary).exists():
@@ -122,10 +129,6 @@ def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
 
     work_rel = f"/tmp/arkpkg-xcb-util-{uuid.uuid4().hex}"
     work_host = sysroot / work_rel.lstrip("/")
-    output_staging = args.output_staging.resolve()
-    if output_staging.exists():
-        shutil.rmtree(output_staging)
-    output_staging.mkdir(parents=True)
     logs = Path("/tmp") / f"arkpkg-xcb-util-{uuid.uuid4().hex}.log"
     try:
         privileged(["install", "-d", "-m", "755", str(work_host)])
