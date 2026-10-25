@@ -1,0 +1,10 @@
+Name: greed
+Description: Curses-based grid puzzle game
+Version: 4.3-2
+Arch: x86_64
+URL: http://www.catb.org/~esr/greed/
+License: See /usr/share/doc/greed/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs

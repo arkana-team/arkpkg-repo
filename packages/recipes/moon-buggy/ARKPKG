@@ -1,0 +1,10 @@
+Name: moon-buggy
+Description: Terminal game about driving across the moon
+Version: 1:1.0.51-15
+Arch: x86_64
+URL: http://seehuhn.de/pages/moon-buggy
+License: See /usr/share/doc/moon-buggy/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs

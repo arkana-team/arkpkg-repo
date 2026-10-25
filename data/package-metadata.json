@@ -27647,6 +27647,390 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "astyle": {
+      "author": "Tal Davidson, Jim Pattee, Andre Simon, and contributors",
+      "git_repo": "https://gitlab.com/saalen/astyle",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gitlab.com/saalen",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "atool": {
+      "author": "Oskar Liljeblad",
+      "git_repo": "https://salsa.debian.org/debian/atool",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.nongnu.org/atool/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "bmake": {
+      "author": "Adam de Boor, Simon J. Gerraty, and NetBSD contributors",
+      "git_repo": "https://salsa.debian.org/debian/bmake",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.crufty.net/help/sjg/bmake.html",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "boxes": {
+      "author": "Thomas Jensen and boxes contributors",
+      "git_repo": "https://salsa.debian.org/carnil/boxes",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://boxes.thomasjensen.com/team.html",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cscope": {
+      "author": "Joe Steffen, Hans-Bernhard Broeker, Neil Horman, and contributors",
+      "git_repo": "https://salsa.debian.org/debian/cscope",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://cscope.sourceforge.net/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "freesweep": {
+      "author": "Gus Hartmann and contributors",
+      "git_repo": "https://github.com/rwestlund/freesweep",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/rwestlund",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "global": {
+      "author": "Shigio Yamaguchi and GNU Global contributors",
+      "git_repo": "https://github.com/punitagrawal/global",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.gnu.org/software/global/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "gopher": {
+      "author": "University of Minnesota, John Goerzen, and the Gopher team",
+      "git_repo": "https://github.com/jgoerzen/gopher",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/jgoerzen",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "greed": {
+      "author": "Matthew T. Day and contributors",
+      "git_repo": "https://salsa.debian.org/games-team/greed",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.catb.org/~esr/greed/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "id3v2": {
+      "author": "Myers Carpenter and Robert Alto",
+      "git_repo": "https://salsa.debian.org/debian/id3v2",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://id3v2.sourceforge.net/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libid3-3.8.3v5": {
+      "author": "Scott Thomas Haug, Stefan Ott, and id3lib contributors",
+      "git_repo": "https://salsa.debian.org/debian/id3lib",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://id3lib.sourceforge.net/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "moon-buggy": {
+      "author": "Jochen Voss",
+      "git_repo": "https://salsa.debian.org/debian/moon-buggy",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://seehuhn.de/pages/moon-buggy",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "nudoku": {
+      "author": "Michael Vetter",
+      "git_repo": "https://github.com/jubalh/nudoku",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/jubalh",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "rename": {
+      "author": "Robin Barker and contributors",
+      "git_repo": "https://salsa.debian.org/perl-team/modules/packages/rename",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://metacpan.org/author/RMBARKER",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "robotfindskitten": {
+      "author": "Leonard Richardson",
+      "git_repo": "https://github.com/rfinnie/robotfindskitten-pkg-debian",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.robotfindskitten.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "tty-solitaire": {
+      "author": "Murilo Pereira",
+      "git_repo": "https://github.com/mpereira/tty-solitaire",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/mpereira",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "unrar-free": {
+      "author": "Niklas Vainio, Bastian Germann, and contributors",
+      "git_repo": "https://gitlab.com/bgermann/unrar-free",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gitlab.com/bgermann",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "vitetris": {
+      "author": "Victor Geraldsson",
+      "git_repo": "https://salsa.debian.org/debian/vitetris",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.victornils.net/tetris/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xfonts-100dpi": {
+      "author": "Adobe Systems, Digital Equipment Corporation, Bitstream, and font contributors",
+      "git_repo": "https://salsa.debian.org/xorg-team/font/xfonts-100dpi",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.x.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xfonts-75dpi": {
+      "author": "Adobe Systems, Digital Equipment Corporation, Bitstream, and font contributors",
+      "git_repo": "https://salsa.debian.org/xorg-team/font/xfonts-75dpi",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.x.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xfonts-base": {
+      "author": "The individual X.Org bitmap font authors credited in the package copyright file",
+      "git_repo": "https://salsa.debian.org/xorg-team/font/xfonts-base",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.x.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xfonts-encodings": {
+      "author": "XFree86 and X.Org contributors, with encoding data derived from Unicode Consortium sources",
+      "git_repo": "https://salsa.debian.org/xorg-team/font/xfonts-encodings",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.x.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xfonts-utils": {
+      "author": "The Open Group and X.Org contributors",
+      "git_repo": "https://salsa.debian.org/xorg-team/font/xfonts-utils",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.x.org/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xmbmon": {
+      "author": "Yoshifumi R. Shimizu",
+      "git_repo": "https://salsa.debian.org/salvage-team/xmbmon.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://sources.debian.org/copyright/license/xmbmon/2.05-10/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

@@ -1,0 +1,459 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "astyle": {
+      "filename": "pool/main/a/astyle/astyle_3.1-3+b3_amd64.deb",
+      "sha256": "c9d64823182e577eb2c9cc75e8e76de7fe4a4407f3bf8f3a86d073c233698d1e"
+    },
+    "atool": {
+      "filename": "pool/main/a/atool/atool_0.39.0-14_all.deb",
+      "sha256": "84cc879bd99bf927fea54a652673d4ab65105d05318e4da4fb69c08e9aeefbba"
+    },
+    "bmake": {
+      "filename": "pool/main/b/bmake/bmake_20200710-17_amd64.deb",
+      "sha256": "7def59c505272cae2235b9b546e494e38ad422821cb4b13c6e7b9bd73c45fd31"
+    },
+    "boxes": {
+      "filename": "pool/main/b/boxes/boxes_2.3.1-1_amd64.deb",
+      "sha256": "3f5b05d39df74f3f1af4561dab0262a28211fb46e6f40b3f704741ae50985fa6"
+    },
+    "cscope": {
+      "filename": "pool/main/c/cscope/cscope_15.9-2_amd64.deb",
+      "sha256": "dfd2420cf5a8de16bf546c70b5eeb2f7d2825155ff0d1c54cd4d65c5c7e2c248"
+    },
+    "freesweep": {
+      "filename": "pool/main/f/freesweep/freesweep_1.0.2-2_amd64.deb",
+      "sha256": "d15fe209bb89583ee9d9b426d551e219a505c57817690d97f1d9161033195fb5"
+    },
+    "greed": {
+      "filename": "pool/main/g/greed/greed_4.3-2_amd64.deb",
+      "sha256": "be1e996e81589b2ea085f5c7399a03b5eaa65989172d3d19cdef332ffd0f3ad2"
+    },
+    "global": {
+      "filename": "pool/main/g/global/global_6.6.13-1_amd64.deb",
+      "sha256": "d2547b8d8fffaa4a3bcd56f57dbb04f85d1fd22f34a1f3d173e6e5d70cb91858"
+    },
+    "libid3-3.8.3v5": {
+      "filename": "pool/main/i/id3lib3.8.3/libid3-3.8.3v5_3.8.3-18+b3_amd64.deb",
+      "sha256": "6a1e7980c7788fce3d0754d21a26693d60c01444580e3c22c6f92b2cc9612e67"
+    },
+    "id3v2": {
+      "filename": "pool/main/i/id3v2/id3v2_0.1.12+dfsg-7_amd64.deb",
+      "sha256": "cb727feb74891d5f354a01ea68c7756bbf6846cb12bd865ecd1e40736e03e0a6"
+    },
+    "moon-buggy": {
+      "filename": "pool/main/m/moon-buggy/moon-buggy_1.0.51-15_amd64.deb",
+      "sha256": "7e46ff0d1d9a83423e42755c9ab079daba590d0dc21cf1347081163e2621e6ec"
+    },
+    "nudoku": {
+      "filename": "pool/main/n/nudoku/nudoku_2.1.0-0.2_amd64.deb",
+      "sha256": "5355f7045cc7388e2eb06582cfeb8364dc949879298263502f275d6a02351ac8"
+    },
+    "gopher": {
+      "filename": "pool/main/g/gopher/gopher_3.0.18_amd64.deb",
+      "sha256": "77ad5fe5fff12280da5687873454deea427cf0cbadb388738bd37f434876dc12"
+    },
+    "rename": {
+      "filename": "pool/main/r/rename/rename_2.02-1_all.deb",
+      "sha256": "b3d96a5da8e89e7fce6c9c144a1199c40c29b608bbd62ac72f7e779d088ea537"
+    },
+    "robotfindskitten": {
+      "filename": "pool/main/r/robotfindskitten/robotfindskitten_2.8284271.702-1_amd64.deb",
+      "sha256": "a4ade5ccc5552296df46f3db66b4582f4adada924c9ec7a11bd11ab2a42f1bb6"
+    },
+    "tty-solitaire": {
+      "filename": "pool/main/t/tty-solitaire/tty-solitaire_1.3.1-1+b1_amd64.deb",
+      "sha256": "8688db5b90c2d9ba32683747f966b4f15fc7203389c3172c8a244f78c2791bfc"
+    },
+    "unrar-free": {
+      "filename": "pool/main/u/unrar-free/unrar-free_0.3.1-1_amd64.deb",
+      "sha256": "3481b72c4b0ea60ceba920ed8e6c255084c8c1c0c85ffe2971117305715d0467"
+    },
+    "vitetris": {
+      "filename": "pool/main/v/vitetris/vitetris_0.59.1-3_amd64.deb",
+      "sha256": "5b1fb6539d518b9935c8e59801a793e4b6e493730dc605f8b43c57cceeca0bb4"
+    },
+    "xmbmon": {
+      "filename": "pool/main/x/xmbmon/xmbmon_2.05-10_amd64.deb",
+      "sha256": "b9e538f7c2cd6194169eaec7afed22cae95aea88477d198a3529c922dbcf5872"
+    },
+    "xfonts-encodings": {
+      "filename": "pool/main/x/xfonts-encodings/xfonts-encodings_1.0.4-2.2_all.deb",
+      "sha256": "56143f317d241b6dee0275aa1066df936a776810d3bb83fe58563965d9bbe3d3"
+    },
+    "xfonts-utils": {
+      "filename": "pool/main/x/xfonts-utils/xfonts-utils_7.7+7_amd64.deb",
+      "sha256": "36e77ba3fd25a42d4b807808de93eba87c0bd53981ee94d27da4cee502387f35"
+    },
+    "xfonts-100dpi": {
+      "filename": "pool/main/x/xfonts-100dpi/xfonts-100dpi_1.0.5_all.deb",
+      "sha256": "fcb97826afdd312bba1a4d13870be239767065880d523cddd91b882d2a1332ba"
+    },
+    "xfonts-75dpi": {
+      "filename": "pool/main/x/xfonts-75dpi/xfonts-75dpi_1.0.5_all.deb",
+      "sha256": "5f2ba56e3c57e494fab35c4907c4be6026aa6d0e94eecbd37f957c8a6b8746ed"
+    },
+    "xfonts-base": {
+      "filename": "pool/main/x/xfonts-base/xfonts-base_1.0.5+nmu1_all.deb",
+      "sha256": "24446137c63de94283dc808eef438918e243f518629844289a5af50a8e0aec23"
+    }
+  },
+  "packages": [
+    {
+      "name": "astyle",
+      "description": "Source code formatter for C, C++, C#, and Java",
+      "version": "3.1-3+b3",
+      "debian_version": "3.1-3+b3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "astyle"
+      ],
+      "dependencies": [],
+      "url": "http://astyle.sourceforge.net/",
+      "license": "See /usr/share/doc/astyle/copyright",
+      "license_path": "usr/share/doc/astyle/copyright"
+    },
+    {
+      "name": "atool",
+      "description": "Command-line front end for managing common archive formats",
+      "version": "0.39.0-14",
+      "debian_version": "0.39.0-14",
+      "arch": "x86_64",
+      "debian_packages": [
+        "atool"
+      ],
+      "dependencies": [],
+      "url": "https://www.nongnu.org/atool/",
+      "license": "See /usr/share/doc/atool/copyright",
+      "license_path": "usr/share/doc/atool/copyright"
+    },
+    {
+      "name": "bmake",
+      "description": "Portable BSD make implementation",
+      "version": "20200710-17",
+      "debian_version": "20200710-17",
+      "arch": "x86_64",
+      "debian_packages": [
+        "bmake"
+      ],
+      "dependencies": [],
+      "url": "https://www.crufty.net/help/sjg/bmake.html",
+      "license": "See /usr/share/doc/bmake/copyright",
+      "license_path": "usr/share/doc/bmake/copyright"
+    },
+    {
+      "name": "boxes",
+      "description": "Text-mode box and comment drawing filter",
+      "version": "2.3.1-1",
+      "debian_version": "2.3.1-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "boxes"
+      ],
+      "dependencies": [],
+      "url": "https://boxes.thomasjensen.com/",
+      "license": "See /usr/share/doc/boxes/copyright",
+      "license_path": "usr/share/doc/boxes/copyright"
+    },
+    {
+      "name": "cscope",
+      "description": "Interactive source-code browser for C and C++",
+      "version": "15.9-2",
+      "debian_version": "15.9-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "cscope"
+      ],
+      "dependencies": [],
+      "url": "https://cscope.sourceforge.net/",
+      "license": "See /usr/share/doc/cscope/copyright",
+      "license_path": "usr/share/doc/cscope/copyright"
+    },
+    {
+      "name": "freesweep",
+      "description": "Terminal minesweeper game",
+      "version": "1.0.2-2",
+      "debian_version": "1.0.2-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "freesweep"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/rwestlund/freesweep",
+      "license": "See /usr/share/doc/freesweep/copyright",
+      "license_path": "usr/share/doc/freesweep/copyright"
+    },
+    {
+      "name": "greed",
+      "description": "Curses-based grid puzzle game",
+      "version": "4.3-2",
+      "debian_version": "4.3-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "greed"
+      ],
+      "dependencies": [],
+      "url": "http://www.catb.org/~esr/greed/",
+      "license": "See /usr/share/doc/greed/copyright",
+      "license_path": "usr/share/doc/greed/copyright"
+    },
+    {
+      "name": "global",
+      "description": "Source-code tagging and cross-reference tools",
+      "version": "6.6.13-1",
+      "debian_version": "6.6.13-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "global"
+      ],
+      "dependencies": [],
+      "url": "https://www.gnu.org/software/global/global.html",
+      "license": "See /usr/share/doc/global/copyright",
+      "license_path": "usr/share/doc/global/copyright"
+    },
+    {
+      "name": "libid3-3.8.3v5",
+      "description": "ID3v1 and ID3v2 tag manipulation library",
+      "version": "3.8.3-18+b3",
+      "debian_version": "3.8.3-18+b3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libid3-3.8.3v5"
+      ],
+      "dependencies": [],
+      "url": "http://id3lib.sourceforge.net/",
+      "license": "See /usr/share/doc/libid3-3.8.3v5/copyright",
+      "license_path": "usr/share/doc/libid3-3.8.3v5/copyright"
+    },
+    {
+      "name": "id3v2",
+      "description": "Command-line ID3v2 audio tag editor",
+      "version": "0.1.12+dfsg-7",
+      "debian_version": "0.1.12+dfsg-7",
+      "arch": "x86_64",
+      "debian_packages": [
+        "id3v2"
+      ],
+      "dependencies": [
+        "libid3-3.8.3v5"
+      ],
+      "url": "https://id3v2.sourceforge.net/",
+      "license": "See /usr/share/doc/id3v2/copyright",
+      "license_path": "usr/share/doc/id3v2/copyright"
+    },
+    {
+      "name": "moon-buggy",
+      "description": "Terminal game about driving across the moon",
+      "version": "1:1.0.51-15",
+      "debian_version": "1:1.0.51-15",
+      "arch": "x86_64",
+      "debian_packages": [
+        "moon-buggy"
+      ],
+      "dependencies": [],
+      "url": "http://seehuhn.de/pages/moon-buggy",
+      "license": "See /usr/share/doc/moon-buggy/copyright",
+      "license_path": "usr/share/doc/moon-buggy/copyright"
+    },
+    {
+      "name": "nudoku",
+      "description": "Terminal Sudoku game using ncurses",
+      "version": "2.1.0-0.2",
+      "debian_version": "2.1.0-0.2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "nudoku"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/jubalh/nudoku",
+      "license": "See /usr/share/doc/nudoku/copyright",
+      "license_path": "usr/share/doc/nudoku/copyright"
+    },
+    {
+      "name": "gopher",
+      "description": "Distributed hypertext client for the Gopher protocol",
+      "version": "3.0.18",
+      "debian_version": "3.0.18",
+      "arch": "x86_64",
+      "debian_packages": [
+        "gopher"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/jgoerzen/gopher",
+      "license": "See /usr/share/doc/gopher/copyright",
+      "license_path": "usr/share/doc/gopher/copyright"
+    },
+    {
+      "name": "rename",
+      "description": "Perl-based utility for batch-renaming files",
+      "version": "2.02-1",
+      "debian_version": "2.02-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "rename"
+      ],
+      "dependencies": [],
+      "url": "https://metacpan.org/release/File-Rename",
+      "license": "See /usr/share/doc/rename/copyright",
+      "license_path": "usr/share/doc/rename/copyright"
+    },
+    {
+      "name": "robotfindskitten",
+      "description": "Terminal exploration game about a robot finding a kitten",
+      "version": "2.8284271.702-1",
+      "debian_version": "2.8284271.702-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "robotfindskitten"
+      ],
+      "dependencies": [],
+      "url": "http://www.robotfindskitten.org/",
+      "license": "See /usr/share/doc/robotfindskitten/copyright",
+      "license_path": "usr/share/doc/robotfindskitten/copyright"
+    },
+    {
+      "name": "tty-solitaire",
+      "description": "Terminal Klondike solitaire game",
+      "version": "1.3.1-1+b1",
+      "debian_version": "1.3.1-1+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "tty-solitaire"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/mpereira/tty-solitaire",
+      "license": "See /usr/share/doc/tty-solitaire/copyright",
+      "license_path": "usr/share/doc/tty-solitaire/copyright"
+    },
+    {
+      "name": "unrar-free",
+      "description": "Free software extractor for RAR archives",
+      "version": "1:0.3.1-1",
+      "debian_version": "1:0.3.1-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "unrar-free"
+      ],
+      "dependencies": [],
+      "url": "https://gitlab.com/bgermann/unrar-free",
+      "license": "See /usr/share/doc/unrar-free/copyright",
+      "license_path": "usr/share/doc/unrar-free/copyright"
+    },
+    {
+      "name": "vitetris",
+      "description": "Virtual terminal Tetris clone",
+      "version": "0.59.1-3",
+      "debian_version": "0.59.1-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "vitetris"
+      ],
+      "dependencies": [],
+      "url": "https://www.victornils.net/tetris/",
+      "license": "See /usr/share/doc/vitetris/copyright",
+      "license_path": "usr/share/doc/vitetris/copyright"
+    },
+    {
+      "name": "xmbmon",
+      "description": "X based hardware monitor without kernel dependencies",
+      "version": "2.05-10",
+      "debian_version": "2.05-10",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xmbmon"
+      ],
+      "dependencies": [],
+      "url": "http://www.nt.phys.kyushu-u.ac.jp/shimizu/download/download.html",
+      "license": "See /usr/share/doc/xmbmon/copyright",
+      "license_path": "usr/share/doc/xmbmon/copyright"
+    },
+    {
+      "name": "xfonts-encodings",
+      "description": "Encoding data files for X.Org bitmap fonts",
+      "version": "1:1.0.4-2.2",
+      "debian_version": "1:1.0.4-2.2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xfonts-encodings"
+      ],
+      "dependencies": [],
+      "url": "https://www.x.org/",
+      "license": "See /usr/share/doc/xfonts-encodings/copyright",
+      "license_path": "usr/share/doc/xfonts-encodings/copyright"
+    },
+    {
+      "name": "xfonts-utils",
+      "description": "Utilities for compiling and indexing X.Org bitmap fonts",
+      "version": "1:7.7+7",
+      "debian_version": "1:7.7+7",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xfonts-utils"
+      ],
+      "dependencies": [
+        "fonttosfnt",
+        "mkfontscale",
+        "xfonts-encodings"
+      ],
+      "url": "https://www.x.org/",
+      "license": "See /usr/share/doc/xfonts-utils/copyright",
+      "license_path": "usr/share/doc/xfonts-utils/copyright",
+      "exclude_paths": [
+        "usr/bin/bdftruncate",
+        "usr/bin/fonttosfnt",
+        "usr/bin/mkfontdir",
+        "usr/bin/mkfontscale",
+        "usr/bin/ucs2any"
+      ]
+    },
+    {
+      "name": "xfonts-100dpi",
+      "description": "Classic 100 dpi bitmap fonts for X11",
+      "version": "1:1.0.5",
+      "debian_version": "1:1.0.5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xfonts-100dpi"
+      ],
+      "dependencies": [
+        "xfonts-utils"
+      ],
+      "url": "https://www.x.org/",
+      "license": "See /usr/share/doc/xfonts-100dpi/copyright",
+      "license_path": "usr/share/doc/xfonts-100dpi/copyright"
+    },
+    {
+      "name": "xfonts-75dpi",
+      "description": "Classic 75 dpi bitmap fonts for X11",
+      "version": "1:1.0.5",
+      "debian_version": "1:1.0.5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xfonts-75dpi"
+      ],
+      "dependencies": [
+        "xfonts-utils"
+      ],
+      "url": "https://www.x.org/",
+      "license": "See /usr/share/doc/xfonts-75dpi/copyright",
+      "license_path": "usr/share/doc/xfonts-75dpi/copyright"
+    },
+    {
+      "name": "xfonts-base",
+      "description": "Standard bitmap font set for X11 workstations",
+      "version": "1:1.0.5+nmu1",
+      "debian_version": "1:1.0.5+nmu1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xfonts-base"
+      ],
+      "dependencies": [
+        "xfonts-utils"
+      ],
+      "url": "https://www.x.org/",
+      "license": "See /usr/share/doc/xfonts-base/copyright",
+      "license_path": "usr/share/doc/xfonts-base/copyright"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+Name: rename
+Description: Perl-based utility for batch-renaming files
+Version: 2.02-1
+Arch: x86_64
+URL: https://metacpan.org/release/File-Rename
+License: See /usr/share/doc/rename/copyright
+Maintainer: arkanaOS Team
+Provides: file-rename=/usr/bin/file-rename, prename=/usr/bin/prename

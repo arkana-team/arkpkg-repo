@@ -1,0 +1,11 @@
+Name: cscope
+Description: Interactive source-code browser for C and C++
+Version: 15.9-2
+Arch: x86_64
+URL: https://cscope.sourceforge.net/
+License: See /usr/share/doc/cscope/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs
+Provides: cscope-indexer=/usr/bin/cscope-indexer, cscope=/usr/bin/cscope, ocs=/usr/bin/ocs

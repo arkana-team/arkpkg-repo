@@ -1,0 +1,9 @@
+Name: xfonts-100dpi
+Description: Classic 100 dpi bitmap fonts for X11
+Version: 1:1.0.5
+Arch: x86_64
+URL: https://www.x.org/
+License: See /usr/share/doc/xfonts-100dpi/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  xfonts-utils

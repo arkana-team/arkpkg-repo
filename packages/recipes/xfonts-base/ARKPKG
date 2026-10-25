@@ -1,0 +1,9 @@
+Name: xfonts-base
+Description: Standard bitmap font set for X11 workstations
+Version: 1:1.0.5+nmu1
+Arch: x86_64
+URL: https://www.x.org/
+License: See /usr/share/doc/xfonts-base/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  xfonts-utils

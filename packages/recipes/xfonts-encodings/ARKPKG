@@ -1,0 +1,7 @@
+Name: xfonts-encodings
+Description: Encoding data files for X.Org bitmap fonts
+Version: 1:1.0.4-2.2
+Arch: x86_64
+URL: https://www.x.org/
+License: See /usr/share/doc/xfonts-encodings/copyright
+Maintainer: arkanaOS Team
