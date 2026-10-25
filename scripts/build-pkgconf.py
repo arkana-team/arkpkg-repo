@@ -74,8 +74,13 @@ def package_name(archive_path: Path) -> str:
     raise ValueError(f"package archive has no Name field: {archive_path}")
 
 
-def source_archive(cache: Path) -> Path:
-    cache.mkdir(parents=True, exist_ok=True)
+def source_archive(cache: Path, snapshot_dir: Path) -> Path:
+    cache.mkdir(mode=0o700, parents=True, exist_ok=True)
+    cache_stat = cache.stat()
+    if cache_stat.st_uid != os.geteuid() or cache_stat.st_mode & 0o022:
+        raise ValueError(
+            f"source cache must be owned by the current user and not writable by others: {cache}"
+        )
     archive_path = cache / f"pkgconf-{VERSION}.tar.xz"
     if not archive_path.is_file():
         request = urllib.request.Request(
@@ -83,9 +88,13 @@ def source_archive(cache: Path) -> Path:
         )
         with (
             urllib.request.urlopen(request, timeout=90) as response,
-            archive_path.open("wb") as output,
+            archive_path.open("xb") as output,
         ):
             shutil.copyfileobj(response, output)
+    # Validate and build from a private copy; the cache may change at any time.
+    snapshot = snapshot_dir / archive_path.name
+    shutil.copyfile(archive_path, snapshot)
+    archive_path = snapshot
     digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
     if digest != SOURCE_SHA256:
         raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
@@ -103,11 +112,15 @@ def source_archive(cache: Path) -> Path:
 
 
 def build(args: argparse.Namespace) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-pkgconf-source-") as temporary:
+        archive = source_archive(args.source_cache.resolve(), Path(temporary))
+        build_from_source(args, archive)
+
+
+def build_from_source(args: argparse.Namespace, archive: Path) -> None:
     sysroot = args.sysroot.resolve()
     repo_root = Path(__file__).resolve().parents[1]
     output_staging = args.output_staging.resolve()
-    source_cache = args.source_cache.resolve()
-    archive = source_archive(source_cache)
 
     for binary in ("gcc", "make", "tar", "strip", "libtool"):
         if not (sysroot / "usr/bin" / binary).exists():
