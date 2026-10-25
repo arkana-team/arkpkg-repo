@@ -425,7 +425,13 @@
       ],
       "url": "https://www.x.org/",
       "license": "See /usr/share/doc/xfonts-100dpi/copyright",
-      "license_path": "usr/share/doc/xfonts-100dpi/copyright"
+      "license_path": "usr/share/doc/xfonts-100dpi/copyright",
+      "symlinks": [
+        [
+          "usr/share/fonts/X11/100dpi/fonts.alias",
+          "../../../../../etc/X11/fonts/100dpi/xfonts-100dpi.alias"
+        ]
+      ]
     },
     {
       "name": "xfonts-75dpi",
@@ -441,7 +447,13 @@
       ],
       "url": "https://www.x.org/",
       "license": "See /usr/share/doc/xfonts-75dpi/copyright",
-      "license_path": "usr/share/doc/xfonts-75dpi/copyright"
+      "license_path": "usr/share/doc/xfonts-75dpi/copyright",
+      "symlinks": [
+        [
+          "usr/share/fonts/X11/75dpi/fonts.alias",
+          "../../../../../etc/X11/fonts/75dpi/xfonts-75dpi.alias"
+        ]
+      ]
     },
     {
       "name": "xfonts-base",
@@ -457,7 +469,13 @@
       ],
       "url": "https://www.x.org/",
       "license": "See /usr/share/doc/xfonts-base/copyright",
-      "license_path": "usr/share/doc/xfonts-base/copyright"
+      "license_path": "usr/share/doc/xfonts-base/copyright",
+      "symlinks": [
+        [
+          "usr/share/fonts/X11/misc/fonts.alias",
+          "../../../../../etc/X11/fonts/misc/xfonts-base.alias"
+        ]
+      ]
     }
   ]
 }

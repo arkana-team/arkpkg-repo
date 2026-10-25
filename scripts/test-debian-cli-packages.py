@@ -185,6 +185,28 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertEqual(package_by_name["rofi"]["dependencies"], ["libxcb-cursor0"])
         self.assertEqual(package_by_name["atool"]["dependencies"], ["perl"])
         self.assertEqual(package_by_name["rename"]["dependencies"], ["perl"])
+        expected_font_alias_symlinks = {
+            "xfonts-base": [
+                [
+                    "usr/share/fonts/X11/misc/fonts.alias",
+                    "../../../../../etc/X11/fonts/misc/xfonts-base.alias",
+                ]
+            ],
+            "xfonts-75dpi": [
+                [
+                    "usr/share/fonts/X11/75dpi/fonts.alias",
+                    "../../../../../etc/X11/fonts/75dpi/xfonts-75dpi.alias",
+                ]
+            ],
+            "xfonts-100dpi": [
+                [
+                    "usr/share/fonts/X11/100dpi/fonts.alias",
+                    "../../../../../etc/X11/fonts/100dpi/xfonts-100dpi.alias",
+                ]
+            ],
+        }
+        for name, symlinks in expected_font_alias_symlinks.items():
+            self.assertEqual(package_by_name[name]["symlinks"], symlinks)
         self.assertTrue(
             {"libarchive13t64", "libdisplay-info2"}
             <= set(package_by_name["mpv"]["dependencies"])
@@ -231,6 +253,7 @@ class WorkstationManifestTests(unittest.TestCase):
             "sc",
             "w3m-img",
             "xcolors",
+            "xmbmon",
         }
         for package in packages:
             with self.subTest(credits=package["name"]):
@@ -555,7 +578,10 @@ class WorkstationManifestTests(unittest.TestCase):
                     metadata[name]["git_repo_type"],
                     {"upstream", "packaging", "arkpkg-recipe"},
                 )
-                self.assertTrue(metadata[name]["git_author_url"].startswith("http"))
+                if name == "xmbmon":
+                    self.assertIsNone(metadata[name]["git_author_url"])
+                else:
+                    self.assertTrue(metadata[name]["git_author_url"].startswith("http"))
                 self.assertEqual(
                     {item["name"] for item in metadata[name]["packagers"]},
                     {"arkana-team", "debarkak"},
@@ -579,7 +605,7 @@ class WorkstationManifestTests(unittest.TestCase):
         )
         self.assertEqual(
             metadata["xmbmon"]["git_author_url"],
-            "https://sources.debian.org/copyright/license/xmbmon/2.05-10/",
+            None,
         )
         self.assertEqual(
             manifest_packages["xfonts-utils"]["dependencies"],

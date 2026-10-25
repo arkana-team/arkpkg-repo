@@ -28020,7 +28020,7 @@
       "author": "Yoshifumi R. Shimizu",
       "git_repo": "https://salsa.debian.org/salvage-team/xmbmon.git",
       "git_repo_type": "packaging",
-      "git_author_url": "https://sources.debian.org/copyright/license/xmbmon/2.05-10/",
+      "git_author_url": null,
       "packagers": [
         {
           "name": "arkana-team",
