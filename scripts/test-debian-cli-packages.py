@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Test license paths shared through package dependency symlinks."""
 
+import hashlib
 import importlib.util
 import io
 import json
@@ -12,6 +13,7 @@ import tarfile
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 BUILDER_PATH = Path(__file__).with_name("build-debian-cli-packages.py")
 SPEC = importlib.util.spec_from_file_location("debian_cli_builder", BUILDER_PATH)
@@ -289,6 +291,173 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertEqual(metadata["author"], "David Peter")
         self.assertEqual(metadata["git_repo"], "https://github.com/sharkdp/hexyl")
         self.assertEqual(metadata["git_author_url"], "https://github.com/sharkdp")
+
+
+class UpstreamDownloadTests(unittest.TestCase):
+    url = "https://example.invalid/release.tar.gz"
+    content = b"pinned release\n"
+    checksum = hashlib.sha256(content).hexdigest()
+
+    def setUp(self) -> None:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.cache = self.root / "cache"
+        self.cache.mkdir(mode=0o700)
+        self.work = self.root / "work"
+        self.work.mkdir(mode=0o700)
+        patcher = mock.patch.object(
+            UPSTREAM_BUILDER.urllib.request,
+            "urlopen",
+            return_value=io.BytesIO(self.content),
+        )
+        self.urlopen = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def download(self, cache: Path | None = None) -> Path:
+        return UPSTREAM_BUILDER.download(
+            self.url, self.checksum, cache or self.cache, self.work
+        )
+
+    def test_legacy_temporary_symlink_cannot_overwrite_another_file(self) -> None:
+        victim = self.root / "victim"
+        victim.write_bytes(b"keep this file")
+        (self.cache / "release.tar.gz.download").symlink_to(victim)
+
+        snapshot = self.download()
+
+        self.assertEqual(snapshot.read_bytes(), self.content)
+        self.assertEqual(victim.read_bytes(), b"keep this file")
+
+    def test_cache_is_created_private_and_verified_download_is_reused(self) -> None:
+        self.cache.rmdir()
+        previous_umask = os.umask(0)
+        try:
+            snapshot = self.download()
+        finally:
+            os.umask(previous_umask)
+
+        self.assertEqual(stat.S_IMODE(self.cache.stat().st_mode), 0o700)
+        target = self.cache / "release.tar.gz"
+        self.assertEqual(stat.S_IMODE(target.stat().st_mode), 0o600)
+        self.assertEqual(snapshot.read_bytes(), self.content)
+        self.assertEqual(self.download(), snapshot)
+        self.urlopen.assert_called_once()
+        self.assertEqual(list(self.cache.iterdir()), [target])
+
+    def test_final_cache_symlink_is_replaced_without_changing_its_target(self) -> None:
+        victim = self.root / "victim"
+        victim.write_bytes(self.content)
+        target = self.cache / "release.tar.gz"
+        target.symlink_to(victim)
+
+        snapshot = self.download()
+        self.assertFalse(target.is_symlink())
+        self.assertEqual(target.read_bytes(), self.content)
+        self.assertEqual(snapshot.read_bytes(), self.content)
+        self.assertEqual(victim.read_bytes(), self.content)
+        self.urlopen.assert_called_once()
+
+    def test_writable_cache_is_rejected_before_network_or_file_changes(self) -> None:
+        target = self.cache / "release.tar.gz"
+        target.write_bytes(self.content)
+        for mode in (0o720, 0o702, 0o777, 0o1777):
+            with self.subTest(mode=oct(mode)):
+                self.cache.chmod(mode)
+                with self.assertRaises(ValueError):
+                    self.download()
+                self.assertEqual(target.read_bytes(), self.content)
+        self.urlopen.assert_not_called()
+
+    def test_foreign_owned_cache_is_rejected(self) -> None:
+        lstat = Path.lstat
+
+        def foreign_owner(path, *args, **kwargs):
+            metadata = lstat(path, *args, **kwargs)
+            if path == self.cache:
+                return mock.Mock(st_mode=metadata.st_mode, st_uid=os.geteuid() + 1)
+            return metadata
+
+        with (
+            mock.patch.object(Path, "lstat", foreign_owner),
+            self.assertRaises(ValueError),
+        ):
+            self.download()
+        self.urlopen.assert_not_called()
+
+    def test_symlink_and_writable_parent_are_rejected(self) -> None:
+        link = self.root / "cache-link"
+        link.symlink_to(self.cache, target_is_directory=True)
+        with self.assertRaises(ValueError):
+            self.download(link)
+        self.root.chmod(0o777)
+        with self.assertRaises(ValueError):
+            self.download()
+        self.urlopen.assert_not_called()
+
+    def test_checksum_mismatch_is_never_published_and_temporary_is_removed(self) -> None:
+        self.urlopen.return_value = io.BytesIO(b"unverified data")
+        with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
+            self.download()
+        self.assertEqual(list(self.cache.iterdir()), [])
+        self.assertEqual(list(self.work.iterdir()), [])
+
+    def test_retry_discards_partial_response_before_publishing(self) -> None:
+        class InterruptedResponse(io.BytesIO):
+            def read(self, size=-1):
+                chunk = super().read(size)
+                if not chunk:
+                    raise TimeoutError("interrupted download")
+                return chunk
+
+        self.urlopen.side_effect = [
+            InterruptedResponse(b"partial response longer than the real release"),
+            io.BytesIO(self.content),
+        ]
+        with mock.patch.object(UPSTREAM_BUILDER.time, "sleep"):
+            snapshot = self.download()
+        self.assertEqual(snapshot.read_bytes(), self.content)
+        self.assertEqual((self.cache / "release.tar.gz").read_bytes(), self.content)
+        self.assertEqual(self.urlopen.call_count, 2)
+        self.assertEqual(list(self.cache.iterdir()), [self.cache / "release.tar.gz"])
+
+    def test_exhausted_retries_remove_temporary_file(self) -> None:
+        self.urlopen.side_effect = UPSTREAM_BUILDER.urllib.error.URLError("offline")
+        with (
+            mock.patch.object(UPSTREAM_BUILDER.time, "sleep"),
+            self.assertRaises(UPSTREAM_BUILDER.urllib.error.URLError),
+        ):
+            self.download()
+        self.assertEqual(self.urlopen.call_count, 4)
+        self.assertEqual(list(self.cache.iterdir()), [])
+        self.assertEqual(list(self.work.iterdir()), [])
+
+    def test_disk_error_removes_temporary_file(self) -> None:
+        with (
+            mock.patch.object(
+                UPSTREAM_BUILDER.shutil, "copyfileobj", side_effect=OSError("disk full")
+            ),
+            self.assertRaises(OSError),
+        ):
+            self.download()
+        self.assertEqual(list(self.cache.iterdir()), [])
+        self.assertEqual(list(self.work.iterdir()), [])
+
+    def test_build_rejects_cache_symlink_before_resolving_it(self) -> None:
+        link = self.root / "cache-link"
+        link.symlink_to(self.cache, target_is_directory=True)
+        args = UPSTREAM_BUILDER.argparse.Namespace(
+            repo_root=self.root,
+            source_cache=link,
+            staging=self.root,
+            packages=["pfetch"],
+        )
+        with (
+            mock.patch.object(UPSTREAM_BUILDER, "archive_owners", return_value=set()),
+            self.assertRaises(ValueError),
+        ):
+            UPSTREAM_BUILDER.build(args)
+        self.urlopen.assert_not_called()
 
 
 class UpstreamPayloadPermissionTests(unittest.TestCase):

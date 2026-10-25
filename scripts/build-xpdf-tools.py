@@ -82,7 +82,9 @@ def main() -> None:
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument("--source-cache", type=Path, default=Path("/tmp/arkpkg-xpdf-sources"))
     parser.add_argument(
-        "--output-staging", type=Path, default=Path("/tmp/arkpkg-xpdf-staging")
+        "--output-staging",
+        type=Path,
+        help="new staging directory (default: a private temporary directory)",
     )
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--jobs", type=int, default=1, choices=(1, 2))
@@ -92,7 +94,11 @@ def main() -> None:
     for binary in ("cmake", "gcc", "g++", "make", "tar", "strip"):
         if not (sysroot / "usr/bin" / binary).exists():
             raise FileNotFoundError(f"target build root lacks /usr/bin/{binary}")
-    output_staging = args.output_staging.resolve()
+    output_staging = None
+    if args.output_staging is not None:
+        # Refuse every preexisting entry without resolving, truncating, or deleting it.
+        output_staging = args.output_staging.absolute()
+        output_staging.mkdir(mode=0o700, parents=True)
 
     work_rel = f"/tmp/arkpkg-xpdf-{uuid.uuid4().hex}"
     work_host = sysroot / work_rel.lstrip("/")
@@ -150,8 +156,6 @@ def main() -> None:
             prefix="arkpkg-xpdf-source-", dir="/tmp"
         ) as source_dir:
             source = obtain_source(args.source_cache.resolve(), Path(source_dir))
-            shutil.rmtree(output_staging, ignore_errors=True)
-            output_staging.mkdir(parents=True)
             privileged(["install", "-d", "-m", "755", str(work_host)])
             privileged(["install", "-m", "644", str(source), str(work_host / source.name)])
         try:
@@ -180,7 +184,11 @@ def main() -> None:
         for tool in TOOLS:
             if not (payload / "usr/bin" / tool).is_file():
                 raise FileNotFoundError(f"Xpdf failed to build {tool}")
+        if output_staging is None:
+            output_staging = Path(tempfile.mkdtemp(prefix="arkpkg-xpdf-staging-"))
         shutil.copytree(payload, output_staging, dirs_exist_ok=True, symlinks=True)
+        # copytree also copies the payload root's mode onto the private staging root.
+        output_staging.chmod(0o700)
     finally:
         privileged(
             [
