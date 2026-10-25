@@ -98,6 +98,7 @@ class DebianSourceUrlTests(unittest.TestCase):
 
 class WorkstationManifestTests(unittest.TestCase):
     def test_workstation_packages_are_checksum_pinned(self) -> None:
+        """Validate workstation package pins, metadata, and dependency order."""
         manifest_path = (
             Path(__file__).resolve().parents[1]
             / "data/debian-workstation-packages.json"
@@ -628,6 +629,7 @@ class WorkstationManifestTests(unittest.TestCase):
         )
 
     def test_remote_workstation_batch_05_is_pinned_and_credited(self) -> None:
+        """Validate batch 05 archive pins, package records, and source credits."""
         repo_root = Path(__file__).resolve().parents[1]
         manifest = json.loads(
             (repo_root / "data/debian-workstation-packages.json").read_text(
