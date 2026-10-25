@@ -1,0 +1,8 @@
+Name: xrootconsole
+Description: Transparent X11 root-window console for system logs
+Version: 1:0.6-5
+Arch: x86_64
+URL: https://sourceforge.net/projects/xrootconsole/
+License: GPL-2+
+Maintainer: arkanaOS Team
+Provides: xrootconsole=/usr/bin/xrootconsole

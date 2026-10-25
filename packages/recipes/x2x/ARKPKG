@@ -1,0 +1,8 @@
+Name: x2x
+Description: Share one keyboard and mouse between two X displays
+Version: 1.30-12
+Arch: x86_64
+URL: https://github.com/dottedmag/x2x
+License: See /usr/share/doc/x2x/copyright
+Maintainer: arkanaOS Team
+Provides: x2x=/usr/bin/x2x

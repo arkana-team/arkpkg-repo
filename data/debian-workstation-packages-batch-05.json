@@ -1,0 +1,59 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "x2x": {
+      "filename": "pool/main/x/x2x/x2x_1.30-12_amd64.deb",
+      "sha256": "7ff27eb1a70c77d02d1eb98821ca829a6a5f46496a1e6ddba5e17f4cd592e092"
+    },
+    "xrootconsole": {
+      "filename": "pool/main/x/xrootconsole/xrootconsole_0.6-5_amd64.deb",
+      "sha256": "1d610974c5532d7b7dc9bfde11580a701982b9e2cbe1cbde05f7e6c4ca98f3dd"
+    },
+    "tigervnc-viewer": {
+      "filename": "pool/main/t/tigervnc/tigervnc-viewer_1.15.0+dfsg-2.1~deb13u1_amd64.deb",
+      "sha256": "4967ae5b5005f531548a73dea293abc7c73cf3f2f35711e3bc7369e84dd62ad7"
+    }
+  },
+  "packages": [
+    {
+      "name": "x2x",
+      "description": "Share one keyboard and mouse between two X displays",
+      "version": "1.30-12",
+      "arch": "x86_64",
+      "debian_packages": [
+        "x2x"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/dottedmag/x2x",
+      "license": "See /usr/share/doc/x2x/copyright",
+      "license_path": "usr/share/doc/x2x/copyright"
+    },
+    {
+      "name": "xrootconsole",
+      "description": "Transparent X11 root-window console for system logs",
+      "version": "1:0.6-5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xrootconsole"
+      ],
+      "dependencies": [],
+      "url": "https://sourceforge.net/projects/xrootconsole/",
+      "license": "GPL-2+",
+      "license_path": "usr/share/doc/xrootconsole/copyright"
+    },
+    {
+      "name": "tigervnc-viewer",
+      "description": "TigerVNC remote desktop client for X11",
+      "version": "1.15.0+dfsg-2.1~deb13u1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "tigervnc-viewer"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/TigerVNC/tigervnc",
+      "license": "GPL-2+",
+      "license_path": "usr/share/doc/tigervnc-viewer/copyright"
+    }
+  ]
+}
