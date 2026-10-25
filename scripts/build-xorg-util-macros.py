@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import sys
 import tarfile
+import tempfile
 import urllib.request
 from pathlib import Path, PurePosixPath
 
@@ -44,23 +45,8 @@ def obtain_source(cache: Path) -> Path:
     return archive_path
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--source-cache", type=Path, default=Path("/tmp/arkpkg-xorg-sources")
-    )
-    parser.add_argument(
-        "--staging", type=Path, default=Path("/tmp/arkpkg-xorg-macros-staging")
-    )
-    parser.add_argument("--arkpkg-build", type=Path, required=True)
-    parser.add_argument("--output-dir", type=Path)
-    args = parser.parse_args()
-
+def build(args: argparse.Namespace, staging: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
-    staging = args.staging.resolve()
-    if staging.exists():
-        shutil.rmtree(staging)
-    staging.mkdir(parents=True)
     source = obtain_source(args.source_cache.resolve())
     with tarfile.open(source, "r:xz") as archive:
         archive.extractall(staging / "source", filter="data")
@@ -95,6 +81,30 @@ def main() -> None:
         command.extend(("--output-dir", str(args.output_dir.resolve())))
     subprocess.run(command, check=True)
     print(f"Staged X.Org Autoconf macros {VERSION}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--source-cache", type=Path, default=Path("/tmp/arkpkg-xorg-sources")
+    )
+    parser.add_argument(
+        "--staging",
+        type=Path,
+        help="New staging directory to retain after building (must not exist)",
+    )
+    parser.add_argument("--arkpkg-build", type=Path, required=True)
+    parser.add_argument("--output-dir", type=Path)
+    args = parser.parse_args()
+
+    if args.staging is not None:
+        staging = args.staging.absolute()
+        # Claim a fresh directory; never resolve or remove an existing entry.
+        staging.mkdir(mode=0o700, parents=True)
+        build(args, staging)
+    else:
+        with tempfile.TemporaryDirectory(prefix="arkpkg-xorg-macros-staging-") as work:
+            build(args, Path(work))
 
 
 if __name__ == "__main__":
