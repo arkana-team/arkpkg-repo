@@ -22449,7 +22449,7 @@
       ]
     },
     "sxiv": {
-      "author": "Bert M\u00fcnnich",
+      "author": "Bert Münnich",
       "git_repo": "https://github.com/muennich/sxiv",
       "git_repo_type": "upstream",
       "git_author_url": "https://github.com/muennich",
@@ -23809,7 +23809,7 @@
       ]
     },
     "weechat": {
-      "author": "S\u00e9bastien Helleu",
+      "author": "Sébastien Helleu",
       "git_repo": "https://github.com/weechat/weechat",
       "git_repo_type": "upstream",
       "git_author_url": null,
@@ -27377,7 +27377,7 @@
       ]
     },
     "libiec61883-0": {
-      "author": "Kristian H\u00f8gsberg and contributors",
+      "author": "Kristian Høgsberg and contributors",
       "git_repo": "https://salsa.debian.org/debian/libiec61883.git",
       "git_repo_type": "packaging",
       "git_author_url": null,
@@ -27473,7 +27473,7 @@
       ]
     },
     "libdisplay-info2": {
-      "author": "Jonas \u00c5dahl and libdisplay-info contributors",
+      "author": "Jonas Ådahl and libdisplay-info contributors",
       "git_repo": "https://gitlab.freedesktop.org/emersion/libdisplay-info",
       "git_repo_type": "upstream",
       "git_author_url": null,
@@ -28069,6 +28069,102 @@
       "git_repo": "https://github.com/TigerVNC/tigervnc",
       "git_repo_type": "upstream",
       "git_author_url": "https://github.com/TigerVNC",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libglew2.2": {
+      "author": "Milan Ikits, Marcelo E. Magallon, and Lev Povalahev",
+      "git_repo": "https://github.com/nigels-com/glew",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/nigels-com",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libslopy7.6": {
+      "author": "Dalton Nell and contributors",
+      "git_repo": "https://github.com/naelstrof/slop",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/naelstrof",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "slop": {
+      "author": "Dalton Nell and contributors",
+      "git_repo": "https://github.com/naelstrof/slop",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/naelstrof",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "maim": {
+      "author": "Dalton Nell and contributors",
+      "git_repo": "https://github.com/naelstrof/maim",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/naelstrof",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "nsxiv": {
+      "author": "Bert Münnich and nsxiv contributors",
+      "git_repo": "https://codeberg.org/nsxiv/nsxiv",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://codeberg.org/nsxiv",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xbindkeys": {
+      "author": "Philippe Brochard and Marcello Mathias Herreshoff",
+      "git_repo": "https://www.nongnu.org/xbindkeys/",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://hocwp.free.fr/",
       "packagers": [
         {
           "name": "arkana-team",

@@ -1,0 +1,11 @@
+Name: libslopy7.6
+Description: Shared library for the slop region selection tool
+Version: 7.6-5
+Arch: x86_64
+URL: https://github.com/naelstrof/slop
+License: GPL-3.0+
+Maintainer: arkanaOS Team
+Dependencies:
+  libglew2.2
+  libxrender
+Provides: libslopy.so.7.6=/usr/lib/x86_64-linux-gnu/libslopy.so.7.6

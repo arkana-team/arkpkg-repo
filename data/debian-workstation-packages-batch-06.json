@@ -1,0 +1,122 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "libglew2.2": {
+      "filename": "pool/main/g/glew/libglew2.2_2.2.0-4+b2_amd64.deb",
+      "sha256": "0bd19a4e495a6e0dccd849c77e7d63117e151de8fcc046447e3fa3f6d70bb0c1"
+    },
+    "libslopy7.6": {
+      "filename": "pool/main/s/slop/libslopy7.6_7.6-5_amd64.deb",
+      "sha256": "a475f3beab332e7da7777c025afedd51e6f4559fb3f6185bcad4bd4fffda2893"
+    },
+    "slop": {
+      "filename": "pool/main/s/slop/slop_7.6-5_amd64.deb",
+      "sha256": "09621d32aa02e0b1ae0bc7d9c2faa5e095957d75d34672f1253781770b0b9f40"
+    },
+    "maim": {
+      "filename": "pool/main/m/maim/maim_5.8.0-1_amd64.deb",
+      "sha256": "d872ab3a3a3726067ca44dc02b87ca892a47f585be151d8d4641e5a137b27772"
+    },
+    "nsxiv": {
+      "filename": "pool/main/n/nsxiv/nsxiv_33-1_amd64.deb",
+      "sha256": "213007b215de5b77aebac87a1463ad705e3a0ca828feec38fe38d34a307b9336"
+    },
+    "xbindkeys": {
+      "filename": "pool/main/x/xbindkeys/xbindkeys_1.8.7-2_amd64.deb",
+      "sha256": "5b30ba7ae3f4c6c11fa216664f5f0588b34341c8ac1c6e31a862c045869e0dae"
+    }
+  },
+  "packages": [
+    {
+      "name": "libglew2.2",
+      "description": "OpenGL Extension Wrangler Library runtime",
+      "version": "2.2.0-4+b2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libglew2.2"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/nigels-com/glew",
+      "license": "BSD-3-Clause",
+      "license_path": "usr/share/doc/libglew2.2/copyright"
+    },
+    {
+      "name": "libslopy7.6",
+      "description": "Shared library for the slop region selection tool",
+      "version": "7.6-5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libslopy7.6"
+      ],
+      "dependencies": [
+        "libglew2.2"
+      ],
+      "url": "https://github.com/naelstrof/slop",
+      "license": "GPL-3.0+",
+      "license_path": "usr/share/doc/libslopy7.6/copyright"
+    },
+    {
+      "name": "slop",
+      "description": "Select and highlight a region of an X11 display",
+      "version": "7.6-5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "slop"
+      ],
+      "dependencies": [
+        "libslopy7.6"
+      ],
+      "url": "https://github.com/naelstrof/slop",
+      "license": "GPL-3.0+",
+      "license_path": "usr/share/doc/slop/copyright"
+    },
+    {
+      "name": "maim",
+      "description": "X11 screenshot utility with optional region selection",
+      "version": "5.8.0-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "maim"
+      ],
+      "dependencies": [
+        "slop"
+      ],
+      "url": "https://github.com/naelstrof/maim",
+      "license": "GPL-3+",
+      "license_path": "usr/share/doc/maim/copyright"
+    },
+    {
+      "name": "nsxiv",
+      "description": "Lightweight image viewer for X11",
+      "version": "33-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "nsxiv"
+      ],
+      "dependencies": [
+        "libexif12",
+        "libimlib2t64",
+        "libxft"
+      ],
+      "url": "https://codeberg.org/nsxiv/nsxiv",
+      "license": "GPL-2.0+",
+      "license_path": "usr/share/doc/nsxiv/copyright"
+    },
+    {
+      "name": "xbindkeys",
+      "description": "Bind X11 key and mouse combinations to commands",
+      "version": "1.8.7-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xbindkeys"
+      ],
+      "dependencies": [
+        "guile"
+      ],
+      "url": "https://www.nongnu.org/xbindkeys/",
+      "license": "GPL-2+",
+      "license_path": "usr/share/doc/xbindkeys/copyright"
+    }
+  ]
+}
