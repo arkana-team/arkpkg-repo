@@ -183,6 +183,8 @@ class WorkstationManifestTests(unittest.TestCase):
             "libraw1394-11", package_by_name["libdc1394-25"]["dependencies"]
         )
         self.assertEqual(package_by_name["rofi"]["dependencies"], ["libxcb-cursor0"])
+        self.assertEqual(package_by_name["atool"]["dependencies"], ["perl"])
+        self.assertEqual(package_by_name["rename"]["dependencies"], ["perl"])
         self.assertTrue(
             {"libarchive13t64", "libdisplay-info2"}
             <= set(package_by_name["mpv"]["dependencies"])
@@ -1949,6 +1951,74 @@ class DebianDownloadCacheTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source cache"):
             BUILDER.build(args)
 
+
+
+class BitmapFontIndexTests(unittest.TestCase):
+    def test_debian_bitmap_font_packages_generate_legacy_indexes(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            payload = root / "payload"
+            fake_bin = root / "bin"
+            fake_bin.mkdir()
+            log = root / "tool-calls.log"
+
+            mkfontscale = fake_bin / "mkfontscale"
+            mkfontscale.write_text(
+                "#!/bin/sh\n"
+                "printf 'mkfontscale %s\\n' \"$PWD\" >> \"$FONT_INDEX_LOG\"\n"
+                "printf '1\\nfixture.pcf.gz test-xlfd\\n' > fonts.scale\n",
+                encoding="utf-8",
+            )
+            mkfontscale.chmod(0o755)
+            mkfontdir = fake_bin / "mkfontdir"
+            mkfontdir.write_text(
+                "#!/bin/sh\n"
+                "printf 'mkfontdir %s\\n' \"$PWD\" >> \"$FONT_INDEX_LOG\"\n"
+                "printf '1\\nfixture.pcf.gz test-xlfd\\n' > fonts.dir\n",
+                encoding="utf-8",
+            )
+            mkfontdir.chmod(0o755)
+
+            with patch.dict(
+                os.environ,
+                {"PATH": str(fake_bin), "FONT_INDEX_LOG": str(log)},
+            ):
+                for package, relative_directory in BUILDER.BITMAP_FONT_DIRECTORIES.items():
+                    font_directory = payload / relative_directory
+                    font_directory.mkdir(parents=True)
+                    BUILDER.generate_bitmap_font_indexes(payload, package)
+                    for index_name in ("fonts.scale", "fonts.dir"):
+                        self.assertEqual(
+                            (font_directory / index_name).read_text(encoding="ascii"),
+                            "1\nfixture.pcf.gz test-xlfd\n",
+                        )
+
+            expected = []
+            for relative_directory in BUILDER.BITMAP_FONT_DIRECTORIES.values():
+                font_directory = payload / relative_directory
+                expected.extend(
+                    f"{tool} {font_directory}"
+                    for tool in ("mkfontscale", "mkfontdir")
+                )
+            self.assertEqual(log.read_text(encoding="utf-8").splitlines(), expected)
+
+    def test_non_font_packages_do_not_require_font_tools(self) -> None:
+        with (
+            tempfile.TemporaryDirectory() as temporary,
+            patch.object(BUILDER.shutil, "which", return_value=None),
+        ):
+            BUILDER.generate_bitmap_font_indexes(Path(temporary), "atool")
+
+    def test_missing_font_index_tools_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            payload = Path(temporary)
+            font_directory = payload / BUILDER.BITMAP_FONT_DIRECTORIES["xfonts-base"]
+            font_directory.mkdir(parents=True)
+            with (
+                patch.object(BUILDER.shutil, "which", return_value=None),
+                self.assertRaisesRegex(FileNotFoundError, "mkfontscale, mkfontdir"),
+            ):
+                BUILDER.generate_bitmap_font_indexes(payload, "xfonts-base")
 
 
 if __name__ == "__main__":

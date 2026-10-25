@@ -5,4 +5,6 @@ Arch: x86_64
 URL: https://metacpan.org/release/File-Rename
 License: See /usr/share/doc/rename/copyright
 Maintainer: arkanaOS Team
+Dependencies:
+  perl
 Provides: file-rename=/usr/bin/file-rename, prename=/usr/bin/prename

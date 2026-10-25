@@ -123,7 +123,9 @@
       "debian_packages": [
         "atool"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "perl"
+      ],
       "url": "https://www.nongnu.org/atool/",
       "license": "See /usr/share/doc/atool/copyright",
       "license_path": "usr/share/doc/atool/copyright"
@@ -293,7 +295,9 @@
       "debian_packages": [
         "rename"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "perl"
+      ],
       "url": "https://metacpan.org/release/File-Rename",
       "license": "See /usr/share/doc/rename/copyright",
       "license_path": "usr/share/doc/rename/copyright"
