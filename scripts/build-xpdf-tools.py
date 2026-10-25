@@ -77,7 +77,9 @@ def main() -> None:
     parser.add_argument("--arkpkg-build", type=Path, required=True)
     parser.add_argument("--source-cache", type=Path, default=Path("/tmp/arkpkg-xpdf-sources"))
     parser.add_argument(
-        "--output-staging", type=Path, default=Path("/tmp/arkpkg-xpdf-staging")
+        "--output-staging",
+        type=Path,
+        help="New staging directory (must not exist; default: private temporary directory)",
     )
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--jobs", type=int, default=1, choices=(1, 2))
@@ -88,9 +90,12 @@ def main() -> None:
         if not (sysroot / "usr/bin" / binary).exists():
             raise FileNotFoundError(f"target build root lacks /usr/bin/{binary}")
     source = obtain_source(args.source_cache.resolve())
-    output_staging = args.output_staging.resolve()
-    shutil.rmtree(output_staging, ignore_errors=True)
-    output_staging.mkdir(parents=True)
+    if args.output_staging is None:
+        output_staging = Path(tempfile.mkdtemp(prefix="arkpkg-xpdf-staging-"))
+    else:
+        # Create exclusively without following or deleting a preexisting entry.
+        output_staging = args.output_staging.absolute()
+        output_staging.mkdir(mode=0o700, parents=True)
 
     work_rel = f"/tmp/arkpkg-xpdf-{uuid.uuid4().hex}"
     work_host = sysroot / work_rel.lstrip("/")
@@ -173,6 +178,8 @@ def main() -> None:
             if not (payload / "usr/bin" / tool).is_file():
                 raise FileNotFoundError(f"Xpdf failed to build {tool}")
         shutil.copytree(payload, output_staging, dirs_exist_ok=True, symlinks=True)
+        # copytree also copies the payload root's mode onto the private staging root.
+        output_staging.chmod(0o700)
     finally:
         privileged(
             [
