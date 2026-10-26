@@ -511,6 +511,7 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertLess(positions["libxaw7"], positions["xcolors"])
 
     def test_hexyl_metadata_identifies_its_upstream_author(self) -> None:
+        """Verify hexyl's upstream author name and links in the index."""
         repo_root = Path(__file__).resolve().parents[1]
         metadata = json.loads(
             (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
