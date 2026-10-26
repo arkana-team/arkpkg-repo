@@ -1,0 +1,8 @@
+Name: wmcpu
+Description: Window Maker docking app similar to xosview
+Version: 1.4-4.1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/wmcpu
+License: See /usr/share/doc/wmcpu/copyright
+Maintainer: arkanaOS Team
+Provides: wmcpu=/usr/bin/wmcpu
