@@ -30196,7 +30196,7 @@
       "author": "g10 Code GmbH and contributors",
       "git_repo": "https://salsa.debian.org/debian/libgpg-error.git",
       "git_repo_type": "packaging",
-      "git_author_url": "https://git.gnupg.org/source/libgpg-error",
+      "git_author_url": "https://github.com/gpg/libgpg-error",
       "packagers": [
         {
           "name": "arkana-team",
@@ -30212,7 +30212,7 @@
       "author": "Werner Koch and contributors",
       "git_repo": "https://salsa.debian.org/gnutls-team/libgcrypt.git",
       "git_repo_type": "packaging",
-      "git_author_url": "https://git.gnupg.org/source/libgcrypt",
+      "git_author_url": "https://github.com/gpg/libgcrypt",
       "packagers": [
         {
           "name": "arkana-team",
@@ -30244,7 +30244,7 @@
       "author": "Duncan Laurie and contributors",
       "git_repo": "https://git.jff.email/cgit/ipmitool.git",
       "git_repo_type": "packaging",
-      "git_author_url": "https://github.com/ipmitool/ipmitool",
+      "git_author_url": "https://codeberg.org/IPMITool/ipmitool",
       "packagers": [
         {
           "name": "arkana-team",

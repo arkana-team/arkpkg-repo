@@ -3683,16 +3683,16 @@ class Batch24PackageTests(unittest.TestCase):
             "freeipmi-common": ("Albert Chu", "https://github.com/chu11"),
             "libgpg-error0": (
                 "g10 Code GmbH and contributors",
-                "https://git.gnupg.org/source/libgpg-error",
+                "https://github.com/gpg/libgpg-error",
             ),
             "libgcrypt20": (
                 "Werner Koch and contributors",
-                "https://git.gnupg.org/source/libgcrypt",
+                "https://github.com/gpg/libgcrypt",
             ),
             "libfreeipmi17": ("Albert Chu", "https://github.com/chu11"),
             "ipmitool": (
                 "Duncan Laurie and contributors",
-                "https://github.com/ipmitool/ipmitool",
+                "https://codeberg.org/IPMITool/ipmitool",
             ),
         }
         self.assertEqual(set(batch_packages), set(package_details))
