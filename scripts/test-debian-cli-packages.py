@@ -521,6 +521,7 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertEqual(metadata["git_author_url"], "https://github.com/sharkdp")
 
     def test_system_fetch_tools_identify_their_upstream_authors(self) -> None:
+        """Keep upstream author names and repository links accurate."""
         repo_root = Path(__file__).resolve().parents[1]
         metadata = json.loads(
             (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
