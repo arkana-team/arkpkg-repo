@@ -1,0 +1,7 @@
+Name: crawl-common
+Description: Dungeon Crawl, a text-based roguelike game (data files)
+Version: 2:0.28.0-1.1
+Arch: any
+URL: http://crawl.develz.org/
+License: See /usr/share/doc/crawl-common/copyright
+Maintainer: arkanaOS Team
