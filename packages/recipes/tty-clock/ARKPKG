@@ -1,0 +1,12 @@
+Name: tty-clock
+Description: Ncurses terminal clock with configurable display
+Version: 2.3+git.20211121.f2f847c-1
+Arch: x86_64
+URL: https://github.com/xorg62/tty-clock
+License: See /usr/share/doc/tty-clock/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs
+  ncurses-libs
+Provides: tty-clock=/usr/bin/tty-clock

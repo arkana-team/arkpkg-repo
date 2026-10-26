@@ -382,6 +382,166 @@ def exclude_package_paths(payload: Path, exclusions: list[str], package_name: st
         seen.add(relative)
 
 
+def resolve_payload_path(payload: Path, relative: str, package_name: str) -> Path:
+    """Resolve a normalized payload path without following symlink parents."""
+    path = PurePosixPath(relative)
+    if (
+        not relative
+        or not path.parts
+        or path.is_absolute()
+        or ".." in path.parts
+        or path.as_posix() != relative
+    ):
+        raise ValueError(f"{package_name}: unsafe renamed path {relative!r}")
+    target = payload.joinpath(*path.parts)
+    if target == payload:
+        raise ValueError(f"{package_name}: unsafe renamed path {relative!r}")
+    parent = target.parent
+    while parent != payload:
+        if parent.is_symlink():
+            raise ValueError(
+                f"{package_name}: renamed path traverses a symlink: {relative}"
+            )
+        parent = parent.parent
+    return target
+
+
+def rename_package_paths(
+    payload: Path, renames: list[list[str]], package_name: str
+) -> None:
+    """Move package files to nonconflicting names without following symlink parents."""
+    seen_sources: set[str] = set()
+    seen_destinations: set[str] = set()
+
+    for pair in renames:
+        if len(pair) != 2:
+            raise ValueError(
+                f"{package_name}: each renamed path needs a source and target"
+            )
+        source_name, destination_name = pair
+        if source_name == destination_name:
+            raise ValueError(f"{package_name}: renamed source and target are identical")
+        if source_name in seen_sources or destination_name in seen_destinations:
+            raise ValueError(f"{package_name}: duplicate renamed path")
+        source = resolve_payload_path(payload, source_name, package_name)
+        destination = resolve_payload_path(payload, destination_name, package_name)
+        if not source.is_file() and not source.is_symlink():
+            raise FileNotFoundError(
+                f"{package_name}: expected renamed file is missing: {source_name}"
+            )
+        if destination.exists() or destination.is_symlink():
+            raise FileExistsError(
+                f"{package_name}: renamed destination already exists: "
+                f"{destination_name}"
+            )
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        source.replace(destination)
+        seen_sources.add(source_name)
+        seen_destinations.add(destination_name)
+
+
+def rewrite_package_commands(
+    payload: Path, rewrites: list[dict[str, object]], package_name: str
+) -> None:
+    """Update exact command references in selected text files after a rename."""
+    for rewrite in rewrites:
+        original = rewrite["from"]
+        replacement = rewrite["to"]
+        paths = rewrite["paths"]
+        preserve_contexts = rewrite.get("preserve_contexts", [])
+        if (
+            not isinstance(original, str)
+            or not isinstance(replacement, str)
+            or not PACKAGE_ATOM.fullmatch(original)
+            or not PACKAGE_ATOM.fullmatch(replacement)
+            or not isinstance(paths, list)
+            or not paths
+            or not isinstance(preserve_contexts, list)
+            or any(
+                not isinstance(context, str) or not context
+                for context in preserve_contexts
+            )
+            or len(preserve_contexts) != len(set(preserve_contexts))
+        ):
+            raise ValueError(f"{package_name}: invalid command rewrite")
+        pattern = re.compile(
+            rb"(?<![A-Za-z0-9_/:$@%])(?<!GNU )"
+            + re.escape(original.encode("ascii"))
+            + rb"(?![A-Za-z0-9_-])(?=[ \t]*(?:-|[\"'`$|;&><)]|\r?\n|$))"
+        )
+        preserved_context_counts = dict.fromkeys(preserve_contexts, 0)
+        rewritten_files: list[tuple[Path, bytes]] = []
+        for relative in paths:
+            if not isinstance(relative, str):
+                raise TypeError(
+                    f"{package_name}: command rewrite path must be a string"
+                )
+            path = resolve_payload_path(payload, relative, package_name)
+            if path.is_symlink() or not path.is_file():
+                raise FileNotFoundError(
+                    f"{package_name}: command rewrite file is missing: {relative}"
+                )
+            contents = path.read_bytes()
+            protected_spans: list[tuple[int, int]] = []
+            for context in preserve_contexts:
+                encoded_context = context.encode("utf-8")
+                occurrences = contents.count(encoded_context)
+                if occurrences > 1:
+                    raise ValueError(
+                        f"{package_name}: preserved command context is ambiguous "
+                        f"in {relative}"
+                    )
+                if occurrences == 1:
+                    context_matches = list(pattern.finditer(encoded_context))
+                    if len(context_matches) != 1:
+                        raise ValueError(
+                            f"{package_name}: preserved context must contain one "
+                            f"{original} command reference"
+                        )
+                    start = contents.index(encoded_context)
+                    protected_spans.append((start, start + len(encoded_context)))
+                    preserved_context_counts[context] += 1
+
+            rewritten_parts: list[bytes] = []
+            cursor = 0
+            count = 0
+            for start, end in sorted(protected_spans):
+                if start < cursor:
+                    raise ValueError(
+                        f"{package_name}: preserved command contexts overlap"
+                    )
+                rewritten, replacements = pattern.subn(
+                    replacement.encode("ascii"), contents[cursor:start]
+                )
+                rewritten_parts.extend((rewritten, contents[start:end]))
+                count += replacements
+                cursor = end
+            rewritten, replacements = pattern.subn(
+                replacement.encode("ascii"), contents[cursor:]
+            )
+            rewritten_parts.append(rewritten)
+            count += replacements
+            rewritten = b"".join(rewritten_parts)
+            if count == 0:
+                raise ValueError(
+                    f"{package_name}: command reference not found in {relative}"
+                )
+            rewritten_files.append((path, rewritten))
+
+        missing_contexts = [
+            context
+            for context, count in preserved_context_counts.items()
+            if count != 1
+        ]
+        if missing_contexts:
+            raise ValueError(
+                f"{package_name}: expected each preserved command context once; "
+                f"found {len(missing_contexts)} missing or repeated"
+            )
+        for path, contents in rewritten_files:
+            path.write_bytes(contents)
+
+
 def payload_paths(payload: Path) -> list[str]:
     paths = []
     for path in payload.rglob("*"):
@@ -529,6 +689,7 @@ def command_provides(payload: Path) -> list[str]:
 
 
 def build(args: argparse.Namespace) -> None:
+    """Build the requested checksum-pinned Debian packages as ark archives."""
     repo_root = args.repo_root.resolve()
     manifest_path = args.manifest
     if not manifest_path.is_absolute():
@@ -570,6 +731,10 @@ def build(args: argparse.Namespace) -> None:
                 merge_payload(extracted, payload)
 
             relocate_debian_python_packages(payload, staging)
+            rename_package_paths(payload, package.get("renames", []), name)
+            rewrite_package_commands(
+                payload, package.get("command_rewrites", []), name
+            )
             exclude_package_paths(payload, package.get("exclude_paths", []), name)
             generate_bitmap_font_indexes(payload, name)
 

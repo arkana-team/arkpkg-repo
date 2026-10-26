@@ -1,0 +1,12 @@
+Name: gnu-parallel
+Description: GNU Parallel job runner installed as parallel-gnu to coexist with moreutils
+Version: 20240222+ds-2
+Arch: any
+URL: https://www.gnu.org/software/parallel/
+License: See /usr/share/doc/parallel/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+  procps-ng
+  sysstat
+Provides: env_parallel.bash=/usr/bin/env_parallel.bash, env_parallel.csh=/usr/bin/env_parallel.csh, env_parallel.dash=/usr/bin/env_parallel.dash, env_parallel.fish=/usr/bin/env_parallel.fish, env_parallel.ksh=/usr/bin/env_parallel.ksh, env_parallel.mksh=/usr/bin/env_parallel.mksh, env_parallel.sh=/usr/bin/env_parallel.sh, env_parallel.tcsh=/usr/bin/env_parallel.tcsh, env_parallel.zsh=/usr/bin/env_parallel.zsh, env_parallel=/usr/bin/env_parallel, niceload=/usr/bin/niceload, parallel-gnu=/usr/bin/parallel-gnu, parcat=/usr/bin/parcat, parset=/usr/bin/parset, parsort=/usr/bin/parsort, sem=/usr/bin/sem, sql=/usr/bin/sql

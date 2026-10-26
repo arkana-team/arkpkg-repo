@@ -1,0 +1,10 @@
+Name: timewarrior
+Description: Command-line time tracking with flexible reporting
+Version: 1.7.1+ds.1-2
+Arch: x86_64
+URL: https://timewarrior.net/
+License: See /usr/share/doc/timewarrior/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gcc-libs
+Provides: timew=/usr/bin/timew
