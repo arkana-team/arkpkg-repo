@@ -29919,6 +29919,102 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "cpuid": {
+      "author": "Todd Allen",
+      "git_repo": "https://salsa.debian.org/debian/cpuid.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://www.etallen.com/cpuid.html",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "hwloc-nox": {
+      "author": "Cédric Augonnet, Jérôme Clet-Ortega, Ludovic Courtès, Brice Goglin, Nathalie Furmento, Samuel Thibault, and Jeff Squyres",
+      "git_repo": "https://github.com/open-mpi/hwloc",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/open-mpi/hwloc/graphs/contributors",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libsysfs2": {
+      "author": "Ananth Mavinakayanahalli, Daniel Stekloff, Mohan Kumar, and Nitin Vashisth",
+      "git_repo": "https://github.com/linux-ras/sysfsutils",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/linux-ras/sysfsutils/graphs/contributors",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "memtester": {
+      "author": "Charles Cazabon and Simon Kirby",
+      "git_repo": "https://github.com/jnavila/memtester",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://pyropus.ca/software/memtester/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "pci.ids": {
+      "author": "Martin Mareš and Albert Pool",
+      "git_repo": "https://github.com/pciutils/pciids",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://pci-ids.ucw.cz/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "sysfsutils": {
+      "author": "Ananth Mavinakayanahalli, Daniel Stekloff, Mohan Kumar, and Nitin Vashisth",
+      "git_repo": "https://github.com/linux-ras/sysfsutils",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/linux-ras/sysfsutils/graphs/contributors",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

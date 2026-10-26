@@ -1,0 +1,10 @@
+Name: cpuid
+Description: Detailed x86 CPU model and feature information
+Version: 20250316-1
+Arch: x86_64
+URL: https://www.etallen.com/cpuid.html
+License: See /usr/share/doc/cpuid/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: cpuid=/usr/bin/cpuid, cpuinfo2cpuid=/usr/bin/cpuinfo2cpuid

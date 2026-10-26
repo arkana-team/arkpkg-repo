@@ -1,0 +1,8 @@
+Name: libsysfs2
+Description: Shared library for querying Linux sysfs devices
+Version: 2.1.1-7
+Arch: x86_64
+URL: https://github.com/linux-ras/sysfsutils
+License: See /usr/share/doc/libsysfs2/copyright
+Maintainer: arkanaOS Team
+Provides: libsysfs.so.2=/usr/lib/x86_64-linux-gnu/libsysfs.so.2.0.1
