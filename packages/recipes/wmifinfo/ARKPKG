@@ -1,0 +1,8 @@
+Name: wmifinfo
+Description: Dockapp that shows information for all interfaces
+Version: 0.11-2+b1
+Arch: x86_64
+URL: https://www.dockapps.net/wmifinfo
+License: See /usr/share/doc/wmifinfo/copyright
+Maintainer: arkanaOS Team
+Provides: wmifinfo=/usr/bin/wmifinfo
