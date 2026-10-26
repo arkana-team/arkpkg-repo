@@ -1,0 +1,10 @@
+Name: fossil
+Description: Distributed version control with an integrated wiki and issue tracker
+Version: 1:2.26-2
+Arch: x86_64
+URL: https://fossil-scm.org/home
+License: See /usr/share/doc/fossil/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  openssl-libs
+Provides: fossil=/usr/bin/fossil

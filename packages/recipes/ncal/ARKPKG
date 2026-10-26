@@ -1,0 +1,10 @@
+Name: ncal
+Description: Gregorian and Julian calendar utility
+Version: 12.1.8
+Arch: x86_64
+URL: https://github.com/freebsd/freebsd-src
+License: See /usr/share/doc/ncal/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+Provides: ncal=/usr/bin/ncal
