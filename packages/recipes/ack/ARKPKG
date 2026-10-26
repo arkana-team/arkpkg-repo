@@ -1,0 +1,10 @@
+Name: ack
+Description: grep-like program specifically for large source trees
+Version: 3.8.1-1
+Arch: any
+URL: https://beyondgrep.com/
+License: See /usr/share/doc/ack/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: ack=/usr/bin/ack
