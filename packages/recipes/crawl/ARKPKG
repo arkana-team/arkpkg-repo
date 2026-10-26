@@ -1,0 +1,13 @@
+Name: crawl
+Description: Dungeon Crawl, a text-based roguelike game
+Version: 2:0.28.0-1.1
+Arch: x86_64
+URL: http://crawl.develz.org/
+License: See /usr/share/doc/crawl/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  crawl-common
+  liblua5.1-0
+  libsqlite3-0
+  libtinfo6
+  ncurses-libs
