@@ -1,0 +1,8 @@
+Name: wmusic
+Description: remote-control DockApp for MPRIS-compatible media players
+Version: 2.1.1-1+b1
+Arch: x86_64
+URL: https://dockapps.net/wmusic
+License: See /usr/share/doc/wmusic/copyright
+Maintainer: arkanaOS Team
+Provides: wmusic=/usr/bin/wmusic
