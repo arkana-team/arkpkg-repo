@@ -1,0 +1,8 @@
+Name: wmitime
+Description: clock dock app showing time and internet time
+Version: 0.5-3
+Arch: x86_64
+URL: https://dockapps.net/wmitime
+License: See /usr/share/doc/wmitime/copyright
+Maintainer: arkanaOS Team
+Provides: wmitime=/usr/bin/wmitime
