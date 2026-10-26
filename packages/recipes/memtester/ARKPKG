@@ -1,0 +1,8 @@
+Name: memtester
+Description: Userspace utility for testing the memory subsystem
+Version: 4.7.1-1
+Arch: x86_64
+URL: https://pyropus.ca/software/memtester/
+License: See /usr/share/doc/memtester/copyright
+Maintainer: arkanaOS Team
+Provides: memtester=/usr/sbin/memtester

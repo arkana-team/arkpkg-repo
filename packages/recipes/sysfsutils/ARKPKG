@@ -1,0 +1,11 @@
+Name: sysfsutils
+Description: Command-line tools for querying Linux sysfs devices
+Version: 2.1.1-7
+Arch: x86_64
+URL: https://github.com/linux-ras/sysfsutils
+License: See /usr/share/doc/sysfsutils/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsysfs2
+  pci.ids
+Provides: systool=/usr/bin/systool, update-sysfs=/usr/sbin/update-sysfs

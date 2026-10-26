@@ -1,0 +1,7 @@
+Name: pci.ids
+Description: PCI vendor, device, subsystem, and class identifier database
+Version: 0.0~2025.06.09-1
+Arch: any
+URL: https://pci-ids.ucw.cz/
+License: See /usr/share/doc/pci.ids/copyright
+Maintainer: arkanaOS Team
