@@ -300,6 +300,7 @@ class WorkstationManifestTests(unittest.TestCase):
             "2048": "https://github.com/mevdschee",
             "nbsdgames": "https://github.com/abakh",
             "cbonsai": "https://gitlab.com/jallbrit",
+            "libfile-next-perl": "https://github.com/petdance",
         }
         for name, profile_url in expected_author_profiles.items():
             self.assertEqual(metadata[name]["git_author_url"], profile_url)
@@ -882,7 +883,7 @@ class WorkstationManifestTests(unittest.TestCase):
         )["packages"]
         packages = {item["name"]: item for item in manifest["packages"]}
         batch_packages = {item["name"]: item for item in batch["packages"]}
-        self.assertEqual(len(batch_packages), 86)
+        self.assertEqual(len(batch_packages), 89)
         self.assertEqual(len(batch_packages), len(batch["packages"]))
         self.assertEqual(batch["suite"], "trixie")
         self.assertEqual(batch["architecture"], "amd64")
@@ -923,15 +924,37 @@ class WorkstationManifestTests(unittest.TestCase):
                 )
 
         for name, dependencies in {
+            "ack": {"libfile-next-perl", "perl"},
             "asclock": {"asclock-themes"},
             "autorandr": {"xrandr"},
             "ansiweather": {"bc", "curl-cli", "jq"},
             "crawl": {"crawl-common", "liblua5.1-0"},
             "gearhead": {"gearhead-data"},
+            "libwraster6": {
+                "giflib",
+                "libjpeg62-turbo",
+                "libmagickwand-7.q16-10",
+                "libpng16-16t64",
+                "libtiff6",
+                "libwebp7",
+                "libxmu",
+            },
             "wmbattery": {"upower"},
             "wmget": {"curl-cli", "perl"},
+            "wmcore": {"libdockapp3"},
+            "wmmon": {"libdockapp3"},
+            "wmacpi": {"libdockapp3"},
+            "wmsysmon": {"libdockapp3"},
+            "wmweather+": {"libcurl3t64-gnutls", "libwraster6", "pcre2-libs"},
         }.items():
             self.assertTrue(dependencies <= set(packages[name]["dependencies"]))
+
+        self.assertEqual(
+            set(packages["autorandr"]["base_dependencies"]),
+            {"python3", "libinput-tools"},
+        )
+        self.assertNotIn("python3", packages["autorandr"]["dependencies"])
+        self.assertNotIn("libinput-tools", packages["autorandr"]["dependencies"])
 
         self.assertEqual(packages["crawl"]["license_source_package"], "crawl-common")
         self.assertEqual(

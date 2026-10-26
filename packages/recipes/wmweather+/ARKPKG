@@ -7,5 +7,6 @@ License: See /usr/share/doc/wmweather+/copyright
 Maintainer: arkanaOS Team
 Dependencies:
   libcurl3t64-gnutls
+  libwraster6
   pcre2-libs
 Provides: wmweather+=/usr/bin/wmweather+

@@ -6,5 +6,6 @@ URL: https://beyondgrep.com/
 License: See /usr/share/doc/ack/copyright
 Maintainer: arkanaOS Team
 Dependencies:
+  libfile-next-perl
   perl
 Provides: ack=/usr/bin/ack

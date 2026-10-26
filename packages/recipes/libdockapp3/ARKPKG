@@ -1,0 +1,8 @@
+Name: libdockapp3
+Description: Shared library for Window Maker dock apps
+Version: 1:0.7.3-3
+Arch: x86_64
+URL: https://www.dockapps.net/libdockapp
+License: See /usr/share/doc/libdockapp3/copyright
+Maintainer: arkanaOS Team
+Provides: libdockapp.so.3=/usr/lib/x86_64-linux-gnu/libdockapp.so.3.0.1

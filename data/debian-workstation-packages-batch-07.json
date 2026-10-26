@@ -345,9 +345,47 @@
     "crawl": {
       "filename": "pool/main/c/crawl/crawl_0.28.0-1.1_amd64.deb",
       "sha256": "71d68bfc90443c0b26d60e0448825aa7cf329d18aba9ac76e1ca132b088afc64"
+    },
+    "libdockapp3": {
+      "filename": "pool/main/libd/libdockapp/libdockapp3_0.7.3-3_amd64.deb",
+      "sha256": "81df3978ee64002a2166183802fb519e2c17c994c46602e21612713f36a03a38"
+    },
+    "libfile-next-perl": {
+      "filename": "pool/main/libf/libfile-next-perl/libfile-next-perl_1.18-2_all.deb",
+      "sha256": "1a4da1159d4be16777b997df85bd72694f32a102a21c88aade7f140bd6185374"
+    },
+    "libwraster6": {
+      "filename": "pool/main/w/wmaker/libwraster6_0.96.0-4_amd64.deb",
+      "sha256": "93dc5c2368d9ab554ae3a645b55c73540ddc4a324fd1879074ca390bd0b42708"
     }
   },
   "packages": [
+    {
+      "name": "libdockapp3",
+      "description": "Shared library for Window Maker dock apps",
+      "version": "1:0.7.3-3",
+      "debian_version": "1:0.7.3-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libdockapp3"
+      ],
+      "dependencies": [],
+      "base_dependencies": [
+        "libc6",
+        "libx11-6",
+        "libxext6",
+        "libxpm4"
+      ],
+      "url": "https://www.dockapps.net/libdockapp",
+      "license": "See /usr/share/doc/libdockapp3/copyright",
+      "license_path": "usr/share/doc/libdockapp3/copyright",
+      "symlinks": [
+        [
+          "usr/lib/libdockapp.so.3",
+          "x86_64-linux-gnu/libdockapp.so.3"
+        ]
+      ]
+    },
     {
       "name": "wmacpi",
       "description": "ACPI battery monitor for WindowMaker",
@@ -357,7 +395,9 @@
       "debian_packages": [
         "wmacpi"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "libdockapp3"
+      ],
       "url": "https://www.dockapps.net/wmacpi",
       "license": "See /usr/share/doc/wmacpi/copyright",
       "license_path": "usr/share/doc/wmacpi/copyright"
@@ -499,7 +539,9 @@
       "debian_packages": [
         "wmcore"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "libdockapp3"
+      ],
       "url": "https://www.dockapps.net/wmcore",
       "license": "See /usr/share/doc/wmcore/copyright",
       "license_path": "usr/share/doc/wmcore/copyright"
@@ -700,7 +742,9 @@
       "debian_packages": [
         "wmmon"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "libdockapp3"
+      ],
       "url": "https://www.dockapps.net/wmmon",
       "license": "See /usr/share/doc/wmmon/copyright",
       "license_path": "usr/share/doc/wmmon/copyright"
@@ -826,7 +870,9 @@
       "debian_packages": [
         "wmsysmon"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "libdockapp3"
+      ],
       "url": "https://github.com/voyageur/wmsysmon",
       "license": "See /usr/share/doc/wmsysmon/copyright",
       "license_path": "usr/share/doc/wmsysmon/copyright"
@@ -890,6 +936,40 @@
       "license_path": "usr/share/doc/wmweather/copyright"
     },
     {
+      "name": "libwraster6",
+      "description": "Raster image library for Window Maker",
+      "version": "0.96.0-4",
+      "debian_version": "0.96.0-4",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libwraster6"
+      ],
+      "dependencies": [
+        "giflib",
+        "libjpeg62-turbo",
+        "libmagickwand-7.q16-10",
+        "libpng16-16t64",
+        "libtiff6",
+        "libwebp7",
+        "libxmu"
+      ],
+      "base_dependencies": [
+        "libc6",
+        "libx11-6",
+        "libxext6",
+        "libxpm4"
+      ],
+      "url": "https://www.windowmaker.org/",
+      "license": "See /usr/share/doc/libwraster6/copyright",
+      "license_path": "usr/share/doc/libwraster6/copyright",
+      "symlinks": [
+        [
+          "usr/lib/libwraster.so.6",
+          "x86_64-linux-gnu/libwraster.so.6"
+        ]
+      ]
+    },
+    {
       "name": "wmweather+",
       "description": "WindowMaker dock app that shows your current weather",
       "version": "2.19~alpha+ds-2",
@@ -898,7 +978,11 @@
       "debian_packages": [
         "wmweather+"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "libcurl3t64-gnutls",
+        "libwraster6",
+        "pcre2-libs"
+      ],
       "url": "https://sourceforge.net/projects/wmweatherplus/",
       "license": "See /usr/share/doc/wmweather+/copyright",
       "license_path": "usr/share/doc/wmweather+/copyright"
@@ -1087,7 +1171,11 @@
       ],
       "url": "https://github.com/phillipberndt/autorandr",
       "license": "See /usr/share/doc/autorandr/copyright",
-      "license_path": "usr/share/doc/autorandr/copyright"
+      "license_path": "usr/share/doc/autorandr/copyright",
+      "base_dependencies": [
+        "python3",
+        "libinput-tools"
+      ]
     },
     {
       "name": "alttab",
@@ -1146,6 +1234,22 @@
       "license_path": "usr/share/doc/acpitool/copyright"
     },
     {
+      "name": "libfile-next-perl",
+      "description": "File::Next module for Perl file finding",
+      "version": "1.18-2",
+      "debian_version": "1.18-2",
+      "arch": "any",
+      "debian_packages": [
+        "libfile-next-perl"
+      ],
+      "dependencies": [
+        "perl"
+      ],
+      "url": "https://metacpan.org/release/File-Next",
+      "license": "See /usr/share/doc/libfile-next-perl/copyright",
+      "license_path": "usr/share/doc/libfile-next-perl/copyright"
+    },
+    {
       "name": "ack",
       "description": "grep-like program specifically for large source trees",
       "version": "3.8.1-1",
@@ -1155,6 +1259,7 @@
         "ack"
       ],
       "dependencies": [
+        "libfile-next-perl",
         "perl"
       ],
       "url": "https://beyondgrep.com/",

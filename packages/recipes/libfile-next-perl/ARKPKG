@@ -1,0 +1,9 @@
+Name: libfile-next-perl
+Description: File::Next module for Perl file finding
+Version: 1.18-2
+Arch: any
+URL: https://metacpan.org/release/File-Next
+License: See /usr/share/doc/libfile-next-perl/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl

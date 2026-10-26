@@ -5,4 +5,6 @@ Arch: x86_64
 URL: https://www.dockapps.net/wmmon
 License: See /usr/share/doc/wmmon/copyright
 Maintainer: arkanaOS Team
+Dependencies:
+  libdockapp3
 Provides: wmmon=/usr/bin/wmmon

@@ -29583,6 +29583,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "libdockapp3": {
+      "author": "Alfredo K. Kojima, Pascal Hofstee, Alban G. Hertroys, and contributors",
+      "git_repo": "https://salsa.debian.org/wmaker-team/libdockapp",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libfile-next-perl": {
+      "author": "Andy Lester",
+      "git_repo": "https://github.com/petdance/file-next",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/petdance",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libwraster6": {
+      "author": "Alfredo Kengi Kojima, Marco van Hylckama Vlieg, and Window Maker contributors",
+      "git_repo": "https://repo.or.cz/w/wmaker-crm.git",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

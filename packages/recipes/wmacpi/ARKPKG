@@ -5,4 +5,6 @@ Arch: x86_64
 URL: https://www.dockapps.net/wmacpi
 License: See /usr/share/doc/wmacpi/copyright
 Maintainer: arkanaOS Team
+Dependencies:
+  libdockapp3
 Provides: wmacpi-cli=/usr/bin/wmacpi-cli, wmacpi=/usr/bin/wmacpi

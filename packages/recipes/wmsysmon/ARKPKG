@@ -5,4 +5,6 @@ Arch: x86_64
 URL: https://github.com/voyageur/wmsysmon
 License: See /usr/share/doc/wmsysmon/copyright
 Maintainer: arkanaOS Team
+Dependencies:
+  libdockapp3
 Provides: wmsysmon=/usr/bin/wmsysmon

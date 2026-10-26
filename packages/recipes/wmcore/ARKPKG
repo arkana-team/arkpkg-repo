@@ -5,4 +5,6 @@ Arch: x86_64
 URL: https://www.dockapps.net/wmcore
 License: See /usr/share/doc/wmcore/copyright
 Maintainer: arkanaOS Team
+Dependencies:
+  libdockapp3
 Provides: wmcore=/usr/bin/wmcore
