@@ -29695,6 +29695,22 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "posh": {
+      "author": "Clint Adams",
+      "git_repo": "https://salsa.debian.org/clint/posh",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://salsa.debian.org/clint",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

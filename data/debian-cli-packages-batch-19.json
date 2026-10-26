@@ -1,0 +1,28 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "posh"
+      ],
+      "debian_version": "0.14.1",
+      "dependencies": [],
+      "description": "Policy-compliant POSIX shell",
+      "license": "See /usr/share/doc/posh/copyright",
+      "license_path": "usr/share/doc/posh/copyright",
+      "name": "posh",
+      "url": "https://salsa.debian.org/clint/posh",
+      "version": "0.14.1"
+    }
+  ],
+  "sources": {
+    "posh": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/posh/posh_0.14.1_amd64.deb",
+      "sha256": "1b5d164d880aa57c6808fec6185b0d07e0c15bee7c0c518bdd5252d17a24ef90",
+      "version": "0.14.1"
+    }
+  },
+  "suite": "trixie"
+}
