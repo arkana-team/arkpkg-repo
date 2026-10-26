@@ -1,0 +1,10 @@
+Name: gemdropx
+Description: Gem Drop X is an interesting one-player puzzle game for X11
+Version: 0.9-10
+Arch: x86_64
+URL: http://www.newbreedsoftware.com/gemdropx
+License: See /usr/share/doc/gemdropx/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsdl-mixer1.2
+  libsdl1.2debian
