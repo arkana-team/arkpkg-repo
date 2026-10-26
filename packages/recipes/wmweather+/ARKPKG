@@ -1,0 +1,11 @@
+Name: wmweather+
+Description: WindowMaker dock app that shows your current weather
+Version: 2.19~alpha+ds-2
+Arch: x86_64
+URL: https://sourceforge.net/projects/wmweatherplus/
+License: See /usr/share/doc/wmweather+/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcurl3t64-gnutls
+  pcre2-libs
+Provides: wmweather+=/usr/bin/wmweather+
