@@ -1,0 +1,8 @@
+Name: wmcore
+Description: Dockapp that shows the usage of each core in the system
+Version: 0.0.4-2+b1
+Arch: x86_64
+URL: https://www.dockapps.net/wmcore
+License: See /usr/share/doc/wmcore/copyright
+Maintainer: arkanaOS Team
+Provides: wmcore=/usr/bin/wmcore
