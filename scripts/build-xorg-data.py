@@ -4,15 +4,14 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import re
-import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 from pathlib import Path
+
+from source_cache import source_snapshot
 
 NAME = "xbitmaps"
 VERSION = "1.1.4"
@@ -20,22 +19,11 @@ SHA256 = "895722f136e21e728c52f2d99fd2dae95018b9ddad1bac1f29d61bcd6593721d"
 URL = f"https://xorg.freedesktop.org/archive/individual/data/{NAME}-{VERSION}.tar.xz"
 
 
-def obtain_source(cache: Path) -> Path:
-    cache.mkdir(parents=True, exist_ok=True)
-    archive_path = cache / f"{NAME}-{VERSION}.tar.xz"
-    if not archive_path.is_file():
-        request = urllib.request.Request(
-            URL, headers={"User-Agent": "arkpkg-repo-xorg-data-builder/1"}
-        )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            archive_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
-    digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-    if digest != SHA256:
-        raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
-    return archive_path
+def obtain_source(cache: Path, snapshots: Path) -> Path:
+    return source_snapshot(
+        cache, snapshots, f"{NAME}-{VERSION}.tar.xz", URL, SHA256,
+        user_agent="arkpkg-repo-xorg-data-builder/1", timeout=90,
+    )
 
 
 def stage_package(archive_path: Path, staging: Path) -> int:
@@ -57,6 +45,9 @@ def stage_package(archive_path: Path, staging: Path) -> int:
         names = [token for token in re.sub(r"\\\s*\n", " ", match.group(1)).split()]
         if not names or len(names) != len(set(names)):
             raise ValueError("upstream bitmap list is empty or has duplicate names")
+        for name in names:
+            if name in {".", ".."} or "/" in name or "\\" in name:
+                raise ValueError(f"unsafe upstream bitmap name: {name!r}")
         for name in names:
             member_name = f"{prefix}{name}"
             member = archive.getmember(member_name)
@@ -107,8 +98,13 @@ def main() -> None:
 
 
 def build(args: argparse.Namespace, staging: Path) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-xorg-data-sources-") as temporary:
+        build_with_sources(args, staging, Path(temporary))
+
+
+def build_with_sources(args: argparse.Namespace, staging: Path, snapshots: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
-    source = obtain_source(args.source_cache.resolve())
+    source = obtain_source(args.source_cache, snapshots)
     count = stage_package(source, staging)
     command = [
         sys.executable,

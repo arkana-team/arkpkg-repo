@@ -72,7 +72,7 @@ class XorgStagingTests(unittest.TestCase):
             argv.extend(("--staging", str(staging)))
 
         def source(cache, name="xbitmaps", *args):
-            return self.sources[name]
+            return self.sources[name if is_font else "xbitmaps"]
 
         observed = []
 
