@@ -1,0 +1,8 @@
+Name: wmtime
+Description: Window Maker dockapp that displays the time and date
+Version: 1.4-4
+Arch: x86_64
+URL: https://www.dockapps.net/wmtime
+License: See /usr/share/doc/wmtime/copyright
+Maintainer: arkanaOS Team
+Provides: wmtime=/usr/bin/wmtime
