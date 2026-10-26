@@ -28210,8 +28210,8 @@
     },
     "wmacpi": {
       "author": "Tim Copperfield",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmacpi",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmacpi",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28226,8 +28226,8 @@
     },
     "wmbattery": {
       "author": "Joey Hess",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmbattery",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmbattery",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28242,8 +28242,8 @@
     },
     "wmbiff": {
       "author": "Gennady Belyakov",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmbiff",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmbiff",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28258,8 +28258,8 @@
     },
     "wmbubble": {
       "author": "Tim Copperfield",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmbubble",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://github.com/rnjacobs/wmbubble",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -28274,8 +28274,8 @@
     },
     "wmbutton": {
       "author": "Edward H. Flora",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmbutton",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmbutton",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28290,8 +28290,8 @@
     },
     "wmcalc": {
       "author": "Edward H. Flora",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcalc",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmcalc",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28306,8 +28306,8 @@
     },
     "wmcalclock": {
       "author": "Michael G. Henderson",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcalclock",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmcalclock",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28322,8 +28322,8 @@
     },
     "wmcliphist": {
       "author": "Michal Krause",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcliphist",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmcliphist",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28338,8 +28338,8 @@
     },
     "wmclock": {
       "author": "Jim Knoble",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmclock",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmclock",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28354,8 +28354,8 @@
     },
     "wmclockmon": {
       "author": "Thomas Nemeth",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmclockmon",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmclockmon",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28370,8 +28370,8 @@
     },
     "wmcore": {
       "author": "bitman",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcore",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmcore",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28402,8 +28402,8 @@
     },
     "wmcpuload": {
       "author": "Seiichi Sato",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcpuload",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wcpuload",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28418,8 +28418,8 @@
     },
     "wmdiskmon": {
       "author": "Mark Staggs",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmdiskmon",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmdiskmon",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28434,8 +28434,8 @@
     },
     "wmdrawer": {
       "author": "Valéry Febvre",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmdrawer",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmdrawer",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28450,8 +28450,8 @@
     },
     "wmfsm": {
       "author": "Chris Gray",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmfsm",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmfsm",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28466,8 +28466,8 @@
     },
     "wmgtemp": {
       "author": "Roger Dunce",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmgtemp",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmgtemp",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28482,8 +28482,8 @@
     },
     "wmget": {
       "author": "Aaron Trickey",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmget",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmget",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28498,8 +28498,8 @@
     },
     "wmhdplop": {
       "author": "Julien Pommier and Frédéric Jolly",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmhdplop",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmhdplop",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28514,8 +28514,8 @@
     },
     "wmifinfo": {
       "author": "Ico Doornekamp",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmifinfo",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmifinfo",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28530,8 +28530,8 @@
     },
     "wmifs": {
       "author": "Martijn Pieterse",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmifs",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmifs",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28546,8 +28546,8 @@
     },
     "wmitime": {
       "author": "Window Maker Developers Team",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmitime",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmitime",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28562,8 +28562,8 @@
     },
     "wmload": {
       "author": "Beat Christen",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmload",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmload",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28578,8 +28578,8 @@
     },
     "wmmemload": {
       "author": "Mark Staggs, Seiichi Sato, John McCutchan, Jonathan Lang, and Alfredo K. Kojima",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmmemload",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmmemload",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28594,8 +28594,8 @@
     },
     "wmmon": {
       "author": "Martijn Pieterse and Antoine Nulle",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmmon",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmmon",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28610,8 +28610,8 @@
     },
     "wmmoonclock": {
       "author": "Michael G. Henderson",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmmoonclock",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmmoonclock",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28626,8 +28626,8 @@
     },
     "wmnd": {
       "author": "Yuri D’Elia",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmnd",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/wmnd",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28642,8 +28642,8 @@
     },
     "wmnut": {
       "author": "Arnaud Quette",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmnut",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://github.com/networkupstools/wmnut",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -28658,8 +28658,8 @@
     },
     "wmpinboard": {
       "author": "Marco Goetze",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmpinboard",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://github.com/bbidulock/wmpinboard",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -28690,8 +28690,8 @@
     },
     "wmressel": {
       "author": "Sébastien Liénard",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmressel",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmressel",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28706,8 +28706,8 @@
     },
     "wmstickynotes": {
       "author": "Heath Caldwell",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmstickynotes",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmstickynotes",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28722,8 +28722,8 @@
     },
     "wmsun": {
       "author": "Mike Henderson",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmsun",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmsun",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28738,8 +28738,8 @@
     },
     "wmsysmon": {
       "author": "Dave Clark and Vito Caputo",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmsysmon",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://github.com/voyageur/wmsysmon",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -28754,8 +28754,8 @@
     },
     "wmtemp": {
       "author": "Peter Gnodde",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmtemp",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/wmtemp",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28770,8 +28770,8 @@
     },
     "wmtime": {
       "author": "Martijn Pieterse and Antoine Nulle",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmtime",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmtime",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28786,8 +28786,8 @@
     },
     "wmtop": {
       "author": "Dan Piponi",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmtop",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmtop",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28818,8 +28818,8 @@
     },
     "wmweather+": {
       "author": "Brad Jorsch",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmweather+",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/wmweather-plus",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28834,8 +28834,8 @@
     },
     "wmusic": {
       "author": "Bastien Nocera",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmusic",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmusic",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28850,8 +28850,8 @@
     },
     "wmsystemtray": {
       "author": "Brad Jorsch",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmsystemtray",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmsystemtray",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28866,8 +28866,8 @@
     },
     "wmxres": {
       "author": "Lilian",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmxres",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/wmaker-team/wmxres",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28914,8 +28914,8 @@
     },
     "asmon": {
       "author": "Brad Hall",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/asmon",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/eevans/asmon",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28930,8 +28930,8 @@
     },
     "bbpager": {
       "author": "Brad Hughes and John Kennis",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/bbpager",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/bbpager",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28946,8 +28946,8 @@
     },
     "bbtime": {
       "author": "John Kennis and Brad Hughes",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/bbtime",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/bbtime",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -28962,8 +28962,8 @@
     },
     "bubblefishymon": {
       "author": "Merlin Hughes and Johan Walles",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/bubblefishymon",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://github.com/JNRowe/bfm",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -28978,9 +28978,9 @@
     },
     "9menu": {
       "author": "Arnold Robbins",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/9menu",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/arnoldrobbins/9menu",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/arnoldrobbins",
       "packagers": [
         {
           "name": "arkana-team",
@@ -28994,8 +28994,8 @@
     },
     "9wm": {
       "author": "David Hogan",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/9wm",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://github.com/9wm/9wm",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -29010,8 +29010,8 @@
     },
     "autocutsel": {
       "author": "Michael Witrant",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/autocutsel",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://github.com/elmar/autocutsel-debian",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29026,9 +29026,9 @@
     },
     "autorandr": {
       "author": "Phillip Berndt",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/autorandr",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/phillipberndt/autorandr",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/phillipberndt",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29042,8 +29042,8 @@
     },
     "alttab": {
       "author": "Alexander Kulak",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/alttab",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/alttab",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29058,8 +29058,8 @@
     },
     "bdfresize": {
       "author": "Hiroto Kagotani",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/bdfresize",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/bdfresize",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29074,9 +29074,9 @@
     },
     "xdo": {
       "author": "Bastien Dejean",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xdo",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/baskerville/xdo",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/baskerville",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29090,8 +29090,8 @@
     },
     "acpitool": {
       "author": "David Leemans",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/acpitool",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/kkamagui/acpitool",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29106,8 +29106,8 @@
     },
     "ack": {
       "author": "Andy Lester",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/ack",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/perl-team/modules/packages/ack",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29138,9 +29138,9 @@
     },
     "ansiweather": {
       "author": "Frederic Cambus",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/ansiweather",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/fcambus/ansiweather",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/fcambus",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29154,8 +29154,8 @@
     },
     "cpulimit": {
       "author": "Angelo Marletta",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/cpulimit",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://git.toastfreeware.priv.at/debian/cpulimit.git",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29170,9 +29170,9 @@
     },
     "ddgr": {
       "author": "Arun Prakash Jana",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/ddgr",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/jarun/ddgr",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/jarun",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29186,9 +29186,9 @@
     },
     "dfc": {
       "author": "Robin Hahling",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/dfc",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/rolinh/dfc",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/rolinh",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29202,9 +29202,9 @@
     },
     "git-extras": {
       "author": "TJ Holowaychuk",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/git-extras",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/tj/git-extras",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/tj",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29218,9 +29218,9 @@
     },
     "jqp": {
       "author": "Noah Gorstein",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/jqp",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/noahgorstein/jqp",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/noahgorstein",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29234,8 +29234,8 @@
     },
     "swaks": {
       "author": "John Jetmore",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/swaks",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/swaks",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29250,8 +29250,8 @@
     },
     "9mount": {
       "author": "sqweek",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/9mount",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://browse.dgit.debian.org/9mount.git",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29266,9 +29266,9 @@
     },
     "2048": {
       "author": "Maurits van der Schee",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/2048",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/mevdschee/2048.c",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/mevdschee",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29282,8 +29282,8 @@
     },
     "asciijump": {
       "author": "Grzegorz Moskal, Michal Moskal, and Przemek Niezobrala",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/asciijump",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/games-team/asciijump",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29298,8 +29298,8 @@
     },
     "xsoldier": {
       "author": "Yuusuke Hashimoto",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xsoldier",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/xsoldier.git",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29314,9 +29314,9 @@
     },
     "nbsdgames": {
       "author": "Hossein Bakhtiarifar",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/nbsdgames",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://github.com/abakh/nbsdgames",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/abakh",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29330,8 +29330,8 @@
     },
     "nsnake": {
       "author": "Alexandre Dantas",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/nsnake",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/games-team/nsnake",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29346,8 +29346,8 @@
     },
     "omega-rpg": {
       "author": "Laurence R. Brothers",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/omega-rpg",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/games-team/omega-rpg",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29362,8 +29362,8 @@
     },
     "tint": {
       "author": "Abraham van der Merwe",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/tint",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/games-team/tint",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29378,9 +29378,9 @@
     },
     "cbonsai": {
       "author": "John Allbritten",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/cbonsai",
-      "git_repo_type": "arkpkg-recipe",
-      "git_author_url": null,
+      "git_repo": "https://gitlab.com/jallbrit/cbonsai",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gitlab.com/jallbrit",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29426,8 +29426,8 @@
     },
     "fizmo-console": {
       "author": "Christoph Ender",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/fizmo-console",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://github.com/chrender/fizmo-console",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29474,8 +29474,8 @@
     },
     "gemdropx": {
       "author": "William (Bill) Kendrick",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/gemdropx",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://salsa.debian.org/debian/gemdropx",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {
@@ -29490,8 +29490,8 @@
     },
     "sudoku": {
       "author": "Michael Kennett",
-      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/sudoku",
-      "git_repo_type": "arkpkg-recipe",
+      "git_repo": "https://github.com/cinemast/sudoku",
+      "git_repo_type": "upstream",
       "git_author_url": null,
       "packagers": [
         {
@@ -29570,8 +29570,8 @@
     },
     "liblua5.1-0": {
       "author": "Lua.org, PUC-Rio",
-      "git_repo": "https://github.com/lua/lua",
-      "git_repo_type": "upstream",
+      "git_repo": "https://salsa.debian.org/lua-team/lua5.1",
+      "git_repo_type": "packaging",
       "git_author_url": null,
       "packagers": [
         {

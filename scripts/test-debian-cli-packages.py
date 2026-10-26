@@ -16,6 +16,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 from unittest.mock import patch
+from urllib.parse import urlparse
 
 BUILDER_PATH = Path(__file__).with_name("build-debian-cli-packages.py")
 SPEC = importlib.util.spec_from_file_location("debian_cli_builder", BUILDER_PATH)
@@ -97,6 +98,36 @@ class DebianSourceUrlTests(unittest.TestCase):
 
 
 class WorkstationManifestTests(unittest.TestCase):
+    def test_batch_catalogue_uses_homepage_git_repositories(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-07.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        git_hosts = {
+            "github.com",
+            "gitlab.com",
+            "gitlab.freedesktop.org",
+            "codeberg.org",
+            "git.sr.ht",
+        }
+
+        for package in batch["packages"]:
+            homepage = package.get("url", "")
+            if urlparse(homepage).hostname not in git_hosts:
+                continue
+            with self.subTest(package=package["name"]):
+                self.assertEqual(
+                    metadata[package["name"]]["git_repo"], homepage.rstrip("/")
+                )
+                self.assertEqual(
+                    metadata[package["name"]]["git_repo_type"], "upstream"
+                )
+
     def test_workstation_packages_are_checksum_pinned(self) -> None:
         """Validate workstation package pins, metadata, and dependency order."""
         manifest_path = (
@@ -257,6 +288,22 @@ class WorkstationManifestTests(unittest.TestCase):
             (Path(__file__).resolve().parents[1] / "data/package-metadata.json")
             .read_text(encoding="utf-8")
         )["packages"]
+        expected_author_profiles = {
+            "9menu": "https://github.com/arnoldrobbins",
+            "autorandr": "https://github.com/phillipberndt",
+            "xdo": "https://github.com/baskerville",
+            "ansiweather": "https://github.com/fcambus",
+            "ddgr": "https://github.com/jarun",
+            "dfc": "https://github.com/rolinh",
+            "git-extras": "https://github.com/tj",
+            "jqp": "https://github.com/noahgorstein",
+            "2048": "https://github.com/mevdschee",
+            "nbsdgames": "https://github.com/abakh",
+            "cbonsai": "https://gitlab.com/jallbrit",
+        }
+        for name, profile_url in expected_author_profiles.items():
+            self.assertEqual(metadata[name]["git_author_url"], profile_url)
+
         nullable_author_profiles = {
             "ffmpeg",
             "alsamixergui",
@@ -279,7 +326,7 @@ class WorkstationManifestTests(unittest.TestCase):
             "xmbmon",
             "x2x",
             "xrootconsole",
-        } | batch_names
+        } | (batch_names - set(expected_author_profiles))
         for package in packages:
             with self.subTest(credits=package["name"]):
                 entry = metadata[package["name"]]
