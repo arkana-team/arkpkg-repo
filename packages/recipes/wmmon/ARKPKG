@@ -1,0 +1,8 @@
+Name: wmmon
+Description: Window Maker dockapp for monitoring system information
+Version: 1.4-2+b1
+Arch: x86_64
+URL: https://www.dockapps.net/wmmon
+License: See /usr/share/doc/wmmon/copyright
+Maintainer: arkanaOS Team
+Provides: wmmon=/usr/bin/wmmon
