@@ -3259,6 +3259,11 @@ class PackagePathRenameTests(unittest.TestCase):
                     payload, [["usr/bin/tool", "../escape"]], "fixture"
                 )
 
+            with self.assertRaisesRegex(ValueError, "unsafe renamed path"):
+                BUILDER.rename_package_paths(
+                    payload, [["usr/bin/tool", "."]], "fixture"
+                )
+
             (payload / "usr/bin/occupied").write_text("occupied", encoding="utf-8")
             with self.assertRaisesRegex(FileExistsError, "destination already exists"):
                 BUILDER.rename_package_paths(

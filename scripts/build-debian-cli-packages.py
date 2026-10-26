@@ -382,32 +382,36 @@ def exclude_package_paths(payload: Path, exclusions: list[str], package_name: st
         seen.add(relative)
 
 
+def resolve_payload_path(payload: Path, relative: str, package_name: str) -> Path:
+    """Resolve a normalized payload path without following symlink parents."""
+    path = PurePosixPath(relative)
+    if (
+        not relative
+        or not path.parts
+        or path.is_absolute()
+        or ".." in path.parts
+        or path.as_posix() != relative
+    ):
+        raise ValueError(f"{package_name}: unsafe renamed path {relative!r}")
+    target = payload.joinpath(*path.parts)
+    if target == payload:
+        raise ValueError(f"{package_name}: unsafe renamed path {relative!r}")
+    parent = target.parent
+    while parent != payload:
+        if parent.is_symlink():
+            raise ValueError(
+                f"{package_name}: renamed path traverses a symlink: {relative}"
+            )
+        parent = parent.parent
+    return target
+
+
 def rename_package_paths(
     payload: Path, renames: list[list[str]], package_name: str
 ) -> None:
     """Move package files to nonconflicting names without following symlink parents."""
     seen_sources: set[str] = set()
     seen_destinations: set[str] = set()
-
-    def resolve(relative: str) -> Path:
-        """Validate one relative package path and reject symlink parents."""
-        path = PurePosixPath(relative)
-        if (
-            not relative
-            or path.is_absolute()
-            or ".." in path.parts
-            or path.as_posix() != relative
-        ):
-            raise ValueError(f"{package_name}: unsafe renamed path {relative!r}")
-        target = payload.joinpath(*path.parts)
-        parent = target.parent
-        while parent != payload:
-            if parent.is_symlink():
-                raise ValueError(
-                    f"{package_name}: renamed path traverses a symlink: {relative}"
-                )
-            parent = parent.parent
-        return target
 
     for pair in renames:
         if len(pair) != 2:
@@ -419,8 +423,8 @@ def rename_package_paths(
             raise ValueError(f"{package_name}: renamed source and target are identical")
         if source_name in seen_sources or destination_name in seen_destinations:
             raise ValueError(f"{package_name}: duplicate renamed path")
-        source = resolve(source_name)
-        destination = resolve(destination_name)
+        source = resolve_payload_path(payload, source_name, package_name)
+        destination = resolve_payload_path(payload, destination_name, package_name)
         if not source.is_file() and not source.is_symlink():
             raise FileNotFoundError(
                 f"{package_name}: expected renamed file is missing: {source_name}"
