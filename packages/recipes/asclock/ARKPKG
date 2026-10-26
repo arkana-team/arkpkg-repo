@@ -1,0 +1,10 @@
+Name: asclock
+Description: clock designed with the NeXTStep look
+Version: 2.0.12-35
+Arch: x86_64
+URL: https://packages.debian.org/trixie/asclock
+License: See /usr/share/doc/asclock/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  asclock-themes
+Provides: asclock=/usr/bin/asclock
