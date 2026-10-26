@@ -1,0 +1,11 @@
+Name: wmget
+Description: Background download manager in a Window Maker dock app
+Version: 0.6.1-3
+Arch: x86_64
+URL: https://www.dockapps.net/wmget
+License: See /usr/share/doc/wmget/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  curl-cli
+  perl
+Provides: wmget=/usr/bin/wmget
