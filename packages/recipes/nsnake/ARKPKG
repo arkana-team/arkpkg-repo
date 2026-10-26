@@ -1,0 +1,10 @@
+Name: nsnake
+Description: classic snake game on the terminal
+Version: 3.0.1-2.2
+Arch: x86_64
+URL: http://nsnake.alexdantas.net/
+License: See /usr/share/doc/nsnake/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs
