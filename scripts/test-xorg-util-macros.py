@@ -173,6 +173,184 @@ class XorgUtilMacrosSourceTests(unittest.TestCase):
                     builder.obtain_source(cache)
 
 
+class MacrosCacheSafetyTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temporary = tempfile.TemporaryDirectory(prefix="macros-cache-test-")
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.cache = self.root / "cache"
+        self.cache.mkdir(mode=0o700)
+        self.archive = self.cache / f"{builder.NAME}-{builder.VERSION}.tar.xz"
+        self.source = source_archive("verified")
+        digest = patch.object(builder, "SHA256", hashlib.sha256(self.source).hexdigest())
+        digest.start()
+        self.addCleanup(digest.stop)
+
+    def test_new_cache_is_private_and_download_is_reused(self) -> None:
+        self.cache.rmdir()
+        with patch.object(
+            builder.urllib.request, "urlopen", return_value=io.BytesIO(self.source)
+        ) as download:
+            self.assertEqual(builder.obtain_source(self.cache), self.source)
+        download.assert_called_once()
+        self.assertEqual(stat.S_IMODE(self.cache.stat().st_mode), 0o700)
+        self.assertEqual(stat.S_IMODE(self.archive.stat().st_mode), 0o600)
+        with patch.object(builder.urllib.request, "urlopen") as download:
+            self.assertEqual(builder.obtain_source(self.cache), self.source)
+        download.assert_not_called()
+
+    def test_rejects_cache_writable_by_others(self) -> None:
+        for mode in (0o770, 0o707, 0o1777):
+            with self.subTest(mode=mode):
+                self.cache.chmod(mode)
+                with (
+                    patch.object(builder.urllib.request, "urlopen") as download,
+                    self.assertRaisesRegex(ValueError, "unsafe source cache directory"),
+                ):
+                    builder.obtain_source(self.cache)
+                download.assert_not_called()
+
+    def test_rejects_cache_owned_by_another_user(self) -> None:
+        lstat = Path.lstat
+
+        def foreign_owner(path, *args, **kwargs):
+            info = lstat(path, *args, **kwargs)
+            if path == self.cache:
+                fields = list(info)
+                fields[4] = os.geteuid() + 1
+                return os.stat_result(fields)
+            return info
+
+        with (
+            patch.object(Path, "lstat", new=foreign_owner),
+            self.assertRaisesRegex(ValueError, "unsafe source cache directory"),
+        ):
+            builder.obtain_source(self.cache)
+
+    def test_rejects_unsafe_ancestors_before_creating_children(self) -> None:
+        parent = self.root / "shared"
+        parent.mkdir()
+        parent.chmod(0o777)
+        with self.assertRaisesRegex(ValueError, "unsafe source cache directory"):
+            builder.obtain_source(parent / "new-parent" / "cache")
+        self.assertEqual(list(parent.iterdir()), [])
+
+    def test_cli_rejects_cache_symlinks_without_resolving_them(self) -> None:
+        link = self.root / "linked-cache"
+        link.symlink_to(self.cache, target_is_directory=True)
+        args = [
+            "builder", "--source-cache", str(link),
+            "--arkpkg-build", str(self.root / "arkpkg-build"),
+        ]
+        with (
+            patch.object(sys, "argv", args),
+            patch.object(builder.subprocess, "run") as run,
+            self.assertRaisesRegex(ValueError, "unsafe source cache directory"),
+        ):
+            builder.main()
+        run.assert_not_called()
+        self.assertEqual(list(self.cache.iterdir()), [])
+        with self.assertRaisesRegex(ValueError, "unsafe source cache directory"):
+            builder.obtain_source(link / "child-cache")
+        self.assertEqual(list(self.cache.iterdir()), [])
+
+    def test_archive_symlinks_neither_read_nor_write_the_target(self) -> None:
+        target = self.root / "outside-cache"
+        self.archive.symlink_to(target)
+        for exists in (False, True):
+            with self.subTest(target_exists=exists):
+                if exists:
+                    target.write_bytes(self.source)
+                with (
+                    patch.object(builder.urllib.request, "urlopen") as download,
+                    self.assertRaises(OSError),
+                ):
+                    builder.obtain_source(self.cache)
+                download.assert_not_called()
+                self.assertTrue(self.archive.is_symlink())
+                if exists:
+                    self.assertEqual(target.read_bytes(), self.source)
+                else:
+                    self.assertFalse(target.exists())
+
+    def test_rejects_special_files_and_hardlinks(self) -> None:
+        os.mkfifo(self.archive)
+        with self.assertRaisesRegex(ValueError, "unsafe cached source"):
+            builder.obtain_source(self.cache)
+        self.archive.unlink()
+        target = self.root / "outside-cache"
+        target.write_bytes(self.source)
+        self.archive.hardlink_to(target)
+        with self.assertRaisesRegex(ValueError, "unsafe cached source"):
+            builder.obtain_source(self.cache)
+        self.assertEqual(target.read_bytes(), self.source)
+
+    def test_rejects_writable_cached_files(self) -> None:
+        self.archive.write_bytes(self.source)
+        self.archive.chmod(0o666)
+        with self.assertRaisesRegex(ValueError, "unsafe cached source"):
+            builder.obtain_source(self.cache)
+
+    def test_cache_and_download_reads_are_bounded(self) -> None:
+        oversized = b"x" * (builder.MAX_SOURCE_SIZE + 1)
+        self.archive.write_bytes(oversized)
+        with self.assertRaisesRegex(ValueError, "source exceeds"):
+            builder.obtain_source(self.cache)
+        self.archive.unlink()
+        response = io.BytesIO(oversized)
+        with (
+            patch.object(response, "read", wraps=response.read) as read,
+            patch.object(builder.urllib.request, "urlopen", return_value=response),
+            self.assertRaisesRegex(ValueError, "source exceeds"),
+        ):
+            builder.obtain_source(self.cache)
+        read.assert_called_once_with(builder.MAX_SOURCE_SIZE + 1)
+        self.assertEqual(list(self.cache.iterdir()), [])
+
+    def test_invalid_downloads_are_not_published(self) -> None:
+        for data in (b"bad checksum", source_archive("unused", root="../escape")):
+            with (
+                self.subTest(data=data[:8]),
+                patch.object(
+                    builder, "SHA256", hashlib.sha256(data).hexdigest()
+                    if data != b"bad checksum" else builder.SHA256,
+                ),
+                patch.object(builder.urllib.request, "urlopen", return_value=io.BytesIO(data)),
+                self.assertRaises(ValueError),
+            ):
+                builder.obtain_source(self.cache)
+            self.assertEqual(list(self.cache.iterdir()), [])
+
+    def test_publication_replaces_substituted_links_without_modifying_targets(self) -> None:
+        target = self.root / "outside-cache"
+        target.write_bytes(b"keep this data")
+        for link in ("symlink", "hardlink"):
+            with self.subTest(link=link):
+                def substitute(request, timeout, *, link=link):
+                    if link == "symlink":
+                        self.archive.symlink_to(target)
+                    else:
+                        self.archive.hardlink_to(target)
+                    return io.BytesIO(self.source)
+
+                with patch.object(builder.urllib.request, "urlopen", side_effect=substitute):
+                    self.assertEqual(builder.obtain_source(self.cache), self.source)
+                self.assertEqual(target.read_bytes(), b"keep this data")
+                self.assertFalse(self.archive.is_symlink())
+                self.assertEqual(self.archive.read_bytes(), self.source)
+                self.assertEqual(list(self.cache.iterdir()), [self.archive])
+                self.archive.unlink()
+
+    def test_failed_publication_removes_temporary_file(self) -> None:
+        with (
+            patch.object(builder.urllib.request, "urlopen", return_value=io.BytesIO(self.source)),
+            patch.object(Path, "replace", side_effect=OSError("publication failed")),
+            self.assertRaisesRegex(OSError, "publication failed"),
+        ):
+            builder.obtain_source(self.cache)
+        self.assertEqual(list(self.cache.iterdir()), [])
+
+
 class MacrosStagingTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temporary = tempfile.TemporaryDirectory(prefix="macros-staging-test-")
