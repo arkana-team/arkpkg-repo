@@ -440,6 +440,45 @@ def rename_package_paths(
         seen_destinations.add(destination_name)
 
 
+def rewrite_package_commands(
+    payload: Path, rewrites: list[dict[str, object]], package_name: str
+) -> None:
+    """Update exact command references in selected text files after a rename."""
+    for rewrite in rewrites:
+        original = rewrite["from"]
+        replacement = rewrite["to"]
+        paths = rewrite["paths"]
+        if (
+            not isinstance(original, str)
+            or not isinstance(replacement, str)
+            or not PACKAGE_ATOM.fullmatch(original)
+            or not PACKAGE_ATOM.fullmatch(replacement)
+            or not isinstance(paths, list)
+            or not paths
+        ):
+            raise ValueError(f"{package_name}: invalid command rewrite")
+        pattern = re.compile(
+            rb"(?<![A-Za-z0-9_/:$@%])(?<!GNU )"
+            + re.escape(original.encode("ascii"))
+            + rb"(?![A-Za-z0-9_-])(?=[ \t]*(?:-|[\"'`$|;&><)]|\r?\n|$))"
+        )
+        for relative in paths:
+            if not isinstance(relative, str):
+                raise ValueError(f"{package_name}: invalid command rewrite path")
+            path = resolve_payload_path(payload, relative, package_name)
+            if path.is_symlink() or not path.is_file():
+                raise FileNotFoundError(
+                    f"{package_name}: command rewrite file is missing: {relative}"
+                )
+            contents = path.read_bytes()
+            rewritten, count = pattern.subn(replacement.encode("ascii"), contents)
+            if count == 0:
+                raise ValueError(
+                    f"{package_name}: command reference not found in {relative}"
+                )
+            path.write_bytes(rewritten)
+
+
 def payload_paths(payload: Path) -> list[str]:
     paths = []
     for path in payload.rglob("*"):
@@ -630,6 +669,9 @@ def build(args: argparse.Namespace) -> None:
 
             relocate_debian_python_packages(payload, staging)
             rename_package_paths(payload, package.get("renames", []), name)
+            rewrite_package_commands(
+                payload, package.get("command_rewrites", []), name
+            )
             exclude_package_paths(payload, package.get("exclude_paths", []), name)
             generate_bitmap_font_indexes(payload, name)
 

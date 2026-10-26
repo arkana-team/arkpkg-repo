@@ -3200,21 +3200,71 @@ class Batch22PackageTests(unittest.TestCase):
                 archive_path = repo_root / "packages" / (
                     f"{name}-{version}-{package['arch']}.ark"
                 )
+                archive_links = {}
+                helper_contents = {}
                 with (
                     BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
                     tarfile.open(fileobj=compressed, mode="r|") as archive,
                 ):
-                    paths = {member.name for member in archive}
+                    paths = set()
+                    for member in archive:
+                        paths.add(member.name)
+                        if member.issym():
+                            archive_links[member.name] = member.linkname
+                        if member.name in {
+                            "package/usr/bin/parallel-gnu",
+                            "package/usr/bin/env_parallel.sh",
+                            "package/usr/bin/parsort",
+                            "package/usr/share/bash-completion/completions/parallel-gnu",
+                            "package/usr/share/zsh/site-functions/_parallel-gnu",
+                        }:
+                            helper_contents[member.name] = archive.extractfile(
+                                member
+                            ).read()
                 self.assertIn(f"package/usr/bin/{command}", paths)
                 self.assertIn(f"package/{package['license_path']}", paths)
 
                 if name == "gnu-parallel":
-                    self.assertIn("package/usr/bin/sem-gnu", paths)
+                    self.assertIn("package/usr/bin/sem", paths)
                     self.assertIn(
                         "package/usr/share/man/man1/parallel-gnu.1.gz", paths
                     )
+                    self.assertIn(
+                        "package/usr/share/zsh/site-functions/_parallel-gnu", paths
+                    )
                     self.assertNotIn("package/usr/bin/parallel", paths)
-                    self.assertNotIn("package/usr/bin/sem", paths)
+                    self.assertNotIn("package/usr/bin/sem-gnu", paths)
+                    self.assertEqual(
+                        archive_links["package/usr/bin/sem"], "parallel-gnu"
+                    )
+                    self.assertIn(
+                        b'parallel-gnu "$@"',
+                        helper_contents["package/usr/bin/env_parallel.sh"],
+                    )
+                    self.assertIn(
+                        b"qw(parallel-gnu -0 -j)",
+                        helper_contents["package/usr/bin/parsort"],
+                    )
+                    self.assertIn(
+                        b"qw(parallel-gnu)",
+                        helper_contents["package/usr/bin/parsort"],
+                    )
+                    self.assertIn(
+                        b"exec qw(parallel-gnu -0 --block",
+                        helper_contents["package/usr/bin/parallel-gnu"],
+                    )
+                    self.assertIn(
+                        b"complete -F _comp_parallel parallel-gnu",
+                        helper_contents[
+                            "package/usr/share/bash-completion/completions/parallel-gnu"
+                        ],
+                    )
+                    self.assertIn(
+                        b"#compdef parallel-gnu",
+                        helper_contents[
+                            "package/usr/share/zsh/site-functions/_parallel-gnu"
+                        ],
+                    )
 
 
 class PackagePathRenameTests(unittest.TestCase):
@@ -3278,6 +3328,53 @@ class PackagePathRenameTests(unittest.TestCase):
                 BUILDER.rename_package_paths(
                     payload, [["linked/tool", "linked/renamed"]], "fixture"
                 )
+
+    def test_rewrite_updates_commands_without_changing_identifiers(self) -> None:
+        """Repoint retained helper scripts while preserving project identifiers."""
+        with tempfile.TemporaryDirectory() as temporary:
+            payload = Path(temporary) / "package"
+            (payload / "usr/bin").mkdir(parents=True)
+            helper = payload / "usr/bin/env_parallel.sh"
+            helper.write_text(
+                'env_parallel parallel "$@"; qw(parallel) '
+                'GNU parallel is the project name. '
+                'https://example.test/software/parallel; $opt::parallel\n',
+                encoding="utf-8",
+            )
+            zsh_completion = payload / "usr/share/zsh/site-functions/_parallel-gnu"
+            zsh_completion.parent.mkdir(parents=True)
+            zsh_completion.write_text(
+                "#compdef parallel\n"
+                'eval "$(parallel --shell-completion auto)"\n',
+                encoding="utf-8",
+            )
+
+            BUILDER.rewrite_package_commands(
+                payload,
+                [
+                    {
+                        "from": "parallel",
+                        "to": "parallel-gnu",
+                        "paths": [
+                            "usr/bin/env_parallel.sh",
+                            "usr/share/zsh/site-functions/_parallel-gnu",
+                        ],
+                    }
+                ],
+                "fixture",
+            )
+
+            self.assertEqual(
+                helper.read_text(encoding="utf-8"),
+                'env_parallel parallel-gnu "$@"; qw(parallel-gnu) '
+                'GNU parallel is the project name. '
+                'https://example.test/software/parallel; $opt::parallel\n',
+            )
+            self.assertEqual(
+                zsh_completion.read_text(encoding="utf-8"),
+                "#compdef parallel-gnu\n"
+                'eval "$(parallel-gnu --shell-completion auto)"\n',
+            )
 
 
 if __name__ == "__main__":
