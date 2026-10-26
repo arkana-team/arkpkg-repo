@@ -3467,5 +3467,126 @@ class PackagePathRenameTests(unittest.TestCase):
             )
 
 
+class Batch23PackageTests(unittest.TestCase):
+    def test_batch_23_pins_terminal_monitor_and_benchmark_tools(self) -> None:
+        """Keep batch 23 source pins, package credits, and archives aligned."""
+        repo_root = Path(__file__).resolve().parents[1]
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-23.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "btm": (
+                "0.10.2+20250107-5",
+                "8b658e2bf10c9fd7a37a280aee344aa79328a8f257ca101c946c906910dbe559",
+                "Clement Tsang",
+                "https://github.com/ClementTsang/bottom",
+                "https://github.com/ClementTsang",
+                "package/usr/bin/btm",
+            ),
+            "libaio1t64": (
+                "0.3.113-8+b1",
+                "490c8a2d116001a5f3b0a6d7a7aabf6a7b629366590dc5c3f75b078e931dd129",
+                "Benjamin LaHaise and Jeff Moyer",
+                "https://pagure.io/libaio.git",
+                None,
+                "package/usr/lib/x86_64-linux-gnu/libaio.so.1t64",
+            ),
+            "sysbench": (
+                "1.0.20+ds-7",
+                "153583af3e01787d4150c943d25acb741f4a7344dda29d241ed6d527424a920f",
+                "Alexey Kopytov and contributors",
+                "https://github.com/akopytov/sysbench",
+                "https://github.com/akopytov",
+                "package/usr/bin/sysbench",
+            ),
+        }
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        expected_dependencies = {
+            "btm": {"gcc-libs"},
+            "libaio1t64": set(),
+            "sysbench": {
+                "libaio1t64",
+                "libmariadb3",
+                "neovim-runtime-libs",
+                "libpq5",
+            },
+        }
+        for name, (
+            version,
+            checksum,
+            author,
+            git_repo,
+            author_url,
+            expected_path,
+        ) in expected.items():
+            package = batch_packages[name]
+            with self.subTest(package=name):
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(
+                    set(package["dependencies"]), expected_dependencies[name]
+                )
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                self.assertEqual(
+                    batch["sources"][package["debian_packages"][0]]["sha256"],
+                    checksum,
+                )
+                for source_name in package["debian_packages"]:
+                    self.assertEqual(
+                        batch["sources"][source_name], manifest["sources"][source_name]
+                    )
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+                self.assertEqual(metadata[name]["git_author_url"], author_url)
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+                self.assertTrue(
+                    BUILDER.repository_has_package(repo_root, package),
+                    f"missing matching recipe or archive for {name}",
+                )
+
+                archive_path = repo_root / "packages" / (
+                    f"{name}-{version}-{package['arch']}.ark"
+                )
+                paths = set()
+                links = {}
+                with (
+                    BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
+                    tarfile.open(fileobj=compressed, mode="r|") as archive,
+                ):
+                    for member in archive:
+                        paths.add(member.name)
+                        if member.issym():
+                            links[member.name] = member.linkname
+                self.assertIn(expected_path, paths)
+                self.assertIn(f"package/{package['license_path']}", paths)
+                if name == "libaio1t64":
+                    self.assertEqual(
+                        links[expected_path], "libaio.so.1t64.0.2"
+                    )
+                    _, _, provides = BUILDER.read_recipe(
+                        repo_root / "packages/recipes/libaio1t64/ARKPKG"
+                    )
+                    self.assertTrue(
+                        any(item.startswith("libaio.so.1t64=") for item in provides)
+                    )
 if __name__ == "__main__":
     unittest.main()
