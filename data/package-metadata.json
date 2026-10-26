@@ -3329,10 +3329,10 @@
       ]
     },
     "fastfetch": {
-      "author": null,
+      "author": "Linus Dierheimer",
       "git_repo": "https://github.com/fastfetch-cli/fastfetch",
       "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_author_url": "https://github.com/LinusDierheimer",
       "packagers": [
         {
           "name": "arkana-team",
@@ -18657,10 +18657,10 @@
       ]
     },
     "neofetch": {
-      "author": null,
+      "author": "Dylan Araps",
       "git_repo": "https://github.com/dylanaraps/neofetch",
       "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_author_url": "https://github.com/dylanaraps",
       "packagers": [
         {
           "name": "arkana-team",
@@ -18721,10 +18721,10 @@
       ]
     },
     "neowofetch": {
-      "author": null,
+      "author": "Azalea Gui",
       "git_repo": "https://github.com/hykilpikonna/hyfetch",
       "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_author_url": "https://github.com/hykilpikonna",
       "packagers": [
         {
           "name": "arkana-team",
@@ -19041,10 +19041,10 @@
       ]
     },
     "nitch": {
-      "author": null,
+      "author": "sfome",
       "git_repo": "https://github.com/ssleert/nitch",
       "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_author_url": "https://github.com/ssleert",
       "packagers": [
         {
           "name": "arkana-team",
@@ -20113,10 +20113,10 @@
       ]
     },
     "pfetch": {
-      "author": null,
+      "author": "Dylan Araps",
       "git_repo": "https://github.com/dylanaraps/pfetch",
       "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_author_url": "https://github.com/dylanaraps",
       "packagers": [
         {
           "name": "arkana-team",
@@ -21585,10 +21585,10 @@
       ]
     },
     "screenfetch": {
-      "author": null,
+      "author": "Brett Bohnenkamper",
       "git_repo": "https://github.com/KittyKatt/screenFetch",
       "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_author_url": "https://github.com/KittyKatt",
       "packagers": [
         {
           "name": "arkana-team",
