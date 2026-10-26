@@ -1,0 +1,12 @@
+Name: ansiweather
+Description: Weather in your terminal, with ANSI colors and Unicode symbols
+Version: 1.19.0-1
+Arch: any
+URL: https://github.com/fcambus/ansiweather
+License: See /usr/share/doc/ansiweather/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  bc
+  curl-cli
+  jq
+Provides: ansiweather=/usr/bin/ansiweather
