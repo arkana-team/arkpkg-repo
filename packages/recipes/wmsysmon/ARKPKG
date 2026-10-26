@@ -1,0 +1,8 @@
+Name: wmsysmon
+Description: Window Maker dockapp for monitoring your system
+Version: 0.8.1-1
+Arch: x86_64
+URL: https://github.com/voyageur/wmsysmon
+License: See /usr/share/doc/wmsysmon/copyright
+Maintainer: arkanaOS Team
+Provides: wmsysmon=/usr/bin/wmsysmon
