@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build optional motif and nedit packages in a disposable arkanaOS sysroot."""
+"""Build optional Motif, NEdit, and XNEdit packages in a disposable arkanaOS sysroot."""
 
 from __future__ import annotations
 
@@ -27,6 +27,12 @@ NEDIT = (
     "https://downloads.sourceforge.net/project/nedit/nedit-source/nedit-5.7-src.tar.gz",
     "add9ac79ff973528ad36c86858238bac4f59896c27dbf285cbe6a4d425fca17a",
     "nedit-5.7",
+)
+XNEDIT = (
+    "xnedit-1.6.3.tar.gz",
+    "https://downloads.sourceforge.net/project/xnedit/xnedit-1.6.3.tar.gz",
+    "8ba69f792412fd86a037b77ab36e706773d541b96aea0ecfd0ee080968076355",
+    "xnedit-1.6.3",
 )
 MOTIF_PACKAGES = ("motif-libs", "motif-devel", "motif-tools")
 
@@ -269,6 +275,7 @@ def build(args: argparse.Namespace) -> None:
     installed: list[str] = []
     try:
         nedit_source = get_source(cache, NEDIT, private_work)
+        xnedit_source = get_source(cache, XNEDIT, private_work)
         if staging.exists():
             privileged(["/usr/bin/python3", "-c", "import shutil,sys; shutil.rmtree(sys.argv[1],ignore_errors=True)", str(staging)])
         staging.mkdir(parents=True)
@@ -329,6 +336,45 @@ def build(args: argparse.Namespace) -> None:
             build_archives(repo_root, nedit_stage, output, builder, ("nedit",))
         finally:
             privileged(["/usr/bin/python3", "-c", "import shutil,sys; shutil.rmtree(sys.argv[1],ignore_errors=True)", str(nedit_work)])
+
+        xnedit_payload, xnedit_work = run_target_build(
+            sysroot=sysroot,
+            archive=xnedit_source,
+            root=XNEDIT[3],
+            commands=[
+                f"/usr/bin/make -j{args.jobs} linux C_OPT_FLAGS='-O2'",
+                "/usr/bin/make install DESTDIR=@PAYLOAD@ PREFIX=/usr",
+                "/usr/bin/install -D -m 644 README.md @PAYLOAD@/usr/share/doc/xnedit/README.md",
+                "/usr/bin/install -D -m 644 ReleaseNotes @PAYLOAD@/usr/share/doc/xnedit/ReleaseNotes",
+                "/usr/bin/install -D -m 644 doc/xnedit.txt @PAYLOAD@/usr/share/doc/xnedit/xnedit.txt",
+                "/usr/bin/install -D -m 644 doc/xnedit.html @PAYLOAD@/usr/share/doc/xnedit/xnedit.html",
+                "/usr/bin/install -D -m 644 doc/xnedit.man @PAYLOAD@/usr/share/man/man1/xnedit.1",
+                "/usr/bin/install -D -m 644 doc/xnc.man @PAYLOAD@/usr/share/man/man1/xnc.1",
+                "@PAYLOAD@/usr/bin/xnedit -V",
+            ],
+            log=private_work / "xnedit.log",
+        )
+        try:
+            for relative in (
+                "usr/bin/xnedit",
+                "usr/bin/xnc",
+                "usr/share/applications/xnedit.desktop",
+                "usr/share/icons/xnedit.png",
+                "usr/share/man/man1/xnedit.1",
+                "usr/share/man/man1/xnc.1",
+            ):
+                if not (xnedit_payload / relative).is_file():
+                    raise FileNotFoundError(f"XNEdit build did not install {relative}")
+            xnedit_stage = staging / "xnedit"
+            copy_tree(xnedit_payload, xnedit_stage)
+            copy_license(
+                xnedit_source,
+                f"{XNEDIT[3]}/LICENSE",
+                xnedit_stage / "usr/share/licenses/xnedit/LICENSE",
+            )
+            build_archives(repo_root, xnedit_stage, output, builder, ("xnedit",))
+        finally:
+            privileged(["/usr/bin/python3", "-c", "import shutil,sys; shutil.rmtree(sys.argv[1],ignore_errors=True)", str(xnedit_work)])
     finally:
         for name in reversed(installed):
             privileged([str(arpkg), "--root", str(sysroot), "remove", name, "-y"])

@@ -73,6 +73,24 @@ python3 scripts/build-debian-cli-packages.py \
   --packages mpv ffmpeg
 ```
 
+Motif, NEdit, and XNEdit use checksum-pinned upstream sources. Build them in a
+disposable target sysroot with a separate temporary package-staging directory;
+the helper clears and recreates that staging directory. `--reuse-motif` skips
+rebuilding Motif and uses the repository's existing Motif archives:
+
+```sh
+python3 scripts/build-motif-nedit.py \
+  --sysroot /path/to/disposable-target-root \
+  --arkpkg /path/to/arkpkg \
+  --arkpkg-build /path/to/arkpkg-build \
+  --staging /path/to/temporary-package-staging \
+  --jobs 2 \
+  --reuse-motif
+```
+
+If the system's `/tmp` is a small tmpfs, set `TMPDIR` to a writable persistent
+directory before running archive and install tests.
+
 Building `xfonts-base`, `xfonts-75dpi`, or `xfonts-100dpi` also requires
 `mkfontscale` and `mkfontdir` on `PATH`; the builder generates each package's
 `fonts.scale` and `fonts.dir` indexes before creating its archive.

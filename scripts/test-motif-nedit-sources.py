@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Test the source archive boundary used by the privileged Motif/NEdit builder."""
+"""Test source archive safety for the privileged Motif/NEdit/XNEdit builder."""
 
 import argparse
 import hashlib
@@ -153,10 +153,14 @@ class SourceSnapshotTests(unittest.TestCase):
             BUILDER.get_source(self.cache, self.spec, self.private)
         self.assertFalse(target.exists())
 
-    def test_build_uses_private_sources_for_both_packages_and_removes_them(self) -> None:
+    def test_build_uses_private_sources_for_all_packages_and_removes_them(self) -> None:
         specs = {}
         contents = {}
-        for name, license_name in (("motif", "COPYING"), ("nedit", "COPYRIGHT")):
+        for name, license_name in (
+            ("motif", "COPYING"),
+            ("nedit", "COPYRIGHT"),
+            ("xnedit", "LICENSE"),
+        ):
             content = archive_bytes(f"{name}-1", license_name)
             spec = (f"{name}-1.tar.gz", self.spec[1], hashlib.sha256(content).hexdigest(), f"{name}-1")
             (self.cache / spec[0]).write_bytes(content)
@@ -171,7 +175,19 @@ class SourceSnapshotTests(unittest.TestCase):
             (self.cache / archive.name).write_bytes(b"replaced before build")
             self.assertEqual(archive.read_bytes(), contents[archive.name])
             payload = self.root / root
-            for relative in ("usr/include/Xm", "usr/bin/mwm", "usr/bin/uil", "usr/bin/nedit", "usr/bin/nedit-client"):
+            for relative in (
+                "usr/include/Xm",
+                "usr/bin/mwm",
+                "usr/bin/uil",
+                "usr/bin/nedit",
+                "usr/bin/nedit-client",
+                "usr/bin/xnedit",
+                "usr/bin/xnc",
+                "usr/share/applications/xnedit.desktop",
+                "usr/share/icons/xnedit.png",
+                "usr/share/man/man1/xnedit.1",
+                "usr/share/man/man1/xnc.1",
+            ):
                 path = payload / relative
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.touch()
@@ -186,6 +202,7 @@ class SourceSnapshotTests(unittest.TestCase):
         with (
             mock.patch.object(BUILDER, "MOTIF", specs["motif"]),
             mock.patch.object(BUILDER, "NEDIT", specs["nedit"]),
+            mock.patch.object(BUILDER, "XNEDIT", specs["xnedit"]),
             mock.patch.object(BUILDER, "run_target_build", side_effect=target_build),
             mock.patch.object(BUILDER, "copy_tree", side_effect=shutil.copytree),
             mock.patch.object(BUILDER, "installed_packages", return_value=set(BUILDER.MOTIF_PACKAGES)),
@@ -193,9 +210,10 @@ class SourceSnapshotTests(unittest.TestCase):
             mock.patch.object(BUILDER, "privileged"),
         ):
             BUILDER.build(args)
-        self.assertEqual(len(sources), 2)
+        self.assertEqual(len(sources), 3)
         self.assertEqual((args.staging / "nedit/usr/share/licenses/nedit/COPYRIGHT").read_bytes(), b"trusted license\n")
         self.assertEqual((args.staging / "motif/usr/share/licenses/motif-libs/COPYING").read_bytes(), b"trusted license\n")
+        self.assertEqual((args.staging / "xnedit/usr/share/licenses/xnedit/LICENSE").read_bytes(), b"trusted license\n")
         self.assertTrue(all(not source.parent.exists() for source in sources))
 
 

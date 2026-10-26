@@ -299,6 +299,7 @@ PACKAGES = (
     "motif-devel",
     "motif-tools",
     "nedit",
+    "xnedit",
     "xbitmaps",
     "xgc",
     "xkill",
@@ -1178,6 +1179,11 @@ STAGED_PACKAGE_FILES = {
         "usr/bin/nedit",
         "usr/bin/nedit-client",
         "usr/share/licenses/nedit/COPYRIGHT",
+    ),
+    "xnedit": (
+        "usr/bin/xnedit",
+        "usr/bin/xnc",
+        "usr/share/licenses/xnedit/LICENSE",
     ),
     "autoconf": (
         "usr/bin/autoconf",
@@ -2523,6 +2529,13 @@ STAGED_PACKAGE_GLOBS = {
         "usr/share/doc/nedit/**",
         "usr/share/man/man1/nedit.1*",
         "usr/share/man/man1/nedit-client.1*",
+    ),
+    "xnedit": (
+        "usr/share/applications/xnedit.desktop",
+        "usr/share/icons/xnedit.png",
+        "usr/share/doc/xnedit/**",
+        "usr/share/man/man1/xnedit.1",
+        "usr/share/man/man1/xnc.1",
     ),
     "xorg-font-encodings": (
         "usr/share/fonts/encodings/**",
