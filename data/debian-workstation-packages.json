@@ -273,6 +273,10 @@
     "xbindkeys": {
       "filename": "pool/main/x/xbindkeys/xbindkeys_1.8.7-2_amd64.deb",
       "sha256": "5b30ba7ae3f4c6c11fa216664f5f0588b34341c8ac1c6e31a862c045869e0dae"
+    },
+    "alsamixergui": {
+      "filename": "pool/main/a/alsamixergui/alsamixergui_0.9.0rc2-1-11_amd64.deb",
+      "sha256": "c3abc000196e3ce6836b6fd05292719940b783841dd2f4b0a16c100bed4bcf40"
     }
   },
   "packages": [
@@ -1272,6 +1276,22 @@
       "url": "https://www.nongnu.org/xbindkeys/",
       "license": "GPL-2+",
       "license_path": "usr/share/doc/xbindkeys/copyright"
+    },
+    {
+      "name": "alsamixergui",
+      "description": "FLTK graphical mixer for ALSA sound devices",
+      "version": "0.9.0rc2-1-11",
+      "debian_version": "0.9.0rc2-1-11",
+      "arch": "x86_64",
+      "debian_packages": [
+        "alsamixergui"
+      ],
+      "dependencies": [
+        "alsa-utils"
+      ],
+      "url": "https://packages.debian.org/trixie/alsamixergui",
+      "license": "See /usr/share/doc/alsamixergui/copyright",
+      "license_path": "usr/share/doc/alsamixergui/copyright"
     }
   ]
 }

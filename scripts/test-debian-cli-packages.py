@@ -113,6 +113,7 @@ class WorkstationManifestTests(unittest.TestCase):
             names,
             {
                 "astyle",
+                "alsamixergui",
                 "atool",
                 "bmake",
                 "boxes",
@@ -247,6 +248,7 @@ class WorkstationManifestTests(unittest.TestCase):
         )["packages"]
         nullable_author_profiles = {
             "ffmpeg",
+            "alsamixergui",
             "libarchive13t64",
             "libavdevice61",
             "libdisplay-info2",
