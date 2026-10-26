@@ -1,0 +1,10 @@
+Name: wmbiff
+Description: Dockable app that displays information about mailboxes
+Version: 0.4.37-1
+Arch: x86_64
+URL: https://www.dockapps.net/wmbiff
+License: See /usr/share/doc/wmbiff/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+Provides: wmbiff=/usr/bin/wmbiff
