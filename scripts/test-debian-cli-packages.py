@@ -2885,6 +2885,7 @@ class Batch20PackageTests(unittest.TestCase):
 
 class BitmapFontIndexTests(unittest.TestCase):
     def test_debian_bitmap_font_packages_generate_legacy_indexes(self) -> None:
+        """Ensure Debian bitmap fonts receive generated legacy index files."""
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             payload = root / "payload"
