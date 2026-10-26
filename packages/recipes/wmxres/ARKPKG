@@ -1,0 +1,8 @@
+Name: wmxres
+Description: dock application to select your display mode among those possible
+Version: 1.4-3+b1
+Arch: x86_64
+URL: https://www.dockapps.net/wmxres
+License: See /usr/share/doc/wmxres/copyright
+Maintainer: arkanaOS Team
+Provides: wmxres=/usr/bin/wmxres
