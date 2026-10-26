@@ -1,0 +1,13 @@
+Name: xnedit
+Description: Unicode-capable X11 text editor based on NEdit
+Version: 1.6.3
+Arch: x86_64
+URL: https://github.com/unixwork/xnedit
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  fontconfig-devel>=2.17.1
+  libxft>=2.3.9
+  libxrender>=0.9.13
+  motif-libs>=2.3.8
+Provides: xnc=/usr/bin/xnc, xnedit=/usr/bin/xnedit

@@ -28175,6 +28175,38 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "alsamixergui": {
+      "author": "Maarten de Boer",
+      "git_repo": "https://salsa.debian.org/multimedia-team/alsamixergui.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xnedit": {
+      "author": "Olaf Wintermann",
+      "git_repo": "https://github.com/unixwork/xnedit",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/OlafW",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

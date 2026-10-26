@@ -1,0 +1,12 @@
+Name: alsamixergui
+Description: FLTK graphical mixer for ALSA sound devices
+Version: 0.9.0rc2-1-11
+Arch: x86_64
+URL: https://packages.debian.org/trixie/alsamixergui
+License: See /usr/share/doc/alsamixergui/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  alsa-libs
+  alsa-utils
+  libfltk1.3t64
+Provides: alsamixergui=/usr/bin/alsamixergui
