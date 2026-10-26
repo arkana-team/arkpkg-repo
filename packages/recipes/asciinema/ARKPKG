@@ -1,0 +1,10 @@
+Name: asciinema
+Description: Record and share terminal sessions
+Version: 2.4.0-1
+Arch: any
+URL: https://github.com/asciinema/asciinema
+License: See /usr/share/doc/asciinema/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  python3-pkg-resources
+Provides: asciinema=/usr/bin/asciinema

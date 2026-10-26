@@ -29696,11 +29696,43 @@
         }
       ]
     },
+    "asciinema": {
+      "author": "Marcin Kulik",
+      "git_repo": "https://github.com/asciinema/asciinema",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/ku1ik",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "posh": {
       "author": "Clint Adams",
       "git_repo": "https://salsa.debian.org/clint/posh",
       "git_repo_type": "packaging",
       "git_author_url": "https://salsa.debian.org/clint",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-pkg-resources": {
+      "author": "Python Packaging Authority",
+      "git_repo": "https://github.com/pypa/setuptools",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pypa",
       "packagers": [
         {
           "name": "arkana-team",

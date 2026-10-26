@@ -2359,6 +2359,104 @@ class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
             batch_packages["rc"]["symlinks"], [["usr/bin/rc", "rc.byron"]]
         )
 
+    def test_batch_19_pins_unix_shells_and_terminal_recording(self) -> None:
+        """Keep the Korn shell refresh and terminal tools reproducible."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-19.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "asciinema": (
+                "asciinema",
+                "all",
+                "pool/main/a/asciinema/asciinema_2.4.0-1_all.deb",
+                "7f069e3dcf93c41c13835aa2423a220688c95a91ac0a972c4335dad3c43afb8e",
+                "2.4.0-1",
+                "https://github.com/asciinema/asciinema",
+                "Marcin Kulik",
+                "https://github.com/ku1ik",
+            ),
+            "ksh93": (
+                "ksh93u+m",
+                "amd64",
+                "pool/main/k/ksh93u+m/ksh93u+m_1.0.10-2_amd64.deb",
+                "ed896af6823f4c2e81cabc9d864b205d6f841434466613388703b9d0d928278d",
+                "1.0.10-2",
+                "https://github.com/ksh93/ksh",
+                "David G. Korn / AT&T Research",
+                "https://github.com/ksh93/ksh",
+            ),
+            "posh": (
+                "posh",
+                "amd64",
+                "pool/main/p/posh/posh_0.14.1_amd64.deb",
+                "1b5d164d880aa57c6808fec6185b0d07e0c15bee7c0c518bdd5252d17a24ef90",
+                "0.14.1",
+                "https://salsa.debian.org/clint/posh",
+                "Clint Adams",
+                "https://salsa.debian.org/clint",
+            ),
+            "python3-pkg-resources": (
+                "python3-pkg-resources",
+                "all",
+                "pool/main/s/setuptools/python3-pkg-resources_78.1.1-0.1_all.deb",
+                "cf8749251172abc945216cf878367f614cf91d3d9a1043ba3bacc5a74e8cc1a8",
+                "78.1.1-0.1",
+                "https://github.com/pypa/setuptools",
+                "Python Packaging Authority",
+                "https://github.com/pypa",
+            ),
+        }
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+
+        for name, (
+            source_name,
+            architecture,
+            filename,
+            checksum,
+            version,
+            repository,
+            author,
+            author_url,
+        ) in expected.items():
+            with self.subTest(package=name):
+                source = {
+                    "architecture": architecture,
+                    "filename": filename,
+                    "sha256": checksum,
+                    "version": version,
+                }
+                self.assertEqual(batch["sources"][source_name], source)
+                self.assertEqual(manifest["sources"][source_name], source)
+                self.assertEqual(batch_packages[name], manifest_packages[name])
+                self.assertTrue(
+                    BUILDER.repository_has_package(repo_root, batch_packages[name]),
+                    f"missing matching recipe or archive for {name}",
+                )
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_author_url"], author_url)
+                self.assertEqual(metadata[name]["git_repo"], repository)
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+        self.assertEqual(batch_packages["asciinema"]["dependencies"], ["python3-pkg-resources"])
+        self.assertEqual(batch_packages["ksh93"]["debian_version"], "1.0.10-2")
+        self.assertEqual(
+            batch_packages["ksh93"]["symlinks"], [["usr/bin/ksh", "ksh93"]]
+        )
+
     def test_cli_and_workstation_catalogs_match_recipes_and_archives(self) -> None:
         """Catch version drift between package manifests and published archives."""
         repo_root = Path(__file__).resolve().parents[1]
