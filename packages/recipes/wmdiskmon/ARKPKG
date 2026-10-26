@@ -1,0 +1,8 @@
+Name: wmdiskmon
+Description: dockapp to display disk usage
+Version: 0.0.2-4
+Arch: x86_64
+URL: http://tnemeth.free.fr/projets/dockapps.html
+License: See /usr/share/doc/wmdiskmon/copyright
+Maintainer: arkanaOS Team
+Provides: wmdiskmon=/usr/bin/wmdiskmon
