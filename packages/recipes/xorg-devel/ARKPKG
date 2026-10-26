@@ -1,6 +1,6 @@
 Name: xorg-devel
 Description: X11, XCB, and Xorg development headers and linker metadata
-Version: 1.0.0
+Version: 1.0.1
 Arch: x86_64
 URL: https://www.x.org/
 License: MIT

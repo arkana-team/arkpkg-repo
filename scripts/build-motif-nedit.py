@@ -35,6 +35,18 @@ XNEDIT = (
     "xnedit-1.6.3",
 )
 MOTIF_PACKAGES = ("motif-libs", "motif-devel", "motif-tools")
+XNEDIT_BUILD_PACKAGES = (
+    "xbitmaps",
+    "zlib-devel",
+    "libpng-devel",
+    "bzip2-devel",
+    "freetype-devel",
+    "expat-devel",
+    "fontconfig-devel",
+    "xorg-devel",
+    "libxft",
+    "libxrender",
+)
 
 
 def privileged(command: list[str], *, log: Path | None = None) -> None:
@@ -337,6 +349,24 @@ def build(args: argparse.Namespace) -> None:
             build_archives(repo_root, nedit_stage, output, builder, ("nedit",))
         finally:
             privileged(["/usr/bin/python3", "-c", "import shutil,sys; shutil.rmtree(sys.argv[1],ignore_errors=True)", str(nedit_work)])
+
+        current = installed_packages(arpkg, sysroot)
+        for name in XNEDIT_BUILD_PACKAGES:
+            if name in current:
+                continue
+            matches = list(output.glob(f"{name}-*.ark"))
+            if len(matches) != 1:
+                raise FileNotFoundError(
+                    f"XNEdit build needs exactly one {name} archive in {output}"
+                )
+            previous = current.copy()
+            installed_name = install_package(arpkg, sysroot, matches[0])
+            current = installed_packages(arpkg, sysroot)
+            newly_installed = (current - previous) | {installed_name}
+            for candidate in XNEDIT_BUILD_PACKAGES:
+                if candidate in newly_installed and candidate not in installed:
+                    installed.append(candidate)
+            current.update(newly_installed)
 
         xnedit_payload, xnedit_work = run_target_build(
             sysroot=sysroot,

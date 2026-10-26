@@ -22,6 +22,13 @@ if SPEC is None or SPEC.loader is None:
     raise RuntimeError("could not load the Motif/NEdit builder")
 BUILDER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(BUILDER)
+PACKAGE_SPEC = importlib.util.spec_from_file_location(
+    "arkana_package_builder", Path(__file__).with_name("build-arkana-packages.py")
+)
+if PACKAGE_SPEC is None or PACKAGE_SPEC.loader is None:
+    raise RuntimeError("could not load the arkanaOS package builder")
+PACKAGE_BUILDER = importlib.util.module_from_spec(PACKAGE_SPEC)
+PACKAGE_SPEC.loader.exec_module(PACKAGE_BUILDER)
 
 
 def archive_bytes(root: str, license_name: str = "COPYING") -> bytes:
@@ -52,6 +59,32 @@ class SourceSnapshotTests(unittest.TestCase):
         )
         self.cached = self.cache / self.spec[0]
         self.cached.write_bytes(self.content)
+
+    def test_xnedit_build_stages_xorg_and_fontconfig_development_files(self) -> None:
+        self.assertEqual(
+            BUILDER.XNEDIT_BUILD_PACKAGES,
+            (
+                "xbitmaps",
+                "zlib-devel",
+                "libpng-devel",
+                "bzip2-devel",
+                "freetype-devel",
+                "expat-devel",
+                "fontconfig-devel",
+                "xorg-devel",
+                "libxft",
+                "libxrender",
+            ),
+        )
+        self.assertTrue(
+            {
+                "usr/lib/pkgconfig/xft.pc",
+                "usr/lib/pkgconfig/xrender.pc",
+                "usr/share/pkgconfig/xproto.pc",
+                "usr/share/pkgconfig/kbproto.pc",
+                "usr/share/pkgconfig/renderproto.pc",
+            }.issubset(PACKAGE_BUILDER.STAGED_PACKAGE_GLOBS["xorg-devel"])
+        )
 
     def test_cache_changes_after_validation_do_not_reach_privileged_copy(self) -> None:
         for replace in (False, True):
@@ -168,9 +201,15 @@ class SourceSnapshotTests(unittest.TestCase):
             specs[name] = spec
             contents[spec[0]] = content
         sources = []
+        installed_build_packages = []
 
         def target_build(*, sysroot, archive, root, commands, log):
             """Simulate a target build while checking its source snapshot boundary."""
+            if root == specs["xnedit"][3]:
+                self.assertEqual(
+                    installed_build_packages,
+                    list(BUILDER.XNEDIT_BUILD_PACKAGES),
+                )
             sources.append(archive)
             self.assertNotEqual(archive.parent, self.cache)
             self.assertEqual(stat.S_IMODE(archive.parent.stat().st_mode), 0o700)
@@ -201,6 +240,19 @@ class SourceSnapshotTests(unittest.TestCase):
             arkpkg=self.root / "arkpkg", arkpkg_build=self.root / "arkpkg-build",
             jobs=1, reuse_motif=False,
         )
+        args.output_dir.mkdir(parents=True)
+        for name in BUILDER.XNEDIT_BUILD_PACKAGES:
+            (args.output_dir / f"{name}-1-x86_64.ark").touch()
+
+        def install_build_package(_arpkg, _sysroot, archive):
+            name = next(
+                name
+                for name in BUILDER.XNEDIT_BUILD_PACKAGES
+                if archive.name.startswith(f"{name}-")
+            )
+            installed_build_packages.append(name)
+            return name
+
         with (
             mock.patch.object(BUILDER, "MOTIF", specs["motif"]),
             mock.patch.object(BUILDER, "NEDIT", specs["nedit"]),
@@ -208,11 +260,13 @@ class SourceSnapshotTests(unittest.TestCase):
             mock.patch.object(BUILDER, "run_target_build", side_effect=target_build),
             mock.patch.object(BUILDER, "copy_tree", side_effect=shutil.copytree),
             mock.patch.object(BUILDER, "installed_packages", return_value=set(BUILDER.MOTIF_PACKAGES)),
+            mock.patch.object(BUILDER, "install_package", side_effect=install_build_package),
             mock.patch.object(BUILDER, "build_archives"),
             mock.patch.object(BUILDER, "privileged"),
         ):
             BUILDER.build(args)
         self.assertEqual(len(sources), 3)
+        self.assertEqual(installed_build_packages, list(BUILDER.XNEDIT_BUILD_PACKAGES))
         self.assertEqual((args.staging / "nedit/usr/share/licenses/nedit/COPYRIGHT").read_bytes(), b"trusted license\n")
         self.assertEqual((args.staging / "motif/usr/share/licenses/motif-libs/COPYING").read_bytes(), b"trusted license\n")
         self.assertEqual((args.staging / "xnedit/usr/share/licenses/xnedit/LICENSE").read_bytes(), b"trusted license\n")
