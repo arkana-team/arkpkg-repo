@@ -1,0 +1,7 @@
+Name: asclock-themes
+Description: Theme files for ASclock, a clock applet
+Version: 2.0.12-35
+Arch: any
+URL: https://packages.debian.org/trixie/asclock-themes
+License: See /usr/share/doc/asclock-themes/copyright
+Maintainer: arkanaOS Team
