@@ -1,0 +1,8 @@
+Name: btrfs-compsize
+Description: Calculate the compression ratio of files on Btrfs
+Version: 1.5-1.1
+Arch: x86_64
+URL: https://github.com/kilobyte/compsize
+License: See /usr/share/doc/btrfs-compsize/copyright
+Maintainer: arkanaOS Team
+Provides: compsize=/usr/sbin/compsize

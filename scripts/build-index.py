@@ -278,11 +278,12 @@ DEVELOPMENT_PACKAGES = {
     "gdb", "git", "go", "make", "meson", "ninja", "rustc",
 }
 SYSTEM_PACKAGES = {
-    "arkcfg", "arkpkg", "base-files", "bash", "btrfs-progs", "coreutils",
-    "cryptsetup", "dash", "device-mapper", "diffutils", "dosfstools",
-    "e2fsprogs", "efibootmgr", "efivar", "file", "findutils", "grub",
-    "grep", "gzip", "initramfs-tools", "kmod", "linux", "login", "lvm2",
-    "man-db", "mount", "passwd", "procps", "sed", "shadow", "sudo",
+    "arkcfg", "arkpkg", "base-files", "bash", "btrfs-compsize",
+    "btrfs-progs", "coreutils", "cryptsetup", "dash", "device-mapper",
+    "diffutils", "dosfstools", "e2fsprogs", "efibootmgr", "efivar",
+    "exfatprogs", "file", "findutils", "gddrescue", "grub", "grep", "gzip",
+    "initramfs-tools", "kmod", "linux", "login", "lvm2", "man-db", "mmc-utils",
+    "mount", "passwd", "procps", "sdparm", "sed", "shadow", "sudo",
     "systemd", "systemd-sysv", "sysvinit-utils", "tar", "util-linux",
     "which", "xz-tools", "zstd-tools",
 }

@@ -30255,6 +30255,86 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "gddrescue": {
+      "author": "Antonio Diaz Diaz",
+      "git_repo": "https://salsa.debian.org/mika/gddrescue",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "exfatprogs": {
+      "author": "Namjae Jeon and Hyunchul Lee",
+      "git_repo": "https://github.com/exfatprogs/exfatprogs",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/namjaejeon",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "sdparm": {
+      "author": "Douglas Gilbert",
+      "git_repo": "https://github.com/doug-gilbert/sdparm",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/doug-gilbert",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "mmc-utils": {
+      "author": "Chris Ball and SanDisk contributors",
+      "git_repo": "https://git.kernel.org/pub/scm/utils/mmc/mmc-utils.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://sourceforge.net/u/thoric/profile/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "btrfs-compsize": {
+      "author": "Adam Borowski and Timofey Titovets",
+      "git_repo": "https://github.com/kilobyte/compsize",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/kilobyte",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
