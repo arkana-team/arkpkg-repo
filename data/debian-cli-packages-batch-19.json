@@ -14,6 +14,26 @@
       "name": "posh",
       "url": "https://salsa.debian.org/clint/posh",
       "version": "0.14.1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ksh93u+m"
+      ],
+      "debian_version": "1.0.10-2",
+      "dependencies": [],
+      "description": "AT&T KornShell command interpreter",
+      "license": "See /usr/share/doc/ksh93u+m/copyright",
+      "license_path": "usr/share/doc/ksh93u+m/copyright",
+      "name": "ksh93",
+      "symlinks": [
+        [
+          "usr/bin/ksh",
+          "ksh93"
+        ]
+      ],
+      "url": "https://github.com/ksh93/ksh",
+      "version": "1.0.10-2"
     }
   ],
   "sources": {
@@ -22,6 +42,12 @@
       "filename": "pool/main/p/posh/posh_0.14.1_amd64.deb",
       "sha256": "1b5d164d880aa57c6808fec6185b0d07e0c15bee7c0c518bdd5252d17a24ef90",
       "version": "0.14.1"
+    },
+    "ksh93u+m": {
+      "architecture": "amd64",
+      "filename": "pool/main/k/ksh93u+m/ksh93u+m_1.0.10-2_amd64.deb",
+      "sha256": "ed896af6823f4c2e81cabc9d864b205d6f841434466613388703b9d0d928278d",
+      "version": "1.0.10-2"
     }
   },
   "suite": "trixie"

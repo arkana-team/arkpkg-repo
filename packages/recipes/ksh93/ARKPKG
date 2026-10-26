@@ -1,8 +1,8 @@
 Name: ksh93
-Description: KornShell command interpreter
-Version: 1.0.9
+Description: AT&T KornShell command interpreter
+Version: 1.0.10-2
 Arch: x86_64
 URL: https://github.com/ksh93/ksh
-License: EPL-1.0
+License: See /usr/share/doc/ksh93u+m/copyright
 Maintainer: arkanaOS Team
-Provides: ksh=/usr/bin/ksh, ksh93=/usr/bin/ksh93
+Provides: ksh93=/usr/bin/ksh93, ksh=/usr/bin/ksh, rksh93=/usr/bin/rksh93, shcomp93=/usr/bin/shcomp93
