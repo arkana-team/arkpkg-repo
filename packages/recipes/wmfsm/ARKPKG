@@ -1,0 +1,8 @@
+Name: wmfsm
+Description: WindowMaker dock app for monitoring filesystem usage
+Version: 0.36-2
+Arch: x86_64
+URL: https://www.dockapps.net/wmfsm
+License: See /usr/share/doc/wmfsm/copyright
+Maintainer: arkanaOS Team
+Provides: wmfsm=/usr/bin/wmfsm
