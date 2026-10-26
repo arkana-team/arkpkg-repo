@@ -1,0 +1,75 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "btm"
+      ],
+      "debian_version": "0.10.2+20250107-5",
+      "dependencies": [
+        "gcc-libs"
+      ],
+      "description": "Terminal system and process monitor from bottom",
+      "license": "See /usr/share/doc/btm/copyright",
+      "license_path": "usr/share/doc/btm/copyright",
+      "name": "btm",
+      "url": "https://github.com/ClementTsang/bottom",
+      "version": "0.10.2+20250107-5"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libaio1t64"
+      ],
+      "debian_version": "0.3.113-8+b1",
+      "dependencies": [],
+      "description": "Linux kernel asynchronous I/O library with the time64 soname",
+      "license": "See /usr/share/doc/libaio1t64/copyright",
+      "license_path": "usr/share/doc/libaio1t64/copyright",
+      "name": "libaio1t64",
+      "url": "https://pagure.io/libaio",
+      "version": "0.3.113-8+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "sysbench"
+      ],
+      "debian_version": "1.0.20+ds-7",
+      "dependencies": [
+        "libaio1t64",
+        "libmariadb3",
+        "libpq5",
+        "neovim-runtime-libs"
+      ],
+      "description": "Multi-threaded CPU, memory, file I/O and database benchmark",
+      "license": "See /usr/share/doc/sysbench/copyright",
+      "license_path": "usr/share/doc/sysbench/copyright",
+      "name": "sysbench",
+      "url": "https://github.com/akopytov/sysbench",
+      "version": "1.0.20+ds-7"
+    }
+  ],
+  "sources": {
+    "btm": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/btm/btm_0.10.2+20250107-5_amd64.deb",
+      "sha256": "8b658e2bf10c9fd7a37a280aee344aa79328a8f257ca101c946c906910dbe559",
+      "version": "0.10.2+20250107-5"
+    },
+    "sysbench": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sysbench/sysbench_1.0.20+ds-7_amd64.deb",
+      "sha256": "153583af3e01787d4150c943d25acb741f4a7344dda29d241ed6d527424a920f",
+      "version": "1.0.20+ds-7"
+    },
+    "libaio1t64": {
+      "architecture": "amd64",
+      "filename": "pool/main/liba/libaio/libaio1t64_0.3.113-8+b1_amd64.deb",
+      "sha256": "490c8a2d116001a5f3b0a6d7a7aabf6a7b629366590dc5c3f75b078e931dd129",
+      "version": "0.3.113-8+b1"
+    }
+  },
+  "suite": "trixie"
+}

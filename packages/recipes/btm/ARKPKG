@@ -1,0 +1,10 @@
+Name: btm
+Description: Terminal system and process monitor from bottom
+Version: 0.10.2+20250107-5
+Arch: x86_64
+URL: https://github.com/ClementTsang/bottom
+License: See /usr/share/doc/btm/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gcc-libs
+Provides: btm=/usr/bin/btm

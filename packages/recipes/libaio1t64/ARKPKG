@@ -1,0 +1,8 @@
+Name: libaio1t64
+Description: Linux kernel asynchronous I/O library with the time64 soname
+Version: 0.3.113-8+b1
+Arch: x86_64
+URL: https://pagure.io/libaio
+License: See /usr/share/doc/libaio1t64/copyright
+Maintainer: arkanaOS Team
+Provides: libaio.so.1t64=/usr/lib/x86_64-linux-gnu/libaio.so.1t64.0.2
