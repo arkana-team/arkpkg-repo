@@ -99,6 +99,129 @@ class MetadataReadTests(unittest.TestCase):
                 read.assert_called_once_with(build_index.MAX_METADATA_SIZE + 1)
 
 
+class ArchiveBudgetTests(unittest.TestCase):
+    EXTENSION_TYPES = (
+        tarfile.XHDTYPE, tarfile.XGLTYPE, tarfile.SOLARIS_XHDTYPE,
+        tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK,
+    )
+
+    @staticmethod
+    def member(name, data=b"", kind=tarfile.REGTYPE):
+        info = tarfile.TarInfo(name)
+        info.type = kind
+        info.size = len(data)
+        return (
+            info.tobuf(format=tarfile.USTAR_FORMAT)
+            + data + b"\0" * (-len(data) % tarfile.BLOCKSIZE)
+        )
+
+    @staticmethod
+    def pax_record(key, value):
+        record = f" {key}={value}\n".encode()
+        length = len(record) + 1
+        while len(str(length)) + len(record) != length:
+            length = len(str(length)) + len(record)
+        return str(length).encode() + record
+
+    def write_archive(self, path, before=b"", after=b"", payload=b"x"):
+        data = (
+            before + self.member("ARKPKG", MetadataReadTests.METADATA)
+            + after + self.member("package/test", payload) + b"\0" * 1024
+        )
+        path.write_bytes(lz4.frame.compress(data))
+        return len(data)
+
+    def test_oversized_extensions_are_rejected_before_body_parsing(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            for kind in self.EXTENSION_TYPES:
+                extension = self.member(
+                    "extension", b"\0" * (build_index.MAX_TAR_EXTENSION_SIZE + 1), kind
+                )
+                for position in ("before", "after"):
+                    self.write_archive(path, **{position: extension})
+                    with (
+                        self.subTest(kind=kind, position=position),
+                        patch.object(tarfile.TarInfo, "_proc_pax") as pax,
+                        patch.object(tarfile.TarInfo, "_proc_gnulong") as gnu,
+                        self.assertRaisesRegex(ValueError, "TAR extension header"),
+                    ):
+                        try:
+                            build_index.read_metadata(path)
+                        finally:
+                            pax.assert_not_called()
+                            gnu.assert_not_called()
+
+    def test_extension_size_boundary_is_accepted(self):
+        limit = build_index.MAX_TAR_EXTENSION_SIZE
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            for kind in self.EXTENSION_TYPES:
+                if kind in (tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK):
+                    data = b"ARKPKG\0".ljust(limit, b"\0")
+                else:
+                    # One valid PAX record whose total length equals the limit.
+                    data = self.pax_record("comment", "x" * (limit - 15))
+                    self.assertEqual(len(data), limit)
+                self.write_archive(path, before=self.member("extension", data, kind))
+                with self.subTest(kind=kind):
+                    self.assertEqual(build_index.read_metadata(path)["Name"], "hello")
+
+    def test_cumulative_extensions_are_bounded_across_members(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            extension = self.member(
+                "extension", self.pax_record("comment", "test"), tarfile.XGLTYPE
+            ) + self.member("package/", kind=tarfile.DIRTYPE)
+            self.write_archive(path, before=extension * 3)
+            with (
+                patch.object(build_index, "MAX_TAR_EXTENSION_BYTES", 2 * 512),
+                self.assertRaisesRegex(ValueError, "TAR extension data"),
+            ):
+                build_index.read_metadata(path)
+
+    def test_sparse_map_parsing_is_bounded(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            pax = (
+                self.pax_record("GNU.sparse.major", "1")
+                + self.pax_record("GNU.sparse.minor", "0")
+            )
+            sparse = self.member("extension", pax, tarfile.XHDTYPE) + self.member(
+                "package/sparse", b"1000000\n" + b"0\n1\n" * 4096
+            )
+            self.write_archive(path, after=sparse)
+            with (
+                patch.object(build_index, "MAX_TAR_EXTENSION_BYTES", 4096),
+                self.assertRaisesRegex(ValueError, "TAR parser data"),
+            ):
+                build_index.read_metadata(path)
+
+    def test_expanded_budget_includes_payload_skipped_after_metadata(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            expanded = self.write_archive(path, payload=b"\0" * (32 * 1024))
+            self.assertLess(path.stat().st_size, 1024)
+            with (
+                patch.object(build_index, "MAX_ARCHIVE_BYTES", expanded),
+                self.subTest(boundary="exact"),
+            ):
+                self.assertEqual(build_index.read_metadata(path)["Name"], "hello")
+            with (
+                patch.object(build_index, "MAX_ARCHIVE_BYTES", 16 * 1024),
+                self.assertRaisesRegex(ValueError, "expanded archive"),
+            ):
+                build_index.read_metadata(path)
+
+    def test_budget_reader_caps_requests_before_reading(self):
+        source = io.BytesIO(b"x" * 1024)
+        with patch.object(source, "read", wraps=source.read) as read:
+            reader = build_index.BudgetReader(source, 512, "test")
+            with self.assertRaisesRegex(ValueError, "inspection limit"):
+                reader.read(1 << 40)
+            read.assert_called_once_with(513)
+
+
 class BuildIndexTests(unittest.TestCase):
     def test_site_publishes_epoch_and_tilde_versions(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
