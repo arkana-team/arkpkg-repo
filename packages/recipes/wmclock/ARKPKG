@@ -1,0 +1,8 @@
+Name: wmclock
+Description: dockable clock applet for Window Maker
+Version: 1.0.16-2
+Arch: x86_64
+URL: https://www.dockapps.net/wmclock
+License: See /usr/share/doc/wmclock/copyright
+Maintainer: arkanaOS Team
+Provides: wmclock=/usr/bin/wmclock
