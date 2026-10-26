@@ -1,0 +1,10 @@
+Name: swaks
+Description: SMTP command-line test tool
+Version: 20240103.0-2
+Arch: any
+URL: https://www.jetmore.org/john/code/swaks/
+License: See /usr/share/doc/swaks/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  perl
+Provides: swaks=/usr/bin/swaks

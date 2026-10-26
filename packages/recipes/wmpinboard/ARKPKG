@@ -1,0 +1,8 @@
+Name: wmpinboard
+Description: Window Maker dock applet resembling a miniature pinboard
+Version: 1.0.1-5
+Arch: x86_64
+URL: https://github.com/bbidulock/wmpinboard
+License: See /usr/share/doc/wmpinboard/copyright
+Maintainer: arkanaOS Team
+Provides: wmpinboard=/usr/bin/wmpinboard

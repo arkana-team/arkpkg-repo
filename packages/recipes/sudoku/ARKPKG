@@ -1,0 +1,10 @@
+Name: sudoku
+Description: console based sudoku
+Version: 1.0.5-2.1
+Arch: x86_64
+URL: https://github.com/cinemast/sudoku
+License: See /usr/share/doc/sudoku/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs

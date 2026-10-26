@@ -1,0 +1,8 @@
+Name: asmon
+Description: system resource monitor dockapp for Afterstep and WindowMaker
+Version: 0.71-8.1
+Arch: x86_64
+URL: http://rio.vg/asmon/
+License: See /usr/share/doc/asmon/copyright
+Maintainer: arkanaOS Team
+Provides: asmon=/usr/bin/asmon

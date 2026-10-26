@@ -1,0 +1,8 @@
+Name: jqp
+Description: TUI playground to experiment with jq (program)
+Version: 0.7.0-1+b4
+Arch: x86_64
+URL: https://github.com/noahgorstein/jqp
+License: See /usr/share/doc/jqp/copyright
+Maintainer: arkanaOS Team
+Provides: jqp=/usr/bin/jqp

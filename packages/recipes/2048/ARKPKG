@@ -1,0 +1,7 @@
+Name: 2048
+Description: Slide and add puzzle game for text mode
+Version: 1.0.3-1
+Arch: x86_64
+URL: https://github.com/mevdschee/2048.c
+License: See /usr/share/doc/2048/copyright
+Maintainer: arkanaOS Team

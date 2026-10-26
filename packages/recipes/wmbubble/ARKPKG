@@ -1,0 +1,8 @@
+Name: wmbubble
+Description: system-load meter for Window Maker that features a duck
+Version: 1.54-2+b1
+Arch: x86_64
+URL: https://github.com/rnjacobs/wmbubble
+License: See /usr/share/doc/wmbubble/copyright
+Maintainer: arkanaOS Team
+Provides: wmbubble=/usr/bin/wmbubble

@@ -1,0 +1,8 @@
+Name: wmcalc
+Description: dockable calculator application
+Version: 0.7-2+b1
+Arch: x86_64
+URL: https://www.dockapps.net/wmcalc
+License: See /usr/share/doc/wmcalc/copyright
+Maintainer: arkanaOS Team
+Provides: wmcalc=/usr/bin/wmcalc

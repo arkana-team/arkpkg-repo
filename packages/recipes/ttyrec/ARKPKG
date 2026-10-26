@@ -1,0 +1,8 @@
+Name: ttyrec
+Description: Terminal interaction recorder and player (for tty)
+Version: 1.1.7.1-1
+Arch: x86_64
+URL: https://github.com/ovh/ovh-ttyrec
+License: See /usr/share/doc/ttyrec/copyright
+Maintainer: arkanaOS Team
+Provides: ttyplay=/usr/bin/ttyplay, ttyrec=/usr/bin/ttyrec, ttytime=/usr/bin/ttytime

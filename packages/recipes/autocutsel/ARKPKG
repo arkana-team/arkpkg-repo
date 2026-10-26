@@ -1,0 +1,11 @@
+Name: autocutsel
+Description: Keep the X clipboard and the cutbuffer in sync
+Version: 0.10.1-1+b1
+Arch: x86_64
+URL: https://www.nongnu.org/autocutsel/
+License: See /usr/share/doc/autocutsel/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxaw7
+  libxmu
+Provides: autocutsel=/usr/bin/autocutsel, cutsel=/usr/bin/cutsel

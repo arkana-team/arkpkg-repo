@@ -1,0 +1,10 @@
+Name: cbonsai
+Description: terminal-based bonsai tree generator
+Version: 1.3.1-1
+Arch: x86_64
+URL: https://gitlab.com/jallbrit/cbonsai
+License: See /usr/share/doc/cbonsai/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-libs

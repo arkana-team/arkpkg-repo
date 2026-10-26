@@ -1,0 +1,8 @@
+Name: 9wm
+Description: X11 window manager inspired by Plan 9's rio
+Version: 1.4.1-1
+Arch: x86_64
+URL: https://github.com/9wm/9wm
+License: See /usr/share/doc/9wm/copyright
+Maintainer: arkanaOS Team
+Provides: 9wm=/usr/bin/9wm

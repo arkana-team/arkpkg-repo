@@ -1,0 +1,9 @@
+Name: fizmo-console
+Description: Console-based Z-machine interpreter for Infocom/Inform games
+Version: 0.7.13-2+b2
+Arch: x86_64
+URL: https://fizmo.spellbreaker.org/
+License: See /usr/share/doc/fizmo-console/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  xml-runtime-libs

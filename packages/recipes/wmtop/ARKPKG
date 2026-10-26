@@ -1,0 +1,8 @@
+Name: wmtop
+Description: dockapp that displays 3 top memory or CPU using processes
+Version: 0.85-2
+Arch: x86_64
+URL: https://www.dockapps.net/wmtop
+License: See /usr/share/doc/wmtop/copyright
+Maintainer: arkanaOS Team
+Provides: wmtop=/usr/bin/wmtop

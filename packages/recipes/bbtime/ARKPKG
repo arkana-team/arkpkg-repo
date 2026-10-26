@@ -1,0 +1,8 @@
+Name: bbtime
+Description: Time tool for the blackbox/fluxbox window managers
+Version: 0.1.5-16
+Arch: x86_64
+URL: http://bbtools.sourceforge.net/
+License: See /usr/share/doc/bbtime/copyright
+Maintainer: arkanaOS Team
+Provides: bbtime=/usr/bin/bbtime

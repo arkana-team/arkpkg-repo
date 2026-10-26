@@ -1,0 +1,10 @@
+Name: wmhdplop
+Description: hard drive activity monitor dockapp
+Version: 0.9.12-2
+Arch: x86_64
+URL: https://www.dockapps.net/wmhdplop
+License: See /usr/share/doc/wmhdplop/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libimlib2t64
+Provides: wmhdplop=/usr/bin/wmhdplop

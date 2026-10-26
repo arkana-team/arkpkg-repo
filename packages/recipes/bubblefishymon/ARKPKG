@@ -1,0 +1,8 @@
+Name: bubblefishymon
+Description: system load dockapp with a duck
+Version: 0.6.4-7
+Arch: x86_64
+URL: https://github.com/JNRowe/bfm
+License: See /usr/share/doc/bubblefishymon/copyright
+Maintainer: arkanaOS Team
+Provides: bubblefishymon=/usr/bin/bubblefishymon

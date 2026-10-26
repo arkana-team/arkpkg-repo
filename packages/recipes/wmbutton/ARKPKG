@@ -1,0 +1,8 @@
+Name: wmbutton
+Description: dockapp displaying nine configurable buttons
+Version: 0.7.1-2
+Arch: x86_64
+URL: https://www.dockapps.net/wmbutton
+License: See /usr/share/doc/wmbutton/copyright
+Maintainer: arkanaOS Team
+Provides: wmbutton=/usr/bin/wmbutton

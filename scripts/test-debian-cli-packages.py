@@ -16,6 +16,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 from unittest.mock import patch
+from urllib.parse import urlparse
 
 BUILDER_PATH = Path(__file__).with_name("build-debian-cli-packages.py")
 SPEC = importlib.util.spec_from_file_location("debian_cli_builder", BUILDER_PATH)
@@ -97,6 +98,36 @@ class DebianSourceUrlTests(unittest.TestCase):
 
 
 class WorkstationManifestTests(unittest.TestCase):
+    def test_batch_catalogue_uses_homepage_git_repositories(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-07.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        git_hosts = {
+            "github.com",
+            "gitlab.com",
+            "gitlab.freedesktop.org",
+            "codeberg.org",
+            "git.sr.ht",
+        }
+
+        for package in batch["packages"]:
+            homepage = package.get("url", "")
+            if urlparse(homepage).hostname not in git_hosts:
+                continue
+            with self.subTest(package=package["name"]):
+                self.assertEqual(
+                    metadata[package["name"]]["git_repo"], homepage.rstrip("/")
+                )
+                self.assertEqual(
+                    metadata[package["name"]]["git_repo_type"], "upstream"
+                )
+
     def test_workstation_packages_are_checksum_pinned(self) -> None:
         """Validate workstation package pins, metadata, and dependency order."""
         manifest_path = (
@@ -104,6 +135,16 @@ class WorkstationManifestTests(unittest.TestCase):
             / "data/debian-workstation-packages.json"
         )
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        batch_manifest_path = (
+            Path(__file__).resolve().parents[1]
+            / "data/debian-workstation-packages-batch-07.json"
+        )
+        batch_names = {
+            package["name"]
+            for package in json.loads(
+                batch_manifest_path.read_text(encoding="utf-8")
+            )["packages"]
+        }
 
         self.assertEqual(manifest["suite"], "trixie")
         self.assertEqual(manifest["architecture"], "amd64")
@@ -178,7 +219,8 @@ class WorkstationManifestTests(unittest.TestCase):
                 "vbindiff",
                 "w3m-img",
                 "xcolors",
-            },
+            }
+            | batch_names,
         )
         package_by_name = {package["name"]: package for package in packages}
         self.assertEqual(
@@ -246,6 +288,23 @@ class WorkstationManifestTests(unittest.TestCase):
             (Path(__file__).resolve().parents[1] / "data/package-metadata.json")
             .read_text(encoding="utf-8")
         )["packages"]
+        expected_author_profiles = {
+            "9menu": "https://github.com/arnoldrobbins",
+            "autorandr": "https://github.com/phillipberndt",
+            "xdo": "https://github.com/baskerville",
+            "ansiweather": "https://github.com/fcambus",
+            "ddgr": "https://github.com/jarun",
+            "dfc": "https://github.com/rolinh",
+            "git-extras": "https://github.com/tj",
+            "jqp": "https://github.com/noahgorstein",
+            "2048": "https://github.com/mevdschee",
+            "nbsdgames": "https://github.com/abakh",
+            "cbonsai": "https://gitlab.com/jallbrit",
+            "libfile-next-perl": "https://github.com/petdance",
+        }
+        for name, profile_url in expected_author_profiles.items():
+            self.assertEqual(metadata[name]["git_author_url"], profile_url)
+
         nullable_author_profiles = {
             "ffmpeg",
             "alsamixergui",
@@ -268,7 +327,7 @@ class WorkstationManifestTests(unittest.TestCase):
             "xmbmon",
             "x2x",
             "xrootconsole",
-        }
+        } | (batch_names - set(expected_author_profiles))
         for package in packages:
             with self.subTest(credits=package["name"]):
                 entry = metadata[package["name"]]
@@ -805,6 +864,195 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertIn("slop", manifest_packages["maim"]["dependencies"])
         self.assertNotIn("exclude_paths", manifest_packages["nsxiv"])
         self.assertIn("guile", manifest_packages["xbindkeys"]["dependencies"])
+
+    def test_remote_workstation_batch_07_is_pinned_and_credited(self) -> None:
+        """Validate the optional dockapp, X11, CLI, and game package batch."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-07.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        expected_batch_names = {
+            "2048",
+            "9menu",
+            "9mount",
+            "9wm",
+            "ack",
+            "acpitool",
+            "agedu",
+            "alttab",
+            "ansiweather",
+            "asciijump",
+            "asclock",
+            "asclock-themes",
+            "asmon",
+            "autocutsel",
+            "autorandr",
+            "bbpager",
+            "bbtime",
+            "bdfresize",
+            "bubblefishymon",
+            "cbonsai",
+            "chroma-curses",
+            "chroma-data",
+            "cpulimit",
+            "crawl",
+            "crawl-common",
+            "ddgr",
+            "dfc",
+            "fizmo-console",
+            "gearhead",
+            "gearhead-data",
+            "gemdropx",
+            "git-extras",
+            "jqp",
+            "libdockapp3",
+            "libfile-next-perl",
+            "liblua5.1-0",
+            "libwraster6",
+            "nbsdgames",
+            "ninvaders",
+            "nsnake",
+            "omega-rpg",
+            "sudoku",
+            "swaks",
+            "tint",
+            "ttyrec",
+            "wmacpi",
+            "wmbattery",
+            "wmbiff",
+            "wmbubble",
+            "wmbutton",
+            "wmcalc",
+            "wmcalclock",
+            "wmcliphist",
+            "wmclock",
+            "wmclockmon",
+            "wmcore",
+            "wmcpu",
+            "wmcpuload",
+            "wmdiskmon",
+            "wmdrawer",
+            "wmfsm",
+            "wmget",
+            "wmgtemp",
+            "wmhdplop",
+            "wmifinfo",
+            "wmifs",
+            "wmitime",
+            "wmload",
+            "wmmemload",
+            "wmmon",
+            "wmmoonclock",
+            "wmnd",
+            "wmnut",
+            "wmpinboard",
+            "wmpuzzle",
+            "wmressel",
+            "wmstickynotes",
+            "wmsun",
+            "wmsysmon",
+            "wmsystemtray",
+            "wmtemp",
+            "wmtime",
+            "wmtop",
+            "wmusic",
+            "wmweather",
+            "wmweather+",
+            "wmxres",
+            "xdo",
+            "xsoldier",
+        }
+        self.assertEqual(set(batch_packages), expected_batch_names)
+        self.assertEqual(len(batch_packages), 89)
+        self.assertEqual(len(batch_packages), len(batch["packages"]))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+        self.assertTrue(
+            {"asclock", "wmbattery", "autorandr", "ninvaders"}
+            <= set(batch_packages)
+        )
+        self.assertTrue({"wmaker", "twm"}.isdisjoint(batch_packages))
+
+        for name, package in batch_packages.items():
+            with self.subTest(package=name):
+                self.assertEqual(packages[name], package)
+                self.assertEqual(package["debian_packages"], [name])
+                self.assertIn(package["arch"], {"any", "x86_64"})
+                archive = repo_root / "packages" / (
+                    f"{name}-{package['version']}-{package['arch']}.ark"
+                )
+                self.assertTrue(archive.is_file(), archive)
+                recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+                self.assertTrue(recipe.is_file(), recipe)
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                source = batch["sources"][name]
+                self.assertEqual(source, manifest["sources"][name])
+                self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$")
+                self.assertTrue(source["filename"].startswith("pool/"))
+                package_metadata = metadata[name]
+                self.assertIn("author", package_metadata)
+                self.assertTrue(package_metadata["author"])
+                self.assertIn("git_author_url", package_metadata)
+                self.assertTrue(package_metadata["git_repo"].startswith("https://"))
+                self.assertIn(
+                    package_metadata["git_repo_type"],
+                    {"upstream", "packaging", "arkpkg-recipe"},
+                )
+                self.assertEqual(
+                    {item["name"] for item in package_metadata["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+        for name, dependencies in {
+            "ack": {"libfile-next-perl", "perl"},
+            "asclock": {"asclock-themes"},
+            "autorandr": {"xrandr"},
+            "ansiweather": {"bc", "curl-cli", "jq"},
+            "crawl": {"crawl-common", "liblua5.1-0"},
+            "gearhead": {"gearhead-data"},
+            "libwraster6": {
+                "giflib",
+                "libjpeg62-turbo",
+                "libmagickwand-7.q16-10",
+                "libpng16-16t64",
+                "libtiff6",
+                "libwebp7",
+                "libxmu",
+            },
+            "wmbattery": {"upower"},
+            "wmget": {"curl-cli", "perl"},
+            "wmcore": {"libdockapp3"},
+            "wmmon": {"libdockapp3"},
+            "wmacpi": {"libdockapp3"},
+            "wmsysmon": {"libdockapp3"},
+            "wmweather+": {"libcurl3t64-gnutls", "libwraster6", "pcre2-libs"},
+        }.items():
+            self.assertTrue(dependencies <= set(packages[name]["dependencies"]))
+
+        self.assertEqual(
+            set(packages["autorandr"]["base_dependencies"]),
+            {"python3", "libinput-tools"},
+        )
+        self.assertNotIn("python3", packages["autorandr"]["dependencies"])
+        self.assertNotIn("libinput-tools", packages["autorandr"]["dependencies"])
+
+        self.assertEqual(packages["crawl"]["license_source_package"], "crawl-common")
+        self.assertEqual(
+            packages["crawl"]["license_source_path"],
+            "usr/share/doc/crawl-common/copyright",
+        )
 
 
 class UpstreamDownloadTests(unittest.TestCase):

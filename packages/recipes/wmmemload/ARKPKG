@@ -1,0 +1,8 @@
+Name: wmmemload
+Description: WindowMaker dockapp to monitor memory and swap usage
+Version: 0.1.8-3
+Arch: x86_64
+URL: https://www.dockapps.net/wmmemload
+License: See /usr/share/doc/wmmemload/copyright
+Maintainer: arkanaOS Team
+Provides: wmmemload=/usr/bin/wmmemload

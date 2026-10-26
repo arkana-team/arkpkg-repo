@@ -1,0 +1,7 @@
+Name: asciijump
+Description: Small and funny ASCII-art game about ski jumping
+Version: 1.0.2~beta-11
+Arch: x86_64
+URL: https://packages.debian.org/trixie/asciijump
+License: See /usr/share/doc/asciijump/copyright
+Maintainer: arkanaOS Team

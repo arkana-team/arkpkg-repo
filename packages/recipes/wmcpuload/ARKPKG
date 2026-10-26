@@ -1,0 +1,8 @@
+Name: wmcpuload
+Description: Dockapp that displays the current CPU usage
+Version: 1.1.1-3
+Arch: x86_64
+URL: https://www.dockapps.net/wmcpuload
+License: See /usr/share/doc/wmcpuload/copyright
+Maintainer: arkanaOS Team
+Provides: wmcpuload=/usr/bin/wmcpuload

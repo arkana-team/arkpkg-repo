@@ -1,0 +1,8 @@
+Name: wmpuzzle
+Description: WindowMaker dock app 4x4 puzzle
+Version: 0.5.3-1
+Arch: x86_64
+URL: https://packages.debian.org/trixie/wmpuzzle
+License: See /usr/share/doc/wmpuzzle/copyright
+Maintainer: arkanaOS Team
+Provides: wmpuzzle=/usr/bin/wmpuzzle

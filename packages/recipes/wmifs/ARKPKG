@@ -1,0 +1,8 @@
+Name: wmifs
+Description: Window Maker dockapp for monitoring network traffic
+Version: 1.9-2+b1
+Arch: x86_64
+URL: https://www.dockapps.net/wmifs
+License: See /usr/share/doc/wmifs/copyright
+Maintainer: arkanaOS Team
+Provides: wmifs=/usr/bin/wmifs

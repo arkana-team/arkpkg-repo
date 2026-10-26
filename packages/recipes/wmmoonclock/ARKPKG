@@ -1,0 +1,8 @@
+Name: wmmoonclock
+Description: Window Maker moon phase dockapp
+Version: 1.30-4
+Arch: x86_64
+URL: https://www.dockapps.net/wmmoonclock
+License: See /usr/share/doc/wmmoonclock/copyright
+Maintainer: arkanaOS Team
+Provides: wmmoonclock=/usr/bin/wmmoonclock

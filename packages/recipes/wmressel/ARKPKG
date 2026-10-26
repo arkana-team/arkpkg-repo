@@ -1,0 +1,11 @@
+Name: wmressel
+Description: Dock app to change X11 resolutions
+Version: 0.10-1+b2
+Arch: x86_64
+URL: https://www.dockapps.net/wmressel
+License: See /usr/share/doc/wmressel/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgtk-3-0t64
+  libxinerama
+Provides: wmressel=/usr/bin/wmressel

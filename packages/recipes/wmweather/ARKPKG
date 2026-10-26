@@ -1,0 +1,10 @@
+Name: wmweather
+Description: WindowMaker dockapp that shows your current weather
+Version: 2.4.8-3
+Arch: x86_64
+URL: http://people.debian.org/~godisch/wmweather/
+License: See /usr/share/doc/wmweather/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcurl3t64-gnutls
+Provides: wmWeather=/usr/bin/wmWeather, wmweather=/usr/bin/wmweather

@@ -1,0 +1,10 @@
+Name: ninvaders
+Description: A space invaders-like game using ncurses
+Version: 0.1.1-5+b1
+Arch: x86_64
+URL: http://ninvaders.sourceforge.net/
+License: See /usr/share/doc/ninvaders/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs

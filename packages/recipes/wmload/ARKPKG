@@ -1,0 +1,8 @@
+Name: wmload
+Description: system load monitor designed for Window Maker
+Version: 0.9.7-2
+Arch: x86_64
+URL: https://www.dockapps.net/wmload
+License: See /usr/share/doc/wmload/copyright
+Maintainer: arkanaOS Team
+Provides: wmload=/usr/bin/wmload

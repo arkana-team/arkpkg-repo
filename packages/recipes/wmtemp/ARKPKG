@@ -1,0 +1,11 @@
+Name: wmtemp
+Description: WM dock applet displaying lm_sensors temperature values
+Version: 0.0.6-3.4
+Arch: x86_64
+URL: http://gnodde.org/wmtemp/
+License: See /usr/share/doc/wmtemp/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsensors
+  lm-sensors
+Provides: wmtemp=/usr/bin/wmtemp

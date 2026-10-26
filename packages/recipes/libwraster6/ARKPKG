@@ -1,0 +1,16 @@
+Name: libwraster6
+Description: Raster image library for Window Maker
+Version: 0.96.0-4
+Arch: x86_64
+URL: https://www.windowmaker.org/
+License: See /usr/share/doc/libwraster6/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  giflib
+  libjpeg62-turbo
+  libmagickwand-7.q16-10
+  libpng16-16t64
+  libtiff6
+  libwebp7
+  libxmu
+Provides: libwraster.so.6=/usr/lib/x86_64-linux-gnu/libwraster.so.6.1.0

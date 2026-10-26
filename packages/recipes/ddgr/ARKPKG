@@ -1,0 +1,8 @@
+Name: ddgr
+Description: DuckDuckGo from the terminal
+Version: 2.2-1
+Arch: any
+URL: https://github.com/jarun/ddgr
+License: See /usr/share/doc/ddgr/copyright
+Maintainer: arkanaOS Team
+Provides: ddgr=/usr/bin/ddgr

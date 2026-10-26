@@ -1,0 +1,8 @@
+Name: 9menu
+Description: Creates X menus from the shell
+Version: 1.11-1
+Arch: x86_64
+URL: https://github.com/arnoldrobbins/9menu
+License: See /usr/share/doc/9menu/copyright
+Maintainer: arkanaOS Team
+Provides: 9menu=/usr/bin/9menu

@@ -1,0 +1,8 @@
+Name: 9mount
+Description: Plan 9 filesystem (v9fs) user mount utilities
+Version: 1.3+hg20170412-2
+Arch: x86_64
+URL: http://sqweek.net/code/9mount/
+License: See /usr/share/doc/9mount/copyright
+Maintainer: arkanaOS Team
+Provides: 9bind=/usr/bin/9bind, 9mount=/usr/bin/9mount, 9umount=/usr/bin/9umount

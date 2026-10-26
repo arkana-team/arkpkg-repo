@@ -1,0 +1,10 @@
+Name: autorandr
+Description: Automatically select a display configuration for connected devices
+Version: 1.15-1
+Arch: any
+URL: https://github.com/phillipberndt/autorandr
+License: See /usr/share/doc/autorandr/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  xrandr
+Provides: autorandr=/usr/bin/autorandr

@@ -1,0 +1,11 @@
+Name: wmbattery
+Description: display laptop battery info, dockable in WindowMaker
+Version: 2.56-1+b1
+Arch: x86_64
+URL: https://www.dockapps.net/wmbattery
+License: See /usr/share/doc/wmbattery/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libupower-glib3
+  upower
+Provides: wmbattery=/usr/bin/wmbattery

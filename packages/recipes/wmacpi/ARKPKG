@@ -1,0 +1,10 @@
+Name: wmacpi
+Description: ACPI battery monitor for WindowMaker
+Version: 2.4-2+b1
+Arch: x86_64
+URL: https://www.dockapps.net/wmacpi
+License: See /usr/share/doc/wmacpi/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libdockapp3
+Provides: wmacpi-cli=/usr/bin/wmacpi-cli, wmacpi=/usr/bin/wmacpi

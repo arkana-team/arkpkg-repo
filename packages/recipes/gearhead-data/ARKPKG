@@ -1,0 +1,7 @@
+Name: gearhead-data
+Description: data files for gearhead
+Version: 1.310-3
+Arch: any
+URL: http://www.gearheadrpg.com/
+License: See /usr/share/doc/gearhead-data/copyright
+Maintainer: arkanaOS Team

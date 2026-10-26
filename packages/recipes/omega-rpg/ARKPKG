@@ -1,0 +1,10 @@
+Name: omega-rpg
+Description: text-based roguelike game
+Version: 1:0.90-pa9-21
+Arch: x86_64
+URL: https://packages.debian.org/trixie/omega-rpg
+License: See /usr/share/doc/omega-rpg/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs

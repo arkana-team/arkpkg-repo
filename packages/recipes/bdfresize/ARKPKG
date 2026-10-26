@@ -1,0 +1,8 @@
+Name: bdfresize
+Description: tool for resizing BDF format font
+Version: 1.5-12
+Arch: x86_64
+URL: http://openlab.jp/efont/
+License: See /usr/share/doc/bdfresize/copyright
+Maintainer: arkanaOS Team
+Provides: bdfresize=/usr/bin/bdfresize

@@ -1,0 +1,8 @@
+Name: bbpager
+Description: Pager for the blackbox and fluxbox window managers
+Version: 0.4.7-10
+Arch: x86_64
+URL: https://sourceforge.net/projects/bbtools
+License: See /usr/share/doc/bbpager/copyright
+Maintainer: arkanaOS Team
+Provides: bbpager=/usr/bin/bbpager

@@ -1,0 +1,8 @@
+Name: liblua5.1-0
+Description: Shared library for the Lua interpreter version 5.1
+Version: 5.1.5-11
+Arch: x86_64
+URL: https://www.lua.org
+License: See /usr/share/doc/liblua5.1-0/copyright
+Maintainer: arkanaOS Team
+Provides: liblua5.1-c++.so.0=/usr/lib/x86_64-linux-gnu/liblua5.1-c++.so.0.0.0, liblua5.1.so.0=/usr/lib/x86_64-linux-gnu/liblua5.1.so.0.0.0

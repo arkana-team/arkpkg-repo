@@ -1,0 +1,10 @@
+Name: tint
+Description: Tetris clone for text based terminal
+Version: 0.07
+Arch: x86_64
+URL: https://packages.debian.org/trixie/tint
+License: See /usr/share/doc/tint/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs

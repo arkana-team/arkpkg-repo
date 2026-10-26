@@ -1,0 +1,10 @@
+Name: nbsdgames
+Description: text based mini games for your terminal
+Version: 5-8
+Arch: x86_64
+URL: https://github.com/abakh/nbsdgames
+License: See /usr/share/doc/nbsdgames/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-compat-libs

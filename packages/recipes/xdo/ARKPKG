@@ -1,0 +1,10 @@
+Name: xdo
+Description: small console-based utility to perform elementary actions on windows
+Version: 0.5.7-2
+Arch: x86_64
+URL: https://github.com/baskerville/xdo
+License: See /usr/share/doc/xdo/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  xcb-util
+Provides: xdo=/usr/bin/xdo

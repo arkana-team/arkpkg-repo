@@ -1,0 +1,8 @@
+Name: acpitool
+Description: command line ACPI client
+Version: 0.5.1-7+b1
+Arch: x86_64
+URL: http://sourceforge.net/projects/acpitool/
+License: See /usr/share/doc/acpitool/copyright
+Maintainer: arkanaOS Team
+Provides: acpitool=/usr/bin/acpitool
