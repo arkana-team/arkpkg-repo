@@ -1,0 +1,8 @@
+Name: libgpg-error0
+Description: GnuPG runtime library for common error values and messages
+Version: 1.51-4
+Arch: x86_64
+URL: https://www.gnupg.org/software/libgpg-error/
+License: See /usr/share/doc/libgpg-error0/copyright
+Maintainer: arkanaOS Team
+Provides: libgpg-error.so.0=/usr/lib/x86_64-linux-gnu/libgpg-error.so.0.38.0

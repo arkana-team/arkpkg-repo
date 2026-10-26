@@ -30127,6 +30127,134 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "ioping": {
+      "author": "Konstantin Khlebnikov",
+      "git_repo": "https://salsa.debian.org/debian/ioping.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/koct9i",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libsgutils2-1.48": {
+      "author": "Douglas Gilbert",
+      "git_repo": "https://salsa.debian.org/linux-blocks-team/sg3-utils.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/doug-gilbert",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "sg3-utils": {
+      "author": "Douglas Gilbert",
+      "git_repo": "https://salsa.debian.org/linux-blocks-team/sg3-utils.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/doug-gilbert",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "freeipmi-common": {
+      "author": "Albert Chu",
+      "git_repo": "https://salsa.debian.org/debian/freeipmi.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/chu11",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libgpg-error0": {
+      "author": "g10 Code GmbH and contributors",
+      "git_repo": "https://salsa.debian.org/debian/libgpg-error.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/gpg/libgpg-error",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libgcrypt20": {
+      "author": "Werner Koch and contributors",
+      "git_repo": "https://salsa.debian.org/gnutls-team/libgcrypt.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/gpg/libgcrypt",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libfreeipmi17": {
+      "author": "Albert Chu",
+      "git_repo": "https://salsa.debian.org/debian/freeipmi.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://github.com/chu11",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ipmitool": {
+      "author": "Duncan Laurie and contributors",
+      "git_repo": "https://git.jff.email/cgit/ipmitool.git",
+      "git_repo_type": "packaging",
+      "git_author_url": "https://codeberg.org/IPMITool/ipmitool",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

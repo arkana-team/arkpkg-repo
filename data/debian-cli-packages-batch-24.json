@@ -1,0 +1,179 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ioping"
+      ],
+      "debian_version": "1.3-1",
+      "dependencies": [],
+      "description": "Simple disk I/O latency measuring tool",
+      "license": "See /usr/share/doc/ioping/copyright",
+      "license_path": "usr/share/doc/ioping/copyright",
+      "name": "ioping",
+      "url": "https://github.com/koct9i/ioping",
+      "version": "1.3-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libsgutils2-1.48"
+      ],
+      "debian_version": "1.48-3~deb13u1",
+      "dependencies": [],
+      "description": "Shared library for SCSI command set utilities",
+      "license": "See /usr/share/doc/libsgutils2-1.48/copyright",
+      "license_path": "usr/share/doc/libsgutils2-1.48/copyright",
+      "name": "libsgutils2-1.48",
+      "url": "https://sg.danny.cz/sg/sg3_utils.html",
+      "version": "1.48-3~deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "sg3-utils"
+      ],
+      "debian_version": "1.48-3~deb13u1",
+      "dependencies": [
+        "libsgutils2-1.48"
+      ],
+      "description": "Utilities for devices using the SCSI command set",
+      "license": "See /usr/share/doc/sg3-utils/copyright",
+      "license_path": "usr/share/doc/sg3-utils/copyright",
+      "name": "sg3-utils",
+      "url": "https://sg.danny.cz/sg/sg3_utils.html",
+      "version": "1.48-3~deb13u1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "freeipmi-common"
+      ],
+      "debian_version": "1.6.15-1",
+      "dependencies": [],
+      "description": "Common configuration and data files for FreeIPMI",
+      "license": "See /usr/share/doc/freeipmi-common/copyright",
+      "license_path": "usr/share/doc/freeipmi-common/copyright",
+      "name": "freeipmi-common",
+      "url": "https://www.gnu.org/software/freeipmi/",
+      "version": "1.6.15-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgpg-error0"
+      ],
+      "debian_version": "1.51-4",
+      "dependencies": [],
+      "description": "GnuPG runtime library for common error values and messages",
+      "license": "See /usr/share/doc/libgpg-error0/copyright",
+      "license_path": "usr/share/doc/libgpg-error0/copyright",
+      "name": "libgpg-error0",
+      "url": "https://www.gnupg.org/software/libgpg-error/",
+      "version": "1.51-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libgcrypt20"
+      ],
+      "debian_version": "1.11.0-7+deb13u1",
+      "dependencies": [
+        "libgpg-error0"
+      ],
+      "description": "LGPL cryptographic runtime library",
+      "license": "See /usr/share/doc/libgcrypt20/copyright",
+      "license_path": "usr/share/doc/libgcrypt20/copyright",
+      "name": "libgcrypt20",
+      "url": "https://www.gnupg.org/software/libgcrypt/",
+      "version": "1.11.0-7+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libfreeipmi17"
+      ],
+      "debian_version": "1.6.15-1",
+      "dependencies": [
+        "freeipmi-common",
+        "libgcrypt20"
+      ],
+      "description": "FreeIPMI shared library for in-band and out-of-band IPMI access",
+      "license": "See /usr/share/doc/libfreeipmi17/copyright",
+      "license_path": "usr/share/doc/libfreeipmi17/copyright",
+      "name": "libfreeipmi17",
+      "url": "https://www.gnu.org/software/freeipmi/",
+      "version": "1.6.15-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ipmitool"
+      ],
+      "debian_version": "1.8.19-9",
+      "dependencies": [
+        "libfreeipmi17",
+        "readline-libs",
+        "openssl-libs"
+      ],
+      "description": "Command-line utility for IPMI hardware management",
+      "license": "See /usr/share/doc/ipmitool/copyright",
+      "license_path": "usr/share/doc/ipmitool/copyright",
+      "name": "ipmitool",
+      "url": "https://codeberg.org/ipmitool/ipmitool",
+      "version": "1.8.19-9"
+    }
+  ],
+  "sources": {
+    "ioping": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/ioping/ioping_1.3-1_amd64.deb",
+      "sha256": "22ead2b91d92b070ba9f37eecc3ba7972b3f56ecf7b5bf2d82ee4e18712acbe6",
+      "version": "1.3-1"
+    },
+    "libsgutils2-1.48": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sg3-utils/libsgutils2-1.48_1.48-3~deb13u1_amd64.deb",
+      "sha256": "b3547dc1fb6e8109fa9d7b16c4d7a54a9266d8f971f300cc534bb678a986736d",
+      "version": "1.48-3~deb13u1"
+    },
+    "sg3-utils": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sg3-utils/sg3-utils_1.48-3~deb13u1_amd64.deb",
+      "sha256": "ba2e2ab287b372dc9646bc5210fb8497f0b06058f75f54a9c3b3f565d2263047",
+      "version": "1.48-3~deb13u1"
+    },
+    "freeipmi-common": {
+      "architecture": "all",
+      "filename": "pool/main/f/freeipmi/freeipmi-common_1.6.15-1_all.deb",
+      "sha256": "dc54520d7ccb413715ec19d77f3232b1df31cda9d42c57702646c9a409ff74b2",
+      "version": "1.6.15-1"
+    },
+    "libgpg-error0": {
+      "architecture": "amd64",
+      "filename": "pool/main/libg/libgpg-error/libgpg-error0_1.51-4_amd64.deb",
+      "sha256": "22b95570fd41c113ef6f5651563b4d748292844baab1278a46eb940c1dec2322",
+      "version": "1.51-4"
+    },
+    "libgcrypt20": {
+      "architecture": "amd64",
+      "filename": "pool/main/libg/libgcrypt20/libgcrypt20_1.11.0-7+deb13u1_amd64.deb",
+      "sha256": "f0eb41f8cb40896e0822e9ab65611e8383c12b721c76c54764f744abb4a8c247",
+      "version": "1.11.0-7+deb13u1"
+    },
+    "libfreeipmi17": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/freeipmi/libfreeipmi17_1.6.15-1_amd64.deb",
+      "sha256": "2eb073cca8a5b1298dd79886f686a144f901a4fb0d3ef47900ff66b17aff3da0",
+      "version": "1.6.15-1"
+    },
+    "ipmitool": {
+      "architecture": "amd64",
+      "filename": "pool/main/i/ipmitool/ipmitool_1.8.19-9_amd64.deb",
+      "sha256": "692752b073210398aadb7d3f3fffe875ccb9a02e5ee538b84479653ecccd9d36",
+      "version": "1.8.19-9"
+    }
+  },
+  "suite": "trixie"
+}

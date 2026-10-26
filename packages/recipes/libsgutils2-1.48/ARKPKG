@@ -1,0 +1,8 @@
+Name: libsgutils2-1.48
+Description: Shared library for SCSI command set utilities
+Version: 1.48-3~deb13u1
+Arch: x86_64
+URL: https://sg.danny.cz/sg/sg3_utils.html
+License: See /usr/share/doc/libsgutils2-1.48/copyright
+Maintainer: arkanaOS Team
+Provides: libsgutils2-1.48.so.2=/usr/lib/x86_64-linux-gnu/libsgutils2-1.48.so.2.0.0
