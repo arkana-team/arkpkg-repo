@@ -1,0 +1,7 @@
+Name: python3-autocommand
+Description: library to generate argparse parsers from function signatures
+Version: 2.2.2-3
+Arch: any
+URL: https://github.com/Lucretiel/autocommand
+License: See /usr/share/doc/python3-autocommand/copyright
+Maintainer: arkanaOS Team

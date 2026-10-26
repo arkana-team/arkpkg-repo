@@ -1,0 +1,7 @@
+Name: python3-more-itertools
+Description: library with routines for operating on iterables, beyond itertools (Python 3)
+Version: 10.7.0-1
+Arch: any
+URL: https://github.com/more-itertools/more-itertools
+License: See /usr/share/doc/python3-more-itertools/copyright
+Maintainer: arkanaOS Team

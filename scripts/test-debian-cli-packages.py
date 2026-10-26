@@ -2404,6 +2404,66 @@ class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
                 "Clint Adams",
                 "https://salsa.debian.org/clint",
             ),
+            "python3-autocommand": (
+                "python3-autocommand",
+                "all",
+                "pool/main/p/python-autocommand/python3-autocommand_2.2.2-3_all.deb",
+                "1e62ac22ff83466228c051c6c2402a40f521646e15b5aa54cf2391206a848bad",
+                "2.2.2-3",
+                "https://github.com/Lucretiel/autocommand",
+                "Nathan West",
+                "https://github.com/Lucretiel",
+            ),
+            "python3-inflect": (
+                "python3-inflect",
+                "all",
+                "pool/main/p/python-inflect/python3-inflect_7.3.1-2_all.deb",
+                "6c10dca4d4aa0eb0b4e16e8b62b74a073a8d22be8809c3f61c56b06fdd1451f8",
+                "7.3.1-2",
+                "https://github.com/jaraco/inflect",
+                "Paul Dyson",
+                "https://github.com/pwdyson",
+            ),
+            "python3-jaraco.context": (
+                "python3-jaraco.context",
+                "all",
+                "pool/main/j/jaraco.context/python3-jaraco.context_6.0.1-1+deb13u1_all.deb",
+                "f909ec7b00dd96a1905322acba7cdd2df09747ceddeef6e426a97b33ab227f80",
+                "6.0.1-1+deb13u1",
+                "https://github.com/jaraco/jaraco.context",
+                "Jason R. Coombs",
+                "https://github.com/jaraco",
+            ),
+            "python3-jaraco.functools": (
+                "python3-jaraco.functools",
+                "all",
+                "pool/main/p/python-jaraco.functools/python3-jaraco.functools_4.1.0-1_all.deb",
+                "f5ac3e5f79b6394191d76ea7cde9255d8bae98f639886cb981444128f6545796",
+                "4.1.0-1",
+                "https://github.com/jaraco/jaraco.functools",
+                "Jason R. Coombs",
+                "https://github.com/jaraco",
+            ),
+            "python3-more-itertools": (
+                "python3-more-itertools",
+                "all",
+                "pool/main/m/more-itertools/python3-more-itertools_10.7.0-1_all.deb",
+                "385d785fa84261838732ec97627b4e95ec7399fc449d8a2aaaef66fb5f961c25",
+                "10.7.0-1",
+                "https://github.com/more-itertools/more-itertools",
+                "Erik Rose",
+                "https://github.com/erikrose",
+            ),
+            "python3-typeguard": (
+                "python3-typeguard",
+                "all",
+                "pool/main/p/python-typeguard/python3-typeguard_4.4.2-1_all.deb",
+                "81e512101d7ab94e73646b9a8e4fb9b948836e3172dc5719ad3acbcde65bca01",
+                "4.4.2-1",
+                "https://github.com/agronholm/typeguard",
+                "Alex Grönholm",
+                "https://github.com/agronholm",
+            ),
             "python3-pkg-resources": (
                 "python3-pkg-resources",
                 "all",
@@ -2447,11 +2507,56 @@ class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
                 self.assertEqual(metadata[name]["git_author_url"], author_url)
                 self.assertEqual(metadata[name]["git_repo"], repository)
                 self.assertEqual(
+                    metadata[name]["git_repo_type"],
+                    "packaging" if name == "posh" else "upstream",
+                )
+                self.assertEqual(
                     {item["name"] for item in metadata[name]["packagers"]},
                     {"arkana-team", "debarkak"},
                 )
 
         self.assertEqual(batch_packages["asciinema"]["dependencies"], ["python3-pkg-resources"])
+        self.assertEqual(
+            batch_packages["python3-pkg-resources"]["dependencies"],
+            [
+                "python3-autocommand",
+                "python3-inflect",
+                "python3-jaraco.context",
+                "python3-jaraco.functools",
+                "python3-more-itertools",
+            ],
+        )
+        self.assertEqual(
+            batch_packages["python3-inflect"]["dependencies"],
+            [
+                "python3-more-itertools",
+                "python3-typeguard",
+                "python3-typing-extensions",
+            ],
+        )
+        self.assertEqual(
+            batch_packages["python3-jaraco.functools"]["dependencies"],
+            ["python3-more-itertools"],
+        )
+        self.assertEqual(
+            batch_packages["python3-typeguard"]["dependencies"],
+            ["python3-typing-extensions"],
+        )
+        self.assertEqual(
+            metadata["python3-typing-extensions"]["author"],
+            "Python Typing contributors",
+        )
+        self.assertEqual(
+            metadata["python3-typing-extensions"]["git_repo"],
+            "https://github.com/python/typing_extensions",
+        )
+        self.assertEqual(
+            metadata["python3-typing-extensions"]["git_author_url"],
+            "https://github.com/python",
+        )
+        self.assertEqual(
+            metadata["python3-typing-extensions"]["git_repo_type"], "upstream"
+        )
         self.assertEqual(batch_packages["ksh93"]["debian_version"], "1.0.10-2")
         self.assertEqual(
             batch_packages["ksh93"]["symlinks"], [["usr/bin/ksh", "ksh93"]]

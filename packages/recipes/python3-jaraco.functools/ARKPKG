@@ -1,0 +1,9 @@
+Name: python3-jaraco.functools
+Description: additional functools in the spirit of stdlib functools
+Version: 4.1.0-1
+Arch: any
+URL: https://github.com/jaraco/jaraco.functools
+License: See /usr/share/doc/python3-jaraco.functools/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  python3-more-itertools
