@@ -1,0 +1,12 @@
+Name: ipmitool
+Description: Command-line utility for IPMI hardware management
+Version: 1.8.19-9
+Arch: x86_64
+URL: https://codeberg.org/ipmitool/ipmitool
+License: See /usr/share/doc/ipmitool/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libfreeipmi17
+  openssl-libs
+  readline-libs
+Provides: ipmievd=/usr/sbin/ipmievd, ipmitool=/usr/bin/ipmitool

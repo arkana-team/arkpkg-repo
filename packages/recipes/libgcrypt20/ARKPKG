@@ -1,0 +1,10 @@
+Name: libgcrypt20
+Description: LGPL cryptographic runtime library
+Version: 1.11.0-7+deb13u1
+Arch: x86_64
+URL: https://www.gnupg.org/software/libgcrypt/
+License: See /usr/share/doc/libgcrypt20/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgpg-error0
+Provides: libgcrypt.so.20=/usr/lib/x86_64-linux-gnu/libgcrypt.so.20.5.0
