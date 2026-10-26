@@ -3322,6 +3322,12 @@ class PackageTree:
         for source in sorted(self.staging.glob(pattern)):
             self.add(source.relative_to(self.staging), required=False)
 
+    def make_executable(self, relative: str) -> None:
+        """Set the mode of copied regular files without changing symlink targets."""
+        path = self.package_root / relative
+        if not path.is_symlink() and path.is_file():
+            path.chmod(0o755)
+
 
 def read_field(recipe: Path, name: str) -> str:
     for line in recipe.read_text(encoding="utf-8").splitlines():
@@ -3400,7 +3406,7 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
     tree = PackageTree(staging, package_root)
     if name == "arkcfg":
         tree.add("usr/bin/arkcfg")
-        (package_root / "usr/bin/arkcfg").chmod(0o755)
+        tree.make_executable("usr/bin/arkcfg")
     elif name == "arkpkg":
         tree.add("usr/bin/arkpkg")
         tree.add("usr/bin/arkpkg-build")
@@ -3423,7 +3429,7 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
                     "usr/share/fastfetch",
                 },
             )
-        (package_root / "usr/bin/fastfetch").chmod(0o755)
+        tree.make_executable("usr/bin/fastfetch")
     elif name == "git":
         for relative in (
             "usr/lib/git-core",
@@ -3469,7 +3475,7 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
             "usr/share/man/man1/vimtutor.1",
         ):
             tree.add(relative, required=False)
-        (package_root / "usr/bin/vim").chmod(0o755)
+        tree.make_executable("usr/bin/vim")
         vi = package_root / "usr/bin/vi"
         vi.symlink_to("vim")
     elif name == "gcc":
