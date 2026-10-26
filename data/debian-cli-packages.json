@@ -8,13 +8,18 @@
         "zsh-common"
       ],
       "debian_version": "5.9-8+b24",
-      "dependencies": [],
+      "dependencies": [
+        "libcap",
+        "libgdbm6t64",
+        "ncurses-libs",
+        "pcre2-libs"
+      ],
       "description": "shell with lots of features",
       "license": "See /usr/share/doc/zsh/copyright",
       "license_path": "usr/share/doc/zsh/copyright",
       "name": "zsh",
       "url": "https://www.zsh.org/",
-      "version": "5.9-8+b24"
+      "version": "5.9-8+b24.1"
     },
     {
       "arch": "x86_64",
@@ -3693,6 +3698,71 @@
       "name": "libproc2-0",
       "url": "https://gitlab.com/procps-ng/procps",
       "version": "4.0.4-9"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fzy"
+      ],
+      "debian_version": "1.0-1",
+      "dependencies": [],
+      "description": "Fast, simple fuzzy text selector",
+      "license": "See /usr/share/doc/fzy/copyright",
+      "license_path": "usr/share/doc/fzy/copyright",
+      "name": "fzy",
+      "url": "https://github.com/jhawthorn/fzy",
+      "version": "1.0-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "pipes-sh"
+      ],
+      "debian_version": "1.3.0-2",
+      "dependencies": [],
+      "description": "Animated pipes terminal screensaver",
+      "license": "See /usr/share/doc/pipes-sh/copyright",
+      "license_path": "usr/share/doc/pipes-sh/copyright",
+      "name": "pipes-sh",
+      "url": "https://github.com/pipeseroni/pipes.sh",
+      "version": "1.3.0-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "rc"
+      ],
+      "debian_version": "1.7.4+97.gceb59bb-5+b1",
+      "dependencies": [
+        "readline-libs",
+        "ncurses-libs"
+      ],
+      "description": "Implementation of the AT&T Plan 9 shell",
+      "license": "See /usr/share/doc/rc/copyright",
+      "license_path": "usr/share/doc/rc/copyright",
+      "name": "rc",
+      "url": "https://github.com/rakitzis/rc",
+      "version": "1.7.4+97.gceb59bb-5+b1",
+      "symlinks": [
+        [
+          "usr/bin/rc",
+          "rc.byron"
+        ]
+      ]
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "task-spooler"
+      ],
+      "debian_version": "1.0.3+dfsg1-1",
+      "dependencies": [],
+      "description": "Personal job scheduler for queued terminal tasks",
+      "license": "See /usr/share/doc/task-spooler/copyright",
+      "license_path": "usr/share/doc/task-spooler/copyright",
+      "name": "task-spooler",
+      "url": "https://viric.name/soft/ts/",
+      "version": "1.0.3+dfsg1-1"
     }
   ],
   "sources": {
@@ -5405,6 +5475,30 @@
       "filename": "pool/main/p/procps/libproc2-0_4.0.4-9_amd64.deb",
       "sha256": "c9d61caab1b2ddfc3f17edb95be31b9809fcb2daf27d853dff615bc4ebd08b4b",
       "version": "4.0.4-9"
+    },
+    "fzy": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fzy/fzy_1.0-1_amd64.deb",
+      "sha256": "235db1e46f06b632ebb722c67a0d9dfdc829c2fbb517eac9e35449d90b82ad61",
+      "version": "1.0-1"
+    },
+    "pipes-sh": {
+      "architecture": "all",
+      "filename": "pool/main/p/pipes.sh/pipes-sh_1.3.0-2_all.deb",
+      "sha256": "aed5c00fab306e4e8223159a12f3d97ef62f4b08c555837695246dd7063d7450",
+      "version": "1.3.0-2"
+    },
+    "rc": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rc/rc_1.7.4+97.gceb59bb-5+b1_amd64.deb",
+      "sha256": "74ef45c671b9c2579c88370fc610ba4d5a68b55aa39c22e085a8e3497dd9e63f",
+      "version": "1.7.4+97.gceb59bb-5+b1"
+    },
+    "task-spooler": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/task-spooler/task-spooler_1.0.3+dfsg1-1_amd64.deb",
+      "sha256": "2df72be9e428a6b25eaf4e23c1dbdc1037ba539260e7cce1ea7c97bd85351207",
+      "version": "1.0.3+dfsg1-1"
     }
   },
   "suite": "trixie"

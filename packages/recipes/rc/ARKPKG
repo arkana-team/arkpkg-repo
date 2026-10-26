@@ -1,0 +1,11 @@
+Name: rc
+Description: Implementation of the AT&T Plan 9 shell
+Version: 1.7.4+97.gceb59bb-5+b1
+Arch: x86_64
+URL: https://github.com/rakitzis/rc
+License: See /usr/share/doc/rc/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  ncurses-libs
+  readline-libs
+Provides: rc.byron=/usr/bin/rc.byron, rc=/usr/bin/rc

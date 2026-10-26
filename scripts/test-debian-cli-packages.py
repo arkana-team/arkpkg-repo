@@ -2065,7 +2065,12 @@ class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("Provides: whiptail=/usr/bin/whiptail", newt_recipe)
-        for name, (architecture, filename, checksum, version) in expected_sources.items():
+        for name, (
+            architecture,
+            filename,
+            checksum,
+            version,
+        ) in expected_sources.items():
             expected = {
                 "architecture": architecture,
                 "filename": filename,
@@ -2266,6 +2271,111 @@ class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
         self.assertEqual(batch_packages["intel-gpu-tools"]["dependencies"], ["libproc2-0"])
         self.assertEqual(batch_packages["libproc2-0"]["debian_version"], "2:4.0.4-9")
         self.assertEqual(batch_packages["libproc2-0"]["version"], "4.0.4-9")
+
+    def test_batch_18_pins_classic_shell_and_terminal_tools(self) -> None:
+        """Keep the fuzzy selector, Plan 9 shell, and terminal tools reproducible."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-18.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected_sources = {
+            "fzy": (
+                "amd64",
+                "pool/main/f/fzy/fzy_1.0-1_amd64.deb",
+                "235db1e46f06b632ebb722c67a0d9dfdc829c2fbb517eac9e35449d90b82ad61",
+                "1.0-1",
+            ),
+            "pipes-sh": (
+                "all",
+                "pool/main/p/pipes.sh/pipes-sh_1.3.0-2_all.deb",
+                "aed5c00fab306e4e8223159a12f3d97ef62f4b08c555837695246dd7063d7450",
+                "1.3.0-2",
+            ),
+            "rc": (
+                "amd64",
+                "pool/main/r/rc/rc_1.7.4+97.gceb59bb-5+b1_amd64.deb",
+                "74ef45c671b9c2579c88370fc610ba4d5a68b55aa39c22e085a8e3497dd9e63f",
+                "1.7.4+97.gceb59bb-5+b1",
+            ),
+            "task-spooler": (
+                "amd64",
+                "pool/main/t/task-spooler/task-spooler_1.0.3+dfsg1-1_amd64.deb",
+                "2df72be9e428a6b25eaf4e23c1dbdc1037ba539260e7cce1ea7c97bd85351207",
+                "1.0.3+dfsg1-1",
+            ),
+        }
+        expected_repositories = {
+            "fzy": ("https://github.com/jhawthorn/fzy", "upstream"),
+            "pipes-sh": ("https://github.com/pipeseroni/pipes.sh", "upstream"),
+            "rc": ("https://github.com/rakitzis/rc", "upstream"),
+            "task-spooler": (
+                "https://salsa.debian.org/debian/task-spooler",
+                "packaging",
+            ),
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected_sources))
+
+        for name, (architecture, filename, checksum, version) in expected_sources.items():
+            with self.subTest(package=name):
+                source = {
+                    "architecture": architecture,
+                    "filename": filename,
+                    "sha256": checksum,
+                    "version": version,
+                }
+                self.assertEqual(batch["sources"][name], source)
+                self.assertEqual(manifest["sources"][name], source)
+                self.assertEqual(batch_packages[name], manifest_packages[name])
+                self.assertEqual(batch_packages[name]["debian_version"], version)
+                self.assertIsNone(metadata[name]["author"])
+                self.assertIsNone(metadata[name]["git_author_url"])
+                self.assertEqual(
+                    (metadata[name]["git_repo"], metadata[name]["git_repo_type"]),
+                    expected_repositories[name],
+                )
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+                self.assertTrue(
+                    BUILDER.repository_has_package(repo_root, batch_packages[name]),
+                    f"missing matching recipe or archive for {name}",
+                )
+
+        self.assertEqual(
+            batch_packages["rc"]["dependencies"], ["readline-libs", "ncurses-libs"]
+        )
+        self.assertEqual(
+            batch_packages["rc"]["symlinks"], [["usr/bin/rc", "rc.byron"]]
+        )
+
+    def test_cli_and_workstation_catalogs_match_recipes_and_archives(self) -> None:
+        """Catch version drift between package manifests and published archives."""
+        repo_root = Path(__file__).resolve().parents[1]
+        for manifest_name in (
+            "data/debian-cli-packages.json",
+            "data/debian-workstation-packages.json",
+        ):
+            manifest = json.loads(
+                (repo_root / manifest_name).read_text(encoding="utf-8")
+            )
+            for package in manifest["packages"]:
+                with self.subTest(manifest=manifest_name, package=package["name"]):
+                    self.assertTrue(
+                        BUILDER.repository_has_package(repo_root, package),
+                        f"{manifest_name}: missing matching recipe or archive for "
+                        f"{package['name']} {package['version']}",
+                    )
 
 
 class UpstreamReleasePackageTests(unittest.TestCase):
