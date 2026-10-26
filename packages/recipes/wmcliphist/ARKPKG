@@ -1,0 +1,11 @@
+Name: wmcliphist
+Description: Dockapp which provides a history for X11 selections
+Version: 2.1-4+b3
+Arch: x86_64
+URL: https://www.dockapps.net/wmcliphist
+License: See /usr/share/doc/wmcliphist/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo2
+  libgtk-3-0t64
+Provides: wmcliphist=/usr/bin/wmcliphist
