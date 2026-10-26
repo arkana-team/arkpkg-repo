@@ -1,0 +1,9 @@
+Name: gearhead
+Description: roguelike mecha role playing game, console version
+Version: 1.310-3+b1
+Arch: x86_64
+URL: http://www.gearheadrpg.com/
+License: See /usr/share/doc/gearhead/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gearhead-data
