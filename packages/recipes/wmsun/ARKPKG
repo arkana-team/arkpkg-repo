@@ -1,0 +1,8 @@
+Name: wmsun
+Description: Dockable WindowMaker SunRise/SunSet App
+Version: 1.06-3
+Arch: x86_64
+URL: https://www.dockapps.net/wmsun
+License: See /usr/share/doc/wmsun/copyright
+Maintainer: arkanaOS Team
+Provides: wmsun=/usr/bin/wmsun
