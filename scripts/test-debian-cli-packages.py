@@ -2776,6 +2776,113 @@ class DebianDownloadCacheTests(unittest.TestCase):
 
 
 
+class Batch20PackageTests(unittest.TestCase):
+    def test_batch_20_pins_optional_unix_workstation_tools(self) -> None:
+        """Verify batch 20 source pins, upstream attribution, and built archives."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-20.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+
+        expected = {
+            "dtach": (
+                "amd64",
+                "pool/main/d/dtach/dtach_0.9-7_amd64.deb",
+                "1d73407ee097e34f6379a7721aad7af4b6cb034ad10f5a6eb0e4626502990d5e",
+                "0.9-7",
+                "Ned T. Crigler",
+                "https://github.com/crigler/dtach",
+                "https://github.com/crigler",
+            ),
+            "dvtm": (
+                "amd64",
+                "pool/main/d/dvtm/dvtm_0.15+40.g311a8c0-2_amd64.deb",
+                "e177b030d5b27e00a8332d24acc0d3b184769d50fc6505a0473184b907661c91",
+                "0.15+40.g311a8c0-2",
+                "Markus Teich",
+                "https://github.com/martanne/dvtm",
+                "https://github.com/martanne",
+            ),
+            "fossil": (
+                "amd64",
+                "pool/main/f/fossil/fossil_2.26-2_amd64.deb",
+                "fe2cb4da1441655e319ad6601eb99d013a814d7088731072cc7b45866f8fe195",
+                "1:2.26-2",
+                "D. Richard Hipp",
+                "https://github.com/drhsqlite/fossil-mirror",
+                "https://github.com/drhsqlite",
+            ),
+            "ncal": (
+                "amd64",
+                "pool/main/b/bsdmainutils/ncal_12.1.8_amd64.deb",
+                "d2de213d7e86ae56d1d44318dc8307e1efe5ea6ede0dbef6ae3c7ed68e4be618",
+                "12.1.8",
+                "Wolfgang Helbig",
+                "https://github.com/freebsd/freebsd-src",
+                "https://docs.freebsd.org/en/articles/contributors/",
+            ),
+            "tokei": (
+                "amd64",
+                "pool/main/r/rust-tokei/tokei_12.1.2-6+b1_amd64.deb",
+                "2daab456bb9cff63f6561430e788b3f914d65f68987616592f613cc238d1b697",
+                "12.1.2-6+b1",
+                "XAMPPRocky and contributors",
+                "https://github.com/XAMPPRocky/tokei",
+                "https://github.com/XAMPPRocky",
+            ),
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+        self.assertEqual(
+            batch_packages["ncal"]["exclude_paths"],
+            ["usr/bin/cal", "usr/share/man/man1/cal.1.gz"],
+        )
+
+        for name, (
+            architecture,
+            filename,
+            checksum,
+            version,
+            author,
+            git_repo,
+            git_author_url,
+        ) in expected.items():
+            with self.subTest(package=name):
+                source = {
+                    "architecture": architecture,
+                    "filename": filename,
+                    "sha256": checksum,
+                    "version": version,
+                }
+                self.assertEqual(batch["sources"][name], source)
+                self.assertEqual(manifest["sources"][name], source)
+                self.assertEqual(batch_packages[name], manifest_packages[name])
+                self.assertEqual(batch_packages[name]["debian_version"], version)
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+                self.assertEqual(metadata[name]["git_author_url"], git_author_url)
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+                self.assertTrue(
+                    BUILDER.repository_has_package(repo_root, batch_packages[name]),
+                    f"missing matching recipe or archive for {name}",
+                )
+
+
 class BitmapFontIndexTests(unittest.TestCase):
     def test_debian_bitmap_font_packages_generate_legacy_indexes(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
