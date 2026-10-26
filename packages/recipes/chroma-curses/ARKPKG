@@ -1,0 +1,11 @@
+Name: chroma-curses
+Description: Abstract puzzle game - terminal version
+Version: 1.19-2
+Arch: x86_64
+URL: http://level7.org.uk/chroma/
+License: See /usr/share/doc/chroma-curses/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  chroma-data
+  libtinfo6
+  ncurses-compat-libs
