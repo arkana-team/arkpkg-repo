@@ -382,6 +382,60 @@ def exclude_package_paths(payload: Path, exclusions: list[str], package_name: st
         seen.add(relative)
 
 
+def rename_package_paths(
+    payload: Path, renames: list[list[str]], package_name: str
+) -> None:
+    """Move package files to nonconflicting names without following symlink parents."""
+    seen_sources: set[str] = set()
+    seen_destinations: set[str] = set()
+
+    def resolve(relative: str) -> Path:
+        """Validate one relative package path and reject symlink parents."""
+        path = PurePosixPath(relative)
+        if (
+            not relative
+            or path.is_absolute()
+            or ".." in path.parts
+            or path.as_posix() != relative
+        ):
+            raise ValueError(f"{package_name}: unsafe renamed path {relative!r}")
+        target = payload.joinpath(*path.parts)
+        parent = target.parent
+        while parent != payload:
+            if parent.is_symlink():
+                raise ValueError(
+                    f"{package_name}: renamed path traverses a symlink: {relative}"
+                )
+            parent = parent.parent
+        return target
+
+    for pair in renames:
+        if len(pair) != 2:
+            raise ValueError(
+                f"{package_name}: each renamed path needs a source and target"
+            )
+        source_name, destination_name = pair
+        if source_name == destination_name:
+            raise ValueError(f"{package_name}: renamed source and target are identical")
+        if source_name in seen_sources or destination_name in seen_destinations:
+            raise ValueError(f"{package_name}: duplicate renamed path")
+        source = resolve(source_name)
+        destination = resolve(destination_name)
+        if not source.is_file() and not source.is_symlink():
+            raise FileNotFoundError(
+                f"{package_name}: expected renamed file is missing: {source_name}"
+            )
+        if destination.exists() or destination.is_symlink():
+            raise FileExistsError(
+                f"{package_name}: renamed destination already exists: "
+                f"{destination_name}"
+            )
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        source.replace(destination)
+        seen_sources.add(source_name)
+        seen_destinations.add(destination_name)
+
+
 def payload_paths(payload: Path) -> list[str]:
     paths = []
     for path in payload.rglob("*"):
@@ -529,6 +583,7 @@ def command_provides(payload: Path) -> list[str]:
 
 
 def build(args: argparse.Namespace) -> None:
+    """Build the requested checksum-pinned Debian packages as ark archives."""
     repo_root = args.repo_root.resolve()
     manifest_path = args.manifest
     if not manifest_path.is_absolute():
@@ -570,6 +625,7 @@ def build(args: argparse.Namespace) -> None:
                 merge_payload(extracted, payload)
 
             relocate_debian_python_packages(payload, staging)
+            rename_package_paths(payload, package.get("renames", []), name)
             exclude_package_paths(payload, package.get("exclude_paths", []), name)
             generate_bitmap_font_indexes(payload, name)
 

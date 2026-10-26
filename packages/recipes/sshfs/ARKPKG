@@ -1,0 +1,13 @@
+Name: sshfs
+Description: Mount remote SSH directories as local filesystems
+Version: 3.7.3-1.2~deb13u1
+Arch: x86_64
+URL: https://github.com/libfuse/sshfs
+License: See /usr/share/doc/sshfs/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  fuse3-devel
+  fuse3-tools
+  glib-devel
+  openssh-client
+Provides: mount.fuse.sshfs=/usr/sbin/mount.fuse.sshfs, mount.sshfs=/usr/sbin/mount.sshfs, sshfs=/usr/bin/sshfs

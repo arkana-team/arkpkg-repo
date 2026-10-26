@@ -1,0 +1,129 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "any",
+      "debian_packages": [
+        "parallel"
+      ],
+      "debian_version": "20240222+ds-2",
+      "dependencies": [
+        "perl",
+        "procps-ng",
+        "sysstat"
+      ],
+      "description": "GNU Parallel job runner installed as parallel-gnu to coexist with moreutils",
+      "license": "See /usr/share/doc/parallel/copyright",
+      "license_path": "usr/share/doc/parallel/copyright",
+      "name": "gnu-parallel",
+      "url": "https://www.gnu.org/software/parallel/",
+      "version": "20240222+ds-2",
+      "renames": [
+        [
+          "usr/bin/parallel",
+          "usr/bin/parallel-gnu"
+        ],
+        [
+          "usr/share/bash-completion/completions/parallel",
+          "usr/share/bash-completion/completions/parallel-gnu"
+        ],
+        [
+          "usr/share/man/man1/parallel.1.gz",
+          "usr/share/man/man1/parallel-gnu.1.gz"
+        ],
+        [
+          "usr/share/man/man1/sem.1.gz",
+          "usr/share/man/man1/sem-gnu.1.gz"
+        ]
+      ],
+      "exclude_paths": [
+        "usr/bin/sem"
+      ],
+      "symlinks": [
+        [
+          "usr/bin/sem-gnu",
+          "parallel-gnu"
+        ]
+      ]
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "sshfs"
+      ],
+      "debian_version": "3.7.3-1.2~deb13u1",
+      "dependencies": [
+        "fuse3-devel",
+        "fuse3-tools",
+        "glib-devel",
+        "openssh-client"
+      ],
+      "description": "Mount remote SSH directories as local filesystems",
+      "license": "See /usr/share/doc/sshfs/copyright",
+      "license_path": "usr/share/doc/sshfs/copyright",
+      "name": "sshfs",
+      "url": "https://github.com/libfuse/sshfs",
+      "version": "3.7.3-1.2~deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "timewarrior"
+      ],
+      "debian_version": "1.7.1+ds.1-2",
+      "dependencies": [
+        "gcc-libs"
+      ],
+      "description": "Command-line time tracking with flexible reporting",
+      "license": "See /usr/share/doc/timewarrior/copyright",
+      "license_path": "usr/share/doc/timewarrior/copyright",
+      "name": "timewarrior",
+      "url": "https://timewarrior.net/",
+      "version": "1.7.1+ds.1-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "tty-clock"
+      ],
+      "debian_version": "2.3+git.20211121.f2f847c-1",
+      "dependencies": [
+        "libtinfo6",
+        "ncurses-libs"
+      ],
+      "description": "Ncurses terminal clock with configurable display",
+      "license": "See /usr/share/doc/tty-clock/copyright",
+      "license_path": "usr/share/doc/tty-clock/copyright",
+      "name": "tty-clock",
+      "url": "https://github.com/xorg62/tty-clock",
+      "version": "2.3+git.20211121.f2f847c-1"
+    }
+  ],
+  "sources": {
+    "parallel": {
+      "architecture": "all",
+      "filename": "pool/main/p/parallel/parallel_20240222+ds-2_all.deb",
+      "sha256": "eb31b7482e76d3aee62917d2f9a474663679390f29abc227ed59ee05b1edc675",
+      "version": "20240222+ds-2"
+    },
+    "sshfs": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sshfs-fuse/sshfs_3.7.3-1.2~deb13u1_amd64.deb",
+      "sha256": "2e026e0dac3d1d209112eafac8fea76e242f94615b16f0ae3cefef6ae7f6b405",
+      "version": "3.7.3-1.2~deb13u1"
+    },
+    "timewarrior": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/timew/timewarrior_1.7.1+ds.1-2_amd64.deb",
+      "sha256": "41b98a6dbff93c932ebd66213332e46cef72bfcb77e9b3f4d8870c6ae290ed03",
+      "version": "1.7.1+ds.1-2"
+    },
+    "tty-clock": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/tty-clock/tty-clock_2.3+git.20211121.f2f847c-1_amd64.deb",
+      "sha256": "a04fdc38aabfaffe972b61e78b19079eb95585ac167241d9d0d7efd2ce693961",
+      "version": "2.3+git.20211121.f2f847c-1"
+    }
+  },
+  "suite": "trixie"
+}

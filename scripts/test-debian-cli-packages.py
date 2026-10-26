@@ -3099,5 +3099,181 @@ class BitmapFontIndexTests(unittest.TestCase):
                 BUILDER.generate_bitmap_font_indexes(payload, "xfonts-base")
 
 
+class Batch22PackageTests(unittest.TestCase):
+    def test_batch_22_pins_optional_job_time_and_remote_filesystem_tools(self) -> None:
+        """Keep batch 22 pins, metadata, dependencies, and archives aligned."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-22.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "gnu-parallel": (
+                "20240222+ds-2",
+                "eb31b7482e76d3aee62917d2f9a474663679390f29abc227ed59ee05b1edc675",
+                "Ole Tange and the Free Software Foundation",
+                "https://git.savannah.gnu.org/cgit/parallel.git",
+                "https://savannah.gnu.org/users/ole.tange",
+                "parallel-gnu",
+                "parallel",
+            ),
+            "sshfs": (
+                "3.7.3-1.2~deb13u1",
+                "2e026e0dac3d1d209112eafac8fea76e242f94615b16f0ae3cefef6ae7f6b405",
+                "Miklos Szeredi",
+                "https://github.com/libfuse/sshfs",
+                "https://github.com/libfuse/sshfs/graphs/contributors",
+                "sshfs",
+                "sshfs",
+            ),
+            "timewarrior": (
+                "1.7.1+ds.1-2",
+                "41b98a6dbff93c932ebd66213332e46cef72bfcb77e9b3f4d8870c6ae290ed03",
+                "Paul Beckingham and Federico Hernandez",
+                "https://github.com/GothenburgBitFactory/timewarrior",
+                "https://github.com/GothenburgBitFactory/timewarrior/graphs/contributors",
+                "timew",
+                "timewarrior",
+            ),
+            "tty-clock": (
+                "2.3+git.20211121.f2f847c-1",
+                "a04fdc38aabfaffe972b61e78b19079eb95585ac167241d9d0d7efd2ce693961",
+                "Martin Duquesnoy and tty-clock contributors",
+                "https://github.com/xorg62/tty-clock",
+                "https://github.com/xorg62",
+                "tty-clock",
+                "tty-clock",
+            ),
+        }
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        expected_dependencies = {
+            "gnu-parallel": {"procps-ng", "sysstat", "perl"},
+            "sshfs": {"fuse3-tools", "fuse3-devel", "glib-devel", "openssh-client"},
+            "timewarrior": {"gcc-libs"},
+            "tty-clock": {"ncurses-libs", "libtinfo6"},
+        }
+        for name, (
+            version,
+            checksum,
+            author,
+            git_repo,
+            author_url,
+            command,
+            source_name,
+        ) in expected.items():
+            package = batch_packages[name]
+            with self.subTest(package=name):
+                self.assertEqual(manifest_packages[name], package)
+                self.assertEqual(package["version"], version)
+                self.assertEqual(
+                    package["dependencies"], sorted(expected_dependencies[name])
+                )
+                self.assertEqual(
+                    batch["sources"][source_name], manifest["sources"][source_name]
+                )
+                self.assertEqual(batch["sources"][source_name]["sha256"], checksum)
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_author_url"], author_url)
+                self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+                self.assertTrue(
+                    BUILDER.repository_has_package(repo_root, package),
+                    f"missing matching recipe or archive for {name}",
+                )
+
+                archive_path = repo_root / "packages" / (
+                    f"{name}-{version}-{package['arch']}.ark"
+                )
+                with (
+                    BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
+                    tarfile.open(fileobj=compressed, mode="r|") as archive,
+                ):
+                    paths = {member.name for member in archive}
+                self.assertIn(f"package/usr/bin/{command}", paths)
+                self.assertIn(f"package/{package['license_path']}", paths)
+
+                if name == "gnu-parallel":
+                    self.assertIn("package/usr/bin/sem-gnu", paths)
+                    self.assertIn(
+                        "package/usr/share/man/man1/parallel-gnu.1.gz", paths
+                    )
+                    self.assertNotIn("package/usr/bin/parallel", paths)
+                    self.assertNotIn("package/usr/bin/sem", paths)
+
+
+class PackagePathRenameTests(unittest.TestCase):
+    def test_rename_preserves_modes_and_symlinks(self) -> None:
+        """Preserve executable modes and relative symlink targets during renames."""
+        with tempfile.TemporaryDirectory() as temporary:
+            payload = Path(temporary) / "package"
+            (payload / "usr/bin").mkdir(parents=True)
+            binary = payload / "usr/bin/parallel"
+            binary.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
+            binary.chmod(0o755)
+            alias = payload / "usr/bin/sem"
+            alias.symlink_to("parallel")
+
+            BUILDER.rename_package_paths(
+                payload,
+                [
+                    ["usr/bin/parallel", "usr/bin/parallel-gnu"],
+                    ["usr/bin/sem", "usr/bin/sem-gnu"],
+                ],
+                "gnu-parallel",
+            )
+
+            renamed_binary = payload / "usr/bin/parallel-gnu"
+            self.assertEqual(
+                renamed_binary.read_text(encoding="utf-8"), "#!/bin/sh\nexit 0\n"
+            )
+            self.assertEqual(stat.S_IMODE(renamed_binary.stat().st_mode), 0o755)
+            self.assertEqual(
+                (payload / "usr/bin/sem-gnu").readlink(), Path("parallel")
+            )
+
+    def test_rename_rejects_unsafe_paths_and_symlink_parents(self) -> None:
+        """Reject unsafe paths and destinations that could escape the payload tree."""
+        with tempfile.TemporaryDirectory() as temporary:
+            payload = Path(temporary) / "package"
+            (payload / "usr/bin").mkdir(parents=True)
+            (payload / "usr/bin/tool").write_text("tool", encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "unsafe renamed path"):
+                BUILDER.rename_package_paths(
+                    payload, [["usr/bin/tool", "../escape"]], "fixture"
+                )
+
+            (payload / "usr/bin/occupied").write_text("occupied", encoding="utf-8")
+            with self.assertRaisesRegex(FileExistsError, "destination already exists"):
+                BUILDER.rename_package_paths(
+                    payload, [["usr/bin/tool", "usr/bin/occupied"]], "fixture"
+                )
+
+            outside = Path(temporary) / "outside"
+            outside.mkdir()
+            (outside / "tool").write_text("outside", encoding="utf-8")
+            (payload / "linked").symlink_to(outside, target_is_directory=True)
+            with self.assertRaisesRegex(ValueError, "traverses a symlink"):
+                BUILDER.rename_package_paths(
+                    payload, [["linked/tool", "linked/renamed"]], "fixture"
+                )
+
+
 if __name__ == "__main__":
     unittest.main()
