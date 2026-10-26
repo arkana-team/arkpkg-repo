@@ -1,0 +1,10 @@
+Name: wmdrawer
+Description: Window Maker dockapp providing a drawer to launch applications
+Version: 0.10.5-6.1+b2
+Arch: x86_64
+URL: http://people.easter-eggs.org/~valos/wmdrawer/
+License: See /usr/share/doc/wmdrawer/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgdk-pixbuf-2.0-0
+Provides: wmdrawer=/usr/bin/wmdrawer
