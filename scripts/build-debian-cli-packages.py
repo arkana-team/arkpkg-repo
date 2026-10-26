@@ -29,6 +29,7 @@ import lz4.frame
 BASE_URL = "https://deb.debian.org/debian"
 MANIFEST = Path("data/debian-cli-packages.json")
 MAX_ARCHIVE_BYTES = 90_000_000
+MAX_METADATA_SIZE = 64 * 1024
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 NEEDED = re.compile(r"Shared library: \[(.+?)\]")
 SONAME = re.compile(r"Library soname: \[(.+?)\]")
@@ -157,9 +158,24 @@ def repository_owners(
                     part for part in member_path.parts if part not in {"", "."}
                 )
                 if normalized == "ARKPKG" and member.isfile():
+                    if member.issparse():
+                        raise ValueError(
+                            f"{archive_path.name}: ARKPKG metadata must not be sparse"
+                        )
+                    if not 0 <= member.size <= MAX_METADATA_SIZE:
+                        raise ValueError(
+                            f"{archive_path.name}: ARKPKG metadata exceeds "
+                            f"{MAX_METADATA_SIZE} bytes"
+                        )
                     metadata = archive.extractfile(member)
                     if metadata is not None:
-                        for line in metadata.read().decode("utf-8").splitlines():
+                        content = metadata.read(MAX_METADATA_SIZE + 1)
+                        if len(content) > MAX_METADATA_SIZE:
+                            raise ValueError(
+                                f"{archive_path.name}: ARKPKG metadata exceeds "
+                                f"{MAX_METADATA_SIZE} bytes"
+                            )
+                        for line in content.decode("utf-8").splitlines():
                             key, separator, value = line.partition(":")
                             if separator and key.strip() == "Name":
                                 archive_name = value.strip()
