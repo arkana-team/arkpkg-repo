@@ -1,0 +1,13 @@
+Name: sysbench
+Description: Multi-threaded CPU, memory, file I/O and database benchmark
+Version: 1.0.20+ds-7
+Arch: x86_64
+URL: https://github.com/akopytov/sysbench
+License: See /usr/share/doc/sysbench/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libaio1t64
+  libmariadb3
+  libpq5
+  neovim-runtime-libs
+Provides: sysbench=/usr/bin/sysbench

@@ -30079,6 +30079,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "btm": {
+      "author": "Clement Tsang",
+      "git_repo": "https://github.com/ClementTsang/bottom",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/ClementTsang",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "sysbench": {
+      "author": "Alexey Kopytov and contributors",
+      "git_repo": "https://github.com/akopytov/sysbench",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/akopytov",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libaio1t64": {
+      "author": "Benjamin LaHaise and Jeff Moyer",
+      "git_repo": "https://pagure.io/libaio.git",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
