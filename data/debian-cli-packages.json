@@ -1492,7 +1492,7 @@
       ],
       "debian_version": "2.46.0-3",
       "dependencies": [],
-      "description": "GitHub CLI, GitHub\u2019s official command line tool",
+      "description": "GitHub CLI, GitHub’s official command line tool",
       "license": "See /usr/share/doc/gh/copyright",
       "license_path": "usr/share/doc/gh/copyright",
       "name": "gh",
@@ -3999,6 +3999,102 @@
       "name": "tokei",
       "url": "https://github.com/XAMPPRocky/tokei",
       "version": "12.1.2-6+b1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "cpuid"
+      ],
+      "debian_version": "20250316-1",
+      "dependencies": [
+        "perl"
+      ],
+      "description": "Detailed x86 CPU model and feature information",
+      "license": "See /usr/share/doc/cpuid/copyright",
+      "license_path": "usr/share/doc/cpuid/copyright",
+      "name": "cpuid",
+      "url": "https://www.etallen.com/cpuid.html",
+      "version": "20250316-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "hwloc-nox"
+      ],
+      "debian_version": "2.12.0-4",
+      "dependencies": [
+        "libhwloc15",
+        "libtinfo6"
+      ],
+      "description": "Hardware topology and locality inspection tools without X11",
+      "license": "See /usr/share/doc/hwloc-nox/copyright",
+      "license_path": "usr/share/doc/hwloc-nox/copyright",
+      "name": "hwloc-nox",
+      "url": "https://github.com/open-mpi/hwloc",
+      "version": "2.12.0-4"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libsysfs2"
+      ],
+      "debian_version": "2.1.1-7",
+      "dependencies": [],
+      "description": "Shared library for querying Linux sysfs devices",
+      "license": "See /usr/share/doc/libsysfs2/copyright",
+      "license_path": "usr/share/doc/libsysfs2/copyright",
+      "name": "libsysfs2",
+      "url": "https://github.com/linux-ras/sysfsutils",
+      "version": "2.1.1-7"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "memtester"
+      ],
+      "debian_version": "4.7.1-1",
+      "dependencies": [],
+      "description": "Userspace utility for testing the memory subsystem",
+      "license": "See /usr/share/doc/memtester/copyright",
+      "license_path": "usr/share/doc/memtester/copyright",
+      "name": "memtester",
+      "url": "https://pyropus.ca/software/memtester/",
+      "version": "4.7.1-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "pci.ids"
+      ],
+      "debian_version": "0.0~2025.06.09-1",
+      "dependencies": [],
+      "description": "PCI vendor, device, subsystem, and class identifier database",
+      "license": "See /usr/share/doc/pci.ids/copyright",
+      "license_path": "usr/share/doc/pci.ids/copyright",
+      "name": "pci.ids",
+      "url": "https://pci-ids.ucw.cz/",
+      "version": "0.0~2025.06.09-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "sysfsutils"
+      ],
+      "debian_version": "2.1.1-7",
+      "dependencies": [
+        "libsysfs2",
+        "pci.ids"
+      ],
+      "description": "Command-line tools for querying Linux sysfs devices",
+      "license": "See /usr/share/doc/sysfsutils/copyright",
+      "license_path": "usr/share/doc/sysfsutils/copyright",
+      "name": "sysfsutils",
+      "url": "https://github.com/linux-ras/sysfsutils",
+      "version": "2.1.1-7",
+      "exclude_paths": [
+        "etc/init.d/sysfsutils",
+        "usr/lib/systemd/system/sysfsutils.service"
+      ]
     }
   ],
   "sources": {
@@ -5825,6 +5921,42 @@
       "filename": "pool/main/r/rust-tokei/tokei_12.1.2-6+b1_amd64.deb",
       "sha256": "2daab456bb9cff63f6561430e788b3f914d65f68987616592f613cc238d1b697",
       "version": "12.1.2-6+b1"
+    },
+    "cpuid": {
+      "architecture": "amd64",
+      "filename": "pool/main/c/cpuid/cpuid_20250316-1_amd64.deb",
+      "sha256": "5eb4dd791712865897c1b7ce95a18dcea83f87350d0af4b1eaa227ca991d3d5d",
+      "version": "20250316-1"
+    },
+    "hwloc-nox": {
+      "architecture": "amd64",
+      "filename": "pool/main/h/hwloc/hwloc-nox_2.12.0-4_amd64.deb",
+      "sha256": "f302d4e690d94f556ec30874633b5e1152abea963b890532aed4abaa88a16cf7",
+      "version": "2.12.0-4"
+    },
+    "libsysfs2": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sysfsutils/libsysfs2_2.1.1-7_amd64.deb",
+      "sha256": "58b1277a9f5cf4ac23ccebb4633e182badb81defaf33d97838880afc1420cd9a",
+      "version": "2.1.1-7"
+    },
+    "memtester": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/memtester/memtester_4.7.1-1_amd64.deb",
+      "sha256": "399f82d122bb163ece0b670a195e99a1883f725c6cd8588181fe31a3bc595cb7",
+      "version": "4.7.1-1"
+    },
+    "pci.ids": {
+      "architecture": "all",
+      "filename": "pool/main/p/pci.ids/pci.ids_0.0~2025.06.09-1_all.deb",
+      "sha256": "132bc7520473e53939e277cbf4512261b8d73ae244d77c277f674ecaf174598c",
+      "version": "0.0~2025.06.09-1"
+    },
+    "sysfsutils": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sysfsutils/sysfsutils_2.1.1-7_amd64.deb",
+      "sha256": "8f6c69ed795ccfb7fbde9e28f8cd969de460d6293cac6709b57d391290338f8a",
+      "version": "2.1.1-7"
     }
   },
   "suite": "trixie"
