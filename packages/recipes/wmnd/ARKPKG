@@ -1,0 +1,8 @@
+Name: wmnd
+Description: Dockapp monitoring network interfaces
+Version: 0.4.18-2+b1
+Arch: x86_64
+URL: https://www.thregr.org/~wavexx/software/wmnd/
+License: See /usr/share/doc/wmnd/copyright
+Maintainer: arkanaOS Team
+Provides: wmnd=/usr/bin/wmnd
