@@ -1,0 +1,7 @@
+Name: chroma-data
+Description: Abstract puzzle game - data files
+Version: 1.19-2
+Arch: any
+URL: http://level7.org.uk/chroma/
+License: See /usr/share/doc/chroma-data/copyright
+Maintainer: arkanaOS Team
