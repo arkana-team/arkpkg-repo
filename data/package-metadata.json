@@ -29839,6 +29839,86 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "dtach": {
+      "author": "Ned T. Crigler",
+      "git_repo": "https://github.com/crigler/dtach",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/crigler",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "dvtm": {
+      "author": "Markus Teich",
+      "git_repo": "https://github.com/martanne/dvtm",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/martanne",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "fossil": {
+      "author": "D. Richard Hipp",
+      "git_repo": "https://github.com/drhsqlite/fossil-mirror",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/drhsqlite",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ncal": {
+      "author": "Wolfgang Helbig",
+      "git_repo": "https://github.com/freebsd/freebsd-src",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://docs.freebsd.org/en/articles/contributors/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "tokei": {
+      "author": "XAMPPRocky and contributors",
+      "git_repo": "https://github.com/XAMPPRocky/tokei",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/XAMPPRocky",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

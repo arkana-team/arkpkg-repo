@@ -3925,6 +3925,80 @@
       "name": "python3-typeguard",
       "url": "https://github.com/agronholm/typeguard",
       "version": "4.4.2-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "dtach"
+      ],
+      "debian_version": "0.9-7",
+      "dependencies": [],
+      "description": "Minimal detachable terminal session utility",
+      "license": "See /usr/share/doc/dtach/copyright",
+      "license_path": "usr/share/doc/dtach/copyright",
+      "name": "dtach",
+      "url": "https://github.com/crigler/dtach",
+      "version": "0.9-7"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "dvtm"
+      ],
+      "debian_version": "0.15+40.g311a8c0-2",
+      "dependencies": [],
+      "description": "Dynamic tiling window manager for the console",
+      "license": "See /usr/share/doc/dvtm/copyright",
+      "license_path": "usr/share/doc/dvtm/copyright",
+      "name": "dvtm",
+      "url": "https://github.com/martanne/dvtm",
+      "version": "0.15+40.g311a8c0-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "fossil"
+      ],
+      "debian_version": "1:2.26-2",
+      "dependencies": [],
+      "description": "Distributed version control with an integrated wiki and issue tracker",
+      "license": "See /usr/share/doc/fossil/copyright",
+      "license_path": "usr/share/doc/fossil/copyright",
+      "name": "fossil",
+      "url": "https://fossil-scm.org/home",
+      "version": "1:2.26-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ncal"
+      ],
+      "debian_version": "12.1.8",
+      "dependencies": [],
+      "description": "Gregorian and Julian calendar utility",
+      "license": "See /usr/share/doc/ncal/copyright",
+      "license_path": "usr/share/doc/ncal/copyright",
+      "name": "ncal",
+      "url": "https://github.com/freebsd/freebsd-src",
+      "version": "12.1.8",
+      "exclude_paths": [
+        "usr/bin/cal",
+        "usr/share/man/man1/cal.1.gz"
+      ]
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "tokei"
+      ],
+      "debian_version": "12.1.2-6+b1",
+      "dependencies": [],
+      "description": "Count lines of code, comments, and blanks by language",
+      "license": "See /usr/share/doc/tokei/copyright",
+      "license_path": "usr/share/doc/tokei/copyright",
+      "name": "tokei",
+      "url": "https://github.com/XAMPPRocky/tokei",
+      "version": "12.1.2-6+b1"
     }
   ],
   "sources": {
@@ -5721,6 +5795,36 @@
       "filename": "pool/main/p/python-typeguard/python3-typeguard_4.4.2-1_all.deb",
       "sha256": "81e512101d7ab94e73646b9a8e4fb9b948836e3172dc5719ad3acbcde65bca01",
       "version": "4.4.2-1"
+    },
+    "dtach": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/dtach/dtach_0.9-7_amd64.deb",
+      "sha256": "1d73407ee097e34f6379a7721aad7af4b6cb034ad10f5a6eb0e4626502990d5e",
+      "version": "0.9-7"
+    },
+    "dvtm": {
+      "architecture": "amd64",
+      "filename": "pool/main/d/dvtm/dvtm_0.15+40.g311a8c0-2_amd64.deb",
+      "sha256": "e177b030d5b27e00a8332d24acc0d3b184769d50fc6505a0473184b907661c91",
+      "version": "0.15+40.g311a8c0-2"
+    },
+    "fossil": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/fossil/fossil_2.26-2_amd64.deb",
+      "sha256": "fe2cb4da1441655e319ad6601eb99d013a814d7088731072cc7b45866f8fe195",
+      "version": "1:2.26-2"
+    },
+    "ncal": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/bsdmainutils/ncal_12.1.8_amd64.deb",
+      "sha256": "d2de213d7e86ae56d1d44318dc8307e1efe5ea6ede0dbef6ae3c7ed68e4be618",
+      "version": "12.1.8"
+    },
+    "tokei": {
+      "architecture": "amd64",
+      "filename": "pool/main/r/rust-tokei/tokei_12.1.2-6+b1_amd64.deb",
+      "sha256": "2daab456bb9cff63f6561430e788b3f914d65f68987616592f613cc238d1b697",
+      "version": "12.1.2-6+b1"
     }
   },
   "suite": "trixie"
