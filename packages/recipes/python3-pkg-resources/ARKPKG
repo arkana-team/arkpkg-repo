@@ -1,0 +1,7 @@
+Name: python3-pkg-resources
+Description: Python package discovery and resource access
+Version: 78.1.1-0.1
+Arch: any
+URL: https://github.com/pypa/setuptools
+License: See /usr/share/doc/python3-pkg-resources/copyright
+Maintainer: arkanaOS Team

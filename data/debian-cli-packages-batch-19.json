@@ -2,18 +2,20 @@
   "architecture": "amd64",
   "packages": [
     {
-      "arch": "x86_64",
+      "arch": "any",
       "debian_packages": [
-        "posh"
+        "asciinema"
       ],
-      "debian_version": "0.14.1",
-      "dependencies": [],
-      "description": "Policy-compliant POSIX shell",
-      "license": "See /usr/share/doc/posh/copyright",
-      "license_path": "usr/share/doc/posh/copyright",
-      "name": "posh",
-      "url": "https://salsa.debian.org/clint/posh",
-      "version": "0.14.1"
+      "debian_version": "2.4.0-1",
+      "dependencies": [
+        "python3-pkg-resources"
+      ],
+      "description": "Record and share terminal sessions",
+      "license": "See /usr/share/doc/asciinema/copyright",
+      "license_path": "usr/share/doc/asciinema/copyright",
+      "name": "asciinema",
+      "url": "https://github.com/asciinema/asciinema",
+      "version": "2.4.0-1"
     },
     {
       "arch": "x86_64",
@@ -34,20 +36,60 @@
       ],
       "url": "https://github.com/ksh93/ksh",
       "version": "1.0.10-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "posh"
+      ],
+      "debian_version": "0.14.1",
+      "dependencies": [],
+      "description": "Policy-compliant POSIX shell",
+      "license": "See /usr/share/doc/posh/copyright",
+      "license_path": "usr/share/doc/posh/copyright",
+      "name": "posh",
+      "url": "https://salsa.debian.org/clint/posh",
+      "version": "0.14.1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "python3-pkg-resources"
+      ],
+      "debian_version": "78.1.1-0.1",
+      "dependencies": [],
+      "description": "Python package discovery and resource access",
+      "license": "See /usr/share/doc/python3-pkg-resources/copyright",
+      "license_path": "usr/share/doc/python3-pkg-resources/copyright",
+      "name": "python3-pkg-resources",
+      "url": "https://github.com/pypa/setuptools",
+      "version": "78.1.1-0.1"
     }
   ],
   "sources": {
-    "posh": {
-      "architecture": "amd64",
-      "filename": "pool/main/p/posh/posh_0.14.1_amd64.deb",
-      "sha256": "1b5d164d880aa57c6808fec6185b0d07e0c15bee7c0c518bdd5252d17a24ef90",
-      "version": "0.14.1"
+    "asciinema": {
+      "architecture": "all",
+      "filename": "pool/main/a/asciinema/asciinema_2.4.0-1_all.deb",
+      "sha256": "7f069e3dcf93c41c13835aa2423a220688c95a91ac0a972c4335dad3c43afb8e",
+      "version": "2.4.0-1"
     },
     "ksh93u+m": {
       "architecture": "amd64",
       "filename": "pool/main/k/ksh93u+m/ksh93u+m_1.0.10-2_amd64.deb",
       "sha256": "ed896af6823f4c2e81cabc9d864b205d6f841434466613388703b9d0d928278d",
       "version": "1.0.10-2"
+    },
+    "posh": {
+      "architecture": "amd64",
+      "filename": "pool/main/p/posh/posh_0.14.1_amd64.deb",
+      "sha256": "1b5d164d880aa57c6808fec6185b0d07e0c15bee7c0c518bdd5252d17a24ef90",
+      "version": "0.14.1"
+    },
+    "python3-pkg-resources": {
+      "architecture": "all",
+      "filename": "pool/main/s/setuptools/python3-pkg-resources_78.1.1-0.1_all.deb",
+      "sha256": "cf8749251172abc945216cf878367f614cf91d3d9a1043ba3bacc5a74e8cc1a8",
+      "version": "78.1.1-0.1"
     }
   },
   "suite": "trixie"
