@@ -6657,10 +6657,10 @@
       ]
     },
     "ksh93": {
-      "author": null,
+      "author": "David G. Korn / AT&T Research",
       "git_repo": "https://github.com/ksh93/ksh",
       "git_repo_type": "upstream",
-      "git_author_url": null,
+      "git_author_url": "https://github.com/ksh93/ksh",
       "packagers": [
         {
           "name": "arkana-team",
