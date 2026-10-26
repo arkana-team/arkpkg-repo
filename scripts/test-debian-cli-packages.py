@@ -2883,6 +2883,153 @@ class Batch20PackageTests(unittest.TestCase):
                 )
 
 
+class Batch21PackageTests(unittest.TestCase):
+    def test_batch_21_pins_hardware_diagnostics_and_topology_tools(self) -> None:
+        """Verify hardware package pins, authors, dependencies, and pruning."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-21.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "cpuid": (
+                "amd64",
+                "pool/main/c/cpuid/cpuid_20250316-1_amd64.deb",
+                "5eb4dd791712865897c1b7ce95a18dcea83f87350d0af4b1eaa227ca991d3d5d",
+                "20250316-1",
+                "Todd Allen",
+                "https://salsa.debian.org/debian/cpuid.git",
+                "https://www.etallen.com/cpuid.html",
+                "packaging",
+            ),
+            "hwloc-nox": (
+                "amd64",
+                "pool/main/h/hwloc/hwloc-nox_2.12.0-4_amd64.deb",
+                "f302d4e690d94f556ec30874633b5e1152abea963b890532aed4abaa88a16cf7",
+                "2.12.0-4",
+                "Cédric Augonnet, Jérôme Clet-Ortega, Ludovic Courtès, Brice Goglin, Nathalie Furmento, Samuel Thibault, and Jeff Squyres",
+                "https://github.com/open-mpi/hwloc",
+                "https://github.com/open-mpi/hwloc/graphs/contributors",
+                "upstream",
+            ),
+            "libsysfs2": (
+                "amd64",
+                "pool/main/s/sysfsutils/libsysfs2_2.1.1-7_amd64.deb",
+                "58b1277a9f5cf4ac23ccebb4633e182badb81defaf33d97838880afc1420cd9a",
+                "2.1.1-7",
+                "Ananth Mavinakayanahalli, Daniel Stekloff, Mohan Kumar, and Nitin Vashisth",
+                "https://github.com/linux-ras/sysfsutils",
+                "https://github.com/linux-ras/sysfsutils/graphs/contributors",
+                "upstream",
+            ),
+            "memtester": (
+                "amd64",
+                "pool/main/m/memtester/memtester_4.7.1-1_amd64.deb",
+                "399f82d122bb163ece0b670a195e99a1883f725c6cd8588181fe31a3bc595cb7",
+                "4.7.1-1",
+                "Charles Cazabon and Simon Kirby",
+                "https://github.com/jnavila/memtester",
+                "https://pyropus.ca/software/memtester/",
+                "upstream",
+            ),
+            "pci.ids": (
+                "all",
+                "pool/main/p/pci.ids/pci.ids_0.0~2025.06.09-1_all.deb",
+                "132bc7520473e53939e277cbf4512261b8d73ae244d77c277f674ecaf174598c",
+                "0.0~2025.06.09-1",
+                "Martin Mareš and Albert Pool",
+                "https://github.com/pciutils/pciids",
+                "https://pci-ids.ucw.cz/",
+                "upstream",
+            ),
+            "sysfsutils": (
+                "amd64",
+                "pool/main/s/sysfsutils/sysfsutils_2.1.1-7_amd64.deb",
+                "8f6c69ed795ccfb7fbde9e28f8cd969de460d6293cac6709b57d391290338f8a",
+                "2.1.1-7",
+                "Ananth Mavinakayanahalli, Daniel Stekloff, Mohan Kumar, and Nitin Vashisth",
+                "https://github.com/linux-ras/sysfsutils",
+                "https://github.com/linux-ras/sysfsutils/graphs/contributors",
+                "upstream",
+            ),
+        }
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+        self.assertEqual(
+            batch_packages["sysfsutils"]["exclude_paths"],
+            ["etc/init.d/sysfsutils", "usr/lib/systemd/system/sysfsutils.service"],
+        )
+        self.assertEqual(batch_packages["cpuid"]["dependencies"], ["perl"])
+        self.assertEqual(
+            batch_packages["hwloc-nox"]["dependencies"], ["libhwloc15", "libtinfo6"]
+        )
+        self.assertEqual(
+            batch_packages["sysfsutils"]["dependencies"], ["libsysfs2", "pci.ids"]
+        )
+
+        for name, (
+            architecture,
+            filename,
+            checksum,
+            version,
+            author,
+            git_repo,
+            git_author_url,
+            git_repo_type,
+        ) in expected.items():
+            with self.subTest(package=name):
+                source = {
+                    "architecture": architecture,
+                    "filename": filename,
+                    "sha256": checksum,
+                    "version": version,
+                }
+                self.assertEqual(batch["sources"][name], source)
+                self.assertEqual(manifest["sources"][name], source)
+                self.assertEqual(batch_packages[name], manifest_packages[name])
+                self.assertEqual(batch_packages[name]["debian_version"], version)
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], git_repo_type)
+                self.assertEqual(metadata[name]["git_author_url"], git_author_url)
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+                self.assertTrue(
+                    BUILDER.repository_has_package(repo_root, batch_packages[name]),
+                    f"missing matching recipe or archive for {name}",
+                )
+
+
+    def test_sysfsutils_archive_omits_init_system_hooks(self) -> None:
+        """Keep the optional sysfs tool package free of boot service hooks."""
+        archive_path = (
+            Path(__file__).resolve().parents[1]
+            / "packages/sysfsutils-2.1.1-7-x86_64.ark"
+        )
+        with (
+            BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
+            tarfile.open(fileobj=compressed, mode="r|") as archive,
+        ):
+            paths = {member.name for member in archive}
+        self.assertIn("package/usr/bin/systool", paths)
+        self.assertIn("package/etc/sysfs.conf", paths)
+        self.assertIn("package/usr/share/doc/sysfsutils/copyright", paths)
+        self.assertNotIn("package/etc/init.d/sysfsutils", paths)
+        self.assertNotIn("package/usr/lib/systemd/system/sysfsutils.service", paths)
+
+
 class BitmapFontIndexTests(unittest.TestCase):
     def test_debian_bitmap_font_packages_generate_legacy_indexes(self) -> None:
         """Ensure Debian bitmap fonts receive generated legacy index files."""
