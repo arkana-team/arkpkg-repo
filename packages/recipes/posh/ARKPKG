@@ -1,0 +1,8 @@
+Name: posh
+Description: Policy-compliant POSIX shell
+Version: 0.14.1
+Arch: x86_64
+URL: https://salsa.debian.org/clint/posh
+License: See /usr/share/doc/posh/copyright
+Maintainer: arkanaOS Team
+Provides: posh=/usr/bin/posh
