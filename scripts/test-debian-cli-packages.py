@@ -3588,5 +3588,173 @@ class Batch23PackageTests(unittest.TestCase):
                     self.assertTrue(
                         any(item.startswith("libaio.so.1t64=") for item in provides)
                     )
+class Batch24PackageTests(unittest.TestCase):
+    def test_batch_24_pins_storage_and_remote_hardware_tools(self) -> None:
+        """Keep batch 24 source pins, package credits, and archives aligned."""
+        repo_root = Path(__file__).resolve().parents[1]
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-24.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        package_details = {
+            "ioping": (
+                "1.3-1",
+                "22ead2b91d92b070ba9f37eecc3ba7972b3f56ecf7b5bf2d82ee4e18712acbe6",
+                set(),
+                "https://salsa.debian.org/debian/ioping.git",
+                "package/usr/bin/ioping",
+                None,
+            ),
+            "libsgutils2-1.48": (
+                "1.48-3~deb13u1",
+                "b3547dc1fb6e8109fa9d7b16c4d7a54a9266d8f971f300cc534bb678a986736d",
+                set(),
+                "https://salsa.debian.org/linux-blocks-team/sg3-utils.git",
+                "package/usr/lib/x86_64-linux-gnu/libsgutils2-1.48.so.2",
+                "libsgutils2-1.48.so.2.0.0",
+            ),
+            "sg3-utils": (
+                "1.48-3~deb13u1",
+                "ba2e2ab287b372dc9646bc5210fb8497f0b06058f75f54a9c3b3f565d2263047",
+                {"libsgutils2-1.48"},
+                "https://salsa.debian.org/linux-blocks-team/sg3-utils.git",
+                "package/usr/bin/sg_inq",
+                None,
+            ),
+            "freeipmi-common": (
+                "1.6.15-1",
+                "dc54520d7ccb413715ec19d77f3232b1df31cda9d42c57702646c9a409ff74b2",
+                set(),
+                "https://salsa.debian.org/debian/freeipmi.git",
+                "package/etc/freeipmi/freeipmi.conf",
+                None,
+            ),
+            "libgpg-error0": (
+                "1.51-4",
+                "22b95570fd41c113ef6f5651563b4d748292844baab1278a46eb940c1dec2322",
+                set(),
+                "https://salsa.debian.org/debian/libgpg-error.git",
+                "package/usr/lib/x86_64-linux-gnu/libgpg-error.so.0",
+                "libgpg-error.so.0.38.0",
+            ),
+            "libgcrypt20": (
+                "1.11.0-7+deb13u1",
+                "f0eb41f8cb40896e0822e9ab65611e8383c12b721c76c54764f744abb4a8c247",
+                {"libgpg-error0"},
+                "https://salsa.debian.org/gnutls-team/libgcrypt.git",
+                "package/usr/lib/x86_64-linux-gnu/libgcrypt.so.20",
+                "libgcrypt.so.20.5.0",
+            ),
+            "libfreeipmi17": (
+                "1.6.15-1",
+                "2eb073cca8a5b1298dd79886f686a144f901a4fb0d3ef47900ff66b17aff3da0",
+                {"freeipmi-common", "libgcrypt20"},
+                "https://salsa.debian.org/debian/freeipmi.git",
+                "package/usr/lib/x86_64-linux-gnu/libfreeipmi.so.17",
+                "libfreeipmi.so.17.2.13",
+            ),
+            "ipmitool": (
+                "1.8.19-9",
+                "692752b073210398aadb7d3f3fffe875ccb9a02e5ee538b84479653ecccd9d36",
+                {"libfreeipmi17", "openssl-libs", "readline-libs"},
+                "https://git.jff.email/cgit/ipmitool.git",
+                "package/usr/bin/ipmitool",
+                None,
+            ),
+        }
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        authors = {
+            "ioping": ("Konstantin Khlebnikov", "https://github.com/koct9i"),
+            "libsgutils2-1.48": (
+                "Douglas Gilbert",
+                "https://github.com/doug-gilbert",
+            ),
+            "sg3-utils": ("Douglas Gilbert", "https://github.com/doug-gilbert"),
+            "freeipmi-common": ("Albert Chu", "https://github.com/chu11"),
+            "libgpg-error0": (
+                "g10 Code GmbH and contributors",
+                "https://git.gnupg.org/source/libgpg-error",
+            ),
+            "libgcrypt20": (
+                "Werner Koch and contributors",
+                "https://git.gnupg.org/source/libgcrypt",
+            ),
+            "libfreeipmi17": ("Albert Chu", "https://github.com/chu11"),
+            "ipmitool": (
+                "Duncan Laurie and contributors",
+                "https://github.com/ipmitool/ipmitool",
+            ),
+        }
+        self.assertEqual(set(batch_packages), set(package_details))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        for name, (version, checksum, dependencies, git_repo, expected_path, link) in (
+            package_details.items()
+        ):
+            package = batch_packages[name]
+            with self.subTest(package=name):
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(set(package["dependencies"]), dependencies)
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                for source_name in package["debian_packages"]:
+                    self.assertEqual(
+                        batch["sources"][source_name]["sha256"], checksum
+                    )
+                    self.assertEqual(
+                        batch["sources"][source_name], manifest["sources"][source_name]
+                    )
+                self.assertEqual(metadata[name]["author"], authors[name][0])
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], "packaging")
+                self.assertEqual(metadata[name]["git_author_url"], authors[name][1])
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+                self.assertTrue(
+                    BUILDER.repository_has_package(repo_root, package),
+                    f"missing matching recipe or archive for {name}",
+                )
+
+                archive_path = repo_root / "packages" / (
+                    f"{name}-{version}-{package['arch']}.ark"
+                )
+                paths = set()
+                links = {}
+                with (
+                    BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
+                    tarfile.open(fileobj=compressed, mode="r|") as archive,
+                ):
+                    for member in archive:
+                        paths.add(member.name)
+                        if member.issym():
+                            links[member.name] = member.linkname
+                self.assertIn(expected_path, paths)
+                self.assertIn(f"package/{package['license_path']}", paths)
+                if link is not None:
+                    self.assertEqual(links[expected_path], link)
+                    _, _, provides = BUILDER.read_recipe(
+                        repo_root / "packages/recipes" / name / "ARKPKG"
+                    )
+                    self.assertTrue(
+                        any(
+                            item.startswith(f"{expected_path.rsplit('/', 1)[-1]}=")
+                            for item in provides
+                        )
+                    )
+
+
 if __name__ == "__main__":
     unittest.main()
