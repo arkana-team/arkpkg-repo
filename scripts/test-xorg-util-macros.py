@@ -13,6 +13,7 @@ import sys
 import tarfile
 import tempfile
 import unittest
+import urllib.request
 from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
@@ -88,7 +89,7 @@ class XorgUtilMacrosSourceTests(unittest.TestCase):
                 patch.object(builder, "SHA256", hashlib.sha256(trusted).hexdigest()),
                 patch.object(builder, "obtain_source", side_effect=obtain_then_mutate),
                 patch.object(
-                    builder.urllib.request, "urlopen", return_value=io.BytesIO(trusted)
+                    urllib.request, "urlopen", return_value=io.BytesIO(trusted)
                 ) as fetch,
                 patch.object(
                     builder.subprocess, "run", side_effect=run_configure
@@ -171,6 +172,140 @@ class XorgUtilMacrosSourceTests(unittest.TestCase):
                     ),
                 ):
                     builder.obtain_source(cache)
+
+
+class MacrosCacheTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temporary = tempfile.TemporaryDirectory(prefix="macros-cache-test-")
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.cache = self.root / "cache"
+        self.cached = self.cache / f"{builder.NAME}-{builder.VERSION}.tar.xz"
+        self.trusted = source_archive("verified")
+        digest_patch = patch.object(
+            builder, "SHA256", hashlib.sha256(self.trusted).hexdigest()
+        )
+        digest_patch.start()
+        self.addCleanup(digest_patch.stop)
+
+    def test_download_substitution_preserves_symlink_and_hardlink_targets(self) -> None:
+        victim = self.root / "victim"
+        for link in ("symlink", "hardlink"):
+            with self.subTest(link=link):
+                self.cached.unlink(missing_ok=True)
+                victim.write_bytes(b"unrelated user data")
+
+                def respond(*args, link=link, **kwargs):
+                    if link == "symlink":
+                        self.cached.symlink_to(victim)
+                    else:
+                        os.link(victim, self.cached)
+                    return io.BytesIO(self.trusted)
+
+                with patch.object(urllib.request, "urlopen", side_effect=respond):
+                    self.assertEqual(builder.obtain_source(self.cache), self.trusted)
+                self.assertEqual(victim.read_bytes(), b"unrelated user data")
+                self.assertFalse(self.cached.is_symlink())
+                self.assertFalse(self.cached.samefile(victim))
+                self.assertEqual(self.cached.read_bytes(), self.trusted)
+                self.assertEqual(list(self.cache.iterdir()), [self.cached])
+                self.cached.unlink()
+
+    def test_dangling_symlink_target_is_not_created(self) -> None:
+        self.cache.mkdir(mode=0o700)
+        victim = self.root / "missing"
+        self.cached.symlink_to(victim)
+        with patch.object(
+            urllib.request, "urlopen", return_value=io.BytesIO(self.trusted)
+        ):
+            self.assertEqual(builder.obtain_source(self.cache), self.trusted)
+        self.assertFalse(victim.exists())
+        self.assertFalse(self.cached.is_symlink())
+        self.assertEqual(self.cached.read_bytes(), self.trusted)
+        self.assertEqual(stat.S_IMODE(self.cached.stat().st_mode), 0o600)
+
+    def test_unsafe_cache_permissions_and_parent_are_rejected(self) -> None:
+        self.cache.mkdir(mode=0o700)
+        for mode in (0o770, 0o777, 0o1777):
+            with self.subTest(mode=oct(mode)):
+                self.cache.chmod(mode)
+                with (
+                    patch.object(
+                        urllib.request, "urlopen", return_value=io.BytesIO(self.trusted)
+                    ) as download,
+                    self.assertRaisesRegex(ValueError, "writable by others"),
+                ):
+                    builder.obtain_source(self.cache)
+                download.assert_not_called()
+        self.cache.chmod(0o700)
+        self.root.chmod(0o777)
+        try:
+            with (
+                patch.object(
+                    urllib.request, "urlopen", return_value=io.BytesIO(self.trusted)
+                ) as download,
+                self.assertRaisesRegex(ValueError, "writable by others"),
+            ):
+                builder.obtain_source(self.cache)
+            download.assert_not_called()
+        finally:
+            self.root.chmod(0o700)
+
+    def test_cache_owned_by_another_user_is_rejected(self) -> None:
+        self.cache.mkdir(mode=0o700)
+        original_lstat = Path.lstat
+
+        def foreign_owner(path):
+            info = original_lstat(path)
+            if path == self.cache:
+                fields = list(info)
+                fields[4] = os.geteuid() + 1
+                return os.stat_result(fields)
+            return info
+
+        with (
+            patch.object(Path, "lstat", autospec=True, side_effect=foreign_owner),
+            patch.object(
+                urllib.request, "urlopen", return_value=io.BytesIO(self.trusted)
+            ) as download,
+            self.assertRaisesRegex(ValueError, "unsafe source cache directory"),
+        ):
+            builder.obtain_source(self.cache)
+        download.assert_not_called()
+
+    def test_failed_downloads_are_not_published_and_snapshots_are_cleaned(self) -> None:
+        class InterruptedResponse(io.BytesIO):
+            def read(self, size=-1):
+                if self.tell():
+                    raise OSError("interrupted download")
+                return super().read(size)
+
+        for response, error in (
+            (io.BytesIO(b"bad source"), ValueError),
+            (InterruptedResponse(b"partial source"), OSError),
+        ):
+            with (
+                self.subTest(error=error),
+                patch.object(urllib.request, "urlopen", return_value=response),
+                patch.object(tempfile, "tempdir", str(self.root)),
+                self.assertRaises(error),
+            ):
+                builder.obtain_source(self.cache)
+            self.assertEqual(list(self.cache.iterdir()), [])
+            self.assertEqual(list(self.root.iterdir()), [self.cache])
+
+    def test_new_cache_is_private_and_verified_download_is_reused(self) -> None:
+        original_umask = os.umask(0o022)
+        self.addCleanup(os.umask, original_umask)
+        with patch.object(
+            urllib.request, "urlopen", return_value=io.BytesIO(self.trusted)
+        ) as download:
+            self.assertEqual(builder.obtain_source(self.cache), self.trusted)
+            download.assert_called_once()
+        self.assertEqual(stat.S_IMODE(self.cache.stat().st_mode), 0o700)
+        with patch.object(urllib.request, "urlopen") as download:
+            self.assertEqual(builder.obtain_source(self.cache), self.trusted)
+            download.assert_not_called()
 
 
 class MacrosStagingTests(unittest.TestCase):

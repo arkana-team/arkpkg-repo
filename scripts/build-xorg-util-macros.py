@@ -4,15 +4,15 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import io
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 from pathlib import Path, PurePosixPath
+
+from source_cache import source_snapshot
 
 NAME = "util-macros"
 VERSION = "1.20.2"
@@ -21,22 +21,18 @@ URL = f"https://xorg.freedesktop.org/archive/individual/util/{NAME}-{VERSION}.ta
 
 
 def obtain_source(cache: Path) -> bytes:
-    cache.mkdir(parents=True, exist_ok=True)
-    archive_path = cache / f"{NAME}-{VERSION}.tar.xz"
-    if not archive_path.is_file():
-        request = urllib.request.Request(
-            URL, headers={"User-Agent": "arkpkg-repo-xorg-macros-builder/1"}
+    with tempfile.TemporaryDirectory(prefix="arkpkg-xorg-macros-source-") as work:
+        snapshot = source_snapshot(
+            cache,
+            Path(work),
+            f"{NAME}-{VERSION}.tar.xz",
+            URL,
+            SHA256,
+            user_agent="arkpkg-repo-xorg-macros-builder/1",
+            timeout=90,
         )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            archive_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
-    # Keep the verified bytes: another user may replace or modify the cache.
-    source = archive_path.read_bytes()
-    digest = hashlib.sha256(source).hexdigest()
-    if digest != SHA256:
-        raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
+        # Keep the verified bytes: another user may replace or modify the cache.
+        source = snapshot.read_bytes()
     with tarfile.open(fileobj=io.BytesIO(source), mode="r:xz") as archive:
         root = f"{NAME}-{VERSION}"
         for member in archive:
