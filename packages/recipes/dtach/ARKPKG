@@ -1,0 +1,8 @@
+Name: dtach
+Description: Minimal detachable terminal session utility
+Version: 0.9-7
+Arch: x86_64
+URL: https://github.com/crigler/dtach
+License: See /usr/share/doc/dtach/copyright
+Maintainer: arkanaOS Team
+Provides: dtach=/usr/bin/dtach

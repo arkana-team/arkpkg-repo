@@ -1,0 +1,8 @@
+Name: tokei
+Description: Count lines of code, comments, and blanks by language
+Version: 12.1.2-6+b1
+Arch: x86_64
+URL: https://github.com/XAMPPRocky/tokei
+License: See /usr/share/doc/tokei/copyright
+Maintainer: arkanaOS Team
+Provides: tokei=/usr/bin/tokei
