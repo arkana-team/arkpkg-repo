@@ -1,0 +1,11 @@
+Name: wmgtemp
+Description: Temperature sensor dockapp for Window Maker
+Version: 1.2-3+b1
+Arch: x86_64
+URL: https://www.dockapps.net/wmgtemp
+License: See /usr/share/doc/wmgtemp/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libsensors
+  lm-sensors
+Provides: wmgtemp=/usr/bin/wmgtemp
