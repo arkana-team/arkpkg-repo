@@ -1,0 +1,8 @@
+Name: agedu
+Description: Unix utility for tracking down wasted disk space
+Version: 20211129.8cd63c5-1
+Arch: x86_64
+URL: https://www.chiark.greenend.org.uk/~sgtatham/agedu/
+License: See /usr/share/doc/agedu/copyright
+Maintainer: arkanaOS Team
+Provides: agedu=/usr/bin/agedu
