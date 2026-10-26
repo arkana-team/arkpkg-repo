@@ -1,0 +1,8 @@
+Name: wmcalclock
+Description: dock.app which simply tells time and date
+Version: 1.26-2
+Arch: x86_64
+URL: https://www.dockapps.net/wmcalclock
+License: See /usr/share/doc/wmcalclock/copyright
+Maintainer: arkanaOS Team
+Provides: wmCalClock=/usr/bin/wmCalClock, wmcalclock=/usr/bin/wmcalclock
