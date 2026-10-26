@@ -520,6 +520,55 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertEqual(metadata["git_repo"], "https://github.com/sharkdp/hexyl")
         self.assertEqual(metadata["git_author_url"], "https://github.com/sharkdp")
 
+    def test_system_fetch_tools_identify_their_upstream_authors(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "fastfetch": (
+                "Linus Dierheimer",
+                "https://github.com/fastfetch-cli/fastfetch",
+                "https://github.com/LinusDierheimer",
+            ),
+            "neofetch": (
+                "Dylan Araps",
+                "https://github.com/dylanaraps/neofetch",
+                "https://github.com/dylanaraps",
+            ),
+            "neowofetch": (
+                "Azalea Gui",
+                "https://github.com/hykilpikonna/hyfetch",
+                "https://github.com/hykilpikonna",
+            ),
+            "nitch": (
+                "sfome",
+                "https://github.com/ssleert/nitch",
+                "https://github.com/ssleert",
+            ),
+            "pfetch": (
+                "Dylan Araps",
+                "https://github.com/dylanaraps/pfetch",
+                "https://github.com/dylanaraps",
+            ),
+            "screenfetch": (
+                "Brett Bohnenkamper",
+                "https://github.com/KittyKatt/screenFetch",
+                "https://github.com/KittyKatt",
+            ),
+        }
+
+        for name, (author, git_repo, git_author_url) in expected.items():
+            with self.subTest(package=name):
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], "upstream")
+                self.assertEqual(metadata[name]["git_author_url"], git_author_url)
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
     def test_classic_workstation_batch_04_is_pinned_and_credited(self) -> None:
         """Validate pinned archives and source credits for workstation batch 04."""
         repo_root = Path(__file__).resolve().parents[1]
