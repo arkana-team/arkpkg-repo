@@ -3756,5 +3756,141 @@ class Batch24PackageTests(unittest.TestCase):
                     )
 
 
+class Batch25PackageTests(unittest.TestCase):
+    def test_batch_25_pins_storage_recovery_and_media_tools(self) -> None:
+        """Keep batch 25 source pins, credits, recipes, and archives aligned."""
+        repo_root = Path(__file__).resolve().parents[1]
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-25.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        package_details = {
+            "gddrescue": (
+                "1.29-1",
+                "c19d45f14e11d28f8e87f3ac2e22cef57b0995ffe354e260f26230695a420f03",
+                {"gcc-libs"},
+                "https://salsa.debian.org/mika/gddrescue",
+                "packaging",
+                "package/usr/bin/ddrescue",
+            ),
+            "exfatprogs": (
+                "1.2.9-1+deb13u1",
+                "b48c77643a13fa6e33d362b993a251c6528cfec158b772b1d115df59117be32f",
+                set(),
+                "https://github.com/exfatprogs/exfatprogs",
+                "upstream",
+                "package/usr/sbin/mkfs.exfat",
+            ),
+            "sdparm": (
+                "1.12-2",
+                "3d0983215f7ae29f1e7af407ad073caadace63b4f5fdd21ab8ce1c0d9074b4c0",
+                set(),
+                "https://github.com/doug-gilbert/sdparm",
+                "upstream",
+                "package/usr/bin/sdparm",
+            ),
+            "mmc-utils": (
+                "0+git20240329.f757f413-1",
+                "704313d2701cacca661878427e82556ba6a3bd5df388188094c480dc9fc9c02d",
+                set(),
+                "https://git.kernel.org/pub/scm/utils/mmc/mmc-utils.git",
+                "upstream",
+                "package/usr/bin/mmc",
+            ),
+            "btrfs-compsize": (
+                "1.5-1.1",
+                "e1c3e8fa9582c1e57175de137f857da173e892bf32d08d573ca7074f10e45d2a",
+                set(),
+                "https://github.com/kilobyte/compsize",
+                "upstream",
+                "package/usr/sbin/compsize",
+            ),
+        }
+        authors = {
+            "gddrescue": ("Antonio Diaz Diaz", None),
+            "exfatprogs": (
+                "Namjae Jeon and Hyunchul Lee",
+                "https://github.com/namjaejeon",
+            ),
+            "sdparm": ("Douglas Gilbert", "https://github.com/doug-gilbert"),
+            "mmc-utils": (
+                "Chris Ball and SanDisk contributors",
+                "https://sourceforge.net/u/thoric/profile/",
+            ),
+            "btrfs-compsize": (
+                "Adam Borowski and Timofey Titovets",
+                "https://github.com/kilobyte",
+            ),
+        }
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        self.assertEqual(set(batch_packages), set(package_details))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        for name, (
+            version,
+            checksum,
+            dependencies,
+            git_repo,
+            git_repo_type,
+            expected_path,
+        ) in package_details.items():
+            package = batch_packages[name]
+            with self.subTest(package=name):
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(set(package["dependencies"]), dependencies)
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                for source_name in package["debian_packages"]:
+                    self.assertEqual(
+                        batch["sources"][source_name]["sha256"], checksum
+                    )
+                    self.assertEqual(
+                        batch["sources"][source_name], manifest["sources"][source_name]
+                    )
+                self.assertEqual(metadata[name]["author"], authors[name][0])
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], git_repo_type)
+                self.assertEqual(metadata[name]["git_author_url"], authors[name][1])
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+                self.assertTrue(
+                    BUILDER.repository_has_package(repo_root, package),
+                    f"missing matching recipe or archive for {name}",
+                )
+
+                archive_path = repo_root / "packages" / (
+                    f"{name}-{version}-{package['arch']}.ark"
+                )
+                paths = set()
+                with (
+                    BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
+                    tarfile.open(fileobj=compressed, mode="r|") as archive,
+                ):
+                    paths.update(member.name for member in archive)
+                self.assertIn(expected_path, paths)
+                self.assertIn(f"package/{package['license_path']}", paths)
+                _, recipe_dependencies, provides = BUILDER.read_recipe(
+                    repo_root / "packages/recipes" / name / "ARKPKG"
+                )
+                self.assertEqual(set(recipe_dependencies), dependencies)
+                expected_provide = "/" + expected_path.removeprefix("package/")
+                self.assertTrue(
+                    any(item.endswith("=" + expected_provide) for item in provides)
+                )
+
+
 if __name__ == "__main__":
     unittest.main()
