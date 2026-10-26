@@ -2209,7 +2209,10 @@
       ],
       "debian_version": "5.9-8+b24",
       "dependencies": [
-        "libgdbm6t64"
+        "libcap",
+        "libgdbm6t64",
+        "ncurses-libs",
+        "pcre2-libs"
       ],
       "description": "shell with lots of features",
       "license": "See /usr/share/doc/zsh/copyright",

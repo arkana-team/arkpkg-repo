@@ -1,0 +1,8 @@
+Name: fzy
+Description: Fast, simple fuzzy text selector
+Version: 1.0-1
+Arch: x86_64
+URL: https://github.com/jhawthorn/fzy
+License: See /usr/share/doc/fzy/copyright
+Maintainer: arkanaOS Team
+Provides: fzy=/usr/bin/fzy

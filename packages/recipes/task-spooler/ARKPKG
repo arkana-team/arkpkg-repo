@@ -1,0 +1,8 @@
+Name: task-spooler
+Description: Personal job scheduler for queued terminal tasks
+Version: 1.0.3+dfsg1-1
+Arch: x86_64
+URL: https://viric.name/soft/ts/
+License: See /usr/share/doc/task-spooler/copyright
+Maintainer: arkanaOS Team
+Provides: tsp=/usr/bin/tsp
