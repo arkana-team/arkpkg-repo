@@ -1,0 +1,10 @@
+Name: gddrescue
+Description: GNU data recovery tool
+Version: 1.29-1
+Arch: x86_64
+URL: https://www.gnu.org/software/ddrescue/ddrescue.html
+License: See /usr/share/doc/gddrescue/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gcc-libs
+Provides: ddrescue=/usr/bin/ddrescue, ddrescuelog=/usr/bin/ddrescuelog

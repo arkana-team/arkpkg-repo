@@ -1,0 +1,8 @@
+Name: mmc-utils
+Description: Userspace tools for MMC and SD devices
+Version: 0+git20240329.f757f413-1
+Arch: x86_64
+URL: https://git.kernel.org/pub/scm/utils/mmc/mmc-utils.git
+License: See /usr/share/doc/mmc-utils/copyright
+Maintainer: arkanaOS Team
+Provides: mmc=/usr/bin/mmc

@@ -1,0 +1,8 @@
+Name: sdparm
+Description: Output and modify SCSI device parameters
+Version: 1.12-2
+Arch: x86_64
+URL: https://sg.danny.cz/sg/sdparm.html
+License: See /usr/share/doc/sdparm/copyright
+Maintainer: arkanaOS Team
+Provides: sas_disk_blink=/usr/bin/sas_disk_blink, scsi_ch_swp=/usr/bin/scsi_ch_swp, sdparm=/usr/bin/sdparm

@@ -4391,6 +4391,78 @@
       "name": "ipmitool",
       "url": "https://codeberg.org/ipmitool/ipmitool",
       "version": "1.8.19-9"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "gddrescue"
+      ],
+      "debian_version": "1.29-1",
+      "dependencies": [
+        "gcc-libs"
+      ],
+      "description": "GNU data recovery tool",
+      "license": "See /usr/share/doc/gddrescue/copyright",
+      "license_path": "usr/share/doc/gddrescue/copyright",
+      "name": "gddrescue",
+      "url": "https://www.gnu.org/software/ddrescue/ddrescue.html",
+      "version": "1.29-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "exfatprogs"
+      ],
+      "debian_version": "1.2.9-1+deb13u1",
+      "dependencies": [],
+      "description": "exFAT file system utilities",
+      "license": "See /usr/share/doc/exfatprogs/copyright",
+      "license_path": "usr/share/doc/exfatprogs/copyright",
+      "name": "exfatprogs",
+      "url": "https://github.com/exfatprogs/exfatprogs",
+      "version": "1.2.9-1+deb13u1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "sdparm"
+      ],
+      "debian_version": "1.12-2",
+      "dependencies": [],
+      "description": "Output and modify SCSI device parameters",
+      "license": "See /usr/share/doc/sdparm/copyright",
+      "license_path": "usr/share/doc/sdparm/copyright",
+      "name": "sdparm",
+      "url": "https://sg.danny.cz/sg/sdparm.html",
+      "version": "1.12-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "mmc-utils"
+      ],
+      "debian_version": "0+git20240329.f757f413-1",
+      "dependencies": [],
+      "description": "Userspace tools for MMC and SD devices",
+      "license": "See /usr/share/doc/mmc-utils/copyright",
+      "license_path": "usr/share/doc/mmc-utils/copyright",
+      "name": "mmc-utils",
+      "url": "https://git.kernel.org/pub/scm/utils/mmc/mmc-utils.git",
+      "version": "0+git20240329.f757f413-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "btrfs-compsize"
+      ],
+      "debian_version": "1.5-1.1",
+      "dependencies": [],
+      "description": "Calculate the compression ratio of files on Btrfs",
+      "license": "See /usr/share/doc/btrfs-compsize/copyright",
+      "license_path": "usr/share/doc/btrfs-compsize/copyright",
+      "name": "btrfs-compsize",
+      "url": "https://github.com/kilobyte/compsize",
+      "version": "1.5-1.1"
     }
   ],
   "sources": {
@@ -6343,6 +6415,36 @@
       "filename": "pool/main/i/ipmitool/ipmitool_1.8.19-9_amd64.deb",
       "sha256": "692752b073210398aadb7d3f3fffe875ccb9a02e5ee538b84479653ecccd9d36",
       "version": "1.8.19-9"
+    },
+    "gddrescue": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gddrescue/gddrescue_1.29-1_amd64.deb",
+      "sha256": "c19d45f14e11d28f8e87f3ac2e22cef57b0995ffe354e260f26230695a420f03",
+      "version": "1.29-1"
+    },
+    "exfatprogs": {
+      "architecture": "amd64",
+      "filename": "pool/main/e/exfatprogs/exfatprogs_1.2.9-1+deb13u1_amd64.deb",
+      "sha256": "b48c77643a13fa6e33d362b993a251c6528cfec158b772b1d115df59117be32f",
+      "version": "1.2.9-1+deb13u1"
+    },
+    "sdparm": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/sdparm/sdparm_1.12-2_amd64.deb",
+      "sha256": "3d0983215f7ae29f1e7af407ad073caadace63b4f5fdd21ab8ce1c0d9074b4c0",
+      "version": "1.12-2"
+    },
+    "mmc-utils": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/mmc-utils/mmc-utils_0+git20240329.f757f413-1_amd64.deb",
+      "sha256": "704313d2701cacca661878427e82556ba6a3bd5df388188094c480dc9fc9c02d",
+      "version": "0+git20240329.f757f413-1"
+    },
+    "btrfs-compsize": {
+      "architecture": "amd64",
+      "filename": "pool/main/b/btrfs-compsize/btrfs-compsize_1.5-1.1_amd64.deb",
+      "sha256": "e1c3e8fa9582c1e57175de137f857da173e892bf32d08d573ca7074f10e45d2a",
+      "version": "1.5-1.1"
     }
   },
   "suite": "trixie"
