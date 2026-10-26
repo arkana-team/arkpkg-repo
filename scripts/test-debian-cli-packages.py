@@ -3225,6 +3225,16 @@ class Batch22PackageTests(unittest.TestCase):
                 self.assertIn(f"package/{package['license_path']}", paths)
 
                 if name == "gnu-parallel":
+                    expected_remote_contexts = [
+                        'sshwrapped($sshlogin,"parallel --number-of-sockets")',
+                        'sshwrapped($sshlogin,"parallel --number-of-cores")',
+                        'sshwrapped($sshlogin,"parallel --number-of-threads")',
+                        'sshwrapped($sshlogin,\n\t\t\t"parallel --max-line-length-allowed")',
+                    ]
+                    self.assertEqual(
+                        package["command_rewrites"][0]["preserve_contexts"],
+                        expected_remote_contexts,
+                    )
                     self.assertIn("package/usr/bin/sem", paths)
                     self.assertIn(
                         "package/usr/share/man/man1/parallel-gnu.1.gz", paths
@@ -3252,6 +3262,13 @@ class Batch22PackageTests(unittest.TestCase):
                     self.assertIn(
                         b"exec qw(parallel-gnu -0 --block",
                         helper_contents["package/usr/bin/parallel-gnu"],
+                    )
+                    program = helper_contents["package/usr/bin/parallel-gnu"]
+                    for remote_context in expected_remote_contexts:
+                        self.assertIn(remote_context.encode(), program)
+                    self.assertIn(
+                        b'$self->wrap("parallel-gnu --number-of-cores")',
+                        program,
                     )
                     self.assertIn(
                         b"complete -F _comp_parallel parallel-gnu",
@@ -3374,6 +3391,79 @@ class PackagePathRenameTests(unittest.TestCase):
                 zsh_completion.read_text(encoding="utf-8"),
                 "#compdef parallel-gnu\n"
                 'eval "$(parallel-gnu --shell-completion auto)"\n',
+            )
+
+    def test_rewrite_preserves_remote_host_probes(self) -> None:
+        """Keep stock GNU Parallel names in SSH probes while renaming local calls."""
+        with tempfile.TemporaryDirectory() as temporary:
+            payload = Path(temporary) / "package"
+            (payload / "usr/bin").mkdir(parents=True)
+            program = payload / "usr/bin/parallel-gnu"
+            program.write_text(
+                'sshwrapped($sshlogin,"parallel --number-of-sockets")\n'
+                'sshwrapped($sshlogin,"parallel --number-of-cores")\n'
+                'sshwrapped($sshlogin,"parallel --number-of-threads")\n'
+                'sshwrapped($sshlogin,\n'
+                '\t\t\t"parallel --max-line-length-allowed")\n'
+                '$self->wrap("parallel --number-of-cores")\n',
+                encoding="utf-8",
+            )
+            preserve_contexts = [
+                'sshwrapped($sshlogin,"parallel --number-of-sockets")',
+                'sshwrapped($sshlogin,"parallel --number-of-cores")',
+                'sshwrapped($sshlogin,"parallel --number-of-threads")',
+                'sshwrapped($sshlogin,\n\t\t\t"parallel --max-line-length-allowed")',
+            ]
+
+            BUILDER.rewrite_package_commands(
+                payload,
+                [
+                    {
+                        "from": "parallel",
+                        "to": "parallel-gnu",
+                        "paths": ["usr/bin/parallel-gnu"],
+                        "preserve_contexts": preserve_contexts,
+                    }
+                ],
+                "gnu-parallel",
+            )
+
+            self.assertEqual(
+                program.read_text(encoding="utf-8"),
+                'sshwrapped($sshlogin,"parallel --number-of-sockets")\n'
+                'sshwrapped($sshlogin,"parallel --number-of-cores")\n'
+                'sshwrapped($sshlogin,"parallel --number-of-threads")\n'
+                'sshwrapped($sshlogin,\n'
+                '\t\t\t"parallel --max-line-length-allowed")\n'
+                '$self->wrap("parallel-gnu --number-of-cores")\n',
+            )
+
+    def test_rewrite_rejects_missing_preserved_command_context(self) -> None:
+        """Do not silently lose an SSH command guard when upstream changes."""
+        with tempfile.TemporaryDirectory() as temporary:
+            payload = Path(temporary) / "package"
+            (payload / "usr/bin").mkdir(parents=True)
+            program = payload / "usr/bin/parallel-gnu"
+            program.write_text("parallel --version\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "preserved command context"):
+                BUILDER.rewrite_package_commands(
+                    payload,
+                    [
+                        {
+                            "from": "parallel",
+                            "to": "parallel-gnu",
+                            "paths": ["usr/bin/parallel-gnu"],
+                            "preserve_contexts": [
+                                'sshwrapped($sshlogin,"parallel --number-of-cores")',
+                            ],
+                        }
+                    ],
+                    "gnu-parallel",
+                )
+
+            self.assertEqual(
+                program.read_text(encoding="utf-8"), "parallel --version\n"
             )
 
 

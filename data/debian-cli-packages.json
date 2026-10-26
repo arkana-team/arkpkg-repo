@@ -4149,6 +4149,12 @@
             "usr/bin/parsort",
             "usr/share/bash-completion/completions/parallel-gnu",
             "usr/share/zsh/site-functions/_parallel-gnu"
+          ],
+          "preserve_contexts": [
+            "sshwrapped($sshlogin,\"parallel --number-of-sockets\")",
+            "sshwrapped($sshlogin,\"parallel --number-of-cores\")",
+            "sshwrapped($sshlogin,\"parallel --number-of-threads\")",
+            "sshwrapped($sshlogin,\n\t\t\t\"parallel --max-line-length-allowed\")"
           ]
         }
       ],
