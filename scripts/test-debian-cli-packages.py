@@ -104,6 +104,16 @@ class WorkstationManifestTests(unittest.TestCase):
             / "data/debian-workstation-packages.json"
         )
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        batch_manifest_path = (
+            Path(__file__).resolve().parents[1]
+            / "data/debian-workstation-packages-batch-07.json"
+        )
+        batch_names = {
+            package["name"]
+            for package in json.loads(
+                batch_manifest_path.read_text(encoding="utf-8")
+            )["packages"]
+        }
 
         self.assertEqual(manifest["suite"], "trixie")
         self.assertEqual(manifest["architecture"], "amd64")
@@ -178,7 +188,8 @@ class WorkstationManifestTests(unittest.TestCase):
                 "vbindiff",
                 "w3m-img",
                 "xcolors",
-            },
+            }
+            | batch_names,
         )
         package_by_name = {package["name"]: package for package in packages}
         self.assertEqual(
@@ -268,7 +279,7 @@ class WorkstationManifestTests(unittest.TestCase):
             "xmbmon",
             "x2x",
             "xrootconsole",
-        }
+        } | batch_names
         for package in packages:
             with self.subTest(credits=package["name"]):
                 entry = metadata[package["name"]]
@@ -805,6 +816,81 @@ class WorkstationManifestTests(unittest.TestCase):
         self.assertIn("slop", manifest_packages["maim"]["dependencies"])
         self.assertNotIn("exclude_paths", manifest_packages["nsxiv"])
         self.assertIn("guile", manifest_packages["xbindkeys"]["dependencies"])
+
+    def test_remote_workstation_batch_07_is_pinned_and_credited(self) -> None:
+        """Validate the optional dockapp, X11, CLI, and game package batch."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-07.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        self.assertEqual(len(batch_packages), 86)
+        self.assertEqual(len(batch_packages), len(batch["packages"]))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+        self.assertTrue(
+            {"asclock", "wmbattery", "autorandr", "ninvaders"}
+            <= set(batch_packages)
+        )
+        self.assertTrue({"wmaker", "twm"}.isdisjoint(batch_packages))
+
+        for name, package in batch_packages.items():
+            with self.subTest(package=name):
+                self.assertEqual(packages[name], package)
+                self.assertEqual(package["debian_packages"], [name])
+                self.assertIn(package["arch"], {"any", "x86_64"})
+                archive = repo_root / "packages" / (
+                    f"{name}-{package['version']}-{package['arch']}.ark"
+                )
+                self.assertTrue(archive.is_file(), archive)
+                recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+                self.assertTrue(recipe.is_file(), recipe)
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                source = batch["sources"][name]
+                self.assertEqual(source, manifest["sources"][name])
+                self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$")
+                self.assertTrue(source["filename"].startswith("pool/"))
+                package_metadata = metadata[name]
+                self.assertIn("author", package_metadata)
+                self.assertTrue(package_metadata["author"])
+                self.assertIn("git_author_url", package_metadata)
+                self.assertTrue(package_metadata["git_repo"].startswith("https://"))
+                self.assertIn(
+                    package_metadata["git_repo_type"],
+                    {"upstream", "packaging", "arkpkg-recipe"},
+                )
+                self.assertEqual(
+                    {item["name"] for item in package_metadata["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+        for name, dependencies in {
+            "asclock": {"asclock-themes"},
+            "autorandr": {"xrandr"},
+            "ansiweather": {"bc", "curl-cli", "jq"},
+            "crawl": {"crawl-common", "liblua5.1-0"},
+            "gearhead": {"gearhead-data"},
+            "wmbattery": {"upower"},
+            "wmget": {"curl-cli", "perl"},
+        }.items():
+            self.assertTrue(dependencies <= set(packages[name]["dependencies"]))
+
+        self.assertEqual(packages["crawl"]["license_source_package"], "crawl-common")
+        self.assertEqual(
+            packages["crawl"]["license_source_path"],
+            "usr/share/doc/crawl-common/copyright",
+        )
 
 
 class UpstreamDownloadTests(unittest.TestCase):

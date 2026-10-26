@@ -28207,6 +28207,1382 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "wmacpi": {
+      "author": "Tim Copperfield",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmacpi",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmbattery": {
+      "author": "Joey Hess",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmbattery",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmbiff": {
+      "author": "Gennady Belyakov",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmbiff",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmbubble": {
+      "author": "Tim Copperfield",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmbubble",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmbutton": {
+      "author": "Edward H. Flora",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmbutton",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmcalc": {
+      "author": "Edward H. Flora",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcalc",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmcalclock": {
+      "author": "Michael G. Henderson",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcalclock",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmcliphist": {
+      "author": "Michal Krause",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcliphist",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmclock": {
+      "author": "Jim Knoble",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmclock",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmclockmon": {
+      "author": "Thomas Nemeth",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmclockmon",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmcore": {
+      "author": "bitman",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcore",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmcpu": {
+      "author": "timecop",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcpu",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmcpuload": {
+      "author": "Seiichi Sato",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmcpuload",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmdiskmon": {
+      "author": "Mark Staggs",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmdiskmon",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmdrawer": {
+      "author": "Valéry Febvre",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmdrawer",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmfsm": {
+      "author": "Chris Gray",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmfsm",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmgtemp": {
+      "author": "Roger Dunce",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmgtemp",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmget": {
+      "author": "Aaron Trickey",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmget",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmhdplop": {
+      "author": "Julien Pommier and Frédéric Jolly",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmhdplop",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmifinfo": {
+      "author": "Ico Doornekamp",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmifinfo",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmifs": {
+      "author": "Martijn Pieterse",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmifs",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmitime": {
+      "author": "Window Maker Developers Team",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmitime",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmload": {
+      "author": "Beat Christen",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmload",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmmemload": {
+      "author": "Mark Staggs, Seiichi Sato, John McCutchan, Jonathan Lang, and Alfredo K. Kojima",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmmemload",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmmon": {
+      "author": "Martijn Pieterse and Antoine Nulle",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmmon",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmmoonclock": {
+      "author": "Michael G. Henderson",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmmoonclock",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmnd": {
+      "author": "Yuri D’Elia",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmnd",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmnut": {
+      "author": "Arnaud Quette",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmnut",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmpinboard": {
+      "author": "Marco Goetze",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmpinboard",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmpuzzle": {
+      "author": "Martin A. Godisch",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmpuzzle",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmressel": {
+      "author": "Sébastien Liénard",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmressel",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmstickynotes": {
+      "author": "Heath Caldwell",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmstickynotes",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmsun": {
+      "author": "Mike Henderson",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmsun",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmsysmon": {
+      "author": "Dave Clark and Vito Caputo",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmsysmon",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmtemp": {
+      "author": "Peter Gnodde",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmtemp",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmtime": {
+      "author": "Martijn Pieterse and Antoine Nulle",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmtime",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmtop": {
+      "author": "Dan Piponi",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmtop",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmweather": {
+      "author": "Michael G. Henderson",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmweather",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmweather+": {
+      "author": "Brad Jorsch",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmweather+",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmusic": {
+      "author": "Bastien Nocera",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmusic",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmsystemtray": {
+      "author": "Brad Jorsch",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmsystemtray",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "wmxres": {
+      "author": "Lilian",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/wmxres",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "asclock": {
+      "author": "Beat Christen and Patrick Rogan",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/asclock",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "asclock-themes": {
+      "author": "Beat Christen and Patrick Rogan",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/asclock-themes",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "asmon": {
+      "author": "Brad Hall",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/asmon",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "bbpager": {
+      "author": "Brad Hughes and John Kennis",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/bbpager",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "bbtime": {
+      "author": "John Kennis and Brad Hughes",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/bbtime",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "bubblefishymon": {
+      "author": "Merlin Hughes and Johan Walles",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/bubblefishymon",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "9menu": {
+      "author": "Arnold Robbins",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/9menu",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "9wm": {
+      "author": "David Hogan",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/9wm",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "autocutsel": {
+      "author": "Michael Witrant",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/autocutsel",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "autorandr": {
+      "author": "Phillip Berndt",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/autorandr",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "alttab": {
+      "author": "Alexander Kulak",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/alttab",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "bdfresize": {
+      "author": "Hiroto Kagotani",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/bdfresize",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xdo": {
+      "author": "Bastien Dejean",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xdo",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "acpitool": {
+      "author": "David Leemans",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/acpitool",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ack": {
+      "author": "Andy Lester",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/ack",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "agedu": {
+      "author": "Simon Tatham",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/agedu",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ansiweather": {
+      "author": "Frederic Cambus",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/ansiweather",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cpulimit": {
+      "author": "Angelo Marletta",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/cpulimit",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ddgr": {
+      "author": "Arun Prakash Jana",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/ddgr",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "dfc": {
+      "author": "Robin Hahling",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/dfc",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "git-extras": {
+      "author": "TJ Holowaychuk",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/git-extras",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "jqp": {
+      "author": "Noah Gorstein",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/jqp",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "swaks": {
+      "author": "John Jetmore",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/swaks",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "9mount": {
+      "author": "sqweek",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/9mount",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "2048": {
+      "author": "Maurits van der Schee",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/2048",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "asciijump": {
+      "author": "Grzegorz Moskal, Michal Moskal, and Przemek Niezobrala",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/asciijump",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xsoldier": {
+      "author": "Yuusuke Hashimoto",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/xsoldier",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "nbsdgames": {
+      "author": "Hossein Bakhtiarifar",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/nbsdgames",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "nsnake": {
+      "author": "Alexandre Dantas",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/nsnake",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "omega-rpg": {
+      "author": "Laurence R. Brothers",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/omega-rpg",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "tint": {
+      "author": "Abraham van der Merwe",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/tint",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cbonsai": {
+      "author": "John Allbritten",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/cbonsai",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "chroma-curses": {
+      "author": "Amf",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/chroma-curses",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "chroma-data": {
+      "author": "Amf",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/chroma-data",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "fizmo-console": {
+      "author": "Christoph Ender",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/fizmo-console",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "gearhead": {
+      "author": "Joseph Hewitt",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/gearhead",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "gearhead-data": {
+      "author": "Joseph Hewitt",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/gearhead-data",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "gemdropx": {
+      "author": "William (Bill) Kendrick",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/gemdropx",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "sudoku": {
+      "author": "Michael Kennett",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/sudoku",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ninvaders": {
+      "author": "Thomas Dettbarn",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/ninvaders",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ttyrec": {
+      "author": "Satoru Takabayashi and OVH SAS contributors",
+      "git_repo": "https://github.com/ovh/ovh-ttyrec",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "crawl": {
+      "author": "Linley Henzell and Dungeon Crawl Stone Soup contributors",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/crawl",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "crawl-common": {
+      "author": "Linley Henzell and Dungeon Crawl Stone Soup contributors",
+      "git_repo": "https://github.com/arkana-team/arkpkg-repo/tree/main/packages/recipes/crawl-common",
+      "git_repo_type": "arkpkg-recipe",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "liblua5.1-0": {
+      "author": "Lua.org, PUC-Rio",
+      "git_repo": "https://github.com/lua/lua",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

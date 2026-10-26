@@ -1,0 +1,1588 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "wmacpi": {
+      "filename": "pool/main/w/wmacpi/wmacpi_2.4-2+b1_amd64.deb",
+      "sha256": "0759e6273c9c79ba0632df5147762b9ab0a70d02290453911fd6890e23779f2b"
+    },
+    "wmbattery": {
+      "filename": "pool/main/w/wmbattery/wmbattery_2.56-1+b1_amd64.deb",
+      "sha256": "ddd4d0f570898ec4c4dfb150b41d373e597da4840bd73c8f8d42e696d542c586"
+    },
+    "wmbiff": {
+      "filename": "pool/main/w/wmbiff/wmbiff_0.4.37-1_amd64.deb",
+      "sha256": "73544aa0f728e1f37146cfa7667de852b597452670b2231eeef8395900159772"
+    },
+    "wmbubble": {
+      "filename": "pool/main/w/wmbubble/wmbubble_1.54-2+b1_amd64.deb",
+      "sha256": "22de48f622b9be1c4d8c771e102b3b67a63a7839cf4b965346d09f9b76644385"
+    },
+    "wmbutton": {
+      "filename": "pool/main/w/wmbutton/wmbutton_0.7.1-2_amd64.deb",
+      "sha256": "7f078d9dfeb40a02eb3466a2c850079d3da33cb896f0941a9cf91086d0438808"
+    },
+    "wmcalc": {
+      "filename": "pool/main/w/wmcalc/wmcalc_0.7-2+b1_amd64.deb",
+      "sha256": "028c571177ad781009e90db790ca8f05152858a96171eff986c98caa6e085782"
+    },
+    "wmcalclock": {
+      "filename": "pool/main/w/wmcalclock/wmcalclock_1.26-2_amd64.deb",
+      "sha256": "4dd1dc7dc3e97da07d09a6dfba2fef2ae62f939952325be77d8ad63a327e5761"
+    },
+    "wmcliphist": {
+      "filename": "pool/main/w/wmcliphist/wmcliphist_2.1-4+b3_amd64.deb",
+      "sha256": "42355fd55310fa76c115f8ee62be4982e7894875945a193637757dcfe04152bd"
+    },
+    "wmclock": {
+      "filename": "pool/main/w/wmclock/wmclock_1.0.16-2_amd64.deb",
+      "sha256": "f017a142df7ff4c61befafd8805de5249ec4375734a92e59efbf8b3248d14811"
+    },
+    "wmclockmon": {
+      "filename": "pool/main/w/wmclockmon/wmclockmon_1.0.0-1_amd64.deb",
+      "sha256": "8a008c26bef86d641583890c24d0779fe3f48f42f7dd281ef02917db5ff88b89"
+    },
+    "wmcore": {
+      "filename": "pool/main/w/wmcore/wmcore_0.0.4-2+b1_amd64.deb",
+      "sha256": "e43b4eb71fedac96ffff4ba0b1958540d41562819648a73af444d5cbb1fe2ba9"
+    },
+    "wmcpu": {
+      "filename": "pool/main/w/wmcpu/wmcpu_1.4-4.1_amd64.deb",
+      "sha256": "02c29741d1472ff5ea776c57868e5b55d28731816814b468ddb795c9e4258e7b"
+    },
+    "wmcpuload": {
+      "filename": "pool/main/w/wmcpuload/wmcpuload_1.1.1-3_amd64.deb",
+      "sha256": "4d56afd9f1b2fa3a94736b7cdb7e89399a2a3e522cc4b7cfbffea4e2db068bb1"
+    },
+    "wmdiskmon": {
+      "filename": "pool/main/w/wmdiskmon/wmdiskmon_0.0.2-4_amd64.deb",
+      "sha256": "03e1e2228b0e0e937d4df0f1e657e49d131a683ab4dfcc5c22a40f78b39d1327"
+    },
+    "wmdrawer": {
+      "filename": "pool/main/w/wmdrawer/wmdrawer_0.10.5-6.1+b2_amd64.deb",
+      "sha256": "c948bc2f58de94864b012e3859b42504f425f99a5fd103257bf42299e8584633"
+    },
+    "wmfsm": {
+      "filename": "pool/main/w/wmfsm/wmfsm_0.36-2_amd64.deb",
+      "sha256": "8a2b9259022f5cb5c58027c1cf81ab42b215974dd3b3ed47feb4ce7f912a316e"
+    },
+    "wmgtemp": {
+      "filename": "pool/main/w/wmgtemp/wmgtemp_1.2-3+b1_amd64.deb",
+      "sha256": "60e2e37f19f6e8e1bac0aee5ee541e6bafa3b36fe9dcbbea59437921405d8842"
+    },
+    "wmget": {
+      "filename": "pool/main/w/wmget/wmget_0.6.1-3_amd64.deb",
+      "sha256": "9ad13c2fac46701d746e67394346547bd6cb74c6329218fd5674a0b5565238ed"
+    },
+    "wmhdplop": {
+      "filename": "pool/main/w/wmhdplop/wmhdplop_0.9.12-2_amd64.deb",
+      "sha256": "30b176c6d73ac141157b37368fb5834dcd44e9b47ee44205e7d71738992e9549"
+    },
+    "wmifinfo": {
+      "filename": "pool/main/w/wmifinfo/wmifinfo_0.11-2+b1_amd64.deb",
+      "sha256": "206842e323be97bb451aec8da401d0acdcd142e70d7e368cc310a9b556a46e04"
+    },
+    "wmifs": {
+      "filename": "pool/main/w/wmifs/wmifs_1.9-2+b1_amd64.deb",
+      "sha256": "2744209840a2cf6d888ba3abbe9a50c83a6ec2f07185ff7e68207b13a7a0bb17"
+    },
+    "wmitime": {
+      "filename": "pool/main/w/wmitime/wmitime_0.5-3_amd64.deb",
+      "sha256": "b9fe069c51ffb6651c9f1f8e23bfb1bf0a276a62a96128fa7a3827239a145409"
+    },
+    "wmload": {
+      "filename": "pool/main/w/wmload/wmload_0.9.7-2_amd64.deb",
+      "sha256": "0eebaf7a0d7ad3ea4c106b90346bed11a087cd94ad310d48923adad9066e3f96"
+    },
+    "wmmemload": {
+      "filename": "pool/main/w/wmmemload/wmmemload_0.1.8-3_amd64.deb",
+      "sha256": "1ab32adbd4cad5fc7523c9339a530c8151f33d05f9b3cbe8802129d094381ac6"
+    },
+    "wmmon": {
+      "filename": "pool/main/w/wmmon/wmmon_1.4-2+b1_amd64.deb",
+      "sha256": "ab2c3f6c3e4753a97c4d95ec93f2f3e6a8e53c646d4821339dfe38a33a28a38f"
+    },
+    "wmmoonclock": {
+      "filename": "pool/main/w/wmmoonclock/wmmoonclock_1.30-4_amd64.deb",
+      "sha256": "4ea533cdf08d32f15e08d0c8252d7e5f06b1198deb9a1e113e99fb43d1c2278b"
+    },
+    "wmnd": {
+      "filename": "pool/main/w/wmnd/wmnd_0.4.18-2+b1_amd64.deb",
+      "sha256": "6afc855207298837f119bd3ec1067fd3270aacb47946ec146f6c876168270f6e"
+    },
+    "wmnut": {
+      "filename": "pool/main/w/wmnut/wmnut_0.70-2_amd64.deb",
+      "sha256": "bc8c4bad2c9419dea663c35f309c6eaca9a667160650913baf4d23c4d296d04d"
+    },
+    "wmpinboard": {
+      "filename": "pool/main/w/wmpinboard/wmpinboard_1.0.1-5_amd64.deb",
+      "sha256": "954faea3ef31d2b0203f3cbe0aff8b149b19dc62d721f5a9f8c9416103cf77b2"
+    },
+    "wmpuzzle": {
+      "filename": "pool/main/w/wmpuzzle/wmpuzzle_0.5.3-1_amd64.deb",
+      "sha256": "1087ca006580bfac9c6da3dc5dec3384d43887a9c7db553f8d7d717a3d928985"
+    },
+    "wmressel": {
+      "filename": "pool/main/w/wmressel/wmressel_0.10-1+b2_amd64.deb",
+      "sha256": "eeca0a97005f7074ffb634f0400a752472348ca1a6e6945bfd5a2df5e477c829"
+    },
+    "wmstickynotes": {
+      "filename": "pool/main/w/wmstickynotes/wmstickynotes_0.7-5_amd64.deb",
+      "sha256": "047a72f97129ecd33c90a8ea41e598355dc9d8f55f72595dee84507ac469e914"
+    },
+    "wmsun": {
+      "filename": "pool/main/w/wmsun/wmsun_1.06-3_amd64.deb",
+      "sha256": "9432ebbde38a79fd852dfa4c5abff364fa61e5c00c35bf9108706028a6de2a5f"
+    },
+    "wmsysmon": {
+      "filename": "pool/main/w/wmsysmon/wmsysmon_0.8.1-1_amd64.deb",
+      "sha256": "b732ae98d980c947dac01c89706842c86a846b6b5d378eea2a12f3ccaaef67ad"
+    },
+    "wmtemp": {
+      "filename": "pool/main/w/wmtemp/wmtemp_0.0.6-3.4_amd64.deb",
+      "sha256": "c07e093e4b134cd93cb22fa4c35ba2484c7430a0540cc698109b2cbc51b8a713"
+    },
+    "wmtime": {
+      "filename": "pool/main/w/wmtime/wmtime_1.4-4_amd64.deb",
+      "sha256": "e4d3e6109ee7962f37b4b5605d9b79e5414408a2c2a639aebf4d3496d569438c"
+    },
+    "wmtop": {
+      "filename": "pool/main/w/wmtop/wmtop_0.85-2_amd64.deb",
+      "sha256": "9a03a8e11f1297ac8776f2e300fcd6b0685a262e96f0be34a94d458c652e52bd"
+    },
+    "wmweather": {
+      "filename": "pool/main/w/wmweather/wmweather_2.4.8-3_amd64.deb",
+      "sha256": "15b68f97a4f5b566e8dbeb961d1df036ffbe93b8176f60176766b78030f9d4b6"
+    },
+    "wmweather+": {
+      "filename": "pool/main/w/wmweather+/wmweather+_2.19~alpha+ds-2_amd64.deb",
+      "sha256": "5f44f47eb8669aace2a6e7e38cdb1517e6255a840a064dd93785f412bfb9f1c4"
+    },
+    "wmusic": {
+      "filename": "pool/main/w/wmusic/wmusic_2.1.1-1+b1_amd64.deb",
+      "sha256": "af30094722cca78b4f69338400e5c304c05dc5eb4906b40131c95068a0d938fc"
+    },
+    "wmsystemtray": {
+      "filename": "pool/main/w/wmsystemtray/wmsystemtray_1.4+git20150508-3_amd64.deb",
+      "sha256": "bbcfa0c3852a3d78ce523ce1775e6dd196815c341b6248f3eb412b764f80db2d"
+    },
+    "wmxres": {
+      "filename": "pool/main/w/wmxres/wmxres_1.4-3+b1_amd64.deb",
+      "sha256": "ebf48128f2101769e36abd402fcb77a28c508457b2e5609e0b0b7ebf7f991926"
+    },
+    "asclock": {
+      "filename": "pool/main/a/asclock/asclock_2.0.12-35_amd64.deb",
+      "sha256": "cf59366dd2ec46939a6efa972c5e87999ad5880e2a3c9af81793d3a1820a86ef"
+    },
+    "asclock-themes": {
+      "filename": "pool/main/a/asclock/asclock-themes_2.0.12-35_all.deb",
+      "sha256": "583caf35c1fa4ad56daa40532c324faf542bc2ec2d4b2d2b78b6141286533bf7"
+    },
+    "asmon": {
+      "filename": "pool/main/a/asmon/asmon_0.71-8.1_amd64.deb",
+      "sha256": "876f75bcd0f850edaeb10629523f342eedfc017386823af136fc7d06d7dd3215"
+    },
+    "bbpager": {
+      "filename": "pool/main/b/bbpager/bbpager_0.4.7-10_amd64.deb",
+      "sha256": "c18d148e4a0446d41a86bff09bbf190a6673208261511358195b0ba474661097"
+    },
+    "bbtime": {
+      "filename": "pool/main/b/bbtime/bbtime_0.1.5-16_amd64.deb",
+      "sha256": "8282ed6145025c6098b4d9e0529109c09de1223740d50ae78df7623bd49b9590"
+    },
+    "bubblefishymon": {
+      "filename": "pool/main/b/bfm/bubblefishymon_0.6.4-7_amd64.deb",
+      "sha256": "db9282a222ab13b19e7b4d53f5227918462cf7573f96dbee29fd47f0c68e4d39"
+    },
+    "9menu": {
+      "filename": "pool/main/9/9menu/9menu_1.11-1_amd64.deb",
+      "sha256": "11551b272663c9d3059275962f931c20ae116d4bf133147350e24708b8724e84"
+    },
+    "9wm": {
+      "filename": "pool/main/9/9wm/9wm_1.4.1-1_amd64.deb",
+      "sha256": "12cdb72280c518d9af27f7c5be15bc277a139e25bb1d8bf808bbad91e586df88"
+    },
+    "autocutsel": {
+      "filename": "pool/main/a/autocutsel/autocutsel_0.10.1-1+b1_amd64.deb",
+      "sha256": "558315e8e746909830c25d91be7205a1779fc2d4bfd26dcd972a21ac54a7dbbb"
+    },
+    "autorandr": {
+      "filename": "pool/main/a/autorandr/autorandr_1.15-1_all.deb",
+      "sha256": "24f2647488e16cf80571efbae5cb4b9068f6047c48908fd2edf7369eacea87af"
+    },
+    "alttab": {
+      "filename": "pool/main/a/alttab/alttab_1.7.1-4_amd64.deb",
+      "sha256": "f2f3dd3d92cf8c29472f7125e1ff3bb7a6aefe3b6ec2a5c990fb23b4451fdef9"
+    },
+    "bdfresize": {
+      "filename": "pool/main/b/bdfresize/bdfresize_1.5-12_amd64.deb",
+      "sha256": "5934ddda13e382ce73b417c90843347b93dd9c9fefab7cc3303b871b962de2bf"
+    },
+    "xdo": {
+      "filename": "pool/main/x/xdo/xdo_0.5.7-2_amd64.deb",
+      "sha256": "59b4c9002a19daa85a6438b3a2cee024025e368cf01047fce9aa9bb7b164c096"
+    },
+    "acpitool": {
+      "filename": "pool/main/a/acpitool/acpitool_0.5.1-7+b1_amd64.deb",
+      "sha256": "b7842304819f9bb2726ee9f4285e46d4a62f9f1fcaf7357a56f567908eea12d4"
+    },
+    "ack": {
+      "filename": "pool/main/a/ack/ack_3.8.1-1_all.deb",
+      "sha256": "aeafa2b66e51e1ff7fa5747a6e4e51198e506cf51b03fceb09908f76aee0da72"
+    },
+    "agedu": {
+      "filename": "pool/main/a/agedu/agedu_20211129.8cd63c5-1_amd64.deb",
+      "sha256": "da5aefb5204bb15e3e4ac06be9ed2160c9bfa1ea55e422b5fb2faa45bfef6def"
+    },
+    "ansiweather": {
+      "filename": "pool/main/a/ansiweather/ansiweather_1.19.0-1_all.deb",
+      "sha256": "04d96d918e42e5b926af6f7992b147e2d7709567d01ec6138a1d0ce1c6a1a076"
+    },
+    "cpulimit": {
+      "filename": "pool/main/c/cpulimit/cpulimit_3.1-1_amd64.deb",
+      "sha256": "2b3284800a3ff2cfac691fb2627d8f0a2e5f4149d201a3c7e4791dd3a23de6a2"
+    },
+    "ddgr": {
+      "filename": "pool/main/d/ddgr/ddgr_2.2-1_all.deb",
+      "sha256": "c61efb3c7d6ed6223d8a5acd9d9dc8af3b0e066a9fc322a766186807c75b8129"
+    },
+    "dfc": {
+      "filename": "pool/main/d/dfc/dfc_3.1.1-2_amd64.deb",
+      "sha256": "088a6b9193a412033afac34ce87dcebfeca4ed31efdb3db39040fea4098145b0"
+    },
+    "git-extras": {
+      "filename": "pool/main/g/git-extras/git-extras_7.3.0-1_all.deb",
+      "sha256": "b87d74c7cd121ddbac0722d17dbef657a727607829a8b7343c7e37c3109cdd5f"
+    },
+    "jqp": {
+      "filename": "pool/main/j/jqp/jqp_0.7.0-1+b4_amd64.deb",
+      "sha256": "736db09d1c4c377781c01cccae83e638a9b7fc69fe75179fd6eb3a4920a55c3d"
+    },
+    "swaks": {
+      "filename": "pool/main/s/swaks/swaks_20240103.0-2_all.deb",
+      "sha256": "4a9c0891d2abb5f4e763ab65f14a7915638bfc151731e4eea0a189a32e2b8047"
+    },
+    "9mount": {
+      "filename": "pool/main/9/9mount/9mount_1.3+hg20170412-2_amd64.deb",
+      "sha256": "99512c2b0e3a1a5a8a9aadb8c15faa89e9135f12434cff14a44cc32943e752e6"
+    },
+    "2048": {
+      "filename": "pool/main/2/2048/2048_1.0.3-1_amd64.deb",
+      "sha256": "72a1659aaa2171bd0bd47f0f7cda5ba82611f3597a7343299c52d3574ef56f9f"
+    },
+    "asciijump": {
+      "filename": "pool/main/a/asciijump/asciijump_1.0.2~beta-11_amd64.deb",
+      "sha256": "d719ab5a56aef175fab3f75760b5e6a48ce4965a17bc422c933a886283103d6f"
+    },
+    "xsoldier": {
+      "filename": "pool/main/x/xsoldier/xsoldier_1.8-6+b1_amd64.deb",
+      "sha256": "12be2616a031d6cc259c0a0c9d0c36a4647492e4c31c3596eebfc813206c09e0"
+    },
+    "nbsdgames": {
+      "filename": "pool/main/n/nbsdgames/nbsdgames_5-8_amd64.deb",
+      "sha256": "84f679bd6ac0aef4056a76ca4be19c0d37f38756b7a185cea3d73480bd52c610"
+    },
+    "nsnake": {
+      "filename": "pool/main/n/nsnake/nsnake_3.0.1-2.2_amd64.deb",
+      "sha256": "d3fd317d38e799d54dcc05cdefd84087739be664b081c38ea008d22be1029e27"
+    },
+    "omega-rpg": {
+      "filename": "pool/main/o/omega-rpg/omega-rpg_0.90-pa9-21_amd64.deb",
+      "sha256": "5e871298b4f0d75579eb566678230da187062f3547a383edb2074ea3fa6b3124"
+    },
+    "tint": {
+      "filename": "pool/main/t/tint/tint_0.07_amd64.deb",
+      "sha256": "e5506088b24a2ae8d183156e00182861c32ad8245c3b9edf49f34488b9bc850b"
+    },
+    "cbonsai": {
+      "filename": "pool/main/c/cbonsai/cbonsai_1.3.1-1_amd64.deb",
+      "sha256": "f676b7f53c0688b2d381aa4ca103c9b41caa0a8580226b0cbfb210753a002aec"
+    },
+    "chroma-curses": {
+      "filename": "pool/main/c/chroma/chroma-curses_1.19-2_amd64.deb",
+      "sha256": "8cb04f48d164c65fd15d81a1b9ef02df0f8af84613a74c91ac130881e937ecf0"
+    },
+    "chroma-data": {
+      "filename": "pool/main/c/chroma/chroma-data_1.19-2_all.deb",
+      "sha256": "cc0cd9d7a805b22b042ef9178db9fe71420a57541229da785d7c38a8842a80d0"
+    },
+    "fizmo-console": {
+      "filename": "pool/main/f/fizmo-console/fizmo-console_0.7.13-2+b2_amd64.deb",
+      "sha256": "67a622f1d7f246c6a90ab7438548d6c2e9fd10107187b1333d7596cdd695d0e6"
+    },
+    "gearhead": {
+      "filename": "pool/main/g/gearhead/gearhead_1.310-3+b1_amd64.deb",
+      "sha256": "7bdcb457503bdd15fa87392478d10b50b0f3d559f23386e789697fbe96dc1433"
+    },
+    "gearhead-data": {
+      "filename": "pool/main/g/gearhead/gearhead-data_1.310-3_all.deb",
+      "sha256": "7e353dcefb06f49ad15179dc2330508505b40cf3bdc13446308ea0847c76fcd4"
+    },
+    "gemdropx": {
+      "filename": "pool/main/g/gemdropx/gemdropx_0.9-10_amd64.deb",
+      "sha256": "284dc7ff9c693a45fe45aecda247a759fee23a2fbd269ce336eb3d66160a1c3a"
+    },
+    "sudoku": {
+      "filename": "pool/main/s/sudoku/sudoku_1.0.5-2.1_amd64.deb",
+      "sha256": "d2d75d85835aa425e8e9880c745b9d7ebbfcbd0586cb0a8ef92feed66f8f7963"
+    },
+    "ninvaders": {
+      "filename": "pool/main/n/ninvaders/ninvaders_0.1.1-5+b1_amd64.deb",
+      "sha256": "0ca2d278099e6d5a9852ad38301764954157f1365d7208d5243faff55f8ada8c"
+    },
+    "ttyrec": {
+      "filename": "pool/main/t/ttyrec/ttyrec_1.1.7.1-1_amd64.deb",
+      "sha256": "f11d8c9e1103547025982d14e83f3daaa6af7d27e27ada4951591d00dc78969a"
+    },
+    "crawl-common": {
+      "filename": "pool/main/c/crawl/crawl-common_0.28.0-1.1_all.deb",
+      "sha256": "50c8f0091ba88538dde6585e5eddba02677bfe94d3ee4dc90a5bd3a788650f59"
+    },
+    "liblua5.1-0": {
+      "filename": "pool/main/l/lua5.1/liblua5.1-0_5.1.5-11_amd64.deb",
+      "sha256": "e98fb0eaa8d07fd24bbaefd3b2bd356b8c6df241865780c42adb08f7ebcf8563"
+    },
+    "crawl": {
+      "filename": "pool/main/c/crawl/crawl_0.28.0-1.1_amd64.deb",
+      "sha256": "71d68bfc90443c0b26d60e0448825aa7cf329d18aba9ac76e1ca132b088afc64"
+    }
+  },
+  "packages": [
+    {
+      "name": "wmacpi",
+      "description": "ACPI battery monitor for WindowMaker",
+      "version": "2.4-2+b1",
+      "debian_version": "2.4-2+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmacpi"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmacpi",
+      "license": "See /usr/share/doc/wmacpi/copyright",
+      "license_path": "usr/share/doc/wmacpi/copyright"
+    },
+    {
+      "name": "wmbattery",
+      "description": "display laptop battery info, dockable in WindowMaker",
+      "version": "2.56-1+b1",
+      "debian_version": "2.56-1+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmbattery"
+      ],
+      "dependencies": [
+        "upower"
+      ],
+      "url": "https://www.dockapps.net/wmbattery",
+      "license": "See /usr/share/doc/wmbattery/copyright",
+      "license_path": "usr/share/doc/wmbattery/copyright"
+    },
+    {
+      "name": "wmbiff",
+      "description": "Dockable app that displays information about mailboxes",
+      "version": "0.4.37-1",
+      "debian_version": "0.4.37-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmbiff"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmbiff",
+      "license": "See /usr/share/doc/wmbiff/copyright",
+      "license_path": "usr/share/doc/wmbiff/copyright"
+    },
+    {
+      "name": "wmbubble",
+      "description": "system-load meter for Window Maker that features a duck",
+      "version": "1.54-2+b1",
+      "debian_version": "1.54-2+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmbubble"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/rnjacobs/wmbubble",
+      "license": "See /usr/share/doc/wmbubble/copyright",
+      "license_path": "usr/share/doc/wmbubble/copyright"
+    },
+    {
+      "name": "wmbutton",
+      "description": "dockapp displaying nine configurable buttons",
+      "version": "0.7.1-2",
+      "debian_version": "0.7.1-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmbutton"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmbutton",
+      "license": "See /usr/share/doc/wmbutton/copyright",
+      "license_path": "usr/share/doc/wmbutton/copyright"
+    },
+    {
+      "name": "wmcalc",
+      "description": "dockable calculator application",
+      "version": "0.7-2+b1",
+      "debian_version": "0.7-2+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmcalc"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmcalc",
+      "license": "See /usr/share/doc/wmcalc/copyright",
+      "license_path": "usr/share/doc/wmcalc/copyright"
+    },
+    {
+      "name": "wmcalclock",
+      "description": "dock.app which simply tells time and date",
+      "version": "1.26-2",
+      "debian_version": "1.26-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmcalclock"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmcalclock",
+      "license": "See /usr/share/doc/wmcalclock/copyright",
+      "license_path": "usr/share/doc/wmcalclock/copyright"
+    },
+    {
+      "name": "wmcliphist",
+      "description": "Dockapp which provides a history for X11 selections",
+      "version": "2.1-4+b3",
+      "debian_version": "2.1-4+b3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmcliphist"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmcliphist",
+      "license": "See /usr/share/doc/wmcliphist/copyright",
+      "license_path": "usr/share/doc/wmcliphist/copyright"
+    },
+    {
+      "name": "wmclock",
+      "description": "dockable clock applet for Window Maker",
+      "version": "1.0.16-2",
+      "debian_version": "1.0.16-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmclock"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmclock",
+      "license": "See /usr/share/doc/wmclock/copyright",
+      "license_path": "usr/share/doc/wmclock/copyright"
+    },
+    {
+      "name": "wmclockmon",
+      "description": "Displays a clock in 12/24h mode with alarm mode",
+      "version": "1.0.0-1",
+      "debian_version": "1.0.0-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmclockmon"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmclockmon",
+      "license": "See /usr/share/doc/wmclockmon/copyright",
+      "license_path": "usr/share/doc/wmclockmon/copyright"
+    },
+    {
+      "name": "wmcore",
+      "description": "Dockapp that shows the usage of each core in the system",
+      "version": "0.0.4-2+b1",
+      "debian_version": "0.0.4-2+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmcore"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmcore",
+      "license": "See /usr/share/doc/wmcore/copyright",
+      "license_path": "usr/share/doc/wmcore/copyright"
+    },
+    {
+      "name": "wmcpu",
+      "description": "Window Maker docking app similar to xosview",
+      "version": "1.4-4.1",
+      "debian_version": "1.4-4.1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmcpu"
+      ],
+      "dependencies": [],
+      "url": "https://packages.debian.org/trixie/wmcpu",
+      "license": "See /usr/share/doc/wmcpu/copyright",
+      "license_path": "usr/share/doc/wmcpu/copyright"
+    },
+    {
+      "name": "wmcpuload",
+      "description": "Dockapp that displays the current CPU usage",
+      "version": "1.1.1-3",
+      "debian_version": "1.1.1-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmcpuload"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmcpuload",
+      "license": "See /usr/share/doc/wmcpuload/copyright",
+      "license_path": "usr/share/doc/wmcpuload/copyright"
+    },
+    {
+      "name": "wmdiskmon",
+      "description": "dockapp to display disk usage",
+      "version": "0.0.2-4",
+      "debian_version": "0.0.2-4",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmdiskmon"
+      ],
+      "dependencies": [],
+      "url": "http://tnemeth.free.fr/projets/dockapps.html",
+      "license": "See /usr/share/doc/wmdiskmon/copyright",
+      "license_path": "usr/share/doc/wmdiskmon/copyright"
+    },
+    {
+      "name": "wmdrawer",
+      "description": "Window Maker dockapp providing a drawer to launch applications",
+      "version": "0.10.5-6.1+b2",
+      "debian_version": "0.10.5-6.1+b2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmdrawer"
+      ],
+      "dependencies": [],
+      "url": "http://people.easter-eggs.org/~valos/wmdrawer/",
+      "license": "See /usr/share/doc/wmdrawer/copyright",
+      "license_path": "usr/share/doc/wmdrawer/copyright"
+    },
+    {
+      "name": "wmfsm",
+      "description": "WindowMaker dock app for monitoring filesystem usage",
+      "version": "0.36-2",
+      "debian_version": "0.36-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmfsm"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmfsm",
+      "license": "See /usr/share/doc/wmfsm/copyright",
+      "license_path": "usr/share/doc/wmfsm/copyright"
+    },
+    {
+      "name": "wmgtemp",
+      "description": "Temperature sensor dockapp for Window Maker",
+      "version": "1.2-3+b1",
+      "debian_version": "1.2-3+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmgtemp"
+      ],
+      "dependencies": [
+        "lm-sensors"
+      ],
+      "url": "https://www.dockapps.net/wmgtemp",
+      "license": "See /usr/share/doc/wmgtemp/copyright",
+      "license_path": "usr/share/doc/wmgtemp/copyright"
+    },
+    {
+      "name": "wmget",
+      "description": "Background download manager in a Window Maker dock app",
+      "version": "0.6.1-3",
+      "debian_version": "0.6.1-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmget"
+      ],
+      "dependencies": [
+        "curl-cli",
+        "perl"
+      ],
+      "url": "https://www.dockapps.net/wmget",
+      "license": "See /usr/share/doc/wmget/copyright",
+      "license_path": "usr/share/doc/wmget/copyright"
+    },
+    {
+      "name": "wmhdplop",
+      "description": "hard drive activity monitor dockapp",
+      "version": "0.9.12-2",
+      "debian_version": "0.9.12-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmhdplop"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmhdplop",
+      "license": "See /usr/share/doc/wmhdplop/copyright",
+      "license_path": "usr/share/doc/wmhdplop/copyright"
+    },
+    {
+      "name": "wmifinfo",
+      "description": "Dockapp that shows information for all interfaces",
+      "version": "0.11-2+b1",
+      "debian_version": "0.11-2+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmifinfo"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmifinfo",
+      "license": "See /usr/share/doc/wmifinfo/copyright",
+      "license_path": "usr/share/doc/wmifinfo/copyright"
+    },
+    {
+      "name": "wmifs",
+      "description": "Window Maker dockapp for monitoring network traffic",
+      "version": "1.9-2+b1",
+      "debian_version": "1.9-2+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmifs"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmifs",
+      "license": "See /usr/share/doc/wmifs/copyright",
+      "license_path": "usr/share/doc/wmifs/copyright"
+    },
+    {
+      "name": "wmitime",
+      "description": "clock dock app showing time and internet time",
+      "version": "0.5-3",
+      "debian_version": "0.5-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmitime"
+      ],
+      "dependencies": [],
+      "url": "https://dockapps.net/wmitime",
+      "license": "See /usr/share/doc/wmitime/copyright",
+      "license_path": "usr/share/doc/wmitime/copyright"
+    },
+    {
+      "name": "wmload",
+      "description": "system load monitor designed for Window Maker",
+      "version": "0.9.7-2",
+      "debian_version": "0.9.7-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmload"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmload",
+      "license": "See /usr/share/doc/wmload/copyright",
+      "license_path": "usr/share/doc/wmload/copyright"
+    },
+    {
+      "name": "wmmemload",
+      "description": "WindowMaker dockapp to monitor memory and swap usage",
+      "version": "0.1.8-3",
+      "debian_version": "0.1.8-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmmemload"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmmemload",
+      "license": "See /usr/share/doc/wmmemload/copyright",
+      "license_path": "usr/share/doc/wmmemload/copyright"
+    },
+    {
+      "name": "wmmon",
+      "description": "Window Maker dockapp for monitoring system information",
+      "version": "1.4-2+b1",
+      "debian_version": "1.4-2+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmmon"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmmon",
+      "license": "See /usr/share/doc/wmmon/copyright",
+      "license_path": "usr/share/doc/wmmon/copyright"
+    },
+    {
+      "name": "wmmoonclock",
+      "description": "Window Maker moon phase dockapp",
+      "version": "1.30-4",
+      "debian_version": "1.30-4",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmmoonclock"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmmoonclock",
+      "license": "See /usr/share/doc/wmmoonclock/copyright",
+      "license_path": "usr/share/doc/wmmoonclock/copyright"
+    },
+    {
+      "name": "wmnd",
+      "description": "Dockapp monitoring network interfaces",
+      "version": "0.4.18-2+b1",
+      "debian_version": "0.4.18-2+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmnd"
+      ],
+      "dependencies": [],
+      "url": "https://www.thregr.org/~wavexx/software/wmnd/",
+      "license": "See /usr/share/doc/wmnd/copyright",
+      "license_path": "usr/share/doc/wmnd/copyright"
+    },
+    {
+      "name": "wmnut",
+      "description": "WindowMaker dock app that displays UPS statistics from NUT's upsd",
+      "version": "0.70-2",
+      "debian_version": "0.70-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmnut"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/networkupstools/wmnut",
+      "license": "See /usr/share/doc/wmnut/copyright",
+      "license_path": "usr/share/doc/wmnut/copyright"
+    },
+    {
+      "name": "wmpinboard",
+      "description": "Window Maker dock applet resembling a miniature pinboard",
+      "version": "1.0.1-5",
+      "debian_version": "1.0.1-5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmpinboard"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/bbidulock/wmpinboard",
+      "license": "See /usr/share/doc/wmpinboard/copyright",
+      "license_path": "usr/share/doc/wmpinboard/copyright"
+    },
+    {
+      "name": "wmpuzzle",
+      "description": "WindowMaker dock app 4x4 puzzle",
+      "version": "0.5.3-1",
+      "debian_version": "0.5.3-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmpuzzle"
+      ],
+      "dependencies": [],
+      "url": "https://packages.debian.org/trixie/wmpuzzle",
+      "license": "See /usr/share/doc/wmpuzzle/copyright",
+      "license_path": "usr/share/doc/wmpuzzle/copyright"
+    },
+    {
+      "name": "wmressel",
+      "description": "Dock app to change X11 resolutions",
+      "version": "0.10-1+b2",
+      "debian_version": "0.10-1+b2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmressel"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmressel",
+      "license": "See /usr/share/doc/wmressel/copyright",
+      "license_path": "usr/share/doc/wmressel/copyright"
+    },
+    {
+      "name": "wmstickynotes",
+      "description": "Window Maker dockapp to create sticky notes on desktop",
+      "version": "0.7-5",
+      "debian_version": "0.7-5",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmstickynotes"
+      ],
+      "dependencies": [],
+      "url": "https://sourceforge.net/projects/wmstickynotes/",
+      "license": "See /usr/share/doc/wmstickynotes/copyright",
+      "license_path": "usr/share/doc/wmstickynotes/copyright"
+    },
+    {
+      "name": "wmsun",
+      "description": "Dockable WindowMaker SunRise/SunSet App",
+      "version": "1.06-3",
+      "debian_version": "1.06-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmsun"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmsun",
+      "license": "See /usr/share/doc/wmsun/copyright",
+      "license_path": "usr/share/doc/wmsun/copyright"
+    },
+    {
+      "name": "wmsysmon",
+      "description": "Window Maker dockapp for monitoring your system",
+      "version": "0.8.1-1",
+      "debian_version": "0.8.1-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmsysmon"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/voyageur/wmsysmon",
+      "license": "See /usr/share/doc/wmsysmon/copyright",
+      "license_path": "usr/share/doc/wmsysmon/copyright"
+    },
+    {
+      "name": "wmtemp",
+      "description": "WM dock applet displaying lm_sensors temperature values",
+      "version": "0.0.6-3.4",
+      "debian_version": "0.0.6-3.4",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmtemp"
+      ],
+      "dependencies": [
+        "lm-sensors"
+      ],
+      "url": "http://gnodde.org/wmtemp/",
+      "license": "See /usr/share/doc/wmtemp/copyright",
+      "license_path": "usr/share/doc/wmtemp/copyright"
+    },
+    {
+      "name": "wmtime",
+      "description": "Window Maker dockapp that displays the time and date",
+      "version": "1.4-4",
+      "debian_version": "1.4-4",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmtime"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmtime",
+      "license": "See /usr/share/doc/wmtime/copyright",
+      "license_path": "usr/share/doc/wmtime/copyright"
+    },
+    {
+      "name": "wmtop",
+      "description": "dockapp that displays 3 top memory or CPU using processes",
+      "version": "0.85-2",
+      "debian_version": "0.85-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmtop"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmtop",
+      "license": "See /usr/share/doc/wmtop/copyright",
+      "license_path": "usr/share/doc/wmtop/copyright"
+    },
+    {
+      "name": "wmweather",
+      "description": "WindowMaker dockapp that shows your current weather",
+      "version": "2.4.8-3",
+      "debian_version": "2.4.8-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmweather"
+      ],
+      "dependencies": [],
+      "url": "http://people.debian.org/~godisch/wmweather/",
+      "license": "See /usr/share/doc/wmweather/copyright",
+      "license_path": "usr/share/doc/wmweather/copyright"
+    },
+    {
+      "name": "wmweather+",
+      "description": "WindowMaker dock app that shows your current weather",
+      "version": "2.19~alpha+ds-2",
+      "debian_version": "2.19~alpha+ds-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmweather+"
+      ],
+      "dependencies": [],
+      "url": "https://sourceforge.net/projects/wmweatherplus/",
+      "license": "See /usr/share/doc/wmweather+/copyright",
+      "license_path": "usr/share/doc/wmweather+/copyright"
+    },
+    {
+      "name": "wmusic",
+      "description": "remote-control DockApp for MPRIS-compatible media players",
+      "version": "2.1.1-1+b1",
+      "debian_version": "2.1.1-1+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmusic"
+      ],
+      "dependencies": [],
+      "url": "https://dockapps.net/wmusic",
+      "license": "See /usr/share/doc/wmusic/copyright",
+      "license_path": "usr/share/doc/wmusic/copyright"
+    },
+    {
+      "name": "wmsystemtray",
+      "description": "Freedesktop.org system tray as a Window Maker dock app",
+      "version": "1.4+git20150508-3",
+      "debian_version": "1.4+git20150508-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmsystemtray"
+      ],
+      "dependencies": [],
+      "url": "https://sourceforge.net/projects/wmsystemtray/",
+      "license": "See /usr/share/doc/wmsystemtray/copyright",
+      "license_path": "usr/share/doc/wmsystemtray/copyright"
+    },
+    {
+      "name": "wmxres",
+      "description": "dock application to select your display mode among those possible",
+      "version": "1.4-3+b1",
+      "debian_version": "1.4-3+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "wmxres"
+      ],
+      "dependencies": [],
+      "url": "https://www.dockapps.net/wmxres",
+      "license": "See /usr/share/doc/wmxres/copyright",
+      "license_path": "usr/share/doc/wmxres/copyright"
+    },
+    {
+      "name": "asclock-themes",
+      "description": "Theme files for ASclock, a clock applet",
+      "version": "2.0.12-35",
+      "debian_version": "2.0.12-35",
+      "arch": "any",
+      "debian_packages": [
+        "asclock-themes"
+      ],
+      "dependencies": [],
+      "url": "https://packages.debian.org/trixie/asclock-themes",
+      "license": "See /usr/share/doc/asclock-themes/copyright",
+      "license_path": "usr/share/doc/asclock-themes/copyright"
+    },
+    {
+      "name": "asclock",
+      "description": "clock designed with the NeXTStep look",
+      "version": "2.0.12-35",
+      "debian_version": "2.0.12-35",
+      "arch": "x86_64",
+      "debian_packages": [
+        "asclock"
+      ],
+      "dependencies": [
+        "asclock-themes"
+      ],
+      "url": "https://packages.debian.org/trixie/asclock",
+      "license": "See /usr/share/doc/asclock/copyright",
+      "license_path": "usr/share/doc/asclock/copyright"
+    },
+    {
+      "name": "asmon",
+      "description": "system resource monitor dockapp for Afterstep and WindowMaker",
+      "version": "0.71-8.1",
+      "debian_version": "0.71-8.1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "asmon"
+      ],
+      "dependencies": [],
+      "url": "http://rio.vg/asmon/",
+      "license": "See /usr/share/doc/asmon/copyright",
+      "license_path": "usr/share/doc/asmon/copyright"
+    },
+    {
+      "name": "bbpager",
+      "description": "Pager for the blackbox and fluxbox window managers",
+      "version": "0.4.7-10",
+      "debian_version": "0.4.7-10",
+      "arch": "x86_64",
+      "debian_packages": [
+        "bbpager"
+      ],
+      "dependencies": [],
+      "url": "https://sourceforge.net/projects/bbtools",
+      "license": "See /usr/share/doc/bbpager/copyright",
+      "license_path": "usr/share/doc/bbpager/copyright"
+    },
+    {
+      "name": "bbtime",
+      "description": "Time tool for the blackbox/fluxbox window managers",
+      "version": "0.1.5-16",
+      "debian_version": "0.1.5-16",
+      "arch": "x86_64",
+      "debian_packages": [
+        "bbtime"
+      ],
+      "dependencies": [],
+      "url": "http://bbtools.sourceforge.net/",
+      "license": "See /usr/share/doc/bbtime/copyright",
+      "license_path": "usr/share/doc/bbtime/copyright"
+    },
+    {
+      "name": "bubblefishymon",
+      "description": "system load dockapp with a duck",
+      "version": "0.6.4-7",
+      "debian_version": "0.6.4-7",
+      "arch": "x86_64",
+      "debian_packages": [
+        "bubblefishymon"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/JNRowe/bfm",
+      "license": "See /usr/share/doc/bubblefishymon/copyright",
+      "license_path": "usr/share/doc/bubblefishymon/copyright"
+    },
+    {
+      "name": "9menu",
+      "description": "Creates X menus from the shell",
+      "version": "1.11-1",
+      "debian_version": "1.11-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "9menu"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/arnoldrobbins/9menu",
+      "license": "See /usr/share/doc/9menu/copyright",
+      "license_path": "usr/share/doc/9menu/copyright"
+    },
+    {
+      "name": "9wm",
+      "description": "X11 window manager inspired by Plan 9's rio",
+      "version": "1.4.1-1",
+      "debian_version": "1.4.1-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "9wm"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/9wm/9wm",
+      "license": "See /usr/share/doc/9wm/copyright",
+      "license_path": "usr/share/doc/9wm/copyright"
+    },
+    {
+      "name": "autocutsel",
+      "description": "Keep the X clipboard and the cutbuffer in sync",
+      "version": "0.10.1-1+b1",
+      "debian_version": "0.10.1-1+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "autocutsel"
+      ],
+      "dependencies": [],
+      "url": "https://www.nongnu.org/autocutsel/",
+      "license": "See /usr/share/doc/autocutsel/copyright",
+      "license_path": "usr/share/doc/autocutsel/copyright"
+    },
+    {
+      "name": "autorandr",
+      "description": "Automatically select a display configuration for connected devices",
+      "version": "1.15-1",
+      "debian_version": "1.15-1",
+      "arch": "any",
+      "debian_packages": [
+        "autorandr"
+      ],
+      "dependencies": [
+        "xrandr"
+      ],
+      "url": "https://github.com/phillipberndt/autorandr",
+      "license": "See /usr/share/doc/autorandr/copyright",
+      "license_path": "usr/share/doc/autorandr/copyright"
+    },
+    {
+      "name": "alttab",
+      "description": "task switcher for minimalistic WMs or standalone X session",
+      "version": "1.7.1-4",
+      "debian_version": "1.7.1-4",
+      "arch": "x86_64",
+      "debian_packages": [
+        "alttab"
+      ],
+      "dependencies": [],
+      "url": "https://sagb.github.io/alttab",
+      "license": "See /usr/share/doc/alttab/copyright",
+      "license_path": "usr/share/doc/alttab/copyright"
+    },
+    {
+      "name": "bdfresize",
+      "description": "tool for resizing BDF format font",
+      "version": "1.5-12",
+      "debian_version": "1.5-12",
+      "arch": "x86_64",
+      "debian_packages": [
+        "bdfresize"
+      ],
+      "dependencies": [],
+      "url": "http://openlab.jp/efont/",
+      "license": "See /usr/share/doc/bdfresize/copyright",
+      "license_path": "usr/share/doc/bdfresize/copyright"
+    },
+    {
+      "name": "xdo",
+      "description": "small console-based utility to perform elementary actions on windows",
+      "version": "0.5.7-2",
+      "debian_version": "0.5.7-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xdo"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/baskerville/xdo",
+      "license": "See /usr/share/doc/xdo/copyright",
+      "license_path": "usr/share/doc/xdo/copyright"
+    },
+    {
+      "name": "acpitool",
+      "description": "command line ACPI client",
+      "version": "0.5.1-7+b1",
+      "debian_version": "0.5.1-7+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "acpitool"
+      ],
+      "dependencies": [],
+      "url": "http://sourceforge.net/projects/acpitool/",
+      "license": "See /usr/share/doc/acpitool/copyright",
+      "license_path": "usr/share/doc/acpitool/copyright"
+    },
+    {
+      "name": "ack",
+      "description": "grep-like program specifically for large source trees",
+      "version": "3.8.1-1",
+      "debian_version": "3.8.1-1",
+      "arch": "any",
+      "debian_packages": [
+        "ack"
+      ],
+      "dependencies": [
+        "perl"
+      ],
+      "url": "https://beyondgrep.com/",
+      "license": "See /usr/share/doc/ack/copyright",
+      "license_path": "usr/share/doc/ack/copyright"
+    },
+    {
+      "name": "agedu",
+      "description": "Unix utility for tracking down wasted disk space",
+      "version": "20211129.8cd63c5-1",
+      "debian_version": "20211129.8cd63c5-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "agedu"
+      ],
+      "dependencies": [],
+      "url": "https://www.chiark.greenend.org.uk/~sgtatham/agedu/",
+      "license": "See /usr/share/doc/agedu/copyright",
+      "license_path": "usr/share/doc/agedu/copyright"
+    },
+    {
+      "name": "ansiweather",
+      "description": "Weather in your terminal, with ANSI colors and Unicode symbols",
+      "version": "1.19.0-1",
+      "debian_version": "1.19.0-1",
+      "arch": "any",
+      "debian_packages": [
+        "ansiweather"
+      ],
+      "dependencies": [
+        "bc",
+        "curl-cli",
+        "jq"
+      ],
+      "url": "https://github.com/fcambus/ansiweather",
+      "license": "See /usr/share/doc/ansiweather/copyright",
+      "license_path": "usr/share/doc/ansiweather/copyright"
+    },
+    {
+      "name": "cpulimit",
+      "description": "tool for limiting the CPU usage of a process",
+      "version": "3.1-1",
+      "debian_version": "3.1-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "cpulimit"
+      ],
+      "dependencies": [],
+      "url": "https://limitcpu.sourceforge.net/",
+      "license": "See /usr/share/doc/cpulimit/copyright",
+      "license_path": "usr/share/doc/cpulimit/copyright"
+    },
+    {
+      "name": "ddgr",
+      "description": "DuckDuckGo from the terminal",
+      "version": "2.2-1",
+      "debian_version": "2.2-1",
+      "arch": "any",
+      "debian_packages": [
+        "ddgr"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/jarun/ddgr",
+      "license": "See /usr/share/doc/ddgr/copyright",
+      "license_path": "usr/share/doc/ddgr/copyright"
+    },
+    {
+      "name": "dfc",
+      "description": "display file system usage using graph and colors",
+      "version": "3.1.1-2",
+      "debian_version": "3.1.1-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "dfc"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/rolinh/dfc",
+      "license": "See /usr/share/doc/dfc/copyright",
+      "license_path": "usr/share/doc/dfc/copyright"
+    },
+    {
+      "name": "git-extras",
+      "description": "Extra commands for git",
+      "version": "7.3.0-1",
+      "debian_version": "7.3.0-1",
+      "arch": "any",
+      "debian_packages": [
+        "git-extras"
+      ],
+      "dependencies": [
+        "git"
+      ],
+      "url": "https://github.com/tj/git-extras",
+      "license": "See /usr/share/doc/git-extras/copyright",
+      "license_path": "usr/share/doc/git-extras/copyright"
+    },
+    {
+      "name": "jqp",
+      "description": "TUI playground to experiment with jq (program)",
+      "version": "0.7.0-1+b4",
+      "debian_version": "0.7.0-1+b4",
+      "arch": "x86_64",
+      "debian_packages": [
+        "jqp"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/noahgorstein/jqp",
+      "license": "See /usr/share/doc/jqp/copyright",
+      "license_path": "usr/share/doc/jqp/copyright"
+    },
+    {
+      "name": "swaks",
+      "description": "SMTP command-line test tool",
+      "version": "20240103.0-2",
+      "debian_version": "20240103.0-2",
+      "arch": "any",
+      "debian_packages": [
+        "swaks"
+      ],
+      "dependencies": [
+        "perl"
+      ],
+      "url": "https://www.jetmore.org/john/code/swaks/",
+      "license": "See /usr/share/doc/swaks/copyright",
+      "license_path": "usr/share/doc/swaks/copyright"
+    },
+    {
+      "name": "9mount",
+      "description": "Plan 9 filesystem (v9fs) user mount utilities",
+      "version": "1.3+hg20170412-2",
+      "debian_version": "1.3+hg20170412-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "9mount"
+      ],
+      "dependencies": [],
+      "url": "http://sqweek.net/code/9mount/",
+      "license": "See /usr/share/doc/9mount/copyright",
+      "license_path": "usr/share/doc/9mount/copyright"
+    },
+    {
+      "name": "2048",
+      "description": "Slide and add puzzle game for text mode",
+      "version": "1.0.3-1",
+      "debian_version": "1.0.3-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "2048"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/mevdschee/2048.c",
+      "license": "See /usr/share/doc/2048/copyright",
+      "license_path": "usr/share/doc/2048/copyright"
+    },
+    {
+      "name": "asciijump",
+      "description": "Small and funny ASCII-art game about ski jumping",
+      "version": "1.0.2~beta-11",
+      "debian_version": "1.0.2~beta-11",
+      "arch": "x86_64",
+      "debian_packages": [
+        "asciijump"
+      ],
+      "dependencies": [],
+      "url": "https://packages.debian.org/trixie/asciijump",
+      "license": "See /usr/share/doc/asciijump/copyright",
+      "license_path": "usr/share/doc/asciijump/copyright"
+    },
+    {
+      "name": "xsoldier",
+      "description": "shoot 'em up game with the \"not shooting\" bonus",
+      "version": "1:1.8-6+b1",
+      "debian_version": "1:1.8-6+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xsoldier"
+      ],
+      "dependencies": [],
+      "url": "http://www.interq.or.jp/libra/oohara/xsoldier/index.html",
+      "license": "See /usr/share/doc/xsoldier/copyright",
+      "license_path": "usr/share/doc/xsoldier/copyright"
+    },
+    {
+      "name": "nbsdgames",
+      "description": "text based mini games for your terminal",
+      "version": "5-8",
+      "debian_version": "5-8",
+      "arch": "x86_64",
+      "debian_packages": [
+        "nbsdgames"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/abakh/nbsdgames",
+      "license": "See /usr/share/doc/nbsdgames/copyright",
+      "license_path": "usr/share/doc/nbsdgames/copyright"
+    },
+    {
+      "name": "nsnake",
+      "description": "classic snake game on the terminal",
+      "version": "3.0.1-2.2",
+      "debian_version": "3.0.1-2.2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "nsnake"
+      ],
+      "dependencies": [],
+      "url": "http://nsnake.alexdantas.net/",
+      "license": "See /usr/share/doc/nsnake/copyright",
+      "license_path": "usr/share/doc/nsnake/copyright"
+    },
+    {
+      "name": "omega-rpg",
+      "description": "text-based roguelike game",
+      "version": "1:0.90-pa9-21",
+      "debian_version": "1:0.90-pa9-21",
+      "arch": "x86_64",
+      "debian_packages": [
+        "omega-rpg"
+      ],
+      "dependencies": [],
+      "url": "https://packages.debian.org/trixie/omega-rpg",
+      "license": "See /usr/share/doc/omega-rpg/copyright",
+      "license_path": "usr/share/doc/omega-rpg/copyright"
+    },
+    {
+      "name": "tint",
+      "description": "Tetris clone for text based terminal",
+      "version": "0.07",
+      "debian_version": "0.07",
+      "arch": "x86_64",
+      "debian_packages": [
+        "tint"
+      ],
+      "dependencies": [],
+      "url": "https://packages.debian.org/trixie/tint",
+      "license": "See /usr/share/doc/tint/copyright",
+      "license_path": "usr/share/doc/tint/copyright"
+    },
+    {
+      "name": "cbonsai",
+      "description": "terminal-based bonsai tree generator",
+      "version": "1.3.1-1",
+      "debian_version": "1.3.1-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "cbonsai"
+      ],
+      "dependencies": [],
+      "url": "https://gitlab.com/jallbrit/cbonsai",
+      "license": "See /usr/share/doc/cbonsai/copyright",
+      "license_path": "usr/share/doc/cbonsai/copyright"
+    },
+    {
+      "name": "chroma-data",
+      "description": "Abstract puzzle game - data files",
+      "version": "1.19-2",
+      "debian_version": "1.19-2",
+      "arch": "any",
+      "debian_packages": [
+        "chroma-data"
+      ],
+      "dependencies": [],
+      "url": "http://level7.org.uk/chroma/",
+      "license": "See /usr/share/doc/chroma-data/copyright",
+      "license_path": "usr/share/doc/chroma-data/copyright"
+    },
+    {
+      "name": "chroma-curses",
+      "description": "Abstract puzzle game - terminal version",
+      "version": "1.19-2",
+      "debian_version": "1.19-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "chroma-curses"
+      ],
+      "dependencies": [
+        "chroma-data"
+      ],
+      "url": "http://level7.org.uk/chroma/",
+      "license": "See /usr/share/doc/chroma-curses/copyright",
+      "license_path": "usr/share/doc/chroma-curses/copyright"
+    },
+    {
+      "name": "fizmo-console",
+      "description": "Console-based Z-machine interpreter for Infocom/Inform games",
+      "version": "0.7.13-2+b2",
+      "debian_version": "0.7.13-2+b2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "fizmo-console"
+      ],
+      "dependencies": [],
+      "url": "https://fizmo.spellbreaker.org/",
+      "license": "See /usr/share/doc/fizmo-console/copyright",
+      "license_path": "usr/share/doc/fizmo-console/copyright"
+    },
+    {
+      "name": "gearhead-data",
+      "description": "data files for gearhead",
+      "version": "1.310-3",
+      "debian_version": "1.310-3",
+      "arch": "any",
+      "debian_packages": [
+        "gearhead-data"
+      ],
+      "dependencies": [],
+      "url": "http://www.gearheadrpg.com/",
+      "license": "See /usr/share/doc/gearhead-data/copyright",
+      "license_path": "usr/share/doc/gearhead-data/copyright"
+    },
+    {
+      "name": "gearhead",
+      "description": "roguelike mecha role playing game, console version",
+      "version": "1.310-3+b1",
+      "debian_version": "1.310-3+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "gearhead"
+      ],
+      "dependencies": [
+        "gearhead-data"
+      ],
+      "url": "http://www.gearheadrpg.com/",
+      "license": "See /usr/share/doc/gearhead/copyright",
+      "license_path": "usr/share/doc/gearhead/copyright"
+    },
+    {
+      "name": "gemdropx",
+      "description": "Gem Drop X is an interesting one-player puzzle game for X11",
+      "version": "0.9-10",
+      "debian_version": "0.9-10",
+      "arch": "x86_64",
+      "debian_packages": [
+        "gemdropx"
+      ],
+      "dependencies": [],
+      "url": "http://www.newbreedsoftware.com/gemdropx",
+      "license": "See /usr/share/doc/gemdropx/copyright",
+      "license_path": "usr/share/doc/gemdropx/copyright"
+    },
+    {
+      "name": "sudoku",
+      "description": "console based sudoku",
+      "version": "1.0.5-2.1",
+      "debian_version": "1.0.5-2.1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "sudoku"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/cinemast/sudoku",
+      "license": "See /usr/share/doc/sudoku/copyright",
+      "license_path": "usr/share/doc/sudoku/copyright"
+    },
+    {
+      "name": "ninvaders",
+      "description": "A space invaders-like game using ncurses",
+      "version": "0.1.1-5+b1",
+      "debian_version": "0.1.1-5+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "ninvaders"
+      ],
+      "dependencies": [],
+      "url": "http://ninvaders.sourceforge.net/",
+      "license": "See /usr/share/doc/ninvaders/copyright",
+      "license_path": "usr/share/doc/ninvaders/copyright"
+    },
+    {
+      "name": "ttyrec",
+      "description": "Terminal interaction recorder and player (for tty)",
+      "version": "1.1.7.1-1",
+      "debian_version": "1.1.7.1-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "ttyrec"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/ovh/ovh-ttyrec",
+      "license": "See /usr/share/doc/ttyrec/copyright",
+      "license_path": "usr/share/doc/ttyrec/copyright"
+    },
+    {
+      "name": "crawl-common",
+      "description": "Dungeon Crawl, a text-based roguelike game (data files)",
+      "version": "2:0.28.0-1.1",
+      "debian_version": "2:0.28.0-1.1",
+      "arch": "any",
+      "debian_packages": [
+        "crawl-common"
+      ],
+      "dependencies": [],
+      "url": "http://crawl.develz.org/",
+      "license": "See /usr/share/doc/crawl-common/copyright",
+      "license_path": "usr/share/doc/crawl-common/copyright"
+    },
+    {
+      "name": "liblua5.1-0",
+      "description": "Shared library for the Lua interpreter version 5.1",
+      "version": "5.1.5-11",
+      "debian_version": "5.1.5-11",
+      "arch": "x86_64",
+      "debian_packages": [
+        "liblua5.1-0"
+      ],
+      "dependencies": [],
+      "url": "https://www.lua.org",
+      "license": "See /usr/share/doc/liblua5.1-0/copyright",
+      "license_path": "usr/share/doc/liblua5.1-0/copyright"
+    },
+    {
+      "name": "crawl",
+      "description": "Dungeon Crawl, a text-based roguelike game",
+      "version": "2:0.28.0-1.1",
+      "debian_version": "2:0.28.0-1.1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "crawl"
+      ],
+      "dependencies": [
+        "crawl-common",
+        "liblua5.1-0"
+      ],
+      "url": "http://crawl.develz.org/",
+      "license": "See /usr/share/doc/crawl/copyright",
+      "license_path": "usr/share/doc/crawl/copyright",
+      "license_source_package": "crawl-common",
+      "license_source_path": "usr/share/doc/crawl-common/copyright"
+    }
+  ]
+}
