@@ -1,0 +1,10 @@
+Name: wmclockmon
+Description: Displays a clock in 12/24h mode with alarm mode
+Version: 1.0.0-1
+Arch: x86_64
+URL: https://www.dockapps.net/wmclockmon
+License: See /usr/share/doc/wmclockmon/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libgtk-3-0t64
+Provides: wmclockmon-cal=/usr/bin/wmclockmon-cal, wmclockmon-config=/usr/bin/wmclockmon-config, wmclockmon=/usr/bin/wmclockmon
