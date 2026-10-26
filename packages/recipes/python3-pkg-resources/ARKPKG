@@ -5,3 +5,9 @@ Arch: any
 URL: https://github.com/pypa/setuptools
 License: See /usr/share/doc/python3-pkg-resources/copyright
 Maintainer: arkanaOS Team
+Dependencies:
+  python3-autocommand
+  python3-inflect
+  python3-jaraco.context
+  python3-jaraco.functools
+  python3-more-itertools

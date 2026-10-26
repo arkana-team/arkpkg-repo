@@ -1,0 +1,9 @@
+Name: python3-typeguard
+Description: Run-time type checker for Python
+Version: 4.4.2-1
+Arch: any
+URL: https://github.com/agronholm/typeguard
+License: See /usr/share/doc/python3-typeguard/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  python3-typing-extensions

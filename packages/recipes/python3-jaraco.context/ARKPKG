@@ -1,0 +1,7 @@
+Name: python3-jaraco.context
+Description: jaraco contextlib extensions
+Version: 6.0.1-1+deb13u1
+Arch: any
+URL: https://github.com/jaraco/jaraco.context
+License: See /usr/share/doc/python3-jaraco.context/copyright
+Maintainer: arkanaOS Team

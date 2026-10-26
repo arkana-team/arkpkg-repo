@@ -1,0 +1,11 @@
+Name: python3-inflect
+Description: Generate plurals, singular nouns, ordinals, indefinite articles (Python 3)
+Version: 7.3.1-2
+Arch: any
+URL: https://github.com/jaraco/inflect
+License: See /usr/share/doc/python3-inflect/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  python3-more-itertools
+  python3-typeguard
+  python3-typing-extensions

@@ -26273,10 +26273,10 @@
       ]
     },
     "python3-typing-extensions": {
-      "author": null,
-      "git_repo": "https://salsa.debian.org/python-team/packages/python-typing-extensions.git",
-      "git_repo_type": "packaging",
-      "git_author_url": null,
+      "author": "Python Typing contributors",
+      "git_repo": "https://github.com/python/typing_extensions",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/python",
       "packagers": [
         {
           "name": "arkana-team",
@@ -29733,6 +29733,102 @@
       "git_repo": "https://github.com/pypa/setuptools",
       "git_repo_type": "upstream",
       "git_author_url": "https://github.com/pypa",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-autocommand": {
+      "author": "Nathan West",
+      "git_repo": "https://github.com/Lucretiel/autocommand",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/Lucretiel",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-inflect": {
+      "author": "Paul Dyson",
+      "git_repo": "https://github.com/jaraco/inflect",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/pwdyson",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-jaraco.context": {
+      "author": "Jason R. Coombs",
+      "git_repo": "https://github.com/jaraco/jaraco.context",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/jaraco",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-jaraco.functools": {
+      "author": "Jason R. Coombs",
+      "git_repo": "https://github.com/jaraco/jaraco.functools",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/jaraco",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-more-itertools": {
+      "author": "Erik Rose",
+      "git_repo": "https://github.com/more-itertools/more-itertools",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/erikrose",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "python3-typeguard": {
+      "author": "Alex Grönholm",
+      "git_repo": "https://github.com/agronholm/typeguard",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/agronholm",
       "packagers": [
         {
           "name": "arkana-team",

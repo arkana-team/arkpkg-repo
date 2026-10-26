@@ -3820,13 +3820,111 @@
         "python3-pkg-resources"
       ],
       "debian_version": "78.1.1-0.1",
-      "dependencies": [],
+      "dependencies": [
+        "python3-autocommand",
+        "python3-inflect",
+        "python3-jaraco.context",
+        "python3-jaraco.functools",
+        "python3-more-itertools"
+      ],
       "description": "Python package discovery and resource access",
       "license": "See /usr/share/doc/python3-pkg-resources/copyright",
       "license_path": "usr/share/doc/python3-pkg-resources/copyright",
       "name": "python3-pkg-resources",
       "url": "https://github.com/pypa/setuptools",
       "version": "78.1.1-0.1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "python3-autocommand"
+      ],
+      "debian_version": "2.2.2-3",
+      "dependencies": [],
+      "description": "library to generate argparse parsers from function signatures",
+      "license": "See /usr/share/doc/python3-autocommand/copyright",
+      "license_path": "usr/share/doc/python3-autocommand/copyright",
+      "name": "python3-autocommand",
+      "url": "https://github.com/Lucretiel/autocommand",
+      "version": "2.2.2-3"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "python3-inflect"
+      ],
+      "debian_version": "7.3.1-2",
+      "dependencies": [
+        "python3-more-itertools",
+        "python3-typeguard",
+        "python3-typing-extensions"
+      ],
+      "description": "Generate plurals, singular nouns, ordinals, indefinite articles (Python 3)",
+      "license": "See /usr/share/doc/python3-inflect/copyright",
+      "license_path": "usr/share/doc/python3-inflect/copyright",
+      "name": "python3-inflect",
+      "url": "https://github.com/jaraco/inflect",
+      "version": "7.3.1-2"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "python3-jaraco.context"
+      ],
+      "debian_version": "6.0.1-1+deb13u1",
+      "dependencies": [],
+      "description": "jaraco contextlib extensions",
+      "license": "See /usr/share/doc/python3-jaraco.context/copyright",
+      "license_path": "usr/share/doc/python3-jaraco.context/copyright",
+      "name": "python3-jaraco.context",
+      "url": "https://github.com/jaraco/jaraco.context",
+      "version": "6.0.1-1+deb13u1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "python3-jaraco.functools"
+      ],
+      "debian_version": "4.1.0-1",
+      "dependencies": [
+        "python3-more-itertools"
+      ],
+      "description": "additional functools in the spirit of stdlib functools",
+      "license": "See /usr/share/doc/python3-jaraco.functools/copyright",
+      "license_path": "usr/share/doc/python3-jaraco.functools/copyright",
+      "name": "python3-jaraco.functools",
+      "url": "https://github.com/jaraco/jaraco.functools",
+      "version": "4.1.0-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "python3-more-itertools"
+      ],
+      "debian_version": "10.7.0-1",
+      "dependencies": [],
+      "description": "library with routines for operating on iterables, beyond itertools (Python 3)",
+      "license": "See /usr/share/doc/python3-more-itertools/copyright",
+      "license_path": "usr/share/doc/python3-more-itertools/copyright",
+      "name": "python3-more-itertools",
+      "url": "https://github.com/more-itertools/more-itertools",
+      "version": "10.7.0-1"
+    },
+    {
+      "arch": "any",
+      "debian_packages": [
+        "python3-typeguard"
+      ],
+      "debian_version": "4.4.2-1",
+      "dependencies": [
+        "python3-typing-extensions"
+      ],
+      "description": "Run-time type checker for Python",
+      "license": "See /usr/share/doc/python3-typeguard/copyright",
+      "license_path": "usr/share/doc/python3-typeguard/copyright",
+      "name": "python3-typeguard",
+      "url": "https://github.com/agronholm/typeguard",
+      "version": "4.4.2-1"
     }
   ],
   "sources": {
@@ -5587,6 +5685,42 @@
       "filename": "pool/main/s/setuptools/python3-pkg-resources_78.1.1-0.1_all.deb",
       "sha256": "cf8749251172abc945216cf878367f614cf91d3d9a1043ba3bacc5a74e8cc1a8",
       "version": "78.1.1-0.1"
+    },
+    "python3-autocommand": {
+      "architecture": "all",
+      "filename": "pool/main/p/python-autocommand/python3-autocommand_2.2.2-3_all.deb",
+      "sha256": "1e62ac22ff83466228c051c6c2402a40f521646e15b5aa54cf2391206a848bad",
+      "version": "2.2.2-3"
+    },
+    "python3-inflect": {
+      "architecture": "all",
+      "filename": "pool/main/p/python-inflect/python3-inflect_7.3.1-2_all.deb",
+      "sha256": "6c10dca4d4aa0eb0b4e16e8b62b74a073a8d22be8809c3f61c56b06fdd1451f8",
+      "version": "7.3.1-2"
+    },
+    "python3-jaraco.context": {
+      "architecture": "all",
+      "filename": "pool/main/j/jaraco.context/python3-jaraco.context_6.0.1-1+deb13u1_all.deb",
+      "sha256": "f909ec7b00dd96a1905322acba7cdd2df09747ceddeef6e426a97b33ab227f80",
+      "version": "6.0.1-1+deb13u1"
+    },
+    "python3-jaraco.functools": {
+      "architecture": "all",
+      "filename": "pool/main/p/python-jaraco.functools/python3-jaraco.functools_4.1.0-1_all.deb",
+      "sha256": "f5ac3e5f79b6394191d76ea7cde9255d8bae98f639886cb981444128f6545796",
+      "version": "4.1.0-1"
+    },
+    "python3-more-itertools": {
+      "architecture": "all",
+      "filename": "pool/main/m/more-itertools/python3-more-itertools_10.7.0-1_all.deb",
+      "sha256": "385d785fa84261838732ec97627b4e95ec7399fc449d8a2aaaef66fb5f961c25",
+      "version": "10.7.0-1"
+    },
+    "python3-typeguard": {
+      "architecture": "all",
+      "filename": "pool/main/p/python-typeguard/python3-typeguard_4.4.2-1_all.deb",
+      "sha256": "81e512101d7ab94e73646b9a8e4fb9b948836e3172dc5719ad3acbcde65bca01",
+      "version": "4.4.2-1"
     }
   },
   "suite": "trixie"
