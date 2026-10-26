@@ -262,6 +262,7 @@ for path in Path('lib/Xm').glob('Xpm*.c'):
 
 
 def build(args: argparse.Namespace) -> None:
+    """Build optional Motif, NEdit, and XNEdit packages from pinned sources."""
     repo_root = Path(__file__).resolve().parents[1]
     sysroot = args.sysroot.resolve()
     output = args.output_dir.resolve()

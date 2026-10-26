@@ -154,6 +154,7 @@ class SourceSnapshotTests(unittest.TestCase):
         self.assertFalse(target.exists())
 
     def test_build_uses_private_sources_for_all_packages_and_removes_them(self) -> None:
+        """Verify all package builds use private source snapshots and clean them up."""
         specs = {}
         contents = {}
         for name, license_name in (
@@ -169,6 +170,7 @@ class SourceSnapshotTests(unittest.TestCase):
         sources = []
 
         def target_build(*, sysroot, archive, root, commands, log):
+            """Simulate a target build while checking its source snapshot boundary."""
             sources.append(archive)
             self.assertNotEqual(archive.parent, self.cache)
             self.assertEqual(stat.S_IMODE(archive.parent.stat().st_mode), 0o700)
