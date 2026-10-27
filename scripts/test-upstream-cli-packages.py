@@ -10,6 +10,7 @@ import stat
 import tarfile
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 from unittest import mock
 
@@ -28,6 +29,14 @@ def source_archive(content: bytes) -> bytes:
             member = tarfile.TarInfo(f"fixture-1.0/{name}")
             member.size = len(content)
             archive.addfile(member, io.BytesIO(content))
+    return output.getvalue()
+
+
+def zip_archive(files: dict[str, bytes]) -> bytes:
+    output = io.BytesIO()
+    with zipfile.ZipFile(output, mode="w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for name, content in files.items():
+            archive.writestr(name, content)
     return output.getvalue()
 
 
@@ -146,11 +155,194 @@ class UpstreamCacheTests(unittest.TestCase):
                 sorted(path.name for path in cache.iterdir()), ["source.tar.gz.download"]
             )
 
+    def test_archive_reader_supports_zip_members(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            archive_path = Path(temporary) / "fixture.zip"
+            archive_path.write_bytes(
+                zip_archive({"fixture/LICENSE": b"MIT", "fixture/tool": b"tool"})
+            )
+            self.assertEqual(
+                BUILDER.read_archive_file(archive_path, "fixture/tool"), b"tool"
+            )
+
+    def test_archive_reader_rejects_unsafe_paths_and_zip_symlinks(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            archive_path = Path(temporary) / "fixture.zip"
+            symlink = zipfile.ZipInfo("fixture/link")
+            symlink.create_system = 3
+            symlink.external_attr = (stat.S_IFLNK | 0o777) << 16
+            output = io.BytesIO()
+            with zipfile.ZipFile(output, mode="w") as archive:
+                archive.writestr(symlink, "../../outside")
+            archive_path.write_bytes(output.getvalue())
+            with self.assertRaisesRegex(ValueError, "unsafe upstream archive member"):
+                BUILDER.read_archive_file(archive_path, "../outside")
+            with self.assertRaisesRegex(ValueError, "not a regular file"):
+                BUILDER.read_archive_file(archive_path, "fixture/link")
+
+    def test_archive_reader_limits_expanded_member_size(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            archive_path = Path(temporary) / "fixture.zip"
+            archive_path.write_bytes(zip_archive({"fixture/tool": b"12345"}))
+            with (
+                mock.patch.object(BUILDER, "MAX_UPSTREAM_MEMBER_BYTES", 4),
+                self.assertRaisesRegex(ValueError, "exceeds 4 bytes"),
+            ):
+                BUILDER.read_archive_file(archive_path, "fixture/tool")
+
     def test_build_uses_verified_bytes_after_cache_replacement(self) -> None:
         for cache_hit in (False, True):
             for with_binary in (False, True):
                 with self.subTest(cache_hit=cache_hit, with_binary=with_binary):
                     self.check_build_after_cache_replacement(cache_hit, with_binary)
+
+    def test_build_reads_zip_binary_archive_and_emits_multiple_provides(self) -> None:
+        tool = b"#!/bin/sh\necho tool\n"
+        helper = b"#!/bin/sh\necho helper\n"
+        readme = b"fixture documentation\n"
+        completion = b"complete -W tool tool\n"
+        source = source_archive(b"fixture license\n")
+        release = zip_archive(
+            {
+                "release/tool": tool,
+                "release/helper": helper,
+                "release/README.md": readme,
+                "release/completions/tool.bash": completion,
+            }
+        )
+        package = {
+            "version": "1.0",
+            "arch": "x86_64",
+            "url": "https://example.test/fixture",
+            "archive": "https://example.test/source.tar.gz",
+            "archive_sha256": hashlib.sha256(source).hexdigest(),
+            "root": "fixture-1.0",
+            "license_source": "LICENSE",
+            "license_path": "usr/share/doc/fixture/copyright",
+            "files": {},
+            "binary_archive": "https://example.test/release.zip",
+            "binary_archive_sha256": hashlib.sha256(release).hexdigest(),
+            "binary_members": {
+                "release/tool": "usr/bin/tool",
+                "release/helper": "usr/bin/helper",
+            },
+            "binary_member_sha256": {
+                "release/tool": hashlib.sha256(tool).hexdigest(),
+                "release/helper": hashlib.sha256(helper).hexdigest(),
+            },
+            "binary_files": {
+                "release/README.md": "usr/share/doc/fixture/README.md",
+                "release/completions/tool.bash": (
+                    "usr/share/bash-completion/completions/tool"
+                ),
+            },
+            "provides": ["tool=/usr/bin/tool", "helper=/usr/bin/helper"],
+            "description": "Fixture command line tools",
+            "license": "MIT",
+        }
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            cache = root / "cache"
+            cache.mkdir(mode=0o700)
+            repo = root / "repo"
+            (repo / "packages").mkdir(parents=True)
+            source_path = root / "source.tar.gz"
+            release_path = root / "release.zip"
+            source_path.write_bytes(source)
+            release_path.write_bytes(release)
+            payloads = {}
+
+            def download(url, *_args):
+                return source_path if url.endswith("source.tar.gz") else release_path
+
+            def build_package(command, **_kwargs):
+                payload = Path(command[1]) / "package"
+                payloads.update(
+                    (path.relative_to(payload).as_posix(), path.read_bytes())
+                    for path in payload.rglob("*")
+                    if path.is_file()
+                )
+                Path(command[-1]).write_bytes(b"built archive")
+
+            args = argparse.Namespace(
+                repo_root=repo,
+                source_cache=cache,
+                staging=root / "staging",
+                packages=["fixture"],
+                arkpkg_build=root / "arkpkg-build",
+            )
+            with (
+                mock.patch.object(BUILDER, "PACKAGES", {"fixture": package}),
+                mock.patch.object(BUILDER, "download", side_effect=download),
+                mock.patch.object(BUILDER.subprocess, "run", side_effect=build_package),
+            ):
+                BUILDER.build(args)
+
+            self.assertEqual(
+                payloads,
+                {
+                    "usr/bin/tool": tool,
+                    "usr/bin/helper": helper,
+                    "usr/share/doc/fixture/README.md": readme,
+                    "usr/share/doc/fixture/copyright": b"fixture license\n",
+                    "usr/share/bash-completion/completions/tool": completion,
+                },
+            )
+            recipe = (repo / "packages/recipes/fixture/ARKPKG").read_text()
+            self.assertIn(
+                "Provides: tool=/usr/bin/tool, helper=/usr/bin/helper", recipe
+            )
+            self.assertTrue((repo / "packages/fixture-1.0-x86_64.ark").is_file())
+
+    def test_build_rejects_oversized_package_archive_atomically(self) -> None:
+        source = source_archive(b"fixture license\n")
+        package = {
+            "version": "1.0",
+            "arch": "any",
+            "url": "https://example.test/fixture",
+            "archive": "https://example.test/source.tar.gz",
+            "archive_sha256": hashlib.sha256(source).hexdigest(),
+            "root": "fixture-1.0",
+            "license_source": "LICENSE",
+            "license_path": "usr/share/doc/fixture/copyright",
+            "files": {},
+            "description": "Fixture",
+            "license": "MIT",
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            cache = root / "cache"
+            cache.mkdir(mode=0o700)
+            repo = root / "repo"
+            packages = repo / "packages"
+            packages.mkdir(parents=True)
+            source_path = root / "source.tar.gz"
+            source_path.write_bytes(source)
+            args = argparse.Namespace(
+                repo_root=repo,
+                source_cache=cache,
+                staging=root / "staging",
+                packages=["fixture"],
+                arkpkg_build=root / "arkpkg-build",
+            )
+
+            def write_oversized_archive(command, **_kwargs):
+                Path(command[-1]).write_bytes(b"larger than the configured limit")
+
+            with (
+                mock.patch.object(BUILDER, "PACKAGES", {"fixture": package}),
+                mock.patch.object(BUILDER, "download", return_value=source_path),
+                mock.patch.object(
+                    BUILDER.subprocess, "run", side_effect=write_oversized_archive
+                ),
+                mock.patch.object(BUILDER, "MAX_ARCHIVE_BYTES", 4),
+                self.assertRaisesRegex(ValueError, "maximum supported size"),
+            ):
+                BUILDER.build(args)
+
+            self.assertFalse((packages / "fixture-1.0-any.ark").exists())
+            self.assertEqual(list(packages.glob("*.tmp")), [])
 
     def check_build_after_cache_replacement(
         self, cache_hit: bool, with_binary: bool
