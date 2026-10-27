@@ -4,18 +4,16 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
-import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
 
 import lz4.frame
+from source_cache import source_snapshot
 
 NAME = "xosview"
 VERSION = "2.3.5"
@@ -34,23 +32,15 @@ def privileged(command: list[str], *, log: Path | None = None) -> None:
 
 
 def source_archive(cache: Path, private: Path) -> Path:
-    cache.mkdir(parents=True, exist_ok=True)
-    cached_path = cache / f"{SOURCE_ROOT}.tar.gz"
-    if not cached_path.is_file():
-        request = urllib.request.Request(
-            URL, headers={"User-Agent": "arkpkg-repo-xosview-builder/1"}
-        )
-        with (
-            urllib.request.urlopen(request, timeout=120) as response,
-            cached_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
-    # Verify and consume a private snapshot: the cache owner can replace its files.
-    archive_path = private / cached_path.name
-    shutil.copyfile(cached_path, archive_path)
-    digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-    if digest != SHA256:
-        raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
+    archive_path = source_snapshot(
+        cache,
+        private,
+        f"{SOURCE_ROOT}.tar.gz",
+        URL,
+        SHA256,
+        user_agent="arkpkg-repo-xosview-builder/1",
+        timeout=120,
+    )
     roots = set()
     with tarfile.open(archive_path, "r:gz") as archive:
         for member in archive:
