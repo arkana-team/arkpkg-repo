@@ -1,0 +1,68 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "foremost"
+      ],
+      "debian_version": "1.5.7-11+b2",
+      "dependencies": [],
+      "description": "Recover deleted files from disk images",
+      "license": "See /usr/share/doc/foremost/copyright",
+      "license_path": "usr/share/doc/foremost/copyright",
+      "name": "foremost",
+      "url": "https://sourceforge.net/projects/foremost/",
+      "version": "1.5.7-11+b2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "safecopy"
+      ],
+      "debian_version": "1.7-7",
+      "dependencies": [],
+      "description": "Recover data from damaged media",
+      "license": "See /usr/share/doc/safecopy/copyright",
+      "license_path": "usr/share/doc/safecopy/copyright",
+      "name": "safecopy",
+      "url": "https://safecopy.sourceforge.net/",
+      "version": "1.7-7"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "scrounge-ntfs"
+      ],
+      "debian_version": "0.9-11",
+      "dependencies": [],
+      "description": "Recover data from NTFS partitions",
+      "license": "See /usr/share/doc/scrounge-ntfs/copyright",
+      "license_path": "usr/share/doc/scrounge-ntfs/copyright",
+      "name": "scrounge-ntfs",
+      "url": "http://thewalter.net/stef/software/scrounge/",
+      "version": "0.9-11"
+    }
+  ],
+  "sources": {
+    "foremost": {
+      "architecture": "amd64",
+      "filename": "pool/main/f/foremost/foremost_1.5.7-11+b2_amd64.deb",
+      "sha256": "7b2e0a708732639ad4e223de69b285e81f1e64a50e3d4c31e777b707bda8e434",
+      "version": "1.5.7-11+b2"
+    },
+    "safecopy": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/safecopy/safecopy_1.7-7_amd64.deb",
+      "sha256": "d73d57befa4fa91fbcb792f2af96514e81f2f917792e9efbfd18787c976e5466",
+      "version": "1.7-7"
+    },
+    "scrounge-ntfs": {
+      "architecture": "amd64",
+      "filename": "pool/main/s/scrounge-ntfs/scrounge-ntfs_0.9-11_amd64.deb",
+      "sha256": "d203be9bf5939e8267e46558b60f168f12dd8ee9f95a7991435bf278e0c7f06f",
+      "version": "0.9-11"
+    }
+  },
+  "suite": "trixie"
+}

@@ -1,0 +1,8 @@
+Name: safecopy
+Description: Recover data from damaged media
+Version: 1.7-7
+Arch: x86_64
+URL: https://safecopy.sourceforge.net/
+License: See /usr/share/doc/safecopy/copyright
+Maintainer: arkanaOS Team
+Provides: safecopy=/usr/bin/safecopy

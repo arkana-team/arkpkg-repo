@@ -1,0 +1,8 @@
+Name: scrounge-ntfs
+Description: Recover data from NTFS partitions
+Version: 0.9-11
+Arch: x86_64
+URL: http://thewalter.net/stef/software/scrounge/
+License: See /usr/share/doc/scrounge-ntfs/copyright
+Maintainer: arkanaOS Team
+Provides: scrounge-ntfs=/usr/sbin/scrounge-ntfs
