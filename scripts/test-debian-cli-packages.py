@@ -1274,7 +1274,7 @@ class WorkstationManifestTests(unittest.TestCase):
                 "pool/main/x/xcwd/xcwd_0~2.gbpe2c777c-1+b1_amd64.deb",
                 "864b5e462a81eea0e2776427e26d2372a39d460d53b6fe7a694f4becf0228cf3",
                 [],
-                "Adrien Schild",
+                "Adrien Schildknecht",
                 "https://github.com/schischi/xcwd",
                 "upstream",
             ),
