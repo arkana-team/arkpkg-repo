@@ -6,6 +6,7 @@ import io
 import tarfile
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
@@ -255,23 +256,181 @@ class ArchiveExtensionLimitTests(unittest.TestCase):
             )
             self.assertEqual(package_audit.inspect_archive(path)[0]["Name"], "demo")
 
-    def test_ownership_pass_uses_extension_guard(self) -> None:
+    def test_ownership_uses_validated_inventory_without_reopening_archive(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "packages").mkdir()
             path = root / "packages/demo.ark"
             add_extensions(
                 path,
-                [(tarfile.XHDTYPE, extension_data(package_audit.MAX_TAR_EXTENSION_BYTES + 1))],
+                [(tarfile.XHDTYPE, extension_data(32))],
             )
-            # Bypass the first pass to exercise the independent ownership reader.
             with (
-                patch.object(
-                    package_audit, "inspect_archive",
-                    return_value=({"Name": "demo", "Version": "1", "Arch": "any"}, [], []),
-                ),
-                self.assertRaisesRegex(ValueError, "TAR extension data"),
+                patch.object(lz4.frame, "open", wraps=lz4.frame.open) as open_archive,
+                redirect_stdout(io.StringIO()),
             ):
+                package_audit.test_repository(root, Path("/unused/arkpkg"), audit_only=True)
+            open_archive.assert_called_once_with(path, "rb")
+
+
+class ArchiveBudgetTests(unittest.TestCase):
+    @staticmethod
+    def member(name, data=b"", kind=tarfile.REGTYPE):
+        member = tarfile.TarInfo(name)
+        member.type = kind
+        member.size = len(data)
+        if kind in (tarfile.SYMTYPE, tarfile.LNKTYPE):
+            member.linkname = "target"
+        return (
+            member.tobuf(format=tarfile.USTAR_FORMAT) + data
+            + b"\0" * (-len(data) % tarfile.BLOCKSIZE)
+        )
+
+    def write_archive(
+        self, path, before=b"", after=b"", metadata=METADATA,
+        payload_name="package/test", payload_kind=tarfile.REGTYPE,
+    ):
+        data = (
+            before + self.member("ARKPKG", metadata)
+            + self.member(payload_name, kind=payload_kind) + after
+            + b"\0" * tarfile.BLOCKSIZE
+        )
+        path.write_bytes(lz4.frame.compress(data))
+        return len(data)
+
+    def test_expanded_limit_covers_skipped_payload_before_and_after_metadata(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "demo.ark"
+            for position in ("before", "after"):
+                # Unowned entries must consume the same budget as payload files.
+                expanded = self.write_archive(
+                    path, **{position: self.member("unowned", b"\0" * (32 * 1024))}
+                )
+                self.assertLess(path.stat().st_size, 1024)
+                with (
+                    self.subTest(position=position, boundary="exact"),
+                    patch.object(package_audit, "MAX_ARCHIVE_BYTES", expanded),
+                ):
+                    for _ in range(2):
+                        self.assertEqual(package_audit.inspect_archive(path)[0]["Name"], "demo")
+                with (
+                    self.subTest(position=position, boundary="overflow"),
+                    patch.object(package_audit, "MAX_ARCHIVE_BYTES", expanded - 1),
+                    self.assertRaisesRegex(ValueError, "expanded archive"),
+                ):
+                    package_audit.inspect_archive(path)
+
+    def test_expanded_limit_is_cumulative_across_payloads(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "demo.ark"
+            self.write_archive(
+                path, after=self.member("package/one", b"\0" * (16 * 1024))
+                + self.member("package/two", b"\0" * (16 * 1024)),
+            )
+            with (
+                patch.object(package_audit, "MAX_ARCHIVE_BYTES", 24 * 1024),
+                self.assertRaisesRegex(ValueError, "expanded archive"),
+            ):
+                package_audit.inspect_archive(path)
+
+    def test_oversized_truncated_member_is_rejected_before_skipping(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "demo.ark"
+            member = tarfile.TarInfo("package/truncated")
+            member.size = 1 << 60
+            path.write_bytes(lz4.frame.compress(member.tobuf()))
+            with (
+                patch.object(tarfile._Stream, "seek") as seek,
+                self.assertRaisesRegex(ValueError, "expanded archive"),
+            ):
+                try:
+                    package_audit.inspect_archive(path)
+                finally:
+                    seek.assert_not_called()
+
+    def test_reader_caps_large_requests_and_counts_short_reads(self):
+        source = io.BytesIO(b"x" * 1024)
+        with patch.object(source, "read", wraps=source.read) as read:
+            reader = package_audit.BudgetReader(source, 512)
+            with self.assertRaisesRegex(ValueError, "expanded archive"):
+                reader.read(1 << 40)
+            read.assert_called_once_with(513)
+
+        reader = package_audit.BudgetReader(io.BytesIO(b"abcd"), 3)
+        self.assertEqual(reader.read(2), b"ab")
+        self.assertEqual(reader.read(1), b"c")
+        with self.assertRaisesRegex(ValueError, "expanded archive"):
+            reader.read(1)
+        with self.assertRaisesRegex(ValueError, "bounded reads"):
+            reader.read(-1)
+
+    def test_member_budget_counts_all_types_and_resets_per_archive(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "demo.ark"
+            for kind in (tarfile.REGTYPE, tarfile.DIRTYPE, tarfile.SYMTYPE, tarfile.LNKTYPE):
+                self.write_archive(
+                    path, after=self.member("package/one", kind=kind)
+                    + self.member("unowned", kind=kind),
+                )
+                with (
+                    self.subTest(kind=kind, boundary="exact"),
+                    patch.object(package_audit, "MAX_ARCHIVE_MEMBERS", 4),
+                ):
+                    for _ in range(2):
+                        self.assertEqual(package_audit.inspect_archive(path)[0]["Name"], "demo")
+                with (
+                    self.subTest(kind=kind, boundary="overflow"),
+                    patch.object(package_audit, "MAX_ARCHIVE_MEMBERS", 3),
+                    self.assertRaisesRegex(ValueError, "TAR member count"),
+                ):
+                    package_audit.inspect_archive(path)
+
+    def test_member_budget_includes_nested_extension_headers(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "demo.ark"
+            self.write_archive(
+                path, before=self.member("extension", extension_data(32), tarfile.XGLTYPE) * 3
+            )
+            with patch.object(package_audit, "MAX_ARCHIVE_MEMBERS", 5):
+                self.assertEqual(package_audit.inspect_archive(path)[0]["Name"], "demo")
+            with (
+                patch.object(package_audit, "MAX_ARCHIVE_MEMBERS", 4),
+                self.assertRaisesRegex(ValueError, "TAR member count"),
+            ):
+                package_audit.inspect_archive(path)
+
+    def test_inventory_preserves_file_and_link_ownership_collisions(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "packages").mkdir()
+            for kind in (tarfile.REGTYPE, tarfile.SYMTYPE, tarfile.LNKTYPE):
+                self.write_archive(root / "packages/demo.ark")
+                self.write_archive(
+                    root / "packages/other.ark",
+                    # The normalized path also belongs to demo.
+                    payload_name="./package//test", payload_kind=kind,
+                    metadata=METADATA.replace(b"Name: demo", b"Name: other"),
+                )
+                with (
+                    self.subTest(kind=kind),
+                    self.assertRaisesRegex(ValueError, "payload collision: test"),
+                ):
+                    package_audit.test_repository(root, Path("/unused/arkpkg"), audit_only=True)
+
+    def test_ownership_includes_older_versions(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "packages").mkdir()
+            self.write_archive(root / "packages/demo-1.ark")
+            self.write_archive(
+                root / "packages/demo-2.ark", payload_name="package/new",
+                metadata=METADATA.replace(b"Version: 1", b"Version: 2"),
+            )
+            self.write_archive(
+                root / "packages/other.ark",
+                metadata=METADATA.replace(b"Name: demo", b"Name: other"),
+            )
+            with self.assertRaisesRegex(ValueError, "payload collision: test"):
                 package_audit.test_repository(root, Path("/unused/arkpkg"), audit_only=True)
 
 
