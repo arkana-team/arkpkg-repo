@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check metadata size limits in the archive audit and site builder."""
+"""Check metadata size limits in archive audits, the site, and dependency readers."""
 
 import importlib.util
 import io
@@ -24,9 +24,16 @@ def load_script(filename: str):
 
 build_index = load_script("build-index.py")
 package_audit = load_script("test-packages.py")
+DEPENDENCY_READERS = tuple(
+    load_script(filename).package_name
+    for filename in (
+        "build-xcb-util.py", "build-xcursor-themes.py", "build-xlockmore.py"
+    )
+)
 READERS = (
     (build_index.read_metadata, build_index.MAX_METADATA_SIZE),
     (package_audit.inspect_archive, package_audit.MAX_METADATA_BYTES),
+    *((reader, 64 * 1024) for reader in DEPENDENCY_READERS),
 )
 METADATA = b"Name: demo\nDescription: test\nVersion: 1\nArch: any\n"
 
@@ -36,7 +43,7 @@ def write_archive(path: Path, metadata: bytes, logical_size: int | None = None) 
         lz4.frame.open(path, "wb") as compressed,
         tarfile.open(fileobj=compressed, mode="w|", format=tarfile.PAX_FORMAT) as archive,
     ):
-        member = tarfile.TarInfo("./ARKPKG")
+        member = tarfile.TarInfo("ARKPKG")
         member.size = len(metadata)
         if logical_size is not None:
             member.pax_headers = {
@@ -54,11 +61,11 @@ class MetadataLimitTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "demo.ark"
             for reader, limit in READERS:
-                with self.subTest(reader=reader.__name__):
+                with self.subTest(reader=reader.__module__):
                     write_archive(path, METADATA + b"#" * (limit - len(METADATA)))
                     result = reader(path)
                     fields = result[0] if isinstance(result, tuple) else result
-                    self.assertEqual(fields["Name"], "demo")
+                    self.assertEqual(fields["Name"] if isinstance(fields, dict) else fields, "demo")
 
     def test_rejects_oversized_metadata_before_extraction(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -74,7 +81,7 @@ class MetadataLimitTests(unittest.TestCase):
                             path, METADATA + b"#" * (limit + 1 - len(METADATA))
                         )
                     with (
-                        self.subTest(sparse=sparse, reader=reader.__name__),
+                        self.subTest(sparse=sparse, reader=reader.__module__),
                         patch.object(tarfile.TarFile, "extractfile") as extract,
                         self.assertRaisesRegex(ValueError, "ARKPKG metadata"),
                     ):
@@ -96,7 +103,7 @@ class MetadataLimitTests(unittest.TestCase):
                         return super().read(size)
 
                 with (
-                    self.subTest(reader=reader.__name__),
+                    self.subTest(reader=reader.__module__),
                     patch.object(
                         tarfile.TarFile,
                         "extractfile",
@@ -105,6 +112,28 @@ class MetadataLimitTests(unittest.TestCase):
                     self.assertRaisesRegex(ValueError, "ARKPKG metadata"),
                 ):
                     reader(path)
+
+    def test_dependency_name_parsing(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            for reader in DEPENDENCY_READERS:
+                with self.subTest(reader=reader.__module__):
+                    write_archive(path, "Description: café\n Name : dependency \n".encode())
+                    self.assertEqual(reader(path), "dependency")
+                    write_archive(path, METADATA, logical_size=64 * 1024)
+                    self.assertEqual(reader(path), "demo")
+
+    def test_dependency_missing_name_and_invalid_utf8(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            for reader in DEPENDENCY_READERS:
+                with self.subTest(reader=reader.__module__):
+                    write_archive(path, b"Description: dependency\n")
+                    with self.assertRaisesRegex(ValueError, "(package name|Name field)"):
+                        reader(path)
+                    write_archive(path, b"Name: dependency\nDescription: \xff\n")
+                    with self.assertRaises(UnicodeDecodeError):
+                        reader(path)
 
 
 if __name__ == "__main__":
