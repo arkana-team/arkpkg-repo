@@ -143,6 +143,82 @@ PACKAGES = {
         "description": "Terminal workspace manager and multiplexer without the web client",
         "license": "MIT",
     },
+    "btm": {
+        "version": "0.14.9",
+        "arch": "x86_64",
+        "url": "https://github.com/ClementTsang/bottom",
+        "archive": "https://codeload.github.com/ClementTsang/bottom/tar.gz/refs/tags/0.14.9",
+        "archive_sha256": "1dbb940c763fb583b7e1c7dfa165b73ed9a0ba712e72cc97311c5b1c098d5b72",
+        "root": "bottom-0.14.9",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/btm/copyright",
+        "binary_archive": "https://github.com/ClementTsang/bottom/releases/download/0.14.9/bottom_x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "b4bee5b193e7d3f6e090ac14f0ca15acec2e7fe4ef64988e0bfc492e16c28c9a",
+        "binary_members": {"btm": "usr/bin/btm"},
+        "binary_member_sha256": {
+            "btm": "5bffbcd391b9b9964e8429549f1c404f25d7606a5031a4242cad787ac6028bf3",
+        },
+        "binary_files": {
+            "completion/btm.bash": "usr/share/bash-completion/completions/btm",
+            "completion/btm.fish": "usr/share/fish/vendor_completions.d/btm.fish",
+            "completion/_btm": "usr/share/zsh/site-functions/_btm",
+        },
+        "files": {"README.md": "usr/share/doc/btm/README.md"},
+        "description": "Interactive terminal process and system monitor",
+        "license": "MIT",
+    },
+    "watchexec": {
+        "version": "2.8.0",
+        "arch": "x86_64",
+        "url": "https://github.com/watchexec/watchexec",
+        "archive": "https://codeload.github.com/watchexec/watchexec/tar.gz/refs/tags/v2.8.0",
+        "archive_sha256": "861496cd1e7d8546f770551893077e9b898fef1a6623d5e2207cf28c932e7738",
+        "root": "watchexec-2.8.0",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/watchexec/copyright",
+        "binary_archive": "https://github.com/watchexec/watchexec/releases/download/v2.8.0/watchexec-2.8.0-x86_64-unknown-linux-musl.tar.xz",
+        "binary_archive_sha256": "35ea667cbe4bc96c23ba2a1f46c94c46bc385b67165e3bf621c0e7e4959aa99b",
+        "binary_members": {
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/watchexec": "usr/bin/watchexec",
+        },
+        "binary_member_sha256": {
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/watchexec": "74c1004a62052b3785ab1267a2270671185d16f33e60d092c4e1c4f41678e0c2",
+        },
+        "binary_files": {
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/watchexec.1": "usr/share/man/man1/watchexec.1",
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/completions/bash": "usr/share/bash-completion/completions/watchexec",
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/completions/fish": "usr/share/fish/vendor_completions.d/watchexec.fish",
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/completions/zsh": "usr/share/zsh/site-functions/_watchexec",
+        },
+        "files": {"README.md": "usr/share/doc/watchexec/README.md"},
+        "description": "Run commands when files change with shell completions and a manual",
+        "license": "Apache-2.0",
+    },
+    "git-delta": {
+        "version": "0.20.1",
+        "arch": "x86_64",
+        "url": "https://github.com/dandavison/delta",
+        "archive": "https://codeload.github.com/dandavison/delta/tar.gz/refs/tags/0.20.1",
+        "archive_sha256": "d9d502396e3595ee8fd926f1ed2e54ac9935baabd3569a3753efab36304f90fa",
+        "root": "delta-0.20.1",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/git-delta/copyright",
+        "binary_archive": "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "69dcb4043f55c29118f408c6efd30115e0a4e0a6709253343b8c8fa814ab4a31",
+        "binary_members": {
+            "delta-0.20.1-x86_64-unknown-linux-musl/delta": "usr/bin/delta",
+        },
+        "binary_member_sha256": {
+            "delta-0.20.1-x86_64-unknown-linux-musl/delta": "35d5a370dd8f554c0465a37acbd1016b8781efa10e04291f8fffc59cbc9e83c4",
+        },
+        "files": {
+            "README.md": "usr/share/doc/git-delta/README.md",
+            "themes.gitconfig": "usr/share/git-delta/themes.gitconfig",
+        },
+        "provides": ["delta=/usr/bin/delta"],
+        "description": "Syntax-highlighting pager for git, diff, grep, and blame output",
+        "license": "MIT",
+    },
     "yt-dlp": {
         "version": "2026.08.19",
         "arch": "any",
@@ -170,6 +246,7 @@ INTERPRETER = re.compile(r"Requesting program interpreter: (.+?)\]")
 NEEDED = re.compile(r"Shared library: \[(.+?)\]")
 MAX_ARCHIVE_BYTES = 90_000_000
 MAX_UPSTREAM_MEMBER_BYTES = 64 * 1024 * 1024
+MAX_PACKAGE_METADATA_BYTES = 64 * 1024
 
 
 def sha256(path: Path) -> str:
@@ -243,6 +320,7 @@ def download(url: str, expected: str, cache: Path, work: Path) -> Path:
 
 
 def read_archive_file(archive_path: Path, member_name: str) -> bytes:
+    """Read one regular archive member without extracting it to disk."""
     member_path = PurePosixPath(member_name)
     if (
         not member_name
@@ -343,25 +421,51 @@ def validate_elf(binary: Path, staging: Path) -> None:
             )
 
 
-def archive_owners(repo_root: Path, ignored_archives: set[str]) -> set[str]:
+def archive_owners(repo_root: Path, ignored_packages: set[str]) -> set[str]:
+    """Find payload paths owned by packages that are not being rebuilt."""
     owned = set()
     for archive_path in (repo_root / "packages").glob("*.ark"):
-        if archive_path.name in ignored_archives:
-            continue
+        package_name = None
+        archive_owned = set()
         with (
             lz4.frame.open(archive_path, "rb") as compressed,
             tarfile.open(fileobj=compressed, mode="r|") as archive,
         ):
             for member in archive:
+                if member.name == "ARKPKG" and member.isfile():
+                    if not 0 <= member.size <= MAX_PACKAGE_METADATA_BYTES:
+                        raise ValueError(
+                            f"{archive_path.name}: package metadata exceeds "
+                            f"{MAX_PACKAGE_METADATA_BYTES} bytes"
+                        )
+                    source = archive.extractfile(member)
+                    if source is None:
+                        raise ValueError(
+                            f"{archive_path.name}: could not read package metadata"
+                        )
+                    metadata = source.read(MAX_PACKAGE_METADATA_BYTES + 1)
+                    if len(metadata) > MAX_PACKAGE_METADATA_BYTES:
+                        raise ValueError(
+                            f"{archive_path.name}: package metadata exceeds "
+                            f"{MAX_PACKAGE_METADATA_BYTES} bytes"
+                        )
+                    for line in metadata.decode("utf-8").splitlines():
+                        key, separator, value = line.partition(":")
+                        if separator and key.strip() == "Name":
+                            package_name = value.strip()
+                            break
                 if not (member.isfile() or member.issym() or member.islnk()):
                     continue
                 path = PurePosixPath(member.name)
                 if path.parts[:1] == ("package",) and len(path.parts) > 1:
-                    owned.add("/".join(path.parts[1:]))
+                    archive_owned.add("/".join(path.parts[1:]))
+        if package_name not in ignored_packages:
+            owned.update(archive_owned)
     return owned
 
 
 def recipe_text(name: str, package: dict[str, object]) -> str:
+    """Render the package metadata file for an upstream release."""
     executable = "nitch" if name == "nitch" else name
     provides = package.get("provides") or [
         f"{executable}=/usr/bin/{executable}"
@@ -388,6 +492,7 @@ def write_payload_file(target: Path, data: bytes, mode: int) -> None:
 
 
 def build(args: argparse.Namespace) -> None:
+    """Build selected upstream CLI packages from checksum-pinned sources."""
     repo_root = args.repo_root.resolve()
     cache = prepare_cache(args.source_cache)
     staging = args.staging.resolve()
@@ -395,11 +500,7 @@ def build(args: argparse.Namespace) -> None:
     unknown = set(selected).difference(PACKAGES)
     if unknown:
         raise ValueError(f"unknown packages: {', '.join(sorted(unknown))}")
-    ignored_archives = {
-        f"{name}-{PACKAGES[name]['version']}-{PACKAGES[name]['arch']}.ark"
-        for name in selected
-    }
-    owned = archive_owners(repo_root, ignored_archives)
+    owned = archive_owners(repo_root, set(selected))
 
     for index, name in enumerate(selected, 1):
         package = PACKAGES[name]

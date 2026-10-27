@@ -14,6 +14,8 @@ import zipfile
 from pathlib import Path
 from unittest import mock
 
+import lz4.frame
+
 BUILDER_PATH = Path(__file__).with_name("build-upstream-cli-packages.py")
 SPEC = importlib.util.spec_from_file_location("upstream_cli_builder", BUILDER_PATH)
 if SPEC is None or SPEC.loader is None:
@@ -33,6 +35,7 @@ def source_archive(content: bytes) -> bytes:
 
 
 def zip_archive(files: dict[str, bytes]) -> bytes:
+    """Create a small in-memory ZIP archive for reader tests."""
     output = io.BytesIO()
     with zipfile.ZipFile(output, mode="w", compression=zipfile.ZIP_DEFLATED) as archive:
         for name, content in files.items():
@@ -40,7 +43,44 @@ def zip_archive(files: dict[str, bytes]) -> bytes:
     return output.getvalue()
 
 
+def write_package_archive(
+    path: Path, name: str, version: str, payloads: dict[str, bytes]
+) -> None:
+    """Write a minimal ark archive for package ownership tests."""
+    metadata = f"Name: {name}\nVersion: {version}\nArch: x86_64\n".encode()
+    with (
+        lz4.frame.open(path, "wb") as compressed,
+        tarfile.open(fileobj=compressed, mode="w") as archive,
+    ):
+        for member_name, data in (
+            ("ARKPKG", metadata),
+            *(
+                (f"package/{relative}", content)
+                for relative, content in payloads.items()
+            ),
+        ):
+            member = tarfile.TarInfo(member_name)
+            member.size = len(data)
+            archive.addfile(member, io.BytesIO(data))
+
+
 class UpstreamCacheTests(unittest.TestCase):
+    def test_archive_owner_filter_matches_exact_package_name(self) -> None:
+        """Keep similarly named packages in the ownership collision set."""
+        with tempfile.TemporaryDirectory() as temporary:
+            packages = Path(temporary) / "packages"
+            packages.mkdir()
+            write_package_archive(
+                packages / "fixture-tools-1.0-x86_64.ark",
+                "fixture-tools",
+                "1.0",
+                {"usr/bin/tool": b"unrelated package"},
+            )
+
+            owned = BUILDER.archive_owners(Path(temporary), {"fixture"})
+
+            self.assertIn("usr/bin/tool", owned)
+
     def test_new_cache_is_private_even_with_permissive_umask(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             cache = Path(temporary) / "cache"
@@ -156,6 +196,7 @@ class UpstreamCacheTests(unittest.TestCase):
             )
 
     def test_archive_reader_supports_zip_members(self) -> None:
+        """Read regular files from ZIP release assets."""
         with tempfile.TemporaryDirectory() as temporary:
             archive_path = Path(temporary) / "fixture.zip"
             archive_path.write_bytes(
@@ -166,6 +207,7 @@ class UpstreamCacheTests(unittest.TestCase):
             )
 
     def test_archive_reader_rejects_unsafe_paths_and_zip_symlinks(self) -> None:
+        """Reject traversal requests and symlink members in ZIP assets."""
         with tempfile.TemporaryDirectory() as temporary:
             archive_path = Path(temporary) / "fixture.zip"
             symlink = zipfile.ZipInfo("fixture/link")
@@ -181,6 +223,7 @@ class UpstreamCacheTests(unittest.TestCase):
                 BUILDER.read_archive_file(archive_path, "fixture/link")
 
     def test_archive_reader_limits_expanded_member_size(self) -> None:
+        """Reject archive members that exceed the expansion bound."""
         with tempfile.TemporaryDirectory() as temporary:
             archive_path = Path(temporary) / "fixture.zip"
             archive_path.write_bytes(zip_archive({"fixture/tool": b"12345"}))
@@ -197,6 +240,7 @@ class UpstreamCacheTests(unittest.TestCase):
                     self.check_build_after_cache_replacement(cache_hit, with_binary)
 
     def test_build_reads_zip_binary_archive_and_emits_multiple_provides(self) -> None:
+        """Build multiple executables from one verified ZIP release."""
         tool = b"#!/bin/sh\necho tool\n"
         helper = b"#!/bin/sh\necho helper\n"
         readme = b"fixture documentation\n"
@@ -247,6 +291,12 @@ class UpstreamCacheTests(unittest.TestCase):
             cache.mkdir(mode=0o700)
             repo = root / "repo"
             (repo / "packages").mkdir(parents=True)
+            write_package_archive(
+                repo / "packages/fixture-0.9-x86_64.ark",
+                "fixture",
+                "0.9",
+                {"usr/bin/tool": b"older package version"},
+            )
             source_path = root / "source.tar.gz"
             release_path = root / "release.zip"
             source_path.write_bytes(source)
@@ -296,6 +346,7 @@ class UpstreamCacheTests(unittest.TestCase):
             self.assertTrue((repo / "packages/fixture-1.0-x86_64.ark").is_file())
 
     def test_build_rejects_oversized_package_archive_atomically(self) -> None:
+        """Do not publish or retain an oversized package archive."""
         source = source_archive(b"fixture license\n")
         package = {
             "version": "1.0",
