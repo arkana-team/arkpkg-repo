@@ -1,0 +1,9 @@
+Name: gitui
+Description: Terminal user interface for Git repositories
+Version: 0.28.1
+Arch: x86_64
+URL: https://github.com/gitui-org/gitui
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies: git
+Provides: gitui=/usr/bin/gitui
