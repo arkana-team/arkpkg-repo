@@ -71,7 +71,8 @@ class XorgStagingTests(unittest.TestCase):
         if staging is not None:
             argv.extend(("--staging", str(staging)))
 
-        def source(cache, name="xbitmaps", *args):
+        def source(cache, *args):
+            name = args[0] if is_font else "xbitmaps"
             return self.sources[name]
 
         observed = []
