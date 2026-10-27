@@ -1,0 +1,8 @@
+Name: vivid
+Description: LS_COLORS generator with configurable terminal color themes
+Version: 0.11.1
+Arch: x86_64
+URL: https://github.com/sharkdp/vivid
+License: MIT/Apache-2.0
+Maintainer: arkanaOS Team
+Provides: vivid=/usr/bin/vivid

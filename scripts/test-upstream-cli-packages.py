@@ -65,6 +65,20 @@ def write_package_archive(
 
 
 class UpstreamCacheTests(unittest.TestCase):
+    def test_added_terminal_tools_have_complete_release_pins(self) -> None:
+        """Keep each new package's source, release, and binary hashes pinned."""
+        for name in ("gum", "vivid", "ouch"):
+            with self.subTest(package=name):
+                package = BUILDER.PACKAGES[name]
+                for key in ("archive_sha256", "binary_archive_sha256"):
+                    digest = str(package[key])
+                    self.assertEqual(len(digest), 64)
+                    self.assertTrue(all(char in "0123456789abcdef" for char in digest))
+                members = package["binary_members"]
+                hashes = package["binary_member_sha256"]
+                self.assertEqual(set(members), set(hashes))
+                self.assertTrue(package["license_source"])
+
     def test_archive_owner_filter_matches_exact_package_name(self) -> None:
         """Keep similarly named packages in the ownership collision set."""
         with tempfile.TemporaryDirectory() as temporary:

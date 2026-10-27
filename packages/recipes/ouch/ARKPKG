@@ -1,0 +1,8 @@
+Name: ouch
+Description: Command-line utility for compressing and extracting archives
+Version: 0.8.3
+Arch: x86_64
+URL: https://github.com/ouch-org/ouch
+License: MIT
+Maintainer: arkanaOS Team
+Provides: ouch=/usr/bin/ouch
