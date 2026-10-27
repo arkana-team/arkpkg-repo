@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check that privileged FLTK/Dillo builds only consume verified private sources."""
+"""Check source integrity and bounded dependency reads in the FLTK/Dillo builder."""
 
 import hashlib
 import importlib.util
@@ -12,6 +12,9 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
+
+import lz4.frame
+from package_metadata import MAX_METADATA_SIZE
 
 SPEC = importlib.util.spec_from_file_location(
     "fltk_dillo_builder", Path(__file__).with_name("build-fltk-dillo.py")
@@ -29,6 +32,176 @@ def archive_bytes(member_name: str, content: bytes, mode: str = "w:gz") -> bytes
         member.size = len(content)
         archive.addfile(member, io.BytesIO(content))
     return output.getvalue()
+
+
+class PackageMetadataTests(unittest.TestCase):
+    METADATA = b"Name: fltk-libs\n"
+
+    def setUp(self) -> None:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.archive = Path(temporary.name) / "fltk-libs-1.4.5-x86_64.ark"
+        self.arkpkg = Path("/unused/arkpkg")
+        self.sysroot = Path("/unused/sysroot")
+        self.install = mock.patch.object(BUILDER, "privileged").start()
+        self.addCleanup(mock.patch.stopall)
+
+    @staticmethod
+    def member(name, content=b"", kind=tarfile.REGTYPE):
+        info = tarfile.TarInfo(name)
+        info.type = kind
+        info.size = len(content)
+        return (
+            info.tobuf(format=tarfile.USTAR_FORMAT)
+            + content + b"\0" * (-len(content) % tarfile.BLOCKSIZE)
+        )
+
+    @staticmethod
+    def pax_record(key, value):
+        record = f" {key}={value}\n".encode()
+        length = len(record) + 1
+        while len(str(length)) + len(record) != length:
+            length = len(str(length)) + len(record)
+        return str(length).encode() + record
+
+    def write_archive(self, content=METADATA, before=b"", sparse_size=None):
+        if sparse_size is not None:
+            before += self.member(
+                "sparse", self.pax_record("GNU.sparse.map", f"0,{len(content)}")
+                + self.pax_record("GNU.sparse.size", sparse_size), tarfile.XHDTYPE,
+            )
+        data = before + self.member("ARKPKG", content) + b"\0" * 1024
+        self.archive.write_bytes(lz4.frame.compress(data))
+        return len(data)
+
+    def read_and_install(self):
+        return BUILDER.install_package(self.arkpkg, self.sysroot, self.archive)
+
+    def test_name_parsing_and_metadata_at_limit(self):
+        for name in ("fltk-libs", "fltk-devel"):
+            with self.subTest(name=name):
+                metadata = f"Description: café\n Name : {name} \n".encode()
+                self.write_archive(metadata.ljust(MAX_METADATA_SIZE, b"\n"))
+                self.assertEqual(self.read_and_install(), name)
+                self.install.assert_called_with([
+                    str(self.arkpkg), "--root", str(self.sysroot), "install",
+                    str(self.archive), "-y",
+                ])
+        self.assertEqual(self.install.call_count, 2)
+
+    def test_oversized_and_sparse_metadata_rejected_before_extraction(self):
+        for sparse_size in (None, MAX_METADATA_SIZE, 1 << 40):
+            with self.subTest(sparse_size=sparse_size):
+                self.write_archive(
+                    self.METADATA.ljust(MAX_METADATA_SIZE + 1, b"\n")
+                    if sparse_size is None else self.METADATA,
+                    sparse_size=sparse_size,
+                )
+                self.assertLess(self.archive.stat().st_size, 1024)
+                with (
+                    mock.patch.object(tarfile.TarFile, "extractfile") as extract,
+                    self.assertRaisesRegex(ValueError, "ARKPKG metadata"),
+                ):
+                    self.read_and_install()
+                extract.assert_not_called()
+        self.install.assert_not_called()
+
+    def test_bounded_read_checked_before_decoding(self):
+        self.write_archive()
+        with (
+            mock.patch.object(tarfile.ExFileObject, "read") as read,
+            self.assertRaisesRegex(ValueError, "ARKPKG metadata exceeds"),
+        ):
+            read.return_value = b"\xff" * (MAX_METADATA_SIZE + 1)
+            self.read_and_install()
+        read.assert_called_once_with(MAX_METADATA_SIZE + 1)
+        self.install.assert_not_called()
+
+    def test_missing_name_and_invalid_utf8_do_not_install(self):
+        for metadata, error in (
+            (b"Description: missing name\n", ValueError),
+            (b"Name: fltk-libs\nDescription: \xff\n", UnicodeDecodeError),
+        ):
+            with self.subTest(metadata=metadata):
+                self.write_archive(metadata)
+                with self.assertRaises(error):
+                    self.read_and_install()
+        self.install.assert_not_called()
+
+    def test_oversized_extensions_rejected_before_body_parsing(self):
+        for kind in (
+            tarfile.XHDTYPE, tarfile.XGLTYPE, tarfile.SOLARIS_XHDTYPE,
+            tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK,
+        ):
+            with self.subTest(kind=kind):
+                self.write_archive(before=self.member(
+                    "extension", b"\0" * (BUILDER.MAX_TAR_EXTENSION_SIZE + 1), kind,
+                ))
+                with (
+                    mock.patch.object(tarfile.TarInfo, "_proc_pax") as pax,
+                    mock.patch.object(tarfile.TarInfo, "_proc_gnulong") as gnu,
+                    self.assertRaisesRegex(ValueError, "TAR extension header"),
+                ):
+                    self.read_and_install()
+                pax.assert_not_called()
+                gnu.assert_not_called()
+        self.install.assert_not_called()
+
+    def test_extension_boundary_and_budget_reset(self):
+        limit = BUILDER.MAX_TAR_EXTENSION_SIZE
+        record = self.pax_record("comment", "x" * (limit - 15))
+        self.assertEqual(len(record), limit)
+        self.write_archive(before=self.member("extension", record, tarfile.XHDTYPE))
+        for _ in range(2):
+            self.assertEqual(self.read_and_install(), "fltk-libs")
+
+    def test_cumulative_extensions_and_nested_extensions_are_bounded(self):
+        extension = self.member("extension", self.pax_record("comment", "ok"), tarfile.XHDTYPE)
+        self.write_archive(before=(extension + self.member("package/empty")) * 3)
+        with (
+            mock.patch.object(BUILDER, "MAX_TAR_EXTENSION_BYTES", 2 * 512),
+            self.assertRaisesRegex(ValueError, "TAR extension data"),
+        ):
+            self.read_and_install()
+        self.write_archive(before=extension * (BUILDER.MAX_TAR_EXTENSION_DEPTH + 1))
+        with self.assertRaisesRegex(ValueError, "TAR extension nesting"):
+            self.read_and_install()
+        self.install.assert_not_called()
+        self.write_archive(before=extension * BUILDER.MAX_TAR_EXTENSION_DEPTH)
+        self.assertEqual(self.read_and_install(), "fltk-libs")
+
+    def test_sparse_map_parsing_is_bounded_before_metadata(self):
+        pax = self.pax_record("GNU.sparse.major", "1") + self.pax_record("GNU.sparse.minor", "0")
+        sparse = self.member("extension", pax, tarfile.XHDTYPE) + self.member(
+            "package/sparse", b"1000000\n" + b"0\n1\n" * 4096,
+        )
+        self.write_archive(before=sparse)
+        with (
+            mock.patch.object(BUILDER, "MAX_TAR_EXTENSION_BYTES", 4096),
+            self.assertRaisesRegex(ValueError, "TAR parser data"),
+        ):
+            self.read_and_install()
+        self.install.assert_not_called()
+
+    def test_expanded_budget_includes_payload_skipped_before_metadata(self):
+        expanded = self.write_archive(before=self.member("package/large", b"\0" * (32 * 1024)))
+        self.assertLess(self.archive.stat().st_size, 1024)
+        with (
+            mock.patch.object(BUILDER, "MAX_ARCHIVE_BYTES", 16 * 1024),
+            self.assertRaisesRegex(ValueError, "expanded archive"),
+        ):
+            self.read_and_install()
+        self.install.assert_not_called()
+        with mock.patch.object(BUILDER, "MAX_ARCHIVE_BYTES", expanded):
+            self.assertEqual(self.read_and_install(), "fltk-libs")
+
+    def test_budget_reader_caps_requests_before_reading(self):
+        source = io.BytesIO(b"x" * 1024)
+        with mock.patch.object(source, "read", wraps=source.read) as read:
+            reader = BUILDER.BudgetReader(source, 512, "test")
+            with self.assertRaisesRegex(ValueError, "inspection limit"):
+                reader.read(1 << 40)
+            read.assert_called_once_with(513)
 
 
 class SourceArchiveTests(unittest.TestCase):
