@@ -127,9 +127,9 @@ class SourceArchiveTests(unittest.TestCase):
     def test_cache_changed_during_copy_fails_verification(self) -> None:
         copyfileobj = shutil.copyfileobj
 
-        def replace_then_copy(source, destination) -> None:
+        def replace_then_copy(source, destination, length=shutil.COPY_BUFSIZE) -> None:
             self.cached.write_bytes(b"replacement before snapshot")
-            copyfileobj(source, destination)
+            copyfileobj(source, destination, length)
 
         with (
             patch("source_cache.shutil.copyfileobj", side_effect=replace_then_copy),
