@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build checksum-pinned upstream system-information tools as arkpkg packages."""
+"""Build checksum-pinned upstream CLI tools as arkpkg packages."""
 
 from __future__ import annotations
 
@@ -15,6 +15,7 @@ import tarfile
 import tempfile
 import time
 import urllib.request
+import zipfile
 from pathlib import Path, PurePosixPath
 
 import lz4.frame
@@ -63,6 +64,161 @@ PACKAGES = {
         "description": "Fast system information tool written in Nim",
         "license": "MIT",
     },
+    "atuin": {
+        "version": "18.24.2",
+        "arch": "x86_64",
+        "url": "https://github.com/atuinsh/atuin",
+        "archive": "https://github.com/atuinsh/atuin/releases/download/v18.24.2/atuin-x86_64-unknown-linux-musl.tar.gz",
+        "archive_sha256": "311cd1ba4b8be27de7071dbcae1c95ff4c2b38aeec82d557707b6b832bfceddf",
+        "root": "atuin-x86_64-unknown-linux-musl",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/atuin/copyright",
+        "binary_members": {
+            "atuin-x86_64-unknown-linux-musl/atuin": "usr/bin/atuin",
+        },
+        "binary_member_sha256": {
+            "atuin-x86_64-unknown-linux-musl/atuin": "3a80d8d27a6c4317843611a08c60ad7044d8e5b845bdcf896f8564f0ed9da383",
+        },
+        "files": {
+            "README.md": "usr/share/doc/atuin/README.md",
+            "CHANGELOG.md": "usr/share/doc/atuin/CHANGELOG.md",
+        },
+        "description": "Searchable shell history manager with optional sync",
+        "license": "MIT",
+    },
+    "yazi": {
+        "version": "26.9.1",
+        "arch": "x86_64",
+        "url": "https://github.com/sxyazi/yazi",
+        "archive": "https://codeload.github.com/sxyazi/yazi/tar.gz/refs/tags/v26.9.1",
+        "archive_sha256": "66857f1b670469daf258edd0bb2ea51d9ad3e2cab4eea9684028c80059fd6862",
+        "root": "yazi-26.9.1",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/yazi/copyright",
+        "binary_archive": "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-unknown-linux-musl.zip",
+        "binary_archive_sha256": "9b9c39decccf8cb0ff53a7d637d38f8a79d93bbd0099f4ea9c619ef6bb392f5d",
+        "binary_members": {
+            "yazi-x86_64-unknown-linux-musl/yazi": "usr/bin/yazi",
+            "yazi-x86_64-unknown-linux-musl/ya": "usr/bin/ya",
+        },
+        "binary_member_sha256": {
+            "yazi-x86_64-unknown-linux-musl/yazi": "a780480f4de6991f0ef3925a06af7835163a22efe52d73b5bc1fb827aa76ed11",
+            "yazi-x86_64-unknown-linux-musl/ya": "d2d8c74cd1434864a873bf645a9dd211d8ede8dd877861d622c9a2ecd7deb38d",
+        },
+        "binary_files": {
+            "yazi-x86_64-unknown-linux-musl/completions/yazi.bash": "usr/share/bash-completion/completions/yazi",
+            "yazi-x86_64-unknown-linux-musl/completions/ya.bash": "usr/share/bash-completion/completions/ya",
+            "yazi-x86_64-unknown-linux-musl/completions/yazi.fish": "usr/share/fish/vendor_completions.d/yazi.fish",
+            "yazi-x86_64-unknown-linux-musl/completions/ya.fish": "usr/share/fish/vendor_completions.d/ya.fish",
+            "yazi-x86_64-unknown-linux-musl/completions/_yazi": "usr/share/zsh/site-functions/_yazi",
+            "yazi-x86_64-unknown-linux-musl/completions/_ya": "usr/share/zsh/site-functions/_ya",
+        },
+        "files": {
+            "README.md": "usr/share/doc/yazi/README.md",
+            "LICENSE-ICONS": "usr/share/doc/yazi/LICENSE-ICONS",
+        },
+        "provides": ["yazi=/usr/bin/yazi", "ya=/usr/bin/ya"],
+        "description": "Fast terminal file manager with shell completions",
+        "license": "MIT",
+    },
+    "zellij": {
+        "version": "0.45.1",
+        "arch": "x86_64",
+        "url": "https://github.com/zellij-org/zellij",
+        "archive": "https://codeload.github.com/zellij-org/zellij/tar.gz/refs/tags/v0.45.1",
+        "archive_sha256": "5cbe711437d2a61afd9287165f6aca0bcccb9ab1473633665a5b11ed55467852",
+        "root": "zellij-0.45.1",
+        "license_source": "LICENSE.md",
+        "license_path": "usr/share/doc/zellij/copyright",
+        "binary_archive": "https://github.com/zellij-org/zellij/releases/download/v0.45.1/zellij-no-web-x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "d7bda1e18c30a688833ae7627f1d6a253bbba5349a4bc48e4f0ec008aaf75ed1",
+        "binary_members": {"zellij": "usr/bin/zellij"},
+        "binary_member_sha256": {
+            "zellij": "0ec6ef07b63c6355c02ce18343d40ef5ef5af19e25313ea9009c8fceda29e94f",
+        },
+        "files": {
+            "README.md": "usr/share/doc/zellij/README.md",
+            "CHANGELOG.md": "usr/share/doc/zellij/CHANGELOG.md",
+        },
+        "description": "Terminal workspace manager and multiplexer without the web client",
+        "license": "MIT",
+    },
+    "btm": {
+        "version": "0.14.9",
+        "arch": "x86_64",
+        "url": "https://github.com/ClementTsang/bottom",
+        "archive": "https://codeload.github.com/ClementTsang/bottom/tar.gz/refs/tags/0.14.9",
+        "archive_sha256": "1dbb940c763fb583b7e1c7dfa165b73ed9a0ba712e72cc97311c5b1c098d5b72",
+        "root": "bottom-0.14.9",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/btm/copyright",
+        "binary_archive": "https://github.com/ClementTsang/bottom/releases/download/0.14.9/bottom_x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "b4bee5b193e7d3f6e090ac14f0ca15acec2e7fe4ef64988e0bfc492e16c28c9a",
+        "binary_members": {"btm": "usr/bin/btm"},
+        "binary_member_sha256": {
+            "btm": "5bffbcd391b9b9964e8429549f1c404f25d7606a5031a4242cad787ac6028bf3",
+        },
+        "binary_files": {
+            "completion/btm.bash": "usr/share/bash-completion/completions/btm",
+            "completion/btm.fish": "usr/share/fish/vendor_completions.d/btm.fish",
+            "completion/_btm": "usr/share/zsh/site-functions/_btm",
+        },
+        "files": {"README.md": "usr/share/doc/btm/README.md"},
+        "description": "Interactive terminal process and system monitor",
+        "license": "MIT",
+    },
+    "watchexec": {
+        "version": "2.8.0",
+        "arch": "x86_64",
+        "url": "https://github.com/watchexec/watchexec",
+        "archive": "https://codeload.github.com/watchexec/watchexec/tar.gz/refs/tags/v2.8.0",
+        "archive_sha256": "861496cd1e7d8546f770551893077e9b898fef1a6623d5e2207cf28c932e7738",
+        "root": "watchexec-2.8.0",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/watchexec/copyright",
+        "binary_archive": "https://github.com/watchexec/watchexec/releases/download/v2.8.0/watchexec-2.8.0-x86_64-unknown-linux-musl.tar.xz",
+        "binary_archive_sha256": "35ea667cbe4bc96c23ba2a1f46c94c46bc385b67165e3bf621c0e7e4959aa99b",
+        "binary_members": {
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/watchexec": "usr/bin/watchexec",
+        },
+        "binary_member_sha256": {
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/watchexec": "74c1004a62052b3785ab1267a2270671185d16f33e60d092c4e1c4f41678e0c2",
+        },
+        "binary_files": {
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/watchexec.1": "usr/share/man/man1/watchexec.1",
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/completions/bash": "usr/share/bash-completion/completions/watchexec",
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/completions/fish": "usr/share/fish/vendor_completions.d/watchexec.fish",
+            "watchexec-2.8.0-x86_64-unknown-linux-musl/completions/zsh": "usr/share/zsh/site-functions/_watchexec",
+        },
+        "files": {"README.md": "usr/share/doc/watchexec/README.md"},
+        "description": "Run commands when files change with shell completions and a manual",
+        "license": "Apache-2.0",
+    },
+    "git-delta": {
+        "version": "0.20.1",
+        "arch": "x86_64",
+        "url": "https://github.com/dandavison/delta",
+        "archive": "https://codeload.github.com/dandavison/delta/tar.gz/refs/tags/0.20.1",
+        "archive_sha256": "d9d502396e3595ee8fd926f1ed2e54ac9935baabd3569a3753efab36304f90fa",
+        "root": "delta-0.20.1",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/git-delta/copyright",
+        "binary_archive": "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "69dcb4043f55c29118f408c6efd30115e0a4e0a6709253343b8c8fa814ab4a31",
+        "binary_members": {
+            "delta-0.20.1-x86_64-unknown-linux-musl/delta": "usr/bin/delta",
+        },
+        "binary_member_sha256": {
+            "delta-0.20.1-x86_64-unknown-linux-musl/delta": "35d5a370dd8f554c0465a37acbd1016b8781efa10e04291f8fffc59cbc9e83c4",
+        },
+        "files": {
+            "README.md": "usr/share/doc/git-delta/README.md",
+            "themes.gitconfig": "usr/share/git-delta/themes.gitconfig",
+        },
+        "provides": ["delta=/usr/bin/delta"],
+        "description": "Syntax-highlighting pager for git, diff, grep, and blame output",
+        "license": "MIT",
+    },
     "yt-dlp": {
         "version": "2026.08.19",
         "arch": "any",
@@ -88,6 +244,9 @@ PACKAGES = {
 }
 INTERPRETER = re.compile(r"Requesting program interpreter: (.+?)\]")
 NEEDED = re.compile(r"Shared library: \[(.+?)\]")
+MAX_ARCHIVE_BYTES = 90_000_000
+MAX_UPSTREAM_MEMBER_BYTES = 64 * 1024 * 1024
+MAX_PACKAGE_METADATA_BYTES = 64 * 1024
 
 
 def sha256(path: Path) -> str:
@@ -160,18 +319,67 @@ def download(url: str, expected: str, cache: Path, work: Path) -> Path:
     return snapshot
 
 
-def read_tar_file(archive_path: Path, member_name: str) -> bytes:
-    with tarfile.open(archive_path, "r:gz") as archive:
-        try:
-            member = archive.getmember(member_name)
-        except KeyError as error:
-            raise ValueError(f"{archive_path.name}: missing {member_name}") from error
-        if not member.isfile():
-            raise ValueError(f"{archive_path.name}: {member_name} is not a regular file")
-        source = archive.extractfile(member)
-        if source is None:
-            raise ValueError(f"{archive_path.name}: could not read {member_name}")
-        return source.read()
+def read_archive_file(archive_path: Path, member_name: str) -> bytes:
+    """Read one regular archive member without extracting it to disk."""
+    member_path = PurePosixPath(member_name)
+    if (
+        not member_name
+        or member_path.is_absolute()
+        or "\\" in member_name
+        or ".." in member_path.parts
+    ):
+        raise ValueError(f"unsafe upstream archive member: {member_name!r}")
+
+    if zipfile.is_zipfile(archive_path):
+        with zipfile.ZipFile(archive_path) as archive:
+            try:
+                member = archive.getinfo(member_name)
+            except KeyError as error:
+                raise ValueError(
+                    f"{archive_path.name}: missing {member_name}"
+                ) from error
+            mode = (member.external_attr >> 16) & 0xFFFF
+            file_type = stat.S_IFMT(mode)
+            if member.is_dir() or (file_type and file_type != stat.S_IFREG):
+                raise ValueError(
+                    f"{archive_path.name}: {member_name} is not a regular file"
+                )
+            if not 0 <= member.file_size <= MAX_UPSTREAM_MEMBER_BYTES:
+                raise ValueError(
+                    f"{archive_path.name}: {member_name} exceeds "
+                    f"{MAX_UPSTREAM_MEMBER_BYTES} bytes"
+                )
+            with archive.open(member) as source:
+                data = source.read(MAX_UPSTREAM_MEMBER_BYTES + 1)
+    else:
+        with tarfile.open(archive_path, "r:*") as archive:
+            try:
+                member = archive.getmember(member_name)
+            except KeyError as error:
+                raise ValueError(
+                    f"{archive_path.name}: missing {member_name}"
+                ) from error
+            if not member.isfile() or member.issparse():
+                raise ValueError(
+                    f"{archive_path.name}: {member_name} is not a regular file"
+                )
+            if not 0 <= member.size <= MAX_UPSTREAM_MEMBER_BYTES:
+                raise ValueError(
+                    f"{archive_path.name}: {member_name} exceeds "
+                    f"{MAX_UPSTREAM_MEMBER_BYTES} bytes"
+                )
+            source = archive.extractfile(member)
+            if source is None:
+                raise ValueError(f"{archive_path.name}: could not read {member_name}")
+            with source:
+                data = source.read(MAX_UPSTREAM_MEMBER_BYTES + 1)
+
+    if len(data) > MAX_UPSTREAM_MEMBER_BYTES:
+        raise ValueError(
+            f"{archive_path.name}: {member_name} exceeds "
+            f"{MAX_UPSTREAM_MEMBER_BYTES} bytes"
+        )
+    return data
 
 
 def stage_has_library(staging: Path, soname: str) -> bool:
@@ -213,26 +421,55 @@ def validate_elf(binary: Path, staging: Path) -> None:
             )
 
 
-def archive_owners(repo_root: Path, ignored_archives: set[str]) -> set[str]:
+def archive_owners(repo_root: Path, ignored_packages: set[str]) -> set[str]:
+    """Find payload paths owned by packages that are not being rebuilt."""
     owned = set()
     for archive_path in (repo_root / "packages").glob("*.ark"):
-        if archive_path.name in ignored_archives:
-            continue
+        package_name = None
+        archive_owned = set()
         with (
             lz4.frame.open(archive_path, "rb") as compressed,
             tarfile.open(fileobj=compressed, mode="r|") as archive,
         ):
             for member in archive:
+                if member.name == "ARKPKG" and member.isfile():
+                    if not 0 <= member.size <= MAX_PACKAGE_METADATA_BYTES:
+                        raise ValueError(
+                            f"{archive_path.name}: package metadata exceeds "
+                            f"{MAX_PACKAGE_METADATA_BYTES} bytes"
+                        )
+                    source = archive.extractfile(member)
+                    if source is None:
+                        raise ValueError(
+                            f"{archive_path.name}: could not read package metadata"
+                        )
+                    metadata = source.read(MAX_PACKAGE_METADATA_BYTES + 1)
+                    if len(metadata) > MAX_PACKAGE_METADATA_BYTES:
+                        raise ValueError(
+                            f"{archive_path.name}: package metadata exceeds "
+                            f"{MAX_PACKAGE_METADATA_BYTES} bytes"
+                        )
+                    for line in metadata.decode("utf-8").splitlines():
+                        key, separator, value = line.partition(":")
+                        if separator and key.strip() == "Name":
+                            package_name = value.strip()
+                            break
                 if not (member.isfile() or member.issym() or member.islnk()):
                     continue
                 path = PurePosixPath(member.name)
                 if path.parts[:1] == ("package",) and len(path.parts) > 1:
-                    owned.add("/".join(path.parts[1:]))
+                    archive_owned.add("/".join(path.parts[1:]))
+        if package_name not in ignored_packages:
+            owned.update(archive_owned)
     return owned
 
 
 def recipe_text(name: str, package: dict[str, object]) -> str:
+    """Render the package metadata file for an upstream release."""
     executable = "nitch" if name == "nitch" else name
+    provides = package.get("provides") or [
+        f"{executable}=/usr/bin/{executable}"
+    ]
     return "\n".join(
         (
             f"Name: {name}",
@@ -242,7 +479,7 @@ def recipe_text(name: str, package: dict[str, object]) -> str:
             f"URL: {package['url']}",
             f"License: {package['license']}",
             "Maintainer: arkanaOS Team",
-            f"Provides: {executable}=/usr/bin/{executable}",
+            f"Provides: {', '.join(str(item) for item in provides)}",
             "",
         )
     )
@@ -255,6 +492,7 @@ def write_payload_file(target: Path, data: bytes, mode: int) -> None:
 
 
 def build(args: argparse.Namespace) -> None:
+    """Build selected upstream CLI packages from checksum-pinned sources."""
     repo_root = args.repo_root.resolve()
     cache = prepare_cache(args.source_cache)
     staging = args.staging.resolve()
@@ -262,11 +500,7 @@ def build(args: argparse.Namespace) -> None:
     unknown = set(selected).difference(PACKAGES)
     if unknown:
         raise ValueError(f"unknown packages: {', '.join(sorted(unknown))}")
-    ignored_archives = {
-        f"{name}-{PACKAGES[name]['version']}-{PACKAGES[name]['arch']}.ark"
-        for name in selected
-    }
-    owned = archive_owners(repo_root, ignored_archives)
+    owned = archive_owners(repo_root, set(selected))
 
     for index, name in enumerate(selected, 1):
         package = PACKAGES[name]
@@ -276,6 +510,14 @@ def build(args: argparse.Namespace) -> None:
             source_archive = download(
                 str(package["archive"]), str(package["archive_sha256"]), cache, work
             )
+            binary_archive = source_archive
+            if package.get("binary_archive"):
+                binary_archive = download(
+                    str(package["binary_archive"]),
+                    str(package["binary_archive_sha256"]),
+                    cache,
+                    work,
+                )
             package_dir = Path(temporary) / name
             payload = package_dir / "package"
             payload.mkdir(parents=True)
@@ -298,23 +540,54 @@ def build(args: argparse.Namespace) -> None:
                         f"{name}: upstream binary is neither ELF nor an executable script"
                     )
 
+            member_hashes = package.get("binary_member_sha256", {})
+            for source_name, target_name in package.get("binary_members", {}).items():
+                data = read_archive_file(binary_archive, str(source_name))
+                expected = member_hashes.get(source_name)
+                if expected and hashlib.sha256(data).hexdigest() != expected:
+                    raise ValueError(f"{name}: checksum mismatch for {source_name}")
+                target_relative = PurePosixPath(str(target_name))
+                if target_relative.is_absolute() or ".." in target_relative.parts:
+                    raise ValueError(f"{name}: unsafe package path {target_name!r}")
+                target = payload.joinpath(*target_relative.parts)
+                write_payload_file(target, data, 0o755)
+                if data[:4] == b"\x7fELF":
+                    validate_elf(target, staging)
+                elif not data[:160].startswith(b"#!"):
+                    raise ValueError(
+                        f"{name}: {source_name} is not an ELF binary or script"
+                    )
+
+            for source_name, target_name in package.get("binary_files", {}).items():
+                data = read_archive_file(binary_archive, str(source_name))
+                target_relative = PurePosixPath(str(target_name))
+                if target_relative.is_absolute() or ".." in target_relative.parts:
+                    raise ValueError(f"{name}: unsafe package path {target_name!r}")
+                write_payload_file(payload.joinpath(*target_relative.parts), data, 0o644)
+
             for source_name, target_name in package.get("files", {}).items():
-                data = read_tar_file(
+                data = read_archive_file(
                     source_archive, f"{package['root']}/{source_name}"
                 )
-                target = payload / str(target_name)
-                mode = 0o755 if str(target_name).startswith("usr/bin/") else 0o644
-                write_payload_file(target, data, mode)
+                target_relative = PurePosixPath(str(target_name))
+                if target_relative.is_absolute() or ".." in target_relative.parts:
+                    raise ValueError(f"{name}: unsafe package path {target_name!r}")
+                mode = 0o755 if target_relative.parts[:2] == ("usr", "bin") else 0o644
+                write_payload_file(payload.joinpath(*target_relative.parts), data, mode)
 
             license_target = payload / str(package["license_path"])
             write_payload_file(
                 license_target,
-                read_tar_file(
+                read_archive_file(
                     source_archive,
                     f"{package['root']}/{package['license_source']}",
                 ),
                 0o644,
             )
+
+            for directory in (payload, *payload.rglob("*")):
+                if directory.is_dir() and not directory.is_symlink():
+                    directory.chmod(0o755)
 
             paths = {
                 path.relative_to(payload).as_posix()
@@ -339,15 +612,26 @@ def build(args: argparse.Namespace) -> None:
             archive_path = repo_root / "packages" / (
                 f"{name}-{package['version']}-{package['arch']}.ark"
             )
-            subprocess.run(
-                [
-                    str(args.arkpkg_build.resolve()),
-                    str(package_dir),
-                    "--output",
-                    str(archive_path),
-                ],
-                check=True,
-            )
+            temporary_archive = archive_path.with_name(f".{archive_path.name}.tmp")
+            try:
+                subprocess.run(
+                    [
+                        str(args.arkpkg_build.resolve()),
+                        str(package_dir),
+                        "--output",
+                        str(temporary_archive),
+                    ],
+                    check=True,
+                )
+                archive_size = temporary_archive.stat().st_size
+                if archive_size > MAX_ARCHIVE_BYTES:
+                    raise ValueError(
+                        f"{archive_path.name}: archive is {archive_size} bytes; "
+                        f"maximum supported size is {MAX_ARCHIVE_BYTES} bytes"
+                    )
+                os.replace(temporary_archive, archive_path)
+            finally:
+                temporary_archive.unlink(missing_ok=True)
             owned.update(paths)
             print(
                 f"Built {index}/{len(selected)} {archive_path.name} "
