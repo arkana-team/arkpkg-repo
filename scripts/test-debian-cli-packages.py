@@ -1210,6 +1210,9 @@ class WorkstationManifestTests(unittest.TestCase):
                 self.assertTrue(archive.is_file(), archive)
                 recipe = repo_root / "packages/recipes" / name / "ARKPKG"
                 self.assertTrue(recipe.is_file(), recipe)
+                recipe_fields, recipe_dependencies, _ = BUILDER.read_recipe(recipe)
+                self.assertEqual(recipe_fields["Version"], version)
+                self.assertEqual(recipe_dependencies, dependencies)
                 package_metadata = metadata[name]
                 self.assertEqual(package_metadata["author"], author)
                 self.assertEqual(package_metadata["git_repo"], repository)
