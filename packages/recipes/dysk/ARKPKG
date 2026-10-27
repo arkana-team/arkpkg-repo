@@ -1,0 +1,8 @@
+Name: dysk
+Description: Terminal filesystem usage viewer with shell completions and a manual
+Version: 3.8.1
+Arch: x86_64
+URL: https://github.com/Canop/dysk
+License: MIT
+Maintainer: arkanaOS Team
+Provides: dysk=/usr/bin/dysk
