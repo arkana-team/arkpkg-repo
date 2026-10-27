@@ -98,15 +98,65 @@ class SourceCacheTests(unittest.TestCase):
             self.snapshot()
         self.assertFalse((self.cache / "source.tar.xz").exists())
 
+    def test_exact_size_limit_is_streamed_without_reading_the_snapshot_into_memory(
+        self,
+    ) -> None:
+        response = io.BytesIO(self.good)
+        with (
+            mock.patch("source_cache.MAX_SOURCE_BYTES", len(self.good)),
+            mock.patch("source_cache.urllib.request.urlopen", return_value=response),
+            mock.patch.object(
+                Path, "read_bytes", side_effect=AssertionError("unbounded read")
+            ),
+        ):
+            snapshot = self.snapshot()
+        self.assertEqual(snapshot.read_bytes(), self.good)
+
+    def test_oversized_cached_source_is_rejected_before_copy(self) -> None:
+        trusted_cache(self.cache)
+        candidate = self.cache / "source.tar.xz"
+        candidate.write_bytes(b"x" * 9)
+        with (
+            mock.patch("source_cache.MAX_SOURCE_BYTES", 8),
+            self.assertRaisesRegex(ValueError, "source exceeds 8 byte limit"),
+        ):
+            self.snapshot()
+        self.assertFalse((self.snapshots / candidate.name).exists())
+
+    def test_oversized_download_is_rejected_and_not_published(self) -> None:
+        response = io.BytesIO(b"x" * 9)
+        with (
+            mock.patch("source_cache.MAX_SOURCE_BYTES", 8),
+            mock.patch(
+                "source_cache.urllib.request.urlopen", return_value=response
+            ) as download,
+            self.assertRaisesRegex(ValueError, "source exceeds 8 byte limit"),
+        ):
+            self.snapshot()
+        download.assert_called_once()
+        self.assertFalse((self.cache / "source.tar.xz").exists())
+        self.assertFalse((self.snapshots / "source.tar.xz").exists())
+
+    def test_special_cached_source_is_rejected_without_blocking(self) -> None:
+        trusted_cache(self.cache)
+        os.mkfifo(self.cache / "source.tar.xz")
+        with (
+            mock.patch("source_cache.urllib.request.urlopen") as download,
+            self.assertRaisesRegex(ValueError, "not a regular file"),
+        ):
+            self.snapshot()
+        download.assert_not_called()
+        self.assertFalse((self.snapshots / "source.tar.xz").exists())
+
     def test_cached_content_changes_during_copy_fail_verification(self) -> None:
         trusted_cache(self.cache)
         candidate = self.cache / "source.tar.xz"
         candidate.write_bytes(self.good)
         original_copy = shutil.copyfileobj
 
-        def change_then_copy(source, output):
+        def change_then_copy(source, output, length=shutil.COPY_BUFSIZE):
             candidate.write_bytes(b"changed while open")
-            original_copy(source, output)
+            original_copy(source, output, length)
 
         with (
             mock.patch("source_cache.shutil.copyfileobj", side_effect=change_then_copy),
