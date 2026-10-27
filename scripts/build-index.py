@@ -17,6 +17,10 @@ PACKAGE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 PACKAGE_VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
 MAX_METADATA_SIZE = 64 * 1024
+# Catalogue inspection budgets, including headers, padding and skipped payloads.
+MAX_ARCHIVE_BYTES = 1024**3
+MAX_TAR_EXTENSION_SIZE = 64 * 1024
+MAX_TAR_EXTENSION_BYTES = 1024 * 1024
 DEFAULT_DOWNLOAD_BASE_URL = (
     "https://raw.githubusercontent.com/arkana-team/arkpkg-repo/main"
 )
@@ -345,12 +349,59 @@ def package_category(name: str, description: str) -> str:
     return "applications"
 
 
+class BudgetReader:
+    def __init__(self, source, limit: int, label: str):
+        self.source = source
+        self.remaining = limit
+        self.label = label
+
+    def read(self, size: int) -> bytes:
+        if size < 0:
+            raise ValueError(f"{self.label} requires bounded reads")
+        data = self.source.read(min(size, self.remaining + 1))
+        if len(data) > self.remaining:
+            raise ValueError(f"{self.label} exceeds inspection limit")
+        self.remaining -= len(data)
+        return data
+
+    def tell(self) -> int:
+        return self.source.tell()
+
+
+class CatalogueTarInfo(tarfile.TarInfo):
+    def _proc_member(self, archive):
+        # tarfile consumes extension bodies here, before yielding a member.
+        if self.type in {
+            tarfile.XHDTYPE, tarfile.XGLTYPE, tarfile.SOLARIS_XHDTYPE,
+            tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK,
+        }:
+            if not 0 <= self.size <= MAX_TAR_EXTENSION_SIZE:
+                raise ValueError("TAR extension header exceeds inspection limit")
+            total = getattr(archive, "_catalogue_extension_bytes", 0) + self._block(self.size)
+            if total > MAX_TAR_EXTENSION_BYTES:
+                raise ValueError("TAR extension data exceeds inspection limit")
+            archive._catalogue_extension_bytes = total
+
+        # Also bound sparse maps and nested extension parsing. Ordinary payload
+        # skipping happens outside this call and uses the expanded archive budget.
+        source = archive.fileobj
+        archive.fileobj = BudgetReader(source, MAX_TAR_EXTENSION_BYTES, "TAR parser data")
+        try:
+            return super()._proc_member(archive)
+        finally:
+            archive.fileobj = source
+
+
 def read_metadata(archive_path: Path) -> dict[str, str]:
     metadata = None
     has_package_tree = False
     with (
         lz4.frame.open(archive_path, "rb") as compressed,
-        tarfile.open(fileobj=compressed, mode="r|") as archive,
+        tarfile.open(
+            fileobj=BudgetReader(compressed, MAX_ARCHIVE_BYTES, "expanded archive"),
+            mode="r|",
+            tarinfo=CatalogueTarInfo,
+        ) as archive,
     ):
         for member in archive:
             member_path = PurePosixPath(member.name)
