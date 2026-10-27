@@ -1,0 +1,10 @@
+Name: xprintidle
+Description: Query X11 user idle time in milliseconds
+Version: 0.3.0-1
+Arch: x86_64
+URL: https://github.com/g0hl1n/xprintidle/
+License: See /usr/share/doc/xprintidle/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxss1
+Provides: xprintidle=/usr/bin/xprintidle

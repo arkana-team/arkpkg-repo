@@ -1,0 +1,9 @@
+Name: xphoon
+Description: Moon-phase image for the X11 root window
+Version: 20000613+0-9
+Arch: x86_64
+URL: https://xphoon.sourceforge.net/
+License: See /usr/share/doc/xphoon/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxrandr

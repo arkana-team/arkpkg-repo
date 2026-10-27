@@ -137,16 +137,18 @@ class WorkstationManifestTests(unittest.TestCase):
             / "data/debian-workstation-packages.json"
         )
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        batch_manifest_path = (
-            Path(__file__).resolve().parents[1]
-            / "data/debian-workstation-packages-batch-07.json"
-        )
-        batch_names = {
-            package["name"]
-            for package in json.loads(
-                batch_manifest_path.read_text(encoding="utf-8")
-            )["packages"]
-        }
+        batch_names = set()
+        for batch_number in ("07", "08"):
+            batch_manifest_path = (
+                Path(__file__).resolve().parents[1]
+                / f"data/debian-workstation-packages-batch-{batch_number}.json"
+            )
+            batch_names.update(
+                package["name"]
+                for package in json.loads(
+                    batch_manifest_path.read_text(encoding="utf-8")
+                )["packages"]
+            )
 
         self.assertEqual(manifest["suite"], "trixie")
         self.assertEqual(manifest["architecture"], "amd64")
@@ -303,6 +305,7 @@ class WorkstationManifestTests(unittest.TestCase):
             "nbsdgames": "https://github.com/abakh",
             "cbonsai": "https://gitlab.com/jallbrit",
             "libfile-next-perl": "https://github.com/petdance",
+            "xmountains": "https://github.com/spbooth",
         }
         for name, profile_url in expected_author_profiles.items():
             self.assertEqual(metadata[name]["git_author_url"], profile_url)
@@ -1107,6 +1110,114 @@ class WorkstationManifestTests(unittest.TestCase):
             packages["crawl"]["license_source_path"],
             "usr/share/doc/crawl-common/copyright",
         )
+
+    def test_retro_x11_batch_08_is_pinned_and_credited(self) -> None:
+        """Keep the optional X11 workstation tools reproducible and credited."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-08.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        expected = {
+            "xdu": (
+                "3.0-20+b1",
+                "pool/main/x/xdu/xdu_3.0-20+b1_amd64.deb",
+                "f8f0edfda41dfe66298ff6f82c02a8f58e2c756f798fedfe32ffc831b2cecc58",
+                ["libxaw7"],
+                "Phillip C. Dykstra",
+                "https://salsa.debian.org/debian/xdu.git",
+                "packaging",
+            ),
+            "xmountains": (
+                "2.11-3",
+                "pool/main/x/xmountains/xmountains_2.11-3_amd64.deb",
+                "aa02ca4bd1adabfb4ed4c79e490c298b3472b36a42b6723fff66599b7d6c8bc0",
+                [],
+                "Stephen Booth",
+                "https://github.com/spbooth/xmountains",
+                "upstream",
+            ),
+            "xpenguins": (
+                "3.2.3-2",
+                "pool/main/x/xpenguins/xpenguins_3.2.3-2_amd64.deb",
+                "47700028ba248993d75cb7d6b0936665a9defd10f174da7cb42b7d2787e12d27",
+                ["libcairo2", "libgdk-pixbuf-2.0-0", "libgtk-3-0t64"],
+                "Robin Hogan",
+                "https://salsa.debian.org/games-team/xpenguins.git",
+                "packaging",
+            ),
+            "xphoon": (
+                "20000613+0-9",
+                "pool/main/x/xphoon/xphoon_20000613+0-9_amd64.deb",
+                "a2708e31dfa1f51241f61b9604b8eea9456d0e0acb5148ed40d5a92ccdaf6972",
+                ["libxrandr"],
+                "Jef Poskanzer and Craig Leres",
+                "https://salsa.debian.org/debian/xphoon.git",
+                "packaging",
+            ),
+            "xprintidle": (
+                "0.3.0-1",
+                "pool/main/x/xprintidle/xprintidle_0.3.0-1_amd64.deb",
+                "35f88810913a1040f46244382d4bd3b30dbf2a8c2c7ee5ec1e29784ed982c9bf",
+                ["libxss1"],
+                "Magnus Henoch",
+                "https://github.com/g0hl1n/xprintidle",
+                "upstream",
+            ),
+            "xsysinfo": (
+                "1.7-10+b2",
+                "pool/main/x/xsysinfo/xsysinfo_1.7-10+b2_amd64.deb",
+                "6bdb760ffbd3d334be744ec694fca58c9104246ab1060c8355f8ed8ab664cc74",
+                ["libxaw7"],
+                "Gabor Herr",
+                "https://salsa.debian.org/debian/xsysinfo.git",
+                "packaging",
+            ),
+        }
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        for name, (
+            version,
+            filename,
+            digest,
+            dependencies,
+            author,
+            repository,
+            repository_type,
+        ) in expected.items():
+            with self.subTest(package=name):
+                package = batch_packages[name]
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(package["dependencies"], dependencies)
+                self.assertEqual(batch["sources"][name]["filename"], filename)
+                self.assertEqual(batch["sources"][name]["sha256"], digest)
+                self.assertEqual(manifest["sources"][name], batch["sources"][name])
+                archive = repo_root / "packages" / f"{name}-{version}-x86_64.ark"
+                self.assertTrue(archive.is_file(), archive)
+                recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+                self.assertTrue(recipe.is_file(), recipe)
+                package_metadata = metadata[name]
+                self.assertEqual(package_metadata["author"], author)
+                self.assertEqual(package_metadata["git_repo"], repository)
+                self.assertEqual(package_metadata["git_repo_type"], repository_type)
+                self.assertEqual(
+                    {item["name"] for item in package_metadata["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
 
 
 class UpstreamDownloadTests(unittest.TestCase):

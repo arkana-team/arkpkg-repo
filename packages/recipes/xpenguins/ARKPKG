@@ -1,0 +1,12 @@
+Name: xpenguins
+Description: Animated penguins walking across X11 windows
+Version: 3.2.3-2
+Arch: x86_64
+URL: https://www.ratrabbit.nl/ratrabbit/software/xpenguins/index.html
+License: See /usr/share/doc/xpenguins/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libcairo2
+  libgdk-pixbuf-2.0-0
+  libgtk-3-0t64
+Provides: xpenguins-stop=/usr/bin/xpenguins-stop, xpenguins=/usr/bin/xpenguins

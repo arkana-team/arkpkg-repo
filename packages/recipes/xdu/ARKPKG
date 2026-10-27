@@ -1,0 +1,10 @@
+Name: xdu
+Description: X11 display of disk-usage trees
+Version: 3.0-20+b1
+Arch: x86_64
+URL: https://salsa.debian.org/debian/xdu
+License: See /usr/share/doc/xdu/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxaw7
+Provides: xdu=/usr/bin/xdu

@@ -1,0 +1,7 @@
+Name: xmountains
+Description: X11 fractal landscape generator
+Version: 2.11-3
+Arch: x86_64
+URL: https://spbooth.github.io/xmountains
+License: See /usr/share/doc/xmountains/copyright
+Maintainer: arkanaOS Team
