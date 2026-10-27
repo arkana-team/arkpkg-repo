@@ -1,0 +1,8 @@
+Name: foremost
+Description: Recover deleted files from disk images
+Version: 1.5.7-11+b2
+Arch: x86_64
+URL: https://sourceforge.net/projects/foremost/
+License: See /usr/share/doc/foremost/copyright
+Maintainer: arkanaOS Team
+Provides: foremost=/usr/bin/foremost

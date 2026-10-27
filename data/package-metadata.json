@@ -30335,6 +30335,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "foremost": {
+      "author": "Jesse Kornblum, Kris Kendall, and Nick Mikus",
+      "git_repo": "https://salsa.debian.org/rul/foremost.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "safecopy": {
+      "author": "Corvus Corax (Eric Noack)",
+      "git_repo": "https://salsa.debian.org/pkg-security-team/safecopy.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "scrounge-ntfs": {
+      "author": "Stefan Walter",
+      "git_repo": "https://salsa.debian.org/pkg-security-team/scrounge-ntfs.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

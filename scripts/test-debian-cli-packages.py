@@ -4101,6 +4101,105 @@ class Batch25PackageTests(unittest.TestCase):
                     any(item.endswith("=" + expected_provide) for item in provides)
                 )
 
+class Batch27RecoveryPackageTests(unittest.TestCase):
+    def test_batch_27_pins_file_recovery_utilities(self) -> None:
+        """Keep file recovery packages tied to verified Trixie sources."""
+        repo_root = Path(__file__).resolve().parents[1]
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-27.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        expected = {
+            "foremost": (
+                "1.5.7-11+b2",
+                "7b2e0a708732639ad4e223de69b285e81f1e64a50e3d4c31e777b707bda8e434",
+                "Jesse Kornblum, Kris Kendall, and Nick Mikus",
+                "https://salsa.debian.org/rul/foremost.git",
+                "package/usr/bin/foremost",
+            ),
+            "safecopy": (
+                "1.7-7",
+                "d73d57befa4fa91fbcb792f2af96514e81f2f917792e9efbfd18787c976e5466",
+                "Corvus Corax (Eric Noack)",
+                "https://salsa.debian.org/pkg-security-team/safecopy.git",
+                "package/usr/bin/safecopy",
+            ),
+            "scrounge-ntfs": (
+                "0.9-11",
+                "d203be9bf5939e8267e46558b60f168f12dd8ee9f95a7991435bf278e0c7f06f",
+                "Stefan Walter",
+                "https://salsa.debian.org/pkg-security-team/scrounge-ntfs.git",
+                "package/usr/sbin/scrounge-ntfs",
+            ),
+        }
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        for name, (
+            version,
+            checksum,
+            author,
+            git_repo,
+            expected_path,
+        ) in expected.items():
+            package = batch_packages[name]
+            with self.subTest(package=name):
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(package["dependencies"], [])
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                source_name = package["debian_packages"][0]
+                self.assertEqual(batch["sources"][source_name]["sha256"], checksum)
+                self.assertEqual(
+                    batch["sources"][source_name], manifest["sources"][source_name]
+                )
+                self.assertEqual(metadata[name]["author"], author)
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], "packaging")
+                self.assertIsNone(metadata[name]["git_author_url"])
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+                self.assertTrue(BUILDER.repository_has_package(repo_root, package))
+
+                archive_path = (
+                    repo_root
+                    / "packages"
+                    / f"{name}-{version}-{package['arch']}.ark"
+                )
+                paths = set()
+                with (
+                    BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
+                    tarfile.open(fileobj=compressed, mode="r|") as archive,
+                ):
+                    paths.update(member.name for member in archive)
+                self.assertIn(expected_path, paths)
+                self.assertIn(f"package/{package['license_path']}", paths)
+                _, dependencies, provides = BUILDER.read_recipe(
+                    repo_root / "packages/recipes" / name / "ARKPKG"
+                )
+                self.assertEqual(dependencies, [])
+                expected_provide = "/" + expected_path.removeprefix("package/")
+                self.assertTrue(
+                    any(
+                        item.endswith("=" + expected_provide)
+                        for item in provides
+                    )
+                )
+
 
 if __name__ == "__main__":
     unittest.main()
