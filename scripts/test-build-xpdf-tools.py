@@ -4,6 +4,7 @@
 import hashlib
 import importlib.util
 import io
+import os
 import shutil
 import stat
 import subprocess
@@ -78,16 +79,144 @@ class SourceAuthenticationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
             BUILDER.obtain_source(self.cache, self.private)
 
-    def test_bytes_changed_during_copy_are_rejected(self) -> None:
-        def copy_changed_bytes(cached: Path, destination: Path) -> None:
+    def test_bytes_changed_after_open_are_rejected(self) -> None:
+        fdopen = os.fdopen
+
+        def open_changed_bytes(descriptor: int, mode: str):
             self.cached.write_bytes(self.bad)
-            destination.write_bytes(cached.read_bytes())
+            return fdopen(descriptor, mode)
 
         with (
-            patch.object(BUILDER.shutil, "copyfile", side_effect=copy_changed_bytes),
+            patch.object(BUILDER.os, "fdopen", side_effect=open_changed_bytes),
             self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
         ):
             BUILDER.obtain_source(self.cache, self.private)
+
+    def test_symlinks_are_rejected_without_download_or_target_write(self) -> None:
+        for target in (self.root / "target", self.root / "missing", Path("/dev/zero")):
+            with self.subTest(target=target):
+                if target.name == "target":
+                    target.write_bytes(self.good)
+                self.cached.unlink()
+                self.cached.symlink_to(target)
+                with (
+                    patch.object(BUILDER.urllib.request, "urlopen") as download,
+                    self.assertRaises(OSError),
+                ):
+                    BUILDER.obtain_source(self.cache, self.private)
+                download.assert_not_called()
+                self.assertFalse((self.private / self.cached.name).exists())
+                if target.name == "target":
+                    self.assertEqual(target.read_bytes(), self.good)
+                elif target.name == "missing":
+                    self.assertFalse(target.exists())
+
+    def test_fifo_is_rejected_without_blocking(self) -> None:
+        self.cached.unlink()
+        os.mkfifo(self.cached)
+        original_open = os.open
+
+        def open_fifo(path, flags):
+            self.assertTrue(flags & os.O_NONBLOCK)
+            return original_open(path, flags)
+
+        with (
+            patch.object(BUILDER.os, "open", side_effect=open_fifo),
+            patch.object(BUILDER.urllib.request, "urlopen") as download,
+            self.assertRaisesRegex(ValueError, "not a regular file"),
+        ):
+            BUILDER.obtain_source(self.cache, self.private)
+        download.assert_not_called()
+
+    def test_opened_device_is_rejected(self) -> None:
+        # Exercise descriptor validation even if the pathname looked regular.
+        descriptor = os.open("/dev/zero", os.O_RDONLY)
+        with (
+            patch.object(BUILDER.os, "open", return_value=descriptor),
+            self.assertRaisesRegex(ValueError, "not a regular file"),
+        ):
+            BUILDER.obtain_source(self.cache, self.private)
+        with self.assertRaises(OSError):
+            os.fstat(descriptor)
+        self.assertFalse((self.private / self.cached.name).exists())
+
+    def test_writable_cache_is_rejected(self) -> None:
+        self.cache.chmod(0o777)
+        with self.assertRaisesRegex(ValueError, "writable by others"):
+            BUILDER.obtain_source(self.cache, self.private)
+
+    def test_oversized_cached_archive_is_rejected_before_copy(self) -> None:
+        with (
+            patch.object(BUILDER, "MAX_SOURCE_BYTES", len(self.good) - 1),
+            self.assertRaisesRegex(ValueError, "source archive exceeds"),
+        ):
+            BUILDER.obtain_source(self.cache, self.private)
+        self.assertFalse((self.private / self.cached.name).exists())
+
+    def test_copy_limit_still_applies_if_cached_file_grows_after_stat(self) -> None:
+        initial = list(self.cached.stat())
+        initial[6] = 0
+        with (
+            patch.object(BUILDER.os, "fstat", return_value=os.stat_result(initial)),
+            patch.object(BUILDER, "MAX_SOURCE_BYTES", len(self.good) - 1),
+            self.assertRaisesRegex(ValueError, "source archive exceeds"),
+        ):
+            BUILDER.obtain_source(self.cache, self.private)
+        self.assertLessEqual(
+            (self.private / self.cached.name).stat().st_size, len(self.good) - 1
+        )
+
+    def test_archive_exactly_at_limit_is_accepted(self) -> None:
+        with patch.object(BUILDER, "MAX_SOURCE_BYTES", len(self.good)):
+            self.assertEqual(
+                BUILDER.obtain_source(self.cache, self.private).read_bytes(), self.good
+            )
+
+    def test_oversized_download_is_bounded_and_not_published(self) -> None:
+        self.cached.unlink()
+        with (
+            patch.object(BUILDER, "MAX_SOURCE_BYTES", 1024),
+            patch.object(
+                BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(b"x" * 2048)
+            ),
+            self.assertRaisesRegex(ValueError, "source archive exceeds"),
+        ):
+            BUILDER.obtain_source(self.cache, self.private)
+        self.assertFalse(self.cached.exists())
+        self.assertLessEqual((self.private / self.cached.name).stat().st_size, 1024)
+
+    def test_bad_download_is_not_published(self) -> None:
+        self.cached.unlink()
+        with (
+            patch.object(
+                BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.bad)
+            ),
+            self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
+        ):
+            BUILDER.obtain_source(self.cache, self.private)
+        self.assertEqual(list(self.cache.iterdir()), [])
+
+    def test_download_publication_replaces_entry_without_following_it(self) -> None:
+        for hardlink in (False, True):
+            with self.subTest(hardlink=hardlink):
+                self.cached.unlink()
+                target = self.root / "publication-target"
+                target.write_bytes(b"preserve target")
+
+                def download(*args, hardlink=hardlink, target=target, **kwargs):
+                    if hardlink:
+                        self.cached.hardlink_to(target)
+                    else:
+                        self.cached.symlink_to(target)
+                    return io.BytesIO(self.good)
+
+                with patch.object(BUILDER.urllib.request, "urlopen", side_effect=download):
+                    source = BUILDER.obtain_source(self.cache, self.private)
+                self.assertEqual(source.read_bytes(), self.good)
+                self.assertEqual(self.cached.read_bytes(), self.good)
+                self.assertFalse(self.cached.samefile(target))
+                self.assertEqual(target.read_bytes(), b"preserve target")
+                self.assertEqual(list(self.cache.iterdir()), [self.cached])
 
     def test_cache_replaced_after_hash_does_not_change_archive_validation(self) -> None:
         sha256 = hashlib.sha256

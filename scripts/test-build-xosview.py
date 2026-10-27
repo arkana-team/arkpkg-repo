@@ -58,8 +58,8 @@ class SourceArchiveTests(unittest.TestCase):
 
     def test_downloaded_archive_is_copied_and_verified(self) -> None:
         self.cached.unlink()
-        with patch.object(
-            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.good)
+        with patch(
+            "urllib.request.urlopen", return_value=io.BytesIO(self.good)
         ) as download:
             source = BUILDER.source_archive(self.cache, self.private)
         download.assert_called_once()
@@ -67,16 +67,72 @@ class SourceArchiveTests(unittest.TestCase):
         self.assertEqual(source.read_bytes(), self.good)
         self.assertFalse(source.samefile(self.cached))
 
-    def test_cache_changed_during_copy_fails_verification(self) -> None:
-        copyfile = shutil.copyfile
+    def test_dangling_cache_symlink_does_not_redirect_download(self) -> None:
+        self.cached.unlink()
+        victim = self.root / "victim"
+        self.cached.symlink_to(victim)
+        with patch("urllib.request.urlopen", return_value=io.BytesIO(self.good)):
+            source = BUILDER.source_archive(self.cache, self.private)
+        self.assertFalse(victim.exists())
+        self.assertFalse(self.cached.is_symlink())
+        self.assertEqual(self.cached.read_bytes(), self.good)
+        self.assertEqual(source.read_bytes(), self.good)
 
-        def replace_then_copy(source: Path, destination: Path) -> None:
-            self.cached.unlink()
+    def test_cache_entry_replaced_during_download_does_not_modify_target(self) -> None:
+        for link in ("symlink", "hardlink"):
+            with self.subTest(link=link):
+                self.cached.unlink()
+                victim = self.root / link
+                victim.write_bytes(b"keep this file")
+
+                def download(*args, link=link, victim=victim, **kwargs):
+                    if link == "symlink":
+                        self.cached.symlink_to(victim)
+                    else:
+                        self.cached.hardlink_to(victim)
+                    return io.BytesIO(self.good)
+
+                with (
+                    tempfile.TemporaryDirectory(dir=self.private) as temporary,
+                    patch("urllib.request.urlopen", side_effect=download),
+                ):
+                    source = BUILDER.source_archive(self.cache, Path(temporary))
+                    self.assertEqual(source.read_bytes(), self.good)
+                self.assertEqual(victim.read_bytes(), b"keep this file")
+                self.assertFalse(self.cached.samefile(victim))
+                self.assertEqual(self.cached.read_bytes(), self.good)
+
+    def test_bad_download_is_not_cached(self) -> None:
+        self.cached.unlink()
+        with (
+            patch("urllib.request.urlopen", return_value=io.BytesIO(b"bad download")),
+            self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
+        ):
+            BUILDER.source_archive(self.cache, self.private)
+        self.assertFalse(self.cached.exists())
+
+    def test_writable_cache_is_rejected_before_download_or_build(self) -> None:
+        self.cached.unlink()
+        self.cache.chmod(0o777)
+        with (
+            patch("urllib.request.urlopen", return_value=io.BytesIO(self.good)) as download,
+            patch.object(BUILDER, "privileged") as privileged,
+            patch.object(sys, "argv", self.arguments()),
+            self.assertRaisesRegex(ValueError, "writable by others"),
+        ):
+            BUILDER.main()
+        download.assert_not_called()
+        privileged.assert_not_called()
+
+    def test_cache_changed_during_copy_fails_verification(self) -> None:
+        copyfileobj = shutil.copyfileobj
+
+        def replace_then_copy(source, destination) -> None:
             self.cached.write_bytes(b"replacement before snapshot")
-            copyfile(source, destination)
+            copyfileobj(source, destination)
 
         with (
-            patch.object(BUILDER.shutil, "copyfile", side_effect=replace_then_copy),
+            patch("source_cache.shutil.copyfileobj", side_effect=replace_then_copy),
             self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
         ):
             BUILDER.source_archive(self.cache, self.private)
@@ -101,10 +157,11 @@ class SourceArchiveTests(unittest.TestCase):
                 content = archive_bytes(name)
                 self.cached.write_bytes(content)
                 with (
+                    tempfile.TemporaryDirectory(dir=self.private) as temporary,
                     patch.object(BUILDER, "SHA256", hashlib.sha256(content).hexdigest()),
                     self.assertRaisesRegex(ValueError, error),
                 ):
-                    BUILDER.source_archive(self.cache, self.private)
+                    BUILDER.source_archive(self.cache, Path(temporary))
 
     def arguments(self) -> list[str]:
         return [

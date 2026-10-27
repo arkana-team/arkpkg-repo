@@ -13,6 +13,7 @@ import tempfile
 import uuid
 from pathlib import Path, PurePosixPath
 
+from package_metadata import read_metadata_member
 from source_cache import source_snapshot
 
 SOURCE_NAME = "xcursor-themes"
@@ -47,10 +48,10 @@ def package_name(archive_path: Path) -> str:
         for member in archive:
             if member.name != "ARKPKG" or not member.isfile():
                 continue
-            stream = archive.extractfile(member)
-            if stream is None:
+            metadata = read_metadata_member(archive, member)
+            if metadata is None:
                 break
-            for line in stream.read().decode("utf-8").splitlines():
+            for line in metadata.splitlines():
                 key, separator, value = line.partition(":")
                 if separator and key.strip() == "Name":
                     return value.strip()
@@ -103,7 +104,7 @@ def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
     sysroot = args.sysroot.resolve()
     repo_root = Path(__file__).resolve().parents[1]
     package_builder = repo_root / "scripts/build-arkana-packages.py"
-    archive = source_archive(args.source_cache.resolve(), snapshots)
+    archive = source_archive(args.source_cache, snapshots)
     output_staging = args.output_staging.resolve()
 
     for binary in ("bash", "make", "pkg-config", "tar"):
@@ -256,7 +257,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--source-cache",
         type=Path,
-        default=Path(tempfile.gettempdir()) / "arkpkg-xcursor-source-cache",
+        default=Path.home() / ".cache/arkpkg-xcursor-sources",
+        help="private source cache owned by the current user",
     )
     parser.add_argument("--jobs", type=int, default=1)
     args = parser.parse_args()

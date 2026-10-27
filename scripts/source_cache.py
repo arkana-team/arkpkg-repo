@@ -50,7 +50,9 @@ def _open_cached(path: Path):
 
 
 def trusted_cache(cache: Path) -> Path:
-    cache = cache.resolve()
+    # Keep original entries visible to lstat; resolving would hide symlink owners.
+    # Validate each parent before using it so other users cannot replace children.
+    cache = cache.absolute()
     for directory in (*reversed(cache.parents), cache):
         try:
             directory.mkdir(mode=0o700)

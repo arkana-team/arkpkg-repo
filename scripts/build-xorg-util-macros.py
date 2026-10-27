@@ -6,7 +6,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import io
+import os
 import shutil
+import stat
 import subprocess
 import sys
 import tarfile
@@ -18,22 +20,54 @@ NAME = "util-macros"
 VERSION = "1.20.2"
 SHA256 = "9ac269eba24f672d7d7b3574e4be5f333d13f04a7712303b1821b2a51ac82e8e"
 URL = f"https://xorg.freedesktop.org/archive/individual/util/{NAME}-{VERSION}.tar.xz"
+# The pinned archive is 83,592 bytes; bound both cache and network reads.
+MAX_SOURCE_SIZE = 1024 * 1024
 
 
 def obtain_source(cache: Path) -> bytes:
-    cache.mkdir(parents=True, exist_ok=True)
+    cache = cache.absolute()
+    # Check from the root down before creating children; do not resolve symlinks.
+    for directory in (*reversed(cache.parents), cache):
+        try:
+            directory.mkdir(mode=0o700)
+        except FileExistsError:
+            pass
+        info = directory.lstat()
+        owners = {os.geteuid()} if directory == cache else {0, os.geteuid()}
+        if (
+            not stat.S_ISDIR(info.st_mode)
+            or info.st_uid not in owners
+            or (
+                info.st_mode & 0o022
+                and not (directory != cache and info.st_mode & stat.S_ISVTX)
+            )
+        ):
+            raise ValueError(f"unsafe source cache directory: {directory}")
     archive_path = cache / f"{NAME}-{VERSION}.tar.xz"
-    if not archive_path.is_file():
+    downloaded = False
+    try:
+        descriptor = os.open(archive_path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    except FileNotFoundError:
         request = urllib.request.Request(
             URL, headers={"User-Agent": "arkpkg-repo-xorg-macros-builder/1"}
         )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            archive_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
-    # Keep the verified bytes: another user may replace or modify the cache.
-    source = archive_path.read_bytes()
+        with urllib.request.urlopen(request, timeout=90) as response:
+            source = response.read(MAX_SOURCE_SIZE + 1)
+        downloaded = True
+    else:
+        with os.fdopen(descriptor, "rb") as cached:
+            info = os.fstat(cached.fileno())
+            if (
+                not stat.S_ISREG(info.st_mode)
+                or info.st_uid != os.geteuid()
+                or info.st_mode & 0o022
+                or info.st_nlink != 1
+            ):
+                raise ValueError(f"unsafe cached source: {archive_path}")
+            source = cached.read(MAX_SOURCE_SIZE + 1)
+    if len(source) > MAX_SOURCE_SIZE:
+        raise ValueError(f"source exceeds {MAX_SOURCE_SIZE} bytes: {archive_path.name}")
+    # Keep the verified bytes even if the cache later changes.
     digest = hashlib.sha256(source).hexdigest()
     if digest != SHA256:
         raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
@@ -45,12 +79,22 @@ def obtain_source(cache: Path) -> bytes:
                 raise ValueError(f"unsafe source path in archive: {member.name!r}")
             if path.parts and path.parts[0] != root:
                 raise ValueError(f"unexpected source root in archive: {member.name!r}")
+    if downloaded:
+        # Publish verified bytes without following or truncating an existing entry.
+        with tempfile.NamedTemporaryFile(dir=cache, prefix=".download-", delete=False) as output:
+            temporary = Path(output.name)
+            try:
+                output.write(source)
+                output.close()
+                temporary.replace(archive_path)
+            finally:
+                temporary.unlink(missing_ok=True)
     return source
 
 
 def build(args: argparse.Namespace, staging: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
-    source = obtain_source(args.source_cache.resolve())
+    source = obtain_source(args.source_cache)
     with tarfile.open(fileobj=io.BytesIO(source), mode="r:xz") as archive:
         archive.extractall(staging / "source", filter="data")
     source_root = staging / "source" / f"{NAME}-{VERSION}"

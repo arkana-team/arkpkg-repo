@@ -567,6 +567,24 @@ def staging_conflicts(payload: Path, paths: list[str], staging: Path) -> list[st
     return conflicts
 
 
+def resolve_license_path(payload: Path, relative: str, package_name: str) -> Path:
+    """Resolve a license file path while keeping symlinks inside its payload."""
+    path = PurePosixPath(relative)
+    if (
+        not relative
+        or not path.parts
+        or path.is_absolute()
+        or ".." in path.parts
+        or path.as_posix() != relative
+    ):
+        raise ValueError(f"{package_name}: unsafe license path {relative!r}")
+    root = payload.resolve()
+    target = (root / path).resolve()
+    if target == root or not target.is_relative_to(root) or target.is_dir():
+        raise ValueError(f"{package_name}: unsafe license path {relative!r}")
+    return target
+
+
 def license_path_resolves_to(
     payload: Path, license_path: str, source_path: str
 ) -> bool:
@@ -746,7 +764,7 @@ def build(args: argparse.Namespace) -> None:
                 link_path.symlink_to(target)
 
             license_path = package["license_path"]
-            license_target = payload / license_path
+            license_target = resolve_license_path(payload, license_path, name)
             license_provided_by_dependency = False
             if not license_target.is_file() and "license_source_package" in package:
                 license_source_name = package["license_source_package"]
@@ -757,7 +775,9 @@ def build(args: argparse.Namespace) -> None:
                     )
                 license_deb = obtain_deb(sources[license_source_name], cache)
                 license_payload = extract_data_archive(license_deb, work)
-                license_source_path = license_payload / package["license_source_path"]
+                license_source_path = resolve_license_path(
+                    license_payload, package["license_source_path"], name
+                )
                 if not license_source_path.is_file():
                     raise FileNotFoundError(
                         f"{name}: missing license source {package['license_source_path']} "

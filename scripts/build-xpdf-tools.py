@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import os
 import shutil
+import stat
 import subprocess
 import sys
 import tarfile
@@ -15,11 +16,14 @@ import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
 
+from source_cache import trusted_cache
+
 NAME = "xpdf-tools"
 VERSION = "4.06"
 SOURCE_ROOT = f"xpdf-{VERSION}"
 SOURCE_URL = f"https://dl.xpdfreader.com/{SOURCE_ROOT}.tar.gz"
 SOURCE_SHA256 = "1c38f527c46caee0f712386d42a885b96a31ed9ce11904e872559859894d137e"
+MAX_SOURCE_BYTES = 32 * 1024 * 1024
 TOOLS = (
     "pdfdetach",
     "pdffonts",
@@ -44,21 +48,36 @@ def privileged(command: list[str], *, log: Path | None = None) -> None:
 
 def obtain_source(cache: Path, private_dir: Path) -> Path:
     """Return a verified copy in a caller-owned private directory."""
-    cache.mkdir(parents=True, exist_ok=True)
+    cache = trusted_cache(cache)
     cached_path = cache / f"{SOURCE_ROOT}.tar.gz"
-    if not cached_path.is_file():
+    downloaded = False
+    try:
+        descriptor = os.open(cached_path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    except FileNotFoundError:
         request = urllib.request.Request(
             SOURCE_URL, headers={"User-Agent": "arkpkg-repo-xpdf-builder/1"}
         )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            cached_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
+        source = urllib.request.urlopen(request, timeout=90)
+        downloaded = True
+    else:
+        source = os.fdopen(descriptor, "rb")
     # The cache can be replaced or modified by another user. Authenticate only
     # the private copy that the privileged install will actually consume.
     archive_path = private_dir / cached_path.name
-    shutil.copyfile(cached_path, archive_path)
+    with source:
+        if not downloaded:
+            info = os.fstat(source.fileno())
+            if not stat.S_ISREG(info.st_mode):
+                raise ValueError(f"source cache entry is not a regular file: {cached_path}")
+            if info.st_size > MAX_SOURCE_BYTES:
+                raise ValueError(f"source archive exceeds {MAX_SOURCE_BYTES} bytes")
+        with archive_path.open("wb") as output:
+            size = 0
+            while chunk := source.read(min(64 * 1024, MAX_SOURCE_BYTES - size + 1)):
+                size += len(chunk)
+                if size > MAX_SOURCE_BYTES:
+                    raise ValueError(f"source archive exceeds {MAX_SOURCE_BYTES} bytes")
+                output.write(chunk)
     digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
     if digest != SOURCE_SHA256:
         raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
@@ -73,6 +92,17 @@ def obtain_source(cache: Path, private_dir: Path) -> Path:
                 roots.add(path.parts[0])
     if roots != {SOURCE_ROOT}:
         raise ValueError(f"unexpected source roots: {sorted(roots)}")
+
+    if downloaded:
+        # Publish verified bytes without following symlinks or truncating hardlinks.
+        descriptor, temporary = tempfile.mkstemp(prefix=".source-", dir=cache)
+        temporary_path = Path(temporary)
+        try:
+            with os.fdopen(descriptor, "wb") as output, archive_path.open("rb") as source:
+                shutil.copyfileobj(source, output)
+            temporary_path.replace(cached_path)
+        finally:
+            temporary_path.unlink(missing_ok=True)
     return archive_path
 
 
