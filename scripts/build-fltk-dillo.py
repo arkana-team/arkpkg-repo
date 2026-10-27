@@ -16,6 +16,8 @@ import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
 
+from package_metadata import read_metadata_member
+
 FLTK_ARCHIVE = "fltk-1.4.5-source.tar.gz"
 FLTK_ROOT = "fltk-1.4.5"
 FLTK_URL = f"https://github.com/fltk/fltk/releases/download/release-1.4.5/{FLTK_ARCHIVE}"
@@ -25,6 +27,55 @@ DILLO_ROOT = "dillo-3.2.0"
 DILLO_URL = f"https://dillo-browser.github.io/release/3.2.0/{DILLO_ARCHIVE}"
 DILLO_SHA256 = "1066ed42ea7fe0ce19e79becd029c651c15689922de8408e13e70bb5701931bf"
 FLTK_PACKAGES = ("fltk-libs", "fltk-devel", "fltk-tools")
+MAX_ARCHIVE_BYTES = 1024**3
+MAX_TAR_EXTENSION_SIZE = 64 * 1024
+MAX_TAR_EXTENSION_BYTES = 1024 * 1024
+MAX_TAR_EXTENSION_DEPTH = 32
+
+
+class BudgetReader:
+    def __init__(self, source, limit: int, label: str):
+        self.source = source
+        self.remaining = limit
+        self.label = label
+
+    def read(self, size: int) -> bytes:
+        if size < 0:
+            raise ValueError(f"{self.label} requires bounded reads")
+        data = self.source.read(min(size, self.remaining + 1))
+        if len(data) > self.remaining:
+            raise ValueError(f"{self.label} exceeds inspection limit")
+        self.remaining -= len(data)
+        return data
+
+    def tell(self) -> int:
+        return self.source.tell()
+
+
+class MetadataTarInfo(tarfile.TarInfo):
+    def _proc_member(self, archive):
+        # Extension bodies and sparse maps are parsed before members are yielded.
+        depth = getattr(archive, "_metadata_parser_depth", 0)
+        if self.type in {
+            tarfile.XHDTYPE, tarfile.XGLTYPE, tarfile.SOLARIS_XHDTYPE,
+            tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK,
+        }:
+            if depth >= MAX_TAR_EXTENSION_DEPTH:
+                raise ValueError("TAR extension nesting exceeds inspection limit")
+            if not 0 <= self.size <= MAX_TAR_EXTENSION_SIZE:
+                raise ValueError("TAR extension header exceeds inspection limit")
+            total = getattr(archive, "_metadata_extension_bytes", 0) + self._block(self.size)
+            if total > MAX_TAR_EXTENSION_BYTES:
+                raise ValueError("TAR extension data exceeds inspection limit")
+            archive._metadata_extension_bytes = total
+        source = archive.fileobj
+        archive.fileobj = BudgetReader(source, MAX_TAR_EXTENSION_BYTES, "TAR parser data")
+        archive._metadata_parser_depth = depth + 1
+        try:
+            return super()._proc_member(archive)
+        finally:
+            archive.fileobj = source
+            archive._metadata_parser_depth = depth
 
 
 def privileged(command: list[str], *, log: Path | None = None) -> None:
@@ -191,17 +242,24 @@ def installed_packages(arkpkg: Path, sysroot: Path) -> set[str]:
 def install_package(arkpkg: Path, sysroot: Path, archive: Path) -> str:
     import lz4.frame
 
+    name = None
     with (
         lz4.frame.open(archive, "rb") as compressed,
-        tarfile.open(fileobj=compressed, mode="r|") as package,
+        tarfile.open(
+            fileobj=BudgetReader(compressed, MAX_ARCHIVE_BYTES, "expanded archive"),
+            mode="r|",
+            tarinfo=MetadataTarInfo,
+        ) as package,
     ):
         for member in package:
             if member.name != "ARKPKG" or not member.isfile():
                 continue
-            stream = package.extractfile(member)
-            if stream is None:
+            if member.issparse():
+                raise ValueError("ARKPKG metadata must not be sparse")
+            metadata = read_metadata_member(package, member)
+            if metadata is None:
                 break
-            for line in stream.read().decode("utf-8").splitlines():
+            for line in metadata.splitlines():
                 key, separator, value = line.partition(":")
                 if separator and key.strip() == "Name":
                     name = value.strip()
@@ -209,8 +267,8 @@ def install_package(arkpkg: Path, sysroot: Path, archive: Path) -> str:
             else:
                 continue
             break
-        else:
-            raise ValueError(f"package archive has no Name field: {archive}")
+    if name is None:
+        raise ValueError(f"package archive has no Name field: {archive}")
     command = [str(arkpkg), "--root", str(sysroot), "install", str(archive), "-y"]
     privileged(command)
     return name
