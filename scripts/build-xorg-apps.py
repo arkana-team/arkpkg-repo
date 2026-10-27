@@ -10,18 +10,17 @@ after the build. Package archives are then written using build-arkana-packages.p
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
 
 import lz4.frame
+from source_cache import source_snapshot
 
 BASE_URL = "https://xorg.freedesktop.org/archive/individual/app"
 APPS = {
@@ -481,21 +480,14 @@ def installed_packages(arkpkg: Path, sysroot: Path) -> set[str]:
     return {line.split()[0] for line in result.stdout.splitlines() if line.split()}
 
 
-def source_archive(name: str, version: str, expected_sha256: str, cache: Path) -> Path:
-    archive = cache / f"{name}-{version}{ARCHIVE_SUFFIXES.get(name, '.tar.xz')}"
-    if not archive.is_file():
-        request = urllib.request.Request(
-            f"{BASE_URL}/{archive.name}",
-            headers={"User-Agent": "arkpkg-repo-xorg-builder/1"},
-        )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            archive.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
-    digest = hashlib.sha256(archive.read_bytes()).hexdigest()
-    if digest != expected_sha256:
-        raise ValueError(f"SHA-256 mismatch for {archive.name}: {digest}")
+def source_archive(
+    name: str, version: str, expected_sha256: str, cache: Path, snapshots: Path
+) -> Path:
+    filename = f"{name}-{version}{ARCHIVE_SUFFIXES.get(name, '.tar.xz')}"
+    archive = source_snapshot(
+        cache, snapshots, filename, f"{BASE_URL}/{filename}", expected_sha256,
+        user_agent="arkpkg-repo-xorg-builder/1", timeout=90,
+    )
     with tarfile.open(archive, "r:*") as source:
         roots = set()
         for member in source:
@@ -526,11 +518,15 @@ def desktop_entry(name: str, label: str) -> str:
 
 
 def build(args: argparse.Namespace) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-xorg-app-sources-") as temporary:
+        build_with_sources(args, Path(temporary))
+
+
+def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
     sysroot = args.sysroot.resolve()
     repo_root = Path(__file__).resolve().parents[1]
     source_cache = args.source_cache.resolve()
     output_staging = args.output_staging.resolve()
-    source_cache.mkdir(parents=True, exist_ok=True)
     output_staging.mkdir(parents=True, exist_ok=True)
     package_names = args.packages or list(APPS)
 
@@ -611,7 +607,7 @@ def build(args: argparse.Namespace) -> None:
         for name in package_names:
             version, digest, _app_class, label = APPS[name]
             print(f"Building {name}-{version}", flush=True)
-            archive = source_archive(name, version, digest, source_cache)
+            archive = source_archive(name, version, digest, source_cache, snapshots)
             archive_in_root = work_host / archive.name
             privileged(["install", "-m", "644", str(archive), str(archive_in_root)])
             payload_rel = f"{work_rel}/payload/{name}"

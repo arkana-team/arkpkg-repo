@@ -12,6 +12,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+import source_cache
+
 SCRIPT = Path(__file__).with_name("build-xorg-fonts.py")
 SPEC = importlib.util.spec_from_file_location("xorg_fonts", SCRIPT)
 if SPEC is None or SPEC.loader is None:
@@ -32,20 +34,21 @@ class FontSourceTests(unittest.TestCase):
 
     def obtain(self) -> Path:
         return BUILDER.obtain_source(
-            self.cache, "fixture", "1", "https://example.invalid/source", self.digest
+            self.cache, "fixture", "1", "https://example.invalid/source", self.digest,
+            Path(tempfile.mkdtemp(dir=self.root)),
         )
 
     def test_download_and_reuse_verified_cache(self) -> None:
         with patch.object(
-            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.payload)
+            source_cache.urllib.request, "urlopen", return_value=io.BytesIO(self.payload)
         ) as download:
-            self.assertEqual(self.obtain(), self.archive)
+            self.assertEqual(self.obtain().read_bytes(), self.payload)
             download.assert_called_once()
         self.assertEqual(self.archive.read_bytes(), self.payload)
         self.assertEqual(stat.S_IMODE(self.cache.stat().st_mode), 0o700)
         self.assertEqual(stat.S_IMODE(self.archive.stat().st_mode), 0o600)
-        with patch.object(BUILDER.urllib.request, "urlopen") as download:
-            self.assertEqual(self.obtain(), self.archive)
+        with patch.object(source_cache.urllib.request, "urlopen") as download:
+            self.assertEqual(self.obtain().read_bytes(), self.payload)
             download.assert_not_called()
         self.assertEqual(list(self.cache.iterdir()), [self.archive])
 
@@ -57,7 +60,7 @@ class FontSourceTests(unittest.TestCase):
             self.archive.symlink_to(victim)
             return io.BytesIO(self.payload)
 
-        with patch.object(BUILDER.urllib.request, "urlopen", side_effect=respond):
+        with patch.object(source_cache.urllib.request, "urlopen", side_effect=respond):
             self.obtain()
         self.assertEqual(victim.read_bytes(), b"user data")
         self.assertFalse(self.archive.is_symlink())
@@ -68,7 +71,7 @@ class FontSourceTests(unittest.TestCase):
         victim = self.root / "missing"
         self.archive.symlink_to(victim)
         with patch.object(
-            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.payload)
+            source_cache.urllib.request, "urlopen", return_value=io.BytesIO(self.payload)
         ):
             self.obtain()
         self.assertFalse(victim.exists())
@@ -83,14 +86,14 @@ class FontSourceTests(unittest.TestCase):
             os.link(victim, self.archive)
             return io.BytesIO(self.payload)
 
-        with patch.object(BUILDER.urllib.request, "urlopen", side_effect=respond):
+        with patch.object(source_cache.urllib.request, "urlopen", side_effect=respond):
             self.obtain()
         self.assertEqual(victim.read_bytes(), b"user data")
         self.assertEqual(self.archive.read_bytes(), self.payload)
 
     def test_failed_checksum_is_not_published(self) -> None:
         with patch.object(
-            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(b"bad source")
+            source_cache.urllib.request, "urlopen", return_value=io.BytesIO(b"bad source")
         ), self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
             self.obtain()
         self.assertEqual(list(self.cache.iterdir()), [])
@@ -98,7 +101,7 @@ class FontSourceTests(unittest.TestCase):
     def test_corrupt_cached_source_is_rejected_without_download(self) -> None:
         self.cache.mkdir(mode=0o700)
         self.archive.write_bytes(b"bad source")
-        with patch.object(BUILDER.urllib.request, "urlopen") as download:
+        with patch.object(source_cache.urllib.request, "urlopen") as download:
             with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
                 self.obtain()
             download.assert_not_called()
@@ -112,7 +115,7 @@ class FontSourceTests(unittest.TestCase):
                 return super().read(size)
 
         with patch.object(
-            BUILDER.urllib.request,
+            source_cache.urllib.request,
             "urlopen",
             return_value=InterruptedResponse(b"partial source"),
         ), self.assertRaisesRegex(OSError, "interrupted download"):
@@ -124,7 +127,7 @@ class FontSourceTests(unittest.TestCase):
         for mode in (0o770, 0o707, 0o777):
             with self.subTest(mode=oct(mode)):
                 self.cache.chmod(mode)
-                with patch.object(BUILDER.urllib.request, "urlopen") as download:
+                with patch.object(source_cache.urllib.request, "urlopen") as download:
                     with self.assertRaisesRegex(ValueError, "source cache must be"):
                         self.obtain()
                     download.assert_not_called()
@@ -134,7 +137,7 @@ class FontSourceTests(unittest.TestCase):
         self.cache.mkdir(mode=0o700)
         with (
             patch.object(BUILDER.os, "geteuid", return_value=os.geteuid() + 1),
-            patch.object(BUILDER.urllib.request, "urlopen") as download,
+            patch.object(source_cache.urllib.request, "urlopen") as download,
         ):
             with self.assertRaisesRegex(ValueError, "source cache must be"):
                 self.obtain()
@@ -154,7 +157,7 @@ class FontSourceTests(unittest.TestCase):
                 "--arkpkg-build", str(self.root / "unused-builder"),
                 "--packages", BUILDER.FONT_PACKAGES[0][0],
             ],
-        ), patch.object(BUILDER.urllib.request, "urlopen") as download:
+        ), patch.object(source_cache.urllib.request, "urlopen") as download:
             with self.assertRaisesRegex(ValueError, "source cache must be"):
                 BUILDER.main()
             download.assert_not_called()
@@ -165,7 +168,7 @@ class FontSourceTests(unittest.TestCase):
         parent.mkdir()
         parent.chmod(0o777)
         self.cache = parent / "cache"
-        with patch.object(BUILDER.urllib.request, "urlopen") as download:
+        with patch.object(source_cache.urllib.request, "urlopen") as download:
             with self.assertRaisesRegex(ValueError, "unsafe source cache parent"):
                 self.obtain()
             download.assert_not_called()
@@ -175,7 +178,7 @@ class FontSourceTests(unittest.TestCase):
         self.cache.mkdir()
         self.cache.chmod(0o755)
         with patch.object(
-            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.payload)
+            source_cache.urllib.request, "urlopen", return_value=io.BytesIO(self.payload)
         ):
             self.obtain()
         self.assertEqual(self.archive.read_bytes(), self.payload)
@@ -192,9 +195,10 @@ class FontSourceTests(unittest.TestCase):
         self.payload = buffer.getvalue()
         self.digest = hashlib.sha256(self.payload).hexdigest()
         with patch.object(
-            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.payload)
+            source_cache.urllib.request, "urlopen", return_value=io.BytesIO(self.payload)
         ):
             source = self.obtain()
+        self.archive.write_bytes(b"changed after verification")
         staging = self.root / "staging"
         count = BUILDER.stage_fonts(source, staging, "fixture", "1", "misc", ("COPYING",))
         self.assertEqual(count, 1)

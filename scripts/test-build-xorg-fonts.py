@@ -100,6 +100,37 @@ class FontStagingTests(unittest.TestCase):
             self.assertEqual((fonts / "fonts.dir").read_text(), "1\ntest.bdf test-xlfd\n")
         return staging.parent
 
+    def test_fonts_extra_sources_and_aliases_survive_cache_substitution(self) -> None:
+        extra_digest = self.write_archive("extra", "1", {
+            "extra.bdf": b"FONT extra-font\n", "COPYING": b"extra license",
+        })
+        obtain = BUILDER.obtain_source
+        snapshots = []
+
+        def obtain_then_mutate(*args):
+            source = obtain(*args)
+            (self.cache / source.name).write_bytes(b"attacker replacement")
+            snapshots.append(source)
+            return source
+
+        with (
+            patch.object(BUILDER, "FONT_EXTRA_SOURCES", {
+                self.font_name: (("extra", "1", extra_digest),),
+            }),
+            patch.object(BUILDER, "obtain_source", side_effect=obtain_then_mutate),
+            patch.object(BUILDER.subprocess, "run"),
+        ):
+            staging = self.root / "snapshot-staging"
+            self.run_builder("--staging", str(staging))
+        fonts = staging / self.font_name / f"usr/share/fonts/{self.font_directory}"
+        self.assertEqual((fonts / "test.bdf").read_bytes(), self.font_data)
+        self.assertEqual((fonts / "extra.bdf").read_bytes(), b"FONT extra-font\n")
+        self.assertIn("extra.bdf extra-font\n", (fonts / "fonts.dir").read_text())
+        aliases = staging / BUILDER.ALIAS_NAME / "usr/share/fonts"
+        self.assertIn("test test-xlfd", (aliases / "misc/fonts.alias").read_text())
+        self.assertEqual(len(snapshots), 3)
+        self.assertTrue(all(not source.exists() for source in snapshots))
+
     def test_default_staging_is_private_unique_and_cleaned(self) -> None:
         roots = []
 

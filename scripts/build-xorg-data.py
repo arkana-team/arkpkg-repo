@@ -21,13 +21,8 @@ URL = f"https://xorg.freedesktop.org/archive/individual/data/{NAME}-{VERSION}.ta
 
 def obtain_source(cache: Path, snapshots: Path) -> Path:
     return source_snapshot(
-        cache,
-        snapshots,
-        f"{NAME}-{VERSION}.tar.xz",
-        URL,
-        SHA256,
-        user_agent="arkpkg-repo-xorg-data-builder/1",
-        timeout=90,
+        cache, snapshots, f"{NAME}-{VERSION}.tar.xz", URL, SHA256,
+        user_agent="arkpkg-repo-xorg-data-builder/1", timeout=90,
     )
 
 
@@ -50,6 +45,9 @@ def stage_package(archive_path: Path, staging: Path) -> int:
         names = [token for token in re.sub(r"\\\s*\n", " ", match.group(1)).split()]
         if not names or len(names) != len(set(names)):
             raise ValueError("upstream bitmap list is empty or has duplicate names")
+        for name in names:
+            if name in {".", ".."} or "/" in name or "\\" in name:
+                raise ValueError(f"unsafe upstream bitmap name: {name!r}")
         for name in names:
             member_name = f"{prefix}{name}"
             member = archive.getmember(member_name)
@@ -100,10 +98,14 @@ def main() -> None:
 
 
 def build(args: argparse.Namespace, staging: Path) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-xorg-data-sources-") as temporary:
+        build_with_sources(args, staging, Path(temporary))
+
+
+def build_with_sources(args: argparse.Namespace, staging: Path, snapshots: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
-    with tempfile.TemporaryDirectory(prefix="arkpkg-xorg-data-source-") as temporary:
-        source = obtain_source(args.source_cache, Path(temporary))
-        count = stage_package(source, staging)
+    source = obtain_source(args.source_cache, snapshots)
+    count = stage_package(source, staging)
     command = [
         sys.executable,
         str(repo_root / "scripts/build-arkana-packages.py"),

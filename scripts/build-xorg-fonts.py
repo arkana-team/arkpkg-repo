@@ -4,17 +4,16 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
 import re
-import shutil
 import stat
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 from pathlib import Path, PurePosixPath
+
+from source_cache import source_snapshot
 
 FONT_PACKAGES = (
     (
@@ -260,7 +259,8 @@ FONT_NAME = re.compile(rb"^FONT\s+([^\r\n]+)", re.MULTILINE)
 
 
 def obtain_source(
-    cache: Path, name: str, version: str, url: str, expected_sha256: str
+    cache: Path, name: str, version: str, url: str, expected_sha256: str,
+    snapshots: Path,
 ) -> Path:
     cache = cache.parent.resolve() / cache.name
     cache.mkdir(mode=0o700, parents=True, exist_ok=True)
@@ -278,28 +278,10 @@ def obtain_source(
             parent_stat.st_mode & 0o022 and not parent_stat.st_mode & stat.S_ISVTX
         ):
             raise ValueError(f"unsafe source cache parent: {parent}")
-    archive_path = cache / f"{name}-{version}.tar.xz"
-    if not archive_path.is_file():
-        request = urllib.request.Request(
-            url, headers={"User-Agent": "arkpkg-repo-font-builder/1"}
-        )
-        with tempfile.NamedTemporaryFile(dir=cache, prefix=".download-", delete=False) as output:
-            temporary_path = Path(output.name)
-            try:
-                with urllib.request.urlopen(request, timeout=90) as response:
-                    shutil.copyfileobj(response, output)
-                output.flush()
-                output.seek(0)
-                digest = hashlib.sha256(output.read()).hexdigest()
-                if digest != expected_sha256:
-                    raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
-                temporary_path.replace(archive_path)
-            finally:
-                temporary_path.unlink(missing_ok=True)
-    digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-    if digest != expected_sha256:
-        raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
-    return archive_path
+    return source_snapshot(
+        cache, snapshots, f"{name}-{version}.tar.xz", url, expected_sha256,
+        user_agent="arkpkg-repo-font-builder/1", timeout=90,
+    )
 
 
 def stage_fonts(
@@ -487,6 +469,11 @@ def main() -> None:
 
 
 def build(args: argparse.Namespace, staging: Path) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-font-sources-") as temporary:
+        build_with_sources(args, staging, Path(temporary))
+
+
+def build_with_sources(args: argparse.Namespace, staging: Path, snapshots: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
     alias_staging = staging / ALIAS_NAME
     font_stagings = []
@@ -505,6 +492,7 @@ def build(args: argparse.Namespace, staging: Path) -> None:
             version,
             f"{FONT_BASE_URL}/{name}-{version}.tar.xz",
             digest,
+            snapshots,
         )
         package_staging = staging / name
         extra_sources = []
@@ -517,6 +505,7 @@ def build(args: argparse.Namespace, staging: Path) -> None:
                         extra_version,
                         f"{FONT_BASE_URL}/{extra_name}-{extra_version}.tar.xz",
                         extra_digest,
+                        snapshots,
                     ),
                     extra_name,
                     extra_version,
@@ -535,7 +524,7 @@ def build(args: argparse.Namespace, staging: Path) -> None:
         font_counts[name] = count
     if ALIAS_NAME in package_names:
         alias_source = obtain_source(
-            cache, ALIAS_NAME, ALIAS_VERSION, ALIAS_URL, ALIAS_SHA256
+            cache, ALIAS_NAME, ALIAS_VERSION, ALIAS_URL, ALIAS_SHA256, snapshots
         )
         alias_count = stage_aliases(alias_source, alias_staging)
     packages_to_build = (

@@ -4,16 +4,16 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
+
+from source_cache import source_snapshot
 
 NAME = "encodings"
 VERSION = "1.1.0"
@@ -32,18 +32,11 @@ def privileged(command: list[str], *, log: Path | None = None) -> None:
             subprocess.run(full, stdout=output, stderr=subprocess.STDOUT, check=True)
 
 
-def source_archive(cache: Path) -> Path:
-    cache.mkdir(parents=True, exist_ok=True)
-    path = cache / ARCHIVE
-    if not path.is_file():
-        request = urllib.request.Request(
-            URL, headers={"User-Agent": "arkpkg-repo-font-builder/1"}
-        )
-        with urllib.request.urlopen(request, timeout=90) as response, path.open("wb") as output:
-            shutil.copyfileobj(response, output)
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    if digest != SHA256:
-        raise ValueError(f"SHA-256 mismatch for {path.name}: {digest}")
+def source_archive(cache: Path, snapshots: Path) -> Path:
+    path = source_snapshot(
+        cache, snapshots, ARCHIVE, URL, SHA256,
+        user_agent="arkpkg-repo-font-builder/1", timeout=90,
+    )
     with tarfile.open(path, "r:xz") as archive:
         roots = set()
         for member in archive:
@@ -65,13 +58,18 @@ def installed_packages(arkpkg: Path, sysroot: Path) -> set[str]:
 
 
 def build(args: argparse.Namespace) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-font-data-sources-") as temporary:
+        archive = source_archive(args.source_cache, Path(temporary))
+        build_from_source(args, archive)
+
+
+def build_from_source(args: argparse.Namespace, archive: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
     sysroot = args.sysroot.resolve()
     package_manager = args.arkpkg.resolve()
     package_builder = args.arkpkg_build.resolve()
     output_dir = args.output_dir.resolve()
     staging = args.staging.resolve()
-    archive = source_archive(args.source_cache.resolve())
     dependency_archive = next((repo_root / "packages").glob("mkfontscale-*.ark"))
 
     installed = installed_packages(package_manager, sysroot)
