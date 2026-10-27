@@ -1,0 +1,11 @@
+Name: xarclock
+Description: X11 reversed clock utility
+Version: 1.0-20
+Arch: x86_64
+URL: https://www.ibiblio.org/pub/Linux/X11/clocks
+License: See /usr/share/doc/xarclock/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxaw7
+  libxmu
+Provides: xarclock=/usr/bin/xarclock

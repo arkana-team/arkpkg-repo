@@ -1,0 +1,89 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "xarclock": {
+      "filename": "pool/main/x/xarclock/xarclock_1.0-20_amd64.deb",
+      "sha256": "d7447f7d03a538838a04c4305c3830449e3b9764bfa3df68153e566b807ad278"
+    },
+    "xkeycaps": {
+      "filename": "pool/main/x/xkeycaps/xkeycaps_2.47-9_amd64.deb",
+      "sha256": "745f6aa25d1e4b6ad94e22a097345780c0c9b18eec4138d681b6cb274637202d"
+    },
+    "xball": {
+      "filename": "pool/main/x/xball/xball_3.1.0+dfsg-3_amd64.deb",
+      "sha256": "6520a386337c80442cb39460b429d7a946c02ab323f4919708343910112b9d22"
+    },
+    "xcwd": {
+      "filename": "pool/main/x/xcwd/xcwd_0~2.gbpe2c777c-1+b1_amd64.deb",
+      "sha256": "864b5e462a81eea0e2776427e26d2372a39d460d53b6fe7a694f4becf0228cf3"
+    }
+  },
+  "packages": [
+    {
+      "name": "xarclock",
+      "description": "X11 reversed clock utility",
+      "version": "1.0-20",
+      "debian_version": "1.0-20",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xarclock"
+      ],
+      "dependencies": [
+        "libxaw7",
+        "libxmu"
+      ],
+      "url": "https://www.ibiblio.org/pub/Linux/X11/clocks",
+      "license": "See /usr/share/doc/xarclock/copyright",
+      "license_path": "usr/share/doc/xarclock/copyright"
+    },
+    {
+      "name": "xkeycaps",
+      "description": "Graphical X11 keyboard and keymap editor",
+      "version": "2.47-9",
+      "debian_version": "2.47-9",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xkeycaps"
+      ],
+      "dependencies": [
+        "libxaw7",
+        "libxmu"
+      ],
+      "url": "https://www.jwz.org/xkeycaps/",
+      "license": "See /usr/share/doc/xkeycaps/copyright",
+      "license_path": "usr/share/doc/xkeycaps/copyright"
+    },
+    {
+      "name": "xball",
+      "description": "Motif X11 bouncing ball simulation",
+      "version": "3.1.0+dfsg-3",
+      "debian_version": "3.1.0+dfsg-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xball"
+      ],
+      "dependencies": [
+        "libxm4",
+        "libxmu"
+      ],
+      "url": "https://github.com/JoesCat/xball",
+      "license": "See /usr/share/doc/xball/copyright",
+      "license_path": "usr/share/doc/xball/copyright"
+    },
+    {
+      "name": "xcwd",
+      "description": "Print the working directory of the focused X11 window",
+      "version": "0~2.gbpe2c777c-1+b1",
+      "debian_version": "0~2.gbpe2c777c-1+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xcwd"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/schischi/xcwd",
+      "license": "See /usr/share/doc/xcwd/copyright",
+      "license_path": "usr/share/doc/xcwd/copyright"
+    }
+  ]
+}
