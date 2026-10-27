@@ -145,6 +145,55 @@ class SourceCacheTests(unittest.TestCase):
         ):
             self.snapshot()
 
+    def test_rejects_symlink_entries_before_creating_target_directories(self) -> None:
+        for existing in (False, True):
+            for nested in (False, True):
+                with (
+                    self.subTest(existing=existing, nested=nested),
+                    tempfile.TemporaryDirectory(dir=self.root) as temporary,
+                ):
+                    root = Path(temporary)
+                    target = root / "protected/cache"
+                    if existing:
+                        target.mkdir(parents=True)
+                        (target / "keep").write_bytes(b"keep")
+                    link = root / "cache"
+                    link.symlink_to(target, target_is_directory=True)
+                    cache = link / "nested" if nested else link
+                    before = sorted(root.glob("protected/**/*"))
+                    with self.assertRaisesRegex(ValueError, "unsafe source cache"):
+                        trusted_cache(cache)
+                    self.assertEqual(sorted(root.glob("protected/**/*")), before)
+                    if existing:
+                        self.assertEqual((target / "keep").read_bytes(), b"keep")
+                    self.assertTrue(link.is_symlink())
+
+    def test_builders_reject_cache_symlinks_before_download_or_privileged_use(self) -> None:
+        for builder, _, filename in BUILDERS:
+            with self.subTest(builder=filename):
+                link = self.root / f"link-{filename}"
+                target = self.root / f"protected-{filename}/cache"
+                link.symlink_to(target, target_is_directory=True)
+                args = argparse.Namespace(
+                    sysroot=self.root,
+                    arkpkg=self.root / "arkpkg",
+                    xorg_util_macros_archive=self.root / "macros.ark",
+                    output_staging=self.root / f"staging-{filename}",
+                    source_cache=link,
+                )
+                with (
+                    mock.patch.object(builder, "privileged") as privileged,
+                    mock.patch(
+                        "source_cache.urllib.request.urlopen",
+                        side_effect=AssertionError("unsafe cache reached download"),
+                    ) as download,
+                    self.assertRaisesRegex(ValueError, "unsafe source cache"),
+                ):
+                    builder.build_with_sources(args, self.snapshots)
+                download.assert_not_called()
+                privileged.assert_not_called()
+                self.assertFalse(target.parent.exists())
+
     def test_preserves_archive_path_and_root_checks(self) -> None:
         for builder, root, filename in BUILDERS:
             for member in (

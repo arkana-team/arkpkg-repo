@@ -115,7 +115,7 @@ def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
         output_staging = args.output_staging.absolute()
         output_staging.mkdir(mode=0o700, parents=True)
 
-    source = source_archive(args.source_cache.resolve(), snapshots)
+    source = source_archive(args.source_cache, snapshots)
     for binary in ("gcc", "make", "pkg-config", "tar", "strip"):
         if not (sysroot / "usr/bin" / binary).exists():
             raise FileNotFoundError(f"target build root lacks /usr/bin/{binary}")
