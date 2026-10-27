@@ -30544,6 +30544,38 @@
         }
       ]
     },
+    "dua": {
+      "author": "Sebastian Thiel",
+      "git_repo": "https://github.com/Byron/dua-cli",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/Byron",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "gitui": {
+      "author": "extrawurst",
+      "git_repo": "https://github.com/gitui-org/gitui",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/extrawurst",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "evtest": {
       "author": "Vojtech Pavlik and Red Hat, Inc.",
       "git_repo": "https://cgit.freedesktop.org/evtest/",

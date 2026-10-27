@@ -101,6 +101,28 @@ class UpstreamCacheTests(unittest.TestCase):
                 )
                 self.assertTrue(package["license_source"])
 
+    def test_disk_and_git_tools_have_pinned_static_release_assets(self) -> None:
+        """Keep dua and gitui tied to checksummed Linux release binaries."""
+        for name in ("dua", "gitui"):
+            with self.subTest(package=name):
+                package = BUILDER.PACKAGES[name]
+                self.assertEqual(package["arch"], "x86_64")
+                self.assertEqual(
+                    set(package["binary_members"]),
+                    set(package["binary_member_sha256"]),
+                )
+                digests = (
+                    package["archive_sha256"],
+                    package["binary_archive_sha256"],
+                    *package["binary_member_sha256"].values(),
+                )
+                for digest in digests:
+                    self.assertEqual(len(digest), 64)
+                    self.assertTrue(all(char in "0123456789abcdef" for char in digest))
+                self.assertTrue(package["license_source"])
+        gitui_recipe = BUILDER.recipe_text("gitui", BUILDER.PACKAGES["gitui"])
+        self.assertIn("Dependencies: git", gitui_recipe)
+
     def test_recipe_text_records_optional_runtime_dependencies(self) -> None:
         """Write declared runtime dependencies into generated package metadata."""
         package = {

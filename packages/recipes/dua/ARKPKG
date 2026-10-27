@@ -1,0 +1,8 @@
+Name: dua
+Description: Interactive disk usage analyzer with subtree deletion and snapshots
+Version: 2.44.0
+Arch: x86_64
+URL: https://github.com/Byron/dua-cli
+License: MIT
+Maintainer: arkanaOS Team
+Provides: dua=/usr/bin/dua
