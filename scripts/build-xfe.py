@@ -176,7 +176,7 @@ def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
     sysroot = args.sysroot.resolve()
     repo_root = Path(__file__).resolve().parents[1]
     package_builder = repo_root / "scripts/build-arkana-packages.py"
-    source_cache = args.source_cache.resolve()
+    source_cache = args.source_cache
     fox_archive = source_archive(
         source_cache, snapshots, FOX_ARCHIVE, FOX_URL, FOX_SHA256, FOX_NAME
     )
@@ -331,7 +331,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--source-cache",
         type=Path,
-        default=Path(tempfile.gettempdir()) / "arkpkg-xfe-source-cache",
+        default=Path.home() / ".cache/arkpkg-xfe-sources",
+        help="private source cache owned by the current user",
     )
     parser.add_argument("--jobs", type=int, default=1)
     args = parser.parse_args()
