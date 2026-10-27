@@ -81,7 +81,7 @@ class UpstreamCacheTests(unittest.TestCase):
 
     def test_system_cli_tools_have_pinned_release_assets(self) -> None:
         """Keep each added system CLI's downloaded assets checksum-pinned."""
-        for name in ("navi", "choose", "dysk", "nushell"):
+        for name in ("navi", "choose", "dysk", "nushell", "jujutsu"):
             with self.subTest(package=name):
                 package = BUILDER.PACKAGES[name]
                 digests = [package["archive_sha256"]]
@@ -105,6 +105,12 @@ class UpstreamCacheTests(unittest.TestCase):
         self.assertIn(
             "Provides: nu=/usr/bin/nu",
             BUILDER.recipe_text("nushell", nushell),
+        )
+        jujutsu = BUILDER.PACKAGES["jujutsu"]
+        self.assertEqual(jujutsu["provides"], ["jj=/usr/bin/jj"])
+        self.assertIn(
+            "Provides: jj=/usr/bin/jj",
+            BUILDER.recipe_text("jujutsu", jujutsu),
         )
 
     def test_disk_and_git_tools_have_pinned_static_release_assets(self) -> None:
