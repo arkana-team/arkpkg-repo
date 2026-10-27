@@ -30383,6 +30383,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "atuin": {
+      "author": "Ellie Huxtable",
+      "git_repo": "https://github.com/atuinsh/atuin",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/ellie",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "yazi": {
+      "author": "sxyazi",
+      "git_repo": "https://github.com/sxyazi/yazi",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/sxyazi",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "zellij": {
+      "author": "Aram Drevekenin",
+      "git_repo": "https://github.com/zellij-org/zellij",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/imsnif",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

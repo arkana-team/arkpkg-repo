@@ -1,0 +1,8 @@
+Name: zellij
+Description: Terminal workspace manager and multiplexer without the web client
+Version: 0.45.1
+Arch: x86_64
+URL: https://github.com/zellij-org/zellij
+License: MIT
+Maintainer: arkanaOS Team
+Provides: zellij=/usr/bin/zellij

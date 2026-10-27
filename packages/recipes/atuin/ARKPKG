@@ -1,0 +1,8 @@
+Name: atuin
+Description: Searchable shell history manager with optional sync
+Version: 18.24.2
+Arch: x86_64
+URL: https://github.com/atuinsh/atuin
+License: MIT
+Maintainer: arkanaOS Team
+Provides: atuin=/usr/bin/atuin

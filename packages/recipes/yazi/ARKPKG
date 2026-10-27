@@ -1,0 +1,8 @@
+Name: yazi
+Description: Fast terminal file manager with shell completions
+Version: 26.9.1
+Arch: x86_64
+URL: https://github.com/sxyazi/yazi
+License: MIT
+Maintainer: arkanaOS Team
+Provides: yazi=/usr/bin/yazi, ya=/usr/bin/ya
