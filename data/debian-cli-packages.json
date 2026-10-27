@@ -4525,21 +4525,21 @@
       "debian_packages": [
         "libntfs-3g89t64"
       ],
-      "debian_version": "1:2022.10.3-5+deb13u2",
+      "debian_version": "1:2022.10.3-5+deb13u3",
       "dependencies": [],
       "description": "Shared NTFS-3G library for NTFS access and recovery tools",
       "license": "See /usr/share/doc/libntfs-3g89t64/copyright",
       "license_path": "usr/share/doc/libntfs-3g89t64/copyright",
       "name": "libntfs-3g89t64",
       "url": "https://github.com/tuxera/ntfs-3g/wiki",
-      "version": "2022.10.3-5+deb13u2"
+      "version": "2022.10.3-5+deb13u3"
     },
     {
       "arch": "x86_64",
       "debian_packages": [
         "ntfs-3g"
       ],
-      "debian_version": "1:2022.10.3-5+deb13u2",
+      "debian_version": "1:2022.10.3-5+deb13u3",
       "dependencies": [
         "gnutls-libs",
         "libgcrypt20",
@@ -4550,7 +4550,7 @@
       "license_path": "usr/share/doc/ntfs-3g/copyright",
       "name": "ntfs-3g",
       "url": "https://github.com/tuxera/ntfs-3g/wiki",
-      "version": "2022.10.3-5+deb13u2"
+      "version": "2022.10.3-5+deb13u3"
     },
     {
       "arch": "x86_64",
@@ -6580,15 +6580,17 @@
     },
     "libntfs-3g89t64": {
       "architecture": "amd64",
-      "filename": "pool/main/n/ntfs-3g/libntfs-3g89t64_2022.10.3-5+deb13u2_amd64.deb",
-      "sha256": "74641ea68ec67b37781435f0335b49747e300c4fd2ead3fdbb02d7a03569c5a3",
-      "version": "2022.10.3-5+deb13u2"
+      "filename": "pool/updates/main/n/ntfs-3g/libntfs-3g89t64_2022.10.3-5+deb13u3_amd64.deb",
+      "sha256": "eac375d5e7b0c0a4bfba7f228218e61296362bd19f2851a48f292ec417a6d690",
+      "version": "2022.10.3-5+deb13u3",
+      "archive": "security"
     },
     "ntfs-3g": {
       "architecture": "amd64",
-      "filename": "pool/main/n/ntfs-3g/ntfs-3g_2022.10.3-5+deb13u2_amd64.deb",
-      "sha256": "a3cc777da48b3ae5f85ea0b193d81949be41c73dc8c310a87ec9dd3b59b49061",
-      "version": "2022.10.3-5+deb13u2"
+      "filename": "pool/updates/main/n/ntfs-3g/ntfs-3g_2022.10.3-5+deb13u3_amd64.deb",
+      "sha256": "2e2f42d3051f5ddd6f5c0d449543f23fc0e3fc4631a8a82207dfaab9213bdfaa",
+      "version": "2022.10.3-5+deb13u3",
+      "archive": "security"
     },
     "testdisk": {
       "architecture": "amd64",

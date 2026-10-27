@@ -90,10 +90,22 @@ class DebianSourceUrlTests(unittest.TestCase):
             "https://deb.debian.org/debian/pool/main/c/curl/curl_1.0_amd64.deb",
         )
 
+    def test_source_download_url_supports_the_signed_security_archive(self) -> None:
+        source = {
+            "archive": "security",
+            "filename": "pool/updates/main/n/ntfs-3g/package_1.0_amd64.deb",
+        }
+        self.assertEqual(
+            BUILDER.source_download_url(source),
+            "https://security.debian.org/debian-security/"
+            "pool/updates/main/n/ntfs-3g/package_1.0_amd64.deb",
+        )
+
     def test_source_download_url_rejects_unsafe_paths(self) -> None:
         for source in (
             {"filename": "pool/main/../private.deb"},
             {"filename": "/tmp/package.deb"},
+            {"archive": "unknown", "filename": "pool/main/package.deb"},
         ):
             with self.subTest(source=source), self.assertRaises(ValueError):
                 BUILDER.source_download_url(source)
@@ -4281,16 +4293,16 @@ class Batch26PackageTests(unittest.TestCase):
                 "package/usr/bin/evtest",
             ),
             "libntfs-3g89t64": (
-                "2022.10.3-5+deb13u2",
-                "74641ea68ec67b37781435f0335b49747e300c4fd2ead3fdbb02d7a03569c5a3",
+                "2022.10.3-5+deb13u3",
+                "eac375d5e7b0c0a4bfba7f228218e61296362bd19f2851a48f292ec417a6d690",
                 set(),
                 "https://github.com/tuxera/ntfs-3g",
                 "upstream",
                 "package/usr/lib/x86_64-linux-gnu/libntfs-3g.so.89.0.0",
             ),
             "ntfs-3g": (
-                "2022.10.3-5+deb13u2",
-                "a3cc777da48b3ae5f85ea0b193d81949be41c73dc8c310a87ec9dd3b59b49061",
+                "2022.10.3-5+deb13u3",
+                "2e2f42d3051f5ddd6f5c0d449543f23fc0e3fc4631a8a82207dfaab9213bdfaa",
                 {"gnutls-libs", "libgcrypt20", "libntfs-3g89t64"},
                 "https://github.com/tuxera/ntfs-3g",
                 "upstream",
@@ -4339,6 +4351,10 @@ class Batch26PackageTests(unittest.TestCase):
                 self.assertTrue(package["license_path"].endswith("/copyright"))
                 source_name = package["debian_packages"][0]
                 self.assertEqual(batch["sources"][source_name]["sha256"], checksum)
+                if name in {"libntfs-3g89t64", "ntfs-3g"}:
+                    self.assertEqual(
+                        batch["sources"][source_name]["archive"], "security"
+                    )
                 self.assertEqual(
                     batch["sources"][source_name], manifest["sources"][source_name]
                 )
