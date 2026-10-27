@@ -18,6 +18,8 @@ from unittest import mock
 from unittest.mock import patch
 from urllib.parse import urlparse
 
+import lz4.frame
+
 BUILDER_PATH = Path(__file__).with_name("build-debian-cli-packages.py")
 SPEC = importlib.util.spec_from_file_location("debian_cli_builder", BUILDER_PATH)
 if SPEC is None or SPEC.loader is None:
@@ -1476,6 +1478,85 @@ class LicensePathTests(unittest.TestCase):
             )
 
             self.assertEqual(closure, {"app"})
+
+
+class RepositoryOwnershipMetadataTests(unittest.TestCase):
+    METADATA = b"Name: demo\n"
+    METADATA_LIMIT = 64 * 1024
+
+    def write_archive(
+        self, root: Path, content: bytes, logical_size: int | None = None
+    ) -> Path:
+        path = root / "packages/demo.ark"
+        path.parent.mkdir(exist_ok=True)
+        with (
+            lz4.frame.open(path, "wb") as compressed,
+            tarfile.open(fileobj=compressed, mode="w|", format=tarfile.PAX_FORMAT) as archive,
+        ):
+            member = tarfile.TarInfo("./ARKPKG")
+            member.size = len(content)
+            if logical_size is not None:
+                member.pax_headers = {
+                    "GNU.sparse.map": f"0,{len(content)}",
+                    "GNU.sparse.size": str(logical_size),
+                }
+            archive.addfile(member, io.BytesIO(content))
+            payload = tarfile.TarInfo("package/usr/bin/demo")
+            payload.size = 1
+            archive.addfile(payload, io.BytesIO(b"x"))
+        return path
+
+    def test_metadata_at_limit_preserves_ownership_and_ignored_packages(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.write_archive(root, self.METADATA.ljust(self.METADATA_LIMIT, b"\n"))
+            owned, _ = BUILDER.repository_owners(root, set())
+            self.assertEqual(owned, {"usr/bin/demo"})
+            owned, _ = BUILDER.repository_owners(root, {"demo"})
+            self.assertEqual(owned, set())
+
+    def test_oversized_metadata_is_rejected_before_extraction(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.write_archive(
+                root, self.METADATA.ljust(self.METADATA_LIMIT + 1, b"\n")
+            )
+            with patch.object(tarfile.TarFile, "extractfile") as extract:
+                with self.assertRaisesRegex(ValueError, "ARKPKG metadata exceeds"):
+                    BUILDER.repository_owners(root, set())
+                extract.assert_not_called()
+
+    def test_sparse_metadata_is_rejected_before_extraction(self) -> None:
+        for logical_size in (len(self.METADATA) + 1, 4 * 1024**3):
+            with (
+                self.subTest(logical_size=logical_size),
+                tempfile.TemporaryDirectory() as temporary,
+            ):
+                root = Path(temporary)
+                path = self.write_archive(root, self.METADATA, logical_size)
+                self.assertLess(path.stat().st_size, 1024)
+                with (
+                    lz4.frame.open(path, "rb") as compressed,
+                    tarfile.open(fileobj=compressed, mode="r|") as archive,
+                ):
+                    member = next(iter(archive))
+                    self.assertTrue(member.isfile())
+                    self.assertTrue(member.issparse())
+                    self.assertEqual(member.size, logical_size)
+                with patch.object(tarfile.TarFile, "extractfile") as extract:
+                    with self.assertRaisesRegex(ValueError, "must not be sparse"):
+                        BUILDER.repository_owners(root, set())
+                    extract.assert_not_called()
+
+    def test_read_is_bounded_and_overflow_is_rejected_before_decoding(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.write_archive(root, self.METADATA)
+            with patch.object(tarfile.ExFileObject, "read") as read:
+                read.return_value = b"\xff" * (self.METADATA_LIMIT + 1)
+                with self.assertRaisesRegex(ValueError, "ARKPKG metadata exceeds"):
+                    BUILDER.repository_owners(root, set())
+                read.assert_called_once_with(self.METADATA_LIMIT + 1)
 
 
 class RepositoryProviderTests(unittest.TestCase):
