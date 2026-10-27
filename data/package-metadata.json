@@ -30447,6 +30447,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "gum": {
+      "author": "Charmbracelet",
+      "git_repo": "https://github.com/charmbracelet/gum",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/charmbracelet",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "vivid": {
+      "author": "David Peter",
+      "git_repo": "https://github.com/sharkdp/vivid",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/David-Peter",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ouch": {
+      "author": "João Marcos and Vinícius Rodrigues Miguel",
+      "git_repo": "https://github.com/ouch-org/ouch",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/marcospb19",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
