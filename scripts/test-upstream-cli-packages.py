@@ -302,12 +302,21 @@ class UpstreamCacheTests(unittest.TestCase):
             source_path.write_bytes(source)
             release_path.write_bytes(release)
             payloads = {}
+            directory_modes = {}
 
             def download(url, *_args):
                 return source_path if url.endswith("source.tar.gz") else release_path
 
             def build_package(command, **_kwargs):
                 payload = Path(command[1]) / "package"
+                directory_modes.update(
+                    (
+                        path.relative_to(payload).as_posix(),
+                        stat.S_IMODE(path.stat().st_mode),
+                    )
+                    for path in (payload, *payload.rglob("*"))
+                    if path.is_dir() and not path.is_symlink()
+                )
                 payloads.update(
                     (path.relative_to(payload).as_posix(), path.read_bytes())
                     for path in payload.rglob("*")
@@ -322,12 +331,18 @@ class UpstreamCacheTests(unittest.TestCase):
                 packages=["fixture"],
                 arkpkg_build=root / "arkpkg-build",
             )
-            with (
-                mock.patch.object(BUILDER, "PACKAGES", {"fixture": package}),
-                mock.patch.object(BUILDER, "download", side_effect=download),
-                mock.patch.object(BUILDER.subprocess, "run", side_effect=build_package),
-            ):
-                BUILDER.build(args)
+            previous_umask = os.umask(0o027)
+            try:
+                with (
+                    mock.patch.object(BUILDER, "PACKAGES", {"fixture": package}),
+                    mock.patch.object(BUILDER, "download", side_effect=download),
+                    mock.patch.object(
+                        BUILDER.subprocess, "run", side_effect=build_package
+                    ),
+                ):
+                    BUILDER.build(args)
+            finally:
+                os.umask(previous_umask)
 
             self.assertEqual(
                 payloads,
@@ -339,6 +354,8 @@ class UpstreamCacheTests(unittest.TestCase):
                     "usr/share/bash-completion/completions/tool": completion,
                 },
             )
+            self.assertTrue(directory_modes)
+            self.assertEqual(set(directory_modes.values()), {0o755})
             recipe = (repo / "packages/recipes/fixture/ARKPKG").read_text()
             self.assertIn(
                 "Provides: tool=/usr/bin/tool, helper=/usr/bin/helper", recipe

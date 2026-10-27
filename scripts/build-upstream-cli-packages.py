@@ -585,6 +585,10 @@ def build(args: argparse.Namespace) -> None:
                 0o644,
             )
 
+            for directory in (payload, *payload.rglob("*")):
+                if directory.is_dir() and not directory.is_symlink():
+                    directory.chmod(0o755)
+
             paths = {
                 path.relative_to(payload).as_posix()
                 for path in payload.rglob("*")
