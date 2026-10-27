@@ -1,0 +1,12 @@
+Name: ntfs-3g
+Description: Read and write NTFS volumes using the NTFS-3G driver
+Version: 2022.10.3-5+deb13u2
+Arch: x86_64
+URL: https://github.com/tuxera/ntfs-3g/wiki
+License: See /usr/share/doc/ntfs-3g/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  gnutls-libs
+  libgcrypt20
+  libntfs-3g89t64
+Provides: lowntfs-3g=/usr/bin/lowntfs-3g, mkfs.ntfs=/usr/sbin/mkfs.ntfs, mkntfs=/usr/sbin/mkntfs, mount.lowntfs-3g=/usr/sbin/mount.lowntfs-3g, mount.ntfs-3g=/usr/sbin/mount.ntfs-3g, mount.ntfs=/usr/sbin/mount.ntfs, ntfs-3g.probe=/usr/bin/ntfs-3g.probe, ntfs-3g=/usr/bin/ntfs-3g, ntfscat=/usr/bin/ntfscat, ntfsclone=/usr/sbin/ntfsclone, ntfscluster=/usr/bin/ntfscluster, ntfscmp=/usr/bin/ntfscmp, ntfscp=/usr/sbin/ntfscp, ntfsdecrypt=/usr/bin/ntfsdecrypt, ntfsfallocate=/usr/bin/ntfsfallocate, ntfsfix=/usr/bin/ntfsfix, ntfsinfo=/usr/bin/ntfsinfo, ntfslabel=/usr/sbin/ntfslabel, ntfsls=/usr/bin/ntfsls, ntfsmove=/usr/bin/ntfsmove, ntfsrecover=/usr/bin/ntfsrecover, ntfsresize=/usr/sbin/ntfsresize, ntfssecaudit=/usr/bin/ntfssecaudit, ntfstruncate=/usr/bin/ntfstruncate, ntfsundelete=/usr/sbin/ntfsundelete, ntfsusermap=/usr/bin/ntfsusermap, ntfswipe=/usr/bin/ntfswipe

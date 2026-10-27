@@ -30543,6 +30543,70 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "evtest": {
+      "author": "Vojtech Pavlik and Red Hat, Inc.",
+      "git_repo": "https://cgit.freedesktop.org/evtest/",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libntfs-3g89t64": {
+      "author": "NTFS-3G Development Team",
+      "git_repo": "https://github.com/tuxera/ntfs-3g",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ntfs-3g": {
+      "author": "NTFS-3G Development Team",
+      "git_repo": "https://github.com/tuxera/ntfs-3g",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "testdisk": {
+      "author": "Christophe Grenier",
+      "git_repo": "https://git.cgsecurity.org/cgit/testdisk",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
