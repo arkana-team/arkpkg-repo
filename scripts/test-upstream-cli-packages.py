@@ -79,6 +79,44 @@ class UpstreamCacheTests(unittest.TestCase):
                 self.assertEqual(set(members), set(hashes))
                 self.assertTrue(package["license_source"])
 
+    def test_system_cli_tools_have_pinned_release_assets(self) -> None:
+        """Keep each added system CLI's downloaded assets checksum-pinned."""
+        for name in ("navi", "choose", "dysk"):
+            with self.subTest(package=name):
+                package = BUILDER.PACKAGES[name]
+                digests = [package["archive_sha256"]]
+                digests.extend(
+                    package[key]
+                    for key in ("binary_archive_sha256", "binary_sha256")
+                    if key in package
+                )
+                digests.extend(package.get("binary_member_sha256", {}).values())
+                self.assertGreaterEqual(len(digests), 2)
+                self.assertTrue(
+                    all(
+                        len(str(digest)) == 64
+                        and all(char in "0123456789abcdef" for char in str(digest))
+                        for digest in digests
+                    )
+                )
+                self.assertTrue(package["license_source"])
+
+    def test_recipe_text_records_optional_runtime_dependencies(self) -> None:
+        """Write declared runtime dependencies into generated package metadata."""
+        package = {
+            "description": "fixture command-line tool",
+            "version": "1.0",
+            "arch": "x86_64",
+            "url": "https://example.test/fixture",
+            "license": "MIT",
+            "dependencies": ["fzf"],
+        }
+
+        recipe = BUILDER.recipe_text("fixture", package)
+
+        self.assertIn("Dependencies: fzf", recipe)
+        self.assertLess(recipe.index("Dependencies:"), recipe.index("Provides:"))
+
     def test_archive_owner_filter_matches_exact_package_name(self) -> None:
         """Keep similarly named packages in the ownership collision set."""
         with tempfile.TemporaryDirectory() as temporary:

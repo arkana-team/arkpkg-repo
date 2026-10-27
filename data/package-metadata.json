@@ -30495,6 +30495,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "choose": {
+      "author": "Ryan Geary",
+      "git_repo": "https://github.com/theryangeary/choose",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/theryangeary",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "dysk": {
+      "author": "Denys Seguret",
+      "git_repo": "https://github.com/Canop/dysk",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/Canop",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "navi": {
+      "author": "Denis Isidoro",
+      "git_repo": "https://github.com/denisidoro/navi",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/denisidoro",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

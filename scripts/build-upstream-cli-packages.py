@@ -223,6 +223,76 @@ PACKAGES = {
         "description": "Command-line utility for compressing and extracting archives",
         "license": "MIT",
     },
+    "navi": {
+        "version": "2.24.0",
+        "arch": "x86_64",
+        "url": "https://github.com/denisidoro/navi",
+        "archive": "https://codeload.github.com/denisidoro/navi/tar.gz/refs/tags/v2.24.0",
+        "archive_sha256": "4c10f47c306826255b07483b7e94eed8ffc1401555c52434a56246295d3f2728",
+        "root": "navi-2.24.0",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/navi/copyright",
+        "binary_archive": "https://github.com/denisidoro/navi/releases/download/v2.24.0/navi-v2.24.0-x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "f334047479241f7c8b48d091f4e814dcc798a51a74dfd04ee63cbf67e8c921ba",
+        "binary_members": {"./navi": "usr/bin/navi"},
+        "binary_member_sha256": {
+            "./navi": "c643ff670ced4b47887c887ff0877c156497642b8d25dd9ae279d1d68c27e9bb",
+        },
+        "files": {
+            "README.md": "usr/share/doc/navi/README.md",
+            "docs/installation.md": "usr/share/doc/navi/installation.md",
+            "docs/cheat_example.cheat": "usr/share/doc/navi/cheat_example.cheat",
+            "shell/navi.plugin.bash": "usr/share/navi/shell/navi.plugin.bash",
+            "shell/navi.plugin.zsh": "usr/share/navi/shell/navi.plugin.zsh",
+        },
+        "dependencies": ["fzf"],
+        "description": "Interactive command-line cheatsheet browser with shell integration",
+        "license": "Apache-2.0",
+    },
+    "choose": {
+        "version": "1.3.7",
+        "arch": "x86_64",
+        "url": "https://github.com/theryangeary/choose",
+        "archive": "https://codeload.github.com/theryangeary/choose/tar.gz/refs/tags/v1.3.7",
+        "archive_sha256": "8f51a315fbbe0688c4a2078ba8bc8446d36943b6cce6ed9bbd6a11f33bd1a134",
+        "root": "choose-1.3.7",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/choose/copyright",
+        "binary": "https://github.com/theryangeary/choose/releases/download/v1.3.7/choose-x86_64-unknown-linux-musl",
+        "binary_sha256": "f9958b15b9c5e2ed21162dcd21e514b51a03efc8dcbf730546c3dbef8a2eba2a",
+        "files": {"readme.md": "usr/share/doc/choose/README.md"},
+        "description": "Lightweight command-line tool for selecting fields from text",
+        "license": "GPL-3.0-or-later",
+    },
+    "dysk": {
+        "version": "3.8.1",
+        "arch": "x86_64",
+        "url": "https://github.com/Canop/dysk",
+        "archive": "https://codeload.github.com/Canop/dysk/tar.gz/refs/tags/v3.8.1",
+        "archive_sha256": "8da0e478a6027803043149c63c84abbb0dd4b3538372b8d854c2f8cab8215f41",
+        "root": "dysk-3.8.1",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/dysk/copyright",
+        "binary_archive": "https://github.com/Canop/dysk/releases/download/v3.8.1/dysk_3.8.1.zip",
+        "binary_archive_sha256": "e983c4863d370ba143cab95abeb520c56a22b98c83b647db828614592a9939a4",
+        "binary_members": {
+            "x86_64-unknown-linux-musl/dysk": "usr/bin/dysk",
+        },
+        "binary_member_sha256": {
+            "x86_64-unknown-linux-musl/dysk": "82dc7233e298e0eb16c94f48eec102275b3efe18265758bfe742ba13736ddb9c",
+        },
+        "binary_files": {
+            "completion/dysk.bash": "usr/share/bash-completion/completions/dysk",
+            "completion/dysk.fish": "usr/share/fish/vendor_completions.d/dysk.fish",
+            "completion/_dysk": "usr/share/zsh/site-functions/_dysk",
+            "completion/dysk.elv": "usr/share/elvish/lib/dysk.elv",
+            "man/dysk.1": "usr/share/man/man1/dysk.1",
+            "README.md": "usr/share/doc/dysk/README.md",
+            "CHANGELOG.md": "usr/share/doc/dysk/CHANGELOG.md",
+        },
+        "description": "Terminal filesystem usage viewer with shell completions and a manual",
+        "license": "MIT",
+    },
     "btm": {
         "version": "0.14.9",
         "arch": "x86_64",
@@ -550,19 +620,22 @@ def recipe_text(name: str, package: dict[str, object]) -> str:
     provides = package.get("provides") or [
         f"{executable}=/usr/bin/{executable}"
     ]
-    return "\n".join(
-        (
-            f"Name: {name}",
-            f"Description: {package['description']}",
-            f"Version: {package['version']}",
-            f"Arch: {package['arch']}",
-            f"URL: {package['url']}",
-            f"License: {package['license']}",
-            "Maintainer: arkanaOS Team",
-            f"Provides: {', '.join(str(item) for item in provides)}",
-            "",
+    fields = [
+        f"Name: {name}",
+        f"Description: {package['description']}",
+        f"Version: {package['version']}",
+        f"Arch: {package['arch']}",
+        f"URL: {package['url']}",
+        f"License: {package['license']}",
+        "Maintainer: arkanaOS Team",
+    ]
+    dependencies = package.get("dependencies", [])
+    if dependencies:
+        fields.append(
+            f"Dependencies: {', '.join(str(item) for item in dependencies)}"
         )
-    )
+    fields.extend((f"Provides: {', '.join(str(item) for item in provides)}", ""))
+    return "\n".join(fields)
 
 
 def write_payload_file(target: Path, data: bytes, mode: int) -> None:
