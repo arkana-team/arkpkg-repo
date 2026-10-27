@@ -1,0 +1,8 @@
+Name: xcwd
+Description: Print the working directory of the focused X11 window
+Version: 0~2.gbpe2c777c-1+b1
+Arch: x86_64
+URL: https://github.com/schischi/xcwd
+License: See /usr/share/doc/xcwd/copyright
+Maintainer: arkanaOS Team
+Provides: xcwd=/usr/bin/xcwd

@@ -30671,6 +30671,70 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "xarclock": {
+      "author": "Jaime Garcia Ghirelli",
+      "git_repo": "https://salsa.debian.org/debian/xarclock.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xkeycaps": {
+      "author": "Jamie Zawinski",
+      "git_repo": "https://salsa.debian.org/debian/xkeycaps.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xball": {
+      "author": "David Nedde",
+      "git_repo": "https://github.com/JoesCat/xball",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xcwd": {
+      "author": "Adrien Schild",
+      "git_repo": "https://github.com/schischi/xcwd",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/schischi",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
