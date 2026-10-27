@@ -1291,6 +1291,135 @@ class UpstreamPayloadPermissionTests(unittest.TestCase):
             self.assertEqual(stat.S_IMODE(documentation.stat().st_mode), 0o644)
 
 
+class LicenseContainmentTests(unittest.TestCase):
+    def setUp(self) -> None:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.license_payload = self.root / "license-payload"
+        self.source = self.license_payload / "usr/share/doc/source/copyright"
+        self.source.parent.mkdir(parents=True)
+        self.source.write_bytes(b"fixture license\n")
+        self.outside = self.root / "license-payload-outside"
+        self.outside.mkdir()
+        self.host_file = self.outside / "host-file"
+        self.host_file.write_bytes(b"synthetic host secret\n")
+        self.package = {
+            "name": "fixture", "version": "1", "arch": "any",
+            "description": "fixture", "url": "https://example.org",
+            "license": "MIT", "debian_packages": [],
+            "license_path": "usr/share/doc/fixture/copyright",
+            "license_source_package": "source",
+            "license_source_path": "usr/share/doc/source/copyright",
+        }
+        self.args = argparse.Namespace(
+            repo_root=self.root, manifest=self.root / "manifest.json",
+            packages=[], source_cache=self.root / "cache", staging=None,
+            output_dir=self.root / "output", write_recipes=True,
+            allow_recipe_updates=False, arkpkg_build=self.root / "arkpkg-build",
+        )
+
+    def build(self) -> None:
+        self.args.manifest.write_text(json.dumps({
+            "sources": {"source": {}}, "packages": [self.package],
+        }), encoding="utf-8")
+
+        def pack(command, **kwargs):
+            if command[0] != str(self.args.arkpkg_build):
+                return subprocess.CompletedProcess(command, 1)
+            payload = Path(command[1]) / "package"
+            license_file = payload / self.package["license_path"]
+            self.packaged_license = (
+                license_file.read_bytes() if license_file.is_file() else None
+            )
+            self.packaged_links = {
+                path.relative_to(payload).as_posix(): path.readlink()
+                for path in payload.rglob("*") if path.is_symlink()
+            }
+            Path(command[-1]).write_bytes(b"fixture archive")
+            return subprocess.CompletedProcess(command, 0)
+
+        with (
+            patch.object(BUILDER, "obtain_deb", return_value=self.root / "source.deb"),
+            patch.object(BUILDER, "extract_data_archive", return_value=self.license_payload),
+            patch.object(BUILDER, "repository_owners", return_value=(set(), {})),
+            patch.object(BUILDER.subprocess, "run", side_effect=pack),
+        ):
+            BUILDER.build(self.args)
+
+    def test_rejects_unsafe_license_sources_before_copying(self) -> None:
+        (self.license_payload / "linked-file").symlink_to(self.host_file)
+        (self.license_payload / "linked-dir").symlink_to(self.outside)
+        for source in (
+            str(self.host_file), str(self.source),
+            "../license-payload-outside/host-file",
+            "linked-file", "linked-dir/host-file", "", ".",
+        ):
+            with self.subTest(source=source):
+                self.package["license_source_path"] = source
+                with patch.object(BUILDER.shutil, "copy2") as copy:
+                    with self.assertRaisesRegex(ValueError, "unsafe license path"):
+                        self.build()
+                    copy.assert_not_called()
+                self.assertEqual(self.host_file.read_bytes(), b"synthetic host secret\n")
+
+    def test_rejects_unsafe_license_destinations_before_copying(self) -> None:
+        for target in (str(self.outside / "new/copyright"), "../../../escape", "", "."):
+            with self.subTest(target=target):
+                self.package["license_path"] = target
+                with patch.object(BUILDER.shutil, "copy2") as copy:
+                    with self.assertRaisesRegex(ValueError, "unsafe license path"):
+                        self.build()
+                    copy.assert_not_called()
+                self.assertFalse((self.outside / "new").exists())
+
+    def test_rejects_license_symlinks_outside_payload(self) -> None:
+        for link, target in (
+            ("usr/share/doc/fixture/copyright", self.host_file),
+            ("usr/share/doc/fixture/copyright", self.outside / "missing"),
+            ("usr/share/doc/fixture", self.outside),
+            ("usr/share/doc/fixture", self.outside / "new"),
+        ):
+            with self.subTest(link=link, target=target):
+                self.package["symlinks"] = [[link, str(target)]]
+                with patch.object(BUILDER.shutil, "copy2") as copy:
+                    with self.assertRaisesRegex(ValueError, "unsafe license path"):
+                        self.build()
+                    copy.assert_not_called()
+                self.assertEqual(self.host_file.read_bytes(), b"synthetic host secret\n")
+                self.assertEqual(list(self.outside.iterdir()), [self.host_file])
+
+    def test_rejects_directory_destination_before_copy_selects_a_filename(self) -> None:
+        self.package["license_path"] = "usr/share/doc/fixture"
+        self.package["symlinks"] = [["usr/share/doc/fixture/copyright", str(self.host_file)]]
+        with patch.object(BUILDER.shutil, "copy2") as copy:
+            with self.assertRaisesRegex(ValueError, "unsafe license path"):
+                self.build()
+            copy.assert_not_called()
+        self.assertEqual(self.host_file.read_bytes(), b"synthetic host secret\n")
+
+    def test_copies_a_contained_license(self) -> None:
+        self.build()
+        self.assertEqual(self.packaged_license, b"fixture license\n")
+
+    def test_copies_through_contained_symlinks(self) -> None:
+        (self.license_payload / "alias").symlink_to("usr/share/doc/source")
+        self.package["license_source_path"] = "alias/copyright"
+        self.package["symlinks"] = [["usr/share/doc/fixture", "shared"]]
+        self.build()
+        self.assertEqual(self.packaged_license, b"fixture license\n")
+        self.assertEqual(self.packaged_links["usr/share/doc/fixture"], Path("shared"))
+
+    def test_preserves_dependency_license_symlink_without_copying(self) -> None:
+        self.package["dependencies"] = ["source"]
+        self.package["symlinks"] = [["usr/share/doc/fixture", "source"]]
+        with patch.object(BUILDER.shutil, "copy2", wraps=BUILDER.shutil.copy2) as copy:
+            self.build()
+            self.assertEqual(copy.call_count, 1)  # Only the recipe is copied.
+        self.assertIsNone(self.packaged_license)
+        self.assertEqual(self.packaged_links["usr/share/doc/fixture"], Path("source"))
+
+
 class LicensePathTests(unittest.TestCase):
     def test_dependency_license_resolves_through_shared_doc_symlink(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
