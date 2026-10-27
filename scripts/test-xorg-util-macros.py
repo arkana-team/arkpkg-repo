@@ -173,6 +173,109 @@ class XorgUtilMacrosSourceTests(unittest.TestCase):
                     builder.obtain_source(cache)
 
 
+class MacrosSourceLimitTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temporary = tempfile.TemporaryDirectory(prefix="macros-limits-test-")
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.cache = self.root / "cache"
+        self.cache.mkdir()
+        self.cached = self.cache / f"{builder.NAME}-{builder.VERSION}.tar.xz"
+
+    def test_sparse_archive_is_rejected_before_reading(self) -> None:
+        with self.cached.open("wb") as stream:
+            stream.truncate(1 << 40)
+        with (
+            self.cached.open("rb") as actual,
+            patch.object(Path, "open") as open_archive,
+            patch.object(builder.hashlib, "sha256") as digest,
+            self.assertRaisesRegex(ValueError, "source archive exceeds"),
+        ):
+            stream = open_archive.return_value.__enter__.return_value
+            stream.fileno.return_value = actual.fileno()
+            builder.obtain_source(self.cache)
+        stream.read.assert_not_called()
+        digest.assert_not_called()
+
+    def test_cached_read_remains_bounded_if_file_grows_after_size_check(self) -> None:
+        data = source_archive("verified")
+        self.cached.write_bytes(data)
+        original_fstat = os.fstat
+
+        def grow_after_stat(descriptor):
+            info = original_fstat(descriptor)
+            with self.cached.open("ab") as output:
+                output.write(b"\0" * (4 * len(data)))
+            return info
+
+        with (
+            patch.object(builder, "MAX_SOURCE_BYTES", len(data)),
+            patch.object(builder.os, "fstat", side_effect=grow_after_stat),
+            patch.object(builder.hashlib, "sha256") as digest,
+            self.assertRaisesRegex(ValueError, "source archive exceeds"),
+        ):
+            builder.obtain_source(self.cache)
+        digest.assert_not_called()
+
+    def test_oversized_download_is_bounded_and_not_cached(self) -> None:
+        response = io.BytesIO(b"x" * 1024)
+        with (
+            patch.object(builder, "MAX_SOURCE_BYTES", 64),
+            patch.object(builder.urllib.request, "urlopen", return_value=response),
+            patch.object(response, "read", wraps=response.read) as read,
+            patch.object(builder.hashlib, "sha256") as digest,
+            self.assertRaisesRegex(ValueError, "source archive exceeds"),
+        ):
+            builder.obtain_source(self.cache)
+        read.assert_called_once_with(65)
+        digest.assert_not_called()
+        self.assertEqual(list(self.cache.iterdir()), [])
+
+    def test_source_at_limit_is_verified_for_cache_and_download(self) -> None:
+        data = source_archive("verified")
+        for download in (False, True):
+            with self.subTest(download=download):
+                self.cached.unlink(missing_ok=True)
+                if not download:
+                    self.cached.write_bytes(data)
+                with (
+                    patch.object(builder, "MAX_SOURCE_BYTES", len(data)),
+                    patch.object(builder, "SHA256", hashlib.sha256(data).hexdigest()),
+                    patch.object(
+                        builder.urllib.request, "urlopen", return_value=io.BytesIO(data)
+                    ) as fetch,
+                ):
+                    self.assertEqual(builder.obtain_source(self.cache), data)
+                self.assertEqual(fetch.call_count, int(download))
+                self.assertEqual(self.cached.read_bytes(), data)
+
+    def test_bad_download_is_not_cached(self) -> None:
+        with (
+            patch.object(
+                builder.urllib.request, "urlopen", return_value=io.BytesIO(b"bad")
+            ),
+            self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
+        ):
+            builder.obtain_source(self.cache)
+        self.assertEqual(list(self.cache.iterdir()), [])
+
+    def test_writable_cache_or_parent_is_rejected_before_io(self) -> None:
+        for directory in (self.cache, self.root):
+            with self.subTest(directory=directory):
+                directory.chmod(0o777)
+                try:
+                    with (
+                        patch.object(builder.urllib.request, "urlopen") as fetch,
+                        patch.object(Path, "open") as open_archive,
+                        self.assertRaisesRegex(ValueError, "writable by others"),
+                    ):
+                        builder.obtain_source(self.cache)
+                    fetch.assert_not_called()
+                    open_archive.assert_not_called()
+                finally:
+                    directory.chmod(0o700)
+
+
 class MacrosStagingTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temporary = tempfile.TemporaryDirectory(prefix="macros-staging-test-")

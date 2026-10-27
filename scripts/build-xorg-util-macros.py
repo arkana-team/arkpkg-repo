@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import io
+import os
 import shutil
 import subprocess
 import sys
@@ -14,26 +15,34 @@ import tempfile
 import urllib.request
 from pathlib import Path, PurePosixPath
 
+from source_cache import trusted_cache
+
 NAME = "util-macros"
 VERSION = "1.20.2"
 SHA256 = "9ac269eba24f672d7d7b3574e4be5f333d13f04a7712303b1821b2a51ac82e8e"
 URL = f"https://xorg.freedesktop.org/archive/individual/util/{NAME}-{VERSION}.tar.xz"
+MAX_SOURCE_BYTES = 1024 * 1024  # The pinned archive is 83,592 bytes.
 
 
 def obtain_source(cache: Path) -> bytes:
-    cache.mkdir(parents=True, exist_ok=True)
+    cache = trusted_cache(cache)
     archive_path = cache / f"{NAME}-{VERSION}.tar.xz"
-    if not archive_path.is_file():
+    downloaded = not archive_path.is_file()
+    if downloaded:
         request = urllib.request.Request(
             URL, headers={"User-Agent": "arkpkg-repo-xorg-macros-builder/1"}
         )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            archive_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
+        with urllib.request.urlopen(request, timeout=90) as response:
+            source = response.read(MAX_SOURCE_BYTES + 1)
+    else:
+        with archive_path.open("rb") as stream:
+            if os.fstat(stream.fileno()).st_size > MAX_SOURCE_BYTES:
+                raise ValueError(f"source archive exceeds {MAX_SOURCE_BYTES} bytes")
+            source = stream.read(MAX_SOURCE_BYTES + 1)
+    # Bound the read too: a cached file can grow after its size was checked.
+    if len(source) > MAX_SOURCE_BYTES:
+        raise ValueError(f"source archive exceeds {MAX_SOURCE_BYTES} bytes")
     # Keep the verified bytes: another user may replace or modify the cache.
-    source = archive_path.read_bytes()
     digest = hashlib.sha256(source).hexdigest()
     if digest != SHA256:
         raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
@@ -45,6 +54,15 @@ def obtain_source(cache: Path) -> bytes:
                 raise ValueError(f"unsafe source path in archive: {member.name!r}")
             if path.parts and path.parts[0] != root:
                 raise ValueError(f"unexpected source root in archive: {member.name!r}")
+    if downloaded:
+        descriptor, temporary = tempfile.mkstemp(prefix=".source-", dir=cache)
+        temporary_path = Path(temporary)
+        try:
+            with os.fdopen(descriptor, "wb") as output:
+                output.write(source)
+            temporary_path.replace(archive_path)
+        finally:
+            temporary_path.unlink(missing_ok=True)
     return source
 
 
