@@ -180,6 +180,96 @@ class ArchiveBudgetTests(unittest.TestCase):
             ):
                 build_index.read_metadata(path)
 
+    def test_member_count_is_bounded_before_processing(self):
+        entries = self.member("package/empty", kind=tarfile.DIRTYPE) * 2
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            for position in ("before", "after"):
+                self.write_archive(path, **{position: entries})
+                with (
+                    self.subTest(position=position, boundary="exact"),
+                    patch.object(build_index, "MAX_TAR_MEMBERS", 4),
+                ):
+                    self.assertEqual(build_index.read_metadata(path)["Name"], "hello")
+                original = tarfile.TarInfo._proc_member
+                with (
+                    self.subTest(position=position, boundary="over"),
+                    patch.object(build_index, "MAX_TAR_MEMBERS", 3),
+                    patch.object(tarfile.TarInfo, "_proc_member", autospec=True,
+                                 side_effect=original) as process,
+                    self.assertRaisesRegex(ValueError, "TAR member count"),
+                ):
+                    try:
+                        build_index.read_metadata(path)
+                    finally:
+                        self.assertEqual(process.call_count, 3)
+
+    def test_inherited_pax_work_is_bounded_before_processing(self):
+        global_header = self.member(
+            "global", self.pax_record("one", "x") + self.pax_record("two", "y"),
+            tarfile.XGLTYPE,
+        )
+        entries = self.member("package/empty", kind=tarfile.DIRTYPE) * 2
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            for position, inherited_members in (("before", 4), ("after", 3)):
+                self.write_archive(path, **{position: global_header + entries})
+                with (
+                    self.subTest(position=position, boundary="exact"),
+                    patch.object(build_index, "MAX_TAR_PAX_ITEMS", 2 * inherited_members),
+                ):
+                    self.assertEqual(build_index.read_metadata(path)["Name"], "hello")
+                original = tarfile.TarInfo._proc_member
+                with (
+                    self.subTest(position=position, boundary="over"),
+                    patch.object(build_index, "MAX_TAR_PAX_ITEMS",
+                                 2 * inherited_members - 1),
+                    patch.object(tarfile.TarInfo, "_proc_member", autospec=True,
+                                 side_effect=original) as process,
+                    self.assertRaisesRegex(ValueError, "inherited PAX metadata"),
+                ):
+                    try:
+                        build_index.read_metadata(path)
+                    finally:
+                        # The final payload must be rejected before tarfile can
+                        # copy the inherited dictionary into it.
+                        self.assertNotIn("package/test", [
+                            call.args[0].name for call in process.call_args_list
+                        ])
+
+    def test_members_with_global_pax_metadata_are_not_retained(self):
+        pax = b"".join(self.pax_record(f"key{i}", "x") for i in range(1000))
+        before = self.member("global", pax, tarfile.XGLTYPE)
+        after = self.member("package/empty", kind=tarfile.DIRTYPE) * 256
+        cached_counts = []
+        original = tarfile.TarInfo._proc_builtin
+
+        def observe(member, archive):
+            cached_counts.append(len(archive.members))
+            return original(member, archive)
+
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            self.write_archive(path, before=before, after=after)
+            with patch.object(tarfile.TarInfo, "_proc_builtin", observe):
+                self.assertEqual(build_index.read_metadata(path)["Name"], "hello")
+        self.assertEqual(len(cached_counts), 258)
+        self.assertEqual(max(cached_counts), 0)
+
+    def test_pax_paths_are_still_validated(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "hello.ark"
+            for kind in (tarfile.XGLTYPE, tarfile.XHDTYPE):
+                before = self.member(
+                    "extension", self.pax_record("path", "../ARKPKG"), kind
+                )
+                self.write_archive(path, before=before)
+                with (
+                    self.subTest(kind=kind),
+                    self.assertRaisesRegex(ValueError, "unsafe path in archive"),
+                ):
+                    build_index.read_metadata(path)
+
     def test_sparse_map_parsing_is_bounded(self):
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / "hello.ark"

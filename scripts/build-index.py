@@ -21,6 +21,8 @@ MAX_METADATA_SIZE = 64 * 1024
 MAX_ARCHIVE_BYTES = 1024**3
 MAX_TAR_EXTENSION_SIZE = 64 * 1024
 MAX_TAR_EXTENSION_BYTES = 1024 * 1024
+MAX_TAR_MEMBERS = 100_000  # Includes extension headers, which tarfile handles recursively.
+MAX_TAR_PAX_ITEMS = 1_000_000  # Cumulative inherited dictionary entries processed.
 DEFAULT_DOWNLOAD_BASE_URL = (
     "https://raw.githubusercontent.com/arkana-team/arkpkg-repo/main"
 )
@@ -370,6 +372,17 @@ class BudgetReader:
 
 class CatalogueTarInfo(tarfile.TarInfo):
     def _proc_member(self, archive):
+        members = getattr(archive, "_catalogue_members", 0) + 1
+        if members > MAX_TAR_MEMBERS:
+            raise ValueError("TAR member count exceeds inspection limit")
+        archive._catalogue_members = members
+        # Global PAX dictionaries are applied/copied by tarfile for each member,
+        # including members reached recursively through extension headers.
+        pax_items = getattr(archive, "_catalogue_pax_items", 0) + len(archive.pax_headers)
+        if pax_items > MAX_TAR_PAX_ITEMS:
+            raise ValueError("inherited PAX metadata exceeds inspection limit")
+        archive._catalogue_pax_items = pax_items
+
         # tarfile consumes extension bodies here, before yielding a member.
         if self.type in {
             tarfile.XHDTYPE, tarfile.XGLTYPE, tarfile.SOLARIS_XHDTYPE,
@@ -403,7 +416,10 @@ def read_metadata(archive_path: Path) -> dict[str, str]:
             tarinfo=CatalogueTarInfo,
         ) as archive,
     ):
-        for member in archive:
+        # Iterate explicitly so the cache can be discarded on Python versions
+        # without tarfile's stream=True option. No member lookup is needed.
+        for member in iter(archive.next, None):
+            archive.members.clear()
             member_path = PurePosixPath(member.name)
             if member_path.is_absolute() or ".." in member_path.parts:
                 raise ValueError(f"unsafe path in archive: {member.name!r}")
