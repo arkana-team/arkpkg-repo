@@ -27,7 +27,8 @@ package_audit = load_script("test-packages.py")
 DEPENDENCY_READERS = tuple(
     load_script(filename).package_name
     for filename in (
-        "build-xcb-util.py", "build-xcursor-themes.py", "build-xlockmore.py"
+        "build-xcb-util.py", "build-xcursor-themes.py", "build-xlockmore.py",
+        "build-xosview.py",
     )
 )
 READERS = (
