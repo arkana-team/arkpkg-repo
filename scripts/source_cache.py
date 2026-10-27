@@ -12,7 +12,8 @@ from pathlib import Path
 
 
 def trusted_cache(cache: Path) -> Path:
-    cache = cache.resolve()
+    # Check the original entries: resolving first would hide untrusted symlinks.
+    cache = cache.absolute()
     for directory in (*reversed(cache.parents), cache):
         try:
             directory.mkdir(mode=0o700)

@@ -145,6 +145,19 @@ class SourceCacheTests(unittest.TestCase):
         ):
             self.snapshot()
 
+    def test_rejects_symlinks_in_original_cache_path(self) -> None:
+        target = self.root / "target"
+        target.mkdir()
+        link = self.root / "link"
+        link.symlink_to(target, target_is_directory=True)
+        for cache in (link, link / "cache"):
+            with (
+                self.subTest(cache=cache),
+                self.assertRaisesRegex(ValueError, "unsafe source cache directory"),
+            ):
+                trusted_cache(cache)
+        self.assertEqual(list(target.iterdir()), [])
+
     def test_preserves_archive_path_and_root_checks(self) -> None:
         for builder, root, filename in BUILDERS:
             for member in (

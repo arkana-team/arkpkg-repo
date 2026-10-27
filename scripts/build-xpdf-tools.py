@@ -4,16 +4,16 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
+
+from source_cache import source_snapshot
 
 NAME = "xpdf-tools"
 VERSION = "4.06"
@@ -44,25 +44,15 @@ def privileged(command: list[str], *, log: Path | None = None) -> None:
 
 def obtain_source(cache: Path, private_dir: Path) -> Path:
     """Return a verified copy in a caller-owned private directory."""
-    cache.mkdir(parents=True, exist_ok=True)
-    cached_path = cache / f"{SOURCE_ROOT}.tar.gz"
-    if not cached_path.is_file():
-        request = urllib.request.Request(
-            SOURCE_URL, headers={"User-Agent": "arkpkg-repo-xpdf-builder/1"}
-        )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            cached_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
-    # The cache can be replaced or modified by another user. Authenticate only
-    # the private copy that the privileged install will actually consume.
-    archive_path = private_dir / cached_path.name
-    shutil.copyfile(cached_path, archive_path)
-    digest = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-    if digest != SOURCE_SHA256:
-        raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {digest}")
-
+    archive_path = source_snapshot(
+        cache,
+        private_dir,
+        f"{SOURCE_ROOT}.tar.gz",
+        SOURCE_URL,
+        SOURCE_SHA256,
+        user_agent="arkpkg-repo-xpdf-builder/1",
+        timeout=90,
+    )
     roots = set()
     with tarfile.open(archive_path, "r:gz") as source:
         for member in source:
@@ -153,7 +143,7 @@ def main() -> None:
     )
     try:
         with tempfile.TemporaryDirectory(prefix="arkpkg-xpdf-source-") as source_dir:
-            source = obtain_source(args.source_cache.resolve(), Path(source_dir))
+            source = obtain_source(args.source_cache, Path(source_dir))
             privileged(["install", "-d", "-m", "755", str(work_host)])
             privileged(["install", "-m", "644", str(source), str(work_host / source.name)])
         try:

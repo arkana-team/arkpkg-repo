@@ -4,6 +4,7 @@
 import hashlib
 import importlib.util
 import io
+import os
 import shutil
 import stat
 import subprocess
@@ -65,13 +66,85 @@ class SourceAuthenticationTests(unittest.TestCase):
 
     def test_download_is_copied_and_verified(self) -> None:
         self.cached.unlink()
-        with patch.object(
-            BUILDER.urllib.request, "urlopen", return_value=io.BytesIO(self.good)
+        self.cache.rmdir()
+        with patch(
+            "urllib.request.urlopen", return_value=io.BytesIO(self.good)
         ) as download:
             source = BUILDER.obtain_source(self.cache, self.private)
         self.assertEqual(source.read_bytes(), self.good)
         self.assertEqual(self.cached.read_bytes(), self.good)
+        self.assertEqual(stat.S_IMODE(self.cache.stat().st_mode), 0o700)
         self.assertEqual(download.call_args.args[0].full_url, BUILDER.SOURCE_URL)
+
+    def test_invalid_download_is_not_published(self) -> None:
+        self.cached.unlink()
+        with (
+            patch("urllib.request.urlopen", return_value=io.BytesIO(self.bad)),
+            self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
+        ):
+            BUILDER.obtain_source(self.cache, self.private)
+        self.assertFalse(self.cached.exists())
+
+    def test_download_does_not_follow_dangling_archive_symlink(self) -> None:
+        self.cached.unlink()
+        target = self.root / "missing-target"
+        self.cached.symlink_to(target)
+        with patch("urllib.request.urlopen", return_value=io.BytesIO(self.good)):
+            source = BUILDER.obtain_source(self.cache, self.private)
+        self.assertFalse(target.exists())
+        self.assertFalse(self.cached.is_symlink())
+        self.assertEqual(self.cached.read_bytes(), self.good)
+        self.assertEqual(source.read_bytes(), self.good)
+
+    def test_link_inserted_during_download_cannot_overwrite_target(self) -> None:
+        target = self.root / "keep"
+        for link in ("symlink", "hardlink"):
+            with self.subTest(link=link):
+                self.cached.unlink(missing_ok=True)
+                (self.private / self.cached.name).unlink(missing_ok=True)
+                target.write_bytes(b"keep")
+
+                def download(request, *, timeout, link=link):
+                    if link == "symlink":
+                        self.cached.symlink_to(target)
+                    else:
+                        self.cached.hardlink_to(target)
+                    return io.BytesIO(self.good)
+
+                with patch("urllib.request.urlopen", side_effect=download):
+                    source = BUILDER.obtain_source(self.cache, self.private)
+                self.assertEqual(target.read_bytes(), b"keep")
+                self.assertFalse(self.cached.samefile(target))
+                self.assertEqual(source.read_bytes(), self.good)
+
+    def test_rejects_cache_writable_by_others(self) -> None:
+        for mode in (0o770, 0o777, 0o1777):
+            with self.subTest(mode=oct(mode)):
+                self.cache.chmod(mode)
+                with self.assertRaisesRegex(ValueError, "writable by others"):
+                    BUILDER.obtain_source(self.cache, self.private)
+
+    def test_rejects_replaceable_cache_parent(self) -> None:
+        self.root.chmod(0o777)
+        with self.assertRaisesRegex(ValueError, "writable by others"):
+            BUILDER.obtain_source(self.cache, self.private)
+
+    def test_rejects_cache_owned_by_another_user(self) -> None:
+        original_lstat = Path.lstat
+
+        def foreign_owner(path):
+            info = original_lstat(path)
+            if path == self.cache:
+                fields = list(info)
+                fields[4] = os.geteuid() + 1
+                return os.stat_result(fields)
+            return info
+
+        with (
+            patch.object(Path, "lstat", autospec=True, side_effect=foreign_owner),
+            self.assertRaisesRegex(ValueError, "unsafe source cache directory"),
+        ):
+            BUILDER.obtain_source(self.cache, self.private)
 
     def test_invalid_cached_checksum_is_rejected(self) -> None:
         self.cached.write_bytes(self.bad)
@@ -79,12 +152,14 @@ class SourceAuthenticationTests(unittest.TestCase):
             BUILDER.obtain_source(self.cache, self.private)
 
     def test_bytes_changed_during_copy_are_rejected(self) -> None:
-        def copy_changed_bytes(cached: Path, destination: Path) -> None:
+        original_copy = shutil.copyfileobj
+
+        def copy_changed_bytes(cached, destination):
             self.cached.write_bytes(self.bad)
-            destination.write_bytes(cached.read_bytes())
+            original_copy(cached, destination)
 
         with (
-            patch.object(BUILDER.shutil, "copyfile", side_effect=copy_changed_bytes),
+            patch.object(BUILDER.shutil, "copyfileobj", side_effect=copy_changed_bytes),
             self.assertRaisesRegex(ValueError, "SHA-256 mismatch"),
         ):
             BUILDER.obtain_source(self.cache, self.private)
@@ -99,7 +174,7 @@ class SourceAuthenticationTests(unittest.TestCase):
             replacement.replace(self.cached)
             return digest
 
-        with patch.object(BUILDER.hashlib, "sha256", side_effect=replace_after_hash):
+        with patch.object(hashlib, "sha256", side_effect=replace_after_hash):
             source = BUILDER.obtain_source(self.cache, self.private)
         self.assertEqual(source.read_bytes(), self.good)
 
@@ -122,12 +197,39 @@ class SourceAuthenticationTests(unittest.TestCase):
                     ),
                 ):
                     BUILDER.obtain_source(self.cache, self.private)
+                (self.private / self.cached.name).unlink(missing_ok=True)
 
     def test_main_installs_verified_copy_and_cleans_up(self) -> None:
         self.check_main_flow(fail_install=False)
 
     def test_main_cleans_up_after_install_failure(self) -> None:
         self.check_main_flow(fail_install=True)
+
+    def test_main_rejects_symlink_cache_before_install(self) -> None:
+        sysroot = self.root / "sysroot"
+        binaries = sysroot / "usr/bin"
+        binaries.mkdir(parents=True)
+        for name in ("cmake", "gcc", "g++", "make", "tar", "strip"):
+            (binaries / name).touch()
+        link = self.root / "cache-link"
+        link.symlink_to(self.cache, target_is_directory=True)
+        with (
+            patch.object(
+                sys,
+                "argv",
+                [
+                    str(BUILDER_PATH), "--sysroot", str(sysroot),
+                    "--arkpkg-build", str(self.root / "arkpkg-build"),
+                    "--source-cache", str(link),
+                ],
+            ),
+            patch.object(BUILDER, "privileged") as privileged,
+            self.assertRaisesRegex(ValueError, "unsafe source cache directory"),
+        ):
+            BUILDER.main()
+        self.assertTrue(
+            all(call.args[0][0] != "install" for call in privileged.call_args_list)
+        )
 
     def check_main_flow(self, *, fail_install: bool) -> None:
         sysroot = self.root / "sysroot"
