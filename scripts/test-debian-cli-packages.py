@@ -1467,7 +1467,9 @@ class LicensePathTests(unittest.TestCase):
                 "Name: runtime\nVersion: 1.0\nArch: x86_64\n",
                 encoding="utf-8",
             )
-            archive.touch()
+            VersionedRepositoryArchiveTests.write_archive(
+                archive, "runtime", "1.0"
+            )
             packages = [
                 {"name": "app", "dependencies": ["runtime"]},
                 {"name": "runtime", "version": "1.0", "arch": "x86_64"},
@@ -3406,7 +3408,6 @@ class Batch22PackageTests(unittest.TestCase):
                     BUILDER.repository_has_package(repo_root, package),
                     f"missing matching recipe or archive for {name}",
                 )
-
                 archive_path = repo_root / "packages" / (
                     f"{name}-{version}-{package['arch']}.ark"
                 )
@@ -3772,7 +3773,6 @@ class Batch23PackageTests(unittest.TestCase):
                     BUILDER.repository_has_package(repo_root, package),
                     f"missing matching recipe or archive for {name}",
                 )
-
                 archive_path = repo_root / "packages" / (
                     f"{name}-{version}-{package['arch']}.ark"
                 )
@@ -3789,15 +3789,68 @@ class Batch23PackageTests(unittest.TestCase):
                 self.assertIn(expected_path, paths)
                 self.assertIn(f"package/{package['license_path']}", paths)
                 if name == "libaio1t64":
-                    self.assertEqual(
-                        links[expected_path], "libaio.so.1t64.0.2"
-                    )
+                    self.assertEqual(links[expected_path], "libaio.so.1t64.0.2")
                     _, _, provides = BUILDER.read_recipe(
                         repo_root / "packages/recipes/libaio1t64/ARKPKG"
                     )
                     self.assertTrue(
                         any(item.startswith("libaio.so.1t64=") for item in provides)
                     )
+
+
+class VersionedRepositoryArchiveTests(unittest.TestCase):
+    @staticmethod
+    def write_archive(path: Path, name: str, version: str) -> None:
+        """Create a tiny package whose embedded version can be checked."""
+        metadata = f"Name: {name}\nVersion: {version}\nArch: x86_64\n".encode()
+        with (
+            lz4.frame.open(path, "wb") as compressed,
+            tarfile.open(fileobj=compressed, mode="w") as archive,
+        ):
+            member = tarfile.TarInfo("ARKPKG")
+            member.size = len(metadata)
+            archive.addfile(member, io.BytesIO(metadata))
+
+    def test_archived_older_release_matches_current_recipe(self) -> None:
+        """Keep older indexed releases valid after the package recipe advances."""
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            recipes = root / "packages/recipes/sample"
+            recipes.mkdir(parents=True)
+            (recipes / "ARKPKG").write_text(
+                "Name: sample\nVersion: 2.0\nArch: x86_64\n",
+                encoding="utf-8",
+            )
+            archive = root / "packages/sample-1.0-x86_64.ark"
+            archive.parent.mkdir(parents=True, exist_ok=True)
+            self.write_archive(archive, "sample", "1.0")
+
+            self.assertTrue(
+                BUILDER.repository_has_package(
+                    root, {"name": "sample", "version": "1.0", "arch": "x86_64"}
+                )
+            )
+
+    def test_archive_metadata_must_match_manifest_version(self) -> None:
+        """Reject versioned filenames whose embedded metadata disagrees."""
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            recipes = root / "packages/recipes/sample"
+            recipes.mkdir(parents=True)
+            (recipes / "ARKPKG").write_text(
+                "Name: sample\nVersion: 2.0\nArch: x86_64\n",
+                encoding="utf-8",
+            )
+            archive = root / "packages/sample-1.0-x86_64.ark"
+            archive.parent.mkdir(parents=True, exist_ok=True)
+            self.write_archive(archive, "sample", "1.5")
+
+            self.assertFalse(
+                BUILDER.repository_has_package(
+                    root, {"name": "sample", "version": "1.0", "arch": "x86_64"}
+                )
+            )
+
 class Batch24PackageTests(unittest.TestCase):
     def test_batch_24_pins_storage_and_remote_hardware_tools(self) -> None:
         """Keep batch 24 source pins, package credits, and archives aligned."""

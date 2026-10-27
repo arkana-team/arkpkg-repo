@@ -190,6 +190,7 @@ def repository_owners(
 
 
 def repository_has_package(repo_root: Path, package: dict[str, object]) -> bool:
+    """Check a versioned archive while allowing the recipe to track newer builds."""
     name = str(package["name"])
     version = str(package["version"])
     arch = str(package["arch"])
@@ -197,11 +198,36 @@ def repository_has_package(repo_root: Path, package: dict[str, object]) -> bool:
     archive = repo_root / "packages" / f"{name}-{version}-{arch}.ark"
     if not recipe.is_file() or not archive.is_file():
         return False
-    fields, _, _ = read_recipe(recipe)
+    recipe_fields, _, _ = read_recipe(recipe)
+    if recipe_fields.get("Name") != name or recipe_fields.get("Arch") != arch:
+        return False
+
+    archive_fields: dict[str, str] = {}
+    with (
+        lz4.frame.open(archive, "rb") as compressed,
+        tarfile.open(fileobj=compressed, mode="r|") as package_archive,
+    ):
+        for member in package_archive:
+            if member.name != "ARKPKG" or not member.isfile():
+                continue
+            if member.issparse() or not 0 <= member.size <= MAX_METADATA_SIZE:
+                raise ValueError(f"{archive.name}: invalid ARKPKG metadata size")
+            source = package_archive.extractfile(member)
+            if source is None:
+                raise ValueError(f"{archive.name}: unreadable ARKPKG metadata")
+            content = source.read(MAX_METADATA_SIZE + 1)
+            if len(content) > MAX_METADATA_SIZE:
+                raise ValueError(f"{archive.name}: ARKPKG metadata exceeds limit")
+            for line in content.decode("utf-8").splitlines():
+                key, separator, value = line.partition(":")
+                if separator:
+                    archive_fields[key.strip()] = value.strip()
+            break
+
     return (
-        fields.get("Name") == name
-        and fields.get("Version") == version
-        and fields.get("Arch") == arch
+        archive_fields.get("Name") == name
+        and archive_fields.get("Version") == version
+        and archive_fields.get("Arch") == arch
     )
 
 
