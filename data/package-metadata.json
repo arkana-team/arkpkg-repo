@@ -30575,6 +30575,102 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "xdu": {
+      "author": "Phillip C. Dykstra",
+      "git_repo": "https://salsa.debian.org/debian/xdu.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xmountains": {
+      "author": "Stephen Booth",
+      "git_repo": "https://github.com/spbooth/xmountains",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/spbooth",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xpenguins": {
+      "author": "Robin Hogan",
+      "git_repo": "https://salsa.debian.org/games-team/xpenguins.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xphoon": {
+      "author": "Jef Poskanzer and Craig Leres",
+      "git_repo": "https://salsa.debian.org/debian/xphoon.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xprintidle": {
+      "author": "Magnus Henoch",
+      "git_repo": "https://github.com/g0hl1n/xprintidle",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xsysinfo": {
+      "author": "Gabor Herr",
+      "git_repo": "https://salsa.debian.org/debian/xsysinfo.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

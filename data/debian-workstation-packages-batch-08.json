@@ -1,0 +1,128 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "xdu": {
+      "filename": "pool/main/x/xdu/xdu_3.0-20+b1_amd64.deb",
+      "sha256": "f8f0edfda41dfe66298ff6f82c02a8f58e2c756f798fedfe32ffc831b2cecc58"
+    },
+    "xmountains": {
+      "filename": "pool/main/x/xmountains/xmountains_2.11-3_amd64.deb",
+      "sha256": "aa02ca4bd1adabfb4ed4c79e490c298b3472b36a42b6723fff66599b7d6c8bc0"
+    },
+    "xpenguins": {
+      "filename": "pool/main/x/xpenguins/xpenguins_3.2.3-2_amd64.deb",
+      "sha256": "47700028ba248993d75cb7d6b0936665a9defd10f174da7cb42b7d2787e12d27"
+    },
+    "xphoon": {
+      "filename": "pool/main/x/xphoon/xphoon_20000613+0-9_amd64.deb",
+      "sha256": "a2708e31dfa1f51241f61b9604b8eea9456d0e0acb5148ed40d5a92ccdaf6972"
+    },
+    "xprintidle": {
+      "filename": "pool/main/x/xprintidle/xprintidle_0.3.0-1_amd64.deb",
+      "sha256": "35f88810913a1040f46244382d4bd3b30dbf2a8c2c7ee5ec1e29784ed982c9bf"
+    },
+    "xsysinfo": {
+      "filename": "pool/main/x/xsysinfo/xsysinfo_1.7-10+b2_amd64.deb",
+      "sha256": "6bdb760ffbd3d334be744ec694fca58c9104246ab1060c8355f8ed8ab664cc74"
+    }
+  },
+  "packages": [
+    {
+      "name": "xdu",
+      "description": "X11 display of disk-usage trees",
+      "version": "3.0-20+b1",
+      "debian_version": "3.0-20+b1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xdu"
+      ],
+      "dependencies": [
+        "libxaw7"
+      ],
+      "url": "https://salsa.debian.org/debian/xdu",
+      "license": "See /usr/share/doc/xdu/copyright",
+      "license_path": "usr/share/doc/xdu/copyright"
+    },
+    {
+      "name": "xmountains",
+      "description": "X11 fractal landscape generator",
+      "version": "2.11-3",
+      "debian_version": "2.11-3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xmountains"
+      ],
+      "dependencies": [],
+      "url": "https://spbooth.github.io/xmountains",
+      "license": "See /usr/share/doc/xmountains/copyright",
+      "license_path": "usr/share/doc/xmountains/copyright"
+    },
+    {
+      "name": "xpenguins",
+      "description": "Animated penguins walking across X11 windows",
+      "version": "3.2.3-2",
+      "debian_version": "3.2.3-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xpenguins"
+      ],
+      "dependencies": [
+        "libcairo2",
+        "libgdk-pixbuf-2.0-0",
+        "libgtk-3-0t64"
+      ],
+      "url": "https://www.ratrabbit.nl/ratrabbit/software/xpenguins/index.html",
+      "license": "See /usr/share/doc/xpenguins/copyright",
+      "license_path": "usr/share/doc/xpenguins/copyright"
+    },
+    {
+      "name": "xphoon",
+      "description": "Moon-phase image for the X11 root window",
+      "version": "20000613+0-9",
+      "debian_version": "20000613+0-9",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xphoon"
+      ],
+      "dependencies": [
+        "libxrandr"
+      ],
+      "url": "https://xphoon.sourceforge.net/",
+      "license": "See /usr/share/doc/xphoon/copyright",
+      "license_path": "usr/share/doc/xphoon/copyright"
+    },
+    {
+      "name": "xprintidle",
+      "description": "Query X11 user idle time in milliseconds",
+      "version": "0.3.0-1",
+      "debian_version": "0.3.0-1",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xprintidle"
+      ],
+      "dependencies": [
+        "libxss1"
+      ],
+      "url": "https://github.com/g0hl1n/xprintidle/",
+      "license": "See /usr/share/doc/xprintidle/copyright",
+      "license_path": "usr/share/doc/xprintidle/copyright"
+    },
+    {
+      "name": "xsysinfo",
+      "description": "X11 monitor for CPU load, memory, and swap",
+      "version": "1.7-10+b2",
+      "debian_version": "1.7-10+b2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xsysinfo"
+      ],
+      "dependencies": [
+        "libxaw7"
+      ],
+      "url": "https://sourceforge.net/projects/xsysinfo/",
+      "license": "See /usr/share/doc/xsysinfo/copyright",
+      "license_path": "usr/share/doc/xsysinfo/copyright"
+    }
+  ]
+}
