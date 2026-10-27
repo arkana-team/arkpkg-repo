@@ -13,12 +13,42 @@ from pathlib import Path, PurePosixPath
 import lz4.frame
 
 MAX_METADATA_BYTES = 1024 * 1024  # Logical size, including sparse TAR holes.
+MAX_TAR_EXTENSION_BYTES = 1024 * 1024  # Cumulative extension data per archive.
+MAX_TAR_EXTENSION_DEPTH = 32
 REQUIRED_FIELDS = {"Name", "Description", "Version", "Arch"}
 PACKAGE_ATOM = re.compile(r"[A-Za-z0-9][A-Za-z0-9._+-]*\Z")
 VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
 DEPENDENCY = re.compile(
     r"([A-Za-z0-9][A-Za-z0-9._+-]*)(?:\s*(?:>=|<=|=|>|<)\s*(\S+))?\Z"
 )
+
+
+class BoundedTarInfo(tarfile.TarInfo):
+    def _proc_member(self, archive: tarfile.TarFile) -> tarfile.TarInfo:
+        if self.type not in {
+            tarfile.XHDTYPE,
+            tarfile.XGLTYPE,
+            tarfile.SOLARIS_XHDTYPE,
+            tarfile.GNUTYPE_LONGNAME,
+            tarfile.GNUTYPE_LONGLINK,
+        }:
+            return super()._proc_member(archive)
+
+        # Check raw headers before tarfile buffers PAX or GNU extension data.
+        remaining = getattr(
+            archive, "_extension_bytes_remaining", MAX_TAR_EXTENSION_BYTES
+        )
+        if not 0 <= self.size <= remaining:
+            raise ValueError("TAR extension data exceeds limit")
+        depth = getattr(archive, "_extension_depth", 0)
+        if depth >= MAX_TAR_EXTENSION_DEPTH:
+            raise ValueError("TAR extension nesting exceeds limit")
+        archive._extension_bytes_remaining = remaining - self.size
+        archive._extension_depth = depth + 1
+        try:
+            return super()._proc_member(archive)
+        finally:
+            archive._extension_depth = depth
 
 
 def version_segments(version: str) -> tuple[int, list[tuple[str, int | str]]]:
@@ -83,7 +113,7 @@ def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
 
     with (
         lz4.frame.open(path, "rb") as compressed,
-        tarfile.open(fileobj=compressed, mode="r|") as archive,
+        tarfile.open(fileobj=compressed, mode="r|", tarinfo=BoundedTarInfo) as archive,
     ):
         for member in archive:
             member_path = PurePosixPath(member.name)
@@ -268,7 +298,7 @@ def test_repository(
             package_arches[name] = metadata["Arch"]
         with (
             lz4.frame.open(path, "rb") as compressed,
-            tarfile.open(fileobj=compressed, mode="r|") as archive,
+            tarfile.open(fileobj=compressed, mode="r|", tarinfo=BoundedTarInfo) as archive,
         ):
             for member in archive:
                 normalized = "/".join(
