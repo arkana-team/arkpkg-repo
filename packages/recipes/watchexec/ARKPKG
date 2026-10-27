@@ -1,0 +1,8 @@
+Name: watchexec
+Description: Run commands when files change with shell completions and a manual
+Version: 2.8.0
+Arch: x86_64
+URL: https://github.com/watchexec/watchexec
+License: Apache-2.0
+Maintainer: arkanaOS Team
+Provides: watchexec=/usr/bin/watchexec

@@ -1,10 +1,8 @@
 Name: git-delta
-Description: syntax-highlighting pager for git, diff, and grep output
-Version: 0.18.2-4+b1
+Description: Syntax-highlighting pager for git, diff, grep, and blame output
+Version: 0.20.1
 Arch: x86_64
-URL: https://dandavison.github.io/delta/
-License: See /usr/share/doc/git-delta/copyright
+URL: https://github.com/dandavison/delta
+License: MIT
 Maintainer: arkanaOS Team
-Dependencies:
-  broot-runtime-libs
 Provides: delta=/usr/bin/delta

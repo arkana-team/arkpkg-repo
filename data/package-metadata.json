@@ -4945,10 +4945,10 @@
       ]
     },
     "git-delta": {
-      "author": null,
-      "git_repo": "https://salsa.debian.org/debian/git-delta",
-      "git_repo_type": "packaging",
-      "git_author_url": null,
+      "author": "Dan Davison",
+      "git_repo": "https://github.com/dandavison/delta",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/dandavison",
       "packagers": [
         {
           "name": "arkana-team",
@@ -30421,6 +30421,22 @@
       "git_repo": "https://github.com/zellij-org/zellij",
       "git_repo_type": "upstream",
       "git_author_url": "https://github.com/imsnif",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "watchexec": {
+      "author": "Félix Saparelli",
+      "git_repo": "https://github.com/watchexec/watchexec",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/passcod",
       "packagers": [
         {
           "name": "arkana-team",
