@@ -19,7 +19,7 @@ import tempfile
 import uuid
 from pathlib import Path, PurePosixPath
 
-import lz4.frame
+from package_metadata import open_dependency_archive, read_metadata_member
 from source_cache import source_snapshot
 
 BASE_URL = "https://xorg.freedesktop.org/archive/individual/app"
@@ -457,16 +457,13 @@ def privileged_file_test(path: Path, test: str = "-f") -> bool:
 
 
 def package_name(archive_path: Path) -> str:
-    with (
-        lz4.frame.open(archive_path, "rb") as compressed,
-        tarfile.open(fileobj=compressed, mode="r|") as archive,
-    ):
+    with open_dependency_archive(archive_path) as archive:
         for member in archive:
             if member.name == "ARKPKG" and member.isfile():
-                stream = archive.extractfile(member)
-                if stream is None:
+                metadata = read_metadata_member(archive, member)
+                if metadata is None:
                     break
-                for line in stream.read().decode("utf-8").splitlines():
+                for line in metadata.splitlines():
                     key, separator, value = line.partition(":")
                     if separator and key.strip() == "Name":
                         return value.strip()

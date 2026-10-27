@@ -10,6 +10,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 import lz4.frame
+import package_metadata
 
 
 def load_script(filename: str):
@@ -27,7 +28,8 @@ package_audit = load_script("test-packages.py")
 DEPENDENCY_READERS = tuple(
     load_script(filename).package_name
     for filename in (
-        "build-xcb-util.py", "build-xcursor-themes.py", "build-xlockmore.py"
+        "build-xcb-util.py", "build-xcursor-themes.py", "build-xlockmore.py",
+        "build-xorg-apps.py",
     )
 )
 READERS = (
@@ -273,6 +275,136 @@ class ArchiveExtensionLimitTests(unittest.TestCase):
                 self.assertRaisesRegex(ValueError, "TAR extension data"),
             ):
                 package_audit.test_repository(root, Path("/unused/arkpkg"), audit_only=True)
+
+
+class DependencyExtensionLimitTests(unittest.TestCase):
+    readers = DEPENDENCY_READERS[1:]
+
+    def test_rejects_extension_bodies_before_buffering(self) -> None:
+        limit = package_metadata.MAX_TAR_EXTENSION_BYTES
+        original_read = tarfile._Stream.read
+
+        def bounded_read(stream, size):
+            if size > limit:
+                raise AssertionError(f"extension buffered before validation: {size}")
+            return original_read(stream, size)
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            for kind in (
+                tarfile.XHDTYPE, tarfile.XGLTYPE, tarfile.SOLARIS_XHDTYPE,
+                tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK,
+            ):
+                for skipped_member in (False, True):
+                    add_extensions(path, [(kind, extension_data(limit + 1))])
+                    if skipped_member:
+                        # Exercise iteration after opening as well as the first header.
+                        data = lz4.frame.decompress(path.read_bytes())
+                        path.write_bytes(lz4.frame.compress(tarfile.TarInfo("skip").tobuf() + data))
+                    self.assertLess(path.stat().st_size, 8192)
+                    for reader in self.readers:
+                        with (
+                            self.subTest(kind=kind, skipped=skipped_member, reader=reader.__module__),
+                            patch.object(tarfile._Stream, "read", bounded_read),
+                            self.assertRaisesRegex(ValueError, "TAR extension data"),
+                        ):
+                            reader(path)
+
+    def test_accepts_extensions_at_limit_and_resets_each_archive(self) -> None:
+        limit = package_metadata.MAX_TAR_EXTENSION_BYTES
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            for kind in (
+                tarfile.XHDTYPE, tarfile.XGLTYPE, tarfile.SOLARIS_XHDTYPE,
+                tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK,
+            ):
+                content = extension_data(limit)
+                if kind in (tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK):
+                    content = b"ARKPKG\0".ljust(limit, b"\0")
+                add_extensions(path, [(kind, content)])
+                for reader in self.readers:
+                    with self.subTest(kind=kind, reader=reader.__module__):
+                        for _ in range(2):
+                            self.assertEqual(reader(path), "demo")
+
+    def test_rejects_cumulative_extensions_between_members(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            half = extension_data(package_metadata.MAX_TAR_EXTENSION_BYTES // 2)
+            add_extensions(path, [(tarfile.XGLTYPE, half)] * 3)
+            data = lz4.frame.decompress(path.read_bytes())
+            record_size = tarfile.BLOCKSIZE + len(half)
+            separator = tarfile.TarInfo("skip").tobuf()
+            path.write_bytes(lz4.frame.compress(
+                data[:record_size] + separator + data[record_size:2 * record_size]
+                + separator + data[2 * record_size:]
+            ))
+            for reader in self.readers:
+                with (
+                    self.subTest(reader=reader.__module__),
+                    self.assertRaisesRegex(ValueError, "TAR extension data"),
+                ):
+                    reader(path)
+
+    def test_limits_nested_extensions(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            for depth in (package_metadata.MAX_TAR_EXTENSION_DEPTH,
+                          package_metadata.MAX_TAR_EXTENSION_DEPTH + 1):
+                add_extensions(path, [(tarfile.XHDTYPE, extension_data(32))] * depth)
+                for reader in self.readers:
+                    with self.subTest(depth=depth, reader=reader.__module__):
+                        if depth == package_metadata.MAX_TAR_EXTENSION_DEPTH:
+                            self.assertEqual(reader(path), "demo")
+                        else:
+                            with self.assertRaisesRegex(ValueError, "TAR extension nesting"):
+                                reader(path)
+
+    def test_skips_large_payload_without_charging_parser_budget(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            write_archive(path, METADATA)
+            data = lz4.frame.decompress(path.read_bytes())
+            member = tarfile.TarInfo("package/large")
+            member.size = package_metadata.MAX_TAR_PARSER_BYTES + tarfile.BLOCKSIZE
+            path.write_bytes(lz4.frame.compress(member.tobuf() + b"x" * member.size + data))
+            for reader in self.readers:
+                with self.subTest(reader=reader.__module__):
+                    self.assertEqual(reader(path), "demo")
+
+    def test_limits_old_gnu_and_pax_sparse_map_processing(self) -> None:
+        # Small test budget; production uses 2 MiB. Sparse maps are consumed
+        # before a logical member size can be checked by read_metadata_member.
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            member = tarfile.TarInfo("ARKPKG")
+            member.type = tarfile.GNUTYPE_SPARSE
+            header = bytearray(member.tobuf(format=tarfile.GNU_FORMAT))
+            header[482] = 1  # Old GNU sparse header has additional map blocks.
+            header[148:156] = b" " * 8
+            header[148:156] = f"{sum(header):06o}\0 ".encode()
+            sparse_block = b"\0" * 504 + b"\1" + b"\0" * 7
+            old_gnu = bytes(header) + sparse_block * 8
+
+            sparse = io.BytesIO()
+            with tarfile.open(fileobj=sparse, mode="w", format=tarfile.PAX_FORMAT) as archive:
+                member = tarfile.TarInfo("ARKPKG")
+                member.pax_headers = {"GNU.sparse.major": "1", "GNU.sparse.minor": "0",
+                                      "GNU.sparse.realsize": "1"}
+                content = b"1024\n" + b"0\n1\n" * 1024
+                member.size = len(content)
+                archive.addfile(member, io.BytesIO(content))
+
+            for data in (old_gnu, sparse.getvalue()):
+                path.write_bytes(lz4.frame.compress(data))
+                for reader in self.readers:
+                    with (
+                        self.subTest(format="old GNU" if data == old_gnu else "PAX 1.0",
+                                     reader=reader.__module__),
+                        patch.object(package_metadata, "MAX_TAR_PARSER_BYTES", 2048),
+                        self.assertRaisesRegex(ValueError, "TAR parser data"),
+                    ):
+                        reader(path)
 
 
 if __name__ == "__main__":

@@ -13,7 +13,7 @@ import tempfile
 import uuid
 from pathlib import Path, PurePosixPath
 
-from package_metadata import read_metadata_member
+from package_metadata import open_dependency_archive, read_metadata_member
 from source_cache import source_snapshot
 
 SOURCE_NAME = "xcursor-themes"
@@ -39,12 +39,7 @@ def installed_packages(arkpkg: Path, sysroot: Path) -> set[str]:
 
 
 def package_name(archive_path: Path) -> str:
-    import lz4.frame
-
-    with (
-        lz4.frame.open(archive_path, "rb") as compressed,
-        tarfile.open(fileobj=compressed, mode="r|") as archive,
-    ):
+    with open_dependency_archive(archive_path) as archive:
         for member in archive:
             if member.name != "ARKPKG" or not member.isfile():
                 continue

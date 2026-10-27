@@ -15,8 +15,7 @@ import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
 
-import lz4.frame
-from package_metadata import read_metadata_member
+from package_metadata import open_dependency_archive, read_metadata_member
 
 NAME = "xlockmore"
 VERSION = "5.89"
@@ -41,10 +40,7 @@ def privileged_text(command: list[str]) -> str:
 
 
 def package_name(archive_path: Path) -> str:
-    with (
-        lz4.frame.open(archive_path, "rb") as compressed,
-        tarfile.open(fileobj=compressed, mode="r|") as archive,
-    ):
+    with open_dependency_archive(archive_path) as archive:
         for member in archive:
             if member.name != "ARKPKG" or not member.isfile():
                 continue
