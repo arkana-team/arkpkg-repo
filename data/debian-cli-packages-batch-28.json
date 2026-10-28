@@ -1,0 +1,28 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "gdbserver"
+      ],
+      "debian_version": "16.3-1",
+      "dependencies": [],
+      "description": "GNU Debugger remote debugging server",
+      "license": "See /usr/share/doc/gdbserver/copyright",
+      "license_path": "usr/share/doc/gdbserver/copyright",
+      "name": "gdbserver",
+      "url": "https://www.gnu.org/software/gdb/",
+      "version": "16.3-1"
+    }
+  ],
+  "sources": {
+    "gdbserver": {
+      "architecture": "amd64",
+      "filename": "pool/main/g/gdb/gdbserver_16.3-1_amd64.deb",
+      "sha256": "6d2f2029e24df9fc099d720f1e020a25f574d74bd69e5f5647350f5c787fd990",
+      "version": "16.3-1"
+    }
+  },
+  "suite": "trixie"
+}

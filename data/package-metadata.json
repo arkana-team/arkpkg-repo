@@ -30847,6 +30847,22 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "gdbserver": {
+      "author": "Free Software Foundation",
+      "git_repo": "https://sourceware.org/git/binutils-gdb.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://www.gnu.org/software/gdb/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
