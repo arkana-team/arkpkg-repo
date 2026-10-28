@@ -82,7 +82,15 @@ class UpstreamCacheTests(unittest.TestCase):
 
     def test_system_cli_tools_have_pinned_release_assets(self) -> None:
         """Keep each added system CLI's downloaded assets checksum-pinned."""
-        for name in ("navi", "choose", "dysk", "nushell", "jujutsu"):
+        for name in (
+            "navi",
+            "choose",
+            "dysk",
+            "nushell",
+            "jujutsu",
+            "mcfly",
+            "curlie",
+        ):
             with self.subTest(package=name):
                 package = BUILDER.PACKAGES[name]
                 digests = [package["archive_sha256"]]
@@ -129,6 +137,29 @@ class UpstreamCacheTests(unittest.TestCase):
         self.assertEqual(
             metadata["packages"]["jujutsu"]["git_author_url"],
             "https://github.com/martinvonz",
+        )
+        expected_authors = {
+            "mcfly": ("Andrew Cantino", "https://github.com/cantino"),
+            "curlie": ("Olivier Poitrey", "https://github.com/rs"),
+        }
+        for name, (author, author_url) in expected_authors.items():
+            with self.subTest(package=name):
+                package_metadata = metadata["packages"][name]
+                self.assertEqual(package_metadata["author"], author)
+                self.assertEqual(package_metadata["git_author_url"], author_url)
+                self.assertEqual(package_metadata["git_repo_type"], "upstream")
+                self.assertEqual(
+                    package_metadata["git_repo"], BUILDER.PACKAGES[name]["url"]
+                )
+                self.assertIn(
+                    f"Provides: {name}=/usr/bin/{name}",
+                    BUILDER.recipe_text(name, BUILDER.PACKAGES[name]),
+                )
+        curlie = BUILDER.PACKAGES["curlie"]
+        self.assertEqual(curlie["dependencies"], ["curl-cli"])
+        self.assertIn(
+            "Dependencies: curl-cli",
+            BUILDER.recipe_text("curlie", curlie),
         )
 
     def test_disk_and_git_tools_have_pinned_static_release_assets(self) -> None:
