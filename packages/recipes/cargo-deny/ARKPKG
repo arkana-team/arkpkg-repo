@@ -1,0 +1,10 @@
+Name: cargo-deny
+Description: Cargo subcommand for dependency, license, and source policy checks
+Version: 0.20.2
+Arch: x86_64
+URL: https://github.com/EmbarkStudios/cargo-deny
+License: MIT OR Apache-2.0
+Maintainer: arkanaOS Team
+Dependencies:
+  cargo
+Provides: cargo-deny=/usr/bin/cargo-deny

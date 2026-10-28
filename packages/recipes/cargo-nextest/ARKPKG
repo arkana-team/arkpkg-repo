@@ -1,0 +1,10 @@
+Name: cargo-nextest
+Description: Fast parallel test runner for Rust Cargo projects
+Version: 0.9.150
+Arch: x86_64
+URL: https://github.com/nextest-rs/nextest
+License: Apache-2.0 OR MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  cargo
+Provides: cargo-nextest=/usr/bin/cargo-nextest
