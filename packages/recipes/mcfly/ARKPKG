@@ -1,0 +1,8 @@
+Name: mcfly
+Description: Intelligent shell history search tool
+Version: 0.9.4
+Arch: x86_64
+URL: https://github.com/cantino/mcfly
+License: MIT
+Maintainer: arkanaOS Team
+Provides: mcfly=/usr/bin/mcfly
