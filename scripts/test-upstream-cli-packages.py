@@ -223,6 +223,26 @@ class UpstreamCacheTests(unittest.TestCase):
                 if name == "cargo-audit":
                     self.assertIn("  git\nProvides:", recipe)
 
+    def test_existing_dependency_recipes_use_multiline_format(self) -> None:
+        """Keep previously committed recipes aligned with the current renderer."""
+        for name in ("curlie", "gitui", "jujutsu", "navi"):
+            with self.subTest(package=name):
+                recipe = (
+                    Path(__file__).resolve().parents[1]
+                    / "packages/recipes"
+                    / name
+                    / "ARKPKG"
+                ).read_text(encoding="utf-8")
+                dependencies = BUILDER.PACKAGES[name]["dependencies"]
+                lines = recipe.splitlines()
+                index = lines.index("Dependencies:")
+                actual = []
+                for line in lines[index + 1 :]:
+                    if not line.startswith("  "):
+                        break
+                    actual.append(line[2:])
+                self.assertEqual(actual, dependencies)
+
     def test_recipe_text_records_optional_runtime_dependencies(self) -> None:
         """Write declared runtime dependencies into generated package metadata."""
         package = {
