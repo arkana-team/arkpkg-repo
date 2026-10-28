@@ -7,10 +7,12 @@ import argparse
 import hashlib
 import os
 import shutil
+import stat
 import subprocess
 import tarfile
 import tempfile
 import urllib.request
+from contextlib import ExitStack
 from pathlib import Path
 
 import lz4.frame
@@ -3586,24 +3588,43 @@ def add_staged_payload(name: str, package_root: Path, staging: Path) -> None:
 
 def patch_glib_tools_python313(package_root: Path) -> None:
     """Keep GLib 2.78's code generator compatible with Python 3.12 and newer."""
-    utils_path = package_root / "usr/share/glib-2.0/codegen/utils.py"
-    source = utils_path.read_text(encoding="utf-8")
-    old_import = "import distutils.version\n"
-    old_compare = "return (distutils.version.LooseVersion(v), key[1])"
-    if old_import not in source or old_compare not in source:
-        raise ValueError("unexpected GLib gdbus-codegen version comparison code")
-    source = source.replace(old_import, "import re\n")
-    source = source.replace(
-        "def version_cmp_key(key):",
-        "def _glib_version_key(value):\n"
-        "    return tuple(\n"
-        "        (0, int(part)) if part.isdigit() else (1, part.casefold())\n"
-        '        for part in re.findall(r"\\d+|[A-Za-z]+", value)\n'
-        "    )\n\n\n"
-        "def version_cmp_key(key):",
-    )
-    source = source.replace(old_compare, "return (_glib_version_key(v), key[1])")
-    utils_path.write_text(source, encoding="utf-8")
+    relative = Path("usr/share/glib-2.0/codegen/utils.py")
+    # Staging symlinks survive copying into the private payload. Anchor each
+    # lookup to an opened directory and never follow a link while patching.
+    with ExitStack() as stack:
+        directory_flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+        directory_fd = os.open(package_root, directory_flags)
+        stack.callback(os.close, directory_fd)
+        for component in relative.parts[:-1]:
+            directory_fd = os.open(component, directory_flags, dir_fd=directory_fd)
+            stack.callback(os.close, directory_fd)
+        descriptor = os.open(
+            relative.name,
+            os.O_RDWR | os.O_NOFOLLOW | os.O_NONBLOCK,
+            dir_fd=directory_fd,
+        )
+        with os.fdopen(descriptor, "r+", encoding="utf-8") as stream:
+            if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
+                raise ValueError("GLib gdbus-codegen utils.py must be a regular file")
+            source = stream.read()
+            old_import = "import distutils.version\n"
+            old_compare = "return (distutils.version.LooseVersion(v), key[1])"
+            if old_import not in source or old_compare not in source:
+                raise ValueError("unexpected GLib gdbus-codegen version comparison code")
+            source = source.replace(old_import, "import re\n")
+            source = source.replace(
+                "def version_cmp_key(key):",
+                "def _glib_version_key(value):\n"
+                "    return tuple(\n"
+                "        (0, int(part)) if part.isdigit() else (1, part.casefold())\n"
+                '        for part in re.findall(r"\\d+|[A-Za-z]+", value)\n'
+                "    )\n\n\n"
+                "def version_cmp_key(key):",
+            )
+            source = source.replace(old_compare, "return (_glib_version_key(v), key[1])")
+            stream.seek(0)
+            stream.write(source)
+            stream.truncate()
 
 
 def strip_elf_payload(package_root: Path) -> None:
