@@ -1,0 +1,8 @@
+Name: nushell
+Description: Modern shell with structured data pipelines
+Version: 0.116.1
+Arch: x86_64
+URL: https://github.com/nushell/nushell
+License: MIT
+Maintainer: arkanaOS Team
+Provides: nu=/usr/bin/nu

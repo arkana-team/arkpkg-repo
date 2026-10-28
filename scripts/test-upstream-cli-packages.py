@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import importlib.util
 import io
+import json
 import os
 import stat
 import tarfile
@@ -81,7 +82,7 @@ class UpstreamCacheTests(unittest.TestCase):
 
     def test_system_cli_tools_have_pinned_release_assets(self) -> None:
         """Keep each added system CLI's downloaded assets checksum-pinned."""
-        for name in ("navi", "choose", "dysk"):
+        for name in ("navi", "choose", "dysk", "nushell", "jujutsu"):
             with self.subTest(package=name):
                 package = BUILDER.PACKAGES[name]
                 digests = [package["archive_sha256"]]
@@ -100,6 +101,35 @@ class UpstreamCacheTests(unittest.TestCase):
                     )
                 )
                 self.assertTrue(package["license_source"])
+        nushell = BUILDER.PACKAGES["nushell"]
+        self.assertEqual(nushell["provides"], ["nu=/usr/bin/nu"])
+        self.assertIn(
+            "Provides: nu=/usr/bin/nu",
+            BUILDER.recipe_text("nushell", nushell),
+        )
+        jujutsu = BUILDER.PACKAGES["jujutsu"]
+        self.assertEqual(jujutsu["provides"], ["jj=/usr/bin/jj"])
+        self.assertEqual(jujutsu["dependencies"], ["git>=2.42.0"])
+        self.assertIn(
+            "Provides: jj=/usr/bin/jj",
+            BUILDER.recipe_text("jujutsu", jujutsu),
+        )
+        self.assertIn(
+            "Dependencies: git>=2.42.0",
+            BUILDER.recipe_text("jujutsu", jujutsu),
+        )
+        metadata = json.loads(
+            (Path(__file__).resolve().parents[1] / "data/package-metadata.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(
+            metadata["packages"]["jujutsu"]["author"], "Martin von Zweigbergk"
+        )
+        self.assertEqual(
+            metadata["packages"]["jujutsu"]["git_author_url"],
+            "https://github.com/martinvonz",
+        )
 
     def test_disk_and_git_tools_have_pinned_static_release_assets(self) -> None:
         """Keep dua and gitui tied to checksummed Linux release binaries."""
@@ -306,6 +336,25 @@ class UpstreamCacheTests(unittest.TestCase):
                 self.assertRaisesRegex(ValueError, "exceeds 4 bytes"),
             ):
                 BUILDER.read_archive_file(archive_path, "fixture/tool")
+
+    def test_binary_member_limit_is_separate_and_still_bounded(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            archive_path = Path(temporary) / "release.zip"
+            archive_path.write_bytes(zip_archive({"tool": b"binary-member"}))
+            with (
+                mock.patch.object(BUILDER, "MAX_UPSTREAM_MEMBER_BYTES", 8),
+                mock.patch.object(BUILDER, "MAX_BINARY_MEMBER_BYTES", 16),
+            ):
+                with self.assertRaisesRegex(ValueError, "exceeds 8 bytes"):
+                    BUILDER.read_archive_file(archive_path, "tool")
+                self.assertEqual(
+                    BUILDER.read_archive_file(
+                        archive_path,
+                        "tool",
+                        max_bytes=BUILDER.MAX_BINARY_MEMBER_BYTES,
+                    ),
+                    b"binary-member",
+                )
 
     def test_build_uses_verified_bytes_after_cache_replacement(self) -> None:
         for cache_hit in (False, True):

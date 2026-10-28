@@ -30735,6 +30735,38 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "nushell": {
+      "author": "The Nushell Project Developers",
+      "git_repo": "https://github.com/nushell/nushell",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/nushell",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "jujutsu": {
+      "author": "Martin von Zweigbergk",
+      "git_repo": "https://github.com/jj-vcs/jj",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/martinvonz",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

@@ -64,6 +64,54 @@ PACKAGES = {
         "description": "Fast system information tool written in Nim",
         "license": "MIT",
     },
+    "nushell": {
+        "version": "0.116.1",
+        "arch": "x86_64",
+        "url": "https://github.com/nushell/nushell",
+        "archive": "https://codeload.github.com/nushell/nushell/tar.gz/refs/tags/0.116.1",
+        "archive_sha256": "0cca0c5bc9d9eb608dee00c75b6b511917df6e66c784b034468bab2ff0fbb9b4",
+        "root": "nushell-0.116.1",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/nushell/copyright",
+        "binary_archive": "https://github.com/nushell/nushell/releases/download/0.116.1/nu-0.116.1-x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "13ef75df08df30f8d7b031df538e82a52c6e74ce839b1a9091c3a3f1969c3742",
+        "binary_members": {
+            "nu-0.116.1-x86_64-unknown-linux-musl/nu": "usr/bin/nu",
+        },
+        "binary_member_sha256": {
+            "nu-0.116.1-x86_64-unknown-linux-musl/nu": "9afb8f05657a67fae75c5aef97c539c7e2a261f50163e80bdb08a348ccba3767",
+        },
+        "files": {
+            "README.md": "usr/share/doc/nushell/README.md",
+        },
+        "provides": ["nu=/usr/bin/nu"],
+        "description": "Modern shell with structured data pipelines",
+        "license": "MIT",
+    },
+    "jujutsu": {
+        "version": "0.46.0",
+        "arch": "x86_64",
+        "url": "https://github.com/jj-vcs/jj",
+        "archive": "https://codeload.github.com/jj-vcs/jj/tar.gz/refs/tags/v0.46.0",
+        "archive_sha256": "6489f79d59dc4f9c11230c51d309dc9c6ec392921772b738546966c494b6d72c",
+        "root": "jj-0.46.0",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/jujutsu/copyright",
+        "binary_archive": "https://github.com/jj-vcs/jj/releases/download/v0.46.0/jj-v0.46.0-x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "fce0271158e665ceb82dc66c5eb95b1728649094e9133074f3b5baece345fc08",
+        "binary_members": {"./jj": "usr/bin/jj"},
+        "binary_member_sha256": {
+            "./jj": "dbf80e7290f00005908aaa9aa576fd1906156049af0fba94d2dec48ff4193534",
+        },
+        "files": {
+            "README.md": "usr/share/doc/jujutsu/README.md",
+            "CHANGELOG.md": "usr/share/doc/jujutsu/CHANGELOG.md",
+        },
+        "provides": ["jj=/usr/bin/jj"],
+        "dependencies": ["git>=2.42.0"],
+        "description": "Git-compatible version control system with operation history and undo",
+        "license": "Apache-2.0",
+    },
     "atuin": {
         "version": "18.24.2",
         "arch": "x86_64",
@@ -443,6 +491,7 @@ INTERPRETER = re.compile(r"Requesting program interpreter: (.+?)\]")
 NEEDED = re.compile(r"Shared library: \[(.+?)\]")
 MAX_ARCHIVE_BYTES = 90_000_000
 MAX_UPSTREAM_MEMBER_BYTES = 64 * 1024 * 1024
+MAX_BINARY_MEMBER_BYTES = 80 * 1024 * 1024
 MAX_PACKAGE_METADATA_BYTES = 64 * 1024
 
 
@@ -516,8 +565,11 @@ def download(url: str, expected: str, cache: Path, work: Path) -> Path:
     return snapshot
 
 
-def read_archive_file(archive_path: Path, member_name: str) -> bytes:
+def read_archive_file(
+    archive_path: Path, member_name: str, *, max_bytes: int | None = None
+) -> bytes:
     """Read one regular archive member without extracting it to disk."""
+    limit = MAX_UPSTREAM_MEMBER_BYTES if max_bytes is None else max_bytes
     member_path = PurePosixPath(member_name)
     if (
         not member_name
@@ -541,13 +593,13 @@ def read_archive_file(archive_path: Path, member_name: str) -> bytes:
                 raise ValueError(
                     f"{archive_path.name}: {member_name} is not a regular file"
                 )
-            if not 0 <= member.file_size <= MAX_UPSTREAM_MEMBER_BYTES:
+            if not 0 <= member.file_size <= limit:
                 raise ValueError(
                     f"{archive_path.name}: {member_name} exceeds "
-                    f"{MAX_UPSTREAM_MEMBER_BYTES} bytes"
+                    f"{limit} bytes"
                 )
             with archive.open(member) as source:
-                data = source.read(MAX_UPSTREAM_MEMBER_BYTES + 1)
+                data = source.read(limit + 1)
     else:
         with tarfile.open(archive_path, "r:*") as archive:
             try:
@@ -560,21 +612,21 @@ def read_archive_file(archive_path: Path, member_name: str) -> bytes:
                 raise ValueError(
                     f"{archive_path.name}: {member_name} is not a regular file"
                 )
-            if not 0 <= member.size <= MAX_UPSTREAM_MEMBER_BYTES:
+            if not 0 <= member.size <= limit:
                 raise ValueError(
                     f"{archive_path.name}: {member_name} exceeds "
-                    f"{MAX_UPSTREAM_MEMBER_BYTES} bytes"
+                    f"{limit} bytes"
                 )
             source = archive.extractfile(member)
             if source is None:
                 raise ValueError(f"{archive_path.name}: could not read {member_name}")
             with source:
-                data = source.read(MAX_UPSTREAM_MEMBER_BYTES + 1)
+                data = source.read(limit + 1)
 
-    if len(data) > MAX_UPSTREAM_MEMBER_BYTES:
+    if len(data) > limit:
         raise ValueError(
             f"{archive_path.name}: {member_name} exceeds "
-            f"{MAX_UPSTREAM_MEMBER_BYTES} bytes"
+            f"{limit} bytes"
         )
     return data
 
@@ -742,7 +794,11 @@ def build(args: argparse.Namespace) -> None:
 
             member_hashes = package.get("binary_member_sha256", {})
             for source_name, target_name in package.get("binary_members", {}).items():
-                data = read_archive_file(binary_archive, str(source_name))
+                data = read_archive_file(
+                    binary_archive,
+                    str(source_name),
+                    max_bytes=MAX_BINARY_MEMBER_BYTES,
+                )
                 expected = member_hashes.get(source_name)
                 if expected and hashlib.sha256(data).hexdigest() != expected:
                     raise ValueError(f"{name}: checksum mismatch for {source_name}")
