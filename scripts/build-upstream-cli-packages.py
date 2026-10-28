@@ -506,6 +506,84 @@ PACKAGES = {
         "description": "Syntax-highlighting pager for git, diff, grep, and blame output",
         "license": "MIT",
     },
+    "cargo-nextest": {
+        "version": "0.9.150",
+        "arch": "x86_64",
+        "url": "https://github.com/nextest-rs/nextest",
+        "archive": "https://codeload.github.com/nextest-rs/nextest/tar.gz/refs/tags/cargo-nextest-0.9.150",
+        "archive_sha256": "52daf837e45bf08815f1fa92202adb28d835c04b3e8f1fc9a2d1b47e2b6537c6",
+        "root": "nextest-cargo-nextest-0.9.150",
+        "license_source": "LICENSE-MIT",
+        "license_path": "usr/share/doc/cargo-nextest/copyright",
+        "binary_archive": "https://github.com/nextest-rs/nextest/releases/download/cargo-nextest-0.9.150/cargo-nextest-0.9.150-x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "84f0f9ba75d0b6fa117bc418d49747ba78e20e4583057f6fa628f1b17c17234d",
+        "binary_members": {"cargo-nextest": "usr/bin/cargo-nextest"},
+        "binary_member_sha256": {
+            "cargo-nextest": "f60be355cded290b1080a0b7c92ca11ec34a1900e3ad1afbd6336ddbfdbbded0",
+        },
+        "files": {
+            "README.md": "usr/share/doc/cargo-nextest/README.md",
+            "LICENSE-MIT": "usr/share/licenses/cargo-nextest/LICENSE-MIT",
+            "LICENSE-APACHE": "usr/share/licenses/cargo-nextest/LICENSE-APACHE",
+        },
+        "dependencies": ["cargo"],
+        "description": "Fast parallel test runner for Rust Cargo projects",
+        "license": "Apache-2.0 OR MIT",
+    },
+    "cargo-deny": {
+        "version": "0.20.2",
+        "arch": "x86_64",
+        "url": "https://github.com/EmbarkStudios/cargo-deny",
+        "archive": "https://codeload.github.com/EmbarkStudios/cargo-deny/tar.gz/refs/tags/0.20.2",
+        "archive_sha256": "31fc1d33fae8d5b4264db8ed5c6c070c27cd2f869cc6d2983ac03548c5a81c8e",
+        "root": "cargo-deny-0.20.2",
+        "license_source": "LICENSE-MIT",
+        "license_path": "usr/share/doc/cargo-deny/copyright",
+        "binary_archive": "https://github.com/EmbarkStudios/cargo-deny/releases/download/0.20.2/cargo-deny-0.20.2-x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "9f12ed4c49936e09b48bf862b595cde2fe64fcbd9d74dfacac6131ca824c8d5f",
+        "binary_members": {
+            "cargo-deny-0.20.2-x86_64-unknown-linux-musl/cargo-deny": "usr/bin/cargo-deny",
+        },
+        "binary_member_sha256": {
+            "cargo-deny-0.20.2-x86_64-unknown-linux-musl/cargo-deny": "b329e25933d01c36dd7c47d84ea5716694f9b7caf53a5003d45674703a8ed54a",
+        },
+        "files": {
+            "README.md": "usr/share/doc/cargo-deny/README.md",
+            "CHANGELOG.md": "usr/share/doc/cargo-deny/CHANGELOG.md",
+            "LICENSE-MIT": "usr/share/licenses/cargo-deny/LICENSE-MIT",
+            "LICENSE-APACHE": "usr/share/licenses/cargo-deny/LICENSE-APACHE",
+        },
+        "dependencies": ["cargo"],
+        "description": "Cargo subcommand for dependency, license, and source policy checks",
+        "license": "MIT OR Apache-2.0",
+    },
+    "cargo-audit": {
+        "version": "0.22.2",
+        "arch": "x86_64",
+        "url": "https://github.com/RustSec/rustsec",
+        "archive": "https://codeload.github.com/RustSec/rustsec/tar.gz/refs/tags/cargo-audit%2Fv0.22.2",
+        "archive_sha256": "85c368a4d166b2cc4972108d50abc5fad605013b65098929a06122439488beb5",
+        "root": "rustsec-cargo-audit-v0.22.2",
+        "license_source": "cargo-audit/LICENSE-MIT",
+        "license_path": "usr/share/doc/cargo-audit/copyright",
+        "binary_archive": "https://github.com/RustSec/rustsec/releases/download/cargo-audit/v0.22.2/cargo-audit-x86_64-unknown-linux-musl-v0.22.2.tgz",
+        "binary_archive_sha256": "7fb9497f8594b389e5fce5ef9b92db08432996895b2e0c5a0167a69ed445c428",
+        "binary_members": {
+            "cargo-audit-x86_64-unknown-linux-musl-v0.22.2/cargo-audit": "usr/bin/cargo-audit",
+        },
+        "binary_member_sha256": {
+            "cargo-audit-x86_64-unknown-linux-musl-v0.22.2/cargo-audit": "66f9c8f530950d106c1869ce27ef5a4008bcea53c7716c3ed8117586337ee7d8",
+        },
+        "files": {
+            "cargo-audit/README.md": "usr/share/doc/cargo-audit/README.md",
+            "cargo-audit/CHANGELOG.md": "usr/share/doc/cargo-audit/CHANGELOG.md",
+            "cargo-audit/LICENSE-MIT": "usr/share/licenses/cargo-audit/LICENSE-MIT",
+            "cargo-audit/LICENSE-APACHE": "usr/share/licenses/cargo-audit/LICENSE-APACHE",
+        },
+        "dependencies": ["cargo", "git"],
+        "description": "Cargo subcommand to scan Rust dependencies for known vulnerabilities",
+        "license": "Apache-2.0 OR MIT",
+    },
     "yt-dlp": {
         "version": "2026.08.19",
         "arch": "any",
@@ -772,9 +850,8 @@ def recipe_text(name: str, package: dict[str, object]) -> str:
     ]
     dependencies = package.get("dependencies", [])
     if dependencies:
-        fields.append(
-            f"Dependencies: {', '.join(str(item) for item in dependencies)}"
-        )
+        fields.append("Dependencies:")
+        fields.extend(f"  {item}" for item in dependencies)
     fields.extend((f"Provides: {', '.join(str(item) for item in provides)}", ""))
     return "\n".join(fields)
 
