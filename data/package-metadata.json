@@ -30799,6 +30799,54 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "cargo-nextest": {
+      "author": "Rain",
+      "git_repo": "https://github.com/nextest-rs/nextest",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/sunshowers",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cargo-deny": {
+      "author": "Embark Studios and Jake Shadle",
+      "git_repo": "https://github.com/EmbarkStudios/cargo-deny",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/Jake-Shadle",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cargo-audit": {
+      "author": "Tony Arcieri",
+      "git_repo": "https://github.com/RustSec/rustsec",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/Bascule",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

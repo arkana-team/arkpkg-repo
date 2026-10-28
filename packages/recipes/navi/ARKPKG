@@ -5,5 +5,6 @@ Arch: x86_64
 URL: https://github.com/denisidoro/navi
 License: Apache-2.0
 Maintainer: arkanaOS Team
-Dependencies: fzf
+Dependencies:
+  fzf
 Provides: navi=/usr/bin/navi

@@ -123,7 +123,7 @@ class UpstreamCacheTests(unittest.TestCase):
             BUILDER.recipe_text("jujutsu", jujutsu),
         )
         self.assertIn(
-            "Dependencies: git>=2.42.0",
+            "Dependencies:\n  git>=2.42.0",
             BUILDER.recipe_text("jujutsu", jujutsu),
         )
         metadata = json.loads(
@@ -158,7 +158,7 @@ class UpstreamCacheTests(unittest.TestCase):
         curlie = BUILDER.PACKAGES["curlie"]
         self.assertEqual(curlie["dependencies"], ["curl-cli"])
         self.assertIn(
-            "Dependencies: curl-cli",
+            "Dependencies:\n  curl-cli",
             BUILDER.recipe_text("curlie", curlie),
         )
 
@@ -182,7 +182,66 @@ class UpstreamCacheTests(unittest.TestCase):
                     self.assertTrue(all(char in "0123456789abcdef" for char in digest))
                 self.assertTrue(package["license_source"])
         gitui_recipe = BUILDER.recipe_text("gitui", BUILDER.PACKAGES["gitui"])
-        self.assertIn("Dependencies: git", gitui_recipe)
+        self.assertIn("Dependencies:\n  git", gitui_recipe)
+
+    def test_rust_developer_tools_have_pinned_musl_releases(self) -> None:
+        """Keep Rust testing and audit tools pinned to static upstream assets."""
+        expected_authors = {
+            "cargo-nextest": ("Rain", "https://github.com/sunshowers"),
+            "cargo-deny": ("Embark Studios and Jake Shadle", "https://github.com/Jake-Shadle"),
+            "cargo-audit": ("Tony Arcieri", "https://github.com/Bascule"),
+        }
+        metadata = json.loads(
+            (Path(__file__).resolve().parents[1] / "data/package-metadata.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        for name, (author, author_url) in expected_authors.items():
+            with self.subTest(package=name):
+                package = BUILDER.PACKAGES[name]
+                self.assertEqual(package["arch"], "x86_64")
+                self.assertEqual(package["dependencies"][0], "cargo")
+                self.assertEqual(
+                    set(package["binary_members"]),
+                    set(package["binary_member_sha256"]),
+                )
+                for digest in (
+                    package["archive_sha256"],
+                    package["binary_archive_sha256"],
+                    *package["binary_member_sha256"].values(),
+                ):
+                    self.assertEqual(len(digest), 64)
+                    self.assertTrue(all(char in "0123456789abcdef" for char in digest))
+                package_metadata = metadata["packages"][name]
+                self.assertEqual(package_metadata["author"], author)
+                self.assertEqual(package_metadata["git_author_url"], author_url)
+                self.assertEqual(package_metadata["git_repo"], package["url"])
+                self.assertEqual(package_metadata["git_repo_type"], "upstream")
+                recipe = BUILDER.recipe_text(name, package)
+                self.assertIn(f"Provides: {name}=/usr/bin/{name}", recipe)
+                self.assertIn("Dependencies:\n  cargo", recipe)
+                if name == "cargo-audit":
+                    self.assertIn("  git\nProvides:", recipe)
+
+    def test_existing_dependency_recipes_use_multiline_format(self) -> None:
+        """Keep previously committed recipes aligned with the current renderer."""
+        for name in ("curlie", "gitui", "jujutsu", "navi"):
+            with self.subTest(package=name):
+                recipe = (
+                    Path(__file__).resolve().parents[1]
+                    / "packages/recipes"
+                    / name
+                    / "ARKPKG"
+                ).read_text(encoding="utf-8")
+                dependencies = BUILDER.PACKAGES[name]["dependencies"]
+                lines = recipe.splitlines()
+                index = lines.index("Dependencies:")
+                actual = []
+                for line in lines[index + 1 :]:
+                    if not line.startswith("  "):
+                        break
+                    actual.append(line[2:])
+                self.assertEqual(actual, dependencies)
 
     def test_recipe_text_records_optional_runtime_dependencies(self) -> None:
         """Write declared runtime dependencies into generated package metadata."""
@@ -192,12 +251,12 @@ class UpstreamCacheTests(unittest.TestCase):
             "arch": "x86_64",
             "url": "https://example.test/fixture",
             "license": "MIT",
-            "dependencies": ["fzf"],
+            "dependencies": ["fzf", "git"],
         }
 
         recipe = BUILDER.recipe_text("fixture", package)
 
-        self.assertIn("Dependencies: fzf", recipe)
+        self.assertIn("Dependencies:\n  fzf\n  git", recipe)
         self.assertLess(recipe.index("Dependencies:"), recipe.index("Provides:"))
 
     def test_archive_owner_filter_matches_exact_package_name(self) -> None:

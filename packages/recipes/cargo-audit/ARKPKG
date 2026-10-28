@@ -1,0 +1,11 @@
+Name: cargo-audit
+Description: Cargo subcommand to scan Rust dependencies for known vulnerabilities
+Version: 0.22.2
+Arch: x86_64
+URL: https://github.com/RustSec/rustsec
+License: Apache-2.0 OR MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  cargo
+  git
+Provides: cargo-audit=/usr/bin/cargo-audit
