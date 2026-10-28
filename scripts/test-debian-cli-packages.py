@@ -296,6 +296,7 @@ class WorkstationManifestTests(unittest.TestCase):
             "9menu": "https://github.com/arnoldrobbins",
             "autorandr": "https://github.com/phillipberndt",
             "xdo": "https://github.com/baskerville",
+            "gdbserver": "https://www.gnu.org/software/gdb/",
             "ansiweather": "https://github.com/fcambus",
             "ddgr": "https://github.com/jarun",
             "dfc": "https://github.com/rolinh",
@@ -3044,6 +3045,18 @@ class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
             manifest = json.loads(
                 (repo_root / manifest_name).read_text(encoding="utf-8")
             )
+            if manifest_name == "data/debian-cli-packages.json":
+                packages = {item["name"]: item for item in manifest["packages"]}
+                self.assertEqual(packages["gdbserver"]["debian_version"], "16.3-1")
+                self.assertEqual(
+                    manifest["sources"]["gdbserver"],
+                    {
+                        "architecture": "amd64",
+                        "filename": "pool/main/g/gdb/gdbserver_16.3-1_amd64.deb",
+                        "sha256": "6d2f2029e24df9fc099d720f1e020a25f574d74bd69e5f5647350f5c787fd990",
+                        "version": "16.3-1",
+                    },
+                )
             for package in manifest["packages"]:
                 with self.subTest(manifest=manifest_name, package=package["name"]):
                     self.assertTrue(
