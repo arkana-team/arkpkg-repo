@@ -108,6 +108,7 @@ PACKAGES = {
             "CHANGELOG.md": "usr/share/doc/jujutsu/CHANGELOG.md",
         },
         "provides": ["jj=/usr/bin/jj"],
+        "dependencies": ["git>=2.42.0"],
         "description": "Git-compatible version control system with operation history and undo",
         "license": "Apache-2.0",
     },

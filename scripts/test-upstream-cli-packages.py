@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import importlib.util
 import io
+import json
 import os
 import stat
 import tarfile
@@ -108,9 +109,26 @@ class UpstreamCacheTests(unittest.TestCase):
         )
         jujutsu = BUILDER.PACKAGES["jujutsu"]
         self.assertEqual(jujutsu["provides"], ["jj=/usr/bin/jj"])
+        self.assertEqual(jujutsu["dependencies"], ["git>=2.42.0"])
         self.assertIn(
             "Provides: jj=/usr/bin/jj",
             BUILDER.recipe_text("jujutsu", jujutsu),
+        )
+        self.assertIn(
+            "Dependencies: git>=2.42.0",
+            BUILDER.recipe_text("jujutsu", jujutsu),
+        )
+        metadata = json.loads(
+            (Path(__file__).resolve().parents[1] / "data/package-metadata.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(
+            metadata["packages"]["jujutsu"]["author"], "Martin von Zweigbergk"
+        )
+        self.assertEqual(
+            metadata["packages"]["jujutsu"]["git_author_url"],
+            "https://github.com/martinvonz",
         )
 
     def test_disk_and_git_tools_have_pinned_static_release_assets(self) -> None:

@@ -30753,10 +30753,10 @@
       ]
     },
     "jujutsu": {
-      "author": "Google LLC",
+      "author": "Martin von Zweigbergk",
       "git_repo": "https://github.com/jj-vcs/jj",
       "git_repo_type": "upstream",
-      "git_author_url": "https://github.com/google",
+      "git_author_url": "https://github.com/martinvonz",
       "packagers": [
         {
           "name": "arkana-team",
