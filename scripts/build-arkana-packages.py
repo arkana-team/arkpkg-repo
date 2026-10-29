@@ -3357,7 +3357,19 @@ def obtain_firefox_archive(archive_path: Path | None, temporary_dir: Path) -> Pa
         ):
             shutil.copyfileobj(response, output)
     else:
-        archive_path = archive_path.resolve()
+        source_path = archive_path.resolve()
+        source_size = source_path.stat().st_size
+        if source_size != FIREFOX_ARCHIVE_BYTES:
+            raise ValueError(f"Firefox archive has unexpected size: {source_size}")
+        archive_path = temporary_dir / f"firefox-{FIREFOX_VERSION}.tar.xz"
+        # Verify and consume only the copy in the private build directory.
+        with source_path.open("rb") as source, archive_path.open("wb") as output:
+            remaining = FIREFOX_ARCHIVE_BYTES
+            while chunk := source.read(min(1024 * 1024, remaining + 1)):
+                if len(chunk) > remaining:
+                    raise ValueError("Firefox archive has unexpected size: source grew")
+                output.write(chunk)
+                remaining -= len(chunk)
 
     if archive_path.stat().st_size != FIREFOX_ARCHIVE_BYTES:
         raise ValueError(
