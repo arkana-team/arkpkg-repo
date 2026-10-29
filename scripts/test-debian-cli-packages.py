@@ -138,7 +138,7 @@ class WorkstationManifestTests(unittest.TestCase):
         )
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         batch_names = set()
-        for batch_number in ("07", "08", "09"):
+        for batch_number in ("07", "08", "09", "10"):
             batch_manifest_path = (
                 Path(__file__).resolve().parents[1]
                 / f"data/debian-workstation-packages-batch-{batch_number}.json"
@@ -1310,6 +1310,88 @@ class WorkstationManifestTests(unittest.TestCase):
                 self.assertEqual(recipe_dependencies, dependencies)
                 package_metadata = metadata[name]
                 self.assertEqual(package_metadata["author"], author)
+                self.assertEqual(package_metadata["git_repo"], repository)
+                self.assertEqual(package_metadata["git_repo_type"], repository_type)
+                self.assertEqual(
+                    {item["name"] for item in package_metadata["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+
+    def test_xforms_log_monitor_batch_10_is_pinned_and_credited(self) -> None:
+        """Keep the XForms library and X11 log monitor reproducible and credited."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-10.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        expected = {
+            "libforms2t64": (
+                "1.2.3-1.7",
+                "pool/main/libf/libforms/libforms2t64_1.2.3-1.7_amd64.deb",
+                "5e2a88752c2040b0b3b2a552522e072e8e48eb1ae716d68bf95cf03fef9a410b",
+                ["libjpeg62-turbo"],
+                "LGPL-2.1-only",
+                "T.C. Zhao and Mark Overmars",
+                "https://git.savannah.nongnu.org/git/xforms.git",
+                "upstream",
+            ),
+            "xwatch": (
+                "2.11-16.3",
+                "pool/main/x/xwatch/xwatch_2.11-16.3_amd64.deb",
+                "d879c2ffc184449d836530abd1b6ad74c534fe85ff0cc8d23560f630cabdc081",
+                ["libforms2t64"],
+                "GPL-2.0-or-later",
+                "Karel Kubat",
+                "https://salsa.debian.org/debian/xwatch.git",
+                "packaging",
+            ),
+        }
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        for name, (
+            version,
+            filename,
+            digest,
+            dependencies,
+            license_name,
+            author,
+            repository,
+            repository_type,
+        ) in expected.items():
+            with self.subTest(package=name):
+                package = batch_packages[name]
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(package["dependencies"], dependencies)
+                self.assertEqual(package["license"], license_name)
+                self.assertEqual(batch["sources"][name]["filename"], filename)
+                self.assertEqual(batch["sources"][name]["sha256"], digest)
+                self.assertEqual(manifest["sources"][name], batch["sources"][name])
+                archive = repo_root / "packages" / f"{name}-{version}-x86_64.ark"
+                self.assertTrue(archive.is_file(), archive)
+                recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+                self.assertTrue(recipe.is_file(), recipe)
+                recipe_fields, recipe_dependencies, _ = BUILDER.read_recipe(recipe)
+                self.assertEqual(recipe_fields["Version"], version)
+                self.assertEqual(recipe_fields["License"], license_name)
+                self.assertEqual(recipe_dependencies, dependencies)
+                package_metadata = metadata[name]
+                self.assertEqual(package_metadata["author"], author)
+                self.assertIsNone(package_metadata["git_author_url"])
                 self.assertEqual(package_metadata["git_repo"], repository)
                 self.assertEqual(package_metadata["git_repo_type"], repository_type)
                 self.assertEqual(
