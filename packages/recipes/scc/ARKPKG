@@ -1,0 +1,8 @@
+Name: scc
+Description: Fast source code counter with language and complexity metrics
+Version: 4.1.0
+Arch: x86_64
+URL: https://github.com/boyter/scc
+License: MIT
+Maintainer: arkanaOS Team
+Provides: scc=/usr/bin/scc

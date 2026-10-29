@@ -650,6 +650,44 @@ PACKAGES = {
         "description": "Feature-rich command-line audio and video downloader",
         "license": "Unlicense; bundled zipimport code also includes MIT and ISC components",
     },
+    "oha": {
+        "version": "1.16.0",
+        "arch": "x86_64",
+        "url": "https://github.com/hatoo/oha",
+        "archive": "https://codeload.github.com/hatoo/oha/tar.gz/refs/tags/v1.16.0",
+        "archive_sha256": "8d856e2850efb521c0a1f8efed530eeaeebea34d09c6edc19a42dc5e13b14287",
+        "root": "oha-1.16.0",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/oha/copyright",
+        "binary": "https://github.com/hatoo/oha/releases/download/v1.16.0/oha-linux-amd64",
+        "binary_sha256": "620bb9e16fb53eabc9a3fc45f88bdb41fefa3fee5c05e75892011ce320391716",
+        "binary_path": "usr/bin/oha",
+        "files": {
+            "README.md": "usr/share/doc/oha/README.md",
+            "CHANGELOG.md": "usr/share/doc/oha/CHANGELOG.md",
+        },
+        "description": "HTTP load generator with a real-time terminal dashboard",
+        "license": "MIT",
+    },
+    "scc": {
+        "version": "4.1.0",
+        "arch": "x86_64",
+        "url": "https://github.com/boyter/scc",
+        "archive": "https://codeload.github.com/boyter/scc/tar.gz/refs/tags/v4.1.0",
+        "archive_sha256": "4f3cf36010c542b10d5582afb91c668b26889160b184deee21b4319347030a7c",
+        "root": "scc-4.1.0",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/scc/copyright",
+        "binary_archive": "https://github.com/boyter/scc/releases/download/v4.1.0/scc_Linux_x86_64.tar.gz",
+        "binary_archive_sha256": "c7328436d3027f4357d3d7853f7dc3ac2bbcb4ca08f1adad91a27c593884079b",
+        "binary_members": {"scc": "usr/bin/scc"},
+        "binary_member_sha256": {
+            "scc": "4763d7437218d2d642e2f2a4f7f078e044aa67e0e15b90bab6c70d5fc0ab4022"
+        },
+        "files": {"README.md": "usr/share/doc/scc/README.md"},
+        "description": "Fast source code counter with language and complexity metrics",
+        "license": "MIT",
+    },
 }
 INTERPRETER = re.compile(r"Requesting program interpreter: (.+?)\]")
 NEEDED = re.compile(r"Shared library: \[(.+?)\]")

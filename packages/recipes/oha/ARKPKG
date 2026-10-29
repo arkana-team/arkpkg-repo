@@ -1,0 +1,8 @@
+Name: oha
+Description: HTTP load generator with a real-time terminal dashboard
+Version: 1.16.0
+Arch: x86_64
+URL: https://github.com/hatoo/oha
+License: MIT
+Maintainer: arkanaOS Team
+Provides: oha=/usr/bin/oha
