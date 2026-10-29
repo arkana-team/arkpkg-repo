@@ -66,6 +66,37 @@ def write_package_archive(
 
 
 class UpstreamCacheTests(unittest.TestCase):
+    def test_http_and_source_metrics_tools_have_pinned_assets(self) -> None:
+        """Keep Oha and scc tied to reviewed source and release hashes."""
+        for name in ("oha", "scc"):
+            with self.subTest(package=name):
+                package = BUILDER.PACKAGES[name]
+                self.assertEqual(package["arch"], "x86_64")
+                digests = [package["archive_sha256"]]
+                digests.extend(
+                    package[key]
+                    for key in ("binary_archive_sha256", "binary_sha256")
+                    if key in package
+                )
+                digests.extend(package.get("binary_member_sha256", {}).values())
+                self.assertTrue(
+                    all(
+                        len(digest) == 64
+                        and all(char in "0123456789abcdef" for char in digest)
+                        for digest in digests
+                    )
+                )
+                self.assertTrue(package["license_source"])
+        metadata = json.loads(
+            (Path(__file__).resolve().parents[1] / "data/package-metadata.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(metadata["packages"]["oha"]["author"], "hatoo")
+        self.assertEqual(metadata["packages"]["oha"]["git_author_url"], "https://github.com/hatoo")
+        self.assertEqual(metadata["packages"]["scc"]["author"], "Ben Boyter")
+        self.assertEqual(metadata["packages"]["scc"]["git_author_url"], "https://github.com/boyter")
+
     def test_added_terminal_tools_have_complete_release_pins(self) -> None:
         """Keep each new package's source, release, and binary hashes pinned."""
         for name in ("gum", "vivid", "ouch"):
