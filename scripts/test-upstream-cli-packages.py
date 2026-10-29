@@ -68,24 +68,30 @@ def write_package_archive(
 class UpstreamCacheTests(unittest.TestCase):
     def test_http_and_source_metrics_tools_have_pinned_assets(self) -> None:
         """Keep Oha and scc tied to reviewed source and release hashes."""
+        expected_hashes = {
+            "oha": {
+                "archive_sha256": "8d856e2850efb521c0a1f8efed530eeaeebea34d09c6edc19a42dc5e13b14287",
+                "binary_sha256": "620bb9e16fb53eabc9a3fc45f88bdb41fefa3fee5c05e75892011ce320391716",
+            },
+            "scc": {
+                "archive_sha256": "4f3cf36010c542b10d5582afb91c668b26889160b184deee21b4319347030a7c",
+                "binary_archive_sha256": "c7328436d3027f4357d3d7853f7dc3ac2bbcb4ca08f1adad91a27c593884079b",
+                "binary_member_sha256": {
+                    "scc": "4763d7437218d2d642e2f2a4f7f078e044aa67e0e15b90bab6c70d5fc0ab4022"
+                },
+            },
+        }
         for name in ("oha", "scc"):
             with self.subTest(package=name):
                 package = BUILDER.PACKAGES[name]
                 self.assertEqual(package["arch"], "x86_64")
-                digests = [package["archive_sha256"]]
-                digests.extend(
-                    package[key]
-                    for key in ("binary_archive_sha256", "binary_sha256")
-                    if key in package
-                )
-                digests.extend(package.get("binary_member_sha256", {}).values())
-                self.assertTrue(
-                    all(
-                        len(digest) == 64
-                        and all(char in "0123456789abcdef" for char in digest)
-                        for digest in digests
+                for key, expected in expected_hashes[name].items():
+                    self.assertEqual(package[key], expected)
+                if "binary_members" in package:
+                    self.assertEqual(
+                        set(package["binary_members"]),
+                        set(package["binary_member_sha256"]),
                     )
-                )
                 self.assertTrue(package["license_source"])
         metadata = json.loads(
             (Path(__file__).resolve().parents[1] / "data/package-metadata.json").read_text(
