@@ -169,7 +169,7 @@ class WorkstationManifestTests(unittest.TestCase):
         )
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         batch_names = set()
-        for batch_number in ("07", "08", "09", "10"):
+        for batch_number in ("07", "08", "09", "10", "11"):
             batch_manifest_path = (
                 Path(__file__).resolve().parents[1]
                 / f"data/debian-workstation-packages-batch-{batch_number}.json"

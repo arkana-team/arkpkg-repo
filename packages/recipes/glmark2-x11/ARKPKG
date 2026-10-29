@@ -1,0 +1,13 @@
+Name: glmark2-x11
+Description: OpenGL benchmark suite for X11 workstations
+Version: 2023.01+dfsg-2
+Arch: x86_64
+URL: https://github.com/glmark2/glmark2
+License: See /usr/share/doc/glmark2-x11/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  glmark2-data
+  libjpeg62-turbo
+  libpng16-16t64
+Provides:
+  glmark2=/usr/bin/glmark2
