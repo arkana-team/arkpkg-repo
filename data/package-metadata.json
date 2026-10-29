@@ -30895,6 +30895,38 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "glmark2-data": {
+      "author": "glmark2 contributors",
+      "git_repo": "https://github.com/glmark2/glmark2",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "glmark2-x11": {
+      "author": "glmark2 contributors",
+      "git_repo": "https://github.com/glmark2/glmark2",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
