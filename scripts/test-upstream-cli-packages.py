@@ -86,6 +86,7 @@ class UpstreamCacheTests(unittest.TestCase):
             "navi",
             "choose",
             "dysk",
+            "doggo",
             "nushell",
             "jujutsu",
             "mcfly",
@@ -139,6 +140,7 @@ class UpstreamCacheTests(unittest.TestCase):
             "https://github.com/martinvonz",
         )
         expected_authors = {
+            "doggo": ("Karan Sharma", "https://github.com/mr-karan"),
             "mcfly": ("Andrew Cantino", "https://github.com/cantino"),
             "curlie": ("Olivier Poitrey", "https://github.com/rs"),
         }
