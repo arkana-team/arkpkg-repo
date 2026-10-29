@@ -402,6 +402,31 @@ PACKAGES = {
         "description": "DNS query client with plain-text and structured output",
         "license": "GPL-3.0-only",
     },
+    "trippy": {
+        "version": "0.13.0",
+        "arch": "x86_64",
+        "url": "https://github.com/fujiapple852/trippy",
+        "archive": "https://codeload.github.com/fujiapple852/trippy/tar.gz/refs/tags/0.13.0",
+        "archive_sha256": "72e598d2e0b947e8bc46706021c511f169b7e7634a734c326e492e0f30725c35",
+        "root": "trippy-0.13.0",
+        "license_source": "LICENSE",
+        "license_path": "usr/share/doc/trippy/copyright",
+        "binary_archive": "https://github.com/fujiapple852/trippy/releases/download/0.13.0/trippy-0.13.0-x86_64-unknown-linux-musl.tar.gz",
+        "binary_archive_sha256": "aa2b7b2a0773f3cc04da691100419049950b690fe3736d25e24ac955b63d6056",
+        "binary_members": {
+            "trippy-0.13.0-x86_64-unknown-linux-musl/trip": "usr/bin/trip",
+        },
+        "binary_member_sha256": {
+            "trippy-0.13.0-x86_64-unknown-linux-musl/trip": "ef20e94ec9620eb81b4cfea409c68e9fd522a10200fb1e9de7a1b6bfe26f620d",
+        },
+        "files": {
+            "README.md": "usr/share/doc/trippy/README.md",
+            "CHANGELOG.md": "usr/share/doc/trippy/CHANGELOG.md",
+        },
+        "provides": ["trip=/usr/bin/trip"],
+        "description": "Terminal traceroute and network path diagnostic tool",
+        "license": "Apache-2.0",
+    },
     "btm": {
         "version": "0.14.9",
         "arch": "x86_64",

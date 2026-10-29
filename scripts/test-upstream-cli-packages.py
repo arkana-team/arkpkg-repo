@@ -87,6 +87,7 @@ class UpstreamCacheTests(unittest.TestCase):
             "choose",
             "dysk",
             "doggo",
+            "trippy",
             "nushell",
             "jujutsu",
             "mcfly",
@@ -143,10 +144,14 @@ class UpstreamCacheTests(unittest.TestCase):
             "doggo": ("Karan Sharma", "https://github.com/mr-karan"),
             "mcfly": ("Andrew Cantino", "https://github.com/cantino"),
             "curlie": ("Olivier Poitrey", "https://github.com/rs"),
+            "trippy": ("FujiApple", "https://github.com/fujiapple852"),
         }
         for name, (author, author_url) in expected_authors.items():
             with self.subTest(package=name):
                 package_metadata = metadata["packages"][name]
+                provides = BUILDER.PACKAGES[name].get("provides") or [
+                    f"{name}=/usr/bin/{name}"
+                ]
                 self.assertEqual(package_metadata["author"], author)
                 self.assertEqual(package_metadata["git_author_url"], author_url)
                 self.assertEqual(package_metadata["git_repo_type"], "upstream")
@@ -154,9 +159,13 @@ class UpstreamCacheTests(unittest.TestCase):
                     package_metadata["git_repo"], BUILDER.PACKAGES[name]["url"]
                 )
                 self.assertIn(
-                    f"Provides: {name}=/usr/bin/{name}",
+                    f"Provides: {', '.join(provides)}",
                     BUILDER.recipe_text(name, BUILDER.PACKAGES[name]),
                 )
+        trippy = BUILDER.PACKAGES["trippy"]
+        self.assertEqual(trippy["provides"], ["trip=/usr/bin/trip"])
+        self.assertEqual(trippy["license"], "Apache-2.0")
+        self.assertEqual(metadata["packages"]["trippy"]["git_repo"], trippy["url"])
         curlie = BUILDER.PACKAGES["curlie"]
         self.assertEqual(curlie["dependencies"], ["curl-cli"])
         self.assertIn(

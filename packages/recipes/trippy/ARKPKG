@@ -1,0 +1,8 @@
+Name: trippy
+Description: Terminal traceroute and network path diagnostic tool
+Version: 0.13.0
+Arch: x86_64
+URL: https://github.com/fujiapple852/trippy
+License: Apache-2.0
+Maintainer: arkanaOS Team
+Provides: trip=/usr/bin/trip
