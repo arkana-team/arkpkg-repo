@@ -3,8 +3,10 @@ Description: XForms toolkit library for X11 applications
 Version: 1.2.3-1.7
 Arch: x86_64
 URL: https://savannah.nongnu.org/projects/xforms/
-License: LGPL-2.1-only
+License: LGPL-2.1-or-later
 Maintainer: arkanaOS Team
 Dependencies:
   libjpeg62-turbo
-Provides: libflimage.so.2=/usr/lib/libflimage.so.2.1.3, libforms.so.2=/usr/lib/libforms.so.2.1.3
+Provides:
+  libflimage.so.2=/usr/lib/libflimage.so.2.1.3
+  libforms.so.2=/usr/lib/libforms.so.2.1.3

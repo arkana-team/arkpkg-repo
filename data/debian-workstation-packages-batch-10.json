@@ -25,7 +25,7 @@
         "libjpeg62-turbo"
       ],
       "url": "https://savannah.nongnu.org/projects/xforms/",
-      "license": "LGPL-2.1-only",
+      "license": "LGPL-2.1-or-later",
       "license_path": "usr/share/doc/libforms2t64/copyright"
     },
     {

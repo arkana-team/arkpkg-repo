@@ -1373,7 +1373,7 @@ class WorkstationManifestTests(unittest.TestCase):
                 "pool/main/libf/libforms/libforms2t64_1.2.3-1.7_amd64.deb",
                 "5e2a88752c2040b0b3b2a552522e072e8e48eb1ae716d68bf95cf03fef9a410b",
                 ["libjpeg62-turbo"],
-                "LGPL-2.1-only",
+                "LGPL-2.1-or-later",
                 "T.C. Zhao and Mark Overmars",
                 "https://git.savannah.nongnu.org/git/xforms.git",
                 "upstream",
@@ -1416,10 +1416,20 @@ class WorkstationManifestTests(unittest.TestCase):
                 self.assertTrue(archive.is_file(), archive)
                 recipe = repo_root / "packages/recipes" / name / "ARKPKG"
                 self.assertTrue(recipe.is_file(), recipe)
-                recipe_fields, recipe_dependencies, _ = BUILDER.read_recipe(recipe)
+                recipe_fields, recipe_dependencies, recipe_provides = (
+                    BUILDER.read_recipe(recipe)
+                )
                 self.assertEqual(recipe_fields["Version"], version)
                 self.assertEqual(recipe_fields["License"], license_name)
                 self.assertEqual(recipe_dependencies, dependencies)
+                if name == "libforms2t64":
+                    self.assertEqual(
+                        recipe_provides,
+                        [
+                            "libflimage.so.2=/usr/lib/libflimage.so.2.1.3",
+                            "libforms.so.2=/usr/lib/libforms.so.2.1.3",
+                        ],
+                    )
                 package_metadata = metadata[name]
                 self.assertEqual(package_metadata["author"], author)
                 self.assertIsNone(package_metadata["git_author_url"])
