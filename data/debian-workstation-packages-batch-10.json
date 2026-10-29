@@ -1,0 +1,48 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "libforms2t64": {
+      "filename": "pool/main/libf/libforms/libforms2t64_1.2.3-1.7_amd64.deb",
+      "sha256": "5e2a88752c2040b0b3b2a552522e072e8e48eb1ae716d68bf95cf03fef9a410b"
+    },
+    "xwatch": {
+      "filename": "pool/main/x/xwatch/xwatch_2.11-16.3_amd64.deb",
+      "sha256": "d879c2ffc184449d836530abd1b6ad74c534fe85ff0cc8d23560f630cabdc081"
+    }
+  },
+  "packages": [
+    {
+      "name": "libforms2t64",
+      "description": "XForms toolkit library for X11 applications",
+      "version": "1.2.3-1.7",
+      "debian_version": "1.2.3-1.7",
+      "arch": "x86_64",
+      "debian_packages": [
+        "libforms2t64"
+      ],
+      "dependencies": [
+        "libjpeg62-turbo"
+      ],
+      "url": "https://savannah.nongnu.org/projects/xforms/",
+      "license": "LGPL-2.1-only",
+      "license_path": "usr/share/doc/libforms2t64/copyright"
+    },
+    {
+      "name": "xwatch",
+      "description": "X11 logfile monitor with color-coded severity display",
+      "version": "2.11-16.3",
+      "debian_version": "2.11-16.3",
+      "arch": "x86_64",
+      "debian_packages": [
+        "xwatch"
+      ],
+      "dependencies": [
+        "libforms2t64"
+      ],
+      "url": "https://packages.debian.org/trixie/xwatch",
+      "license": "GPL-2.0-or-later",
+      "license_path": "usr/share/doc/xwatch/copyright"
+    }
+  ]
+}

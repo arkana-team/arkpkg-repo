@@ -1,0 +1,10 @@
+Name: xwatch
+Description: X11 logfile monitor with color-coded severity display
+Version: 2.11-16.3
+Arch: x86_64
+URL: https://packages.debian.org/trixie/xwatch
+License: GPL-2.0-or-later
+Maintainer: arkanaOS Team
+Dependencies:
+  libforms2t64
+Provides: xwatch=/usr/bin/xwatch
