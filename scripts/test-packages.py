@@ -12,6 +12,8 @@ from pathlib import Path, PurePosixPath
 
 import lz4.frame
 
+MAX_ARCHIVE_BYTES = 1024**3  # Expanded headers, padding and skipped payloads.
+MAX_ARCHIVE_MEMBERS = 100_000  # Raw headers, including TAR extensions.
 MAX_METADATA_BYTES = 1024 * 1024  # Logical size, including sparse TAR holes.
 MAX_TAR_EXTENSION_BYTES = 1024 * 1024  # Cumulative extension data per archive.
 MAX_TAR_EXTENSION_DEPTH = 32
@@ -23,8 +25,27 @@ DEPENDENCY = re.compile(
 )
 
 
+class BudgetReader:
+    def __init__(self, source, limit: int):
+        self.source = source
+        self.remaining = limit
+
+    def read(self, size: int) -> bytes:
+        if size < 0:
+            raise ValueError("expanded archive requires bounded reads")
+        data = self.source.read(min(size, self.remaining + 1))
+        if len(data) > self.remaining:
+            raise ValueError("expanded archive exceeds inspection limit")
+        self.remaining -= len(data)
+        return data
+
+
 class BoundedTarInfo(tarfile.TarInfo):
     def _proc_member(self, archive: tarfile.TarFile) -> tarfile.TarInfo:
+        count = getattr(archive, "_member_count", 0) + 1
+        if count > MAX_ARCHIVE_MEMBERS:
+            raise ValueError("TAR member count exceeds limit")
+        archive._member_count = count
         if self.type not in {
             tarfile.XHDTYPE,
             tarfile.XGLTYPE,
@@ -104,7 +125,9 @@ def compare_versions(left: str, right: str) -> int:
     return 0
 
 
-def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
+def inspect_archive(
+    path: Path,
+) -> tuple[dict[str, str], list[str], list[str], set[str]]:
     metadata: dict[str, str] | None = None
     dependencies: list[str] = []
     provides: list[str] = []
@@ -113,9 +136,17 @@ def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
 
     with (
         lz4.frame.open(path, "rb") as compressed,
-        tarfile.open(fileobj=compressed, mode="r|", tarinfo=BoundedTarInfo) as archive,
+        tarfile.open(
+            fileobj=BudgetReader(compressed, MAX_ARCHIVE_BYTES),
+            mode="r|",
+            tarinfo=BoundedTarInfo,
+        ) as archive,
     ):
         for member in archive:
+            # Reject oversized skips even if a truncated stream never produces
+            # enough bytes to exhaust BudgetReader's expanded-data budget.
+            if archive.offset > MAX_ARCHIVE_BYTES:
+                raise ValueError(f"{path.name}: expanded archive exceeds inspection limit")
             member_path = PurePosixPath(member.name)
             if member_path.is_absolute() or ".." in member_path.parts:
                 raise ValueError(f"{path.name}: unsafe archive path {member.name!r}")
@@ -173,7 +204,7 @@ def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
         raise ValueError(f"{path.name}: invalid version {metadata['Version']!r}")
     if not PACKAGE_ATOM.fullmatch(metadata["Arch"]):
         raise ValueError(f"{path.name}: invalid architecture {metadata['Arch']!r}")
-    return metadata, dependencies, provides
+    return metadata, dependencies, provides, payload_paths
 
 
 def package_dependencies(
@@ -274,7 +305,7 @@ def test_repository(
         raise ValueError("packages/ contains no .ark archives")
 
     for path in archives:
-        metadata, dependencies, provides = inspect_archive(path)
+        metadata, dependencies, provides, payload_paths = inspect_archive(path)
         name = metadata["Name"]
         if name in packages:
             if package_arches[name] != metadata["Arch"]:
@@ -296,26 +327,12 @@ def test_repository(
         else:
             packages[name] = (path, metadata["Version"], dependencies, provides)
             package_arches[name] = metadata["Arch"]
-        with (
-            lz4.frame.open(path, "rb") as compressed,
-            tarfile.open(fileobj=compressed, mode="r|", tarinfo=BoundedTarInfo) as archive,
-        ):
-            for member in archive:
-                normalized = "/".join(
-                    part
-                    for part in PurePosixPath(member.name).parts
-                    if part not in {"", "."}
+        for relative in payload_paths:
+            previous = owners.setdefault(relative, name)
+            if previous != name:
+                raise ValueError(
+                    f"payload collision: {relative} belongs to {previous} and {name}"
                 )
-                if not normalized.startswith("package/") or not (
-                    member.isfile() or member.issym() or member.islnk()
-                ):
-                    continue
-                relative = normalized.removeprefix("package/")
-                previous = owners.setdefault(relative, name)
-                if previous != name:
-                    raise ValueError(
-                        f"payload collision: {relative} belongs to {previous} and {name}"
-                    )
 
     dependencies = package_dependencies(packages)
     order = package_order(dependencies)
