@@ -30927,6 +30927,22 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "doggo": {
+      "author": "Karan Sharma",
+      "git_repo": "https://github.com/mr-karan/doggo",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/mr-karan",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1
