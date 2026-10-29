@@ -24,12 +24,14 @@ def load_script(filename: str):
 
 build_index = load_script("build-index.py")
 package_audit = load_script("test-packages.py")
-DEPENDENCY_READERS = tuple(
-    load_script(filename).package_name
-    for filename in (
-        "build-xcb-util.py", "build-xcursor-themes.py", "build-xlockmore.py",
-        "build-xorg-apps.py",
-    )
+motif_nedit = load_script("build-motif-nedit.py")
+DEPENDENCY_READERS = (
+    motif_nedit.package_name,
+    *(load_script(filename).package_name for filename in (
+        "build-xcb-util.py", "build-xcursor-themes.py", "build-xfe.py",
+        "build-xlockmore.py", "build-xorg-apps.py", "build-xorg-libs.py",
+        "build-xosview.py",
+    )),
 )
 READERS = (
     (build_index.read_metadata, build_index.MAX_METADATA_SIZE),
@@ -62,7 +64,7 @@ class MetadataLimitTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "demo.ark"
             for reader, limit in READERS:
-                with self.subTest(reader=reader.__module__):
+                with self.subTest(reader=reader.__name__):
                     write_archive(path, METADATA + b"#" * (limit - len(METADATA)))
                     result = reader(path)
                     fields = result[0] if isinstance(result, tuple) else result
@@ -82,7 +84,7 @@ class MetadataLimitTests(unittest.TestCase):
                             path, METADATA + b"#" * (limit + 1 - len(METADATA))
                         )
                     with (
-                        self.subTest(sparse=sparse, reader=reader.__module__),
+                        self.subTest(sparse=sparse, reader=reader.__name__),
                         patch.object(tarfile.TarFile, "extractfile") as extract,
                         self.assertRaisesRegex(ValueError, "ARKPKG metadata"),
                     ):
@@ -104,7 +106,7 @@ class MetadataLimitTests(unittest.TestCase):
                         return super().read(size)
 
                 with (
-                    self.subTest(reader=reader.__module__),
+                    self.subTest(reader=reader.__name__),
                     patch.object(
                         tarfile.TarFile,
                         "extractfile",
@@ -118,7 +120,7 @@ class MetadataLimitTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "dependency.ark"
             for reader in DEPENDENCY_READERS:
-                with self.subTest(reader=reader.__module__):
+                with self.subTest(reader=reader.__name__):
                     write_archive(path, "Description: café\n Name : dependency \n".encode())
                     self.assertEqual(reader(path), "dependency")
                     write_archive(path, METADATA, logical_size=64 * 1024)
@@ -128,13 +130,37 @@ class MetadataLimitTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "dependency.ark"
             for reader in DEPENDENCY_READERS:
-                with self.subTest(reader=reader.__module__):
+                with self.subTest(reader=reader.__name__):
                     write_archive(path, b"Description: dependency\n")
                     with self.assertRaisesRegex(ValueError, "(package name|Name field)"):
                         reader(path)
                     write_archive(path, b"Name: dependency\nDescription: \xff\n")
                     with self.assertRaises(UnicodeDecodeError):
                         reader(path)
+
+    def test_motif_installer_rejects_oversized_metadata_before_install(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            write_archive(path, METADATA + b"#" * (64 * 1024 + 1 - len(METADATA)))
+            with (
+                patch.object(motif_nedit, "privileged") as install,
+                self.assertRaisesRegex(ValueError, "ARKPKG metadata"),
+            ):
+                motif_nedit.install_package(Path("arkpkg"), Path("/sysroot"), path)
+            install.assert_not_called()
+
+    def test_motif_installer_runs_after_validated_package_name(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "dependency.ark"
+            write_archive(path, METADATA)
+            with patch.object(motif_nedit, "privileged") as install:
+                result = motif_nedit.install_package(
+                    Path("arkpkg"), Path("/sysroot"), path
+                )
+            self.assertEqual(result, "demo")
+            install.assert_called_once_with(
+                ["arkpkg", "--root", "/sysroot", "install", str(path), "-y"]
+            )
 
 
 def extension_data(size: int) -> bytes:
