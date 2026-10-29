@@ -99,6 +99,37 @@ class DebianSourceUrlTests(unittest.TestCase):
                 BUILDER.source_download_url(source)
 
 
+class RecipeGenerationTests(unittest.TestCase):
+    def test_recipe_text_writes_each_provide_on_its_own_line(self) -> None:
+        package = {
+            "name": "fixture",
+            "description": "fixture package",
+            "version": "1.0",
+            "arch": "x86_64",
+            "url": "https://example.invalid/fixture",
+            "license": "MIT",
+        }
+        provides = [
+            "libfirst.so.1=/usr/lib/libfirst.so.1",
+            "fixture=/usr/bin/fixture",
+        ]
+        rendered = BUILDER.recipe_text(package, ["base"], provides)
+
+        self.assertIn(
+            "Provides:\n  libfirst.so.1=/usr/lib/libfirst.so.1\n", rendered
+        )
+        self.assertIn("  fixture=/usr/bin/fixture\n", rendered)
+        self.assertNotIn(", ".join(provides), rendered)
+
+        with tempfile.TemporaryDirectory() as temporary:
+            recipe = Path(temporary) / "ARKPKG"
+            recipe.write_text(rendered, encoding="utf-8")
+            _, dependencies, parsed_provides = BUILDER.read_recipe(recipe)
+
+        self.assertEqual(dependencies, ["base"])
+        self.assertEqual(parsed_provides, provides)
+
+
 class WorkstationManifestTests(unittest.TestCase):
     def test_batch_catalogue_uses_homepage_git_repositories(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]
