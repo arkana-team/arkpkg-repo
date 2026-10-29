@@ -4,16 +4,16 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import os
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
-import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
+
+from source_cache import source_snapshot, trusted_cache
 
 BASE_URL = "https://xorg.freedesktop.org/archive/individual/lib"
 LIBRARIES = {
@@ -169,22 +169,14 @@ def package_name(archive_path: Path) -> str:
     raise ValueError(f"package archive has no Name field: {archive_path}")
 
 
-def source_archive(name: str, version: str, digest: str, cache: Path) -> Path:
-    cache.mkdir(parents=True, exist_ok=True)
-    archive_path = cache / f"{name}-{version}.tar.xz"
-    if not archive_path.is_file():
-        request = urllib.request.Request(
-            f"{BASE_URL}/{archive_path.name}",
-            headers={"User-Agent": "arkpkg-repo-xorg-library-builder/1"},
-        )
-        with (
-            urllib.request.urlopen(request, timeout=90) as response,
-            archive_path.open("wb") as output,
-        ):
-            shutil.copyfileobj(response, output)
-    actual = hashlib.sha256(archive_path.read_bytes()).hexdigest()
-    if actual != digest:
-        raise ValueError(f"SHA-256 mismatch for {archive_path.name}: {actual}")
+def source_archive(
+    name: str, version: str, digest: str, cache: Path, snapshots: Path
+) -> Path:
+    filename = f"{name}-{version}.tar.xz"
+    archive_path = source_snapshot(
+        cache, snapshots, filename, f"{BASE_URL}/{filename}", digest,
+        user_agent="arkpkg-repo-xorg-library-builder/1", timeout=90,
+    )
     expected_root = f"{name}-{version}"
     with tarfile.open(archive_path, "r:xz") as source:
         roots = set()
@@ -215,10 +207,15 @@ def copy_tree(source: Path, destination: Path) -> None:
 
 
 def build(args: argparse.Namespace) -> None:
+    with tempfile.TemporaryDirectory(prefix="arkpkg-xorg-library-sources-") as temporary:
+        build_with_sources(args, Path(temporary))
+
+
+def build_with_sources(args: argparse.Namespace, snapshots: Path) -> None:
     sysroot = args.sysroot.resolve()
     repo_root = Path(__file__).resolve().parents[1]
     output_staging = args.output_staging.resolve()
-    source_cache = args.source_cache.resolve()
+    source_cache = trusted_cache(args.source_cache)
     package_builder = repo_root / "scripts/build-arkana-packages.py"
 
     for binary in ("gcc", "make", "pkg-config", "tar"):
@@ -255,7 +252,7 @@ def build(args: argparse.Namespace) -> None:
     try:
         for upstream_name in args.libraries or list(LIBRARIES):
             version, digest, package_names, required_patterns = LIBRARIES[upstream_name]
-            archive = source_archive(upstream_name, version, digest, source_cache)
+            archive = source_archive(upstream_name, version, digest, source_cache, snapshots)
             work_rel = f"/tmp/arkpkg-xorg-library-{uuid.uuid4().hex}"
             work_host = sysroot / work_rel.lstrip("/")
             privileged(["install", "-d", "-m", "755", str(work_host)])
@@ -376,6 +373,7 @@ def parse_args() -> argparse.Namespace:
         "--source-cache",
         type=Path,
         default=Path(tempfile.gettempdir()) / "arkpkg-xorg-library-source-cache",
+        help="source cache owned by the current user or root, not writable by others",
     )
     parser.add_argument(
         "--libraries",
