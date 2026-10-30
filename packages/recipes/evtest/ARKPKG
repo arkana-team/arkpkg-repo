@@ -1,0 +1,8 @@
+Name: evtest
+Description: Inspect Linux input event devices
+Version: 1.35-1
+Arch: x86_64
+URL: https://cgit.freedesktop.org/evtest/
+License: See /usr/share/doc/evtest/copyright
+Maintainer: arkanaOS Team
+Provides: evtest=/usr/bin/evtest

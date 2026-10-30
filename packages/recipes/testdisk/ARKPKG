@@ -1,0 +1,14 @@
+Name: testdisk
+Description: Recover lost partitions and files with TestDisk and PhotoRec
+Version: 7.2-0.1
+Arch: x86_64
+URL: https://www.cgsecurity.org/wiki/TestDisk
+License: See /usr/share/doc/testdisk/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libjpeg62-turbo
+  libntfs-3g89t64
+  libtinfo6
+  ncurses-libs
+  ntfs-3g
+Provides: fidentify=/usr/bin/fidentify, photorec=/usr/bin/photorec, testdisk=/usr/bin/testdisk

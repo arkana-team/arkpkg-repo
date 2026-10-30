@@ -1,0 +1,100 @@
+{
+  "architecture": "amd64",
+  "packages": [
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "evtest"
+      ],
+      "debian_version": "1:1.35-1",
+      "dependencies": [],
+      "description": "Inspect Linux input event devices",
+      "license": "See /usr/share/doc/evtest/copyright",
+      "license_path": "usr/share/doc/evtest/copyright",
+      "name": "evtest",
+      "url": "https://cgit.freedesktop.org/evtest/",
+      "version": "1.35-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "libntfs-3g89t64"
+      ],
+      "debian_version": "1:2022.10.3-5+deb13u3",
+      "dependencies": [],
+      "description": "Shared NTFS-3G library for NTFS access and recovery tools",
+      "license": "See /usr/share/doc/libntfs-3g89t64/copyright",
+      "license_path": "usr/share/doc/libntfs-3g89t64/copyright",
+      "name": "libntfs-3g89t64",
+      "url": "https://github.com/tuxera/ntfs-3g/wiki",
+      "version": "2022.10.3-5+deb13u3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ntfs-3g"
+      ],
+      "debian_version": "1:2022.10.3-5+deb13u3",
+      "dependencies": [
+        "gnutls-libs",
+        "libgcrypt20",
+        "libntfs-3g89t64"
+      ],
+      "description": "Read and write NTFS volumes using the NTFS-3G driver",
+      "license": "See /usr/share/doc/ntfs-3g/copyright",
+      "license_path": "usr/share/doc/ntfs-3g/copyright",
+      "name": "ntfs-3g",
+      "url": "https://github.com/tuxera/ntfs-3g/wiki",
+      "version": "2022.10.3-5+deb13u3"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "testdisk"
+      ],
+      "debian_version": "7.2-0.1",
+      "dependencies": [
+        "libjpeg62-turbo",
+        "libntfs-3g89t64",
+        "libtinfo6",
+        "ncurses-libs",
+        "ntfs-3g"
+      ],
+      "description": "Recover lost partitions and files with TestDisk and PhotoRec",
+      "license": "See /usr/share/doc/testdisk/copyright",
+      "license_path": "usr/share/doc/testdisk/copyright",
+      "name": "testdisk",
+      "url": "https://www.cgsecurity.org/wiki/TestDisk",
+      "version": "7.2-0.1"
+    }
+  ],
+  "sources": {
+    "evtest": {
+      "architecture": "amd64",
+      "filename": "pool/main/e/evtest/evtest_1.35-1_amd64.deb",
+      "sha256": "424b9e607148d5a0287492658e0fcd32f36c85d2b43b1103da3331f1f3546713",
+      "version": "1.35-1"
+    },
+    "libntfs-3g89t64": {
+      "architecture": "amd64",
+      "filename": "pool/updates/main/n/ntfs-3g/libntfs-3g89t64_2022.10.3-5+deb13u3_amd64.deb",
+      "sha256": "eac375d5e7b0c0a4bfba7f228218e61296362bd19f2851a48f292ec417a6d690",
+      "version": "2022.10.3-5+deb13u3",
+      "archive": "security"
+    },
+    "ntfs-3g": {
+      "architecture": "amd64",
+      "filename": "pool/updates/main/n/ntfs-3g/ntfs-3g_2022.10.3-5+deb13u3_amd64.deb",
+      "sha256": "2e2f42d3051f5ddd6f5c0d449543f23fc0e3fc4631a8a82207dfaab9213bdfaa",
+      "version": "2022.10.3-5+deb13u3",
+      "archive": "security"
+    },
+    "testdisk": {
+      "architecture": "amd64",
+      "filename": "pool/main/t/testdisk/testdisk_7.2-0.1_amd64.deb",
+      "sha256": "3479bf5ab228ee0f773a5e3b0b0bc193cec777a0ef836bc066c5592adbee38aa",
+      "version": "7.2-0.1"
+    }
+  },
+  "suite": "trixie"
+}

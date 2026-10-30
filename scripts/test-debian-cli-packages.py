@@ -90,10 +90,22 @@ class DebianSourceUrlTests(unittest.TestCase):
             "https://deb.debian.org/debian/pool/main/c/curl/curl_1.0_amd64.deb",
         )
 
+    def test_source_download_url_supports_the_signed_security_archive(self) -> None:
+        source = {
+            "archive": "security",
+            "filename": "pool/updates/main/n/ntfs-3g/package_1.0_amd64.deb",
+        }
+        self.assertEqual(
+            BUILDER.source_download_url(source),
+            "https://security.debian.org/debian-security/"
+            "pool/updates/main/n/ntfs-3g/package_1.0_amd64.deb",
+        )
+
     def test_source_download_url_rejects_unsafe_paths(self) -> None:
         for source in (
             {"filename": "pool/main/../private.deb"},
             {"filename": "/tmp/package.deb"},
+            {"archive": "unknown", "filename": "pool/main/package.deb"},
         ):
             with self.subTest(source=source), self.assertRaises(ValueError):
                 BUILDER.source_download_url(source)
@@ -4589,6 +4601,135 @@ class Batch27RecoveryPackageTests(unittest.TestCase):
                     repo_root / "packages/recipes" / name / "ARKPKG"
                 )
                 self.assertEqual(dependencies, [])
+                expected_provide = "/" + expected_path.removeprefix("package/")
+                self.assertTrue(
+                    any(
+                        item.endswith("=" + expected_provide)
+                        for item in provides
+                    )
+                )
+
+
+class Batch26PackageTests(unittest.TestCase):
+    def test_batch_26_pins_input_and_ntfs_recovery_tools(self) -> None:
+        """Keep input diagnostics and NTFS recovery source metadata aligned."""
+        repo_root = Path(__file__).resolve().parents[1]
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-26.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        package_details = {
+            "evtest": (
+                "1.35-1",
+                "424b9e607148d5a0287492658e0fcd32f36c85d2b43b1103da3331f1f3546713",
+                set(),
+                "https://cgit.freedesktop.org/evtest/",
+                "upstream",
+                "package/usr/bin/evtest",
+            ),
+            "libntfs-3g89t64": (
+                "2022.10.3-5+deb13u3",
+                "eac375d5e7b0c0a4bfba7f228218e61296362bd19f2851a48f292ec417a6d690",
+                set(),
+                "https://github.com/tuxera/ntfs-3g",
+                "upstream",
+                "package/usr/lib/x86_64-linux-gnu/libntfs-3g.so.89.0.0",
+            ),
+            "ntfs-3g": (
+                "2022.10.3-5+deb13u3",
+                "2e2f42d3051f5ddd6f5c0d449543f23fc0e3fc4631a8a82207dfaab9213bdfaa",
+                {"gnutls-libs", "libgcrypt20", "libntfs-3g89t64"},
+                "https://github.com/tuxera/ntfs-3g",
+                "upstream",
+                "package/usr/bin/ntfs-3g",
+            ),
+            "testdisk": (
+                "7.2-0.1",
+                "3479bf5ab228ee0f773a5e3b0b0bc193cec777a0ef836bc066c5592adbee38aa",
+                {
+                    "libjpeg62-turbo",
+                    "libntfs-3g89t64",
+                    "libtinfo6",
+                    "ncurses-libs",
+                    "ntfs-3g",
+                },
+                "https://git.cgsecurity.org/cgit/testdisk",
+                "upstream",
+                "package/usr/bin/testdisk",
+            ),
+        }
+        authors = {
+            "evtest": ("Vojtech Pavlik and Red Hat, Inc.", None),
+            "libntfs-3g89t64": ("NTFS-3G Development Team", None),
+            "ntfs-3g": ("NTFS-3G Development Team", None),
+            "testdisk": ("Christophe Grenier", None),
+        }
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        self.assertEqual(set(batch_packages), set(package_details))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        for name, (
+            version,
+            checksum,
+            dependencies,
+            git_repo,
+            git_repo_type,
+            expected_path,
+        ) in package_details.items():
+            package = batch_packages[name]
+            with self.subTest(package=name):
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(set(package["dependencies"]), dependencies)
+                self.assertTrue(package["license_path"].endswith("/copyright"))
+                source_name = package["debian_packages"][0]
+                self.assertEqual(batch["sources"][source_name]["sha256"], checksum)
+                if name in {"libntfs-3g89t64", "ntfs-3g"}:
+                    self.assertEqual(
+                        batch["sources"][source_name]["archive"], "security"
+                    )
+                self.assertEqual(
+                    batch["sources"][source_name], manifest["sources"][source_name]
+                )
+                self.assertEqual(metadata[name]["author"], authors[name][0])
+                self.assertEqual(metadata[name]["git_repo"], git_repo)
+                self.assertEqual(metadata[name]["git_repo_type"], git_repo_type)
+                self.assertEqual(metadata[name]["git_author_url"], authors[name][1])
+                self.assertEqual(
+                    {item["name"] for item in metadata[name]["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+                self.assertTrue(
+                    BUILDER.repository_has_package(repo_root, package),
+                    f"missing matching recipe or archive for {name}",
+                )
+
+                archive_path = repo_root / "packages" / (
+                    f"{name}-{version}-{package['arch']}.ark"
+                )
+                paths = set()
+                with (
+                    BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
+                    tarfile.open(fileobj=compressed, mode="r|") as archive,
+                ):
+                    paths.update(member.name for member in archive)
+                self.assertIn(expected_path, paths)
+                self.assertIn(f"package/{package['license_path']}", paths)
+                _, recipe_dependencies, provides = BUILDER.read_recipe(
+                    repo_root / "packages/recipes" / name / "ARKPKG"
+                )
+                self.assertEqual(set(recipe_dependencies), dependencies)
                 expected_provide = "/" + expected_path.removeprefix("package/")
                 self.assertTrue(
                     any(

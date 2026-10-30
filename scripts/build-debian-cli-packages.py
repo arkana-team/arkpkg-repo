@@ -26,7 +26,10 @@ from pathlib import Path, PurePosixPath
 
 import lz4.frame
 
-BASE_URL = "https://deb.debian.org/debian"
+ARCHIVE_BASE_URLS = {
+    "main": "https://deb.debian.org/debian",
+    "security": "https://security.debian.org/debian-security",
+}
 MANIFEST = Path("data/debian-cli-packages.json")
 MAX_ARCHIVE_BYTES = 90_000_000
 MAX_METADATA_SIZE = 64 * 1024
@@ -53,7 +56,11 @@ def source_download_url(source: dict[str, str]) -> str:
     filename = PurePosixPath(source["filename"])
     if filename.is_absolute() or ".." in filename.parts:
         raise ValueError(f"unsafe Debian filename: {source['filename']!r}")
-    return f"{BASE_URL}/{filename.as_posix()}"
+    archive = source.get("archive", "main")
+    base_url = ARCHIVE_BASE_URLS.get(archive)
+    if base_url is None:
+        raise ValueError(f"unsupported Debian archive: {archive!r}")
+    return f"{base_url}/{filename.as_posix()}"
 
 
 def generate_bitmap_font_indexes(payload: Path, package_name: str) -> None:
