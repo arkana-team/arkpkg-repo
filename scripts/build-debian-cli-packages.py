@@ -721,7 +721,8 @@ def recipe_text(
         lines.append("Dependencies:")
         lines.extend(f"  {dependency}" for dependency in dependencies)
     if provides:
-        lines.append("Provides: " + ", ".join(provides))
+        lines.append("Provides:")
+        lines.extend(f"  {provide}" for provide in provides)
     return "\n".join(lines) + "\n"
 
 

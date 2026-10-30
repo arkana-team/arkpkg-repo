@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import importlib.util
 import io
+import json
 import os
 import stat
 import tarfile
@@ -65,6 +66,43 @@ def write_package_archive(
 
 
 class UpstreamCacheTests(unittest.TestCase):
+    def test_http_and_source_metrics_tools_have_pinned_assets(self) -> None:
+        """Keep Oha and scc tied to reviewed source and release hashes."""
+        expected_hashes = {
+            "oha": {
+                "archive_sha256": "8d856e2850efb521c0a1f8efed530eeaeebea34d09c6edc19a42dc5e13b14287",
+                "binary_sha256": "620bb9e16fb53eabc9a3fc45f88bdb41fefa3fee5c05e75892011ce320391716",
+            },
+            "scc": {
+                "archive_sha256": "4f3cf36010c542b10d5582afb91c668b26889160b184deee21b4319347030a7c",
+                "binary_archive_sha256": "c7328436d3027f4357d3d7853f7dc3ac2bbcb4ca08f1adad91a27c593884079b",
+                "binary_member_sha256": {
+                    "scc": "4763d7437218d2d642e2f2a4f7f078e044aa67e0e15b90bab6c70d5fc0ab4022"
+                },
+            },
+        }
+        for name in ("oha", "scc"):
+            with self.subTest(package=name):
+                package = BUILDER.PACKAGES[name]
+                self.assertEqual(package["arch"], "x86_64")
+                for key, expected in expected_hashes[name].items():
+                    self.assertEqual(package[key], expected)
+                if "binary_members" in package:
+                    self.assertEqual(
+                        set(package["binary_members"]),
+                        set(package["binary_member_sha256"]),
+                    )
+                self.assertTrue(package["license_source"])
+        metadata = json.loads(
+            (Path(__file__).resolve().parents[1] / "data/package-metadata.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(metadata["packages"]["oha"]["author"], "hatoo")
+        self.assertEqual(metadata["packages"]["oha"]["git_author_url"], "https://github.com/hatoo")
+        self.assertEqual(metadata["packages"]["scc"]["author"], "Ben Boyter")
+        self.assertEqual(metadata["packages"]["scc"]["git_author_url"], "https://github.com/boyter")
+
     def test_added_terminal_tools_have_complete_release_pins(self) -> None:
         """Keep each new package's source, release, and binary hashes pinned."""
         for name in ("gum", "vivid", "ouch"):
@@ -81,7 +119,17 @@ class UpstreamCacheTests(unittest.TestCase):
 
     def test_system_cli_tools_have_pinned_release_assets(self) -> None:
         """Keep each added system CLI's downloaded assets checksum-pinned."""
-        for name in ("navi", "choose", "dysk"):
+        for name in (
+            "navi",
+            "choose",
+            "dysk",
+            "doggo",
+            "trippy",
+            "nushell",
+            "jujutsu",
+            "mcfly",
+            "curlie",
+        ):
             with self.subTest(package=name):
                 package = BUILDER.PACKAGES[name]
                 digests = [package["archive_sha256"]]
@@ -100,6 +148,67 @@ class UpstreamCacheTests(unittest.TestCase):
                     )
                 )
                 self.assertTrue(package["license_source"])
+        nushell = BUILDER.PACKAGES["nushell"]
+        self.assertEqual(nushell["provides"], ["nu=/usr/bin/nu"])
+        self.assertIn(
+            "Provides: nu=/usr/bin/nu",
+            BUILDER.recipe_text("nushell", nushell),
+        )
+        jujutsu = BUILDER.PACKAGES["jujutsu"]
+        self.assertEqual(jujutsu["provides"], ["jj=/usr/bin/jj"])
+        self.assertEqual(jujutsu["dependencies"], ["git>=2.42.0"])
+        self.assertIn(
+            "Provides: jj=/usr/bin/jj",
+            BUILDER.recipe_text("jujutsu", jujutsu),
+        )
+        self.assertIn(
+            "Dependencies:\n  git>=2.42.0",
+            BUILDER.recipe_text("jujutsu", jujutsu),
+        )
+        metadata = json.loads(
+            (Path(__file__).resolve().parents[1] / "data/package-metadata.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(
+            metadata["packages"]["jujutsu"]["author"], "Martin von Zweigbergk"
+        )
+        self.assertEqual(
+            metadata["packages"]["jujutsu"]["git_author_url"],
+            "https://github.com/martinvonz",
+        )
+        expected_authors = {
+            "doggo": ("Karan Sharma", "https://github.com/mr-karan"),
+            "mcfly": ("Andrew Cantino", "https://github.com/cantino"),
+            "curlie": ("Olivier Poitrey", "https://github.com/rs"),
+            "trippy": ("FujiApple", "https://github.com/fujiapple852"),
+        }
+        for name, (author, author_url) in expected_authors.items():
+            with self.subTest(package=name):
+                package_metadata = metadata["packages"][name]
+                provides = BUILDER.PACKAGES[name].get("provides") or [
+                    f"{name}=/usr/bin/{name}"
+                ]
+                self.assertEqual(package_metadata["author"], author)
+                self.assertEqual(package_metadata["git_author_url"], author_url)
+                self.assertEqual(package_metadata["git_repo_type"], "upstream")
+                self.assertEqual(
+                    package_metadata["git_repo"], BUILDER.PACKAGES[name]["url"]
+                )
+                self.assertIn(
+                    f"Provides: {', '.join(provides)}",
+                    BUILDER.recipe_text(name, BUILDER.PACKAGES[name]),
+                )
+        trippy = BUILDER.PACKAGES["trippy"]
+        self.assertEqual(trippy["provides"], ["trip=/usr/bin/trip"])
+        self.assertEqual(trippy["license"], "Apache-2.0")
+        self.assertEqual(metadata["packages"]["trippy"]["git_repo"], trippy["url"])
+        curlie = BUILDER.PACKAGES["curlie"]
+        self.assertEqual(curlie["dependencies"], ["curl-cli"])
+        self.assertIn(
+            "Dependencies:\n  curl-cli",
+            BUILDER.recipe_text("curlie", curlie),
+        )
 
     def test_disk_and_git_tools_have_pinned_static_release_assets(self) -> None:
         """Keep dua and gitui tied to checksummed Linux release binaries."""
@@ -121,7 +230,66 @@ class UpstreamCacheTests(unittest.TestCase):
                     self.assertTrue(all(char in "0123456789abcdef" for char in digest))
                 self.assertTrue(package["license_source"])
         gitui_recipe = BUILDER.recipe_text("gitui", BUILDER.PACKAGES["gitui"])
-        self.assertIn("Dependencies: git", gitui_recipe)
+        self.assertIn("Dependencies:\n  git", gitui_recipe)
+
+    def test_rust_developer_tools_have_pinned_musl_releases(self) -> None:
+        """Keep Rust testing and audit tools pinned to static upstream assets."""
+        expected_authors = {
+            "cargo-nextest": ("Rain", "https://github.com/sunshowers"),
+            "cargo-deny": ("Embark Studios and Jake Shadle", "https://github.com/Jake-Shadle"),
+            "cargo-audit": ("Tony Arcieri", "https://github.com/Bascule"),
+        }
+        metadata = json.loads(
+            (Path(__file__).resolve().parents[1] / "data/package-metadata.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        for name, (author, author_url) in expected_authors.items():
+            with self.subTest(package=name):
+                package = BUILDER.PACKAGES[name]
+                self.assertEqual(package["arch"], "x86_64")
+                self.assertEqual(package["dependencies"][0], "cargo")
+                self.assertEqual(
+                    set(package["binary_members"]),
+                    set(package["binary_member_sha256"]),
+                )
+                for digest in (
+                    package["archive_sha256"],
+                    package["binary_archive_sha256"],
+                    *package["binary_member_sha256"].values(),
+                ):
+                    self.assertEqual(len(digest), 64)
+                    self.assertTrue(all(char in "0123456789abcdef" for char in digest))
+                package_metadata = metadata["packages"][name]
+                self.assertEqual(package_metadata["author"], author)
+                self.assertEqual(package_metadata["git_author_url"], author_url)
+                self.assertEqual(package_metadata["git_repo"], package["url"])
+                self.assertEqual(package_metadata["git_repo_type"], "upstream")
+                recipe = BUILDER.recipe_text(name, package)
+                self.assertIn(f"Provides: {name}=/usr/bin/{name}", recipe)
+                self.assertIn("Dependencies:\n  cargo", recipe)
+                if name == "cargo-audit":
+                    self.assertIn("  git\nProvides:", recipe)
+
+    def test_existing_dependency_recipes_use_multiline_format(self) -> None:
+        """Keep previously committed recipes aligned with the current renderer."""
+        for name in ("curlie", "gitui", "jujutsu", "navi"):
+            with self.subTest(package=name):
+                recipe = (
+                    Path(__file__).resolve().parents[1]
+                    / "packages/recipes"
+                    / name
+                    / "ARKPKG"
+                ).read_text(encoding="utf-8")
+                dependencies = BUILDER.PACKAGES[name]["dependencies"]
+                lines = recipe.splitlines()
+                index = lines.index("Dependencies:")
+                actual = []
+                for line in lines[index + 1 :]:
+                    if not line.startswith("  "):
+                        break
+                    actual.append(line[2:])
+                self.assertEqual(actual, dependencies)
 
     def test_recipe_text_records_optional_runtime_dependencies(self) -> None:
         """Write declared runtime dependencies into generated package metadata."""
@@ -131,12 +299,12 @@ class UpstreamCacheTests(unittest.TestCase):
             "arch": "x86_64",
             "url": "https://example.test/fixture",
             "license": "MIT",
-            "dependencies": ["fzf"],
+            "dependencies": ["fzf", "git"],
         }
 
         recipe = BUILDER.recipe_text("fixture", package)
 
-        self.assertIn("Dependencies: fzf", recipe)
+        self.assertIn("Dependencies:\n  fzf\n  git", recipe)
         self.assertLess(recipe.index("Dependencies:"), recipe.index("Provides:"))
 
     def test_archive_owner_filter_matches_exact_package_name(self) -> None:
@@ -306,6 +474,25 @@ class UpstreamCacheTests(unittest.TestCase):
                 self.assertRaisesRegex(ValueError, "exceeds 4 bytes"),
             ):
                 BUILDER.read_archive_file(archive_path, "fixture/tool")
+
+    def test_binary_member_limit_is_separate_and_still_bounded(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            archive_path = Path(temporary) / "release.zip"
+            archive_path.write_bytes(zip_archive({"tool": b"binary-member"}))
+            with (
+                mock.patch.object(BUILDER, "MAX_UPSTREAM_MEMBER_BYTES", 8),
+                mock.patch.object(BUILDER, "MAX_BINARY_MEMBER_BYTES", 16),
+            ):
+                with self.assertRaisesRegex(ValueError, "exceeds 8 bytes"):
+                    BUILDER.read_archive_file(archive_path, "tool")
+                self.assertEqual(
+                    BUILDER.read_archive_file(
+                        archive_path,
+                        "tool",
+                        max_bytes=BUILDER.MAX_BINARY_MEMBER_BYTES,
+                    ),
+                    b"binary-member",
+                )
 
     def test_build_uses_verified_bytes_after_cache_replacement(self) -> None:
         for cache_hit in (False, True):

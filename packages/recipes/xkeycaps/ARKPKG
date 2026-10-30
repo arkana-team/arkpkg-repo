@@ -1,0 +1,11 @@
+Name: xkeycaps
+Description: Graphical X11 keyboard and keymap editor
+Version: 2.47-9
+Arch: x86_64
+URL: https://www.jwz.org/xkeycaps/
+License: See /usr/share/doc/xkeycaps/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxaw7
+  libxmu
+Provides: xkeycaps=/usr/bin/xkeycaps

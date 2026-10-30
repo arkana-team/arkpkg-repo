@@ -1,0 +1,10 @@
+Name: jujutsu
+Description: Git-compatible version control system with operation history and undo
+Version: 0.46.0
+Arch: x86_64
+URL: https://github.com/jj-vcs/jj
+License: Apache-2.0
+Maintainer: arkanaOS Team
+Dependencies:
+  git>=2.42.0
+Provides: jj=/usr/bin/jj

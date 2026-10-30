@@ -1,0 +1,10 @@
+Name: xball
+Description: Motif X11 bouncing ball simulation
+Version: 3.1.0+dfsg-3
+Arch: x86_64
+URL: https://github.com/JoesCat/xball
+License: See /usr/share/doc/xball/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxm4
+  libxmu

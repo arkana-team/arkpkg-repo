@@ -1,0 +1,7 @@
+Name: glmark2-data
+Description: OpenGL benchmark scene data for graphics performance testing
+Version: 2023.01+dfsg-2
+Arch: any
+URL: https://github.com/glmark2/glmark2
+License: See /usr/share/doc/glmark2-data/copyright
+Maintainer: arkanaOS Team

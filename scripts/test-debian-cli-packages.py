@@ -111,6 +111,37 @@ class DebianSourceUrlTests(unittest.TestCase):
                 BUILDER.source_download_url(source)
 
 
+class RecipeGenerationTests(unittest.TestCase):
+    def test_recipe_text_writes_each_provide_on_its_own_line(self) -> None:
+        package = {
+            "name": "fixture",
+            "description": "fixture package",
+            "version": "1.0",
+            "arch": "x86_64",
+            "url": "https://example.invalid/fixture",
+            "license": "MIT",
+        }
+        provides = [
+            "libfirst.so.1=/usr/lib/libfirst.so.1",
+            "fixture=/usr/bin/fixture",
+        ]
+        rendered = BUILDER.recipe_text(package, ["base"], provides)
+
+        self.assertIn(
+            "Provides:\n  libfirst.so.1=/usr/lib/libfirst.so.1\n", rendered
+        )
+        self.assertIn("  fixture=/usr/bin/fixture\n", rendered)
+        self.assertNotIn(", ".join(provides), rendered)
+
+        with tempfile.TemporaryDirectory() as temporary:
+            recipe = Path(temporary) / "ARKPKG"
+            recipe.write_text(rendered, encoding="utf-8")
+            _, dependencies, parsed_provides = BUILDER.read_recipe(recipe)
+
+        self.assertEqual(dependencies, ["base"])
+        self.assertEqual(parsed_provides, provides)
+
+
 class WorkstationManifestTests(unittest.TestCase):
     def test_batch_catalogue_uses_homepage_git_repositories(self) -> None:
         repo_root = Path(__file__).resolve().parents[1]
@@ -149,16 +180,18 @@ class WorkstationManifestTests(unittest.TestCase):
             / "data/debian-workstation-packages.json"
         )
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        batch_manifest_path = (
-            Path(__file__).resolve().parents[1]
-            / "data/debian-workstation-packages-batch-07.json"
-        )
-        batch_names = {
-            package["name"]
-            for package in json.loads(
-                batch_manifest_path.read_text(encoding="utf-8")
-            )["packages"]
-        }
+        batch_names = set()
+        for batch_number in ("07", "08", "09", "10", "11"):
+            batch_manifest_path = (
+                Path(__file__).resolve().parents[1]
+                / f"data/debian-workstation-packages-batch-{batch_number}.json"
+            )
+            batch_names.update(
+                package["name"]
+                for package in json.loads(
+                    batch_manifest_path.read_text(encoding="utf-8")
+                )["packages"]
+            )
 
         self.assertEqual(manifest["suite"], "trixie")
         self.assertEqual(manifest["architecture"], "amd64")
@@ -306,6 +339,7 @@ class WorkstationManifestTests(unittest.TestCase):
             "9menu": "https://github.com/arnoldrobbins",
             "autorandr": "https://github.com/phillipberndt",
             "xdo": "https://github.com/baskerville",
+            "gdbserver": "https://www.gnu.org/software/gdb/",
             "ansiweather": "https://github.com/fcambus",
             "ddgr": "https://github.com/jarun",
             "dfc": "https://github.com/rolinh",
@@ -315,6 +349,8 @@ class WorkstationManifestTests(unittest.TestCase):
             "nbsdgames": "https://github.com/abakh",
             "cbonsai": "https://gitlab.com/jallbrit",
             "libfile-next-perl": "https://github.com/petdance",
+            "xmountains": "https://github.com/spbooth",
+            "xcwd": "https://github.com/schischi",
         }
         for name, profile_url in expected_author_profiles.items():
             self.assertEqual(metadata[name]["git_author_url"], profile_url)
@@ -1119,6 +1155,302 @@ class WorkstationManifestTests(unittest.TestCase):
             packages["crawl"]["license_source_path"],
             "usr/share/doc/crawl-common/copyright",
         )
+
+    def test_retro_x11_batch_08_is_pinned_and_credited(self) -> None:
+        """Keep the optional X11 workstation tools reproducible and credited."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-08.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        expected = {
+            "xdu": (
+                "3.0-20+b1",
+                "pool/main/x/xdu/xdu_3.0-20+b1_amd64.deb",
+                "f8f0edfda41dfe66298ff6f82c02a8f58e2c756f798fedfe32ffc831b2cecc58",
+                ["libxaw7"],
+                "Phillip C. Dykstra",
+                "https://salsa.debian.org/debian/xdu.git",
+                "packaging",
+            ),
+            "xmountains": (
+                "2.11-3",
+                "pool/main/x/xmountains/xmountains_2.11-3_amd64.deb",
+                "aa02ca4bd1adabfb4ed4c79e490c298b3472b36a42b6723fff66599b7d6c8bc0",
+                [],
+                "Stephen Booth",
+                "https://github.com/spbooth/xmountains",
+                "upstream",
+            ),
+            "xpenguins": (
+                "3.2.3-2",
+                "pool/main/x/xpenguins/xpenguins_3.2.3-2_amd64.deb",
+                "47700028ba248993d75cb7d6b0936665a9defd10f174da7cb42b7d2787e12d27",
+                ["libcairo2", "libgdk-pixbuf-2.0-0", "libgtk-3-0t64"],
+                "Robin Hogan",
+                "https://salsa.debian.org/games-team/xpenguins.git",
+                "packaging",
+            ),
+            "xphoon": (
+                "20000613+0-9",
+                "pool/main/x/xphoon/xphoon_20000613+0-9_amd64.deb",
+                "a2708e31dfa1f51241f61b9604b8eea9456d0e0acb5148ed40d5a92ccdaf6972",
+                ["libxrandr"],
+                "Jef Poskanzer and Craig Leres",
+                "https://salsa.debian.org/debian/xphoon.git",
+                "packaging",
+            ),
+            "xprintidle": (
+                "0.3.0-1",
+                "pool/main/x/xprintidle/xprintidle_0.3.0-1_amd64.deb",
+                "35f88810913a1040f46244382d4bd3b30dbf2a8c2c7ee5ec1e29784ed982c9bf",
+                ["libxss1"],
+                "Magnus Henoch",
+                "https://github.com/g0hl1n/xprintidle",
+                "upstream",
+            ),
+            "xsysinfo": (
+                "1.7-10+b2",
+                "pool/main/x/xsysinfo/xsysinfo_1.7-10+b2_amd64.deb",
+                "6bdb760ffbd3d334be744ec694fca58c9104246ab1060c8355f8ed8ab664cc74",
+                ["libxaw7"],
+                "Gabor Herr",
+                "https://salsa.debian.org/debian/xsysinfo.git",
+                "packaging",
+            ),
+        }
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        for name, (
+            version,
+            filename,
+            digest,
+            dependencies,
+            author,
+            repository,
+            repository_type,
+        ) in expected.items():
+            with self.subTest(package=name):
+                package = batch_packages[name]
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(package["dependencies"], dependencies)
+                self.assertEqual(batch["sources"][name]["filename"], filename)
+                self.assertEqual(batch["sources"][name]["sha256"], digest)
+                self.assertEqual(manifest["sources"][name], batch["sources"][name])
+                archive = repo_root / "packages" / f"{name}-{version}-x86_64.ark"
+                self.assertTrue(archive.is_file(), archive)
+                recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+                self.assertTrue(recipe.is_file(), recipe)
+                recipe_fields, recipe_dependencies, _ = BUILDER.read_recipe(recipe)
+                self.assertEqual(recipe_fields["Version"], version)
+                self.assertEqual(recipe_dependencies, dependencies)
+                package_metadata = metadata[name]
+                self.assertEqual(package_metadata["author"], author)
+                self.assertEqual(package_metadata["git_repo"], repository)
+                self.assertEqual(package_metadata["git_repo_type"], repository_type)
+                self.assertEqual(
+                    {item["name"] for item in package_metadata["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+    def test_retro_x11_batch_09_is_pinned_and_credited(self) -> None:
+        """Keep the Motif and X11 utilities reproducible and credited."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-09.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        expected = {
+            "xarclock": (
+                "1.0-20",
+                "pool/main/x/xarclock/xarclock_1.0-20_amd64.deb",
+                "d7447f7d03a538838a04c4305c3830449e3b9764bfa3df68153e566b807ad278",
+                ["libxaw7", "libxmu"],
+                "Jaime Garcia Ghirelli",
+                "https://salsa.debian.org/debian/xarclock.git",
+                "packaging",
+            ),
+            "xkeycaps": (
+                "2.47-9",
+                "pool/main/x/xkeycaps/xkeycaps_2.47-9_amd64.deb",
+                "745f6aa25d1e4b6ad94e22a097345780c0c9b18eec4138d681b6cb274637202d",
+                ["libxaw7", "libxmu"],
+                "Jamie Zawinski",
+                "https://salsa.debian.org/debian/xkeycaps.git",
+                "packaging",
+            ),
+            "xball": (
+                "3.1.0+dfsg-3",
+                "pool/main/x/xball/xball_3.1.0+dfsg-3_amd64.deb",
+                "6520a386337c80442cb39460b429d7a946c02ab323f4919708343910112b9d22",
+                ["libxm4", "libxmu"],
+                "David Nedde",
+                "https://github.com/JoesCat/xball",
+                "upstream",
+            ),
+            "xcwd": (
+                "0~2.gbpe2c777c-1+b1",
+                "pool/main/x/xcwd/xcwd_0~2.gbpe2c777c-1+b1_amd64.deb",
+                "864b5e462a81eea0e2776427e26d2372a39d460d53b6fe7a694f4becf0228cf3",
+                [],
+                "Adrien Schildknecht",
+                "https://github.com/schischi/xcwd",
+                "upstream",
+            ),
+        }
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        for name, (
+            version,
+            filename,
+            digest,
+            dependencies,
+            author,
+            repository,
+            repository_type,
+        ) in expected.items():
+            with self.subTest(package=name):
+                package = batch_packages[name]
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(package["dependencies"], dependencies)
+                self.assertEqual(batch["sources"][name]["filename"], filename)
+                self.assertEqual(batch["sources"][name]["sha256"], digest)
+                self.assertEqual(manifest["sources"][name], batch["sources"][name])
+                archive = repo_root / "packages" / f"{name}-{version}-x86_64.ark"
+                self.assertTrue(archive.is_file(), archive)
+                recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+                self.assertTrue(recipe.is_file(), recipe)
+                recipe_fields, recipe_dependencies, _ = BUILDER.read_recipe(recipe)
+                self.assertEqual(recipe_fields["Version"], version)
+                self.assertEqual(recipe_dependencies, dependencies)
+                package_metadata = metadata[name]
+                self.assertEqual(package_metadata["author"], author)
+                self.assertEqual(package_metadata["git_repo"], repository)
+                self.assertEqual(package_metadata["git_repo_type"], repository_type)
+                self.assertEqual(
+                    {item["name"] for item in package_metadata["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
+
+
+    def test_xforms_log_monitor_batch_10_is_pinned_and_credited(self) -> None:
+        """Keep the XForms library and X11 log monitor reproducible and credited."""
+        repo_root = Path(__file__).resolve().parents[1]
+        manifest = json.loads(
+            (repo_root / "data/debian-workstation-packages.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        batch = json.loads(
+            (repo_root / "data/debian-workstation-packages-batch-10.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        manifest_packages = {item["name"]: item for item in manifest["packages"]}
+        batch_packages = {item["name"]: item for item in batch["packages"]}
+        expected = {
+            "libforms2t64": (
+                "1.2.3-1.7",
+                "pool/main/libf/libforms/libforms2t64_1.2.3-1.7_amd64.deb",
+                "5e2a88752c2040b0b3b2a552522e072e8e48eb1ae716d68bf95cf03fef9a410b",
+                ["libjpeg62-turbo"],
+                "LGPL-2.1-or-later",
+                "T.C. Zhao and Mark Overmars",
+                "https://git.savannah.nongnu.org/git/xforms.git",
+                "upstream",
+            ),
+            "xwatch": (
+                "2.11-16.3",
+                "pool/main/x/xwatch/xwatch_2.11-16.3_amd64.deb",
+                "d879c2ffc184449d836530abd1b6ad74c534fe85ff0cc8d23560f630cabdc081",
+                ["libforms2t64"],
+                "GPL-2.0-or-later",
+                "Karel Kubat",
+                "https://salsa.debian.org/debian/xwatch.git",
+                "packaging",
+            ),
+        }
+        self.assertEqual(set(batch_packages), set(expected))
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+
+        for name, (
+            version,
+            filename,
+            digest,
+            dependencies,
+            license_name,
+            author,
+            repository,
+            repository_type,
+        ) in expected.items():
+            with self.subTest(package=name):
+                package = batch_packages[name]
+                self.assertEqual(package, manifest_packages[name])
+                self.assertEqual(package["version"], version)
+                self.assertEqual(package["dependencies"], dependencies)
+                self.assertEqual(package["license"], license_name)
+                self.assertEqual(batch["sources"][name]["filename"], filename)
+                self.assertEqual(batch["sources"][name]["sha256"], digest)
+                self.assertEqual(manifest["sources"][name], batch["sources"][name])
+                archive = repo_root / "packages" / f"{name}-{version}-x86_64.ark"
+                self.assertTrue(archive.is_file(), archive)
+                recipe = repo_root / "packages/recipes" / name / "ARKPKG"
+                self.assertTrue(recipe.is_file(), recipe)
+                recipe_fields, recipe_dependencies, recipe_provides = (
+                    BUILDER.read_recipe(recipe)
+                )
+                self.assertEqual(recipe_fields["Version"], version)
+                self.assertEqual(recipe_fields["License"], license_name)
+                self.assertEqual(recipe_dependencies, dependencies)
+                if name == "libforms2t64":
+                    self.assertEqual(
+                        recipe_provides,
+                        [
+                            "libflimage.so.2=/usr/lib/libflimage.so.2.1.3",
+                            "libforms.so.2=/usr/lib/libforms.so.2.1.3",
+                        ],
+                    )
+                package_metadata = metadata[name]
+                self.assertEqual(package_metadata["author"], author)
+                self.assertIsNone(package_metadata["git_author_url"])
+                self.assertEqual(package_metadata["git_repo"], repository)
+                self.assertEqual(package_metadata["git_repo_type"], repository_type)
+                self.assertEqual(
+                    {item["name"] for item in package_metadata["packagers"]},
+                    {"arkana-team", "debarkak"},
+                )
 
 
 class UpstreamDownloadTests(unittest.TestCase):
@@ -2848,6 +3180,18 @@ class ClassicWorkstationPackagesBatchTests(unittest.TestCase):
             manifest = json.loads(
                 (repo_root / manifest_name).read_text(encoding="utf-8")
             )
+            if manifest_name == "data/debian-cli-packages.json":
+                packages = {item["name"]: item for item in manifest["packages"]}
+                self.assertEqual(packages["gdbserver"]["debian_version"], "16.3-1")
+                self.assertEqual(
+                    manifest["sources"]["gdbserver"],
+                    {
+                        "architecture": "amd64",
+                        "filename": "pool/main/g/gdb/gdbserver_16.3-1_amd64.deb",
+                        "sha256": "6d2f2029e24df9fc099d720f1e020a25f574d74bd69e5f5647350f5c787fd990",
+                        "version": "16.3-1",
+                    },
+                )
             for package in manifest["packages"]:
                 with self.subTest(manifest=manifest_name, package=package["name"]):
                     self.assertTrue(

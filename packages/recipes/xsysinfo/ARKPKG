@@ -1,0 +1,10 @@
+Name: xsysinfo
+Description: X11 monitor for CPU load, memory, and swap
+Version: 1.7-10+b2
+Arch: x86_64
+URL: https://sourceforge.net/projects/xsysinfo/
+License: See /usr/share/doc/xsysinfo/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libxaw7
+Provides: xsysinfo=/usr/bin/xsysinfo

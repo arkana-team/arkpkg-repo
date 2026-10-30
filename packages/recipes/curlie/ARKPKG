@@ -1,0 +1,10 @@
+Name: curlie
+Description: HTTPie-style command-line interface for curl
+Version: 1.8.2
+Arch: x86_64
+URL: https://github.com/rs/curlie
+License: MIT
+Maintainer: arkanaOS Team
+Dependencies:
+  curl-cli
+Provides: curlie=/usr/bin/curlie

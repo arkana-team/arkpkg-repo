@@ -30576,6 +30576,422 @@
         }
       ]
     },
+    "xdu": {
+      "author": "Phillip C. Dykstra",
+      "git_repo": "https://salsa.debian.org/debian/xdu.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xmountains": {
+      "author": "Stephen Booth",
+      "git_repo": "https://github.com/spbooth/xmountains",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/spbooth",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xpenguins": {
+      "author": "Robin Hogan",
+      "git_repo": "https://salsa.debian.org/games-team/xpenguins.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xphoon": {
+      "author": "Jef Poskanzer and Craig Leres",
+      "git_repo": "https://salsa.debian.org/debian/xphoon.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xprintidle": {
+      "author": "Magnus Henoch",
+      "git_repo": "https://github.com/g0hl1n/xprintidle",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xsysinfo": {
+      "author": "Gabor Herr",
+      "git_repo": "https://salsa.debian.org/debian/xsysinfo.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xarclock": {
+      "author": "Jaime Garcia Ghirelli",
+      "git_repo": "https://salsa.debian.org/debian/xarclock.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xkeycaps": {
+      "author": "Jamie Zawinski",
+      "git_repo": "https://salsa.debian.org/debian/xkeycaps.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xball": {
+      "author": "David Nedde",
+      "git_repo": "https://github.com/JoesCat/xball",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xcwd": {
+      "author": "Adrien Schildknecht",
+      "git_repo": "https://github.com/schischi/xcwd",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/schischi",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "nushell": {
+      "author": "The Nushell Project Developers",
+      "git_repo": "https://github.com/nushell/nushell",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/nushell",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "jujutsu": {
+      "author": "Martin von Zweigbergk",
+      "git_repo": "https://github.com/jj-vcs/jj",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/martinvonz",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "curlie": {
+      "author": "Olivier Poitrey",
+      "git_repo": "https://github.com/rs/curlie",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/rs",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "mcfly": {
+      "author": "Andrew Cantino",
+      "git_repo": "https://github.com/cantino/mcfly",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/cantino",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cargo-nextest": {
+      "author": "Rain",
+      "git_repo": "https://github.com/nextest-rs/nextest",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/sunshowers",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cargo-deny": {
+      "author": "Embark Studios and Jake Shadle",
+      "git_repo": "https://github.com/EmbarkStudios/cargo-deny",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/Jake-Shadle",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "cargo-audit": {
+      "author": "Tony Arcieri",
+      "git_repo": "https://github.com/RustSec/rustsec",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/Bascule",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "gdbserver": {
+      "author": "Free Software Foundation",
+      "git_repo": "https://sourceware.org/git/binutils-gdb.git",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://www.gnu.org/software/gdb/",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "libforms2t64": {
+      "author": "T.C. Zhao and Mark Overmars",
+      "git_repo": "https://git.savannah.nongnu.org/git/xforms.git",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "xwatch": {
+      "author": "Karel Kubat",
+      "git_repo": "https://salsa.debian.org/debian/xwatch.git",
+      "git_repo_type": "packaging",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "glmark2-data": {
+      "author": "glmark2 contributors",
+      "git_repo": "https://github.com/glmark2/glmark2",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "glmark2-x11": {
+      "author": "glmark2 contributors",
+      "git_repo": "https://github.com/glmark2/glmark2",
+      "git_repo_type": "upstream",
+      "git_author_url": null,
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "doggo": {
+      "author": "Karan Sharma",
+      "git_repo": "https://github.com/mr-karan/doggo",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/mr-karan",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "trippy": {
+      "author": "FujiApple",
+      "git_repo": "https://github.com/fujiapple852/trippy",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/fujiapple852",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "oha": {
+      "author": "hatoo",
+      "git_repo": "https://github.com/hatoo/oha",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/hatoo",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "scc": {
+      "author": "Ben Boyter",
+      "git_repo": "https://github.com/boyter/scc",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/boyter",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
     "evtest": {
       "author": "Vojtech Pavlik and Red Hat, Inc.",
       "git_repo": "https://cgit.freedesktop.org/evtest/",

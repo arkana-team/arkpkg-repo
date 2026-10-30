@@ -1,0 +1,48 @@
+{
+  "suite": "trixie",
+  "architecture": "amd64",
+  "sources": {
+    "glmark2-data": {
+      "filename": "pool/main/g/glmark2/glmark2-data_2023.01+dfsg-2_all.deb",
+      "sha256": "21a01a852320d20d1162e5d14d64bff7e601501b44da09b75b5496e272e138ec"
+    },
+    "glmark2-x11": {
+      "filename": "pool/main/g/glmark2/glmark2-x11_2023.01+dfsg-2_amd64.deb",
+      "sha256": "d4aaffef0b4eae72fbc5b03bb6b741c4b1ca87891876b0e16617e452217ff0b5"
+    }
+  },
+  "packages": [
+    {
+      "name": "glmark2-data",
+      "description": "OpenGL benchmark scene data for graphics performance testing",
+      "version": "2023.01+dfsg-2",
+      "debian_version": "2023.01+dfsg-2",
+      "arch": "any",
+      "debian_packages": [
+        "glmark2-data"
+      ],
+      "dependencies": [],
+      "url": "https://github.com/glmark2/glmark2",
+      "license": "See /usr/share/doc/glmark2-data/copyright",
+      "license_path": "usr/share/doc/glmark2-data/copyright"
+    },
+    {
+      "name": "glmark2-x11",
+      "description": "OpenGL benchmark suite for X11 workstations",
+      "version": "2023.01+dfsg-2",
+      "debian_version": "2023.01+dfsg-2",
+      "arch": "x86_64",
+      "debian_packages": [
+        "glmark2-x11"
+      ],
+      "dependencies": [
+        "glmark2-data",
+        "libjpeg62-turbo",
+        "libpng16-16t64"
+      ],
+      "url": "https://github.com/glmark2/glmark2",
+      "license": "See /usr/share/doc/glmark2-x11/copyright",
+      "license_path": "usr/share/doc/glmark2-x11/copyright"
+    }
+  ]
+}
