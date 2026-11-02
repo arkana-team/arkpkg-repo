@@ -1,0 +1,9 @@
+Name: ansifilter
+Description: parse common (terminal) ANSI codes and remove or convert them
+Version: 2.21-1
+Arch: x86_64
+URL: http://andre-simon.de/doku/ansifilter/en/ansifilter.php
+License: See /usr/share/doc/ansifilter/copyright
+Maintainer: arkanaOS Team
+Provides:
+  ansifilter=/usr/bin/ansifilter

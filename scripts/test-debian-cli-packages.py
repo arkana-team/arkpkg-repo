@@ -4598,5 +4598,121 @@ class Batch27RecoveryPackageTests(unittest.TestCase):
                 )
 
 
+class Batch29LogViewingPackageTests(unittest.TestCase):
+    def test_batch_29_pins_multitail_log_viewer(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-29.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        package = next(
+            item for item in batch["packages"] if item["name"] == "multitail"
+        )
+
+        self.assertEqual(batch["suite"], "trixie")
+        self.assertEqual(batch["architecture"], "amd64")
+        self.assertEqual(package["version"], "7.1.5-2")
+        self.assertEqual(package["dependencies"], [])
+        self.assertEqual(
+            batch["sources"]["multitail"]["sha256"],
+            "383ce49659e2d721606d1c324a8803ac87ef43de4294b5dbd4058b262c25a652",
+        )
+        self.assertEqual(
+            batch["sources"]["multitail"], manifest["sources"]["multitail"]
+        )
+        self.assertIn(package, manifest["packages"])
+        self.assertEqual(metadata["multitail"]["author"], "Folkert van Heusden")
+        self.assertEqual(
+            metadata["multitail"]["git_repo"],
+            "https://github.com/folkertvanheusden/multitail",
+        )
+        self.assertEqual(
+            metadata["multitail"]["git_author_url"],
+            "https://github.com/folkertvanheusden",
+        )
+        self.assertEqual(
+            {item["name"] for item in metadata["multitail"]["packagers"]},
+            {"arkana-team", "debarkak"},
+        )
+
+        archive_path = repo_root / "packages/multitail-7.1.5-2-x86_64.ark"
+        paths = set()
+        with (
+            BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
+            tarfile.open(fileobj=compressed, mode="r|") as archive,
+        ):
+            paths.update(member.name for member in archive)
+        self.assertIn("package/usr/bin/multitail", paths)
+        self.assertIn("package/usr/share/doc/multitail/copyright", paths)
+        _, dependencies, provides = BUILDER.read_recipe(
+            repo_root / "packages/recipes/multitail/ARKPKG"
+        )
+        self.assertEqual(set(dependencies), {"libtinfo6", "ncurses-libs"})
+        self.assertIn("multitail=/usr/bin/multitail", provides)
+
+    def test_batch_29_pins_ansifilter_terminal_utility(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        batch = json.loads(
+            (repo_root / "data/debian-cli-packages-batch-29.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        manifest = json.loads(
+            (repo_root / "data/debian-cli-packages.json").read_text(encoding="utf-8")
+        )
+        metadata = json.loads(
+            (repo_root / "data/package-metadata.json").read_text(encoding="utf-8")
+        )["packages"]
+        package = next(
+            item for item in batch["packages"] if item["name"] == "ansifilter"
+        )
+
+        self.assertEqual(package["version"], "2.21-1")
+        self.assertEqual(package["dependencies"], [])
+        self.assertEqual(
+            batch["sources"]["ansifilter"]["sha256"],
+            "160bd3885b6edba060f8b55703929f1007c857cdd6e9c848e532879eef77fd8a",
+        )
+        self.assertEqual(
+            batch["sources"]["ansifilter"], manifest["sources"]["ansifilter"]
+        )
+        self.assertIn(package, manifest["packages"])
+        self.assertEqual(metadata["ansifilter"]["author"], "André Simon")
+        self.assertEqual(
+            metadata["ansifilter"]["git_repo"],
+            "https://github.com/andre-simon/ansifilter",
+        )
+        self.assertEqual(
+            metadata["ansifilter"]["git_author_url"],
+            "https://github.com/andre-simon",
+        )
+        self.assertEqual(
+            {item["name"] for item in metadata["ansifilter"]["packagers"]},
+            {"arkana-team", "debarkak"},
+        )
+
+        archive_path = repo_root / "packages/ansifilter-2.21-1-x86_64.ark"
+        paths = set()
+        with (
+            BUILDER.lz4.frame.open(archive_path, "rb") as compressed,
+            tarfile.open(fileobj=compressed, mode="r|") as archive,
+        ):
+            paths.update(member.name for member in archive)
+        self.assertIn("package/usr/bin/ansifilter", paths)
+        self.assertIn("package/usr/share/doc/ansifilter/copyright", paths)
+        _, dependencies, provides = BUILDER.read_recipe(
+            repo_root / "packages/recipes/ansifilter/ARKPKG"
+        )
+        self.assertEqual(dependencies, [])
+        self.assertIn("ansifilter=/usr/bin/ansifilter", provides)
+
+
 if __name__ == "__main__":
     unittest.main()
