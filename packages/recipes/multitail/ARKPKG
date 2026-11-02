@@ -1,0 +1,12 @@
+Name: multitail
+Description: view multiple logfiles windowed on console
+Version: 7.1.5-2
+Arch: x86_64
+URL: https://www.vanheusden.com/multitail/
+License: See /usr/share/doc/multitail/copyright
+Maintainer: arkanaOS Team
+Dependencies:
+  libtinfo6
+  ncurses-libs
+Provides:
+  multitail=/usr/bin/multitail

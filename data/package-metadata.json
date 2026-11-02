@@ -30991,6 +30991,38 @@
           "url": "https://github.com/debarkak"
         }
       ]
+    },
+    "multitail": {
+      "author": "Folkert van Heusden",
+      "git_repo": "https://github.com/folkertvanheusden/multitail",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://github.com/folkertvanheusden",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
+    },
+    "ansifilter": {
+      "author": "André Simon",
+      "git_repo": "https://gitlab.com/saalen/ansifilter",
+      "git_repo_type": "upstream",
+      "git_author_url": "https://gitlab.com/saalen",
+      "packagers": [
+        {
+          "name": "arkana-team",
+          "url": "https://github.com/arkana-team"
+        },
+        {
+          "name": "debarkak",
+          "url": "https://github.com/debarkak"
+        }
+      ]
     }
   },
   "schema_version": 1

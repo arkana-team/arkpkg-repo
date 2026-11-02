@@ -4519,6 +4519,34 @@
       "name": "gdbserver",
       "url": "https://www.gnu.org/software/gdb/",
       "version": "16.3-1"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "multitail"
+      ],
+      "debian_version": "7.1.5-2",
+      "dependencies": [],
+      "description": "view multiple logfiles windowed on console",
+      "license": "See /usr/share/doc/multitail/copyright",
+      "license_path": "usr/share/doc/multitail/copyright",
+      "name": "multitail",
+      "url": "https://www.vanheusden.com/multitail/",
+      "version": "7.1.5-2"
+    },
+    {
+      "arch": "x86_64",
+      "debian_packages": [
+        "ansifilter"
+      ],
+      "debian_version": "2.21-1",
+      "dependencies": [],
+      "description": "parse common (terminal) ANSI codes and remove or convert them",
+      "license": "See /usr/share/doc/ansifilter/copyright",
+      "license_path": "usr/share/doc/ansifilter/copyright",
+      "name": "ansifilter",
+      "url": "http://andre-simon.de/doku/ansifilter/en/ansifilter.php",
+      "version": "2.21-1"
     }
   ],
   "sources": {
@@ -6525,6 +6553,18 @@
       "filename": "pool/main/g/gdb/gdbserver_16.3-1_amd64.deb",
       "sha256": "6d2f2029e24df9fc099d720f1e020a25f574d74bd69e5f5647350f5c787fd990",
       "version": "16.3-1"
+    },
+    "multitail": {
+      "architecture": "amd64",
+      "filename": "pool/main/m/multitail/multitail_7.1.5-2_amd64.deb",
+      "sha256": "383ce49659e2d721606d1c324a8803ac87ef43de4294b5dbd4058b262c25a652",
+      "version": "7.1.5-2"
+    },
+    "ansifilter": {
+      "architecture": "amd64",
+      "filename": "pool/main/a/ansifilter/ansifilter_2.21-1_amd64.deb",
+      "sha256": "160bd3885b6edba060f8b55703929f1007c857cdd6e9c848e532879eef77fd8a",
+      "version": "2.21-1"
     }
   },
   "suite": "trixie"
