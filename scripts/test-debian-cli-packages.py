@@ -4687,11 +4687,11 @@ class Batch29LogViewingPackageTests(unittest.TestCase):
         self.assertEqual(metadata["ansifilter"]["author"], "André Simon")
         self.assertEqual(
             metadata["ansifilter"]["git_repo"],
-            "https://github.com/andre-simon/ansifilter",
+            "https://gitlab.com/saalen/ansifilter",
         )
         self.assertEqual(
             metadata["ansifilter"]["git_author_url"],
-            "https://github.com/andre-simon",
+            "https://gitlab.com/saalen",
         )
         self.assertEqual(
             {item["name"] for item in metadata["ansifilter"]["packagers"]},

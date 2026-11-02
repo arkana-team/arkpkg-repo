@@ -31010,9 +31010,9 @@
     },
     "ansifilter": {
       "author": "André Simon",
-      "git_repo": "https://github.com/andre-simon/ansifilter",
+      "git_repo": "https://gitlab.com/saalen/ansifilter",
       "git_repo_type": "upstream",
-      "git_author_url": "https://github.com/andre-simon",
+      "git_author_url": "https://gitlab.com/saalen",
       "packagers": [
         {
           "name": "arkana-team",
