@@ -16,6 +16,8 @@ import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
 
+from package_metadata import read_metadata_member
+
 MOTIF = (
     "motif-2.3.8.tar.gz",
     "https://downloads.sourceforge.net/project/motif/Motif%202.3.8%20Source%20Code/motif-2.3.8.tar.gz",
@@ -161,26 +163,25 @@ def installed_packages(arkpkg: Path, sysroot: Path) -> set[str]:
     return {line.split()[0] for line in result.stdout.splitlines() if line.split()}
 
 
-def install_package(arkpkg: Path, sysroot: Path, archive: Path) -> str:
+def package_name(archive_path: Path) -> str:
     import lz4.frame
 
-    with lz4.frame.open(archive, "rb") as compressed, tarfile.open(fileobj=compressed, mode="r|") as package:
+    with lz4.frame.open(archive_path, "rb") as compressed, tarfile.open(fileobj=compressed, mode="r|") as package:
         for member in package:
             if member.name != "ARKPKG" or not member.isfile():
                 continue
-            stream = package.extractfile(member)
-            if stream is None:
+            metadata = read_metadata_member(package, member)
+            if metadata is None:
                 break
-            for line in stream.read().decode("utf-8").splitlines():
+            for line in metadata.splitlines():
                 key, separator, value = line.partition(":")
                 if separator and key.strip() == "Name":
-                    name = value.strip()
-                    break
-            else:
-                continue
-            break
-        else:
-            raise ValueError(f"package archive has no Name field: {archive}")
+                    return value.strip()
+    raise ValueError(f"package archive has no Name field: {archive_path}")
+
+
+def install_package(arkpkg: Path, sysroot: Path, archive: Path) -> str:
+    name = package_name(archive)
     privileged([str(arkpkg), "--root", str(sysroot), "install", str(archive), "-y"])
     return name
 

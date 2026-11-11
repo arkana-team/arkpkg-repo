@@ -15,6 +15,8 @@ import urllib.request
 import uuid
 from pathlib import Path, PurePosixPath
 
+from package_metadata import read_metadata_member
+
 BASE_URL = "https://xorg.freedesktop.org/archive/individual/lib"
 LIBRARIES = {
     "libXmu": (
@@ -159,10 +161,10 @@ def package_name(archive_path: Path) -> str:
         for member in archive:
             if member.name != "ARKPKG" or not member.isfile():
                 continue
-            stream = archive.extractfile(member)
-            if stream is None:
+            metadata = read_metadata_member(archive, member)
+            if metadata is None:
                 break
-            for line in stream.read().decode("utf-8").splitlines():
+            for line in metadata.splitlines():
                 key, separator, value = line.partition(":")
                 if separator and key.strip() == "Name":
                     return value.strip()
