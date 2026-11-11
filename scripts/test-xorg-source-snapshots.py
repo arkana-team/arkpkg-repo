@@ -27,6 +27,7 @@ DATA = load("build-xorg-data.py")
 ENCODINGS = load("build-xorg-font-data.py")
 APPS = load("build-xorg-apps.py")
 FONTS = load("build-xorg-fonts.py")
+LIBS = load("build-xorg-libs.py")
 
 
 def archive_bytes(root, files):
@@ -59,8 +60,8 @@ class SnapshotTests(unittest.TestCase):
             with patch.object(builder, "SHA256", digest):
                 obtain = DATA.obtain_source if builder is DATA else ENCODINGS.source_archive
                 return obtain(self.cache, snapshots)
-        if builder is APPS:
-            return APPS.source_archive("fixture", "1", digest, self.cache, snapshots)
+        if builder in (APPS, LIBS):
+            return builder.source_archive("fixture", "1", digest, self.cache, snapshots)
         return FONTS.obtain_source(
             self.cache, "fixture", "1", "https://example.invalid/source", digest, snapshots
         )
@@ -70,7 +71,7 @@ class SnapshotTests(unittest.TestCase):
         return f"{builder.NAME}-{builder.VERSION}" if builder in (DATA, ENCODINGS) else "fixture-1"
 
     def test_cache_links_cannot_change_verified_snapshots(self):
-        for builder in (DATA, ENCODINGS, APPS, FONTS):
+        for builder in (DATA, ENCODINGS, APPS, FONTS, LIBS):
             for link in ("symlink", "hardlink"):
                 with self.subTest(builder=builder.__name__, link=link):
                     root = self.source_root(builder)
@@ -90,7 +91,7 @@ class SnapshotTests(unittest.TestCase):
                     candidate.unlink()
 
     def test_bad_sources_and_unsafe_caches_are_rejected(self):
-        for builder in (DATA, ENCODINGS, APPS, FONTS):
+        for builder in (DATA, ENCODINGS, APPS, FONTS, LIBS):
             with self.subTest(builder=builder.__name__):
                 content = archive_bytes(self.source_root(builder), {"configure": b"verified"})
                 with (
@@ -109,7 +110,7 @@ class SnapshotTests(unittest.TestCase):
                 self.cache.chmod(0o700)
 
     def test_archive_path_checks_are_preserved(self):
-        for builder in (ENCODINGS, APPS):
+        for builder in (ENCODINGS, APPS, LIBS):
             for root in ("/absolute", "../escape", "wrong-root"):
                 with self.subTest(builder=builder.__name__, root=root):
                     content = archive_bytes(root, {"configure": b"verified"})
@@ -121,23 +122,23 @@ class SnapshotTests(unittest.TestCase):
                     (self.cache / f"{self.source_root(builder)}.tar.xz").unlink()
 
     def test_privileged_copy_uses_snapshot_and_cleans_it_on_failure(self):
-        for builder in (ENCODINGS, APPS):
+        for builder in (ENCODINGS, APPS, LIBS):
             with self.subTest(builder=builder.__name__):
                 root = ENCODINGS.ROOT if builder is ENCODINGS else "xcalc-1.1.3"
                 content = archive_bytes(root, {"configure": b"verified"})
                 candidate = self.cache / f"{root}.tar.xz"
                 candidate.write_bytes(content)
-                sysroot = self.root / root
+                sysroot = self.root / f"{root}-{builder.__name__}"
                 binaries = sysroot / "usr/bin"
                 binaries.mkdir(parents=True)
-                for name in ("gcc", "make", "tar", "strip"):
+                for name in ("gcc", "make", "tar", "strip", "pkg-config"):
                     (binaries / name).touch()
                 args = argparse.Namespace(
                     sysroot=sysroot, source_cache=self.cache, arkpkg=self.root / "arkpkg",
                     arkpkg_build=self.root / "arkpkg-build", output_dir=self.root / "output",
                     staging=self.root / "staging", output_staging=self.root / "app-staging",
                     packages=["xcalc"], build_dependency_archive=[], build_pkg_config_file=[],
-                    jobs=1,
+                    libraries=["xcalc"], jobs=1,
                 )
                 copies = []
 
@@ -154,6 +155,8 @@ class SnapshotTests(unittest.TestCase):
                 pins = {"SHA256": digest} if builder is ENCODINGS else {
                     "APPS": {"xcalc": ("1.1.3", digest, "XCalc", "Calculator")}
                 }
+                if builder is LIBS:
+                    pins = {"LIBRARIES": {"xcalc": ("1.1.3", digest, ("fixture",), ())}}
                 with (
                     patch.multiple(builder, **pins),
                     patch.object(builder, "privileged", side_effect=privileged),
@@ -164,6 +167,106 @@ class SnapshotTests(unittest.TestCase):
                     builder.build(args)
                 self.assertEqual(len(copies), 1)
                 self.assertFalse(copies[0].exists())
+
+    def test_library_download_does_not_follow_dangling_cache_symlink(self):
+        content = archive_bytes("fixture-1", {"configure": b"verified"})
+        target = self.root / "outside-cache"
+        candidate = self.cache / "fixture-1.tar.xz"
+        candidate.symlink_to(target)
+        with patch.object(
+            source_cache.urllib.request, "urlopen", return_value=io.BytesIO(content)
+        ) as download:
+            snapshot = self.obtain(LIBS, content)
+        download.assert_called_once()
+        request = download.call_args.args[0]
+        self.assertEqual(request.full_url, f"{LIBS.BASE_URL}/{candidate.name}")
+        self.assertEqual(request.get_header("User-agent"), "arkpkg-repo-xorg-library-builder/1")
+        self.assertEqual(download.call_args.kwargs, {"timeout": 90})
+        self.assertFalse(target.exists())
+        self.assertFalse(candidate.is_symlink())
+        self.assertEqual(candidate.read_bytes(), content)
+        self.assertEqual(snapshot.read_bytes(), content)
+        with patch.object(source_cache.urllib.request, "urlopen") as download:
+            self.assertEqual(self.obtain(LIBS, content).read_bytes(), content)
+        download.assert_not_called()
+
+    def test_library_build_rejects_cache_symlinks_before_privileged_use(self):
+        link = self.root / "cache-link"
+        link.symlink_to(self.cache, target_is_directory=True)
+        for cache in (link, link / "nested"):
+            with self.subTest(cache=cache):
+                args = argparse.Namespace(
+                    sysroot=self.root, source_cache=cache,
+                    output_staging=self.root / "staging",
+                )
+                with (
+                    patch.object(LIBS, "privileged") as privileged,
+                    patch.object(source_cache.urllib.request, "urlopen") as download,
+                    self.assertRaisesRegex(ValueError, "unsafe source cache"),
+                ):
+                    LIBS.build(args)
+                privileged.assert_not_called()
+                download.assert_not_called()
+                self.assertFalse((self.cache / "nested").exists())
+
+    def test_library_download_does_not_truncate_link_targets(self):
+        content = archive_bytes("fixture-1", {"configure": b"verified"})
+        target = self.root / "outside-cache"
+        target.write_bytes(b"keep")
+        candidate = self.cache / "fixture-1.tar.xz"
+        for link in ("symlink", "hardlink"):
+            with self.subTest(link=link):
+                def response(request, *, timeout, link=link):
+                    if link == "symlink":
+                        candidate.symlink_to(target)
+                    else:
+                        os.link(target, candidate)
+                    return io.BytesIO(content)
+
+                with patch.object(source_cache.urllib.request, "urlopen", side_effect=response):
+                    self.assertEqual(self.obtain(LIBS, content).read_bytes(), content)
+                self.assertEqual(target.read_bytes(), b"keep")
+                self.assertEqual(candidate.read_bytes(), content)
+                candidate.unlink()
+
+    def test_library_build_keeps_verified_snapshot_for_license_and_cleans_on_success(self):
+        content = archive_bytes("fixture-1", {"COPYING": b"verified license"})
+        candidate = self.cache / "fixture-1.tar.xz"
+        candidate.write_bytes(content)
+        binaries = self.root / "sysroot/usr/bin"
+        binaries.mkdir(parents=True)
+        for name in ("gcc", "make", "tar", "pkg-config"):
+            (binaries / name).touch()
+        args = argparse.Namespace(
+            sysroot=self.root / "sysroot", source_cache=self.cache, arkpkg=None,
+            arkpkg_build=self.root / "builder", output_dir=self.root / "output",
+            output_staging=self.root / "staging", libraries=["fixture"],
+            build_dependency_archive=[], jobs=1,
+        )
+        copies = []
+
+        def privileged(command, **kwargs):
+            if command[0] == "install" and "-d" not in command:
+                source = Path(command[-2])
+                copies.append(source)
+                candidate.write_bytes(b"attacker replacement")
+                self.assertNotEqual(source, candidate)
+                self.assertEqual(source.read_bytes(), content)
+                self.assertEqual(stat.S_IMODE(source.parent.stat().st_mode), 0o700)
+
+        pins = {"fixture": ("1", hashlib.sha256(content).hexdigest(), ("fixture",), ())}
+        with (
+            patch.object(LIBS, "LIBRARIES", pins),
+            patch.object(LIBS, "privileged", side_effect=privileged),
+            patch.object(LIBS, "copy_tree"),
+            patch.object(LIBS.subprocess, "run") as package_build,
+        ):
+            LIBS.build(args)
+        package_build.assert_called_once()
+        license_path = args.output_staging / "fixture/usr/share/licenses/fixture/COPYING"
+        self.assertEqual(license_path.read_bytes(), b"verified license")
+        self.assertEqual(len(copies), 1)
+        self.assertFalse(copies[0].parent.exists())
 
     def bitmap_archive(self, name):
         return archive_bytes(f"{DATA.NAME}-{DATA.VERSION}", {
