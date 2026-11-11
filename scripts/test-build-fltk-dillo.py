@@ -183,6 +183,74 @@ class PackageMetadataTests(unittest.TestCase):
             self.read_and_install()
         self.install.assert_not_called()
 
+    def test_member_count_is_bounded_before_processing(self):
+        extension = self.member("extension", self.pax_record("comment", "ok"), tarfile.XHDTYPE)
+        for before, count in (
+            (self.member("package/empty") * 2, 3),
+            (extension * 2, 3),
+            ((extension + self.member("package/empty")) * 2, 5),
+        ):
+            self.write_archive(before=before)
+            with mock.patch.object(BUILDER, "MAX_TAR_MEMBERS", count):
+                for _ in range(2):
+                    self.assertEqual(self.read_and_install(), "fltk-libs")
+            self.install.reset_mock()
+            original = tarfile.TarInfo._proc_member
+            with (
+                mock.patch.object(BUILDER, "MAX_TAR_MEMBERS", count - 1),
+                mock.patch.object(tarfile.TarInfo, "_proc_member", autospec=True,
+                                  side_effect=original) as process,
+                self.assertRaisesRegex(ValueError, "TAR member count"),
+            ):
+                self.read_and_install()
+            self.assertEqual(process.call_count, count - 1)
+            self.install.assert_not_called()
+
+    def test_inherited_pax_work_is_bounded_before_processing(self):
+        global_header = self.member(
+            "global", self.pax_record("one", "x") + self.pax_record("two", "y"),
+            tarfile.XGLTYPE,
+        )
+        local_header = self.member("local", self.pax_record("comment", "ok"), tarfile.XHDTYPE)
+        gnu_header = self.member("link", b"target\0", tarfile.GNUTYPE_LONGLINK)
+        more_globals = self.member("global", self.pax_record("three", "z"), tarfile.XGLTYPE)
+        for nested, items in ((b"", 6), (local_header, 8), (gnu_header, 8), (more_globals, 11)):
+            self.write_archive(before=(
+                global_header + nested + self.member("package/empty") * 2
+            ))
+            with mock.patch.object(BUILDER, "MAX_TAR_PAX_ITEMS", items):
+                for _ in range(2):
+                    self.assertEqual(self.read_and_install(), "fltk-libs")
+            self.install.reset_mock()
+            original = tarfile.TarInfo._proc_member
+            with (
+                mock.patch.object(BUILDER, "MAX_TAR_PAX_ITEMS", items - 1),
+                mock.patch.object(tarfile.TarInfo, "_proc_member", autospec=True,
+                                  side_effect=original) as process,
+                self.assertRaisesRegex(ValueError, "inherited PAX metadata"),
+            ):
+                self.read_and_install()
+            self.assertNotIn("ARKPKG", [call.args[0].name for call in process.call_args_list])
+            self.install.assert_not_called()
+
+    def test_members_with_global_pax_metadata_are_not_retained(self):
+        pax = b"".join(self.pax_record(f"key{i}", "x") for i in range(1000))
+        self.write_archive(before=(
+            self.member("global", pax, tarfile.XGLTYPE)
+            + self.member("package/empty") * 256
+        ))
+        cached_counts = []
+        original = tarfile.TarInfo._proc_builtin
+
+        def observe(member, archive):
+            cached_counts.append(len(archive.members))
+            return original(member, archive)
+
+        with mock.patch.object(tarfile.TarInfo, "_proc_builtin", observe):
+            self.assertEqual(self.read_and_install(), "fltk-libs")
+        self.assertEqual(len(cached_counts), 257)
+        self.assertEqual(max(cached_counts), 0)
+
     def test_expanded_budget_includes_payload_skipped_before_metadata(self):
         expanded = self.write_archive(before=self.member("package/large", b"\0" * (32 * 1024)))
         self.assertLess(self.archive.stat().st_size, 1024)

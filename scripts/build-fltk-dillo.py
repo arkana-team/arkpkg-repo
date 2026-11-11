@@ -31,6 +31,8 @@ MAX_ARCHIVE_BYTES = 1024**3
 MAX_TAR_EXTENSION_SIZE = 64 * 1024
 MAX_TAR_EXTENSION_BYTES = 1024 * 1024
 MAX_TAR_EXTENSION_DEPTH = 32
+MAX_TAR_MEMBERS = 100_000  # Includes extension headers processed recursively.
+MAX_TAR_PAX_ITEMS = 1_000_000  # Cumulative inherited dictionary entries processed.
 
 
 class BudgetReader:
@@ -54,6 +56,17 @@ class BudgetReader:
 
 class MetadataTarInfo(tarfile.TarInfo):
     def _proc_member(self, archive):
+        members = getattr(archive, "_metadata_members", 0) + 1
+        if members > MAX_TAR_MEMBERS:
+            raise ValueError("TAR member count exceeds inspection limit")
+        archive._metadata_members = members
+        # Charge global PAX copies before tarfile processes each member,
+        # including members reached recursively through extension headers.
+        pax_items = getattr(archive, "_metadata_pax_items", 0) + len(archive.pax_headers)
+        if pax_items > MAX_TAR_PAX_ITEMS:
+            raise ValueError("inherited PAX metadata exceeds inspection limit")
+        archive._metadata_pax_items = pax_items
+
         # Extension bodies and sparse maps are parsed before members are yielded.
         depth = getattr(archive, "_metadata_parser_depth", 0)
         if self.type in {
@@ -251,7 +264,10 @@ def install_package(arkpkg: Path, sysroot: Path, archive: Path) -> str:
             tarinfo=MetadataTarInfo,
         ) as package,
     ):
-        for member in package:
+        # Explicit iteration lets us discard cached members on Python versions
+        # without tarfile's stream=True option. No member lookup is needed.
+        for member in iter(package.next, None):
+            package.members.clear()
             if member.name != "ARKPKG" or not member.isfile():
                 continue
             if member.issparse():
