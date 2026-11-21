@@ -17,7 +17,12 @@ own contribution unless you have repository permission to do so.
   generated assets; `scripts/test-package-index-tilde.py` covers Debian version
   ordering in the package index.
 - `scripts/test-packages.py` checks archive metadata, dependencies, file
-  ownership, and install/verify/remove behavior.
+  ownership, executable bits, build-time paths in metadata, and
+  install/verify/remove behavior.
+- `scripts/repack-defective-archives.py` rewrites an already-published archive
+  after a builder fix and re-runs the audit before replacing it.
+- `.github/workflows/repository-tool-tests.yml` runs every `scripts/test-*.py`
+  file on Python 3.11.
 
 ## Adding or updating a package
 
@@ -97,22 +102,60 @@ Building `xfonts-base`, `xfonts-75dpi`, or `xfonts-100dpi` also requires
 
 ## Validation
 
+The tooling targets Python 3.11, which is the version the workflows pin. Newer
+interpreter features such as `tarfile.extractall(filter=...)` are only
+available from Python 3.12, so gate them behind a capability check or the tests
+fail on the supported version.
+
 Install the Python `lz4` module and have a built `arkpkg` executable available.
 Run the repository audit and generate a preview of the Pages site:
 
 ```sh
 ruff check scripts/*.py
 python3 -m py_compile scripts/*.py
-python3 scripts/test-build-index.py
-python3 scripts/test-package-index-tilde.py
+for test_file in scripts/test-*.py; do python3 "$test_file" -v || break; done
 python3 scripts/test-packages.py --repo-root . --arkpkg /path/to/arkpkg
 python3 scripts/build-index.py --repo-root . --site-dir /tmp/arkpkg-site
 ```
+
+Every `scripts/test-*.py` file must be run by
+`.github/workflows/repository-tool-tests.yml`; that workflow fails when a test
+file is not referenced there. Add the step when you add a test file.
 
 The full package test uses a temporary root and installs, verifies, and removes
 every archive. Inspect the generated index and site before submitting. Do not
 commit the generated `site/` directory; GitHub Actions publishes it after
 package changes reach `main`.
+
+The archive audit (`scripts/test-packages.py --audit-only`) also rejects payload
+defects that used to reach the published repository:
+
+- files under `usr/bin`, `usr/sbin`, `usr/games`, `bin`, or `sbin` that are not
+  executable, because the installed command could not be run;
+- `.pc`, `.cmake`, and `.la` files that embed a build root such as
+  `/build/arkana/staging/usr` instead of the installed prefix;
+- set-id payload entries that are world writable.
+
+If a published archive already contains one of these defects, fix the builder
+and then rewrite the archive with the helper instead of re-uploading by hand:
+
+```sh
+python3 scripts/repack-defective-archives.py \
+  --package zstd-devel-1.5.7-x86_64.ark
+```
+
+The helper rewrites only the affected members, verifies the result with the same
+audit, and replaces the archive in place. Commit the refreshed archive together
+with the builder fix, and remember that its SHA-256 in `index.json` changes.
+
+## Publishing several versions
+
+`packages/` may hold more than one version of a package. The index keeps every
+archive and lists them in Debian version order (epoch, then numeric segments,
+with `~` sorting before the plain version) rather than in filename order. When
+you bump a version, keep the older archive until clients have had a chance to
+upgrade, and add a line for the same name in `data/package-metadata.json` only
+once; metadata is keyed by package name, not by archive.
 
 Keep the catalogue static and usable with keyboard and mobile layouts. Preserve
 its search, category filters, sorting, and package details panel. Make styling
