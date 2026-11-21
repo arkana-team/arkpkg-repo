@@ -1,0 +1,133 @@
+name: Repository tool tests
+
+# Every scripts/test-*.py file is run here. Several builders previously had
+# tests that no workflow executed, so a broken test could sit unnoticed on
+# main. Keep this workflow in sync when a new test file is added; the final
+# step fails if a test file is not referenced here.
+
+on:
+  pull_request:
+    paths:
+      - "scripts/**"
+      - ".github/workflows/repository-tool-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/repository-tool-tests.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  tool-tests:
+    name: Run builder and index tool tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install test dependencies
+        run: python3 -m pip install --disable-pip-version-check lz4 ruff
+
+      - name: Lint scripts
+        run: ruff check scripts/*.py
+
+      - name: Compile every script
+        run: python3 -m py_compile scripts/*.py
+
+      - name: Test archive payload audit rules
+        run: python3 scripts/test-package-payload-audit.py -v
+
+      - name: Test package version validation
+        run: python3 scripts/test-package-version-validation.py -v
+
+      - name: Test source cache handling
+        run: python3 scripts/test-source-cache.py -v
+
+      - name: Test staged executable packaging
+        run: python3 scripts/test-arkana-staged-executables.py -v
+
+      - name: Test FLTK and Dillo builder
+        run: python3 scripts/test-build-fltk-dillo.py -v
+
+      - name: Test xcb-util builder
+        run: python3 scripts/test-build-xcb-util.py -v
+
+      - name: Test X.Org data builder
+        run: python3 scripts/test-build-xorg-data.py -v
+
+      - name: Test X.Org font builder
+        run: python3 scripts/test-build-xorg-fonts.py -v
+
+      - name: Test X.Org font sources
+        run: python3 scripts/test-xorg-font-sources.py -v
+
+      - name: Test xosview builder
+        run: python3 scripts/test-build-xosview.py -v
+
+      - name: Test xpdf-tools builder
+        run: python3 scripts/test-build-xpdf-tools.py -v
+
+      - name: Test X.Org source snapshots
+        run: python3 scripts/test-xorg-source-snapshots.py -v
+
+      - name: Test X.Org staging helpers
+        run: python3 scripts/test-xorg-staging.py -v
+
+      - name: Test X.Org Autoconf macro builder
+        run: python3 scripts/test-xorg-util-macros.py -v
+
+      - name: Test Debian manifest parsing
+        run: python3 scripts/test-debian-cli-packages.py -v
+
+      - name: Test package index generation
+        run: python3 scripts/test-build-index.py -v
+
+      - name: Test package index version ordering
+        run: python3 scripts/test-package-index-tilde.py -v
+
+      - name: Test archive metadata size limits
+        run: python3 scripts/test-package-metadata-limits.py -v
+
+      - name: Test package version selection
+        run: python3 scripts/test-package-audit-versions.py -v
+
+      - name: Test upstream source cache integrity
+        run: python3 scripts/test-upstream-cli-packages.py -v
+
+      - name: Test pkgconf metadata bounds
+        run: python3 scripts/test-build-pkgconf.py -v
+
+      - name: Test pkgconf source snapshots
+        run: python3 scripts/test-build-pkgconf-sources.py -v
+
+      - name: Test Motif and NEdit source snapshots
+        run: python3 scripts/test-motif-nedit-sources.py -v
+
+      - name: Audit all package archives and payloads
+        run: |
+          python3 scripts/test-packages.py \
+            --repo-root . --arkpkg /usr/bin/true --audit-only
+
+      - name: Check every test file is covered by CI
+        run: |
+          status=0
+          # scripts/test-packages.py is the archive audit executed above; it
+          # has no unittest entry point of its own.
+          for test_file in scripts/test-*.py; do
+            if [ "$test_file" = "scripts/test-packages.py" ]; then
+              continue
+            fi
+            if ! grep -q "$(basename "$test_file")" \
+              .github/workflows/repository-tool-tests.yml; then
+              echo "::error file=$test_file::not run by any workflow"
+              status=1
+            fi
+          done
+          exit "$status"
