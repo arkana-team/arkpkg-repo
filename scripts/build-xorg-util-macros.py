@@ -111,7 +111,11 @@ def build(args: argparse.Namespace, staging: Path) -> None:
                     raise ValueError(
                         f"unexpected source root in archive: {member.name!r}"
                     )
-                if not (member.isfile() or member.isdir() or member.issym()):
+                # Python 3.11's extract() has no data filter. Reject symlinks
+                # rather than following a link that could redirect a later
+                # member outside the staging directory. This pinned source
+                # archive contains no symlinks.
+                if not (member.isfile() or member.isdir()):
                     raise ValueError(
                         f"unsupported source member type: {member.name!r}"
                     )
