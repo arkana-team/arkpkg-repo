@@ -479,6 +479,55 @@ class BuildIndexTests(unittest.TestCase):
             self.assertIn("function selectCategory", script)
             self.assertIn("function showDetails", script)
 
+    def test_multiple_versions_are_ordered_numerically_not_lexically(self) -> None:
+        # Archives are discovered through a glob, so several published versions
+        # of one package must be re-sorted with Debian version semantics
+        # instead of the raw "1.0.10" < "1.0.9" string order.
+        entries = [
+            {"name": "ksh93", "version": "1.0.10-2", "arch": "x86_64"},
+            {"name": "ksh93", "version": "1.0.9", "arch": "x86_64"},
+            {"name": "xcalc", "version": "1:1.0.5", "arch": "x86_64"},
+            {"name": "xcalc", "version": "2.0.0", "arch": "x86_64"},
+            {"name": "adas-widget", "version": "1.0.0", "arch": "any"},
+        ]
+        build_index.sort_packages(entries)
+        self.assertEqual(
+            [(entry["name"], entry["version"]) for entry in entries],
+            [
+                ("adas-widget", "1.0.0"),
+                ("ksh93", "1.0.9"),
+                ("ksh93", "1.0.10-2"),
+                ("xcalc", "2.0.0"),
+                ("xcalc", "1:1.0.5"),
+            ],
+        )
+
+    def test_version_ordering_is_a_total_order(self) -> None:
+        # compare_package_entries() sorts with cmp_to_key(), so it must be
+        # antisymmetric or the generated index order can vary between runs.
+        versions = (
+            "1.0",
+            "1.0.0",
+            "1.0.0~rc1",
+            "1:1.0",
+            "2.0",
+            "1.0+dfsg-1",
+            "1.0-1",
+            "1.0.0.0",
+        )
+        for left in versions:
+            for right in versions:
+                with self.subTest(left=left, right=right):
+                    forward = build_index.compare_package_entries(
+                        {"name": "demo", "version": left, "arch": "any"},
+                        {"name": "demo", "version": right, "arch": "any"},
+                    )
+                    backward = build_index.compare_package_entries(
+                        {"name": "demo", "version": right, "arch": "any"},
+                        {"name": "demo", "version": left, "arch": "any"},
+                    )
+                    self.assertEqual(forward, -backward)
+
     def test_package_categories_cover_common_workstation_software(self) -> None:
         cases = (
             ("libx11", "X11 shared libraries", "libraries"),

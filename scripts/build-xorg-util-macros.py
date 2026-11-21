@@ -96,7 +96,26 @@ def build(args: argparse.Namespace, staging: Path) -> None:
     repo_root = Path(__file__).resolve().parents[1]
     source = obtain_source(args.source_cache)
     with tarfile.open(fileobj=io.BytesIO(source), mode="r:xz") as archive:
-        archive.extractall(staging / "source", filter="data")
+        if hasattr(tarfile, "data_filter"):
+            # Python 3.12+ applies the hardened "data" filter to block unsafe
+            # links, devices, and path traversal in the source archive.
+            archive.extractall(staging / "source", filter="data")
+        else:
+            # Python 3.11 has no extraction filter argument; extract members
+            # one by one after the same path checks used by obtain_source().
+            for member in archive.getmembers():
+                path = PurePosixPath(member.name)
+                if path.is_absolute() or ".." in path.parts:
+                    raise ValueError(f"unsafe source path in archive: {member.name!r}")
+                if path.parts and path.parts[0] != f"{NAME}-{VERSION}":
+                    raise ValueError(
+                        f"unexpected source root in archive: {member.name!r}"
+                    )
+                if not (member.isfile() or member.isdir() or member.issym()):
+                    raise ValueError(
+                        f"unsupported source member type: {member.name!r}"
+                    )
+                archive.extract(member, staging / "source")
     source_root = staging / "source" / f"{NAME}-{VERSION}"
     payload_root = staging / "payload"
     payload_root.mkdir()

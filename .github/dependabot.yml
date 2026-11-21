@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # The workflows pin actions/checkout@v6, actions/setup-python@v6, and the
+  # Pages actions. Without an update config those pins silently go stale.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: ci
+
+  # lz4 is the only third-party Python dependency of the tooling.
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: deps

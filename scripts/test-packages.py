@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import stat
 import subprocess
 import tarfile
 import tempfile
@@ -21,6 +22,14 @@ VERSION = re.compile(r"(?:[0-9]+:)?[A-Za-z0-9][-A-Za-z0-9._+~]*\Z")
 DEPENDENCY = re.compile(
     r"([A-Za-z0-9][A-Za-z0-9._+-]*)(?:\s*(?:>=|<=|=|>|<)\s*(\S+))?\Z"
 )
+# Payload paths that must stay executable; builders own the executable bit.
+EXECUTABLE_DIRECTORIES = ("usr/bin/", "usr/sbin/", "usr/games/", "bin/", "sbin/")
+# Build-time roots that must never leak into installed metadata such as .pc files.
+STAGING_PATH = re.compile(
+    r"(?:^|[\s=/:\"'])(?:/build/[^\s\"':]*|/tmp/[^\s\"':]*arkana[^\s\"':]*"
+    r"|/[^\s\"':]*/staging(?:/|\b))"
+)
+TEXT_METADATA_SUFFIXES = (".pc", ".cmake", ".la")
 
 
 class BoundedTarInfo(tarfile.TarInfo):
@@ -104,6 +113,40 @@ def compare_versions(left: str, right: str) -> int:
     return 0
 
 
+def check_payload_entry(
+    path: Path, archive: tarfile.TarFile, member: tarfile.TarInfo, relative: str
+) -> None:
+    """Reject payloads that look installed but cannot be used on the target.
+
+    Builders stage files with a restrictive umask, so a binary or script under
+    a bin directory that lost its executable bit installs successfully but
+    cannot be run. Metadata files such as pkg-config .pc files also must not
+    embed the build root, or downstream compilers link against paths that do
+    not exist on the installed system.
+    """
+    if relative.startswith(EXECUTABLE_DIRECTORIES) and not member.mode & 0o111:
+        raise ValueError(
+            f"{path.name}: {relative} is in a bin directory but not executable"
+        )
+    if member.mode & (stat.S_ISUID | stat.S_ISGID) and member.mode & 0o002:
+        raise ValueError(
+            f"{path.name}: {relative} is set-id and world writable"
+        )
+    if not relative.endswith(TEXT_METADATA_SUFFIXES) or member.size > 256 * 1024:
+        return
+    stream = archive.extractfile(member)
+    if stream is None:
+        raise ValueError(f"{path.name}: unreadable payload entry {relative}")
+    content = stream.read(256 * 1024).decode("utf-8", "replace")
+    match = STAGING_PATH.search(content)
+    if match is None:
+        return
+    raise ValueError(
+        f"{path.name}: {relative} embeds a build-time path "
+        f"({match.group(0).strip('/')}); rewrite it to the installed prefix"
+    )
+
+
 def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
     metadata: dict[str, str] | None = None
     dependencies: list[str] = []
@@ -159,6 +202,8 @@ def inspect_archive(path: Path) -> tuple[dict[str, str], list[str], list[str]]:
                 if relative in payload_paths:
                     raise ValueError(f"{path.name}: duplicate payload path {relative}")
                 payload_paths.add(relative)
+                if member.isfile():
+                    check_payload_entry(path, archive, member, relative)
 
     if metadata is None:
         raise ValueError(f"{path.name}: missing root ARKPKG metadata")

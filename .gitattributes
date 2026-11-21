@@ -1,0 +1,12 @@
+## Treat published archives as binary so diffs and merges never corrupt them.
+packages/*.ark -text -diff -merge
+scripts/payloads/*.tar.* -text -diff
+
+## Normalise newlines and encoding for the sources and generated site inputs.
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+
+## Keep workflow files recognisable in diffs.
+.github/workflows/*.yml linguist-language=YAML

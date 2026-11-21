@@ -9,6 +9,8 @@ on:
       - "scripts/build-index.py"
       - "scripts/test-build-index.py"
       - "scripts/test-package-index-tilde.py"
+      - "scripts/test-package-payload-audit.py"
+      - "scripts/test-package-metadata-limits.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -34,12 +36,19 @@ jobs:
       - name: Prepare GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
       - name: Build package index and site files
         run: |
           python3 -m venv /tmp/arkpkg-repo-venv
           /tmp/arkpkg-repo-venv/bin/pip install --disable-pip-version-check lz4
           /tmp/arkpkg-repo-venv/bin/python scripts/test-package-index-tilde.py
           /tmp/arkpkg-repo-venv/bin/python scripts/test-build-index.py
+          /tmp/arkpkg-repo-venv/bin/python scripts/test-package-metadata-limits.py
+          /tmp/arkpkg-repo-venv/bin/python scripts/test-package-payload-audit.py
           /tmp/arkpkg-repo-venv/bin/python scripts/build-index.py --site-dir site
 
       - name: Upload Pages artifact

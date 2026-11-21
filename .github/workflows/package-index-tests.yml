@@ -10,6 +10,8 @@ on:
       - "scripts/build-index.py"
       - "scripts/test-build-index.py"
       - "scripts/test-package-metadata-limits.py"
+      - "scripts/test-package-payload-audit.py"
+      - "scripts/test-package-version-validation.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
       - "scripts/build-pkgconf.py"
@@ -29,6 +31,8 @@ on:
       - "scripts/build-index.py"
       - "scripts/test-build-index.py"
       - "scripts/test-package-metadata-limits.py"
+      - "scripts/test-package-payload-audit.py"
+      - "scripts/test-package-version-validation.py"
       - "scripts/test-package-index-tilde.py"
       - "scripts/test-debian-cli-packages.py"
       - "scripts/build-pkgconf.py"
@@ -49,11 +53,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.x"
+          python-version: "3.11"
       - name: Install index builder dependency
         run: python3 -m pip install lz4
       - name: Test epoch and tilde versions
