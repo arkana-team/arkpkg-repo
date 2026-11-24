@@ -1,0 +1,6 @@
+# Test and lint dependencies for the repository tooling.
+#
+# The workflows pin Python 3.11; `lz4` is the only runtime dependency of the
+# scripts, and `ruff` is the linter the workflows run.
+lz4==4.4.5
+ruff==0.17.6

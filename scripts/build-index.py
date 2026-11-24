@@ -8,6 +8,7 @@ import json
 import re
 import shutil
 import tarfile
+from functools import cmp_to_key
 from pathlib import Path, PurePosixPath
 from urllib.parse import quote, urlsplit
 
@@ -293,6 +294,86 @@ SYSTEM_PACKAGES = {
     "systemd", "systemd-sysv", "sysvinit-utils", "tar", "util-linux",
     "which", "xz-tools", "zstd-tools",
 }
+
+
+def version_segments(version: str) -> tuple[int, list[tuple[str, int | str]]]:
+    """Split a Debian-style version into an epoch and comparable segments."""
+    epoch = 0
+    if ":" in version:
+        raw_epoch, version = version.split(":", 1)
+        epoch = int(raw_epoch)
+
+    segments: list[tuple[str, int | str]] = []
+    for index, part in enumerate(version.split("~")):
+        if index:
+            segments.append(("tilde", ""))
+        for token in re.split(r"[._-]", part):
+            if not token:
+                continue
+            segments.append(("number", int(token)) if token.isdigit() else ("string", token))
+    return epoch, segments
+
+
+def compare_versions(left: str, right: str) -> int:
+    """Compare two Debian-style versions, honouring epochs and tildes."""
+    left_epoch, left_segments = version_segments(left)
+    right_epoch, right_segments = version_segments(right)
+    if left_epoch != right_epoch:
+        return (left_epoch > right_epoch) - (left_epoch < right_epoch)
+
+    for index in range(max(len(left_segments), len(right_segments))):
+        left_segment = left_segments[index] if index < len(left_segments) else None
+        right_segment = right_segments[index] if index < len(right_segments) else None
+        if left_segment == right_segment:
+            continue
+        if left_segment is None:
+            if right_segment[0] == "tilde":
+                return 1
+            if right_segment[0] == "number" and right_segment[1] == 0:
+                continue
+            return 1 if right_segment[0] == "string" else -1
+        if right_segment is None:
+            if left_segment[0] == "tilde":
+                return -1
+            if left_segment[0] == "number" and left_segment[1] == 0:
+                continue
+            return -1 if left_segment[0] == "string" else 1
+        if left_segment[0] == "tilde" or right_segment[0] == "tilde":
+            return -1 if left_segment[0] == "tilde" else 1
+        if left_segment[0] == right_segment[0]:
+            return (left_segment[1] > right_segment[1]) - (
+                left_segment[1] < right_segment[1]
+            )
+        return 1 if left_segment[0] == "number" else -1
+    return 0
+
+
+def compare_package_entries(left: dict[str, object], right: dict[str, object]) -> int:
+    """Order package entries by name, then by Debian-aware version and arch."""
+    left_name = str(left["name"])
+    right_name = str(right["name"])
+    folded = (left_name.lower() > right_name.lower()) - (
+        left_name.lower() < right_name.lower()
+    )
+    if folded:
+        return folded
+    ordered = compare_versions(str(left["version"]), str(right["version"]))
+    if ordered:
+        return ordered
+    # compare_versions() treats some spellings as equal (for example 1.0 and
+    # 1.0.0); fall back to the literal text so the index order is stable.
+    for field in ("version", "name", "arch"):
+        left_value = str(left[field])
+        right_value = str(right[field])
+        if left_value != right_value:
+            return (left_value > right_value) - (left_value < right_value)
+    return 0
+
+
+def sort_packages(entries: list[dict[str, object]]) -> list[dict[str, object]]:
+    """Sort catalogue entries in place, oldest version first within a name."""
+    entries.sort(key=cmp_to_key(compare_package_entries))
+    return entries
 
 
 def package_category(name: str, description: str) -> str:
@@ -652,7 +733,7 @@ def build_site(
     for item in entries:
         item.update(package_metadata[item["name"]])
 
-    entries.sort(key=lambda item: (item["name"].lower(), item["version"], item["arch"]))
+    sort_packages(entries)
     (site_dir / "index.json").write_text(
         json.dumps({"schema_version": 1, "packages": entries}, indent=2) + "\n",
         encoding="utf-8",
