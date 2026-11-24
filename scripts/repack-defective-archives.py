@@ -137,11 +137,20 @@ def main() -> None:
         raise SystemExit("pass at least one --package ARCHIVE")
 
     for name in targets:
-        archive_path = package_root / name
+        archive_name = Path(name)
+        if name in {".", ".."} or archive_name.name != name:
+            raise SystemExit(
+                f"--package expects an archive file name under packages/: {name!r}"
+            )
+        archive_path = package_root / archive_name
         if not archive_path.is_file() or archive_path.is_symlink():
             raise SystemExit(f"missing regular archive: {archive_path}")
         print(f"Repacking {name}", flush=True)
-        with tempfile.TemporaryDirectory(prefix="arkpkg-repack-") as temporary:
+        # Keep the verified replacement on the archive's filesystem so the
+        # final replace stays atomic even when /tmp is a separate mount.
+        with tempfile.TemporaryDirectory(
+            prefix=".arkpkg-repack-", dir=package_root
+        ) as temporary:
             destination = Path(temporary) / name
             repack(archive_path, destination)
             destination.replace(archive_path)
